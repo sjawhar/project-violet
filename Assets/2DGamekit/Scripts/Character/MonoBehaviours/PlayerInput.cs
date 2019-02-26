@@ -19,6 +19,7 @@ namespace Gamekit2D
         public InputButton MeleeAttack = new InputButton(KeyCode.K, XboxControllerButtons.X);
         public InputButton RangedAttack = new InputButton(KeyCode.O, XboxControllerButtons.B);
         public InputButton Jump = new InputButton(KeyCode.Space, XboxControllerButtons.A);
+        public InputButton Dash = new InputButton(KeyCode.LeftShift, XboxControllerButtons.RightBumper);
         public InputAxis Horizontal = new InputAxis(KeyCode.D, KeyCode.A, XboxControllerAxes.LeftstickHorizontal);
         public InputAxis Vertical = new InputAxis(KeyCode.W, KeyCode.S, XboxControllerAxes.LeftstickVertical);
         [HideInInspector]
@@ -60,6 +61,7 @@ namespace Gamekit2D
             MeleeAttack.Get(fixedUpdateHappened, inputType);
             RangedAttack.Get(fixedUpdateHappened, inputType);
             Jump.Get(fixedUpdateHappened, inputType);
+            Dash.Get(fixedUpdateHappened, inputType);
             Horizontal.Get(inputType);
             Vertical.Get(inputType);
 
@@ -78,6 +80,7 @@ namespace Gamekit2D
             GainControl(MeleeAttack);
             GainControl(RangedAttack);
             GainControl(Jump);
+            GainControl(Dash);
             GainControl(Horizontal);
             GainControl(Vertical);
         }
@@ -91,8 +94,20 @@ namespace Gamekit2D
             ReleaseControl(MeleeAttack, resetValues);
             ReleaseControl(RangedAttack, resetValues);
             ReleaseControl(Jump, resetValues);
+            ReleaseControl(Dash, resetValues);
             ReleaseControl(Horizontal, resetValues);
             ReleaseControl(Vertical, resetValues);
+        }
+
+
+        public void DisableDashing()
+        {
+            Dash.Disable();
+        }
+
+        public void EnableDashing()
+        {
+            Dash.Enable();
         }
 
         public void DisableMeleeAttacking()
@@ -128,19 +143,24 @@ namespace Gamekit2D
 
         public Data SaveData()
         {
-            return new Data<bool, bool>(MeleeAttack.Enabled, RangedAttack.Enabled);
+            return new Data<bool, bool, bool>(Dash.Enabled, MeleeAttack.Enabled, RangedAttack.Enabled);
         }
 
         public void LoadData(Data data)
         {
-            Data<bool, bool> playerInputData = (Data<bool, bool>)data;
+            Data<bool, bool, bool> playerInputData = (Data<bool, bool, bool>)data;
 
             if (playerInputData.value0)
+                Dash.Enable();
+            else
+                Dash.Disable();
+
+            if (playerInputData.value1)
                 MeleeAttack.Enable();
             else
                 MeleeAttack.Disable();
 
-            if (playerInputData.value1)
+            if (playerInputData.value2)
                 RangedAttack.Enable();
             else
                 RangedAttack.Disable();
@@ -157,8 +177,17 @@ namespace Gamekit2D
                 GUILayout.BeginVertical("box");
                 GUILayout.Label("Press F12 to close");
 
+                bool dashEnabled = GUILayout.Toggle(Dash.Enabled, "Enable Dash");
                 bool meleeAttackEnabled = GUILayout.Toggle(MeleeAttack.Enabled, "Enable Melee Attack");
                 bool rangeAttackEnabled = GUILayout.Toggle(RangedAttack.Enabled, "Enable Range Attack");
+
+                if (dashEnabled != Dash.Enabled)
+                {
+                    if (dashEnabled)
+                        Dash.Enable();
+                    else
+                        Dash.Disable();
+                }
 
                 if (meleeAttackEnabled != MeleeAttack.Enabled)
                 {

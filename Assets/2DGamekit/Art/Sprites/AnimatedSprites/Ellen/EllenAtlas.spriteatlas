@@ -42,7 +42,8 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 7b200a58dfffd8d45b54454b1cb82151, type: 3}
-    totalSpriteSurfaceArea: 98929035
+    - {fileID: 102900000, guid: eacc74add9e258ae98c7bf67ad13745d, type: 3}
+    totalSpriteSurfaceArea: 101404035
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -109,12 +110,14 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 929a47e4f89792c4aa28ae41634348c3, type: 3}
   - {fileID: 21300000, guid: 6469e4f4bdda7e8488924cf6ef74c464, type: 3}
   - {fileID: 21300000, guid: 32713ff48a4e8dc42a32b9d4d19ea5fe, type: 3}
+  - {fileID: 21300000, guid: fdb3210564f2898eaa72cb6a9afd8e02, type: 3}
   - {fileID: 21300000, guid: c195730543b85df41953d682fee276b3, type: 3}
   - {fileID: 21300000, guid: 92fbfb056ce42c940aa543cf14a9084a, type: 3}
   - {fileID: 21300000, guid: 7fb83f0538f2eaf4a9c6f3b08b60cab4, type: 3}
   - {fileID: 21300000, guid: 46fc6025308929d4b878bfb4b81ead12, type: 3}
   - {fileID: 21300000, guid: 05df8025a12814d46b434681a6989133, type: 3}
   - {fileID: 21300000, guid: 92f985257d4b81740b246818800efccd, type: 3}
+  - {fileID: 21300000, guid: b147d0656033ede64a125e0c7b7ded6a, type: 3}
   - {fileID: 21300000, guid: 57585d65d25175a4b82cdcd9092545ca, type: 3}
   - {fileID: 21300000, guid: bce1db75cf9f0c7448eb419ad2e38c8a, type: 3}
   - {fileID: 21300000, guid: 0adb3b85a77225b42823314ce0caedd3, type: 3}
@@ -175,6 +178,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 82bf8779d3330604c9cec1bf2f219329, type: 3}
   - {fileID: 21300000, guid: 8feedb9983dae0d49a492dae5bbbf6d6, type: 3}
   - {fileID: 21300000, guid: e62f4ca9760884b4cb9ff0c3025838db, type: 3}
+  - {fileID: 21300000, guid: bd2ce4b97b49794008f749deaae67adb, type: 3}
   - {fileID: 21300000, guid: c63c69d9fdf411147aede23769d5fcfc, type: 3}
   - {fileID: 21300000, guid: bb0dc30aba14f084b9f20cd11d7f59d8, type: 3}
   - {fileID: 21300000, guid: 852dea1a4d9a29a45b32e544647320ad, type: 3}
@@ -223,6 +227,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c7cf710ee57c1ae45aac513a85fcff07, type: 3}
   - {fileID: 21300000, guid: 904a520e37320ab4aa482b623e1d52f4, type: 3}
   - {fileID: 21300000, guid: a4d1991ea98b3684c99f8728d28ec652, type: 3}
+  - {fileID: 21300000, guid: 8a4d5e1edc53e28c598daef869b4999e, type: 3}
   - {fileID: 21300000, guid: 2d24972ef326cbf4d95898e1bee82f8e, type: 3}
   - {fileID: 21300000, guid: 0b69f35e166d1704f987340b84eaefe6, type: 3}
   - {fileID: 21300000, guid: 6b56e26ee92b18e4aa775af7975a9b17, type: 3}
@@ -310,12 +315,14 @@ SpriteAtlas:
   - Ellen_WALK_005
   - Anim_PUSH_00013
   - Anim_JUMPwithGUN_14
+  - Anim_Dash_00009
   - Anim_DEATH_00009
   - Ellen_RUN_GunOut_1s_00007
   - Ellen_RUN_GunOut_1s_00001
   - Ellen_WALK_GUNOUT_019
   - ELLEN_RUN_NoGun_10
   - Anim_StaffAttack_Type1_00005
+  - Anim_Dash_00002
   - Anim_RUN_WithGun_00001
   - Anim_JUMPwithGUN_19
   - Anim_HURT_00009
@@ -376,6 +383,7 @@ SpriteAtlas:
   - Ellen_WALK_027
   - Ellen_WALK_GUNOUT_025
   - Ellen_CrouchWithGun04
+  - Anim_Dash_00006
   - Anim_RUN_WithGun_00007
   - Ellen_WALK_021
   - Anim_PUSH_00025
@@ -424,6 +432,7 @@ SpriteAtlas:
   - Anim_IDLE_00005
   - Ellen_RUN_GunOut_1s_00011
   - Ellen_CrouchWithGun00
+  - Anim_Dash_00011
   - Ellen_WALK_GUNOUT_007
   - Anim_JUMPwithGUN_18
   - Ellen_WALK_011

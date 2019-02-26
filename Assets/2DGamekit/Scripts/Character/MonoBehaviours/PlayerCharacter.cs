@@ -27,6 +27,7 @@ namespace Gamekit2D
         public Transform cameraFollowTarget;
 
         public float maxSpeed = 10f;
+        public float dashSpeed = 30f;
         public float groundAcceleration = 100f;
         public float groundDeceleration = 100f;
         [Range(0f, 1f)] public float pushingSpeedProportion;
@@ -105,6 +106,7 @@ namespace Gamekit2D
         protected readonly int m_HashHurtPara = Animator.StringToHash("Hurt");
         protected readonly int m_HashForcedRespawnPara = Animator.StringToHash("ForcedRespawn");
         protected readonly int m_HashMeleeAttackPara = Animator.StringToHash("MeleeAttack");
+        protected readonly int m_HashDashPara = Animator.StringToHash("Dash");
         protected readonly int m_HashHoldingGunPara = Animator.StringToHash("HoldingGun");
 
         protected const float k_MinHurtJumpAngle = 0.001f;
@@ -613,6 +615,16 @@ namespace Gamekit2D
             damageable.EnableInvulnerability(true);
             yield return new WaitForSeconds(0.5f);
             damageable.DisableInvulnerability();
+        }
+
+        public bool CheckForDashInput()
+        {
+            return PlayerInput.Instance.Dash.Down;
+        }
+
+        public void Dash()
+        {
+            m_Animator.SetTrigger(m_HashDashPara);
         }
 
         public bool CheckForHoldingGun()
