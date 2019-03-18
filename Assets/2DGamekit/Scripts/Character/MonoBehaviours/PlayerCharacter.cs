@@ -583,7 +583,7 @@ namespace Gamekit2D
 
         public bool CheckForDoubleJump()
         {
-            return PlayerInput.Instance.Jump.DoubleTapped;
+            return PlayerInput.Instance.DoubleJump.Down;
         }
 
         public bool CheckForFallInput()

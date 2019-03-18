@@ -52,7 +52,6 @@ namespace Gamekit2D
             public bool Down { get; protected set; }
             public bool Held { get; protected set; }
             public bool Up { get; protected set; }
-            public bool DoubleTapped { get; protected set; }
             public bool Enabled
             {
                 get { return m_Enabled; }
@@ -64,13 +63,9 @@ namespace Gamekit2D
 
             //This is used to change the state of a button (Down, Up) only if at least a FixedUpdate happened between the previous Frame
             //and this one. Since movement are made in FixedUpdate, without that an input could be missed it get press/release between fixedupdate
-            bool m_AfterFixedUpdateDown;
-            bool m_AfterFixedUpdateHeld;
-            bool m_AfterFixedUpdateUp;
-
-            bool m_listening = false;
-            float m_debounceTime = 0.05f;
-            float m_maxDoubleTapTime = 0.5f;
+            protected bool m_AfterFixedUpdateDown;
+            protected bool m_AfterFixedUpdateHeld;
+            protected bool m_AfterFixedUpdateUp;
 
             protected static readonly Dictionary<int, string> k_ButtonsToName = new Dictionary<int, string>
             {
@@ -92,7 +87,7 @@ namespace Gamekit2D
                 this.controllerButton = controllerButton;
             }
 
-            public void Get(bool fixedUpdateHappened, InputType inputType)
+            public virtual void Get(bool fixedUpdateHappened, InputType inputType)
             {
                 if (!m_Enabled)
                 {
@@ -188,35 +183,91 @@ namespace Gamekit2D
 
                 Up = false;
             }
+        }
 
-            public IEnumerator checkForDoubleTap()
+        [Serializable]
+        public class DoubleTapButton : InputButton
+        {
+            private int m_doubleTapStep = 0;
+            private float m_doubleTapTimer = 0f;
+            private float m_doubleTapSpeed = 0.25f;
+
+            public DoubleTapButton(KeyCode key, XboxControllerButtons controllerButton)
+                : base(key, controllerButton) { }
+
+            public override void Get(bool fixedUpdateHappened, InputType inputType)
             {
-                if (m_listening == true)
+                if (!m_Enabled)
                 {
-                    yield break;
+                    Down = false;
+                    Held = false;
+                    Up = false;
+                    return;
+                }
+                else if (!m_GettingInput)
+                {
+                    return;
                 }
 
-                DoubleTapped = false;
-                m_listening = true;
-                yield return new WaitForSeconds(m_debounceTime);
-
-                float timePassed = 0;
-                while (!DoubleTapped && timePassed < m_maxDoubleTapTime)
+                if (fixedUpdateHappened)
                 {
-                    if (m_AfterFixedUpdateDown)
+                    Held = m_AfterFixedUpdateHeld;
+                    Up = m_AfterFixedUpdateUp;
+
+                    if (m_doubleTapStep == 0 && m_AfterFixedUpdateDown)
                     {
-                        DoubleTapped = true;
+                        m_doubleTapTimer = m_doubleTapSpeed;
+                        m_doubleTapStep = 1;
                     }
-                    else
+                    else if (m_doubleTapTimer <= 0)
                     {
-                        yield return new WaitForFixedUpdate();
-                        timePassed += Time.deltaTime;
+                        m_doubleTapTimer = 0;
+                        m_doubleTapStep = 0;
+                        Down = false;
+                        Up = !Held;
                     }
+                    else if (m_doubleTapStep == 1 && m_AfterFixedUpdateUp)
+                    {
+                        m_doubleTapTimer = m_doubleTapSpeed;
+                        m_doubleTapStep = 2;
+                    }
+                    else if (m_doubleTapStep == 2 && m_AfterFixedUpdateDown)
+                    {
+                        m_doubleTapTimer = 0;
+                        m_doubleTapStep = 3;
+                        Down = true;
+                        Up = false;
+                    }
+
+                    if (m_doubleTapTimer > 0)
+                    {
+                        m_doubleTapTimer -= Time.deltaTime;
+                    }
+
+                    m_AfterFixedUpdateDown = false;
+                    m_AfterFixedUpdateHeld = false;
+                    m_AfterFixedUpdateUp = false;
                 }
 
-                yield return new WaitForFixedUpdate();
-                DoubleTapped = false;
-                m_listening = false;
+                bool isDown = false;
+                bool isHeld = false;
+                bool isUp = false;
+                if (inputType == InputType.Controller)
+                {
+                    isDown = Input.GetButtonDown(k_ButtonsToName[(int)controllerButton]);
+                    isHeld = Input.GetButton(k_ButtonsToName[(int)controllerButton]);
+                    isUp = Input.GetButtonUp(k_ButtonsToName[(int)controllerButton]);
+                }
+                else if (inputType == InputType.MouseAndKeyboard)
+                {
+                    isDown = Input.GetKeyDown(key);
+                    isHeld = Input.GetKey(key);
+                    isUp = Input.GetKeyUp(key);
+                }
+
+                m_AfterFixedUpdateDown |= isDown;
+                m_AfterFixedUpdateHeld |= isHeld;
+                m_AfterFixedUpdateUp |= isUp;
             }
         }
 
