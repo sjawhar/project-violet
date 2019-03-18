@@ -52,6 +52,7 @@ namespace Gamekit2D
             public bool Down { get; protected set; }
             public bool Held { get; protected set; }
             public bool Up { get; protected set; }
+            public bool DoubleTapped { get; protected set; }
             public bool Enabled
             {
                 get { return m_Enabled; }
@@ -66,6 +67,10 @@ namespace Gamekit2D
             bool m_AfterFixedUpdateDown;
             bool m_AfterFixedUpdateHeld;
             bool m_AfterFixedUpdateUp;
+
+            bool m_listening = false;
+            float m_debounceTime = 0.05f;
+            float m_maxDoubleTapTime = 0.5f;
 
             protected static readonly Dictionary<int, string> k_ButtonsToName = new Dictionary<int, string>
             {
@@ -183,7 +188,38 @@ namespace Gamekit2D
 
                 Up = false;
             }
+
+            public IEnumerator checkForDoubleTap()
+            {
+                if (m_listening == true)
+                {
+                    yield break;
+                }
+
+                DoubleTapped = false;
+                m_listening = true;
+                yield return new WaitForSeconds(m_debounceTime);
+
+                float timePassed = 0;
+                while (!DoubleTapped && timePassed < m_maxDoubleTapTime)
+                {
+                    if (m_AfterFixedUpdateDown)
+                    {
+                        DoubleTapped = true;
+                    }
+                    else
+                    {
+                        yield return new WaitForFixedUpdate();
+                        timePassed += Time.deltaTime;
+                    }
+                }
+
+                yield return new WaitForFixedUpdate();
+                DoubleTapped = false;
+                m_listening = false;
+            }
         }
+
 
         [Serializable]
         public class InputAxis

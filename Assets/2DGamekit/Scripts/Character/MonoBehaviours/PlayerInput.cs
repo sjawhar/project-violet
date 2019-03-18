@@ -10,8 +10,8 @@ namespace Gamekit2D
         }
 
         protected static PlayerInput s_Instance;
-    
-    
+
+
         public bool HaveControl { get { return m_HaveControl; } }
 
         public InputButton Pause = new InputButton(KeyCode.Escape, XboxControllerButtons.Menu);
@@ -43,7 +43,7 @@ namespace Gamekit2D
                 s_Instance = this;
             else if(s_Instance != this)
                 throw new UnityException("There cannot be more than one PlayerInput script.  The instances are " + s_Instance.name + " and " + name + ".");
-        
+
             PersistentDataManager.RegisterPersister(this);
         }
 
@@ -56,6 +56,8 @@ namespace Gamekit2D
 
         protected override void GetInputs(bool fixedUpdateHappened)
         {
+            bool wasDown = Jump.Down;
+
             Pause.Get(fixedUpdateHappened, inputType);
             Interact.Get(fixedUpdateHappened, inputType);
             MeleeAttack.Get(fixedUpdateHappened, inputType);
@@ -64,6 +66,11 @@ namespace Gamekit2D
             Dash.Get(fixedUpdateHappened, inputType);
             Horizontal.Get(inputType);
             Vertical.Get(inputType);
+
+            if (wasDown && !Jump.Down)
+            {
+                StartCoroutine(Jump.checkForDoubleTap());
+            }
 
             if (Input.GetKeyDown(KeyCode.F12))
             {

@@ -70,6 +70,7 @@ namespace Gamekit2D
         protected CapsuleCollider2D m_Capsule;
         protected Transform m_Transform;
         protected Vector2 m_MoveVector;
+        protected bool m_IsCanDoubleJump;
         protected List<Pushable> m_CurrentPushables = new List<Pushable>(4);
         protected Pushable m_CurrentPushable;
         protected float m_TanHurtJumpAngle;
@@ -202,7 +203,7 @@ namespace Gamekit2D
         }
 
         void FixedUpdate()
-        { 
+        {
             m_CharacterController2D.Move(m_MoveVector * Time.deltaTime);
             m_Animator.SetFloat(m_HashHorizontalSpeedPara, m_MoveVector.x);
             m_Animator.SetFloat(m_HashVerticalSpeedPara, m_MoveVector.y);
@@ -212,7 +213,7 @@ namespace Gamekit2D
 
         public void Unpause()
         {
-            //if the timescale is already > 0, we 
+            //if the timescale is already > 0, we
             if (Time.timeScale > 0)
                 return;
 
@@ -351,6 +352,17 @@ namespace Gamekit2D
             m_MoveVector.y = newVerticalMovement;
         }
 
+        public void DoubleJump()
+        {
+            if (!m_IsCanDoubleJump)
+            {
+                return;
+            }
+
+            SetVerticalMovement(jumpSpeed);
+            m_IsCanDoubleJump = false;
+        }
+
         public void IncrementMovement(Vector2 additionalMovement)
         {
             m_MoveVector += additionalMovement;
@@ -441,6 +453,7 @@ namespace Gamekit2D
 
             if (grounded)
             {
+                m_IsCanDoubleJump = true;
                 FindCurrentSurface();
 
                 if (!wasGrounded && m_MoveVector.y < -1.0f)
@@ -568,6 +581,11 @@ namespace Gamekit2D
             return PlayerInput.Instance.Jump.Down;
         }
 
+        public bool CheckForDoubleJump()
+        {
+            return PlayerInput.Instance.Jump.DoubleTapped;
+        }
+
         public bool CheckForFallInput()
         {
             return PlayerInput.Instance.Vertical.Value < -float.Epsilon && PlayerInput.Instance.Jump.Down;
@@ -577,7 +595,7 @@ namespace Gamekit2D
         {
             int colliderCount = 0;
             int fallthroughColliderCount = 0;
-        
+
             for (int i = 0; i < m_CharacterController2D.GroundColliders.Length; i++)
             {
                 Collider2D col = m_CharacterController2D.GroundColliders[i];
