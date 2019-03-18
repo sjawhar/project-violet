@@ -1,4 +1,4 @@
-﻿// NOTE: If you are getting errors of the sort that say something like:
+// NOTE: If you are getting errors of the sort that say something like:
 //     "The type or namespace name `PostProcessing' does not exist in the namespace"
 // it is because the Post Processing Stack V2 module has not been installed in your project.
 //
