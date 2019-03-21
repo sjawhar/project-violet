@@ -36,7 +36,7 @@ namespace Gamekit2D
             }
         }
 
-    
+
 
         static public void Shake(float amount, float time)
         {

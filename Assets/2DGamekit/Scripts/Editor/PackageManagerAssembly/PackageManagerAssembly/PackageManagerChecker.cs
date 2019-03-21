@@ -47,7 +47,7 @@ public class PackageChecker
                     entry.name = split[0];
                     entry.version = split.Length > 1 ? split[1] : null;
 
-                    packageToAdd.Add(entry); 
+                    packageToAdd.Add(entry);
                 }
 
                 File.WriteAllText(filePath, "Delete this to trigger a new auto package check");

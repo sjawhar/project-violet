@@ -99,7 +99,7 @@ namespace Gamekit2D
                 caughtObject.inContact = false;
                 caughtObject.checkedThisFrame = false;
             }
-        
+
             CheckRigidbodyContacts (platformRigidbody);
 
             bool checkAgain;
@@ -116,7 +116,7 @@ namespace Gamekit2D
                             CheckRigidbodyContacts(caughtObject.rigidbody);
                             caughtObject.checkedThisFrame = true;
                         }
-                    }                
+                    }
                     //Some cases will remove all contacts (collider resize etc.) leading to loosing contact with the platform
                     //so we check the distance of the object to the top of the platform.
                     if(!caughtObject.inContact)

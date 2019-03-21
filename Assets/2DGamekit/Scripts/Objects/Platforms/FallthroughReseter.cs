@@ -14,7 +14,7 @@ namespace Gamekit2D
         IEnumerator FallCoroutine(PlatformEffector2D effector)
         {
             int playerLayerMask = 1 << LayerMask.NameToLayer("Player");
-        
+
             effector.colliderMask &= ~playerLayerMask;
             gameObject.layer = LayerMask.NameToLayer ("Default");
 

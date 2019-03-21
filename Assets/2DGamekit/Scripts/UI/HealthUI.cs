@@ -20,7 +20,7 @@ namespace Gamekit2D
                 yield break;
 
             yield return null;
-            
+
             m_HealthIconAnimators = new Animator[representedDamageable.startingHealth];
 
             for (int i = 0; i < representedDamageable.startingHealth; i++)
@@ -46,7 +46,7 @@ namespace Gamekit2D
         {
             if(m_HealthIconAnimators == null)
                 return;
-            
+
             for (int i = 0; i < m_HealthIconAnimators.Length; i++)
             {
                 m_HealthIconAnimators[i].SetBool(m_HashActivePara, damageable.CurrentHealth >= i + 1);

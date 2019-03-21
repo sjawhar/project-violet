@@ -25,13 +25,13 @@ namespace Gamekit2D
         }
 
         protected static SavedData instance;
-    
+
         protected Dictionary<string, string> m_StringSavedData;
         protected Dictionary<string, bool> m_BoolSavedData;
         protected Dictionary<string, int> m_IntSavedData;
         protected Dictionary<string, float> m_FloatSavedData;
         protected Dictionary<string, Vector2> m_Vector2SavedData;
-    
+
         void Start()
         {
             if (Instance != null)

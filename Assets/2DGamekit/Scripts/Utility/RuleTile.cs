@@ -21,7 +21,7 @@ namespace UnityEngine
 			public AutoTransform m_AutoTransform;
 			public OutputSprite m_Output;
 			public Tile.ColliderType m_ColliderType;
-			
+
 			public TilingRule()
 			{
 				m_Output = OutputSprite.Single;
@@ -90,7 +90,7 @@ namespace UnityEngine
 			}
 			return false;
 		}
-		
+
 		public override void RefreshTile(Vector3Int location, ITilemap tileMap)
 		{
 			if (m_TilingRules != null && m_TilingRules.Count > 0)
@@ -153,10 +153,10 @@ namespace UnityEngine
 						if (rule.m_Neighbors[index] == TilingRule.Neighbor.This && tile != this || rule.m_Neighbors[index] == TilingRule.Neighbor.NotThis && tile == this)
 						{
 							return false;
-						}	
+						}
 					}
 				}
-				
+
 			}
 			return true;
 		}
@@ -180,7 +180,7 @@ namespace UnityEngine
 					}
 				}
 			}
-			
+
 			return true;
 		}
 

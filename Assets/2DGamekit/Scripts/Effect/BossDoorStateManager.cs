@@ -27,9 +27,9 @@ namespace Gamekit2D
         public InventoryController inventoryController;
         public SpriteRenderer spriteRenderer;
         public DoorState[] doorStates;
-    
+
         protected int m_Keys;
-    
+
         void Start ()
         {
             UpdateStates ();

@@ -13,7 +13,7 @@ namespace Gamekit2D
         {
             material.renderQueue = queueOverrideValue;
         }
-	
-	
+
+
     }
 }

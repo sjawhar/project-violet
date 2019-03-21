@@ -89,7 +89,7 @@ namespace Gamekit2D
             {
                 Undo.RecordObject(target, "added node");
 
-            
+
                 Vector3 position = m_MovingPlatform.localNodes[m_MovingPlatform.localNodes.Length - 1] + Vector3.right;
 
                 ArrayUtility.Add(ref m_MovingPlatform.localNodes, position);
@@ -161,7 +161,7 @@ namespace Gamekit2D
                 }
 
 
-                Vector3 newWorld = worldPos; 
+                Vector3 newWorld = worldPos;
                 if(i != 0)
                     newWorld = Handles.PositionHandle(worldPos, Quaternion.identity);
 

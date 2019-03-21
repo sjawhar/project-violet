@@ -101,7 +101,7 @@ namespace Gamekit2D
 #if UNITY_EDITOR
             }
 #endif
-                
+
 
             meshVertices = m_Mesh.vertices;
         }

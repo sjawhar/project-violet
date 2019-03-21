@@ -159,7 +159,7 @@ namespace Gamekit2D
                 Debug.LogWarning("Restart information has not been set.");
                 return;
             }
-        
+
             if (transitionType == TransitionPoint.TransitionType.DifferentZone)
                 SetZoneStart(entrance);
         }

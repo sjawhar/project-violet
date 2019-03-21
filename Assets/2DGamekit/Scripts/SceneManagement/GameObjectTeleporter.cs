@@ -82,7 +82,7 @@ namespace Gamekit2D
                 yield return StartCoroutine (ScreenFader.FadeSceneOut ());
 
             transitioningGameObject.transform.position = destinationPosition;
-        
+
             if(fade)
                 yield return StartCoroutine (ScreenFader.FadeSceneIn ());
 

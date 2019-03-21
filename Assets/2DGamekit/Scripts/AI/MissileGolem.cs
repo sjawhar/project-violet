@@ -94,9 +94,9 @@ public class MissileGolem : MonoBehaviour
         }
         originShieldScale = shield.transform.localScale;
         animator = GetComponent<Animator>();
-        
+
         round = 0;
-        
+
         ai = BT.Root();
         ai.OpenBranch(
             //First Round

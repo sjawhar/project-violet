@@ -23,7 +23,7 @@ namespace Gamekit2D
         {
             if(!enabled)
                 return;
-        
+
             if (layers.Contains(other.gameObject))
             {
                 ExecuteOnEnter(other);
@@ -34,7 +34,7 @@ namespace Gamekit2D
         {
             if(!enabled)
                 return;
-        
+
             if (layers.Contains(other.gameObject))
             {
                 ExecuteOnExit(other);

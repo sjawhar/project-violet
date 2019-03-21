@@ -23,9 +23,9 @@ namespace Gamekit2D
 
                 if (s_Instance != null)
                     return s_Instance;
-            
+
                 Create ();
-            
+
                 return s_Instance;
             }
             set { s_Instance = value; }
@@ -36,7 +36,7 @@ namespace Gamekit2D
             GameObject physicsHelperGameObject = new GameObject("PhysicsHelper");
             s_Instance = physicsHelperGameObject.AddComponent<PhysicsHelper> ();
         }
-    
+
         Dictionary<Collider2D, MovingPlatform> m_MovingPlatformCache = new Dictionary<Collider2D, MovingPlatform> ();
         Dictionary<Collider2D, PlatformEffector2D> m_PlatformEffectorCache = new Dictionary<Collider2D, PlatformEffector2D> ();
         Dictionary<Collider2D, Tilemap> m_TilemapCache = new Dictionary<Collider2D, Tilemap> ();
@@ -49,7 +49,7 @@ namespace Gamekit2D
                 Destroy (gameObject);
                 return;
             }
-        
+
             PopulateColliderDictionary (m_MovingPlatformCache);
             PopulateColliderDictionary (m_PlatformEffectorCache);
             PopulateColliderDictionary (m_TilemapCache);

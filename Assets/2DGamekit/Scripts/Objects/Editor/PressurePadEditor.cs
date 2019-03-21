@@ -45,8 +45,8 @@ namespace Gamekit2D
             EditorGUILayout.PropertyField (m_DeactivatedBoxSpriteProp);
             EditorGUILayout.PropertyField (m_ActivatedBoxSpriteProp);
             EditorGUILayout.PropertyField (m_BoxesProp, true);
-            
-            
+
+
             EditorGUILayout.PropertyField (m_OnPressedProp);
             EditorGUILayout.PropertyField(m_OnReleaseProp);
 

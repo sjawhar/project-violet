@@ -5,7 +5,7 @@ using UnityEditor;
 
 namespace Gamekit2D
 {
-    public class MovingPlatformPreview 
+    public class MovingPlatformPreview
     {
         static public MovingPlatformPreview s_Preview = null;
         static public GameObject preview;
@@ -42,7 +42,7 @@ namespace Gamekit2D
                 Object.DestroyImmediate(preview);
             }
 
-            movingPlatform = origin; 
+            movingPlatform = origin;
 
             preview = Object.Instantiate(origin.gameObject);
             preview.hideFlags = HideFlags.DontSave;
