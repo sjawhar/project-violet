@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using Gamekit2D;
 using UnityEngine;
 

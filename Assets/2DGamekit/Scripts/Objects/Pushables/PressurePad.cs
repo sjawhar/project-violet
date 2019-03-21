@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -28,7 +28,7 @@ namespace Gamekit2D
         protected bool m_EventFired;
 
         //bug in 17.3 make rigidbody loose all contacts when sprites of different size/pivot are swapped in spriterenderer
-        //so we delay (de)activation to "ignore" any outlier single frame problem 
+        //so we delay (de)activation to "ignore" any outlier single frame problem
         static int DELAYEDFRAME_COUNT = 2;
         protected int m_ActivationFrameCount = 0;
         protected bool m_PreviousWasPressed = false;

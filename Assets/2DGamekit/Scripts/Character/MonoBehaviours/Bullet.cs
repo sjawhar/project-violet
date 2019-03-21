@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace Gamekit2D
@@ -12,7 +12,7 @@ namespace Gamekit2D
 
         [Tooltip("If -1 never auto destroy, otherwise bullet is return to pool when that time is reached")]
         public float timeBeforeAutodestruct = -1.0f;
-    
+
         [HideInInspector]
         public BulletObject bulletPoolObject;
         [HideInInspector]

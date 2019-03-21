@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,9 +27,9 @@ namespace Gamekit2D
         public InventoryController inventoryController;
         public SpriteRenderer spriteRenderer;
         public DoorState[] doorStates;
-    
+
         protected int m_Keys;
-    
+
         void Start ()
         {
             UpdateStates ();

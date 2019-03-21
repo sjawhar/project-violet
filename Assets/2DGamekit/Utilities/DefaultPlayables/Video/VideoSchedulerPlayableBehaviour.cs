@@ -44,7 +44,7 @@ namespace UnityEngine.Timeline
 					else if (m_Director.time > clip.start - preloadTime)
 						videoPlayableBehaviour.PrepareVideo();
 				}
-					
+
                 ++inputPort;
             }
         }

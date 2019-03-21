@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Gamekit2D
 {
@@ -43,7 +43,7 @@ namespace Gamekit2D
                 m_KeyIconAnimators[i] = healthIcon.GetComponent<Animator>();
             }
 
-            
+
         }
 
         public void ChangeKeyUI(InventoryController controller)

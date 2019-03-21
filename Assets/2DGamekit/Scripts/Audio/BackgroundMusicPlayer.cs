@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.SymbolStore;
 using UnityEngine;
@@ -66,7 +66,7 @@ namespace Gamekit2D
                 // ... destroy the pre-existing player.
                 m_OldInstanceToDestroy = Instance;
             }
-        
+
             s_Instance = this;
 
             DontDestroyOnLoad (gameObject);
@@ -98,7 +98,7 @@ namespace Gamekit2D
 
         private void Start()
         {
-            //if delete & trasnfer time only in Start so we avoid the small gap that doing everything at the same time in Awake would create 
+            //if delete & trasnfer time only in Start so we avoid the small gap that doing everything at the same time in Awake would create
             if (m_OldInstanceToDestroy != null)
             {
                 if (m_TransferAmbientTime) m_AmbientAudioSource.timeSamples = m_OldInstanceToDestroy.m_AmbientAudioSource.timeSamples;

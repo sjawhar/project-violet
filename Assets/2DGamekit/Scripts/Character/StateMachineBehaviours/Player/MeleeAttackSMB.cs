@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ namespace Gamekit2D
     public class MeleeAttackSMB : SceneLinkedSMB<PlayerCharacter>
     {
         int m_HashAirborneMeleeAttackState = Animator.StringToHash ("AirborneMeleeAttack");
-    
+
         public override void OnSLStatePostEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             m_MonoBehaviour.ForceNotHoldingGun();
@@ -19,7 +19,7 @@ namespace Gamekit2D
         {
             if (!m_MonoBehaviour.CheckForGrounded ())
                 animator.Play (m_HashAirborneMeleeAttackState, layerIndex, stateInfo.normalizedTime);
-        
+
             m_MonoBehaviour.GroundedHorizontalMovement (false);
         }
 

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +10,7 @@ namespace Gamekit2D
         {
             Black, Loading, GameOver,
         }
-        
+
         public static ScreenFader Instance
         {
             get
@@ -49,7 +49,7 @@ namespace Gamekit2D
         public float fadeDuration = 1f;
 
         protected bool m_IsFading;
-    
+
         const int k_MaxSortingLayer = 32767;
 
         void Awake ()
@@ -59,7 +59,7 @@ namespace Gamekit2D
                 Destroy (gameObject);
                 return;
             }
-        
+
             DontDestroyOnLoad (gameObject);
         }
 
@@ -93,7 +93,7 @@ namespace Gamekit2D
                 canvasGroup = Instance.gameOverCanvasGroup;
             else
                 canvasGroup = Instance.loadingCanvasGroup;
-            
+
             yield return Instance.StartCoroutine(Instance.Fade(0f, canvasGroup));
 
             canvasGroup.gameObject.SetActive (false);
@@ -114,9 +114,9 @@ namespace Gamekit2D
                     canvasGroup = Instance.loadingCanvasGroup;
                     break;
             }
-            
+
             canvasGroup.gameObject.SetActive (true);
-            
+
             yield return Instance.StartCoroutine(Instance.Fade(1f, canvasGroup));
         }
     }

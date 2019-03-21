@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -68,7 +68,7 @@ namespace Gamekit2D
 
             if (platformCatcher == null)
                 platformCatcher = GetComponent<PlatformCatcher>();
-      
+
             //Allow to make platform only move when they became visible
             Renderer[] renderers = GetComponentsInChildren<Renderer>();
             for(int i = 0; i < renderers.Length; ++i)
@@ -193,7 +193,7 @@ namespace Gamekit2D
                 distanceToGo -= dist;
 
                 // we have some wait time set, that mean we reach a point where we have to wait. So no need to continue to move the platform, early exit.
-                if (m_WaitTime > 0.001f) 
+                if (m_WaitTime > 0.001f)
                     break;
             }
         }

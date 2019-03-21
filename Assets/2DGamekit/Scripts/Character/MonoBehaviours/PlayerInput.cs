@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Gamekit2D
 {
@@ -10,8 +10,8 @@ namespace Gamekit2D
         }
 
         protected static PlayerInput s_Instance;
-    
-    
+
+
         public bool HaveControl { get { return m_HaveControl; } }
 
         public InputButton Pause = new InputButton(KeyCode.Escape, XboxControllerButtons.Menu);
@@ -42,7 +42,7 @@ namespace Gamekit2D
                 s_Instance = this;
             else if(s_Instance != this)
                 throw new UnityException("There cannot be more than one PlayerInput script.  The instances are " + s_Instance.name + " and " + name + ".");
-        
+
             PersistentDataManager.RegisterPersister(this);
         }
 

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -46,7 +46,7 @@ namespace Gamekit2D
             serializedObject.Update ();
 
             EditorGUILayout.PropertyField(m_TransitioningGameObjectProp);
-        
+
             EditorGUILayout.PropertyField(m_TransitionTypeProp);
             EditorGUI.indentLevel++;
             if ((TransitionPoint.TransitionType)m_TransitionTypeProp.enumValueIndex == TransitionPoint.TransitionType.SameScene)
@@ -62,7 +62,7 @@ namespace Gamekit2D
 
             EditorGUILayout.PropertyField(m_TransitionWhenProp);
             EditorGUILayout.PropertyField (m_ResetInputValuesOnTransitionProp);
-        
+
             EditorGUILayout.PropertyField(m_RequiresInventoryCheckProp);
             if (m_RequiresInventoryCheckProp.boolValue)
             {
@@ -103,7 +103,7 @@ namespace Gamekit2D
                             itemIndex = EditorGUILayout.Popup (new GUIContent ("Item " + i), itemIndex, m_InventoryControllerItems);
                             elementProp.stringValue = m_InventoryControllerItems[itemIndex].text;
                         }
-                    
+
                     }
                     EditorGUI.indentLevel--;
 
@@ -131,7 +131,7 @@ namespace Gamekit2D
                 return;
 
             InventoryController inventoryController = m_InventoryControllerProp.objectReferenceValue as InventoryController;
-        
+
             m_InventoryControllerItems = new GUIContent[inventoryController.inventoryEvents.Length];
             for (int i = 0; i < inventoryController.inventoryEvents.Length; i++)
             {

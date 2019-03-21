@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
@@ -286,7 +286,7 @@ namespace Gamekit2D
                 {
                     //we reset the timer if the target is at viewing distance.
                     m_TimeSinceLastTargetView = timeBeforeTargetLost;
-                }    
+                }
             }
 
 
@@ -449,7 +449,7 @@ namespace Gamekit2D
         {
             Vector2 throwVector = new Vector2(0, 2.0f);
             Vector2 damagerToThis = damager.transform.position - transform.position;
-        
+
             throwVector.x = Mathf.Sign(damagerToThis.x) * -4.0f;
             SetMoveVector(throwVector);
 
@@ -549,7 +549,7 @@ namespace Gamekit2D
 #endif
     }
 
-    //bit hackish, to avoid to have to redefine the whole inspector, we use an attirbute and associated property drawer to 
+    //bit hackish, to avoid to have to redefine the whole inspector, we use an attirbute and associated property drawer to
     //display a warning above the melee range when it get over the view distance.
     public class EnemyMeleeRangeCheckAttribute : PropertyAttribute
     {

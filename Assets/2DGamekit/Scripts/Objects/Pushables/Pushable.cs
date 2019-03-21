@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -110,7 +110,7 @@ namespace Gamekit2D
                     m_Grounded = true;
 
                     Pushable pushable;
-                
+
                     if(s_PushableCache.TryGetValue (s_ContactPointBuffer[i].collider, out pushable))
                     {
                         //if it is grounded on another pushable, we ensure that it is drawn after the one under, so it appear on top.

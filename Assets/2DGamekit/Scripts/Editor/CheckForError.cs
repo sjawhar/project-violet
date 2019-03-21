@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using UnityEngine;
 using UnityEditor;
@@ -9,13 +9,13 @@ using Object = UnityEngine.Object;
 public class CheckForError
 {
     static CheckForError()
-    {        
+    {
         if (File.Exists(Application.dataPath + "/../Library/CheckedForError"))
             return;
 
         EditorApplication.update += EditorUpdate;
     }
-    
+
     static void EditorUpdate()
     {
         if (EditorApplication.isCompiling)
@@ -37,7 +37,7 @@ public class CheckForError
                 Application.OpenURL("https://forum.unity3d.com");
             }
         }
-          
+
         File.WriteAllBytes(Application.dataPath + "/../Library/CheckedForError", new byte[]{0});
         EditorApplication.update -= EditorUpdate;
     }

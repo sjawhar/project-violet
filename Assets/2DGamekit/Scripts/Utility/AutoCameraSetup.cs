@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
@@ -16,7 +16,7 @@ namespace Gamekit2D
                 return;
 
             CinemachineVirtualCamera cam = GetComponent<CinemachineVirtualCamera> ();
-        
+
             if(cam == null)
                 throw new UnityException("Virtual Camera was not found, default follow cannot be assigned.");
 
@@ -36,7 +36,7 @@ namespace Gamekit2D
 
                 if (cameraFollowGameObject != null) break;
             }
-        
+
             if(cameraFollowGameObject == null)
                 throw new UnityException("GameObject called " + cameraFollowGameObjectName + " was not found, default follow cannot be assigned.");
 

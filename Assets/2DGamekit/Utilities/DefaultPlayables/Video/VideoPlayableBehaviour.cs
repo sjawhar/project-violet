@@ -65,7 +65,7 @@ namespace UnityEngine.Timeline
 
             videoPlayer.timeReference = Application.isPlaying ? VideoTimeReference.ExternalTime :
                                                                 VideoTimeReference.Freerun;
-																
+
 		    if (videoPlayer.isPlaying && Application.isPlaying)
 			    videoPlayer.externalReferenceTime = playable.GetTime();
             else if (!Application.isPlaying)

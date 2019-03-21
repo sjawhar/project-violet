@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -26,14 +26,14 @@ namespace Gamekit2D
         SerializedProperty m_GravityProp;
         SerializedProperty m_JumpSpeedProp;
         SerializedProperty m_JumpAbortSpeedReductionProp;
-    
+
         SerializedProperty m_HurtJumpAngleProp;
         SerializedProperty m_HurtJumpSpeedProp;
         SerializedProperty m_FlickeringDurationProp;
-    
+
         SerializedProperty m_MeleeAttackDashSpeedProp;
         SerializedProperty m_DashWhileAirborneProp;
-    
+
         SerializedProperty m_ShotsPerSecondProp;
         SerializedProperty m_BulletSpeedProp;
         SerializedProperty m_HoldingGunTimeoutDurationProp;
@@ -304,7 +304,7 @@ namespace Gamekit2D
 
             EditorGUI.indentLevel--;
             EditorGUILayout.EndVertical();
-        
+
             EditorGUILayout.BeginVertical(GUI.skin.box);
             EditorGUI.indentLevel++;
 

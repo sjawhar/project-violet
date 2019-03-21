@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Animations;
@@ -59,7 +59,7 @@ namespace Gamekit2D
 
             m_SetCharacterFacingProp = serializedObject.FindProperty ("setCharacterFacing");
             m_FaceLeftProp = serializedObject.FindProperty ("faceLeft");
-        
+
             m_SetStateProp = serializedObject.FindProperty ("setState");
             m_AnimatorStateNameProp = serializedObject.FindProperty ("animatorStateName");
 
@@ -67,11 +67,11 @@ namespace Gamekit2D
             m_ParameterSettersProp = serializedObject.FindProperty ("parameterSetters");
 
             m_AnimatorContent = new GUIContent("Animator");
-        
+
             m_SetCharacterVelocityContent = new GUIContent("Set Character Velocity");
             m_PlayerCharacterContent = new GUIContent("Player Character");
             m_CharacterVelocityContent = new GUIContent("Character Velocity");
-        
+
             m_SetCharacterFacingContent = new GUIContent("Set Character Facing Content");
             m_FaceLeftContent = new GUIContent("Face Left");
 
@@ -100,7 +100,7 @@ namespace Gamekit2D
         public override void OnInspectorGUI ()
         {
             serializedObject.Update ();
-        
+
             EditorGUILayout.PropertyField(m_SetCharacterVelocityProp, m_SetCharacterVelocityContent);
             if (m_SetCharacterVelocityProp.boolValue)
             {
@@ -114,7 +114,7 @@ namespace Gamekit2D
                 EditorGUILayout.PropertyField(m_PlayerCharacterProp, m_PlayerCharacterContent);
                 EditorGUILayout.PropertyField(m_FaceLeftProp, m_FaceLeftContent);
             }
-        
+
             EditorGUILayout.PropertyField(m_SetStateProp, m_SetStateContent);
             if (m_SetStateProp.boolValue)
             {

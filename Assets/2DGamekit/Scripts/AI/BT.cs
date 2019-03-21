@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -399,7 +399,7 @@ namespace BTAI
         /// <summary>
         /// Will select one random child everytime it get triggered again
         /// </summary>
-        /// <param name="weight">Leave null so that all child node have the same weight. 
+        /// <param name="weight">Leave null so that all child node have the same weight.
         /// If there is less weight than children, all subsequent child will have weight = 1</param>
         public RandomSequence(int[] weight = null)
         {

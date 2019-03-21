@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -24,7 +24,7 @@ namespace Gamekit2D
             public int intValue;
 
             protected int m_Hash;
-        
+
             public void Awake()
             {
                 m_Hash = Animator.StringToHash(parameterName);
@@ -53,7 +53,7 @@ namespace Gamekit2D
         }
 
         public PlayerCharacter playerCharacter;
-    
+
         public bool setCharacterVelocity;
         public Vector2 characterVelocity;
 

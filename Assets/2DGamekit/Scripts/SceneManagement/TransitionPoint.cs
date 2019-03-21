@@ -1,4 +1,4 @@
-﻿using Cinemachine;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 
@@ -18,7 +18,7 @@ namespace Gamekit2D
             ExternalCall, InteractPressed, OnTriggerEnter,
         }
 
-    
+
         [Tooltip("This is the gameobject that will transition.  For example, the player.")]
         public GameObject transitioningGameObject;
         [Tooltip("Whether the transition will be within this scene, to a different zone or a non-gameplay scene.")]
@@ -39,7 +39,7 @@ namespace Gamekit2D
         public InventoryController inventoryController;
         [Tooltip("The required items.")]
         public InventoryController.InventoryChecker inventoryCheck;
-    
+
         bool m_TransitioningGameObjectPresent;
 
         void Start ()
@@ -94,7 +94,7 @@ namespace Gamekit2D
                 if(!inventoryCheck.CheckInventory (inventoryController))
                     return;
             }
-        
+
             if (transitionType == TransitionType.SameScene)
             {
                 GameObjectTeleporter.Teleport (transitioningGameObject, destinationTransform.transform);

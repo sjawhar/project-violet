@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,7 +36,7 @@ namespace Gamekit2D
             }
         }
 
-    
+
 
         static public void Shake(float amount, float time)
         {

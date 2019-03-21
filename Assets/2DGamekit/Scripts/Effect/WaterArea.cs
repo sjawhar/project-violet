@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Gamekit2D;
 using UnityEngine;
@@ -101,7 +101,7 @@ namespace Gamekit2D
 #if UNITY_EDITOR
             }
 #endif
-                
+
 
             meshVertices = m_Mesh.vertices;
         }

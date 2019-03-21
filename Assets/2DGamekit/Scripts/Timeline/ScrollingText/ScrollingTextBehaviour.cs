@@ -15,7 +15,7 @@ namespace Gamekit2D
 
         protected float m_Duration;
         protected float m_InverseScrollingDuration;
-    
+
         public override void OnGraphStart (Playable playable)
         {
             m_Duration = (float)playable.GetDuration();

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -12,7 +12,7 @@ namespace Gamekit2D
         protected string m_NewSceneName;
 
         protected readonly GUIContent m_NameContent = new GUIContent ("New Scene Name");
-    
+
         [MenuItem("Kit Tools/Create New Scene...", priority = 100)]
         static void Init ()
         {
@@ -24,7 +24,7 @@ namespace Gamekit2D
         void OnGUI ()
         {
             m_NewSceneName = EditorGUILayout.TextField (m_NameContent, m_NewSceneName);
-        
+
             if(GUILayout.Button ("Create"))
                 CheckAndCreateScene ();
         }
@@ -60,7 +60,7 @@ namespace Gamekit2D
                     return;
                 }
             }
-        
+
             CreateScene ();
         }
 
@@ -89,7 +89,7 @@ namespace Gamekit2D
         protected void AddSceneToBuildSettings (Scene scene)
         {
             EditorBuildSettingsScene[] buildScenes = EditorBuildSettings.scenes;
-        
+
             EditorBuildSettingsScene[] newBuildScenes = new EditorBuildSettingsScene[buildScenes.Length + 1];
             for (int i = 0; i < buildScenes.Length; i++)
             {
@@ -104,7 +104,7 @@ namespace Gamekit2D
             GameObject instance = null;
             string[] prefabFolderPath = { folderPath };
             string[] guids = AssetDatabase.FindAssets (prefabName, prefabFolderPath);
-        
+
             if(guids.Length == 0)
                 Debug.LogError ("The " + prefabName + " prefab could not be found in " + folderPath + " and could therefore not be instantiated.  Please create one manually.");
             else if(guids.Length > 1)

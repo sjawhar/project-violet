@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
@@ -9,7 +9,7 @@ public class TransformTweenClip : PlayableAsset, ITimelineClipAsset
     public TransformTweenBehaviour template = new TransformTweenBehaviour ();
     public ExposedReference<Transform> startLocation;
     public ExposedReference<Transform> endLocation;
-    
+
     public ClipCaps clipCaps
     {
         get { return ClipCaps.Blending; }
