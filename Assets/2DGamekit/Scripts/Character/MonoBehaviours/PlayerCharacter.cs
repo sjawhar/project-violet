@@ -27,7 +27,6 @@ namespace Gamekit2D
         public Transform cameraFollowTarget;
 
         public float maxSpeed = 10f;
-        public float dashSpeed = 30f;
         public float groundAcceleration = 100f;
         public float groundDeceleration = 100f;
         [Range(0f, 1f)] public float pushingSpeedProportion;
@@ -70,7 +69,6 @@ namespace Gamekit2D
         protected CapsuleCollider2D m_Capsule;
         protected Transform m_Transform;
         protected Vector2 m_MoveVector;
-        protected bool m_IsCanDoubleJump;
         protected List<Pushable> m_CurrentPushables = new List<Pushable>(4);
         protected Pushable m_CurrentPushable;
         protected float m_TanHurtJumpAngle;
@@ -107,7 +105,6 @@ namespace Gamekit2D
         protected readonly int m_HashHurtPara = Animator.StringToHash("Hurt");
         protected readonly int m_HashForcedRespawnPara = Animator.StringToHash("ForcedRespawn");
         protected readonly int m_HashMeleeAttackPara = Animator.StringToHash("MeleeAttack");
-        protected readonly int m_HashDashPara = Animator.StringToHash("Dash");
         protected readonly int m_HashHoldingGunPara = Animator.StringToHash("HoldingGun");
 
         protected const float k_MinHurtJumpAngle = 0.001f;
@@ -352,17 +349,6 @@ namespace Gamekit2D
             m_MoveVector.y = newVerticalMovement;
         }
 
-        public void DoubleJump()
-        {
-            if (!m_IsCanDoubleJump)
-            {
-                return;
-            }
-
-            SetVerticalMovement(jumpSpeed);
-            m_IsCanDoubleJump = false;
-        }
-
         public void IncrementMovement(Vector2 additionalMovement)
         {
             m_MoveVector += additionalMovement;
@@ -453,7 +439,6 @@ namespace Gamekit2D
 
             if (grounded)
             {
-                m_IsCanDoubleJump = true;
                 FindCurrentSurface();
 
                 if (!wasGrounded && m_MoveVector.y < -1.0f)
@@ -581,11 +566,6 @@ namespace Gamekit2D
             return PlayerInput.Instance.Jump.Down;
         }
 
-        public bool CheckForDoubleJump()
-        {
-            return PlayerInput.Instance.DoubleJump.Down;
-        }
-
         public bool CheckForFallInput()
         {
             return PlayerInput.Instance.Vertical.Value < -float.Epsilon && PlayerInput.Instance.Jump.Down;
@@ -633,16 +613,6 @@ namespace Gamekit2D
             damageable.EnableInvulnerability(true);
             yield return new WaitForSeconds(0.5f);
             damageable.DisableInvulnerability();
-        }
-
-        public bool CheckForDashInput()
-        {
-            return PlayerInput.Instance.Dash.Down;
-        }
-
-        public void Dash()
-        {
-            m_Animator.SetTrigger(m_HashDashPara);
         }
 
         public bool CheckForHoldingGun()

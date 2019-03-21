@@ -4,7 +4,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 
-namespace Gamekit2D
+namespace Buffalo
 {
     public class InputDisplayUI : MonoBehaviour
     {
@@ -24,6 +24,7 @@ namespace Gamekit2D
             builder.AppendFormat("{0} - Look Up\n", PlayerInput.Instance.Vertical.positive.ToString());
             builder.AppendFormat("{0} - Crouch\n", PlayerInput.Instance.Vertical.negative.ToString());
             builder.AppendFormat("{0} - Jump\n", PlayerInput.Instance.Jump.key.ToString());
+            builder.AppendFormat("{0} - Dash\n", PlayerInput.Instance.Dash.key.ToString());
             builder.AppendFormat("{0} - Fire range weapon\n", PlayerInput.Instance.RangedAttack.key.ToString());
             builder.AppendFormat("{0} - Melee Attack\n", PlayerInput.Instance.MeleeAttack.key.ToString());
             builder.AppendFormat("{0} - Pause Menu\n", PlayerInput.Instance.Pause.key.ToString());
