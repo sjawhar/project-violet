@@ -1,4 +1,5 @@
 using UnityEngine;
+using Buffalo;
 
 namespace Gamekit2D
 {

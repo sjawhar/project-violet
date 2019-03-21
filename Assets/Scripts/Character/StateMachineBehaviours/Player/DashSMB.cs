@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Gamekit2D;
 
-namespace Gamekit2D
+namespace Buffalo
 {
     public class DashSMB : SceneLinkedSMB<PlayerCharacter>
     {
         int m_HashAirborneDashState = Animator.StringToHash("AirborneDash");
-    
+
         public override void OnSLStatePostEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             m_MonoBehaviour.ForceNotHoldingGun();
@@ -18,7 +19,7 @@ namespace Gamekit2D
         {
             if (!m_MonoBehaviour.CheckForGrounded())
                 animator.Play (m_HashAirborneDashState, layerIndex, stateInfo.normalizedTime);
-        
+
             m_MonoBehaviour.GroundedHorizontalMovement(false);
         }
     }
