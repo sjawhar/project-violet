@@ -63,9 +63,9 @@ namespace Gamekit2D
 
             //This is used to change the state of a button (Down, Up) only if at least a FixedUpdate happened between the previous Frame
             //and this one. Since movement are made in FixedUpdate, without that an input could be missed it get press/release between fixedupdate
-            protected bool m_AfterFixedUpdateDown;
-            protected bool m_AfterFixedUpdateHeld;
-            protected bool m_AfterFixedUpdateUp;
+            bool m_AfterFixedUpdateDown;
+            bool m_AfterFixedUpdateHeld;
+            bool m_AfterFixedUpdateUp;
 
             protected static readonly Dictionary<int, string> k_ButtonsToName = new Dictionary<int, string>
             {
@@ -87,7 +87,7 @@ namespace Gamekit2D
                 this.controllerButton = controllerButton;
             }
 
-            public virtual void Get(bool fixedUpdateHappened, InputType inputType)
+            public void Get(bool fixedUpdateHappened, InputType inputType)
             {
                 if (!m_Enabled)
                 {

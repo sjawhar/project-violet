@@ -12,27 +12,28 @@ namespace Buffalo
         private int m_doubleTapStep = 0;
         private float m_doubleTapTimer = 0f;
         private float m_doubleTapSpeed = 0.25f;
-        private bool m_AfterFixedUpdate = false;
+
+        bool m_AfterFixedUpdate = false;
 
         public DoubleTapButton(KeyCode key, XboxControllerButtons controllerButton)
             : base(key, controllerButton) { }
 
-        public override void Get(bool fixedUpdateHappened, InputType inputType)
+        public new void Get(bool fixedUpdateHappened, InputType inputType)
         {
             bool isHeld = Held;
 
             base.Get(fixedUpdateHappened, inputType);
 
             if (fixedUpdateHappened) {
-                m_AfterFixedUpdate &= m_AfterFixedUpdateDown;
+                m_AfterFixedUpdate &= Down;
             }
 
-            if (m_doubleTapStep == 0 && m_AfterFixedUpdateDown)
+            if (m_doubleTapStep == 0 && Down)
             {
                 m_doubleTapTimer = m_doubleTapSpeed;
                 m_doubleTapStep = 1;
             }
-            else if (m_doubleTapStep == 3 && m_AfterFixedUpdateUp)
+            else if (m_doubleTapStep == 3 && Up)
             {
                 m_doubleTapStep = 0;
             }
@@ -41,12 +42,12 @@ namespace Buffalo
                 m_doubleTapTimer = 0;
                 m_doubleTapStep = 0;
             }
-            else if (m_doubleTapStep == 1 && m_AfterFixedUpdateUp)
+            else if (m_doubleTapStep == 1 && Up)
             {
                 m_doubleTapTimer = m_doubleTapSpeed;
                 m_doubleTapStep = 2;
             }
-            else if (m_doubleTapStep == 2 && m_AfterFixedUpdateDown)
+            else if (m_doubleTapStep == 2 && Down)
             {
                 m_doubleTapTimer = 0;
                 m_doubleTapStep = 3;
@@ -60,7 +61,7 @@ namespace Buffalo
             }
 
             Down = m_AfterFixedUpdate;
-            Held = isHeld & m_AfterFixedUpdateHeld;
+            Held &= isHeld;
             Up |= !(Down || Held);
         }
     }

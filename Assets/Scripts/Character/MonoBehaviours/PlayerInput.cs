@@ -66,7 +66,7 @@ namespace Buffalo
 
 
         public InputButton Dash = new InputButton(KeyCode.LeftShift, XboxControllerButtons.RightBumper);
-        public InputButton DoubleJump = new DoubleTapButton(KeyCode.Space, XboxControllerButtons.A);
+        public DoubleTapButton DoubleJump = new DoubleTapButton(KeyCode.Space, XboxControllerButtons.A);
 
         protected override void GetInputs(bool fixedUpdateHappened)
         {
