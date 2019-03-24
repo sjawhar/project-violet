@@ -12,6 +12,9 @@ namespace Buffalo
 
         protected new static PlayerInput s_Instance;
 
+        public InputButton Dash = new InputButton(KeyCode.LeftShift, XboxControllerButtons.RightBumper);
+        public DoubleTapButton GroundSlam = new DoubleTapButton(KeyCode.S, XboxControllerButtons.LeftBumper);
+
         void Awake()
         {
             if (Gamekit2D.PlayerInput.s_Instance == null)
@@ -64,14 +67,10 @@ namespace Buffalo
             s_Instance = null;
         }
 
-
-        public InputButton Dash = new InputButton(KeyCode.LeftShift, XboxControllerButtons.RightBumper);
-        public DoubleTapButton DoubleJump = new DoubleTapButton(KeyCode.Space, XboxControllerButtons.A);
-
         protected override void GetInputs(bool fixedUpdateHappened)
         {
             Dash.Get(fixedUpdateHappened, inputType);
-            DoubleJump.Get(fixedUpdateHappened, inputType);
+            GroundSlam.Get(fixedUpdateHappened, inputType);
 
             base.GetInputs(fixedUpdateHappened);
         }
@@ -81,7 +80,7 @@ namespace Buffalo
             base.GainControl();
 
             GainControl(Dash);
-            GainControl(DoubleJump);
+            GainControl(GroundSlam);
         }
 
         public override void ReleaseControl(bool resetValues = true)
@@ -89,7 +88,7 @@ namespace Buffalo
             base.ReleaseControl(resetValues);
 
             ReleaseControl(Dash, resetValues);
-            ReleaseControl(DoubleJump, resetValues);
+            ReleaseControl(GroundSlam, resetValues);
         }
 
         public void DisableDashing()

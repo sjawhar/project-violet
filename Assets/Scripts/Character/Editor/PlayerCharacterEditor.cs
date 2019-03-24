@@ -18,6 +18,7 @@ namespace Buffalo
 
         SerializedProperty m_MaxSpeedProp;
         SerializedProperty m_DashSpeedProp;
+        SerializedProperty m_GroundSlamSpeedProp;
         SerializedProperty m_GroundAccelerationProp;
         SerializedProperty m_GroundDecelerationProp;
         SerializedProperty m_PushingSpeedProportionProp;
@@ -75,6 +76,7 @@ namespace Buffalo
 
         readonly GUIContent m_MaxSpeedContent = new GUIContent("Max Speed");
         readonly GUIContent m_DashSpeedContent = new GUIContent("Dash Speed");
+        readonly GUIContent m_GroundSlamSpeedContent = new GUIContent("Ground Slam Speed");
         readonly GUIContent m_GroundAccelerationContent = new GUIContent("Ground Acceleration");
         readonly GUIContent m_GroundDecelerationContent = new GUIContent("Ground Deceleration");
         readonly GUIContent m_PushingSpeedProportionContent = new GUIContent("Pushing Speed Proportion");
@@ -134,6 +136,7 @@ namespace Buffalo
 
             m_MaxSpeedProp = serializedObject.FindProperty("maxSpeed");
             m_DashSpeedProp = serializedObject.FindProperty("dashSpeed");
+            m_GroundSlamSpeedProp = serializedObject.FindProperty("groundSlamSpeed");
             m_GroundAccelerationProp = serializedObject.FindProperty("groundAcceleration");
             m_GroundDecelerationProp = serializedObject.FindProperty("groundDeceleration");
             m_PushingSpeedProportionProp = serializedObject.FindProperty ("pushingSpeedProportion");
@@ -204,6 +207,7 @@ namespace Buffalo
             {
                 EditorGUILayout.PropertyField(m_MaxSpeedProp, m_MaxSpeedContent);
                 EditorGUILayout.PropertyField(m_DashSpeedProp, m_DashSpeedContent);
+                EditorGUILayout.PropertyField(m_GroundSlamSpeedProp, m_GroundSlamSpeedContent);
                 EditorGUILayout.PropertyField(m_GroundAccelerationProp, m_GroundAccelerationContent);
                 EditorGUILayout.PropertyField(m_GroundDecelerationProp, m_GroundDecelerationContent);
                 EditorGUILayout.PropertyField (m_PushingSpeedProportionProp, m_PushingSpeedProportionContent);

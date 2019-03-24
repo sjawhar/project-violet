@@ -14,6 +14,10 @@ namespace Buffalo
             {
                 m_MonoBehaviour.DoubleJump();
             }
+            else if (m_MonoBehaviour.CheckForGroundSlam())
+            {
+                m_MonoBehaviour.GroundSlam();
+            }
             else
             {
                 m_MonoBehaviour.UpdateJump();

@@ -40,6 +40,17 @@ namespace Buffalo
             m_StartingFacingLeft = GetFacing() < 0.0f;
         }
 
+        protected bool m_IsGrounded = false;
+        public new bool CheckForGrounded()
+        {
+            m_IsGrounded = base.CheckForGrounded();
+            if (m_IsGrounded) {
+                m_IsCanDoubleJump = true;
+                m_IsCanGroundSlam = true;
+            }
+            return m_IsGrounded;
+        }
+
         /////////////
         // DASHING //
         /////////////
@@ -59,31 +70,43 @@ namespace Buffalo
         /////////////////
         // DOUBLE JUMP //
         /////////////////
-        protected bool m_IsCanDoubleJump;
+        protected bool m_IsCanDoubleJump = false;
 
         public bool CheckForDoubleJump()
         {
-            return PlayerInput.Instance.DoubleJump.Down;
-        }
-
-        public new bool CheckForGrounded()
-        {
-            bool grounded = base.CheckForGrounded();
-            if (grounded) {
-                m_IsCanDoubleJump = true;
+            if (!m_IsCanDoubleJump)
+            {
+                return false;
             }
-            return grounded;
+            return PlayerInput.Instance.Jump.Down;
         }
 
         public void DoubleJump()
         {
-            if (!m_IsCanDoubleJump)
-            {
-                return;
-            }
-
             SetVerticalMovement(jumpSpeed);
             m_IsCanDoubleJump = false;
+        }
+
+        /////////////////
+        // GROUND SLAM //
+        /////////////////
+        public float groundSlamSpeed = 30f;
+        protected bool m_IsCanGroundSlam = false;
+        protected readonly int m_HashGroundSlamPara = Animator.StringToHash("Ground Slam");
+
+        public bool CheckForGroundSlam()
+        {
+            if (m_IsGrounded || !m_IsCanGroundSlam)
+            {
+                return false;
+            }
+            return PlayerInput.Instance.GroundSlam.Down;
+        }
+
+        public void GroundSlam()
+        {
+            m_IsCanGroundSlam = false;
+            m_Animator.SetTrigger(m_HashGroundSlamPara);
         }
     }
 }
