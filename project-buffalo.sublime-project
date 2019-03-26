@@ -8,7 +8,8 @@
                 "*.cs",
                 "*.csproj",
                 "*.sln",
-                ".gitignore"
+                ".gitignore",
+                ".editorconfig"
             ]
         }
     ]

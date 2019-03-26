@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4302742016656946382
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1701224112552872, guid: db30b6a69797544c8a2f8777aa55668f, type: 3}
+      propertyPath: m_Name
+      value: BuffaloVFXController
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415398567675628, guid: db30b6a69797544c8a2f8777aa55668f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415398567675628, guid: db30b6a69797544c8a2f8777aa55668f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415398567675628, guid: db30b6a69797544c8a2f8777aa55668f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415398567675628, guid: db30b6a69797544c8a2f8777aa55668f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415398567675628, guid: db30b6a69797544c8a2f8777aa55668f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415398567675628, guid: db30b6a69797544c8a2f8777aa55668f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415398567675628, guid: db30b6a69797544c8a2f8777aa55668f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415398567675628, guid: db30b6a69797544c8a2f8777aa55668f, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415398567675628, guid: db30b6a69797544c8a2f8777aa55668f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415398567675628, guid: db30b6a69797544c8a2f8777aa55668f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415398567675628, guid: db30b6a69797544c8a2f8777aa55668f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114149186482330704, guid: db30b6a69797544c8a2f8777aa55668f,
+        type: 3}
+      propertyPath: vfxConfig.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114149186482330704, guid: db30b6a69797544c8a2f8777aa55668f,
+        type: 3}
+      propertyPath: vfxConfig.Array.data[10].vfxOverride.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114149186482330704, guid: db30b6a69797544c8a2f8777aa55668f,
+        type: 3}
+      propertyPath: vfxConfig.Array.data[10].prefab
+      value: 
+      objectReference: {fileID: 7080767749158000178, guid: 9e4446b1ec91e4f5fb694b23a2c20e50,
+        type: 3}
+    - target: {fileID: 114149186482330704, guid: db30b6a69797544c8a2f8777aa55668f,
+        type: 3}
+      propertyPath: vfxConfig.Array.data[10].lifetime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114149186482330704, guid: db30b6a69797544c8a2f8777aa55668f,
+        type: 3}
+      propertyPath: vfxConfig.Array.data[10].vfxOverride.Array.data[0].tile
+      value: 
+      objectReference: {fileID: 11400000, guid: b22c8b6cde1e19245b7e8c076df5e112,
+        type: 2}
+    - target: {fileID: 114149186482330704, guid: db30b6a69797544c8a2f8777aa55668f,
+        type: 3}
+      propertyPath: vfxConfig.Array.data[10].vfxOverride.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 1675665522844806, guid: c5f99beb88686a342b1d3a911e99f8c1,
+        type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: db30b6a69797544c8a2f8777aa55668f, type: 3}
