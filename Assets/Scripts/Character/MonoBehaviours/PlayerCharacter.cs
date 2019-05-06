@@ -65,7 +65,7 @@ namespace Buffalo
         public void Dash()
         {
             m_Animator.SetTrigger(m_HashDashPara);
-            Resonator.Resonate();
+            Resonator.Resonate(ResonateColor.Red);
         }
 
         /////////////////
@@ -86,6 +86,7 @@ namespace Buffalo
         {
             SetVerticalMovement(jumpSpeed);
             m_IsCanDoubleJump = false;
+            Resonator.Resonate(ResonateColor.Green);
         }
 
         /////////////////
@@ -108,6 +109,7 @@ namespace Buffalo
         {
             m_IsCanGroundSlam = false;
             m_Animator.SetTrigger(m_HashGroundSlamPara);
+            Resonator.Resonate(ResonateColor.Yellow);
         }
     }
 }
