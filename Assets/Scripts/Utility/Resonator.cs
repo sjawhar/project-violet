@@ -38,7 +38,7 @@ namespace Buffalo
         ResonateColor m_CurrentColor = ResonateColor.None;
         float m_ResonateTime = 3f;
         float m_TimeRemaining = 0f;
-        IEnumerator m_Coroutine;
+        bool m_isResonating = false;
 
         static Resonator s_Instance;
         static Resonator Instance
@@ -93,43 +93,51 @@ namespace Buffalo
 
         public static void Resonate(ResonateColor color)
         {
-            Instance.StartCoroutine(Instance.SetupResonate(color));
+            Instance.StartCoroutine(Instance.HandleResonate(color));
         }
 
-        protected IEnumerator SetupResonate(ResonateColor color)
+        protected IEnumerator HandleResonate(ResonateColor color)
+        {
+            if (!StartResonate(color))
+            {
+                yield break;
+            }
+
+            yield return Resonate();
+
+            StopResonate();
+        }
+
+        protected bool StartResonate(ResonateColor color)
         {
             m_TimeRemaining = 1f * m_ResonateTime;
             if (m_CurrentColor == color)
             {
-                yield break;
+                return false;
             }
             m_CurrentColor = color;
 
-            int playerLayer = PlayerCharacter.PlayerInstance.gameObject.layer;
-            int colorLayerId = GetColorLayerId(color);
-            LayerMask colorLayerMask = GetColorLayerMask(color);
+            SetLayerCollisions(color);
+            SetContactFilter(color);
 
-            EnableAllCollisions(playerLayer);
-            Physics2D.IgnoreLayerCollision(playerLayer, colorLayerId, true);
-
-            ContactFilter2D contactFilter = PlayerCharacter.PlayerInstance.characterController.ContactFilter;
-            LayerMask groundedLayerMask = PlayerCharacter.PlayerInstance.characterController.groundedLayerMask;
-            contactFilter.layerMask = (groundedLayerMask | colorLayerMask) ^ colorLayerMask;
-
-            if (m_Coroutine != null)
+            if (m_isResonating)
             {
-                yield break;
+                return false;
             }
-            m_Coroutine = ResonateEffects();
-            yield return StartCoroutine(m_Coroutine);
+            m_isResonating = true;
+            return true;
+        }
 
-            contactFilter.layerMask = groundedLayerMask;
-            EnableAllCollisions(playerLayer);
-            m_Coroutine = null;
+        protected void StopResonate()
+        {
+            SetLayerCollisions(ResonateColor.None);
+            SetContactFilter(ResonateColor.None);
+
+            m_isResonating = false;
             m_CurrentColor = ResonateColor.None;
         }
 
-        protected IEnumerator ResonateEffects()
+        protected IEnumerator Resonate()
         {
             while (m_TimeRemaining > 0)
             {
@@ -138,12 +146,29 @@ namespace Buffalo
             }
         }
 
-        protected void EnableAllCollisions(int playerLayer)
+        protected void SetLayerCollisions(ResonateColor color)
         {
-            Physics2D.IgnoreLayerCollision(playerLayer, m_BlueLayerId, false);
-            Physics2D.IgnoreLayerCollision(playerLayer, m_GreenLayerId, false);
-            Physics2D.IgnoreLayerCollision(playerLayer, m_RedLayerId, false);
-            Physics2D.IgnoreLayerCollision(playerLayer, m_YellowLayerId, false);
+            int playerLayer = PlayerCharacter.PlayerInstance.gameObject.layer;
+
+            Physics2D.IgnoreLayerCollision(playerLayer, m_BlueLayerId, color == ResonateColor.Blue);
+            Physics2D.IgnoreLayerCollision(playerLayer, m_GreenLayerId, color == ResonateColor.Green);
+            Physics2D.IgnoreLayerCollision(playerLayer, m_RedLayerId, color == ResonateColor.Red);
+            Physics2D.IgnoreLayerCollision(playerLayer, m_YellowLayerId, color == ResonateColor.Yellow);
+        }
+
+        protected void SetContactFilter(ResonateColor color)
+        {
+            ContactFilter2D contactFilter = PlayerCharacter.PlayerInstance.characterController.ContactFilter;
+            LayerMask groundedLayerMask = PlayerCharacter.PlayerInstance.characterController.groundedLayerMask;
+
+            if (color == ResonateColor.None)
+            {
+                contactFilter.layerMask = groundedLayerMask;
+                return;
+            }
+
+            LayerMask colorLayerMask = GetColorLayerMask(color);
+            contactFilter.layerMask = (groundedLayerMask | colorLayerMask) ^ colorLayerMask;
         }
 
         protected int GetColorLayerId(ResonateColor color)
