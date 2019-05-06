@@ -9,22 +9,6 @@ namespace Buffalo
 {
     public class PlayerCharacter : Gamekit2D.PlayerCharacter
     {
-        protected CharacterController2D m_BuffaloController2D;
-
-        void Awake()
-        {
-            s_PlayerInstance = this;
-
-            m_CharacterController2D = GetComponent<CharacterController2D>();
-            m_BuffaloController2D = GetComponent<CharacterController2D>();
-            m_Animator = GetComponent<Animator>();
-            m_Capsule = GetComponent<CapsuleCollider2D>();
-            m_Transform = transform;
-            m_InventoryController = GetComponent<InventoryController>();
-
-            m_CurrentBulletSpawnPoint = spriteOriginallyFacesLeft ? facingLeftBulletSpawnPoint : facingRightBulletSpawnPoint;
-        }
-
         void Start()
         {
             hurtJumpAngle = Mathf.Clamp(hurtJumpAngle, k_MinHurtJumpAngle, k_MaxHurtJumpAngle);
@@ -81,7 +65,7 @@ namespace Buffalo
         public void Dash()
         {
             m_Animator.SetTrigger(m_HashDashPara);
-            m_BuffaloController2D.Resonate();
+            Resonator.Resonate();
         }
 
         /////////////////

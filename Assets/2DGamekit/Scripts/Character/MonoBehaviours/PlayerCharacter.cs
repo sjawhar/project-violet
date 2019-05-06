@@ -13,6 +13,11 @@ namespace Gamekit2D
         static protected PlayerCharacter s_PlayerInstance;
         static public PlayerCharacter PlayerInstance { get { return s_PlayerInstance; } }
 
+        public CharacterController2D characterController
+        {
+            get { return m_CharacterController2D; }
+        }
+
         public InventoryController inventoryController
         {
             get { return m_InventoryController; }

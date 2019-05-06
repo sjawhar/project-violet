@@ -12,16 +12,16 @@ namespace Gamekit2D
         [Tooltip("The distance down to check for ground.")]
         public float groundedRaycastDistance = 0.1f;
 
-        protected Rigidbody2D m_Rigidbody2D;
-        protected CapsuleCollider2D m_Capsule;
-        protected Vector2 m_PreviousPosition;
-        protected Vector2 m_CurrentPosition;
-        protected Vector2 m_NextMovement;
-        protected ContactFilter2D m_ContactFilter;
-        protected RaycastHit2D[] m_HitBuffer = new RaycastHit2D[5];
-        protected RaycastHit2D[] m_FoundHits = new RaycastHit2D[3];
-        protected Collider2D[] m_GroundColliders = new Collider2D[3];
-        protected Vector2[] m_RaycastPositions = new Vector2[3];
+        Rigidbody2D m_Rigidbody2D;
+        CapsuleCollider2D m_Capsule;
+        Vector2 m_PreviousPosition;
+        Vector2 m_CurrentPosition;
+        Vector2 m_NextMovement;
+        ContactFilter2D m_ContactFilter;
+        RaycastHit2D[] m_HitBuffer = new RaycastHit2D[5];
+        RaycastHit2D[] m_FoundHits = new RaycastHit2D[3];
+        Collider2D[] m_GroundColliders = new Collider2D[3];
+        Vector2[] m_RaycastPositions = new Vector2[3];
 
         public bool IsGrounded { get; protected set; }
         public bool IsCeilinged { get; protected set; }
