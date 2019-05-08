@@ -109,7 +109,7 @@ namespace Buffalo
         {
             m_IsCanGroundSlam = false;
             m_Animator.SetTrigger(m_HashGroundSlamPara);
-            Resonator.Resonate(ResonateColor.Yellow);
+            Resonator.Resonate(ResonateColor.Blue);
         }
     }
 }
