@@ -182,18 +182,18 @@ namespace Buffalo
 
         protected void SetContactFilter(ResonateColor color)
         {
-            Gamekit2D.CharacterController2D characterController = PlayerCharacter.PlayerInstance.characterController;
-            LayerMask groundedLayerMask = characterController.groundedLayerMask;
+            PlayerCharacter playerCharacter = (PlayerCharacter) PlayerCharacter.PlayerInstance;
+            LayerMask groundedLayerMask = playerCharacter.characterController.groundedLayerMask;
 
             if (color == ResonateColor.None)
             {
-                characterController.SetLayerMask(groundedLayerMask);
+                playerCharacter.characterController.SetLayerMask(groundedLayerMask);
                 return;
             }
 
             LayerMask colorLayerMask = GetColorLayerMask(color);
             LayerMask filteredLayerMask = (groundedLayerMask | colorLayerMask) ^ colorLayerMask;
-            characterController.SetLayerMask(filteredLayerMask);
+            playerCharacter.characterController.SetLayerMask(filteredLayerMask);
         }
 
         protected LayerMask GetColorLayerMask(ResonateColor color)

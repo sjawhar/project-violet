@@ -9,6 +9,11 @@ namespace Buffalo
 {
     public class PlayerCharacter : Gamekit2D.PlayerCharacter
     {
+        public CharacterController2D characterController
+        {
+            get { return m_CharacterController2D; }
+        }
+
         void Start()
         {
             hurtJumpAngle = Mathf.Clamp(hurtJumpAngle, k_MinHurtJumpAngle, k_MaxHurtJumpAngle);

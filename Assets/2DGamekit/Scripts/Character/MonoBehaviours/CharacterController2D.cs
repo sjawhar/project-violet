@@ -61,7 +61,7 @@ namespace Gamekit2D
 
         public void SetLayerMask(LayerMask layerMask)
         {
-            m_ContactFilter.layerMask = layerMask;
+            m_ContactFilter.SetLayerMask(layerMask);
         }
 
         /// <summary>
