@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd289f730da7ef31bb4224714433a7e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resonateTime: 3
+  resonateTime: 1.5
   transitionTime: 0.2
   blueLayerName: ResonateBlue
   blueVolume: {fileID: 1401492248}
