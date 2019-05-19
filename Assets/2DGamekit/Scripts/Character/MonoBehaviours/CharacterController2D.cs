@@ -59,6 +59,11 @@ namespace Gamekit2D
             CheckCapsuleEndCollisions(false);
         }
 
+        public void SetLayerMask(LayerMask layerMask)
+        {
+            m_ContactFilter.layerMask = layerMask;
+        }
+
         /// <summary>
         /// This moves a rigidbody and so should only be called from FixedUpdate or other Physics messages.
         /// </summary>
