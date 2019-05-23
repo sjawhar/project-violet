@@ -9,6 +9,11 @@ namespace Buffalo
 {
     public class PlayerCharacter : Gamekit2D.PlayerCharacter
     {
+        public CharacterController2D characterController
+        {
+            get { return m_CharacterController2D; }
+        }
+
         void Start()
         {
             hurtJumpAngle = Mathf.Clamp(hurtJumpAngle, k_MinHurtJumpAngle, k_MaxHurtJumpAngle);
@@ -65,6 +70,7 @@ namespace Buffalo
         public void Dash()
         {
             m_Animator.SetTrigger(m_HashDashPara);
+            Resonator.Resonate(ResonateColor.Red);
         }
 
         /////////////////
@@ -85,6 +91,7 @@ namespace Buffalo
         {
             SetVerticalMovement(jumpSpeed);
             m_IsCanDoubleJump = false;
+            Resonator.Resonate(ResonateColor.Green);
         }
 
         /////////////////
@@ -107,6 +114,7 @@ namespace Buffalo
         {
             m_IsCanGroundSlam = false;
             m_Animator.SetTrigger(m_HashGroundSlamPara);
+            Resonator.Resonate(ResonateColor.Blue);
         }
     }
 }
