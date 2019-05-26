@@ -2245,7 +2245,7 @@ PrefabInstance:
     - target: {fileID: 2673223222614069641, guid: 9b56d3731ac01b60faae64721cfa8421,
         type: 3}
       propertyPath: m_Name
-      value: BuffaloEllen
+      value: Violet
       objectReference: {fileID: 0}
     - target: {fileID: 2671824460159453935, guid: 9b56d3731ac01b60faae64721cfa8421,
         type: 3}
@@ -20866,7 +20866,7 @@ PrefabInstance:
     - target: {fileID: 4301045740615323494, guid: 7a251fa60d8e8f16288f74295a89b754,
         type: 3}
       propertyPath: m_Name
-      value: BuffaloVFXController
+      value: VioletFXController
       objectReference: {fileID: 0}
     - target: {fileID: 4303689554807173666, guid: 7a251fa60d8e8f16288f74295a89b754,
         type: 3}

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Gamekit2D;
 
-namespace Buffalo
+namespace Violet
 {
     public class PlayerCharacter : Gamekit2D.PlayerCharacter
     {

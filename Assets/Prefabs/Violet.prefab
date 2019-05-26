@@ -112,7 +112,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1125256590603436, guid: 73360cdb4e1e7ed4897690f9d57fd0eb, type: 3}
       propertyPath: m_Name
-      value: BuffaloEllen
+      value: Violet
       objectReference: {fileID: 0}
     - target: {fileID: 95245875792028280, guid: 73360cdb4e1e7ed4897690f9d57fd0eb,
         type: 3}
@@ -128,6 +128,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnDie.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591936569520678, guid: 73360cdb4e1e7ed4897690f9d57fd0eb,
+        type: 3}
+      propertyPath: groundedLayerMask.m_Bits
+      value: 2178940928
       objectReference: {fileID: 0}
     - target: {fileID: 114621962236214084, guid: 73360cdb4e1e7ed4897690f9d57fd0eb,
         type: 3}
@@ -207,11 +212,6 @@ PrefabInstance:
     - target: {fileID: 4212235226361802, guid: 73360cdb4e1e7ed4897690f9d57fd0eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591936569520678, guid: 73360cdb4e1e7ed4897690f9d57fd0eb,
-        type: 3}
-      propertyPath: groundedLayerMask.m_Bits
-      value: 2178940928
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114854669915511232, guid: 73360cdb4e1e7ed4897690f9d57fd0eb, type: 3}

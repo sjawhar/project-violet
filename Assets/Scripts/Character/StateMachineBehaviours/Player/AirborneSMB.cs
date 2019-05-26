@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Gamekit2D;
 
-namespace Buffalo
+namespace Violet
 {
     public class AirborneSMB : SceneLinkedSMB<PlayerCharacter>
     {

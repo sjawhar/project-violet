@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Gamekit2D.InputComponent;
 
-namespace Buffalo
+namespace Violet
 {
     [Serializable]
     public class DoubleTapButton : InputButton

@@ -4,7 +4,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 
-namespace Buffalo
+namespace Violet
 {
     public class InputDisplayUI : MonoBehaviour
     {

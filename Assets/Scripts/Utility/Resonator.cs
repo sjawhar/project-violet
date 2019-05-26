@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
-namespace Buffalo
+namespace Violet
 {
     public enum ResonateColor
     {

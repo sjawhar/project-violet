@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Buffalo
+namespace Violet
 {
     [CustomEditor(typeof(PlayerInput))]
     public class PlayerInputEditor : Gamekit2D.DataPersisterEditor

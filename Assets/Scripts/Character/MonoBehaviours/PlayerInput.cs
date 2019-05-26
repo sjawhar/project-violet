@@ -1,7 +1,7 @@
 using UnityEngine;
 using Gamekit2D;
 
-namespace Buffalo
+namespace Violet
 {
     public class PlayerInput : Gamekit2D.PlayerInput
     {

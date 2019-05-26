@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Buffalo
+namespace Violet
 {
     [CustomEditor(typeof(PlayerCharacter))]
     public class PlayerCharacterEditor : Editor
