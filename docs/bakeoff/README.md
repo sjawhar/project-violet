@@ -19,7 +19,7 @@ The bake-off runs five lanes of the same throwaway slice — one greybox level, 
 - `docs/bakeoff/` — the shared inputs every lane consumes: this README, the throwaway mechanic, the greybox level and its format, the replay format, the protagonist and desert-biome briefs, the judging sheet, and the lane-log format. All files here are read-only inputs to every lane; nothing here is lane-specific.
 - `game/<lane>/` — each lane's engine project (created when its lane task starts), holding its own copy of `level01.greybox.json` (unchanged; each lane's `ci.sh` runs `cmp` against the `docs/bakeoff` copy) its `ci.sh`, and `ci-tools`: the `mise.toml` tools `ci.sh` needs in CI besides uv, space-separated (`godot` for the Godot lanes, `ffmpeg` for control's `ffprobe`; empty for U-D).
 - `bakeoff/<lane>/` — each lane's evidence: `LOG.md` (format in [lane-log-format.md](lane-log-format.md)), `replays/*.replay.json` (format in [replay-format.md](replay-format.md); Godot lanes also keep a copy under `game/<lane>/replays/` because `res://` cannot leave the project), `reports/` (CI-readable results), `capture/capture.mp4` + `still-*.png` (Git LFS).
-- `assets/bakeoff/` — shared generated assets (the Spine protagonist rig, the 3D desert kit) built once and used by every lane that needs them.
+- `assets/bakeoff/` — shared generated assets built once and used by every lane that needs them: the protagonist rig (a Spine 4.3 JSON subset `tools/spinerig` builds; no Spine editor or runtime involved — each lane reads it with its own small reader per [character-rig.md](character-rig.md)) and the 3D desert kit.
 - Lane branches are named `bakeoff/<lane>`; they branch from `master` and never merge. Every push to one runs `.github/workflows/bakeoff.yml`: it installs uv and the tools in `game/<lane>/ci-tools`, then runs provenance and LFS checks, `bakeoff log-check` on the lane's `LOG.md`, then `game/<lane>/ci.sh`. Its `out/` and `bakeoff/<lane>/reports/` are uploaded as the run's `bakeoff-<lane>` artifact, failed runs included.
 
 ## Files
@@ -29,6 +29,7 @@ The bake-off runs five lanes of the same throwaway slice — one greybox level, 
 - [level01.greybox.json](level01.greybox.json) — the one greybox level every lane builds.
 - [replay-format.md](replay-format.md) — the `violet-replay` v1 recorded-input format used for the completability test and captures.
 - [protagonist-brief.md](protagonist-brief.md) — the protagonist art brief (THROWAWAY).
+- [character-rig.md](character-rig.md) — the protagonist rig's Spine 4.3 JSON subset contract: what each lane's own reader implements, the FK and placement math, and the scale/tint conventions.
 - [desert-biome-brief.md](desert-biome-brief.md) — the desert biome art brief (THROWAWAY).
 - [judging.md](judging.md) — how Sami scores each lane and the decision rule.
 - [lane-log-format.md](lane-log-format.md) — the `bakeoff/<lane>/LOG.md` front matter every lane keeps.

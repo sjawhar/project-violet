@@ -18,7 +18,7 @@ costs:
 interventions:
   - {at: "2026-09-28T15:10:00Z", who: sami, what: "approved Godot export preset", minutes: 5}
 friction:
-  - {at: "2026-09-28T15:40:00Z", what: "spine-godot GDExtension version mismatch", workaround: "pinned to 4.3"}
+  - {at: "2026-09-28T15:40:00Z", what: "Godot export templates download timed out", workaround: "retried with a longer curl timeout"}
 blockers:
   - {what: "Meshy kit not ready", since: "2026-09-28T16:00:00Z", waiting_on: "Task 6"}
 deliverables:
@@ -40,4 +40,4 @@ deliverables:
 - `blockers`: each entry is `{what, since, waiting_on}`.
 - `deliverables`: `{build, capture, stills: [], tests}` — paths to the lane's evidence files.
 
-Shared costs (Spine Professional, the desert kit, the protagonist rig) that are not specific to one lane go in `docs/bakeoff/shared-costs.md` on `master`, not in a lane log.
+Shared costs (the desert kit, the protagonist rig) that are not specific to one lane go in `docs/bakeoff/shared-costs.md` on `master`, not in a lane log.
