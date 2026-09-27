@@ -73,3 +73,30 @@ def test_generates_a_real_image_with_a_valid_provenance_sidecar(repo: Path, run,
 
     check_code = provenance_main(["check", str(out)])
     assert check_code == 0
+
+
+def test_openai_transparent_background_has_alpha(repo: Path, run):
+    out = repo / "circle.png"
+
+    code, _, err = run(
+        "image",
+        "--provider",
+        "openai",
+        "--model",
+        "gpt-image-2",
+        "--background",
+        "transparent",
+        "--prompt",
+        "a single red circle, nothing else, on a transparent background",
+        "--size",
+        "1024x1024",
+        "--out",
+        str(out),
+    )
+
+    assert code == 0, err
+
+    with Image.open(out) as image:
+        image.load()
+        assert image.format == "PNG"
+        assert image.getchannel("A").getextrema()[0] < 255

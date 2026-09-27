@@ -35,6 +35,7 @@ def generate(
     seed: int | None,
     negative_prompt: str | None,
     inputs: list[Path],
+    background: str | None,
 ) -> GeneratedImage:
     if seed is not None:
         raise ProviderError("openai: --seed is not supported by the Images API; omit it for this provider")
@@ -49,15 +50,21 @@ def generate(
     try:
         with httpx.Client(base_url=API_BASE, headers=headers, timeout=TIMEOUT) as client:
             if inputs:
-                data = {"model": model, "prompt": combined_prompt}
+                data: dict[str, str] = {"model": model, "prompt": combined_prompt}
                 if size is not None:
                     data["size"] = size
+                if background is not None:
+                    data["background"] = background
+                    data["output_format"] = "png"
                 files = [("image[]", (path.name, path.read_bytes(), _guess_mime(path))) for path in inputs]
                 response = client.post("/images/edits", data=data, files=files)
             else:
                 payload: dict[str, object] = {"model": model, "prompt": combined_prompt, "n": 1}
                 if size is not None:
                     payload["size"] = size
+                if background is not None:
+                    payload["background"] = background
+                    payload["output_format"] = "png"
                 response = client.post("/images/generations", json=payload)
     except httpx.HTTPError as error:
         raise ProviderError(f"openai: {error}") from error
