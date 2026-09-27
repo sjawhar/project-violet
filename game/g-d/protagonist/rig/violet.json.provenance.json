@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "asset": "violet.json",
+  "sha256": "353f3f510df5d84aceccaafca44128fa0b5eaf2865c22bead44194af8b6a54ce",
+  "kind": "animation",
+  "origin": "derived",
+  "created_at": "2026-09-27T18:43:55+00:00",
+  "generator": {
+    "tool": "spinerig",
+    "tool_version": "0.1.0",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/rig-src/rig.json",
+        "sha256": "15911f5a74d2145ded213f7e2118a26d16be2c3a233c50a4a551f4c822f877db"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

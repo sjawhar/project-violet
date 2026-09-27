@@ -10,6 +10,7 @@ sessions:
   - {start: "2026-09-27T08:39:00Z", end: "2026-09-27T08:52:48Z", purpose: "greybox milestone: workspace, 3D player/builder/art/game, copied G-A scripts and replay, ci.sh (plan Task 8 Steps 1-5)"}
   - {start: "2026-09-27T17:10:00Z", end: "2026-09-27T17:40:41Z", purpose: "rig reader without Spine (Sami 2026-09-27: no Spine purchase): G-A's bakeoff/rig.gd copied, RigCharacter3D, rig tests, placeholder rig seen animating (shared with lane G-A)"}
   - {start: "2026-09-27T17:46:00Z", end: "2026-09-27T17:52:37Z", purpose: "rig reader hardening: malformed rigs fail loudly (push_error, exit 1, no STAND-IN fallback), ci.sh smoke run fails on logged errors, rig contract #26 (path, looping by name, refusals)"}
+  - {start: "2026-09-27T17:58:00Z", end: "2026-09-27T19:38:48Z", purpose: "protagonist rig from PR #28 (phase1/protagonist-parts fd76d946, unmerged) copied into protagonist/; looked at in context; preliminary capture with Violet (scratch copy, not committed)"}
 costs: []
 interventions: []
 friction:
@@ -22,6 +23,7 @@ friction:
   - {at: "2026-09-27T17:24:00Z", what: "spinerig render (the rig contract's reference implementation) exists only on PR #25's branch, so the lane's own tools/spinerig cannot regenerate the reference fixture", workaround: "tests/rig/make-fixture.sh takes SPINERIG=<a tools/spinerig with render.py>"}
   - {at: "2026-09-27T17:55:00Z", what: "GDScript asserts do not stop anything: a failed one returns from the function and the game runs on, and release exports strip them, so a malformed rig would have loaded half-way", workaround: "rig.gd reports every refusal with push_error and returns null; attach_character then push_errors and quits with exit 1 instead of showing the STAND-IN"}
   - {at: "2026-09-27T17:58:00Z", what: "a Godot 4.7.2 release export swallows some runtime script errors (a missing Dictionary key reads as null, an out-of-range index prints nothing) and crashes with exit 139 and no log line on a method call through null", workaround: "ci.sh fails the export smoke run on a non-zero exit or any SCRIPT ERROR: or ERROR: line (compile errors, failed script loads, push_error); the silent release-only errors stay invisible to it"}
+  - {at: "2026-09-27T18:05:00Z", what: "the preliminary capture with the rig took 12-14 minutes of wall time per Godot lane (g-a 848 s, g-d 795 s, g-c 735 s run back to back), not the 4 minutes measured earlier, on a machine shared with other sessions", workaround: "none needed; captures stay in scratch copies until the rig PR is approved"}
 blockers: []
 deliverables: {build: bakeoff/g-d/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-d/reports/replay.json}
 ---
@@ -35,3 +37,6 @@ Rig reader (in place of Step 6's SpineSprite3D; Sami ruled on 2026-09-27 that th
 Lane G-A's replay passed unchanged in 3D: CharacterBody3D with a box shape against unit box colliders reached the goal at tick 3757, the same tick as G-A's 2D run, so no tick needed retuning. The key moments therefore sit on the same capture still times as G-A's (red orb about 5 s, air-dash over the pit 20 s, green orb 40 s, mid-air switch at col 57 60 s); capture mode runs to tick 3960 (66 s).
 
 A hazard touch is reported twice when the player's box overlaps two hazard cells; the run fails either way.
+
+
+Protagonist rig: `protagonist/rig/violet.json`, `violet.meta.json` and `protagonist/parts/*.png` are copied byte for byte, with their provenance sidecars, from PR #28 (branch phase1/protagonist-parts, fd76d946, not merged yet; real PNGs from the violet-rig workspace, not LFS pointers). Re-copy them if #28 changes. `attach_character` now shows Violet instead of the STAND-IN; the replay, the tag checks, rig-test and the export smoke run pass with it loaded.

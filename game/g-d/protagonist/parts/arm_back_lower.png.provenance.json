@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "asset": "arm_back_lower.png",
+  "sha256": "bbc7ee20bd450d8729418556b2b251dc18eb8bbe9c1b1efa12191cdc4e562410",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-27T17:21:06+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Only the only the forearm and hand, bare skin forearm and hand past the sleeve cuff, no upper arm, no torso of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
+        "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "lead-agent",
+      "description": "trimmed transparent margin",
+      "at": "2026-09-27T17:53:53+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "trimmed transparent margin to the alpha > 8 bounding box: 962x992 -> 699x753",
+      "at": "2026-09-27T18:42:19+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "rescaled by factor 0.235 (Lanczos), 699x753 -> 164x177, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960, so 1.136 rig px per turnaround px); see assets/bakeoff/protagonist/README.md. Elbow to fingertips (833 painted px, along the arm) set to 196 px: forearm 125 (45% of shoulder-to-wrist, inferred) plus the turnaround's hand, wrist y~540 to fingertips y=602 (71 px).",
+      "at": "2026-09-27T18:42:20+00:00"
+    }
+  ],
+  "license": "proprietary"
+}
