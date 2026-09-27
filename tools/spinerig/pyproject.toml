@@ -1,0 +1,21 @@
+[project]
+name = "spinerig"
+version = "0.1.0"
+description = "Builds a Spine 4.3 JSON skeleton from a violet-rig v1 description (bones, parts, scarf follow-through, animations)"
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=11",
+]
+
+[project.scripts]
+spinerig = "spinerig.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["uv_build>=0.9,<0.13"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
