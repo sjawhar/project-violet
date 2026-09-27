@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import os
 from functools import cache
 from importlib.resources import files
 from pathlib import Path
@@ -83,26 +84,96 @@ def missing_roots(config: Config) -> list[str]:
     return [root for root in config.roots if not (config.root / root).is_dir()]
 
 
-def _assets_under(config: Config, directory: Path) -> list[Path]:
-    return sorted(path for path in directory.rglob("*") if path.is_file() and config.is_asset(path))
+def _scan(config: Config, directory: Path) -> tuple[list[Path], list[str]]:
+    """Assets under a directory, plus problems that would otherwise hide files from the check:
+    symlinked directories (never followed), dangling symlinks, and sidecars whose asset is gone."""
+    assets: list[Path] = []
+    problems: list[str] = []
+    for dirpath, dirnames, filenames in os.walk(directory):
+        base = Path(dirpath)
+        for name in sorted(dirnames):
+            if (base / name).is_symlink():
+                problems.append(f"{config.display(base / name)}: symlinked directory; the check does not follow it, so move the files under the root")
+        for name in sorted(filenames):
+            path = base / name
+            if path.is_symlink() and not path.exists():
+                problems.append(f"{config.display(path)}: dangling symlink")
+            elif name.endswith(SIDECAR_SUFFIX):
+                if not path.with_name(name.removesuffix(SIDECAR_SUFFIX)).exists():
+                    problems.append(f"{config.display(path)}: no asset '{name.removesuffix(SIDECAR_SUFFIX)}' beside it; delete or move the sidecar")
+            elif config.is_asset(path):
+                assets.append(path)
+    return sorted(assets), problems
 
 
-def discover_assets(config: Config, paths: list[Path]) -> list[Path]:
-    """Assets under every configured root, or under the given absolute paths when there are any.
+def discover_assets(config: Config, paths: list[Path]) -> tuple[list[Path], list[str]]:
+    """Assets under every configured root, or under the given absolute paths when there are any, plus scan problems.
 
     A sidecar path stands for its asset. Each asset appears once.
     """
-    if not paths:
-        return [asset for root in config.roots if (config.root / root).is_dir() for asset in _assets_under(config, config.root / root)]
-
+    directories = [config.root / root for root in config.roots if (config.root / root).is_dir()] if not paths else []
     assets: list[Path] = []
     for path in paths:
         if path.name.endswith(SIDECAR_SUFFIX):
             path = path.with_name(path.name.removesuffix(SIDECAR_SUFFIX))
         if path.is_dir():
-            assets.extend(_assets_under(config, path))
+            directories.append(path)
         elif path.is_file():
             assets.append(path)
         else:
             raise ProvenanceError(f"{config.display(path)}: no such file or directory")
-    return list(dict.fromkeys(assets))
+    problems: list[str] = []
+    for directory in directories:
+        found, scan_problems = _scan(config, directory)
+        assets += found
+        problems += scan_problems
+    return list(dict.fromkeys(assets)), list(dict.fromkeys(problems))
+
+
+class Checker:
+    """Checks assets and, transitively, the records of every input they were made from.
+
+    Each asset is checked once; `problems` accumulates everything found, in order.
+    """
+
+    def __init__(self, config: Config) -> None:
+        self.config = config
+        self.problems: list[str] = []
+        self.records: dict[Path, Record] = {}
+        self._checked: set[Path] = set()
+        self._visiting: set[Path] = set()
+
+    def check(self, asset: Path) -> Record | None:
+        """Check the asset and its inputs; return its record when the asset's own record is sound."""
+        if asset in self._checked:
+            return self.records.get(asset)
+        self._checked.add(asset)
+        self._visiting.add(asset)
+        problems, record = check_asset(self.config, asset)
+        self.problems += problems
+        if record is not None:
+            self.records[asset] = record
+            if record["origin"] != "human":
+                self._check_inputs(asset, record)
+        self._visiting.discard(asset)
+        return record
+
+    def _check_inputs(self, asset: Path, record: Record) -> None:
+        sidecar = self.config.display(sidecar_for(asset))
+        for index, item in enumerate(record["generator"]["inputs"]):
+            where = f"{sidecar}: $.generator.inputs[{index}]: {item['path']}"
+            path = self.config.root / item["path"]
+            if path in self._visiting:
+                self.problems.append(f"{where} leads back to this asset")
+                continue
+            if not path.is_file():
+                self.problems.append(f"{where} does not exist")
+                continue
+            input_record = self.check(path)
+            if input_record is None:
+                self.problems.append(f"{where} has no valid, current provenance record")
+            elif input_record["sha256"] != item["sha256"]:
+                self.problems.append(
+                    f"{where} was {item['sha256']} when this asset was made, but its record now says "
+                    f"{input_record['sha256']}; regenerate or re-record this asset"
+                )

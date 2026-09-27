@@ -48,14 +48,22 @@
       "if": { "properties": { "origin": { "const": "generated" } }, "required": ["origin"] },
       "then": {
         "required": ["generator"],
-        "properties": { "generator": { "required": ["provider", "model", "prompt"] } }
+        "properties": {
+          "generator": { "required": ["provider", "model", "prompt"], "properties": { "model": { "type": "string" } } }
+        }
       }
     },
     {
       "if": { "properties": { "origin": { "const": "derived" } }, "required": ["origin"] },
       "then": {
         "required": ["generator"],
-        "properties": { "generator": { "properties": { "inputs": { "minItems": 1 } } } }
+        "properties": {
+          "generator": {
+            "description": "A derived record names its model, or states \"model\": null when no model was involved.",
+            "required": ["model"],
+            "properties": { "inputs": { "minItems": 1 } }
+          }
+        }
       }
     }
   ],
@@ -71,12 +79,17 @@
       "type": "object",
       "additionalProperties": false,
       "required": ["tool", "tool_version", "params", "inputs"],
-      "dependentRequired": { "model": ["provider"], "model_version": ["model"] },
+      "if": { "properties": { "model": { "type": "string" } }, "required": ["model"] },
+      "then": { "required": ["provider"] },
+      "else": { "properties": { "provider": { "not": {} }, "model_version": { "not": {} } } },
       "properties": {
         "tool": { "$ref": "#/$defs/line" },
         "tool_version": { "$ref": "#/$defs/line" },
         "provider": { "$ref": "#/$defs/line" },
-        "model": { "$ref": "#/$defs/line" },
+        "model": {
+          "description": "The generative model used, or null to state that none was.",
+          "anyOf": [{ "$ref": "#/$defs/line" }, { "type": "null" }]
+        },
         "model_version": { "$ref": "#/$defs/line" },
         "prompt": { "$ref": "#/$defs/text" },
         "negative_prompt": { "$ref": "#/$defs/text" },

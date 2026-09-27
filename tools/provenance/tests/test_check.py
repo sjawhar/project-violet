@@ -246,3 +246,121 @@ def test_refuses_a_config_that_could_silently_match_nothing(repo: Path, run, con
 
     assert code != 0
     assert "provenance.toml" in err
+
+
+def test_fails_when_a_derived_record_says_nothing_about_a_model(repo: Path, run):
+    """A derived record must name its model or state "model": null; silence could hide AI use."""
+    source = write_file(repo / "game/art/scarf.png", b"scarf")
+    write_sidecar(source, human_record(source))
+    asset = write_file(repo / "game/art/scarf-4x.png", b"upscaled")
+    record = generated_record(asset, origin="derived")
+    record["generator"] = {
+        "tool": "upscale",
+        "tool_version": "2",
+        "params": {},
+        "inputs": [{"path": "game/art/scarf.png", "sha256": hashlib.sha256(b"scarf").hexdigest()}],
+    }
+    write_sidecar(asset, record)
+
+    code, _, err = run("check")
+
+    assert code != 0
+    assert "game/art/scarf-4x.png.provenance.json" in err
+    assert "model" in err
+
+
+def _input(repo: Path, relative: str) -> dict:
+    return {"path": relative, "sha256": hashlib.sha256((repo / relative).read_bytes()).hexdigest()}
+
+
+def _generated_from(repo: Path, relative: str, *inputs: str) -> Path:
+    asset = write_file(repo / relative, relative.encode())
+    record = generated_record(asset)
+    record["generator"]["inputs"] = [_input(repo, path) for path in inputs]
+    write_sidecar(asset, record)
+    return asset
+
+
+def test_passes_when_every_input_is_recorded_and_current(repo: Path, run):
+    sketch = write_file(repo / "docs/refs/sketch.png", b"sketch")
+    write_sidecar(sketch, human_record(sketch))
+    _generated_from(repo, "game/art/scarf.png", "docs/refs/sketch.png")
+
+    code, _, err = run("check")
+
+    assert code == 0, err
+
+
+def test_fails_when_an_input_has_no_record(repo: Path, run):
+    write_file(repo / "docs/refs/sketch.png", b"sketch")
+    _generated_from(repo, "game/art/scarf.png", "docs/refs/sketch.png")
+
+    code, _, err = run("check")
+
+    assert code != 0
+    assert "game/art/scarf.png.provenance.json" in err
+    assert "$.generator.inputs[0]" in err
+    assert "docs/refs/sketch.png" in err
+
+
+def test_fails_when_an_input_record_is_stale(repo: Path, run):
+    sketch = write_file(repo / "docs/refs/sketch.png", b"sketch")
+    write_sidecar(sketch, human_record(sketch))
+    _generated_from(repo, "game/art/scarf.png", "docs/refs/sketch.png")
+    sketch.write_bytes(b"sketch, replaced later")
+
+    code, _, err = run("check")
+
+    assert code != 0
+    assert "docs/refs/sketch.png" in err
+    assert "sha256" in err
+
+
+def test_fails_when_an_input_changed_after_the_asset_was_made_from_it(repo: Path, run):
+    sketch = write_file(repo / "docs/refs/sketch.png", b"sketch v1")
+    write_sidecar(sketch, human_record(sketch))
+    _generated_from(repo, "game/art/scarf.png", "docs/refs/sketch.png")
+    sketch.write_bytes(b"sketch v2")
+    write_sidecar(sketch, human_record(sketch))  # the input's own record is current again
+
+    code, _, err = run("check")
+
+    assert code != 0
+    assert "game/art/scarf.png.provenance.json" in err
+    assert "$.generator.inputs[0]" in err
+
+
+def test_fails_on_a_sidecar_whose_asset_is_gone(repo: Path, run):
+    kept = write_file(repo / "game/art/hero.png", b"hero")
+    write_sidecar(kept, human_record(kept))
+    renamed = write_file(repo / "game/art/old-name.png", b"villain")
+    write_sidecar(renamed, human_record(renamed))
+    renamed.rename(repo / "game/art/villain.png")
+
+    code, _, err = run("check", "game/art/hero.png")  # an explicit asset path does not scan for orphans
+    assert code == 0, err
+
+    code, _, err = run("check")
+    assert code != 0
+    assert "game/art/old-name.png.provenance.json" in err
+
+
+def test_fails_on_a_symlinked_directory_under_a_root(repo: Path, run):
+    shared = write_file(repo / "shared/art/hero.png", b"hero").parent
+    (repo / "game").mkdir()
+    (repo / "game/art").symlink_to(shared, target_is_directory=True)
+
+    code, _, err = run("check")
+
+    assert code != 0
+    assert "game/art" in err
+
+
+def test_fails_on_a_dangling_symlink_under_a_root(repo: Path, run):
+    (repo / "game/art").mkdir(parents=True)
+    (repo / "game/art/hero.png").symlink_to(repo / "missing/hero.png")
+
+    code, _, err = run("check")
+
+    assert code != 0
+    assert "game/art/hero.png" in err

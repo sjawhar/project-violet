@@ -37,6 +37,8 @@ class RecordRequest:
     """Only the generator fields that were given, in GENERATOR_FLAGS order."""
     params: dict[str, str] = field(default_factory=dict)
     inputs: list[Path] = field(default_factory=list)
+    no_model: bool = False
+    """For a derived asset: the recorder states that no generative model was involved."""
 
 
 def _timestamp(now: datetime) -> str:
@@ -57,14 +59,21 @@ def _input_entry(config: Config, path: Path) -> dict[str, str]:
 
 
 def _generator(config: Config, request: RecordRequest) -> dict:
+    if request.no_model and request.origin != "derived":
+        raise ProvenanceError(f"--no-model applies only to origin 'derived', not '{request.origin}'")
+    if request.no_model and {"provider", "model", "model_version"} & set(request.generator):
+        raise ProvenanceError("--no-model contradicts --provider, --model and --model-version")
     missing = [GENERATOR_FLAGS[name] for name in REQUIRED_GENERATOR_FIELDS[request.origin] if name not in request.generator]
     if request.origin == "derived" and not request.inputs:
         missing.append("--input")
+    if request.origin == "derived" and not request.no_model and "model" not in request.generator:
+        missing.append("--model (with --provider) or --no-model")
     if "model" in request.generator and "provider" not in request.generator:
         missing.append("--provider (with --model)")
     if missing:
         raise ProvenanceError(f"origin '{request.origin}' requires {', '.join(missing)}")
-    return {**request.generator, "params": request.params, "inputs": [_input_entry(config, path) for path in request.inputs]}
+    generator = {**request.generator, "model": None} if request.no_model else dict(request.generator)
+    return {**generator, "params": request.params, "inputs": [_input_entry(config, path) for path in request.inputs]}
 
 
 def build_record(config: Config, request: RecordRequest, now: datetime) -> Record:
@@ -87,6 +96,8 @@ def build_record(config: Config, request: RecordRequest, now: datetime) -> Recor
             stray.append("--param")
         if request.inputs:
             stray.append("--input")
+        if request.no_model:
+            stray.append("--no-model")
         if stray:
             raise ProvenanceError(f"origin 'human' takes no generator flags, got {', '.join(stray)}")
         if not request.authors:

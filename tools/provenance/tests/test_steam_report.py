@@ -5,7 +5,8 @@ from conftest import generated_record, human_record, sha256, write_file, write_s
 
 
 def _generator(tool: str, tool_version: str, provider: str | None = None, model: str | None = None, inputs=(), **extra) -> dict:
-    generator = {"tool": tool, "tool_version": tool_version, "params": {}, "inputs": list(inputs), **extra}
+    """A generator block; without a model it states "model": null, as derived records must."""
+    generator = {"tool": tool, "tool_version": tool_version, "model": None, "params": {}, "inputs": list(inputs), **extra}
     if model is not None:
         generator |= {"provider": provider, "model": model, "prompt": "prompt text"}
     return generator
@@ -89,7 +90,6 @@ def test_refuses_when_a_derived_asset_has_an_input_without_a_record(repo: Path, 
     write_file(repo / "docs/refs/sheet.png", b"unrecorded sheet")
     _record(repo, "game/art/atlas.png", generated_record, origin="derived",
             generator=_generator("texpack", "1.0", inputs=[_input(repo, "docs/refs/sheet.png")]))
-    assert run("check")[0] == 0
 
     code, out, err = run("steam-report")
 

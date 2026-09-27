@@ -9,7 +9,7 @@ from pathlib import Path
 from provenance.config import Config, ProvenanceError, find_config, load_config
 from provenance.lfs import lfs_check
 from provenance.record import GENERATOR_FLAGS, RecordRequest, add_human_edit, write_record
-from provenance.records import Record, check_asset, discover_assets, load_record, missing_roots, sidecar_for, validator
+from provenance.records import Checker, discover_assets, missing_roots, validator
 from provenance.report import steam_report
 
 
@@ -27,15 +27,14 @@ def _report(problems: list[str], summary: str) -> bool:
     return bool(problems)
 
 
-def _checked_records(config: Config, assets: list[Path]) -> tuple[list[str], dict[str, Record]]:
-    problems: list[str] = []
-    records: dict[str, Record] = {}
+def _check(config: Config, paths: list[Path]) -> tuple[list[Path], Checker]:
+    """Discover assets and check each one along with, transitively, every input it was made from."""
+    assets, scan_problems = discover_assets(config, paths)
+    checker = Checker(config)
+    checker.problems += scan_problems
     for asset in assets:
-        asset_problems, record = check_asset(config, asset)
-        problems += asset_problems
-        if record is not None:
-            records[config.display(asset)] = record
-    return problems, records
+        checker.check(asset)
+    return assets, checker
 
 
 def _note_missing_roots(config: Config) -> None:
@@ -46,9 +45,8 @@ def _note_missing_roots(config: Config) -> None:
 def cmd_check(config: Config, args: argparse.Namespace) -> int:
     if not args.paths:
         _note_missing_roots(config)
-    assets = discover_assets(config, [_absolute(p) for p in args.paths])
-    problems, _ = _checked_records(config, assets)
-    if _report(problems, f"provenance check: {{count}} problem(s) across {len(assets)} asset(s)"):
+    assets, checker = _check(config, [_absolute(p) for p in args.paths])
+    if _report(checker.problems, f"provenance check: {{count}} problem(s) across {len(assets)} asset(s)"):
         return 1
     print(f"provenance check: {len(assets)} asset(s) OK")
     return 0
@@ -56,31 +54,13 @@ def cmd_check(config: Config, args: argparse.Namespace) -> int:
 
 def cmd_steam_report(config: Config, args: argparse.Namespace) -> int:
     _note_missing_roots(config)
-    assets = discover_assets(config, [])
-    problems, records = _checked_records(config, assets)
-    if _report(problems, "provenance steam-report: {count} problem(s); the disclosure must cover every asset, so fix them first"):
+    assets, checker = _check(config, [])
+    if _report(checker.problems, "provenance steam-report: {count} problem(s); the disclosure must cover every asset, so fix them first"):
         return 1
-
-    known = dict(records)
-
-    def lookup(path: str) -> Record:
-        """The record for an asset or an input to one, which may sit outside the asset roots."""
-        if path not in known:
-            sidecar = sidecar_for(config.root / path)
-            if not sidecar.is_file():
-                raise ProvenanceError(
-                    f"{path} is an input to a recorded asset but has no provenance record; "
-                    "record it so the disclosure can tell whether AI was involved"
-                )
-            record, record_problems = load_record(sidecar)
-            if record is None:
-                raise ProvenanceError(f"{config.display(sidecar)} is invalid:\n  " + "\n  ".join(record_problems))
-            known[path] = record
-        return known[path]
-
-    report = steam_report(records, lookup)
+    records = {config.display(path): record for path, record in checker.records.items()}
+    report = steam_report([config.display(asset) for asset in assets], records)
     if not report:
-        print(f"provenance steam-report: none of the {len(records)} recorded asset(s) involve generative AI; nothing to disclose", file=sys.stderr)
+        print(f"provenance steam-report: none of the {len(assets)} recorded asset(s) involve generative AI; nothing to disclose", file=sys.stderr)
         return 0
     print(report, end="")
     return 0
@@ -107,6 +87,7 @@ def cmd_record(config: Config, args: argparse.Namespace) -> int:
         generator={name: getattr(args, name) for name in GENERATOR_FLAGS if getattr(args, name) is not None},
         params=params,
         inputs=[_absolute(p) for p in args.inputs],
+        no_model=args.no_model,
     )
     sidecar = write_record(config, request, force=args.force, now=datetime.now(UTC))
     print(f"wrote {config.display(sidecar)}")
@@ -139,7 +120,8 @@ def build_parser() -> argparse.ArgumentParser:
         "record",
         help="write the provenance sidecar (<asset>.provenance.json) for an asset",
         description="generated needs --tool, --tool-version, --provider, --model, --prompt; "
-        "derived needs --tool, --tool-version and at least one --input; human needs --author and takes no generator flags.",
+        "derived needs --tool, --tool-version, at least one --input, and either --model with --provider or --no-model; "
+        "human needs --author and takes no generator flags.",
     )
     record.add_argument("asset", metavar="ASSET")
     record.add_argument("--kind", required=True, choices=schema["kind"]["enum"])
@@ -153,6 +135,7 @@ def build_parser() -> argparse.ArgumentParser:
         generator.add_argument(flag, dest=name, type=int if name == "seed" else str)
     generator.add_argument("--param", action="append", default=[], type=_key_value, dest="params", metavar="KEY=VALUE", help="repeatable")
     generator.add_argument("--input", action="append", default=[], dest="inputs", metavar="PATH", help="a source or reference asset in the repository; repeatable")
+    generator.add_argument("--no-model", action="store_true", help="derived only: state that no generative model was involved")
     record.set_defaults(handler=cmd_record)
 
     edit = commands.add_parser("edit", help="record a person's edit to an asset: append it to the sidecar and update the hash")

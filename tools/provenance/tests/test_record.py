@@ -13,9 +13,15 @@ GENERATOR_FLAGS = [
 ]
 
 
+def _record_human(run, asset: str) -> None:
+    code, _, err = run("record", asset, "--kind", "image", "--origin", "human", "--license", "proprietary", "--author", "Sami Jawhar")
+    assert code == 0, err
+
+
 def test_records_a_generated_asset_that_then_passes_check(repo: Path, run):
     asset = write_file(repo / "game/art/scarf.png", b"scarf pixels")
     write_file(repo / "docs/refs/scarf-sketch.png", b"sketch pixels")
+    _record_human(run, "docs/refs/scarf-sketch.png")
 
     code, _, err = run(
         "record", "game/art/scarf.png", "--kind", "image", "--origin", "generated", "--license", "proprietary",
@@ -70,13 +76,14 @@ def test_records_a_human_asset_that_then_passes_check(repo: Path, run):
 
 
 def test_records_a_derived_asset_made_without_a_model(repo: Path, run):
-    """A texture atlas, crop, or transcode names its tool and inputs; it has no model or prompt to invent."""
+    """A texture atlas, crop, or transcode names its tool and inputs and states that no model was used."""
     sprite = write_file(repo / "game/art/scarf.png", b"generated scarf")
+    _record_human(run, "game/art/scarf.png")
     atlas = write_file(repo / "game/art/atlas.png", b"packed atlas")
 
     code, _, err = run(
         "record", "game/art/atlas.png", "--kind", "image", "--origin", "derived", "--license", "proprietary",
-        "--tool", "texpack", "--tool-version", "1.0", "--param", "padding=2", "--input", str(sprite),
+        "--tool", "texpack", "--tool-version", "1.0", "--no-model", "--param", "padding=2", "--input", str(sprite),
     )
 
     assert code == 0, err
@@ -85,11 +92,39 @@ def test_records_a_derived_asset_made_without_a_model(repo: Path, run):
     assert record["generator"] == {
         "tool": "texpack",
         "tool_version": "1.0",
+        "model": None,
         "params": {"padding": "2"},
         "inputs": [{"path": "game/art/scarf.png", "sha256": sha256(b"generated scarf")}],
     }
-    # check also covers scarf.png, which has no record yet; restrict it to the derived asset.
-    assert run("check", "game/art/atlas.png")[0] == 0
+    assert run("check")[0] == 0
+
+
+def test_refuses_a_derived_asset_that_says_nothing_about_a_model(repo: Path, run):
+    source = write_file(repo / "game/art/scarf.png", b"scarf")
+    _record_human(run, "game/art/scarf.png")
+    asset = write_file(repo / "game/art/scarf-4x.png", b"upscaled")
+
+    code, _, err = run(
+        "record", "game/art/scarf-4x.png", "--kind", "image", "--origin", "derived", "--license", "proprietary",
+        "--tool", "upscale", "--tool-version", "2", "--input", str(source),
+    )
+
+    assert code != 0
+    assert "--model" in err and "--no-model" in err
+    assert not sidecar_path(asset).exists()
+
+
+def test_refuses_no_model_where_a_model_is_named_or_required(repo: Path, run):
+    source = write_file(repo / "game/art/scarf.png", b"scarf")
+    asset = write_file(repo / "game/art/out.png", b"out")
+    base = ["record", "game/art/out.png", "--kind", "image", "--license", "proprietary", "--tool", "t", "--tool-version", "1", "--no-model"]
+
+    both = run(*base, "--origin", "derived", "--provider", "p", "--model", "m", "--input", str(source))
+    generated = run(*base, "--origin", "generated", "--provider", "p", "--prompt", "x")
+
+    assert both[0] != 0 and "--no-model" in both[2]
+    assert generated[0] != 0 and "--no-model" in generated[2]
+    assert not sidecar_path(asset).exists()
 
 
 def test_refuses_a_derived_asset_without_inputs(repo: Path, run):

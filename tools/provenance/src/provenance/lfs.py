@@ -105,16 +105,26 @@ def _small_blobs(root: Path, blob_ids: list[str]) -> dict[str, bytes]:
 
 
 def lfs_check(root: Path) -> list[str]:
-    """Problems, one per staged regular file that matches filter=lfs but is not an LFS pointer."""
+    """Problems, one per staged regular file whose LFS state contradicts .gitattributes: a file matching
+    filter=lfs that is not a pointer, or a pointer that no filter=lfs rule covers (checkouts would get the
+    pointer text; `git lfs fsck --pointers` flags the same thing)."""
     staged = _staged_regular_files(root)
     if not staged:
         return []
     lfs_paths = _lfs_filtered(root, sorted({path for path, _, _ in staged}))
-    candidates = [(path, stage, blob) for path, stage, blob in staged if path in lfs_paths]
-    contents = _small_blobs(root, sorted({blob for _, _, blob in candidates})) if candidates else {}
-    return [
-        f"{path}{f' (merge stage {stage})' if stage != '0' else ''}: matches a filter=lfs rule in .gitattributes but is "
-        f"committed as a regular blob, not an LFS pointer; with git-lfs installed, run `git add --renormalize {path}`"
-        for path, stage, blob in sorted(candidates)
-        if blob not in contents or not is_pointer(contents[blob])
-    ]
+    contents = _small_blobs(root, sorted({blob for _, _, blob in staged}))
+    problems = []
+    for path, stage, blob in sorted(staged):
+        where = f"{path}{f' (merge stage {stage})' if stage != '0' else ''}"
+        content = contents.get(blob)
+        if path in lfs_paths and (content is None or not is_pointer(content)):
+            problems.append(
+                f"{where}: matches a filter=lfs rule in .gitattributes but is committed as a regular blob, "
+                f"not an LFS pointer; with git-lfs installed, run `git add --renormalize {path}`"
+            )
+        elif path not in lfs_paths and content is not None and pointer_oid(content) is not None:
+            problems.append(
+                f"{where}: is a Git LFS pointer, but no filter=lfs rule in .gitattributes covers it, so checkouts "
+                "get the pointer text; add a rule for it or commit the real file"
+            )
+    return problems

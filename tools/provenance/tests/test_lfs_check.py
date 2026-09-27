@@ -122,3 +122,18 @@ def test_fails_outside_a_git_repository(repo: Path, run):
 
     assert code != 0
     assert "git" in err
+
+
+def test_fails_on_an_lfs_pointer_at_a_path_no_rule_routes_through_lfs(git_repo: Path, run):
+    """A pointer outside any filter=lfs rule is never smudged, so builds would get the pointer text."""
+    stage(git_repo, ".gitattributes", b"*.psd filter=lfs diff=lfs merge=lfs -text\n")
+    stage(git_repo, "game/art/hero.png", pointer(BINARY))
+    stage(git_repo, "game/art/layers.psd", pointer(b"layers"))
+    stage(git_repo, "game/art/empty.png", b"")
+
+    code, _, err = run("lfs-check")
+
+    assert code != 0
+    assert "game/art/hero.png" in err
+    assert "layers.psd" not in err
+    assert "empty.png" not in err
