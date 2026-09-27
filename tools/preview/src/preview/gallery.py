@@ -14,20 +14,33 @@ h1 { font-size: 1.25rem; margin: 0 0 1rem; }
 .provenance { margin: .5rem 0 0; font-size: .85rem; color: #b9b9c6; }
 .provenance dt { font-weight: 600; float: left; clear: left; margin-right: .4rem; }
 .provenance dd { margin: 0 0 .15rem; white-space: pre-wrap; }
-.missing { color: #f59e8b; }
+.problem { color: #f59e8b; font-size: .85rem; margin: .5rem 0 0; }
+.hash { color: #6b6b78; font-size: .75rem; word-break: break-all; }
 """
 
 
-def _provenance(summary: dict | None) -> str:
-    if summary is None:
-        return '<p class="provenance missing">No provenance record.</p>'
-    rows = [("origin", summary["origin"])]
-    if summary["origin"] == "human":
-        rows.append(("by", ", ".join(summary["authors"])))
-    else:
-        rows += [(key, summary[key]) for key in ("tool", "provider", "model", "prompt") if summary.get(key)]
+def _provenance(item: dict) -> str:
+    provenance = item["provenance"]
+    problems = "".join(f'<p class="problem">{escape(problem)}</p>' for problem in provenance["problems"])
+    record = provenance["record"]
+    if record is None:
+        return '<p class="problem">No provenance record.</p>' + problems
+    rows = [("origin", record["origin"])]
+    if record["authors"]:
+        rows.append(("by", ", ".join(record["authors"])))
+    if "tool" in record:
+        rows.append(("tool", f"{record['tool']} {record.get('tool_version', '')}".strip()))
+    if "model" in record:
+        version = record.get("model_version")
+        rows.append(("model", f"{record['model']} {version} ({record.get('provider', '')})" if version and version != record["model"]
+                     else f"{record['model']} ({record.get('provider', '')})"))
+    if "prompt" in record:
+        rows.append(("prompt", record["prompt"]))
+    rows += [("input", path) for path in record["inputs"]]
+    rows += [("edited", f"{edit['by']}: {edit['description']}") for edit in record["human_edits"]]
+    rows.append(("license", record["license"]))
     body = "".join(f"<dt>{escape(key)}</dt><dd>{escape(str(value))}</dd>" for key, value in rows)
-    return f'<dl class="provenance">{body}</dl>'
+    return f'<dl class="provenance">{body}</dl>{problems}'
 
 
 def _media(item: dict) -> str:
@@ -37,7 +50,7 @@ def _media(item: dict) -> str:
         return f'<a href="{media["image"]}"><img src="{media["image"]}" alt="{escape(item["name"])}" loading="lazy"></a>'
     if kind in ("animation", "model"):
         return (
-            f'<video src="{media["video"]}" controls loop muted playsinline preload="metadata"></video>'
+            f'<video src="{media["video"]}" poster="{media["poster"]}" controls loop muted playsinline preload="none"></video>'
             f'<p><a href="{media["gif"]}">GIF</a></p>'
         )
     if kind == "audio":
@@ -49,7 +62,8 @@ def page(manifest: dict) -> str:
     title = f"Review: PR {manifest['pr']}"
     sheet = f'<div class="sheet"><img src="{escape(manifest["contact_sheet"])}" alt="contact sheet"></div>' if manifest["contact_sheet"] else ""
     items = "".join(
-        f'<section class="item"><h2>{escape(item["name"])}</h2>{_media(item)}{_provenance(item["provenance"])}</section>'
+        f'<section class="item"><h2>{escape(item["name"])}</h2>{_media(item)}{_provenance(item)}'
+        f'<p class="hash">sha256 {escape(item["sha256"])}</p></section>'
         for item in manifest["items"]
     )
     return (
