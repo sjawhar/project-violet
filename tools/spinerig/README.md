@@ -1,0 +1,126 @@
+# spinerig
+
+Builds a Spine 4.3 JSON skeleton from a `violet-rig` v1 description: a JSON document
+listing bones, painted body-part images, and animations. Reimplements the delayed,
+damped follow-through `spine-animation-ai` (PolyForm Noncommercial) produces for a
+trailing scarf, from scratch (`scarf.py`), so no PolyForm-licensed code or technique is
+used.
+
+This is generic rig tooling: nothing here encodes a game mechanic. The only bake-off
+-specific content is the set of animation names (`idle`, `run`, `jump`, ...) an author
+puts in their own `rig.json` — that's data, not code (Task 5 Step 3 in
+`docs/superpowers/plans/2026-09-27-phase-1-bake-off.md`, not part of this tool).
+
+## Spine 4.3 JSON format
+
+The output's shape (`skeleton`, `bones`, `slots`, `skins`, `animations` and their fields)
+follows the documented Spine JSON export format:
+<https://esotericsoftware.com/spine-json-format> (accessed 2026-09-27). Spine conventions
+used throughout: **y is up**, **angles are in degrees**, and `bones` lists a bone's parent
+before the bone itself.
+
+**This tool's output has not been imported into the Spine 4.3 editor.** Spine
+Professional isn't set up on this machine yet (Task 5 Step 4 needs it). The tests below
+validate structure against the documented format — required top-level keys, bone parent
+order, slot/attachment references resolving, animation timeline shapes — not an actual
+Spine import. Treat `Spine.sh -i` accepting a generated file as unverified until Step 4.
+
+## Usage
+
+```bash
+uv run --project tools/spinerig spinerig generate rig-src/rig.json \
+  --out rig-src/violet.generated.json [--print-parts]
+```
+
+Writes `violet.generated.json` (the Spine JSON) and, next to it,
+`violet.generated.meta.json` (`--out`'s stem + `.meta.json`) — `{"height_px", "feet_y_px":
+0, "facing": "right"}`, the setup-pose height every engine reads to compute its scale
+factor. `--print-parts` also prints each part's image file, width and height (in pixels),
+so the rig's author can pick bone lengths before wiring up animations.
+
+On any malformed input — a part naming an image file that doesn't exist, a bone or scarf
+chain naming a bone that doesn't exist, a bone whose `parent` appears later in `bones`
+than the bone itself, or `draw_order` and the parts not naming exactly the same set of
+slots — `spinerig generate` exits 1 and names the offending bone, slot or file. It writes
+neither output file when it fails.
+
+## `violet-rig` v1
+
+```jsonc
+{
+  "parts_dir": "parts",                // resolved relative to this rig.json's directory
+  "bones": [
+    { "name": "root" },
+    { "name": "torso", "parent": "root", "x": 0, "y": 0, "rotation": 90, "length": 160 }
+    // ... parent before child, Spine conventions (y up, degrees)
+  ],
+  "parts": [
+    {
+      "slot": "torso", "bone": "torso", "image": "torso.png",
+      "pivot": [0.5, 0.0],   // the image point (0-1, origin bottom-left) that sits on the bone origin
+      "rotation": 0          // the image's up-axis angle relative to the bone, in degrees
+    }
+  ],
+  "draw_order": ["torso", "head"],  // every part's slot, back to front; must be a permutation of the parts' slots
+  "scarf": {
+    "bones": ["scarf1", "scarf2", "scarf3"],   // the chain, root end first
+    "trail_deg": { "idle": 5, "run": 35 },     // one entry per animation name below
+    "flutter_deg": 8, "flutter_hz": 2.5, "lag_frames": 2,
+    "gain": [1.0, 0.75, 0.5]                   // one entry per scarf bone; sets decreasing amplitude along the chain
+  },
+  "animations": {
+    "idle": {
+      "duration": 1.0,
+      "loop": true,   // optional, default true: forces the last keyframe to match the first so a loop doesn't pop
+      "bones": {
+        "torso": { "rotate": [{ "time": 0, "angle": -2 }, { "time": 0.5, "angle": 2 }] }
+        // "translate": [{ "time": t, "x": ..., "y": ... }] is also read through unchanged
+      }
+    }
+  }
+}
+```
+
+The generator reads each part's image size with Pillow and computes its Spine attachment
+offset as the image centre relative to the pivot, rotated into bone space:
+`dx = (0.5 - px) * w, dy = (0.5 - py) * h; x = dx·cos(rot) - dy·sin(rot); y = dx·sin(rot) +
+dy·cos(rot)`. The skeleton's `x, y, width, height` and `violet.meta.json`'s `height_px`
+are the setup-pose axis-aligned bounding box over every attachment's four corners, after
+walking the bone hierarchy's forward kinematics — exactly the AABB the Spine JSON format
+doc defines for the `skeleton` section.
+
+Scarf bones must **not** appear in `animations.*.bones`: `spinerig generate` computes and
+injects their `rotate` timelines itself (`scarf.py`), for bone *i* of the chain (0-indexed
+from the root end):
+
+```
+angle_i(t) = -gain_i * trail_deg[anim] + gain_i * flutter_deg * sin(2π · flutter_hz · (t - i * lag_frames/30))
+```
+
+sampled every 2 frames at 30 fps. Decreasing `gain` along the chain gives decreasing
+amplitude; the `i * lag_frames/30` term gives increasing phase delay.
+
+Each attachment also sets `path` to its image's filename stem, so a slot's name doesn't
+have to match its image's filename for the Spine import to resolve the texture region.
+
+## What Task 5 Step 3 needs to know
+
+Authoring `assets/bakeoff/protagonist/rig-src/rig.json` from the 14 body parts
+(`head, torso, hips, arm_back_upper/lower, arm_front_upper/lower, leg_back_upper/lower,
+leg_front_upper/lower, scarf1, scarf2, scarf3`):
+
+- Run `spinerig generate rig.json --out /tmp/throwaway.json --print-parts` first, on a
+  skeleton draft, to read each part's actual pixel width/height and pick bone `length`s
+  from them — that's the whole point of `--print-parts`.
+- List every scarf bone in `scarf.bones` and give `scarf.gain` the same length, root end
+  first; do **not** hand-key their `rotate` timelines in `animations.*.bones`.
+- `scarf.trail_deg` needs one entry per animation name used in `animations`, or
+  generation fails naming the missing animation.
+- `parts_dir` and every part's `image` are resolved relative to `rig.json`'s own
+  directory — point `parts_dir` at wherever Task 4's part PNGs actually land.
+- `draw_order` must be an exact permutation of the parts' slot names (missing or extra
+  slots both fail loudly, naming the offending slot) — this is what fixes the skeleton's
+  front-to-back layering.
+- The generator's `--out FILE.json` is the input to `Spine.sh -i ... -r NAME` (Step 4);
+  it has not been run through the real Spine 4.3 importer yet, so treat any layout choice
+  as provisional until that import succeeds.
