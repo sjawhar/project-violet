@@ -24,4 +24,4 @@ Scoring happens as one comment on the judging PR, in this block format:
 lane: g-a | visual_quality: 4 | character_appeal: 3 | color_readability: 4 | would_ship: no | notes: ...
 ```
 
-One block per lane. The lead transcribes the comment into `docs/bakeoff/scores.json` (schema: `docs/bakeoff/scores.schema.json`, Task 2), citing the comment URL as `source`. `tools/bakeoff decide` applies the rule above to that file.
+One block per lane. The lead transcribes the comment into `docs/bakeoff/scores.json` (schema: `docs/bakeoff/scores.schema.json`), citing the comment URL as `source`. `uv run --project tools/bakeoff bakeoff decide docs/bakeoff/scores.json` applies the rule above to that file.

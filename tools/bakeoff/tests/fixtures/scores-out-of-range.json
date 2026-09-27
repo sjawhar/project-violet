@@ -1,0 +1,22 @@
+{
+  "scored_by": "sjawhar",
+  "scored_at": "2026-10-03T18:00:00Z",
+  "source": "https://github.com/sjawhar/project-violet/pull/99#issuecomment-1",
+  "prefers_c_over_a": null,
+  "lanes": {
+    "g-d": {
+      "visual_quality": 6,
+      "character_appeal": 4,
+      "color_readability": 4,
+      "would_ship": true,
+      "notes": ""
+    },
+    "u-d": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3,
+      "would_ship": false,
+      "notes": "reads as a different game"
+    }
+  }
+}

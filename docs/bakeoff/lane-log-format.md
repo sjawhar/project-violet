@@ -1,6 +1,6 @@
 # Lane log format (THROWAWAY bake-off evidence)
 
-Part of the Phase 1 bake-off shared inputs; see [README.md](README.md). Every lane keeps `bakeoff/<lane>/LOG.md`, front matter followed by free-form notes.
+Part of the Phase 1 bake-off shared inputs; see [README.md](README.md). Every lane keeps `bakeoff/<lane>/LOG.md`, front matter followed by free-form notes: copy [lane-log-template.md](lane-log-template.md) and check it with `uv run --project tools/bakeoff bakeoff log-check bakeoff/<lane>/LOG.md` (CI runs the same check on every push).
 
 ## Front matter
 
@@ -31,7 +31,8 @@ deliverables:
 
 ## Field notes
 
-- `lane`, `direction`, `engine`, `machine`, `status` are single scalars; `status` is one of `in-progress`, `delivered`, `blocked`.
+- `lane`, `direction`, `engine`, `machine`, `status` are single scalars; `status` is one of `in-progress`, `delivered`, `blocked`; `machine` is `oryx` or `sami`.
+- `lane` is the lane's directory name, and each of the five lanes has a fixed direction and engine that `log-check` enforces: `g-a` A/godot, `g-d` D/godot, `u-d` D/unity, `g-c` C/godot, `control` control/blender.
 - `sessions`: each entry is `{start, end, purpose}`, timestamps ISO-8601 UTC. Agent-hours = Σ(`end` − `start`) across all sessions in all lane logs.
 - `costs`: each entry is `{item, usd, evidence}` — a dollar cost with a pointer to the receipt/report that backs it.
 - `interventions`: each entry is `{at, who, what, minutes}` — anything a human did or was asked to do.
