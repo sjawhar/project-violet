@@ -14,6 +14,7 @@ sessions:
   - {start: "2026-09-27T15:52:28Z", end: "2026-09-27T16:03:00Z", purpose: "hazard-tile from the updated biome brief: sandstone spikes on the hazard cells"}
   - {start: "2026-09-27T17:10:00Z", end: "2026-09-27T17:31:55Z", purpose: "rig reader without Spine (Sami 2026-09-27: no Spine purchase): bakeoff/rig.gd, RigCharacter2D, rig tests, placeholder rig seen animating (shared with lane G-D)"}
   - {start: "2026-09-27T17:46:00Z", end: "2026-09-27T17:52:37Z", purpose: "rig reader hardening: malformed rigs fail loudly (push_error, exit 1, no STAND-IN fallback), ci.sh smoke run fails on logged errors, rig contract #26 (path, looping by name, refusals)"}
+  - {start: "2026-09-27T17:58:00Z", end: "2026-09-27T19:38:48Z", purpose: "protagonist rig from PR #28 (phase1/protagonist-parts fd76d946, unmerged) copied into protagonist/; looked at in context; preliminary capture with Violet (scratch copy, not committed)"}
 costs:
   - {item: "gen image gpt-image-2 1024x1024 quality=low, wall-tile (rejected)", usd: 0.0143, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:47:36+00:00)"}
   - {item: "gen image gpt-image-2 1536x1024 quality=low, backdrop-near (rejected)", usd: 0.0062, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
@@ -73,6 +74,7 @@ friction:
   - {at: "2026-09-27T17:30:00Z", what: "the workspace holds uncommitted spine-godot binaries in game/g-a/bin from an earlier godot-fetch.sh, which master no longer fetches; local exports pack bin/spine_godot_extension.gdextension (reports/export.log shows it), CI exports do not", workaround: "left out of every commit; the throwaway look-at copy deletes bin/"}
   - {at: "2026-09-27T17:55:00Z", what: "GDScript asserts do not stop anything: a failed one returns from the function and the game runs on, and release exports strip them, so a malformed rig would have loaded half-way", workaround: "rig.gd reports every refusal with push_error and returns null; attach_character then push_errors and quits with exit 1 instead of showing the STAND-IN"}
   - {at: "2026-09-27T17:58:00Z", what: "a Godot 4.7.2 release export swallows some runtime script errors (a missing Dictionary key reads as null, an out-of-range index prints nothing) and crashes with exit 139 and no log line on a method call through null", workaround: "ci.sh fails the export smoke run on a non-zero exit or any SCRIPT ERROR: or ERROR: line (compile errors, failed script loads, push_error); the silent release-only errors stay invisible to it"}
+  - {at: "2026-09-27T18:05:00Z", what: "the preliminary capture with the rig took 12-14 minutes of wall time per Godot lane (g-a 848 s, g-d 795 s, g-c 735 s run back to back), not the 4 minutes measured earlier, on a machine shared with other sessions", workaround: "none needed; captures stay in scratch copies until the rig PR is approved"}
 blockers: []
 deliverables: {build: bakeoff/g-a/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-a/reports/replay.json}
 ---
@@ -96,3 +98,6 @@ Rejected generations, quality=low pass: wall-tile v1 (cartoon brick look, red cr
 Rejected generations, quality=high pass: wall-tile, platform-tile (side seam), crystal-wall (top/bottom seam), ground-tile (red and green pebbles), backdrop-near (trees at both edges left a green ghost after the seam crossfade).
 
 Rejected generations, no-green pass: backdrop-near and goal-gate re-rolled once with the unchanged prompt by a scripting mistake (still green vegetation and grass).
+
+
+Protagonist rig: `protagonist/rig/violet.json`, `violet.meta.json` and `protagonist/parts/*.png` are copied byte for byte, with their provenance sidecars, from PR #28 (branch phase1/protagonist-parts, fd76d946, not merged yet; real PNGs from the violet-rig workspace, not LFS pointers). Re-copy them if #28 changes. `attach_character` now shows Violet instead of the STAND-IN; the replay, the tag checks, rig-test and the export smoke run pass with it loaded.
