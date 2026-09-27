@@ -16,6 +16,7 @@ LANES = {
     "control": ("control", "blender"),
 }
 ENUMS = {
+    "lane": set(LANES),
     "direction": {"A", "C", "D", "control"},
     "engine": {"godot", "unity", "blender"},
     "machine": {"oryx", "sami"},
@@ -104,14 +105,13 @@ def problems(front: dict | str, lane_dir: str | None = None) -> list[str]:
         if key in front and not (isinstance(front[key], str) and front[key] in allowed):
             found.append(f"{key}: {front[key]!r} is not one of {', '.join(sorted(allowed))}")
     lane = front.get("lane")
-    if "lane" in front and not (isinstance(lane, str) and lane.strip()):
-        found.append("lane: must be non-empty text")
-    elif lane_dir is not None and lane != lane_dir:
-        found.append(f"lane: {lane!r}, but the log is in {lane_dir}/; set it to {lane_dir!r}")
-    elif lane in LANES:
-        for key, expected in zip(("direction", "engine"), LANES[lane], strict=True):
-            if isinstance(front.get(key), str) and front[key] in ENUMS[key] and front[key] != expected:
-                found.append(f"{key}: lane {lane} is {expected!r}, not {front[key]!r}")
+    if isinstance(lane, str) and lane in LANES:
+        if lane_dir is not None and lane != lane_dir:
+            found.append(f"lane: {lane!r}, but the log is in {lane_dir}/; set it to {lane_dir!r}")
+        else:
+            for key, expected in zip(("direction", "engine"), LANES[lane], strict=True):
+                if isinstance(front.get(key), str) and front[key] in ENUMS[key] and front[key] != expected:
+                    found.append(f"{key}: lane {lane} is {expected!r}, not {front[key]!r}")
     for field in LISTS:
         if field not in front:
             continue

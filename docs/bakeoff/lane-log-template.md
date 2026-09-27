@@ -9,7 +9,7 @@ status: in-progress  # in-progress | delivered | blocked
 sessions: []
 # - {start: "2026-09-28T09:00:00Z", end: "2026-09-28T11:30:00Z", purpose: greybox level and replay}
 costs: []
-# - {item: gen image, 12 body parts, usd: 1.80, evidence: "provider dashboard, 2026-09-28"}
+# - {item: "gen image, 12 body parts", usd: 1.80, evidence: "provider dashboard, 2026-09-28"}
 interventions: []
 # - {at: "2026-09-28T10:05:00Z", who: sjawhar, what: approved the shared-inputs PR, minutes: 5}
 friction: []
