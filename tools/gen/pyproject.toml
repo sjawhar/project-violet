@@ -1,0 +1,31 @@
+[project]
+name = "gen"
+version = "0.1.0"
+description = "Calls image-generation provider APIs and records the provenance sidecar for the result"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.27",
+    "pillow>=11",
+    "provenance",
+]
+
+[project.scripts]
+gen = "gen.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv.sources]
+provenance = { path = "../provenance", editable = true }
+
+[build-system]
+requires = ["uv_build>=0.9,<0.13"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "live: makes a real network call to a provider; needs OPENAI_API_KEY / GEMINI_API_KEY",
+]
+# Default run skips `live` tests; `pytest -m live` overrides this to run only them.
+addopts = "-m \"not live\""
