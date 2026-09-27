@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+mutate: removed the tag on /root/ValidateTags/Game/World/wall_red_33_0
+cell (33, 0): level has wall_red but the scene has no tagged body there
+tag-check: 1 problem(s)
