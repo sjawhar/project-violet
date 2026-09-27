@@ -48,5 +48,5 @@ Exit codes: 0 ok, 1 a content problem (a log or the scores), 2 a usage, configur
 
 Three scripts serve the Godot and Unity lanes, run from the repository root with the mise tools on `PATH`:
 
-- `scripts/godot-fetch.sh game/<lane>` installs Godot 4.7.2's export templates (checksum-verified) and the spine-godot 4.3 GDExtension into `game/<lane>/bin/` (gitignored), and registers the extension in `.godot/extension_list.cfg`: without that, a fresh project's first `godot --headless --import` aborts once the extension is present. Every Godot lane's `ci.sh` runs it before importing.
+- `scripts/godot-fetch.sh game/<lane>` installs Godot 4.7.2's export templates, checksum-verified, once per machine. Every Godot lane's `ci.sh` runs it before exporting.
 - `scripts/capture-godot.sh <lane> [ART_TRES]` records the lane's replay with Godot's Movie Maker, and `scripts/capture-unity.sh` runs the U-D player with frame capture. Both write `bakeoff/<lane>/capture/capture.mp4` and `still-{05,20,40,60}.png` only when the capture is 60-90 s at 1920x1080; a rejected one stays in `out/<lane>/capture/` and the last good capture is kept. With `$DISPLAY` empty they render in software under Xvfb (they need the `xvfb` and `mesa-vulkan-drivers` packages).
