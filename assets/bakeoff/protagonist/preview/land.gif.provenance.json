@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "asset": "land.gif",
-  "sha256": "bbe250fb1fbd47f59a4bf074926b7adfe42d826edeec88c27a7f51fb30bddda3",
+  "sha256": "7b61b84a93352e0ef475ebfe4c142e5784d6c6a0aafafd901e057f1fc03f0996",
   "kind": "animation",
   "origin": "derived",
-  "created_at": "2026-09-27T18:46:55+00:00",
+  "created_at": "2026-09-27T21:34:59+00:00",
   "generator": {
     "tool": "spinerig",
     "tool_version": "0.1.0 (master 028cb554, with #30's canvas fix)",
@@ -15,7 +15,7 @@
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/rig/violet.json",
-        "sha256": "353f3f510df5d84aceccaafca44128fa0b5eaf2865c22bead44194af8b6a54ce"
+        "sha256": "f297520a156640ad8a40c4cf3ea6ff83289a5cd6d198c30c1fc6f9a9655c106c"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/arm_back_lower.png",
