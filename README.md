@@ -19,10 +19,11 @@ The 2019 Unity prototype is kept at tag [`unity-2019-prototype`](https://github.
 ## Setup
 
 ```bash
-mise install                 # pinned toolchain from mise.toml
-git lfs install --local      # binary assets are stored in Git LFS
+mise install                                              # pinned toolchain from mise.toml
+git lfs install --local                                   # binary assets are stored in Git LFS
+jj config set --repo snapshot.max-new-file-size 524288000 # let jj snapshot binaries over 1 MiB (LFS stores them)
 ```
 
 ## How work lands
 
-Every change goes through a pull request that Sami approves. Every asset carries a provenance record (see `AGENTS.md`).
+Every change goes through a pull request. Tooling and docs PRs merge through the pr-queue organizer; PRs that ship player-facing content need Sami's approval. Every asset carries a provenance record. See `AGENTS.md` for both.
