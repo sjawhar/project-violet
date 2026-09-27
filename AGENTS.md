@@ -16,7 +16,9 @@ Violet is a story-driven puzzle-platformer being built for a commercial Steam re
 
 ## Rules
 
-1. **Nothing ships without Sami's approval on a pull request.** Every change lands through a PR. The PR body states what was run and what was observed. After Sami approves, the agent that owns the PR squash-merges it.
+1. **Every change lands through a PR, and the PR body states what was run and what was observed.**
+   - **Tooling, docs, and infrastructure PRs** merge through the pr-queue organizer: the session on machine sami-agents holding the `pr-queue` Envoy role. Send it a READY packet with the head sha, base, file count, CI state at that head, and where the evidence is. The bar is CI green at the head plus that evidence; the six-gate process does not apply here ([decision 0011](docs/decisions/0011-merge-queue-waiver.md)).
+   - **PRs that ship generated art, audio, or other player-facing content** need Sami's own approval ([decision 0002](docs/decisions/0002-ai-produces-sami-approves.md)).
 2. **Every asset carries a provenance record.** An asset under a root in `provenance.toml` has a sidecar `<asset>.provenance.json`:
    - Generated assets: `tools/gen` writes the record itself.
    - Anything else: `uv run --project tools/provenance provenance record ASSET --kind ... --origin ... --license ...`.
@@ -30,6 +32,7 @@ Violet is a story-driven puzzle-platformer being built for a commercial Steam re
 ## Version control
 
 - jj, not git. Commit identity is `sami@thecybermonk.com`.
+- Once per clone: `jj config set --repo snapshot.max-new-file-size 524288000`. jj checks a new file's size against this limit (default 1 MiB) *before* the LFS filter turns it into a pointer. Without the setting, larger images and audio silently stay untracked.
 - Binary assets go through Git LFS (`.gitattributes`). jj runs no git hooks, so push LFS objects first, then the bookmark:
 
   ```bash
@@ -39,11 +42,12 @@ Violet is a story-driven puzzle-platformer being built for a commercial Steam re
 
 - Open PRs with `gh api repos/sjawhar/project-violet/pulls -f title=... -f head=<bookmark> -f base=<base> -F body=@<file>`. On this setup, `gh pr create` can hang while it inspects a large local diff.
 - Stack dependent work as stacked PRs rather than waiting for merges.
+- Before deleting a merged branch, check that no open PR uses it as its base: `gh api 'repos/sjawhar/project-violet/pulls?state=open&base=<branch>'`. GitHub closes those PRs when their base is deleted, and a closed PR whose head has moved can't be reopened.
 
 ## Machines
 
 - **sami:** Sami's laptop. Radeon 890M integrated GPU, about 80 GB free disk. Keep large caches and heavy renders elsewhere.
-- **oryx:** RTX 3070 (8 GB) available offscreen for CUDA, Vulkan, and Blender Cycles; 2.6 TB free disk. Heavy lanes run here. Agents must never reboot oryx or trigger anything that needs a reboot.
+- **oryx:** RTX 3070 (8 GB) usable offscreen for CUDA, Vulkan, and Blender Cycles once it's healthy; 2.6 TB free disk. Heavy lanes run here. GPU jobs run one at a time: concurrent CUDA processes crashed the driver on 2026-09-27. Agents must never reboot oryx or trigger anything that needs a reboot.
 
 ## Toolchain
 
