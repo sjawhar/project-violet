@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# THROWAWAY (bake-off lane G-A, plan Task 7 Step 18): generates the desert biome brief's ten 2D painted pieces into
+# THROWAWAY (bake-off lane G-A, plan Task 7 Step 18): generates the desert biome brief's eleven 2D painted pieces into
 # game/g-a/art/ with `gen image` (gpt-image-2), logging each response's token usage to bakeoff/g-a/reports/gen-usage.jsonl.
 # No --input: the protagonist concept is not approved and the 3D kit turntable does not exist, so every prompt carries
-# the brief's hex palette instead (lead's decision). gen sends quality=high; the orb, the goal gate and the mid and near
-# backdrops use --background transparent. Run bakeoff/g-a/edit-art.sh afterwards to make the backdrops repeat.
+# the brief's hex palette instead (lead's decision). gen sends quality=high; the orb, the goal gate, the hazard tile and the mid
+# and near backdrops use --background transparent. Run bakeoff/g-a/edit-art.sh afterwards to make the backdrops repeat.
 #   bash bakeoff/g-a/gen-art.sh [PIECE...]   # default: every piece whose PNG is missing; naming a piece regenerates it
 # Run from the repository root.
 set -euo pipefail
@@ -25,15 +25,16 @@ tile crystal-wall "A square texture tile of a solid wall of pale, untinted, near
 tile crystal-platform "A square texture tile of a solid block of pale, untinted, near-white and light gray translucent crystal (no hue at all, only grays), made of faceted crystal bars running left to right with soft inner light and gentle painterly highlights, filling the whole square edge to edge. The left and right edges match exactly so the tile repeats seamlessly side by side. Flat side view, no background visible."
 tile orb "A single glowing crystal orb: a sphere of pale, untinted, near-white and light gray crystal (no hue, only grays) with soft inner light and faint facets, centered, filling the middle two thirds of the square. $clear"
 tile goal-gate "A small weathered sandstone arch gateway seen straight from the side, standing on its base at the bottom edge of the square and filling most of it, with a warm golden light glowing inside the arch opening. Plain carved stone only: no gems, no crystals, no colored jewels, no plants, no grass, no moss; no green anywhere. $clear"
+tile hazard-tile "A square texture tile of a row of jagged sandstone spikes seen straight from the side: sharp, dangerous points standing up from a broken rock base along the bottom edge and reaching nearly to the top edge, in rock #a86f46 with deep shadow violet #5a4a7a between the spikes and a few pale highlights on the points. This is a seamless repeating texture: it wraps around horizontally, so the left edge continues exactly into the right edge, with even lighting and no spike cut in half at the sides. No red, no green; no crystals, no gems, no plants. $clear"
 back backdrop-far "A wide background painting for the farthest parallax layer: a golden-hour sky that fades from peach near the horizon to teal at the top, soft painterly clouds, and very distant pale layered mesa silhouettes in hazy violet along the lower third. The left and right edges match exactly so the painting repeats seamlessly side by side. No foreground, no sand, no plants. The clouds and the mesa line continue across the left and right edges without any break or mirrored shape."
 back backdrop-mid "A wide painting for a middle parallax layer: a row of layered sandstone mesas and one wind-cut rock arch in warm rock tones with violet shadows, spanning the full width and occupying the lower half of the image; the mesa bases run off the bottom edge. The left and right edges match exactly so the row repeats seamlessly side by side. Everything above the mesas is empty, with no sky. The mesa silhouette meets both side edges at the same height so the join is invisible. No crystals, no gems, no plants. $clear"
 back backdrop-near "A wide painting for the nearest parallax layer: low golden sand dunes across the bottom third of the image with dry acacia trees and saguaro cactus silhouettes on them; the dunes run off the bottom edge. The left and right edges match exactly so the strip repeats seamlessly side by side. Everything above the dunes and plants is empty, with no sky. The dune line meets both side edges at the same height so the join is invisible, and the outer eighth of the image at each side edge holds only low dunes and small grass, no trees or cacti. The acacia trees, saguaro cacti and grass are desaturated silhouettes in shadow violet #5a4a7a against the sky; no green foliage, no green cacti, no green anywhere. No crystals, no gems, no rocks with color. $clear"
 
-for p in orb goal-gate backdrop-mid backdrop-near; do background[$p]=transparent; done
+for p in orb goal-gate hazard-tile backdrop-mid backdrop-near; do background[$p]=transparent; done
 
 pieces=("$@")
 if [ ${#pieces[@]} -eq 0 ]; then
-  for p in ground-tile wall-tile platform-tile crystal-wall crystal-platform orb goal-gate backdrop-far backdrop-mid backdrop-near; do
+  for p in ground-tile wall-tile platform-tile crystal-wall crystal-platform orb goal-gate hazard-tile backdrop-far backdrop-mid backdrop-near; do
     [ -f "$art/$p.png" ] || pieces+=("$p")
   done
 fi

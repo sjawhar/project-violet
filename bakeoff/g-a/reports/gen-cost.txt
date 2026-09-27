@@ -33,7 +33,8 @@ at	out	model	quality	size	status	text_in	image_in	image_out	usd
 2026-09-27T09:46:41+00:00	game/g-a/art/goal-gate.png	gpt-image-2	high	1024x1024	rejected	262	0	7024	0.2120
 2026-09-27T09:49:03+00:00	game/g-a/art/backdrop-near.png	gpt-image-2	high	1536x1024	kept	374	0	5488	0.1665
 2026-09-27T09:49:58+00:00	game/g-a/art/goal-gate.png	gpt-image-2	high	1024x1024	kept	275	0	7024	0.2121
-total kept									1.9842
+2026-09-27T15:55:22+00:00	game/g-a/art/hazard-tile.png	gpt-image-2	high	1024x1024	kept	328	0	7024	0.2124
+total kept									2.1965
 total rejected									1.4333
 total superseded									0.4686
-total									3.8861
+total									4.0985

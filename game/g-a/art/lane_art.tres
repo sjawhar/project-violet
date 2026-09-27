@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" path="res://art/backdrop-far.png" id="9"]
 [ext_resource type="Texture2D" path="res://art/backdrop-mid.png" id="10"]
 [ext_resource type="Texture2D" path="res://art/backdrop-near.png" id="11"]
+[ext_resource type="Texture2D" path="res://art/hazard-tile.png" id="12"]
 
 [resource]
 script = ExtResource("1")
@@ -24,3 +25,4 @@ goal_gate = ExtResource("8")
 backdrop_far = ExtResource("9")
 backdrop_mid = ExtResource("10")
 backdrop_near = ExtResource("11")
+hazard_tile = ExtResource("12")

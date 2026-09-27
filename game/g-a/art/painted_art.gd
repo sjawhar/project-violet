@@ -9,6 +9,7 @@ extends GreyboxArt
 @export var crystal_platform: Texture2D
 @export var orb: Texture2D
 @export var goal_gate: Texture2D
+@export var hazard_tile: Texture2D
 @export var backdrop_far: Texture2D
 @export var backdrop_mid: Texture2D
 @export var backdrop_near: Texture2D
@@ -68,10 +69,12 @@ func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 			_fit(sprite, ts * 2.0)
 			sprite.position.y = ts / 2.0 - ts  # two tiles tall, standing on the goal cell's floor
 			return sprite
-		"hazard":
-			var square := super.make_cell(kind, cell, ts) as Polygon2D
-			square.color = HAZARD
-			return square
+		"hazard":  # a row of sandstone spikes per cell over a dark shadow-violet pit floor, so they read against the dunes
+			var pit := super.make_cell(kind, cell, ts) as Polygon2D
+			pit.color = HAZARD
+			var spikes := Sprite2D.new(); spikes.texture = hazard_tile
+			pit.add_child(_fit(spikes, ts))
+			return pit
 	assert(false, "PaintedArt: no visual for %s" % kind)
 	return null
 
