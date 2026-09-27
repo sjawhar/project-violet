@@ -17,4 +17,4 @@ rm -f "out/$lane/capture.avi"
 # Godot changes into --path before opening the movie file, so the path is relative to the project.
 render godot --path "$proj" --write-movie "../../out/$lane/capture.avi" --fixed-fps 60 \
   res://tests/replay_runner.tscn -- "--replay=res://replays/level01.replay.json" --capture "--art=$art"
-encode "$lane" -i "out/$lane/capture.avi"
+encode "$lane" "set display/window/size/viewport_width and viewport_height to 1920x1080 in $proj/project.godot" -i "out/$lane/capture.avi"

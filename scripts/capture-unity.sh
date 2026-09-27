@@ -15,4 +15,4 @@ mkdir -p "$frames"
 
 render "$player" --replay "$PWD/game/$lane/Assets/StreamingAssets/bakeoff/level01.replay.json" \
   --capture "$PWD/$frames" -screen-width 1920 -screen-height 1080
-encode "$lane" -framerate 60 -i "$frames/frame_%06d.png"
+encode "$lane" "the player's --capture frames must be 1920x1080, the size -screen-width/-screen-height ask for" -framerate 60 -i "$frames/frame_%06d.png"
