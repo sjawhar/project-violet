@@ -4,10 +4,10 @@
   "sha256": "af7a1acc7ce2ff9e5673566d0347b380f555eb9db3dbcaf55c85847063aa1711",
   "kind": "animation",
   "origin": "derived",
-  "created_at": "2026-09-27T18:44:11+00:00",
+  "created_at": "2026-09-27T18:46:54+00:00",
   "generator": {
     "tool": "spinerig",
-    "tool_version": "0.1.0 (render.py from PR #30, 0686656a)",
+    "tool_version": "0.1.0 (master 028cb554, with #30's canvas fix)",
     "model": null,
     "params": {
       "command": "spinerig render rig/violet.json --parts parts --anim jump --scale 0.5 --fps 30"

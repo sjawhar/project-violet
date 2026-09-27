@@ -4,10 +4,10 @@
   "sha256": "f7bb21793942d22a199247be19f779d1645f602a6d33e039a78012b6a54bebb2",
   "kind": "animation",
   "origin": "derived",
-  "created_at": "2026-09-27T18:44:12+00:00",
+  "created_at": "2026-09-27T18:46:54+00:00",
   "generator": {
     "tool": "spinerig",
-    "tool_version": "0.1.0 (render.py from PR #30, 0686656a)",
+    "tool_version": "0.1.0 (master 028cb554, with #30's canvas fix)",
     "model": null,
     "params": {
       "command": "spinerig render rig/violet.json --parts parts --anim fall --scale 0.5 --fps 30"

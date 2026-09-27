@@ -4,10 +4,10 @@
   "sha256": "4358bb82c51669a92f40a48151c2a9cafc1a5260359113cf22b48b799d97f929",
   "kind": "animation",
   "origin": "derived",
-  "created_at": "2026-09-27T18:44:12+00:00",
+  "created_at": "2026-09-27T18:46:55+00:00",
   "generator": {
     "tool": "spinerig",
-    "tool_version": "0.1.0 (render.py from PR #30, 0686656a)",
+    "tool_version": "0.1.0 (master 028cb554, with #30's canvas fix)",
     "model": null,
     "params": {
       "command": "spinerig render rig/violet.json --parts parts --anim double_jump --scale 0.5 --fps 30"

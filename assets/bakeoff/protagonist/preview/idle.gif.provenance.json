@@ -4,10 +4,10 @@
   "sha256": "7bf40a59b794d5a1a56f9045491b7b2df72dc42702deb29c34ecd47cbbb26f9e",
   "kind": "animation",
   "origin": "derived",
-  "created_at": "2026-09-27T18:44:11+00:00",
+  "created_at": "2026-09-27T18:46:53+00:00",
   "generator": {
     "tool": "spinerig",
-    "tool_version": "0.1.0 (render.py from PR #30, 0686656a)",
+    "tool_version": "0.1.0 (master 028cb554, with #30's canvas fix)",
     "model": null,
     "params": {
       "command": "spinerig render rig/violet.json --parts parts --anim idle --scale 0.5 --fps 30"

@@ -4,10 +4,10 @@
   "sha256": "907e48002f1594f4d4edde2e1f98f00d6dd0bca7109ec9c43aaff3d40cc13a05",
   "kind": "animation",
   "origin": "derived",
-  "created_at": "2026-09-27T18:44:13+00:00",
+  "created_at": "2026-09-27T18:46:55+00:00",
   "generator": {
     "tool": "spinerig",
-    "tool_version": "0.1.0 (render.py from PR #30, 0686656a)",
+    "tool_version": "0.1.0 (master 028cb554, with #30's canvas fix)",
     "model": null,
     "params": {
       "command": "spinerig render rig/violet.json --parts parts --anim dash --scale 0.5 --fps 30"

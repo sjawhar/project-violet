@@ -123,7 +123,8 @@ requires.
 
 ## Previews
 
-`assets/bakeoff/protagonist/preview/<anim>.gif` is `spinerig render ... --scale 0.5`. The renders
-use the canvas fix in PR #30: master's `spinerig render` cropped every pose outside the setup
-bounding box, such as the run stride, raised arms and the flip. Lanes read `rig/violet.json`, which
-`spinerig generate` writes and #30 does not touch.
+`assets/bakeoff/protagonist/preview/<anim>.gif` is `spinerig render ... --scale 0.5` from master
+(028cb554). The renders need the canvas fix from PR #30: before it, `spinerig render` cropped every
+pose outside the setup bounding box, such as the run stride, raised arms and the flip.
+Re-rendering at that commit reproduces all seven GIFs byte for byte. Lanes read `rig/violet.json`,
+which `spinerig generate` writes and #30 does not touch.
