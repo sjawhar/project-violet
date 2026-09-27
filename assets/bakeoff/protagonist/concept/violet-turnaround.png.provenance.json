@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "asset": "violet-turnaround.png",
+  "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-27T09:19:30+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Character turnaround sheet, front view and right-side view standing on the same ground line at the same scale, of Violet: Violet, a slight traveller about 4.5 heads tall in a long hooded robe in muted warm gray (#8a8078) with a darker hem, bare feet or soft wraps, and a long scarf (three segments, ends trailing 1.5× head length) that is the only saturated element on the character: gray when no color is active, the active color otherwise. Stylized adventure-game proportions, genuinely 4.5 heads tall (large head, short slight body, like a young traveller, not a realistic adult figure), simplified face with soft blurred features and no linework, no eyelashes, no makeup detail. Painted, soft-edged, matte flat brushwork like GRIS and Planet of Lana concept art, no outlines, no anime line work, no pixel art, plain warm gray background, no text.",
+    "params": {
+      "size": "1536x1024",
+      "quality": "high",
+      "background": "opaque"
+    },
+    "inputs": [
+      {
+        "path": "assets/concept/scarf-openai.png",
+        "sha256": "d7cb98db165167e95f13bc0d9bb763def9828f2a24817e72980eccf3d7c7b15c"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}
