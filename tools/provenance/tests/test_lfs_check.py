@@ -17,10 +17,10 @@ def git_repo(repo: Path) -> Path:
     return repo
 
 
-def stage(repo: Path, path: str, content: bytes) -> None:
+def stage(repo: Path, path: str, content: bytes, mode: str = "100644") -> None:
     """Stage content verbatim, bypassing clean filters, the way a commit made without git-lfs lands."""
     blob = git(repo, "hash-object", "-w", "--stdin", stdin=content).strip()
-    git(repo, "update-index", "--add", "--cacheinfo", f"100644,{blob},{path}")
+    git(repo, "update-index", "--add", "--cacheinfo", f"{mode},{blob},{path}")
 
 
 def pointer(content: bytes) -> bytes:
@@ -42,26 +42,58 @@ def test_passes_without_any_lfs_rules_even_for_binaries(git_repo: Path, run):
     assert code == 0, err
 
 
-def test_fails_naming_a_file_that_matches_an_lfs_rule_but_is_a_regular_blob(git_repo: Path, run):
+def test_fails_naming_only_the_matching_files_committed_as_regular_blobs(git_repo: Path, run):
     stage(git_repo, ".gitattributes", LFS_RULE)
     stage(git_repo, "game/art/hero.png", BINARY)
     stage(git_repo, "game/art/scarf.png", pointer(b"scarf"))
+    stage(git_repo, "game/art/cloak.png", pointer(b"cloak"))
+    stage(git_repo, "game/art/tiny.png", b"not a pointer, just small")
+    stage(git_repo, "game/art/boots.png", pointer(b"boots"))
 
     code, _, err = run("lfs-check")
 
     assert code != 0
     assert "game/art/hero.png" in err
-    assert "game/art/scarf.png" not in err
+    assert "game/art/tiny.png" in err
+    for fine in ("scarf.png", "cloak.png", "boots.png"):
+        assert fine not in err
 
 
 def test_passes_when_every_matching_file_is_an_lfs_pointer(git_repo: Path, run):
     stage(git_repo, ".gitattributes", LFS_RULE)
     stage(git_repo, "game/art/hero.png", pointer(BINARY))
+    stage(git_repo, "game/art/scarf.png", pointer(b"scarf"))
     stage(git_repo, "README.md", b"# not an LFS file\n")
 
     code, _, err = run("lfs-check")
 
     assert code == 0, err
+
+
+def test_skips_what_git_lfs_itself_never_converts(git_repo: Path, run):
+    """Empty files, symlinks, and submodules match the rule but are never stored as pointers."""
+    stage(git_repo, ".gitattributes", b"*.png filter=lfs\nvendor filter=lfs\n")
+    stage(git_repo, "game/art/empty.png", b"")
+    stage(git_repo, "game/art/link.png", b"empty.png", mode="120000")
+    git(git_repo, "update-index", "--add", "--cacheinfo", f"160000,{'a' * 40},vendor")
+
+    code, _, err = run("lfs-check")
+
+    assert code == 0, err
+
+
+def test_treats_file_names_literally(git_repo: Path, run):
+    stage(git_repo, ".gitattributes", LFS_RULE)
+    stage(git_repo, ":magic.png", BINARY)
+    stage(git_repo, "a[1].png", pointer(b"bracket"))
+    stage(git_repo, "a1.png", b"-filter excludes this one\n")
+    stage(git_repo, ".gitattributes", LFS_RULE + b"a1.png -filter\n")
+
+    code, _, err = run("lfs-check")
+
+    assert code != 0
+    assert ":magic.png" in err
+    assert "a1.png" not in err.replace("a[1].png", "")
 
 
 @pytest.mark.parametrize(
@@ -70,7 +102,9 @@ def test_passes_when_every_matching_file_is_an_lfs_pointer(git_repo: Path, run):
         b"version https://git-lfs.github.com/spec/v1\noid sha256:" + b"a" * 64 + b"\n",  # no size
         b"version https://git-lfs.github.com/spec/v1\nsize 5\noid sha256:" + b"a" * 64 + b"\n",  # keys out of order
         b"version https://git-lfs.github.com/spec/v1\noid sha256:abc\nsize 5\n",  # short oid
-        b"oid sha256:" + b"a" * 64 + b"\nsize 5\n",  # no version line
+        b"version https://example.com/lfs/v9\noid sha256:" + b"a" * 64 + b"\nsize 5\n",  # unknown version
+        b"version https://git-lfs.github.com/spec/v1\noid sha256:" + b"a" * 64 + b"\nsize 5",  # no final newline
+        b"version https://git-lfs.github.com/spec/v1\r\noid sha256:" + b"a" * 64 + b"\r\nsize 5\r\n",  # CRLF
     ],
 )
 def test_fails_on_a_malformed_pointer(git_repo: Path, run, content: bytes):

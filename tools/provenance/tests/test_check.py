@@ -1,4 +1,5 @@
 import copy
+import hashlib
 from pathlib import Path
 
 import pytest
@@ -41,6 +42,13 @@ def _drop_generator_field(field: str):
     return mutate
 
 
+def _set_generator_field(field: str, value):
+    def mutate(record: dict) -> None:
+        record["generator"][field] = value
+
+    return mutate
+
+
 @pytest.mark.parametrize(
     ("mutate", "field"),
     [
@@ -49,6 +57,9 @@ def _drop_generator_field(field: str):
         (lambda r: r.pop("generator"), "generator"),
         (_drop_generator_field("model"), "model"),
         (_drop_generator_field("prompt"), "prompt"),
+        (_drop_generator_field("provider"), "provider"),
+        (_set_generator_field("model", "gpt-image-2\n### Injected heading"), "model"),
+        (lambda r: r.update(origin="derived"), "inputs"),
         (lambda r: r.update(created_at="last tuesday"), "created_at"),
         (lambda r: r.update(created_at="2026-09-27"), "created_at"),
         (lambda r: r.update(origin="human", authors=["Sami Jawhar"]), "generator"),
@@ -137,6 +148,99 @@ def test_fails_on_an_explicit_path_that_does_not_exist(repo: Path, run):
 
 def test_fails_outside_a_tree_with_provenance_toml(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, run):
     monkeypatch.chdir(tmp_path)
+
+    code, _, err = run("check")
+
+    assert code != 0
+    assert "provenance.toml" in err
+
+
+def test_checks_extensions_case_insensitively(repo: Path, run):
+    write_file(repo / "game/art/HERO.PNG", b"hero")
+
+    code, _, err = run("check")
+
+    assert code != 0
+    assert "game/art/HERO.PNG" in err
+
+
+def _lfs_pointer(content: bytes) -> bytes:
+    return (
+        "version https://git-lfs.github.com/spec/v1\n"
+        f"oid sha256:{hashlib.sha256(content).hexdigest()}\n"
+        f"size {len(content)}\n"
+    ).encode()
+
+
+def test_accepts_an_lfs_pointer_on_disk_whose_oid_matches_the_record(repo: Path, run):
+    """CI checks out with lfs: false, so assets on disk are pointers to the recorded content."""
+    asset = write_file(repo / "game/art/hero.png", b"real hero pixels")
+    write_sidecar(asset, human_record(asset))
+    asset.write_bytes(_lfs_pointer(b"real hero pixels"))
+
+    code, _, err = run("check")
+
+    assert code == 0, err
+
+
+def test_fails_when_an_lfs_pointer_on_disk_points_at_other_content(repo: Path, run):
+    asset = write_file(repo / "game/art/hero.png", b"real hero pixels")
+    write_sidecar(asset, human_record(asset))
+    asset.write_bytes(_lfs_pointer(b"hero pixels, edited later"))
+
+    code, _, err = run("check")
+
+    assert code != 0
+    assert "game/art/hero.png" in err
+    assert "sha256" in err
+
+
+def test_a_sidecar_named_on_the_command_line_checks_its_asset(repo: Path, run):
+    good = write_file(repo / "game/art/hero.png", b"hero")
+    write_sidecar(good, human_record(good))
+    stale = write_file(repo / "game/art/scarf.png", b"scarf")
+    write_sidecar(stale, human_record(stale))
+    stale.write_bytes(b"scarf, edited")
+
+    assert run("check", "game/art/hero.png.provenance.json", "game/art/hero.png")[0] == 0
+    code, _, err = run("check", "game/art/scarf.png.provenance.json")
+    assert code != 0
+    assert "game/art/scarf.png" in err
+
+
+def test_reports_each_problem_once_when_paths_overlap(repo: Path, run):
+    write_file(repo / "game/art/hero.png", b"hero")
+
+    code, _, err = run("check", "game", "game/art", "game/art/hero.png")
+
+    assert code != 0
+    assert err.count("game/art/hero.png:") == 1
+
+
+def test_checks_a_symlinked_asset_against_the_sidecar_beside_the_link(repo: Path, run):
+    target = write_file(repo / "shared/hero.png", b"hero")
+    link = repo / "game/art/hero.png"
+    link.parent.mkdir(parents=True)
+    link.symlink_to(target)
+    write_sidecar(link, human_record(link))
+
+    assert run("check")[0] == 0
+    assert run("check", "game/art/hero.png")[0] == 0
+
+
+@pytest.mark.parametrize(
+    "config",
+    [
+        'roots = ["game"]\nextensions = [".png"]\n',
+        'roots = ["game"]\nextensions = ["png"]\n[directory_extensions]\n"characters/spine" = ["json"]\n',
+        'roots = ["game"]\nextensions = ["png"]\ndirectory_extension = {spine = ["json"]}\n',
+        'extensions = ["png"]\n',
+        'roots = "game"\nextensions = ["png"]\n',
+    ],
+)
+def test_refuses_a_config_that_could_silently_match_nothing(repo: Path, run, config: str):
+    (repo / "provenance.toml").write_text(config)
+    write_file(repo / "game/art/hero.png", b"hero")
 
     code, _, err = run("check")
 

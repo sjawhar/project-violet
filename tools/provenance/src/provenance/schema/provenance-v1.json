@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sjawhar/project-violet/tools/provenance/src/provenance/schema/provenance-v1.json",
+  "title": "Violet asset provenance record, version 1",
+  "description": "Sidecar <asset>.provenance.json stored next to the asset it describes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "asset", "sha256", "kind", "origin", "created_at", "human_edits", "license"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "asset": {
+      "description": "File name of the asset, which sits in the same directory as the sidecar.",
+      "type": "string",
+      "pattern": "^[^/\\\\]+$"
+    },
+    "sha256": {
+      "description": "sha256 of the asset's content (for a file stored in Git LFS, the pointer's oid).",
+      "$ref": "#/$defs/sha256"
+    },
+    "kind": { "enum": ["image", "model3d", "animation", "audio", "text", "other"] },
+    "origin": {
+      "description": "generated: made by a generative model. human: made by people. derived: produced from other assets (inputs) by a tool, with or without a model.",
+      "enum": ["generated", "human", "derived"]
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "generator": { "$ref": "#/$defs/generator" },
+    "authors": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/line" }
+    },
+    "human_edits": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/human_edit" }
+    },
+    "license": { "$ref": "#/$defs/line" },
+    "source_url": { "type": "string", "format": "uri" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "origin": { "const": "human" } }, "required": ["origin"] },
+      "then": {
+        "required": ["authors"],
+        "properties": { "generator": { "not": {} } }
+      }
+    },
+    {
+      "if": { "properties": { "origin": { "const": "generated" } }, "required": ["origin"] },
+      "then": {
+        "required": ["generator"],
+        "properties": { "generator": { "required": ["provider", "model", "prompt"] } }
+      }
+    },
+    {
+      "if": { "properties": { "origin": { "const": "derived" } }, "required": ["origin"] },
+      "then": {
+        "required": ["generator"],
+        "properties": { "generator": { "properties": { "inputs": { "minItems": 1 } } } }
+      }
+    }
+  ],
+  "$defs": {
+    "text": { "type": "string", "minLength": 1 },
+    "line": {
+      "description": "Non-empty text without control characters (it is printed into Markdown).",
+      "type": "string",
+      "pattern": "^[^\\u0000-\\u001F\\u007F]+$"
+    },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "generator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tool", "tool_version", "params", "inputs"],
+      "dependentRequired": { "model": ["provider"], "model_version": ["model"] },
+      "properties": {
+        "tool": { "$ref": "#/$defs/line" },
+        "tool_version": { "$ref": "#/$defs/line" },
+        "provider": { "$ref": "#/$defs/line" },
+        "model": { "$ref": "#/$defs/line" },
+        "model_version": { "$ref": "#/$defs/line" },
+        "prompt": { "$ref": "#/$defs/text" },
+        "negative_prompt": { "$ref": "#/$defs/text" },
+        "seed": { "type": "integer", "minimum": 0 },
+        "params": { "type": "object" },
+        "inputs": {
+          "description": "Source or reference assets, by path relative to the repository root.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "sha256"],
+            "properties": {
+              "path": { "$ref": "#/$defs/line" },
+              "sha256": { "$ref": "#/$defs/sha256" }
+            }
+          }
+        }
+      }
+    },
+    "human_edit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["by", "description", "at"],
+      "properties": {
+        "by": { "$ref": "#/$defs/line" },
+        "description": { "$ref": "#/$defs/text" },
+        "at": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}
