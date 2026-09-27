@@ -10,7 +10,7 @@
         "video": "items/01-g-a-capture.mp4",
         "poster": "items/01-g-a-capture.poster.webp"
       },
-      "sha256": "aaadde816c546cc2b7b029d36d973bc002e7bb8aa231f39aa2ef13096383a6c2",
+      "sha256": "346694c9c1ec35aa0836de735716f25d2e74f6969dd6d25bb325819434ee5a39",
       "provenance": {
         "status": "missing",
         "problems": [],
@@ -23,7 +23,7 @@
       "media": {
         "image": "items/02-g-a-still-05.webp"
       },
-      "sha256": "a68dcddb378fda06f67ddd45f3cf7ce3421a113a0b08b23dbbb938e736522bd5",
+      "sha256": "9d970f46911b1db0d68aa310f2669817320f8386b709619360a86101e9d146e9",
       "provenance": {
         "status": "missing",
         "problems": [],
@@ -36,7 +36,7 @@
       "media": {
         "image": "items/03-g-a-still-20.webp"
       },
-      "sha256": "7ac962f0367a96edebe62bf48e648f77d025db27e1905e1532b52bcbbcc66fca",
+      "sha256": "57eaf7e27eac2d8d46fcf65f88c7eb5275076e88918b74f897c2b2ba79f5cc4b",
       "provenance": {
         "status": "missing",
         "problems": [],
@@ -49,7 +49,7 @@
       "media": {
         "image": "items/04-g-a-still-40.webp"
       },
-      "sha256": "7490361c5b7954806bee84c643b8bf904af640acbb655fcf2af7cbd94ad1305f",
+      "sha256": "edfe5deb20b20d12d1f264a0fdc8f310243403b41e3b955a3672c2d38b226a31",
       "provenance": {
         "status": "missing",
         "problems": [],
@@ -62,7 +62,7 @@
       "media": {
         "image": "items/05-g-a-still-60.webp"
       },
-      "sha256": "ab54ba1977eb4ee0afee8d0f04b5ff3197f8a0eda38a8e42463f4806e9188ad7",
+      "sha256": "2a13f8e7cbf00b4554e14578d4fd5fa5b22856093519efbf3968214158af295f",
       "provenance": {
         "status": "missing",
         "problems": [],
@@ -77,7 +77,7 @@
         "video": "items/06-g-d-capture.mp4",
         "poster": "items/06-g-d-capture.poster.webp"
       },
-      "sha256": "7bfff756fe1b434f14a258265e77cd37c0032b7d7bda231c5e9870d2fce65ae2",
+      "sha256": "e433b4b908358c04d8dd261303681edc49454965e473854921ec57e2c56480bf",
       "provenance": {
         "status": "missing",
         "problems": [],
@@ -90,7 +90,7 @@
       "media": {
         "image": "items/07-g-d-still-05.webp"
       },
-      "sha256": "13e0c5d42ccb7d5415b91c193f6e750543897e681ce4d110053fd94835c33879",
+      "sha256": "0504c05c5e3e8d053fd55b12e52c2b7162b6bee23502976a13ab95907b4fa3b7",
       "provenance": {
         "status": "missing",
         "problems": [],
@@ -103,7 +103,7 @@
       "media": {
         "image": "items/08-g-d-still-20.webp"
       },
-      "sha256": "c5b7ef0098368714512a83f819090662ad3a99018fb26077c369f84ac22cc908",
+      "sha256": "7c37327a06768bc11f3dbd73efa12b68e604bb291420e6a7037aab33fb6296e7",
       "provenance": {
         "status": "missing",
         "problems": [],
@@ -116,7 +116,7 @@
       "media": {
         "image": "items/09-g-d-still-40.webp"
       },
-      "sha256": "1c81980fe9faf6fa781d043beff0c1d59ca8669a71f1e0f3b4047ef039d25b57",
+      "sha256": "3bac29a554c9740d48e91b0b0e80a5e9ca8ec7f5ac7e94018f1517de20d82c3a",
       "provenance": {
         "status": "missing",
         "problems": [],
@@ -129,7 +129,74 @@
       "media": {
         "image": "items/10-g-d-still-60.webp"
       },
-      "sha256": "b27273821034f1a0d77d630fe9cb76ae56739147a773e034477db937c614de0c",
+      "sha256": "48f7d34a5f97951e96ed2035ac9abdd51ed5f1f756cec9701a663eb1a72c3a78",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "g-c-capture.mp4",
+      "kind": "animation",
+      "media": {
+        "gif": "items/11-g-c-capture.gif",
+        "video": "items/11-g-c-capture.mp4",
+        "poster": "items/11-g-c-capture.poster.webp"
+      },
+      "sha256": "cef05cc0f53b806f2a264216a0e77e3c878fe244a50ae2d568c2125979a907f3",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "g-c-still-05.png",
+      "kind": "image",
+      "media": {
+        "image": "items/12-g-c-still-05.webp"
+      },
+      "sha256": "f93e2d19abd0707f41924358b2d9c6bbea0f49324aa94724db180ac22867c525",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "g-c-still-20.png",
+      "kind": "image",
+      "media": {
+        "image": "items/13-g-c-still-20.webp"
+      },
+      "sha256": "5b2fe512f339de05143bac04cda819aea46c8ace1ff6c818bcf769d6af3b9b59",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "g-c-still-40.png",
+      "kind": "image",
+      "media": {
+        "image": "items/14-g-c-still-40.webp"
+      },
+      "sha256": "bf7b3ff83da7ea54f4dc88a9a49f19cf3a6775a1f3cd05f59d58e26b3bee8c1d",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "g-c-still-60.png",
+      "kind": "image",
+      "media": {
+        "image": "items/15-g-c-still-60.webp"
+      },
+      "sha256": "24cee39d0119cf1b85141478a1175b1d06261d6f2075f2e1198384141c9a3089",
       "provenance": {
         "status": "missing",
         "problems": [],
