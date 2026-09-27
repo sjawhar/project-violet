@@ -1,0 +1,16 @@
+# Files that ship in the game must carry a provenance sidecar,
+# <file>.provenance.json, next to them. `provenance check` enforces this.
+# Paths are relative to this file. A root that does not exist is skipped.
+roots = ["game", "assets"]
+
+# Extensions (case-insensitive, without the dot) that count as assets anywhere under a root.
+extensions = [
+    "png", "jpg", "jpeg", "webp", "gif", "svg", "psd",
+    "wav", "ogg", "mp3", "flac",
+    "glb", "gltf", "fbx", "blend",
+    "mp4", "webm",
+]
+
+# Extensions that count as assets only inside a directory with the given name.
+[directory_extensions]
+spine = ["json"]
