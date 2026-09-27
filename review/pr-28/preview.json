@@ -576,7 +576,7 @@
         "video": "items/15-idle.mp4",
         "poster": "items/15-idle.poster.webp"
       },
-      "sha256": "7bf40a59b794d5a1a56f9045491b7b2df72dc42702deb29c34ecd47cbbb26f9e",
+      "sha256": "23fb4c7c262ad44fc7febd4ed85b05eff664492d976ed11c130660e826ae5340",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -615,7 +615,7 @@
         "video": "items/16-run.mp4",
         "poster": "items/16-run.poster.webp"
       },
-      "sha256": "f56298455b44b511a1130999bb078448dd24d0a450f93a0603d3b4782b1f809c",
+      "sha256": "b8c645f98f5c233046a56fab10ecf2899aeb656ca092a8b7a22cf925364df5d8",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -654,7 +654,7 @@
         "video": "items/17-jump.mp4",
         "poster": "items/17-jump.poster.webp"
       },
-      "sha256": "af7a1acc7ce2ff9e5673566d0347b380f555eb9db3dbcaf55c85847063aa1711",
+      "sha256": "c9e2f11748bffb70a1fac12b3beefccd7dd7218ac91c8bb7182ae348eb0d7419",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -693,7 +693,7 @@
         "video": "items/18-fall.mp4",
         "poster": "items/18-fall.poster.webp"
       },
-      "sha256": "f7bb21793942d22a199247be19f779d1645f602a6d33e039a78012b6a54bebb2",
+      "sha256": "99bd04e91a3e41f61bf2d32ef8b81540458de7b8bde5c917162c78799ad31972",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -732,7 +732,7 @@
         "video": "items/19-double_jump.mp4",
         "poster": "items/19-double_jump.poster.webp"
       },
-      "sha256": "4358bb82c51669a92f40a48151c2a9cafc1a5260359113cf22b48b799d97f929",
+      "sha256": "6528aedecbdf9446124e3ad4fda339a403d452c730442eb222e19ac1dc123df6",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -771,7 +771,7 @@
         "video": "items/20-dash.mp4",
         "poster": "items/20-dash.poster.webp"
       },
-      "sha256": "907e48002f1594f4d4edde2e1f98f00d6dd0bca7109ec9c43aaff3d40cc13a05",
+      "sha256": "02d115c7916b9dc421cbc2ce2b7d6c23da5a6b345f714fe7a291393721862e1e",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -810,7 +810,7 @@
         "video": "items/21-land.mp4",
         "poster": "items/21-land.poster.webp"
       },
-      "sha256": "bbe250fb1fbd47f59a4bf074926b7adfe42d826edeec88c27a7f51fb30bddda3",
+      "sha256": "7b61b84a93352e0ef475ebfe4c142e5784d6c6a0aafafd901e057f1fc03f0996",
       "provenance": {
         "status": "ok",
         "problems": [],
