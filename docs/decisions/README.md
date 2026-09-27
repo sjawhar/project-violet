@@ -15,3 +15,4 @@ One record per settled decision. Each record quotes its source. Later decisions 
 | [0009](0009-mechanics-undecided.md) | Mechanics, abilities, and feel are undecided |
 | [0010](0010-2018-illustration-included.md) | Include the 2018 Violet illustration in the public archive |
 | [0011](0011-merge-queue-waiver.md) | Tooling and docs PRs merge through the pr-queue organizer without the six gates |
+| [0012](0012-no-purchases-until-agents-prove-it.md) | No tool purchases in the bake-off until agents prove they need one |
