@@ -12,4 +12,9 @@ run res://tests/validate_tags.tscn > "$rep/tags.txt" 2>&1
 if run res://tests/validate_tags.tscn -- --mutate > "$rep/tags-mutated.txt" 2>&1; then echo "ci.sh: tag validator passed a mutated level" >&2; exit 1; fi
 run res://tests/rig_test.tscn  # the rig reader (tests/rig_test.gd); its log stays in the CI output, not in reports/
 godot --headless --path . --export-release Linux "../../out/$lane/violet-$lane.x86_64" > "$rep/export.log" 2>&1
-test -x "../../out/$lane/violet-$lane.x86_64" && timeout 90 "../../out/$lane/violet-$lane.x86_64" --headless --quit-after 120 && ls -l "../../out/$lane/violet-$lane.x86_64" > "$rep/build.txt"
+test -x "../../out/$lane/violet-$lane.x86_64"
+# The exported game exits 0 even when its scripts fail to compile, so its log decides: Godot 4.7.2 prints compile and
+# runtime script errors as "SCRIPT ERROR: ...", and engine errors, push_error and failed script loads as "ERROR: ...".
+smoke="$(timeout 90 "../../out/$lane/violet-$lane.x86_64" --headless --quit-after 120 2>&1)" || { printf '%s\n' "$smoke" >&2; echo "ci.sh: the exported game failed" >&2; exit 1; }
+if grep -E '^(SCRIPT ERROR|ERROR):' <<< "$smoke" >&2; then echo "ci.sh: the exported game logged the errors above" >&2; exit 1; fi
+ls -l "../../out/$lane/violet-$lane.x86_64" > "$rep/build.txt"

@@ -11,18 +11,30 @@ var player: Player2D
 var _sprites := {}  ## slot name -> Sprite2D
 var _texture_scale := {}  ## slot name -> Vector2 from the texture's pixels to the attachment's width and height
 
-func _init(rig_: Rig) -> void:
+## The character for RIG, or null after a push_error when the rig lacks an animation RigAnimator needs, a scarf slot, or
+## a loadable part image.
+static func create(rig_: Rig) -> RigCharacter2D:
+	if not RigAnimator.check(rig_): return null
+	var names: Array = rig_.slots.map(func(slot: Rig.Slot) -> String: return slot.name)
+	for slot_name: String in SCARF_SLOTS:
+		if slot_name not in names: push_error("%s: the rig has no %s slot" % [rig_.source, slot_name]); return null
+	var textures := {}
+	for slot in rig_.slots:
+		textures[slot.name] = load(slot.image)
+		if textures[slot.name] is not Texture2D: push_error("%s: slot %s's image %s does not load as a texture" % [rig_.source, slot.name, slot.image]); return null
+	return RigCharacter2D.new(rig_, textures)
+
+## Use create(), which checks the rig first.
+func _init(rig_: Rig, textures: Dictionary) -> void:
 	rig = rig_; name = "Character"
 	animator = RigAnimator.new(rig)
 	for slot in rig.slots:
-		var texture: Texture2D = load(slot.image)
-		assert(texture != null, "rig slot %s: cannot load %s" % [slot.name, slot.image])
+		var texture: Texture2D = textures[slot.name]
 		var sprite := Sprite2D.new(); sprite.name = slot.name; sprite.texture = texture
 		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 		add_child(sprite)
 		_sprites[slot.name] = sprite
 		_texture_scale[slot.name] = slot.size / texture.get_size()
-	for slot_name: String in SCARF_SLOTS: assert(_sprites.has(slot_name), "the rig has no %s slot" % slot_name)
 
 func _ready() -> void:
 	player = get_parent() as Player2D
@@ -36,8 +48,8 @@ func _process(delta: float) -> void:
 	_apply()
 
 func _apply() -> void:
-	var art_facing := 1 if rig.facing == "right" else -1
-	scale = Vector2(player.facing * art_facing, 1.0) * (1.6 * Player2D.TILE / rig.height_px)
+	# The rig faces right; facing left mirrors the root with a negative x scale (character-rig.md).
+	scale = Vector2(player.facing, 1.0) * (1.6 * Player2D.TILE / rig.height_px)
 	var pose := animator.pose()
 	for slot_name: String in _sprites:
 		var t: Transform2D = pose[slot_name]
