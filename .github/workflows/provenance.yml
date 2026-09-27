@@ -1,0 +1,36 @@
+name: provenance
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  provenance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          lfs: false # pointers are all the checks need; check compares a pointer's oid with the record
+          persist-credentials: false
+
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+
+      - name: Test the provenance tool
+        run: uv run --locked --project tools/provenance pytest tools/provenance/tests
+
+      # Both checks run even when an earlier step fails, so one CI run reports every problem.
+      - name: Every asset has a valid, current provenance record
+        if: ${{ !cancelled() }}
+        run: uv run --locked --project tools/provenance provenance check
+
+      - name: Files routed through LFS are committed as LFS pointers
+        if: ${{ !cancelled() }}
+        run: uv run --locked --project tools/provenance provenance lfs-check
+
+      - name: Steam AI-disclosure text
+        run: uv run --locked --project tools/provenance provenance steam-report >> "$GITHUB_STEP_SUMMARY"
