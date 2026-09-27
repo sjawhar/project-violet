@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "asset": "scarf-openai.png",
+  "sha256": "d7cb98db165167e95f13bc0d9bb763def9828f2a24817e72980eccf3d7c7b15c",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-27T05:13:55+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Character concept sheet, front and three-quarter views: a long, flowing head scarf worn by a young heroine in a simple pale robe. The scarf is the only saturated color in the image, a glowing scarlet red with light bleeding from its edges; everything else is soft greyscale. Painterly, hand-drawn look, clean neutral background, no text, no logos.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "low",
+      "background": "opaque"
+    },
+    "inputs": []
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}
