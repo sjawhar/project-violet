@@ -1,7 +1,8 @@
 class_name GreyboxArt3D
 extends Resource
 ## Greybox visuals for the 3D lane: toon-shaded unit cubes per kind, crystal lights on tagged cells, a desert
-## environment and a STAND-IN capsule for the character. KitArt3D subclasses it once the desert kit exists. THROWAWAY.
+## environment, and the protagonist rig once it is in the project (else a STAND-IN capsule for the character).
+## KitArt3D subclasses it once the desert kit exists. THROWAWAY.
 ## Colors match tools/greybox (Task 1); sky, sand and crystal colors come from docs/bakeoff/desert-biome-brief.md.
 const COLORS := {
 	"empty": Color8(245, 240, 230), "solid": Color8(90, 80, 70), "wall_red": Color8(200, 60, 50), "wall_green": Color8(60, 170, 90),
@@ -101,7 +102,13 @@ func make_backdrop(level: Greybox) -> Node3D:
 	holder.add_child(ground)
 	return holder
 
+## The file whose presence swaps the STAND-IN for the rig (Rig reads it, its <stem>.meta.json and its part images).
+const RIG_PATH := "res://protagonist/violet.rig.json"
+
 func attach_character(player: Node) -> void:
+	if FileAccess.file_exists(RIG_PATH):
+		player.add_child(RigCharacter3D.new(Rig.load_file(RIG_PATH)))
+		return
 	var capsule := MeshInstance3D.new(); capsule.name = "StandIn"
 	var mesh := CapsuleMesh.new(); mesh.radius = 0.4; mesh.height = 1.6; capsule.mesh = mesh
 	capsule.position.y = 0.8  # feet at the origin
