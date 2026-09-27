@@ -4,7 +4,11 @@ Builds a Spine 4.3 JSON skeleton from a `violet-rig` v1 description: a JSON docu
 listing bones, painted body-part images, and animations. Reimplements the delayed,
 damped follow-through `spine-animation-ai` (PolyForm Noncommercial) produces for a
 trailing scarf, from scratch (`scarf.py`), so no PolyForm-licensed code or technique is
-used.
+used. Also plays a generated skeleton back to PNG frames and a GIF with Pillow
+(`spinerig render`, `render.py`), so a rig proves it animates without the Spine editor or
+the Spine runtime — Sami ruled on 2026-09-27 that the bake-off will not buy Spine, so
+every lane reads this same Spine 4.3 JSON subset with its own small reader; see
+`docs/bakeoff/character-rig.md` for that contract.
 
 This is generic rig tooling: nothing here encodes a game mechanic. The only bake-off
 -specific content is the set of animation names (`idle`, `run`, `jump`, ...) an author
@@ -40,12 +44,14 @@ runtime source, field by field:
 Spine conventions used throughout: **y is up**, **angles are in degrees**, and `bones`
 lists a bone's parent before the bone itself.
 
-**This tool's output has not been imported into the Spine 4.3 editor.** Spine
-Professional isn't set up on this machine yet (Task 5 Step 4 needs it). The tests below
-validate structure against the documented (and runtime-verified) format — required
-top-level keys, bone parent order, slot/attachment references resolving, animation
-timeline shapes — not an actual Spine import. Treat `Spine.sh -i` accepting a generated
-file as unverified until Step 4.
+**This tool's output has not been imported into the Spine 4.3 editor**, and per Sami's
+2026-09-27 ruling not to buy Spine, it may never be: nothing in this repo depends on
+that import succeeding. The tests below validate structure against the documented (and
+runtime-verified) format — required top-level keys, bone parent order, slot/attachment
+references resolving, animation timeline shapes — and `spinerig render` plays a
+generated skeleton back with real FK math and real part images, which is this tool's own
+substitute for an editor round trip. The same JSON remains valid Spine 4.3 export data
+and would still import cleanly if Spine were ever bought later.
 
 ## Usage
 
@@ -66,6 +72,32 @@ than the bone itself, `draw_order` and the parts not naming exactly the same set
 slots, an authored animation timeline that isn't `rotate` or `translate`, or an authored
 keyframe with a `curve` — `spinerig generate` exits 1 and names the offending bone,
 slot, file, timeline, or animation. It writes neither output file when it fails.
+
+## Playback: `spinerig render`
+
+```bash
+uv run --project tools/spinerig spinerig render rig-src/violet.generated.json \
+  --parts parts --anim idle --out /tmp/violet-idle [--fps 30] [--scale 1.0]
+```
+
+Reads a generated Spine 4.3 subset skeleton (`SKELETON.json`, the shape `spinerig
+generate` writes above) and plays one animation back with Pillow: forward kinematics
+per bone at each sampled frame (setup pose plus that frame's `rotate`/`translate`
+timeline value), each slot's region attachment placed at its bone's world transform and
+drawn in slot (draw) order onto a transparent canvas sized from the skeleton's AABB.
+Writes `OUT_DIR/frame_0000.png`, `frame_0001.png`, ... and `OUT_DIR/<anim>.gif` (looping,
+`--fps` frames per second; frame count is the animation's duration times `--fps`).
+`--parts DIR` is the directory holding each part's `<path>.png` (`path` is the
+attachment's own field, i.e. the image's filename stem); `--scale` resizes every part and
+position uniformly (e.g. to shrink the GIF).
+
+Refuses, naming the offender, anything `spinerig generate` itself would never emit but a
+hand-edited or otherwise-sourced skeleton might: a bezier `curve` keyframe, a bone
+timeline type other than `rotate`/`translate`, a skin attachment whose `type` isn't
+`region`, an unresolvable slot/bone/attachment reference, or a missing part image file
+(names the file). See `docs/bakeoff/character-rig.md` for the full subset contract, the
+FK and placement math, and the y-flip/scale conventions each engine lane's own reader
+needs.
 
 ## `violet-rig` v1
 

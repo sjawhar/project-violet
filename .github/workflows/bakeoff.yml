@@ -1,0 +1,82 @@
+name: bakeoff
+
+# THROWAWAY (Phase 1 bake-off). Every push to a lane branch bakeoff/<lane> runs that lane's checks:
+# provenance and LFS, the lane log, and game/<lane>/ci.sh, which writes bakeoff/<lane>/reports/.
+on:
+  push:
+    branches: ['bakeoff/**']
+
+permissions:
+  contents: read
+
+jobs:
+  lane:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          lfs: true
+          persist-credentials: false
+      - name: Lane name and tools
+        id: lane
+        run: |
+          lane="${GITHUB_REF_NAME#bakeoff/}"
+          case "$lane" in */*) echo "::error::branch $GITHUB_REF_NAME: a lane branch is bakeoff/<lane>, with no further '/'"; exit 1 ;; esac
+          list="game/$lane/ci-tools"
+          [ -f "$list" ] || { echo "::error::$list is missing: it names the mise.toml tools game/$lane/ci.sh needs besides uv (e.g. godot), or is empty"; exit 1; }
+          tools=$(tr -s ' \t\n' ' ' < "$list")
+          for tool in $tools; do
+            [[ "$tool" =~ ^[a-z0-9:@._-]+$ ]] || { echo "::error::$list: '$tool' is not a mise tool name"; exit 1; }
+          done
+          echo "LANE=$lane" >> "$GITHUB_ENV"
+          echo "tools=uv $tools" >> "$GITHUB_OUTPUT"
+      # Only what the lane needs, not every mise.toml pin: Blender or ImageMagick in every lane's mise cache would
+      # cost each lane branch a share of the repository's 10 GB cache budget for tools its CI never runs.
+      - uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
+        with:
+          version: 2026.8.10
+          install_args: ${{ steps.lane.outputs.tools }}
+      # Every check runs even when an earlier one failed, so one CI run reports every problem.
+      - name: Provenance
+        if: ${{ !cancelled() && steps.lane.outcome == 'success' }}
+        run: uv run --locked --project tools/provenance provenance check
+      - name: LFS
+        if: ${{ !cancelled() && steps.lane.outcome == 'success' }}
+        run: uv run --locked --project tools/provenance provenance lfs-check
+      - name: Lane log
+        if: ${{ !cancelled() && steps.lane.outcome == 'success' }}
+        run: uv run --locked --project tools/bakeoff bakeoff log-check "bakeoff/$LANE/LOG.md"
+      # Godot lanes' ci.sh runs scripts/godot-fetch.sh, which skips the 1.3 GB template download when these exist.
+      # A cache belongs to the branch that saved it, so each lane downloads the templates once, on its first push.
+      - uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        id: templates
+        if: ${{ !cancelled() && steps.lane.outcome == 'success' }}
+        with:
+          path: ~/.local/share/godot/export_templates/4.7.2.stable
+          key: godot-export-templates-4.7.2
+      - name: Lane checks
+        if: ${{ !cancelled() && steps.lane.outcome == 'success' }}
+        run: bash "game/$LANE/ci.sh"
+      # Saved whether the lane checks passed or failed: a new lane's first pushes are mostly red, and each would
+      # download the templates again. Not after a timeout (the unzip may be half done), not on a cache hit, and not
+      # for lanes that never fetch them (Unity, control).
+      - name: Templates to cache
+        id: fetched
+        if: ${{ !cancelled() && steps.lane.outcome == 'success' && steps.templates.outputs.cache-hit != 'true' }}
+        run: |
+          if [ -f ~/.local/share/godot/export_templates/4.7.2.stable/linux_release.x86_64 ]; then echo "present=true" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        if: ${{ !cancelled() && steps.fetched.outputs.present == 'true' }}
+        with:
+          path: ~/.local/share/godot/export_templates/4.7.2.stable
+          key: godot-export-templates-4.7.2
+      # always(), not !cancelled(): a job that hits its timeout counts as cancelled, and that is when the logs matter.
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: ${{ always() && steps.lane.outcome == 'success' }}
+        with:
+          # Artifact names cannot contain "/", so the branch name itself is not usable here.
+          name: bakeoff-${{ env.LANE }}
+          path: |
+            out/
+            bakeoff/${{ env.LANE }}/reports/
