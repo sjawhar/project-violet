@@ -178,3 +178,30 @@ def test_non_region_attachment_raises(tmp_path):
 
     with pytest.raises(RenderError, match="mesh"):
         render_frame(spine, tmp_path / "parts", "idle", 0.0)
+
+
+# --- the rest of the contract (docs/bakeoff/character-rig.md) ---------------------------
+
+
+def test_attachment_without_path_raises(tmp_path):
+    make_png(tmp_path / "parts" / "part.png", (20, 20), RED)
+    spine = generic_skeleton(animations={"idle": {"bones": {}}})
+    del spine["skins"][0]["attachments"]["part"]["part"]["path"]
+    with pytest.raises(RenderError, match="no 'path'"):
+        render_frame(spine, tmp_path / "parts", "idle", 0.0)
+
+
+def test_slot_without_attachment_raises(tmp_path):
+    make_png(tmp_path / "parts" / "part.png", (20, 20), RED)
+    spine = generic_skeleton(animations={"idle": {"bones": {}}})
+    del spine["slots"][0]["attachment"]
+    with pytest.raises(RenderError, match="has no attachment"):
+        render_frame(spine, tmp_path / "parts", "idle", 0.0)
+
+
+def test_non_4_3_skeleton_raises(tmp_path):
+    make_png(tmp_path / "parts" / "part.png", (20, 20), RED)
+    spine = generic_skeleton(animations={"idle": {"bones": {}}})
+    spine["skeleton"]["spine"] = "3.8.99"
+    with pytest.raises(RenderError, match="4.3"):
+        render_frame(spine, tmp_path / "parts", "idle", 0.0)
