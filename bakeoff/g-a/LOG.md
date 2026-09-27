@@ -10,6 +10,7 @@ sessions:
   - {start: "2026-09-27T08:23:12Z", end: "2026-09-27T08:37:00Z", purpose: "greybox milestone: workspace, project skeleton, scripts, replay, ci.sh (plan Task 7 Steps 1-17)"}
   - {start: "2026-09-27T08:43:18Z", end: "2026-09-27T09:08:00Z", purpose: "painted world (plan Task 7 Step 18): gen image pieces, PaintedArt, reveal shader, parallax backdrop"}
   - {start: "2026-09-27T09:18:56Z", end: "2026-09-27T09:38:00Z", purpose: "painted art regenerated at quality=high with transparent backgrounds (gen from PR #20)"}
+  - {start: "2026-09-27T09:42:03Z", end: "2026-09-27T09:55:00Z", purpose: "no vegetation green: backdrop-near and goal-gate regenerated with violet silhouettes and no plants"}
 costs:
   - {item: "gen image gpt-image-2 1024x1024 quality=low, wall-tile (rejected)", usd: 0.0143, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:47:36+00:00)"}
   - {item: "gen image gpt-image-2 1536x1024 quality=low, backdrop-near (rejected)", usd: 0.0062, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
@@ -30,7 +31,7 @@ costs:
   - {item: "gen image gpt-image-2 1536x1024 quality=high, backdrop-far (kept)", usd: 0.1661, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:23:27+00:00)"}
   - {item: "gen image gpt-image-2 1536x1024 quality=high, backdrop-near (rejected)", usd: 0.1662, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:23:42+00:00)"}
   - {item: "gen image gpt-image-2 1536x1024 quality=high, backdrop-mid (kept)", usd: 0.1662, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:23:43+00:00)"}
-  - {item: "gen image gpt-image-2 1024x1024 quality=high, goal-gate (kept)", usd: 0.2120, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:24:26+00:00)"}
+  - {item: "superseded by the no-green regeneration: gen image gpt-image-2 1024x1024 quality=high, goal-gate", usd: 0.2120, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:24:26+00:00)"}
   - {item: "gen image gpt-image-2 1024x1024 quality=high, wall-tile (rejected)", usd: 0.2122, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:24:32+00:00)"}
   - {item: "gen image gpt-image-2 1024x1024 quality=high, crystal-wall (rejected)", usd: 0.2121, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:24:39+00:00)"}
   - {item: "gen image gpt-image-2 1024x1024 quality=high, platform-tile (rejected)", usd: 0.2122, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:24:39+00:00)"}
@@ -40,7 +41,11 @@ costs:
   - {item: "gen image gpt-image-2 1024x1024 quality=high, platform-tile (kept)", usd: 0.2123, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:28:46+00:00)"}
   - {item: "gen image gpt-image-2 1024x1024 quality=high, ground-tile (kept)", usd: 0.2123, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:28:46+00:00)"}
   - {item: "gen image gpt-image-2 1024x1024 quality=high, wall-tile (kept)", usd: 0.2123, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:28:49+00:00)"}
-  - {item: "gen image gpt-image-2 1536x1024 quality=high, backdrop-near (kept)", usd: 0.1663, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:32:58+00:00)"}
+  - {item: "superseded by the no-green regeneration: gen image gpt-image-2 1536x1024 quality=high, backdrop-near", usd: 0.1663, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:32:58+00:00)"}
+  - {item: "gen image gpt-image-2 1536x1024 quality=high, backdrop-near (rejected)", usd: 0.1663, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:45:59+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, goal-gate (rejected)", usd: 0.2120, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:46:41+00:00)"}
+  - {item: "gen image gpt-image-2 1536x1024 quality=high, backdrop-near (kept)", usd: 0.1665, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:49:03+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, goal-gate (kept)", usd: 0.2121, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:49:58+00:00)"}
 interventions: []
 friction:
   - {at: "2026-09-27T08:26:30Z", what: "plan's export_presets.cfg omits include_filter and exclude_filter; every godot --import printed 'Couldn't find the given section preset.0 and key include_filter' errors", workaround: "added include_filter=\"\" and exclude_filter=\"\" to the preset"}
@@ -55,6 +60,8 @@ friction:
   - {at: "2026-09-27T08:57:00Z", what: "Parallax2D loops only when repeat_size covers the screen; the backdrops are 1266-1397 px wide, so the mid layer showed a hard cut", workaround: "repeat_times = ceil(viewport width / texture width) + 1"}
   - {at: "2026-09-27T09:26:00Z", what: "at quality=high, three of the five tiles did not tile (wall-tile and platform-tile broke at the side seam, crystal-wall at the top/bottom seam) and ground-tile had red and green pebbles", workaround: "regenerated the four with explicit wrap-around wording and 'pebbles in sand and gray tones only'; the second round tiled"}
   - {at: "2026-09-27T09:31:00Z", what: "the first quality=high backdrop-near had trees at both side edges, so the seam crossfade left a half-transparent green tree canopy floating over the dunes", workaround: "regenerated it with the outer eighth of each side kept to low dunes and grass; the seam edit now crossfades only dunes"}
+  - {at: "2026-09-27T09:43:00Z", what: "the quality=high backdrop-near painted the acacia and saguaro olive green and the goal gate had green grass tufts; the brief allows no vegetation green, and green plants beside green walls blur the tag color", workaround: "regenerated both: near with the trees, cacti and grass as shadow violet #5a4a7a silhouettes and 'no green anywhere', the gate with no plants; no hue-shift edit needed. backdrop-mid (mesas only), backdrop-far (sky; its only green-leaning pixels are the teal-to-peach gradient) and the five tiles had no vegetation and were kept"}
+  - {at: "2026-09-27T09:46:00Z", what: "my own scripting mistake: a prompt edit failed its assertion inside a ';' chain and the regeneration ran anyway with the old prompts", workaround: "the two re-rolls are logged as rejected ($0.3783); reran with the edit gated by '&&'"}
 blockers: []
 deliverables: {build: bakeoff/g-a/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-a/reports/replay.json}
 ---
@@ -74,3 +81,5 @@ The first Step 18 pass ran at the API's default quality=low (gen had no quality 
 Rejected generations, quality=low pass: wall-tile v1 (cartoon brick look, red crystal sprouts in neutral rock), goal-gate v1 (red and green gems on the gate), backdrop-far v1 (clouds broke at the repeat seam), backdrop-mid v1 and backdrop-near v1 (red and green crystals in the scenery; mid also had a visible seam).
 
 Rejected generations, quality=high pass: wall-tile, platform-tile (side seam), crystal-wall (top/bottom seam), ground-tile (red and green pebbles), backdrop-near (trees at both edges left a green ghost after the seam crossfade).
+
+Rejected generations, no-green pass: backdrop-near and goal-gate re-rolled once with the unchanged prompt by a scripting mistake (still green vegetation and grass).
