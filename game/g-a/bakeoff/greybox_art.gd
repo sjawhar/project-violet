@@ -1,6 +1,7 @@
 class_name GreyboxArt
 extends Resource
-## Greybox visuals: flat squares per kind, a sand backdrop and a STAND-IN capsule for the character.
+## Greybox visuals: flat squares per kind, a sand backdrop, and the protagonist rig once it is in the project (else a
+## STAND-IN capsule for the character).
 ## Lanes subclass it (PaintedArt in G-A, the flat-vector kit in G-C). THROWAWAY.
 ## Colors match tools/greybox (Task 1).
 const COLORS := {
@@ -35,7 +36,13 @@ func make_backdrop(level: Greybox) -> Node2D:
 	holder.add_child(rect)
 	return holder
 
+## The file whose presence swaps the STAND-IN for the rig (Rig reads it, its <stem>.meta.json and its part images).
+const RIG_PATH := "res://protagonist/violet.rig.json"
+
 func attach_character(player: Node) -> void:
+	if FileAccess.file_exists(RIG_PATH):
+		player.add_child(RigCharacter2D.new(Rig.load_file(RIG_PATH)))
+		return
 	var tile := 64.0
 	var w := 0.8 * tile; var h := 1.6 * tile; var r := w / 2.0
 	var points := PackedVector2Array()

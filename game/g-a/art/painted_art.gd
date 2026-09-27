@@ -1,7 +1,8 @@
 class_name PaintedArt
 extends GreyboxArt
 ## Painted desert visuals (docs/bakeoff/desert-biome-brief.md): generated tiles and sprites, crystal reveal shader,
-## three parallax backdrop layers. The character stays GreyboxArt's STAND-IN until the Spine rig lands. THROWAWAY.
+## three parallax backdrop layers. The character is GreyboxArt's: the rig once it is in the project, else the STAND-IN.
+## THROWAWAY.
 @export var ground_tile: Texture2D
 @export var wall_tile: Texture2D
 @export var platform_tile: Texture2D
