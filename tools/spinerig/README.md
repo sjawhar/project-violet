@@ -84,7 +84,8 @@ Reads a generated Spine 4.3 subset skeleton (`SKELETON.json`, the shape `spineri
 generate` writes above) and plays one animation back with Pillow: forward kinematics
 per bone at each sampled frame (setup pose plus that frame's `rotate`/`translate`
 timeline value), each slot's region attachment placed at its bone's world transform and
-drawn in slot (draw) order onto a transparent canvas sized from the skeleton's AABB.
+drawn in slot (draw) order onto a transparent canvas that covers every frame's parts (the
+setup-pose AABB grown to fit each sampled pose), shared by all frames so none is cropped.
 Writes `OUT_DIR/frame_0000.png`, `frame_0001.png`, ... and `OUT_DIR/<anim>.gif` (looping,
 `--fps` frames per second; frame count is the animation's duration times `--fps`).
 `--parts DIR` is the directory holding each part's `<path>.png` (`path` is the

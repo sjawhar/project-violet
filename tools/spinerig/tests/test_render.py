@@ -111,6 +111,29 @@ def test_child_bone_rotation_lands_where_fk_predicts(tmp_path):
     assert frame.getpixel(((left + right) // 2, (top + bottom) // 2)) == RED
 
 
+def test_pose_outside_the_setup_aabb_is_not_cropped(tmp_path):
+    # The same 100x200 part as above, setup AABB x in [-50, 50], y in [0, 200]; the
+    # animation holds the root at -90 degrees, which lays the part along +x: world
+    # x in [0, 200], y in [-50, 50] -- mostly outside the setup box. Every frame must
+    # still show the whole 200x100 rectangle.
+    make_png(tmp_path / "parts" / "part.png", (100, 200), RED)
+    spine = {
+        "skeleton": {"spine": "4.3.00", "x": -50.0, "y": 0.0, "width": 100.0, "height": 200.0, "images": "parts/"},
+        "bones": [{"name": "root"}],
+        "slots": [{"name": "part", "bone": "root", "attachment": "part"}],
+        "skins": [{"name": "default", "attachments": {"part": {"part": {"path": "part", "x": 0.0, "y": 100.0, "rotation": 0, "width": 100, "height": 200}}}}],
+        "animations": {"lie": {"bones": {"root": {"rotate": [{"time": 0.0, "value": -90.0}, {"time": 0.1, "value": -90.0}]}}}},
+    }
+
+    frames = render_animation(spine, tmp_path / "parts", "lie", fps=30.0)
+
+    for frame in frames:
+        left, top, right, bottom = opaque_bbox(frame)
+        assert (right - left, bottom - top) == (200, 100)
+        assert frame.getpixel(((left + right) // 2, (top + bottom) // 2)) == RED
+
+
+
 # --- GIF frame count (Step 2) ------------------------------------------------------------
 
 
