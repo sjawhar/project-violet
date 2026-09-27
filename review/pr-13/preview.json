@@ -1,0 +1,55 @@
+{
+  "pr": "13",
+  "contact_sheet": "contact-sheet.png",
+  "items": [
+    {
+      "name": "scarf-openai.png",
+      "kind": "image",
+      "media": {
+        "image": "items/01-scarf-openai.webp"
+      },
+      "sha256": "d7cb98db165167e95f13bc0d9bb763def9828f2a24817e72980eccf3d7c7b15c",
+      "provenance": {
+        "status": "ok",
+        "problems": [],
+        "record": {
+          "origin": "generated",
+          "license": "proprietary",
+          "authors": [],
+          "human_edits": [],
+          "tool": "gen",
+          "tool_version": "0.1.0",
+          "provider": "openai",
+          "model": "gpt-image-2",
+          "prompt": "Character concept sheet, front and three-quarter views: a long, flowing head scarf worn by a young heroine in a simple pale robe. The scarf is the only saturated color in the image, a glowing scarlet red with light bleeding from its edges; everything else is soft greyscale. Painterly, hand-drawn look, clean neutral background, no text, no logos.",
+          "inputs": []
+        }
+      }
+    },
+    {
+      "name": "scarf-gemini.png",
+      "kind": "image",
+      "media": {
+        "image": "items/02-scarf-gemini.webp"
+      },
+      "sha256": "903a6bf753c979b0a88ff887019802b0c84ee876a605859d7eb1f53ab536622c",
+      "provenance": {
+        "status": "ok",
+        "problems": [],
+        "record": {
+          "origin": "generated",
+          "license": "proprietary",
+          "authors": [],
+          "human_edits": [],
+          "tool": "gen",
+          "tool_version": "0.1.0",
+          "provider": "gemini",
+          "model": "gemini-3.1-flash-image",
+          "model_version": "gemini-3.1-flash-image",
+          "prompt": "Character concept sheet, front and three-quarter views: a long, flowing head scarf worn by a young heroine in a simple pale robe. The scarf is the only saturated color in the image, a glowing scarlet red with light bleeding from its edges; everything else is soft greyscale. Painterly, hand-drawn look, clean neutral background, no text, no logos.",
+          "inputs": []
+        }
+      }
+    }
+  ]
+}
