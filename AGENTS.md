@@ -47,4 +47,4 @@ Violet is a story-driven puzzle-platformer being built for a commercial Steam re
 
 ## Toolchain
 
-`mise install` installs the pinned tools in `mise.toml`: Godot 4.7.2, ffmpeg, ImageMagick, git-lfs, and uv. Blender is installed from an official mirror by the tools that need it, because `download.blender.org` blocks scripted downloads.
+`mise install` installs the pinned tools in `mise.toml`: Godot 4.7.2, ffmpeg, ImageMagick, git-lfs, uv, and Blender 5.2.2. Blender comes from the Clarkson University mirror through mise's `http` backend, checked against the sha256 that Blender publishes, because `download.blender.org` answers scripted downloads with a 403.
