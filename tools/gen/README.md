@@ -56,9 +56,10 @@ gen image --provider {openai|gemini} --model MODEL --prompt TEXT
   equivalent parameter, so `gen` refuses `--background` for `--provider gemini` with a clear
   error rather than silently ignoring it.
 - `--quality {low,medium,high}` (OpenAI only) sends the Images API's `quality` parameter.
-  Without the flag `gen` sends `high`: left unset, the API picked `low` for every call in
-  testing, which is fine for a draft and wrong for art that gets judged or shipped. Pass
-  `--quality low` for drafts and tests. Gemini has no quality parameter, so `gen` refuses
+  Without the flag `gen` sends `high`. Left unset, the API chooses per request: it chose `low`
+  for every piece of bake-off art made before this flag existed, and `medium` for one
+  transparent test image. Art that gets judged or shipped shouldn't depend on that choice.
+  Pass `--quality low` for drafts and tests. Gemini has no quality parameter, so `gen` refuses
   `--quality` for `--provider gemini`.
 
 ### Provenance recorded
@@ -121,7 +122,7 @@ observable in testing, but not stored per-sidecar since it varies run to run:
 
 - OpenAI's `/v1/images/generations` and `/v1/images/edits` responses include a `usage`
   object (`input_tokens`, `output_tokens`, with an `image_tokens` breakdown). A
-  `1024x1024` generation at the API's own default (`low`) used ~200 output tokens in testing.
+  `1024x1024` generation where the API chose `low` used ~200 output tokens in testing.
 - Gemini's `generateContent` responses include `usageMetadata`
   (`promptTokenCount`, `candidatesTokenCount`, with a per-modality breakdown). A
   `1024x1024` generation used ~1,100–1,500 candidate tokens in testing.

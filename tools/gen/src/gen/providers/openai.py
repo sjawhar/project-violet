@@ -21,8 +21,9 @@ from gen.providers import PNG_MIME, GeneratedImage, ProviderError, combine_promp
 API_BASE = "https://api.openai.com/v1"
 TIMEOUT = httpx.Timeout(180.0, connect=10.0)
 DEFAULT_QUALITY = "high"
-"""Sent when `--quality` is not given. Unset, the API picks its own quality, which in testing
-was `low` for every call: fine for a draft, not for art that gets judged or shipped."""
+"""Sent when `--quality` is not given. Unset, the API chooses per request: it chose `low` for the
+#13 smoke image, #19's concept and G-A's painted world, and `medium` for one transparent test
+image. Art that gets judged or shipped shouldn't depend on that choice."""
 
 
 def _guess_mime(path: Path) -> str:
