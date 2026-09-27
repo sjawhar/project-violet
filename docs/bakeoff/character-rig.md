@@ -2,7 +2,7 @@
 
 Part of the Phase 1 bake-off shared inputs; see [README.md](README.md). This is the
 contract every lane's own reader implements to animate the protagonist rig
-(`assets/bakeoff/protagonist/spine/violet.json` and its part images) — the character's
+(`assets/bakeoff/protagonist/rig/violet.json`, `violet.meta.json` beside it, and the part images) — the character's
 final design, rig, and rendering approach are undecided
 ([decision 0009](../decisions/0009-mechanics-undecided.md)); nothing here is canon.
 
@@ -29,7 +29,7 @@ need to handle anything else (curves, meshes, IK, physics, other timeline types,
 attachment types), and `spinerig render` refuses to emit or play back a file that uses
 one:
 
-- `skeleton`: `x`, `y`, `width`, `height` (the setup-pose AABB, in the rig's own units —
+- `skeleton`: `spine` (the format version: always `4.3.` something; refuse anything else), `x`, `y`, `width`, `height` (the setup-pose AABB, in the rig's own units —
   see Scale below), `images` (the path from the JSON's own directory to the part-images
   directory, POSIX separators, trailing slash).
 - `bones`: a list, each `{name, parent?, x?, y?, rotation?, length?}` (all four numeric
@@ -37,13 +37,13 @@ one:
   `x`/`y` are the bone's local translation from its parent's origin (root bones: from the
   skeleton origin); `rotation` is local, in degrees; Spine convention: **y is up**,
   rotation is counter-clockwise as viewed, and all of this is the bone's *setup* pose.
-- `slots`: a list, each `{name, bone, attachment}`, **in draw order** (index 0 drawn
+- `slots`: a list, each `{name, bone, attachment}` (every slot names an attachment; refuse one that doesn't), **in draw order** (index 0 drawn
   first, i.e. furthest back; the list order *is* the layering — there is no separate
   z-index).
 - `skins`: exactly one skin, `{"name": "default", "attachments": {slot: {attachment:
   {...}}}}`. Every attachment is a **region attachment** (Spine's default when `type` is
-  absent): `path` (the image file's name, without directory or extension — see Images
-  below), `x`, `y` (the image's centre, in the bone's local frame, already rotated by the
+  absent): `path` (required: the image file's name, without directory or extension — see Images
+  below; refuse an attachment without one rather than fall back to a name), `x`, `y` (the image's centre, in the bone's local frame, already rotated by the
   attachment's own `rotation` — see the placement math), `rotation` (the image's own
   extra rotation on top of the bone, degrees), `width`, `height` (the source image's pixel
   size). No other attachment `type` (mesh, path, clipping, boundingbox, point) appears.
@@ -59,13 +59,17 @@ one:
   anywhere in this subset (Bezier easing is a real 4.x behavior difference from the
   documented 3.8 format that this subset does not reproduce — refuse a `curve` rather
   than guess its shape). An animation has no separate stored duration: it is the latest
-  keyframe time across all of its bones' timelines. **Loop**: every animation in this
-  subset loops; play frame `t = 0` immediately after frame `t = duration` without
-  repeating it (a looping animation's last keyframe already matches its first).
+  keyframe time across all of its bones' timelines. **Looping** is not stored in the
+  JSON; the lane decides it by animation name. `idle` and `run` loop: play `t = 0`
+  immediately after `t = duration` without repeating it (their last keyframe already
+  matches their first). `jump`, `fall`, `double_jump`, `dash` and `land` play once and
+  hold their last frame; the lane's own state machine chooses what plays next (for
+  example `land`, then `idle`).
 
 Refuse and name the offender for anything outside this subset: a `curve` keyframe, a
 timeline type other than `rotate`/`translate`, an attachment `type` other than region (or
-absent), an unresolvable slot/bone/attachment reference. `tools/spinerig/src/spinerig/
+absent), an unresolvable slot/bone/attachment reference, a slot with no attachment, an attachment without a
+`path`, a `skeleton.spine` that isn't 4.3.x. `tools/spinerig/src/spinerig/
 render.py` is the reference implementation of all of the above, including these refusals.
 
 ## Forward kinematics and placement
@@ -114,9 +118,17 @@ own space when placing the result, not by changing the FK or rotation math itsel
 
 ## Scale
 
-`assets/bakeoff/protagonist/spine/violet.meta.json` is `{"height_px", "feet_y_px": 0,
-"facing": "right"}` — `height_px` is the setup-pose skeleton height, in the rig's own
-(pixel-ish, Pillow-native) units. Every lane scales the rig so its height is **1.6
+The meta file sits beside the skeleton and is named `<stem>.meta.json`, which is what
+`spinerig generate` writes: `violet.json` pairs with `violet.meta.json`. It is
+`{"height_px", "feet_y_px", "facing"}`:
+
+- `height_px` is the setup-pose skeleton height, in the rig's own (pixel-ish,
+  Pillow-native) units.
+- `feet_y_px` is the skeleton-space y where the feet touch the ground. It is 0 for this
+  rig, whose root is at the feet. A reader subtracts it so the feet sit on the character
+  body's floor.
+- `facing` is always `"right"`; refuse anything else. A lane shows the character facing
+  left by mirroring it (negative x scale on the rig's root node), not with a second rig. Every lane scales the rig so its height is **1.6
 tiles** (the plan's protagonist scale target), where a tile is the project's own unit
 (`docs/superpowers/plans/2026-09-27-phase-1-bake-off.md`'s Global Constraints: 1 tile =
 64 px in Godot 2D, 1 m in Godot 3D and Unity):
@@ -133,8 +145,12 @@ size — the same single factor throughout, not a per-part fudge.
 One PNG per body part, no shared atlas: `skeleton.images` (resolved against the JSON
 file's own directory) names the directory, and an attachment's `path` names the file
 inside it (`path.png`, no other extension — this subset never uses Spine's atlas/region
-packing). A lane's reader loads each part image directly by that resolved path; nothing
-here assumes a texture atlas or a `.atlas` file.
+packing). Nothing here assumes a texture atlas or a `.atlas` file.
+
+In Godot, copy the skeleton, meta file and part PNGs into the lane's project, and load
+each part as an imported texture (`load("res://.../<path>.png")`). An exported build
+packs imported resources, not raw PNG files, so reading PNGs from disk at runtime would
+work in the editor and fail in the export.
 
 ## What this doc does not cover
 

@@ -42,7 +42,8 @@ Refuses, naming the offending bone/slot/attachment/timeline/keyframe: a bone or
 translate/rotate keyframe with a bezier `curve` (this subset is linear-only, like
 `generate.py`); a bone timeline type other than `rotate`/`translate`; a skin attachment
 whose `type` isn't `region` (the only attachment shape this subset emits); a slot naming
-an attachment the default skin does not define; a missing part image file.
+an attachment the default skin does not define, or no attachment at all; an attachment
+without a `path`; a `skeleton.spine` version that isn't 4.3.x; a missing part image file.
 """
 
 from __future__ import annotations
@@ -159,12 +160,16 @@ def _default_skin(spine: dict[str, Any]) -> dict[str, Any]:
 
 def _resolve_attachment(skin: dict[str, Any], slot: dict[str, Any]) -> dict[str, Any]:
     slot_name, attachment_name = slot["name"], slot.get("attachment")
+    if attachment_name is None:
+        raise RenderError(f"slot {slot_name!r} has no attachment; every slot in this subset names one")
     attachment = skin.get("attachments", {}).get(slot_name, {}).get(attachment_name)
     if attachment is None:
         raise RenderError(f"slot {slot_name!r} names attachment {attachment_name!r}, which the default skin does not define")
     attachment_type = attachment.get("type", "region")
     if attachment_type != "region":
         raise RenderError(f"slot {slot_name!r} attachment {attachment_name!r} has type {attachment_type!r}; only region attachments are supported")
+    if "path" not in attachment:
+        raise RenderError(f"slot {slot_name!r} attachment {attachment_name!r} has no 'path'; this subset always names its part image")
     return attachment
 
 
@@ -212,6 +217,8 @@ def render_frame(
         raise RenderError(f"animation {anim_name!r} is not in this skeleton (has {sorted(animations)})")
     animation = animations[anim_name]
     skeleton = spine["skeleton"]
+    if not str(skeleton.get("spine", "")).startswith("4.3."):
+        raise RenderError(f"skeleton.spine is {skeleton.get('spine')!r}; this subset is Spine 4.3 JSON")
     world = bone_world_transforms(spine["bones"], animation, t)
     skin = _default_skin(spine)
     cache = image_cache if image_cache is not None else {}
@@ -232,7 +239,7 @@ def render_frame(
         center_y = bone.y + ax * sin_b + ay * cos_b
         total_rotation = bone.rotation + arot
 
-        path_stem = attachment.get("path", slot_name)
+        path_stem = attachment["path"]
         image = _load_part(parts_dir, path_stem, scale, cache, slot_name=slot_name)
         rotated = image.rotate(total_rotation, expand=True, resample=Image.BICUBIC)
         cx, cy = world_to_canvas(center_x, center_y, skeleton, scale, margin)
