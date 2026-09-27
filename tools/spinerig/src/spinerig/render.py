@@ -22,7 +22,8 @@ centred at `(x, y)` in its bone's local frame (already rotated by the attachment
 rotation is bone rotation plus attachment rotation, and its world centre is the bone's
 world transform applied to `(x, y)`. Slots are drawn in `slots` list order (back to
 front, the same order `spinerig generate` writes from `draw_order`) onto a transparent
-canvas sized from the skeleton's setup-pose AABB (`skeleton.x/y/width/height`) plus a
+canvas that every frame of the animation shares: the box covering the skeleton's
+setup-pose AABB and every attachment at every sampled frame (`animation_bounds`), plus a
 fixed margin, at `--scale`. Skeleton space is y-up; the canvas is y-down (row 0 at the
 top), so placement flips y (`world_to_canvas`) -- image *rotation* does not need a sign
 flip: Pillow's `Image.rotate(angle)` is defined by the angle's counter-clockwise sense as
@@ -55,8 +56,8 @@ from typing import Any
 
 from PIL import Image
 
-# Canvas padding (px, before --scale) around the skeleton's setup-pose AABB, so an
-# animated bone can swing an attachment outside the setup silhouette without clipping.
+# Canvas padding (canvas px) around the box every frame's attachments fit in
+# (`animation_bounds`).
 MARGIN_PX = 40.0
 
 _SUPPORTED_TIMELINES = ("rotate", "translate")
@@ -201,31 +202,12 @@ def _load_part(parts_dir: Path, path_stem: str, scale: float, cache: dict[tuple[
     return cache[key]
 
 
-def render_frame(
-    spine: dict[str, Any],
-    parts_dir: Path,
-    anim_name: str,
-    t: float,
-    *,
-    scale: float = 1.0,
-    margin: float = MARGIN_PX,
-    image_cache: dict[tuple[str, float], Image.Image] | None = None,
-) -> Image.Image:
-    """One frame of `anim_name` at time `t`, as an RGBA `Image` sized by `canvas_size`."""
-    animations = spine.get("animations", {})
-    if anim_name not in animations:
-        raise RenderError(f"animation {anim_name!r} is not in this skeleton (has {sorted(animations)})")
-    animation = animations[anim_name]
-    skeleton = spine["skeleton"]
-    if not str(skeleton.get("spine", "")).startswith("4.3."):
-        raise RenderError(f"skeleton.spine is {skeleton.get('spine')!r}; this subset is Spine 4.3 JSON")
+def _placements(spine: dict[str, Any], animation: dict[str, Any], t: float) -> list[tuple[str, dict[str, Any], float, float, float]]:
+    """Each slot's `(slot_name, attachment, centre_x, centre_y, image_rotation)` at time
+    `t`, in skeleton space, in draw order."""
     world = bone_world_transforms(spine["bones"], animation, t)
     skin = _default_skin(spine)
-    cache = image_cache if image_cache is not None else {}
-
-    width, height = canvas_size(skeleton, scale, margin)
-    canvas = Image.new("RGBA", (width, height), (0, 0, 0, 0))
-
+    placed = []
     for slot in spine["slots"]:
         slot_name, bone_name = slot["name"], slot["bone"]
         if bone_name not in world:
@@ -237,12 +219,59 @@ def render_frame(
         cos_b, sin_b = math.cos(rad), math.sin(rad)
         center_x = bone.x + ax * cos_b - ay * sin_b
         center_y = bone.y + ax * sin_b + ay * cos_b
-        total_rotation = bone.rotation + arot
+        placed.append((slot_name, attachment, center_x, center_y, bone.rotation + arot))
+    return placed
 
-        path_stem = attachment["path"]
-        image = _load_part(parts_dir, path_stem, scale, cache, slot_name=slot_name)
+
+def animation_bounds(spine: dict[str, Any], anim_name: str, times: list[float]) -> dict[str, float]:
+    """The skeleton-space box (`x`, `y`, `width`, `height`, like `skeleton`'s own AABB)
+    covering the setup-pose AABB and every attachment's rotated rectangle at each of
+    `times`, so a pose that swings a part outside the setup silhouette is not cut off."""
+    skeleton = spine["skeleton"]
+    min_x, min_y = skeleton["x"], skeleton["y"]
+    max_x, max_y = min_x + skeleton["width"], min_y + skeleton["height"]
+    animation = spine["animations"][anim_name]
+    for t in times:
+        for _, attachment, cx, cy, rotation in _placements(spine, animation, t):
+            rad = math.radians(rotation)
+            half_w = (abs(attachment["width"] * math.cos(rad)) + abs(attachment["height"] * math.sin(rad))) / 2
+            half_h = (abs(attachment["width"] * math.sin(rad)) + abs(attachment["height"] * math.cos(rad))) / 2
+            min_x, max_x = min(min_x, cx - half_w), max(max_x, cx + half_w)
+            min_y, max_y = min(min_y, cy - half_h), max(max_y, cy + half_h)
+    return {"x": min_x, "y": min_y, "width": max_x - min_x, "height": max_y - min_y}
+
+
+def render_frame(
+    spine: dict[str, Any],
+    parts_dir: Path,
+    anim_name: str,
+    t: float,
+    *,
+    scale: float = 1.0,
+    margin: float = MARGIN_PX,
+    image_cache: dict[tuple[str, float], Image.Image] | None = None,
+    bounds: dict[str, float] | None = None,
+) -> Image.Image:
+    """One frame of `anim_name` at time `t`, as an RGBA `Image` sized by `canvas_size`
+    over `bounds` (a skeleton-space box like `animation_bounds` returns; the skeleton's
+    setup-pose AABB when omitted)."""
+    animations = spine.get("animations", {})
+    if anim_name not in animations:
+        raise RenderError(f"animation {anim_name!r} is not in this skeleton (has {sorted(animations)})")
+    animation = animations[anim_name]
+    skeleton = spine["skeleton"]
+    if not str(skeleton.get("spine", "")).startswith("4.3."):
+        raise RenderError(f"skeleton.spine is {skeleton.get('spine')!r}; this subset is Spine 4.3 JSON")
+    box = bounds if bounds is not None else skeleton
+    cache = image_cache if image_cache is not None else {}
+
+    width, height = canvas_size(box, scale, margin)
+    canvas = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+
+    for slot_name, attachment, center_x, center_y, total_rotation in _placements(spine, animation, t):
+        image = _load_part(parts_dir, attachment["path"], scale, cache, slot_name=slot_name)
         rotated = image.rotate(total_rotation, expand=True, resample=Image.BICUBIC)
-        cx, cy = world_to_canvas(center_x, center_y, skeleton, scale, margin)
+        cx, cy = world_to_canvas(center_x, center_y, box, scale, margin)
         paste_x = round(cx - rotated.width / 2)
         paste_y = round(cy - rotated.height / 2)
         canvas.paste(rotated, (paste_x, paste_y), rotated)
@@ -260,11 +289,15 @@ def render_animation(
     margin: float = MARGIN_PX,
 ) -> list[Image.Image]:
     """Every frame of `anim_name`, sampled at `fps` frames per second over its duration
-    (see `animation_duration`); `len(result) == round(duration * fps)`."""
+    (see `animation_duration`); `len(result) == round(duration * fps)`. Every frame
+    shares one canvas, sized by `animation_bounds` over all the sampled times, so no
+    frame is cropped and the character stays registered from frame to frame."""
     animations = spine.get("animations", {})
     if anim_name not in animations:
         raise RenderError(f"animation {anim_name!r} is not in this skeleton (has {sorted(animations)})")
     duration = animation_duration(animations[anim_name])
     frame_count = max(1, round(duration * fps))
+    times = [i / fps for i in range(frame_count)]
+    bounds = animation_bounds(spine, anim_name, times)
     cache: dict[tuple[str, float], Image.Image] = {}
-    return [render_frame(spine, parts_dir, anim_name, i / fps, scale=scale, margin=margin, image_cache=cache) for i in range(frame_count)]
+    return [render_frame(spine, parts_dir, anim_name, t, scale=scale, margin=margin, image_cache=cache, bounds=bounds) for t in times]
