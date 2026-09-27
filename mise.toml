@@ -5,3 +5,11 @@ ffmpeg = "9.0.2"
 imagemagick = "7.1.2_31"
 git-lfs = "3.8.0"
 uv = "0.12.13"
+
+# Blender 5.2 LTS, from the Clarkson University mirror: download.blender.org answers scripted
+# downloads with a Cloudflare 403. The checksum is the one Blender publishes in
+# release/Blender5.2/blender-5.2.2.sha256 (identical on the mirror and on download.blender.org).
+[tools."http:blender"]
+version = "5.2.2"
+url = "https://mirror.clarkson.edu/blender/release/Blender5.2/blender-{{version}}-linux-x64.tar.xz"
+checksum = "sha256:84098912789dc450e95697c4184fb8a90acbe5111c2ba4aede3fecb57806a168"
