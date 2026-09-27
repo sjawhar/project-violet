@@ -27,15 +27,17 @@ class TaggedBox extends MeshInstance3D:
 	var material: StandardMaterial3D
 	var light: OmniLight3D
 	var pulse: Tween
+	## Multiplies the light energies below; a lane art with many stacked crystals dims them so they do not wash out.
+	var energy_scale := 1.0
 	func set_resonance_look(revealed: bool, active: bool) -> void:
 		material.albedo_color = base if revealed else GRAY
 		material.emission_enabled = active
 		if pulse: pulse.kill(); pulse = null
-		light.light_energy = 2.0 if active else 0.6 if revealed else 0.0
+		light.light_energy = (2.0 if active else 0.6 if revealed else 0.0) * energy_scale
 		if active:
 			pulse = create_tween().set_loops()
-			pulse.tween_property(light, "light_energy", 1.2, 0.5).set_trans(Tween.TRANS_SINE)
-			pulse.tween_property(light, "light_energy", 2.0, 0.5).set_trans(Tween.TRANS_SINE)
+			pulse.tween_property(light, "light_energy", 1.2 * energy_scale, 0.5).set_trans(Tween.TRANS_SINE)
+			pulse.tween_property(light, "light_energy", 2.0 * energy_scale, 0.5).set_trans(Tween.TRANS_SINE)
 
 ## Keeps the environment's saturation adjustment on Resonance.world_saturation() (mechanic.md, Reveal).
 class SaturatedEnvironment extends WorldEnvironment:
@@ -50,10 +52,14 @@ static func toon(color: Color) -> StandardMaterial3D:
 	mat.diffuse_mode = BaseMaterial3D.DIFFUSE_TOON; mat.specular_mode = BaseMaterial3D.SPECULAR_TOON
 	return mat
 
+## The TaggedBox subclass make_cell builds for tagged kinds; a lane art that adds to the look overrides it.
+func _new_tagged_box() -> TaggedBox:
+	return TaggedBox.new()
+
 func make_cell(kind: String, _cell: Vector2i) -> Node3D:
 	if Greybox.TAGGED.has(kind):
 		var color: String = Greybox.TAGGED[kind][0]
-		var tagged := TaggedBox.new(); tagged.base = COLORS[kind]
+		var tagged := _new_tagged_box(); tagged.base = COLORS[kind]
 		var box := BoxMesh.new(); box.size = Vector3.ONE; tagged.mesh = box
 		tagged.material = toon(GRAY); tagged.material.emission = CRYSTAL[color]; tagged.material.emission_energy_multiplier = 0.6
 		tagged.material_override = tagged.material

@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="GreyboxArt3D" format=3]
+[gd_resource type="Resource" script_class="KitArt3D" format=3]
 
-[ext_resource type="Script" path="res://bakeoff/greybox_art_3d.gd" id="1"]
+[ext_resource type="Script" path="res://art/kit_art_3d.gd" id="1"]
 
 [resource]
 script = ExtResource("1")
