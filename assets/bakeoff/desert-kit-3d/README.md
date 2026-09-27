@@ -14,6 +14,12 @@ blender -b --factory-startup --python assets/bakeoff/desert-kit-3d/build_kit.py 
 
 A rebuild is byte-identical. The script prints each piece's triangle count and size, and it fails when a piece goes over 5,000 triangles, when its base isn't at height 0, or when a cell piece doesn't fit its 1 m cell. After a change, re-record the provenance of the script and of every GLB (`provenance record ... --force`).
 
+[preview/kit-at-32m.png](preview/kit-at-32m.png) shows all sixteen pieces laid out as a side-scroller camera 32 m away sees them. To re-render it on the CPU (it takes about 35 s):
+
+```sh
+blender -b --factory-startup --python assets/bakeoff/desert-kit-3d/preview/render_scene.py -- assets/bakeoff/desert-kit-3d assets/bakeoff/desert-kit-3d/preview/kit-at-32m.png
+```
+
 ## Conventions
 
 - glTF binary, +Y up, meters, modifiers applied, no cameras or lights. The origin is at the base center, and the front faces +Z (toward a side-scroller camera).

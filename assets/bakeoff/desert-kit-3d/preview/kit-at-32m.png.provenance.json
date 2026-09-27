@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "asset": "kit-at-32m.png",
+  "sha256": "d3912ca6348e05e50f1adaf6ef0a200e8be9a21d86c0329b096876e33c4f0c82",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-27T19:46:55+00:00",
+  "generator": {
+    "tool": "blender",
+    "tool_version": "5.2.2",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/desert-kit-3d/build_kit.py",
+        "sha256": "1a80d7495317cb59025cddbc83fa64f099b5a392024d363611c3348f36444c36"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/preview/render_scene.py",
+        "sha256": "e3d662ddb392d9e973bc60d00d2c01db0ba31a7ff3ccea4c0af9d3e5afb93e2b"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/acacia.glb",
+        "sha256": "244d1c8eb5bb7cd8283e17d6a4908f266807b582eda0ae608b7b303c9dbac611"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/arch.glb",
+        "sha256": "1befdc946100ecb18cd0adf887d833fe8908374c1d60fcbbf7298026e526457f"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/boulder-a.glb",
+        "sha256": "1c8badcd561b7ca23bc4ad66698922cfdb326821bee53d7897738e5262ace4f1"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/boulder-b.glb",
+        "sha256": "422bf5d2f5e7916357ba4373aa0dfd04b287fe433ba7ba337ff317640465953f"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/crystal-cluster.glb",
+        "sha256": "3b7947e4689f1e64abb8027db61828c4c8eca74d25eee9ad1157a7eafdc5d22c"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/dune-ridge.glb",
+        "sha256": "7f727df830a38611513e62ca30640e9eef3cf0aa611bd79103cbda132c4c098e"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/goal-gate.glb",
+        "sha256": "97b6620e7b760fb7a8b030a0002298613dacc4c991d00a49cca1fd92fbb31152"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/hazard-spikes.glb",
+        "sha256": "c5a17c706002ee63bb553b02d388a7b13b48ae323f694f7d28c47479c41b6411"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/mesa-large.glb",
+        "sha256": "60a6502e0cbc8e06b57cfa3defec7ae593cd561361a2a21414667155235cf3a4"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/mesa-small.glb",
+        "sha256": "41c4706b0af9005b2e370c06b21ca64a81e394c763d6bb2e6bd11bc2f6f4639e"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/orb-pedestal.glb",
+        "sha256": "fb4a715bca2c3b055d8b941cf06b954a897ff7022c43ded70ce4b0fb5f9af895"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/rock-tile.glb",
+        "sha256": "f95a6fb5b2000b3a5c03c2e355aca1c7722076b7ca33c0377f4b37512536ae91"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/ruin-column.glb",
+        "sha256": "62305b1c9dfa10ab7371d0855dfd182118b4632ee0efbf1c89e9dc3f3b635f30"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/ruin-wall.glb",
+        "sha256": "2cd9e61208b47025394845067b821155a2cb5c118920512f017c23955d06f6bc"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/saguaro.glb",
+        "sha256": "a27e5effe896425a736c09dfb21ddacb64934fe9b9a2d3483d60eeda4b4aadde"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/sand-tile.glb",
+        "sha256": "7769a1ab84f63cb21f51ec37652f9538d858b8b6557edf186ceeba2daac1b39b"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}
