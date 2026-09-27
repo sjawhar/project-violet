@@ -1,17 +1,35 @@
-at	out	model	quality	size	text_in	image_in	image_out	usd
-2026-09-27T08:47:36+00:00	game/g-a/art/wall-tile.png	gpt-image-2	low	1024x1024	233	0	439	0.0143
-2026-09-27T08:48:31+00:00	game/g-a/art/backdrop-near.png	gpt-image-2	low	1536x1024	297	0	158	0.0062
-2026-09-27T08:48:31+00:00	game/g-a/art/wall-tile.png	gpt-image-2	low	1024x1024	286	0	196	0.0073
-2026-09-27T08:48:31+00:00	game/g-a/art/backdrop-far.png	gpt-image-2	low	1536x1024	275	0	158	0.0061
-2026-09-27T08:48:31+00:00	game/g-a/art/orb.png	gpt-image-2	low	1024x1024	276	0	196	0.0073
-2026-09-27T08:48:31+00:00	game/g-a/art/backdrop-mid.png	gpt-image-2	low	1536x1024	304	0	158	0.0063
-2026-09-27T08:48:32+00:00	game/g-a/art/crystal-wall.png	gpt-image-2	low	1024x1024	285	0	196	0.0073
-2026-09-27T08:48:32+00:00	game/g-a/art/ground-tile.png	gpt-image-2	low	1024x1024	296	0	196	0.0074
-2026-09-27T08:48:32+00:00	game/g-a/art/platform-tile.png	gpt-image-2	low	1024x1024	292	0	196	0.0073
-2026-09-27T08:48:32+00:00	game/g-a/art/goal-gate.png	gpt-image-2	low	1024x1024	270	0	196	0.0072
-2026-09-27T08:48:36+00:00	game/g-a/art/crystal-platform.png	gpt-image-2	low	1024x1024	283	0	439	0.0146
-2026-09-27T08:49:48+00:00	game/g-a/art/backdrop-near.png	gpt-image-2	low	1536x1024	325	0	158	0.0064
-2026-09-27T08:49:50+00:00	game/g-a/art/backdrop-mid.png	gpt-image-2	low	1536x1024	330	0	158	0.0064
-2026-09-27T08:49:53+00:00	game/g-a/art/backdrop-far.png	gpt-image-2	low	1536x1024	295	0	343	0.0118
-2026-09-27T08:49:55+00:00	game/g-a/art/goal-gate.png	gpt-image-2	low	1024x1024	285	0	439	0.0146
-total								0.1304
+at	out	model	quality	size	status	text_in	image_in	image_out	usd
+2026-09-27T08:47:36+00:00	game/g-a/art/wall-tile.png	gpt-image-2	low	1024x1024	rejected	233	0	439	0.0143
+2026-09-27T08:48:31+00:00	game/g-a/art/backdrop-near.png	gpt-image-2	low	1536x1024	rejected	297	0	158	0.0062
+2026-09-27T08:48:31+00:00	game/g-a/art/wall-tile.png	gpt-image-2	low	1024x1024	superseded	286	0	196	0.0073
+2026-09-27T08:48:31+00:00	game/g-a/art/backdrop-far.png	gpt-image-2	low	1536x1024	rejected	275	0	158	0.0061
+2026-09-27T08:48:31+00:00	game/g-a/art/orb.png	gpt-image-2	low	1024x1024	superseded	276	0	196	0.0073
+2026-09-27T08:48:31+00:00	game/g-a/art/backdrop-mid.png	gpt-image-2	low	1536x1024	rejected	304	0	158	0.0063
+2026-09-27T08:48:32+00:00	game/g-a/art/crystal-wall.png	gpt-image-2	low	1024x1024	superseded	285	0	196	0.0073
+2026-09-27T08:48:32+00:00	game/g-a/art/ground-tile.png	gpt-image-2	low	1024x1024	superseded	296	0	196	0.0074
+2026-09-27T08:48:32+00:00	game/g-a/art/platform-tile.png	gpt-image-2	low	1024x1024	superseded	292	0	196	0.0073
+2026-09-27T08:48:32+00:00	game/g-a/art/goal-gate.png	gpt-image-2	low	1024x1024	rejected	270	0	196	0.0072
+2026-09-27T08:48:36+00:00	game/g-a/art/crystal-platform.png	gpt-image-2	low	1024x1024	superseded	283	0	439	0.0146
+2026-09-27T08:49:48+00:00	game/g-a/art/backdrop-near.png	gpt-image-2	low	1536x1024	superseded	325	0	158	0.0064
+2026-09-27T08:49:50+00:00	game/g-a/art/backdrop-mid.png	gpt-image-2	low	1536x1024	superseded	330	0	158	0.0064
+2026-09-27T08:49:53+00:00	game/g-a/art/backdrop-far.png	gpt-image-2	low	1536x1024	superseded	295	0	343	0.0118
+2026-09-27T08:49:55+00:00	game/g-a/art/goal-gate.png	gpt-image-2	low	1024x1024	superseded	285	0	439	0.0146
+2026-09-27T09:21:50+00:00	game/g-a/art/orb.png	gpt-image-2	high	1024x1024	kept	253	0	7024	0.2120
+2026-09-27T09:23:27+00:00	game/g-a/art/backdrop-far.png	gpt-image-2	high	1536x1024	kept	295	0	5488	0.1661
+2026-09-27T09:23:42+00:00	game/g-a/art/backdrop-near.png	gpt-image-2	high	1536x1024	rejected	306	0	5488	0.1662
+2026-09-27T09:23:43+00:00	game/g-a/art/backdrop-mid.png	gpt-image-2	high	1536x1024	kept	311	0	5488	0.1662
+2026-09-27T09:24:26+00:00	game/g-a/art/goal-gate.png	gpt-image-2	high	1024x1024	kept	262	0	7024	0.2120
+2026-09-27T09:24:32+00:00	game/g-a/art/wall-tile.png	gpt-image-2	high	1024x1024	rejected	286	0	7024	0.2122
+2026-09-27T09:24:39+00:00	game/g-a/art/crystal-wall.png	gpt-image-2	high	1024x1024	rejected	285	0	7024	0.2121
+2026-09-27T09:24:39+00:00	game/g-a/art/platform-tile.png	gpt-image-2	high	1024x1024	rejected	292	0	7024	0.2122
+2026-09-27T09:24:46+00:00	game/g-a/art/ground-tile.png	gpt-image-2	high	1024x1024	rejected	296	0	7024	0.2122
+2026-09-27T09:24:47+00:00	game/g-a/art/crystal-platform.png	gpt-image-2	high	1024x1024	kept	283	0	7024	0.2121
+2026-09-27T09:28:45+00:00	game/g-a/art/crystal-wall.png	gpt-image-2	high	1024x1024	kept	306	0	7024	0.2122
+2026-09-27T09:28:46+00:00	game/g-a/art/platform-tile.png	gpt-image-2	high	1024x1024	kept	309	0	7024	0.2123
+2026-09-27T09:28:46+00:00	game/g-a/art/ground-tile.png	gpt-image-2	high	1024x1024	kept	322	0	7024	0.2123
+2026-09-27T09:28:49+00:00	game/g-a/art/wall-tile.png	gpt-image-2	high	1024x1024	kept	318	0	7024	0.2123
+2026-09-27T09:32:58+00:00	game/g-a/art/backdrop-near.png	gpt-image-2	high	1536x1024	kept	331	0	5488	0.1663
+total kept									1.9839
+total rejected									1.0550
+total superseded									0.0903
+total									3.1292

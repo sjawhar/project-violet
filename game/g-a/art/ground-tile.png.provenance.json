@@ -1,20 +1,20 @@
 {
   "schema_version": 1,
   "asset": "ground-tile.png",
-  "sha256": "d115bc1d9641963fec222228b0579e9fa8711480f78062c8dc1d0a02bd42edf4",
+  "sha256": "87917fe5fab571612f97cbf4063eb1dbaa01de7dd7039981d1b7731c76f62f76",
   "kind": "image",
   "origin": "generated",
-  "created_at": "2026-09-27T08:48:32+00:00",
+  "created_at": "2026-09-27T09:28:46+00:00",
   "generator": {
     "tool": "gen",
     "tool_version": "0.1.0",
     "provider": "openai",
     "model": "gpt-image-2",
-    "prompt": "A square texture tile of desert ground seen from the side, filling the whole square edge to edge: the top fifth is a band of golden sand with soft wind ripples, below it layered sandstone rock with horizontal strata, small pebbles and violet shadow in the cracks. The left and right edges match exactly so the tile repeats seamlessly side by side. Flat side view, no perspective, no horizon, no sky. No plants, no grass, no crystals, no gems. Fine-art hand-painted 2D game art in soft gouache and watercolor washes: large simple shapes, low detail, muted atmospheric golden-hour color, gentle gradients, soft edges, visible brush texture; a serene illustrated indie-game look, not cartoon and not mobile-game style. Brief palette: sand #d9b27c, rock #a86f46, shadow violet #5a4a7a, sky peach #f2c49b and teal #3f7f8c; crystal colors ember red #e04a3a, verdant green #3fbf6a, gray #8c8c8c (crystal colors appear only on crystal pieces).",
+    "prompt": "A square texture tile of desert ground seen from the side, filling the whole square edge to edge: the top fifth is a band of golden sand with soft wind ripples, below it layered sandstone rock with horizontal strata, a few small pebbles in sand and gray tones only, and violet shadow in the cracks. This is a seamless repeating texture: it wraps around horizontally, so the left edge continues exactly into the right edge, with even lighting and nothing cut at the sides. Flat side view, no perspective, no horizon, no sky. No plants, no grass, no crystals, no gems. Fine-art hand-painted 2D game art in soft gouache and watercolor washes: large simple shapes, low detail, muted atmospheric golden-hour color, gentle gradients, soft edges, visible brush texture; a serene illustrated indie-game look, not cartoon and not mobile-game style. Brief palette: sand #d9b27c, rock #a86f46, shadow violet #5a4a7a, sky peach #f2c49b and teal #3f7f8c; crystal colors ember red #e04a3a, verdant green #3fbf6a, gray #8c8c8c (crystal colors appear only on crystal pieces).",
     "negative_prompt": "text, letters, numbers, watermark, signature, black outlines, ink line art, cel shading, cartoon, mobile-game style, bricks, anime, pixel art, photorealism, 3D render, frame, border, vignette, drop shadow",
     "params": {
       "size": "1024x1024",
-      "quality": "low",
+      "quality": "high",
       "background": "opaque"
     },
     "inputs": []

@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "asset": "backdrop-far.png",
-  "sha256": "2401cd479d304a0b2d06fa6dd2fdabaa375031420a9b89ad73c09afdd58773f8",
+  "sha256": "0612eb7ac5a9bb2c49ac7f9705097fc88a0bc9bbb5795c31fc3a8eeaa0c7aa34",
   "kind": "image",
   "origin": "generated",
-  "created_at": "2026-09-27T08:49:53+00:00",
+  "created_at": "2026-09-27T09:23:27+00:00",
   "generator": {
     "tool": "gen",
     "tool_version": "0.1.0",
@@ -14,7 +14,7 @@
     "negative_prompt": "text, letters, numbers, watermark, signature, black outlines, ink line art, cel shading, cartoon, mobile-game style, bricks, anime, pixel art, photorealism, 3D render, frame, border, vignette, drop shadow",
     "params": {
       "size": "1536x1024",
-      "quality": "low",
+      "quality": "high",
       "background": "opaque"
     },
     "inputs": []
@@ -22,8 +22,8 @@
   "human_edits": [
     {
       "by": "claude (lane G-A agent)",
-      "description": "bakeoff/g-a/art_edit.py seam: cropped to the best-matching edge columns and crossfaded 48 px so it repeats side by side",
-      "at": "2026-09-27T08:51:10+00:00"
+      "description": "bakeoff/g-a/art_edit.py seam: cropped to the best-matching edge bands and crossfaded 48 px so it repeats side by side",
+      "at": "2026-09-27T09:29:50+00:00"
     }
   ],
   "license": "proprietary"

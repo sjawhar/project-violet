@@ -1,29 +1,29 @@
 {
   "schema_version": 1,
   "asset": "backdrop-near.png",
-  "sha256": "6e13212578e0d0574d8d42cad3c39f02e3cc00b043ea73a17174686cea624829",
+  "sha256": "d8d049a021fe90b7c4da18b3ec0185ad17f2e33759f1477d3a2bd0d1a4f30be4",
   "kind": "image",
   "origin": "generated",
-  "created_at": "2026-09-27T08:49:48+00:00",
+  "created_at": "2026-09-27T09:32:58+00:00",
   "generator": {
     "tool": "gen",
     "tool_version": "0.1.0",
     "provider": "openai",
     "model": "gpt-image-2",
-    "prompt": "A wide painting for the nearest parallax layer: low golden sand dunes across the bottom third of the image with dry acacia trees and saguaro cactus silhouettes on them; the dunes run off the bottom edge. The left and right edges match exactly so the strip repeats seamlessly side by side. Everything above the dunes and plants is empty. The dune line meets both side edges at the same height so the join is invisible. No crystals, no gems, no rocks with color. The background is one perfectly flat, uniform, solid pure magenta #ff00ff with no gradient, texture, glow or shadow on it. Fine-art hand-painted 2D game art in soft gouache and watercolor washes: large simple shapes, low detail, muted atmospheric golden-hour color, gentle gradients, soft edges, visible brush texture; a serene illustrated indie-game look, not cartoon and not mobile-game style. Brief palette: sand #d9b27c, rock #a86f46, shadow violet #5a4a7a, sky peach #f2c49b and teal #3f7f8c; crystal colors ember red #e04a3a, verdant green #3fbf6a, gray #8c8c8c (crystal colors appear only on crystal pieces).",
+    "prompt": "A wide painting for the nearest parallax layer: low golden sand dunes across the bottom third of the image with dry acacia trees and saguaro cactus silhouettes on them; the dunes run off the bottom edge. The left and right edges match exactly so the strip repeats seamlessly side by side. Everything above the dunes and plants is empty, with no sky. The dune line meets both side edges at the same height so the join is invisible, and the outer eighth of the image at each side edge holds only low dunes and small grass, no trees or cacti. No crystals, no gems, no rocks with color. The background is fully transparent. Fine-art hand-painted 2D game art in soft gouache and watercolor washes: large simple shapes, low detail, muted atmospheric golden-hour color, gentle gradients, soft edges, visible brush texture; a serene illustrated indie-game look, not cartoon and not mobile-game style. Brief palette: sand #d9b27c, rock #a86f46, shadow violet #5a4a7a, sky peach #f2c49b and teal #3f7f8c; crystal colors ember red #e04a3a, verdant green #3fbf6a, gray #8c8c8c (crystal colors appear only on crystal pieces).",
     "negative_prompt": "text, letters, numbers, watermark, signature, black outlines, ink line art, cel shading, cartoon, mobile-game style, bricks, anime, pixel art, photorealism, 3D render, frame, border, vignette, drop shadow",
     "params": {
       "size": "1536x1024",
-      "quality": "low",
-      "background": "opaque"
+      "quality": "high",
+      "background": "transparent"
     },
     "inputs": []
   },
   "human_edits": [
     {
       "by": "claude (lane G-A agent)",
-      "description": "bakeoff/g-a/art_edit.py key then seam: magenta sky keyed to transparency, then cropped to the best-matching edge columns and crossfaded 48 px so it repeats side by side",
-      "at": "2026-09-27T08:51:17+00:00"
+      "description": "bakeoff/g-a/art_edit.py seam: cropped to the best-matching edge bands and crossfaded 48 px so it repeats side by side",
+      "at": "2026-09-27T09:33:16+00:00"
     }
   ],
   "license": "proprietary"

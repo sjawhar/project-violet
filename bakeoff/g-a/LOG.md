@@ -9,22 +9,38 @@ status: in-progress
 sessions:
   - {start: "2026-09-27T08:23:12Z", end: "2026-09-27T08:37:00Z", purpose: "greybox milestone: workspace, project skeleton, scripts, replay, ci.sh (plan Task 7 Steps 1-17)"}
   - {start: "2026-09-27T08:43:18Z", end: "2026-09-27T09:08:00Z", purpose: "painted world (plan Task 7 Step 18): gen image pieces, PaintedArt, reveal shader, parallax backdrop"}
+  - {start: "2026-09-27T09:18:56Z", end: "2026-09-27T09:38:00Z", purpose: "painted art regenerated at quality=high with transparent backgrounds (gen from PR #20)"}
 costs:
-  - {item: "gen image gpt-image-2 1024x1024, wall-tile (rejected)", usd: 0.0143, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:47:36+00:00)"}
-  - {item: "gen image gpt-image-2 1536x1024, backdrop-near (rejected)", usd: 0.0062, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
-  - {item: "gen image gpt-image-2 1024x1024, wall-tile (kept)", usd: 0.0073, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
-  - {item: "gen image gpt-image-2 1536x1024, backdrop-far (rejected)", usd: 0.0061, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
-  - {item: "gen image gpt-image-2 1024x1024, orb (kept)", usd: 0.0073, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
-  - {item: "gen image gpt-image-2 1536x1024, backdrop-mid (rejected)", usd: 0.0063, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
-  - {item: "gen image gpt-image-2 1024x1024, crystal-wall (kept)", usd: 0.0073, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:32+00:00)"}
-  - {item: "gen image gpt-image-2 1024x1024, ground-tile (kept)", usd: 0.0074, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:32+00:00)"}
-  - {item: "gen image gpt-image-2 1024x1024, platform-tile (kept)", usd: 0.0073, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:32+00:00)"}
-  - {item: "gen image gpt-image-2 1024x1024, goal-gate (rejected)", usd: 0.0072, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:32+00:00)"}
-  - {item: "gen image gpt-image-2 1024x1024, crystal-platform (kept)", usd: 0.0146, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:36+00:00)"}
-  - {item: "gen image gpt-image-2 1536x1024, backdrop-near (kept)", usd: 0.0064, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:49:48+00:00)"}
-  - {item: "gen image gpt-image-2 1536x1024, backdrop-mid (kept)", usd: 0.0064, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:49:50+00:00)"}
-  - {item: "gen image gpt-image-2 1536x1024, backdrop-far (kept)", usd: 0.0118, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:49:53+00:00)"}
-  - {item: "gen image gpt-image-2 1024x1024, goal-gate (kept)", usd: 0.0146, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:49:55+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=low, wall-tile (rejected)", usd: 0.0143, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:47:36+00:00)"}
+  - {item: "gen image gpt-image-2 1536x1024 quality=low, backdrop-near (rejected)", usd: 0.0062, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
+  - {item: "superseded by the quality=high regeneration: gen image gpt-image-2 1024x1024 quality=low, wall-tile", usd: 0.0073, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
+  - {item: "gen image gpt-image-2 1536x1024 quality=low, backdrop-far (rejected)", usd: 0.0061, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
+  - {item: "superseded by the quality=high regeneration: gen image gpt-image-2 1024x1024 quality=low, orb", usd: 0.0073, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
+  - {item: "gen image gpt-image-2 1536x1024 quality=low, backdrop-mid (rejected)", usd: 0.0063, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
+  - {item: "superseded by the quality=high regeneration: gen image gpt-image-2 1024x1024 quality=low, crystal-wall", usd: 0.0073, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:32+00:00)"}
+  - {item: "superseded by the quality=high regeneration: gen image gpt-image-2 1024x1024 quality=low, ground-tile", usd: 0.0074, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:32+00:00)"}
+  - {item: "superseded by the quality=high regeneration: gen image gpt-image-2 1024x1024 quality=low, platform-tile", usd: 0.0073, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:32+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=low, goal-gate (rejected)", usd: 0.0072, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:32+00:00)"}
+  - {item: "superseded by the quality=high regeneration: gen image gpt-image-2 1024x1024 quality=low, crystal-platform", usd: 0.0146, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:36+00:00)"}
+  - {item: "superseded by the quality=high regeneration: gen image gpt-image-2 1536x1024 quality=low, backdrop-near", usd: 0.0064, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:49:48+00:00)"}
+  - {item: "superseded by the quality=high regeneration: gen image gpt-image-2 1536x1024 quality=low, backdrop-mid", usd: 0.0064, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:49:50+00:00)"}
+  - {item: "superseded by the quality=high regeneration: gen image gpt-image-2 1536x1024 quality=low, backdrop-far", usd: 0.0118, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:49:53+00:00)"}
+  - {item: "superseded by the quality=high regeneration: gen image gpt-image-2 1024x1024 quality=low, goal-gate", usd: 0.0146, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:49:55+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, orb (kept)", usd: 0.2120, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:21:50+00:00)"}
+  - {item: "gen image gpt-image-2 1536x1024 quality=high, backdrop-far (kept)", usd: 0.1661, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:23:27+00:00)"}
+  - {item: "gen image gpt-image-2 1536x1024 quality=high, backdrop-near (rejected)", usd: 0.1662, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:23:42+00:00)"}
+  - {item: "gen image gpt-image-2 1536x1024 quality=high, backdrop-mid (kept)", usd: 0.1662, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:23:43+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, goal-gate (kept)", usd: 0.2120, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:24:26+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, wall-tile (rejected)", usd: 0.2122, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:24:32+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, crystal-wall (rejected)", usd: 0.2121, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:24:39+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, platform-tile (rejected)", usd: 0.2122, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:24:39+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, ground-tile (rejected)", usd: 0.2122, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:24:46+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, crystal-platform (kept)", usd: 0.2121, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:24:47+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, crystal-wall (kept)", usd: 0.2122, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:28:45+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, platform-tile (kept)", usd: 0.2123, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:28:46+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, ground-tile (kept)", usd: 0.2123, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:28:46+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, wall-tile (kept)", usd: 0.2123, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:28:49+00:00)"}
+  - {item: "gen image gpt-image-2 1536x1024 quality=high, backdrop-near (kept)", usd: 0.1663, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:32:58+00:00)"}
 interventions: []
 friction:
   - {at: "2026-09-27T08:26:30Z", what: "plan's export_presets.cfg omits include_filter and exclude_filter; every godot --import printed 'Couldn't find the given section preset.0 and key include_filter' errors", workaround: "added include_filter=\"\" and exclude_filter=\"\" to the preset"}
@@ -37,6 +53,8 @@ friction:
   - {at: "2026-09-27T08:48:40Z", what: "gpt-image-2 put red and green crystals into neutral pieces (wall-tile v1, goal-gate v1, backdrop-mid and backdrop-near v1), which muddies the red/green tag colors; its 'seamless' backdrops did not repeat cleanly", workaround: "regenerated with explicit 'no crystals, no gems'; backdrops cropped to their best-matching edge bands and crossfaded (art_edit.py seam, provenance edit); backdrop-mid needed a second pass to drop a half-transparent ghost at the join"}
   - {at: "2026-09-27T08:56:00Z", what: "each 1024 px tile drawn whole into one 64 px cell (plan: scale = ts / texture width) repeated every cell as busy stripes", workaround: "PaintedArt shows a quarter of the texture per cell, picked by cell position, so one texture spans 4 cells (surface tiles: half, top edge kept)"}
   - {at: "2026-09-27T08:57:00Z", what: "Parallax2D loops only when repeat_size covers the screen; the backdrops are 1266-1397 px wide, so the mid layer showed a hard cut", workaround: "repeat_times = ceil(viewport width / texture width) + 1"}
+  - {at: "2026-09-27T09:26:00Z", what: "at quality=high, three of the five tiles did not tile (wall-tile and platform-tile broke at the side seam, crystal-wall at the top/bottom seam) and ground-tile had red and green pebbles", workaround: "regenerated the four with explicit wrap-around wording and 'pebbles in sand and gray tones only'; the second round tiled"}
+  - {at: "2026-09-27T09:31:00Z", what: "the first quality=high backdrop-near had trees at both side edges, so the seam crossfade left a half-transparent green tree canopy floating over the dunes", workaround: "regenerated it with the outer eighth of each side kept to low dunes and grass; the seam edit now crossfades only dunes"}
 blockers: []
 deliverables: {build: bakeoff/g-a/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-a/reports/replay.json}
 ---
@@ -49,6 +67,10 @@ The replay puts the four moments the capture stills look for on capture-lib's st
 
 A hazard touch is reported twice when the player's box overlaps two hazard cells; the run fails either way.
 
-Painted world (Step 18): the ten pieces the biome brief lists, generated by `bakeoff/g-a/gen-art.sh` (gpt-image-2, prompts and palette in the script and in each sidecar) and edited by `bakeoff/g-a/edit-art.sh`. PaintedArt (art/painted_art.gd, art/lane_art.tres) chooses ground-tile for open-topped cells on the ground line, platform-tile for open-topped cells above it, wall-tile inside; crystal cells get art/reveal.gdshader (gray until acquired, tinted once acquired, glow pulsing while active); orbs are the untinted orb sprite tinted by color; the goal gate is two tiles tall; hazards are a flat dark violet. The backdrop is three Parallax2D layers (scroll 0.2/0.5/0.8). The character is still the STAND-IN capsule. Replays and the tag check run on the default greybox art, so the art cannot change collisions. The letterbox above and below the 16-row level is dark violet (project clear color) instead of gray.
+Painted world (Step 18): the ten pieces the biome brief lists, generated by `bakeoff/g-a/gen-art.sh` with gpt-image-2 at quality=high (prompts and palette in the script and in each sidecar); the orb, the goal gate and the mid and near backdrops come out of gen with `--background transparent`. `bakeoff/g-a/edit-art.sh` then crops each backdrop to its best-matching edge bands and crossfades them so it repeats (recorded with `provenance edit`). PaintedArt (art/painted_art.gd, art/lane_art.tres) chooses ground-tile for open-topped cells on the ground line, platform-tile for open-topped cells above it, wall-tile inside; crystal cells get art/reveal.gdshader (gray until acquired, tinted once acquired, glow pulsing while active); orbs are the untinted orb sprite tinted by color; the goal gate is two tiles tall; hazards are a flat dark violet. The backdrop is three Parallax2D layers (scroll 0.2/0.5/0.8). The character is still the STAND-IN capsule. Replays and the tag check run on the default greybox art, so the art cannot change collisions. The letterbox above and below the 16-row level is dark violet (project clear color) instead of gray.
 
-Rejected generations: wall-tile v1 (cartoon brick look, red crystal sprouts in neutral rock), goal-gate v1 (red and green gems on the gate), backdrop-far v1 (clouds broke at the repeat seam), backdrop-mid v1 and backdrop-near v1 (red and green crystals in the scenery; mid also had a visible seam).
+The first Step 18 pass ran at the API's default quality=low (gen had no quality or background option then) and keyed magenta backgrounds by hand; its kept pieces are marked superseded in `costs`.
+
+Rejected generations, quality=low pass: wall-tile v1 (cartoon brick look, red crystal sprouts in neutral rock), goal-gate v1 (red and green gems on the gate), backdrop-far v1 (clouds broke at the repeat seam), backdrop-mid v1 and backdrop-near v1 (red and green crystals in the scenery; mid also had a visible seam).
+
+Rejected generations, quality=high pass: wall-tile, platform-tile (side seam), crystal-wall (top/bottom seam), ground-tile (red and green pebbles), backdrop-near (trees at both edges left a green ghost after the seam crossfade).
