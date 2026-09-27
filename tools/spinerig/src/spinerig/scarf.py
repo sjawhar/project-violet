@@ -10,7 +10,10 @@ and `flutter_hz` add a sinusoidal wobble; `lag_frames` delays each successive bo
 wobble by that many frames, so amplitude (set by `gain`) decreases and phase lag
 increases along the chain. Keyframes are sampled every `FRAME_STEP` frames at `FPS`
 frames per second, always including t=0 and t=duration; for a looping animation the
-final keyframe's angle is forced to match the first so the loop doesn't pop.
+final keyframe's rotation is forced to match the first so the loop doesn't pop. Emits
+Spine 4.x's own `value` field for a rotate keyframe (not the 3.8-era `angle`; see
+`generate.py`'s module docstring), since this timeline is entirely generated, not
+translated from an authored one.
 """
 
 from __future__ import annotations
@@ -57,12 +60,12 @@ def rotate_keys(
     lag_frames: float,
     chain_index: int,
 ) -> list[dict]:
-    """Spine `rotate` timeline keyframes (`{"time": t, "angle": deg}`, ascending time) for one scarf bone."""
+    """Spine `rotate` timeline keyframes (`{"time": t, "value": deg}`, ascending time) for one scarf bone."""
     times = _sample_times(duration)
     keys = [
         {
             "time": round(t, 6),
-            "angle": _angle(
+            "value": _angle(
                 t,
                 gain=gain,
                 trail_deg=trail_deg,
@@ -75,5 +78,5 @@ def rotate_keys(
         for t in times
     ]
     if loop and len(keys) > 1:
-        keys[-1]["angle"] = keys[0]["angle"]
+        keys[-1]["value"] = keys[0]["value"]
     return keys

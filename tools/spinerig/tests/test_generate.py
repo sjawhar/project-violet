@@ -1,7 +1,8 @@
 """Tests for `spinerig.generate` (structure of the Spine 4.3 JSON it emits, validated
-against https://esotericsoftware.com/spine-json-format, accessed 2026-09-27) and the
-`spinerig generate` CLI. Every rig uses real PNGs written by Pillow in `tmp_path`, since
-`generate()` reads part sizes from the actual image files."""
+against the actual 4.3 runtime source and example export -- see generate.py's module
+docstring, not just https://esotericsoftware.com/spine-json-format, which documents the
+3.8 format) and the `spinerig generate` CLI. Every rig uses real PNGs written by Pillow
+in `tmp_path`, since `generate()` reads part sizes from the actual image files."""
 
 from __future__ import annotations
 
@@ -55,7 +56,7 @@ def test_pivot_places_the_attachment_with_no_rotation(tmp_path):
         draw_order=["part1"],
     )
 
-    spine, _, _ = generate(rig, tmp_path)
+    spine, _, _ = generate(rig, tmp_path, tmp_path)
 
     attachment = spine["skins"][0]["attachments"]["part1"]["part1"]
     assert attachment["x"] == pytest.approx(0.0, abs=1e-6)
@@ -70,7 +71,7 @@ def test_rotation_places_the_attachment(tmp_path):
         draw_order=["part1"],
     )
 
-    spine, _, _ = generate(rig, tmp_path)
+    spine, _, _ = generate(rig, tmp_path, tmp_path)
 
     attachment = spine["skins"][0]["attachments"]["part1"]["part1"]
     assert attachment["x"] == pytest.approx(-100.0, abs=1e-6)
@@ -115,19 +116,19 @@ def test_scarf_amplitude_decreases_and_phase_increases_along_chain(tmp_path):
         scarf=scarf,
     )
 
-    spine, _, _ = generate(rig, tmp_path)
+    spine, _, _ = generate(rig, tmp_path, tmp_path)
     keys = {name: spine["animations"]["idle"]["bones"][name]["rotate"] for name in chain}
 
-    amplitudes = [max(abs(key["angle"]) for key in keys[name]) for name in chain]
+    amplitudes = [max(abs(key["value"]) for key in keys[name]) for name in chain]
     assert amplitudes[0] > amplitudes[1] > amplitudes[2]
 
-    # The lag is an exact multiple of the sample step, so bone i's angle at sample k,
-    # scaled by its own gain, equals bone 0's angle 3*i samples earlier scaled by its gain
+    # The lag is an exact multiple of the sample step, so bone i's value at sample k,
+    # scaled by its own gain, equals bone 0's value 3*i samples earlier scaled by its gain
     # -- the phase delay growing with each bone in the chain.
     k = 6
     for index, name in enumerate(chain):
-        expected = keys["scarf1"][k - 3 * index]["angle"] / gain[0]
-        actual = keys[name][k]["angle"] / gain[index]
+        expected = keys["scarf1"][k - 3 * index]["value"] / gain[0]
+        actual = keys[name][k]["value"] / gain[index]
         assert actual == pytest.approx(expected, abs=1e-6)
 
 
@@ -145,12 +146,12 @@ def test_scarf_keys_loop_to_avoid_a_pop(tmp_path):
         scarf={"bones": ["scarf1"], "trail_deg": {"idle": 5.0}, "flutter_deg": 8.0, "flutter_hz": 2.5, "lag_frames": 2, "gain": [1.0]},
     )
 
-    spine, _, _ = generate(rig, tmp_path)
+    spine, _, _ = generate(rig, tmp_path, tmp_path)
 
     keys = spine["animations"]["idle"]["bones"]["scarf1"]["rotate"]
     assert keys[0]["time"] == 0
     assert keys[-1]["time"] == pytest.approx(0.77)
-    assert keys[-1]["angle"] == pytest.approx(keys[0]["angle"])
+    assert keys[-1]["value"] == pytest.approx(keys[0]["value"])
 
 
 # --- errors: no silent fallbacks -------------------------------------------------------
@@ -164,7 +165,7 @@ def test_missing_part_image_names_the_file(tmp_path):
     )
 
     with pytest.raises(RigError, match="missing.png"):
-        generate(rig, tmp_path)
+        generate(rig, tmp_path, tmp_path)
 
 
 def test_part_referencing_an_unknown_bone_raises(tmp_path):
@@ -176,7 +177,7 @@ def test_part_referencing_an_unknown_bone_raises(tmp_path):
     )
 
     with pytest.raises(RigError, match="nope"):
-        generate(rig, tmp_path)
+        generate(rig, tmp_path, tmp_path)
 
 
 def test_bone_with_an_unknown_parent_raises(tmp_path):
@@ -188,7 +189,7 @@ def test_bone_with_an_unknown_parent_raises(tmp_path):
     )
 
     with pytest.raises(RigError, match="ghost"):
-        generate(rig, tmp_path)
+        generate(rig, tmp_path, tmp_path)
 
 
 def test_child_before_its_parent_raises(tmp_path):
@@ -200,7 +201,7 @@ def test_child_before_its_parent_raises(tmp_path):
     )
 
     with pytest.raises(RigError, match="child before parent"):
-        generate(rig, tmp_path)
+        generate(rig, tmp_path, tmp_path)
 
 
 def test_draw_order_naming_an_undefined_slot_raises(tmp_path):
@@ -212,7 +213,7 @@ def test_draw_order_naming_an_undefined_slot_raises(tmp_path):
     )
 
     with pytest.raises(RigError, match="ghost_slot"):
-        generate(rig, tmp_path)
+        generate(rig, tmp_path, tmp_path)
 
 
 def test_part_missing_from_draw_order_raises(tmp_path):
@@ -228,7 +229,7 @@ def test_part_missing_from_draw_order_raises(tmp_path):
     )
 
     with pytest.raises(RigError, match="part2"):
-        generate(rig, tmp_path)
+        generate(rig, tmp_path, tmp_path)
 
 
 def test_scarf_chain_referencing_an_unknown_bone_raises(tmp_path):
@@ -242,7 +243,42 @@ def test_scarf_chain_referencing_an_unknown_bone_raises(tmp_path):
     )
 
     with pytest.raises(RigError, match="ghost"):
-        generate(rig, tmp_path)
+        generate(rig, tmp_path, tmp_path)
+
+
+def test_authored_keyframe_with_a_curve_is_refused(tmp_path):
+    # Bezier `curve` keyframes pack differently for a 1-value timeline (rotate) vs. a
+    # 2-value one (translate) in the real 4.x runtime (readCurve's `value << 2` offset);
+    # this module doesn't translate them, so it must refuse rather than emit a rig with
+    # the wrong bezier shape.
+    make_png(tmp_path / "parts" / "arm.png", (20, 60))
+    rig = base_rig(
+        bones=[{"name": "root"}, {"name": "arm", "parent": "root"}],
+        parts=[{"slot": "arm", "bone": "arm", "image": "arm.png", "pivot": [0.5, 1.0], "rotation": 0}],
+        draw_order=["arm"],
+        animations={
+            "wave": {
+                "duration": 0.5,
+                "bones": {"arm": {"rotate": [{"time": 0, "angle": 0, "curve": [0.25, 0, 0.75, 1]}, {"time": 0.5, "angle": 30}]}},
+            }
+        },
+    )
+
+    with pytest.raises(RigError, match="curve"):
+        generate(rig, tmp_path, tmp_path)
+
+
+def test_authored_unsupported_timeline_type_raises(tmp_path):
+    make_png(tmp_path / "parts" / "arm.png", (20, 60))
+    rig = base_rig(
+        bones=[{"name": "root"}, {"name": "arm", "parent": "root"}],
+        parts=[{"slot": "arm", "bone": "arm", "image": "arm.png", "pivot": [0.5, 1.0], "rotation": 0}],
+        draw_order=["arm"],
+        animations={"wave": {"duration": 0.5, "bones": {"arm": {"scale": [{"time": 0, "x": 1, "y": 1}]}}}},
+    )
+
+    with pytest.raises(RigError, match="scale"):
+        generate(rig, tmp_path, tmp_path)
 
 
 # --- every animation appears (Step 2) --------------------------------------------------
@@ -265,18 +301,18 @@ def test_every_animation_in_the_rig_appears_in_the_output(tmp_path):
         },
     )
 
-    spine, _, _ = generate(rig, tmp_path)
+    spine, _, _ = generate(rig, tmp_path, tmp_path)
 
     assert set(spine["animations"]) == {"idle", "run", "jump", "fall", "double_jump", "dash", "land"}
 
 
-# --- structure vs. the documented Spine 4.3 JSON format --------------------------------
+# --- structure vs. the actual Spine 4.3 runtime -----------------------------------------
 
 
 def test_output_has_the_documented_top_level_keys(tmp_path):
     rig, base = minimal_rig(tmp_path)
 
-    spine, meta, _ = generate(rig, base)
+    spine, meta, _ = generate(rig, base, base)
 
     assert set(spine) == {"skeleton", "bones", "slots", "skins", "animations"}
     assert set(spine["skeleton"]) == {"spine", "x", "y", "width", "height", "images"}
@@ -294,7 +330,7 @@ def test_bones_are_emitted_parent_before_child(tmp_path):
         draw_order=["part1"],
     )
 
-    spine, _, _ = generate(rig, tmp_path)
+    spine, _, _ = generate(rig, tmp_path, tmp_path)
 
     positions = {bone["name"]: index for index, bone in enumerate(spine["bones"])}
     for bone in spine["bones"]:
@@ -310,7 +346,7 @@ def test_slot_and_attachment_references_resolve(tmp_path):
         draw_order=["head"],
     )
 
-    spine, _, _ = generate(rig, tmp_path)
+    spine, _, _ = generate(rig, tmp_path, tmp_path)
 
     bone_names = {bone["name"] for bone in spine["bones"]}
     for slot in spine["slots"]:
@@ -322,6 +358,9 @@ def test_slot_and_attachment_references_resolve(tmp_path):
 
 
 def test_animation_timelines_are_shaped_as_ascending_keyframe_lists(tmp_path):
+    # Input uses this schema's `angle` name for a rotate keyframe; the 4.3 runtime itself
+    # reads `value` (SkeletonJson.ts's `readTimeline1`, see generate.py's module
+    # docstring) -- `generate` must translate it, not pass `angle` through.
     make_png(tmp_path / "parts" / "arm.png", (20, 60))
     rig = base_rig(
         bones=[{"name": "root"}, {"name": "arm", "parent": "root"}],
@@ -335,13 +374,50 @@ def test_animation_timelines_are_shaped_as_ascending_keyframe_lists(tmp_path):
         },
     )
 
-    spine, _, _ = generate(rig, tmp_path)
+    spine, _, _ = generate(rig, tmp_path, tmp_path)
 
     timeline = spine["animations"]["wave"]["bones"]["arm"]["rotate"]
     times = [key["time"] for key in timeline]
     assert times == sorted(times)
     for key in timeline:
-        assert set(key) == {"time", "angle"}
+        assert set(key) == {"time", "value"}
+    assert timeline[1]["value"] == 30
+
+
+def test_images_path_matches_the_planned_rig_src_parts_layout(tmp_path):
+    # docs/superpowers/plans/2026-09-27-phase-1-bake-off.md's Task 5 layout: rig.json and
+    # the generated output live in `rig-src/`, sibling to `parts/`.
+    protagonist = tmp_path / "protagonist"
+    make_png(protagonist / "parts" / "part1.png", (10, 10))
+    rig_dir = protagonist / "rig-src"
+    rig = base_rig(
+        bones=[{"name": "root"}],
+        parts=[{"slot": "part1", "bone": "root", "image": "part1.png", "pivot": [0.5, 0.5], "rotation": 0}],
+        draw_order=["part1"],
+        parts_dir="../parts",
+    )
+    rig_dir.mkdir()
+
+    spine, _, _ = generate(rig, rig_dir, rig_dir)
+
+    assert spine["skeleton"]["images"] == "../parts/"
+
+
+def test_images_path_is_computed_for_a_different_layout(tmp_path):
+    # Proves the path isn't a hardcoded "../parts/": a deeper --out directory gets a
+    # correspondingly deeper relative path back to the same parts_dir.
+    make_png(tmp_path / "parts" / "part1.png", (10, 10))
+    rig = base_rig(
+        bones=[{"name": "root"}],
+        parts=[{"slot": "part1", "bone": "root", "image": "part1.png", "pivot": [0.5, 0.5], "rotation": 0}],
+        draw_order=["part1"],
+        parts_dir="parts",
+    )
+    out_dir = tmp_path / "build" / "nested"
+
+    spine, _, _ = generate(rig, tmp_path, out_dir)
+
+    assert spine["skeleton"]["images"] == "../../parts/"
 
 
 # --- CLI --------------------------------------------------------------------------------
@@ -358,6 +434,7 @@ def test_cli_generate_writes_out_and_meta(tmp_path):
     assert code == 0
     spine = json.loads(out_path.read_text())
     assert spine["skeleton"]["spine"] == "4.3.00"
+    assert spine["skeleton"]["images"] == "../parts/"
     meta_path = out_path.parent / "violet.generated.meta.json"
     meta = json.loads(meta_path.read_text())
     assert meta["facing"] == "right"

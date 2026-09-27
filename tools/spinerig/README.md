@@ -13,17 +13,39 @@ puts in their own `rig.json` — that's data, not code (Task 5 Step 3 in
 
 ## Spine 4.3 JSON format
 
-The output's shape (`skeleton`, `bones`, `slots`, `skins`, `animations` and their fields)
-follows the documented Spine JSON export format:
-<https://esotericsoftware.com/spine-json-format> (accessed 2026-09-27). Spine conventions
-used throughout: **y is up**, **angles are in degrees**, and `bones` lists a bone's parent
-before the bone itself.
+The output's shape (top-level keys, bone/slot/attachment fields, parent-before-child
+ordering) follows the documented Spine JSON export format:
+<https://esotericsoftware.com/spine-json-format> (accessed 2026-09-27). **That page is
+3.8-era** — its own example says `"spine": "3.8.24"` — and it is wrong about one field
+for Spine 4.x: a bone's `rotate` timeline keyframe holds `value`, not `angle`.
+
+Verified instead against the actual 4.3 runtime: github.com/EsotericSoftware/
+spine-runtimes, branch `4.3`, `spine-ts/spine-core/src/SkeletonJson.ts`, and that
+branch's own example export, `examples/spineboy/export/spineboy-pro.json` (confirms it
+in practice: `"rotate": [{"value": 9.111553}]`, never `"angle"`). Checked against the
+runtime source, field by field:
+
+- `skeleton.x/y/width/height/images` and bone `name/parent/x/y/rotation/length`: read by
+  `readSkeletonData`, unchanged from the page.
+- Slot `name/bone/attachment` and region attachment `path/x/y/rotation/width/height`:
+  read by `readAttachment`, unchanged from the page.
+- Bone `rotate` timeline: read by `readTimeline1`, which reads `keyMap.value` — **not**
+  the page's `angle`. `translate` timelines keep `x`/`y`, unchanged from the page.
+- Bezier `curve` keyframes: `readCurve` packs a 2-value timeline's (e.g. `translate`)
+  curve as two 4-number arrays back to back (`value << 2` selects which), not the single
+  4-number array the page describes generically. This module doesn't need bezier easing
+  and doesn't translate this, so it refuses any authored `curve` rather than risk
+  emitting the wrong shape.
+
+Spine conventions used throughout: **y is up**, **angles are in degrees**, and `bones`
+lists a bone's parent before the bone itself.
 
 **This tool's output has not been imported into the Spine 4.3 editor.** Spine
 Professional isn't set up on this machine yet (Task 5 Step 4 needs it). The tests below
-validate structure against the documented format — required top-level keys, bone parent
-order, slot/attachment references resolving, animation timeline shapes — not an actual
-Spine import. Treat `Spine.sh -i` accepting a generated file as unverified until Step 4.
+validate structure against the documented (and runtime-verified) format — required
+top-level keys, bone parent order, slot/attachment references resolving, animation
+timeline shapes — not an actual Spine import. Treat `Spine.sh -i` accepting a generated
+file as unverified until Step 4.
 
 ## Usage
 
@@ -40,9 +62,10 @@ so the rig's author can pick bone lengths before wiring up animations.
 
 On any malformed input — a part naming an image file that doesn't exist, a bone or scarf
 chain naming a bone that doesn't exist, a bone whose `parent` appears later in `bones`
-than the bone itself, or `draw_order` and the parts not naming exactly the same set of
-slots — `spinerig generate` exits 1 and names the offending bone, slot or file. It writes
-neither output file when it fails.
+than the bone itself, `draw_order` and the parts not naming exactly the same set of
+slots, an authored animation timeline that isn't `rotate` or `translate`, or an authored
+keyframe with a `curve` — `spinerig generate` exits 1 and names the offending bone,
+slot, file, timeline, or animation. It writes neither output file when it fails.
 
 ## `violet-rig` v1
 
@@ -74,7 +97,9 @@ neither output file when it fails.
       "loop": true,   // optional, default true: forces the last keyframe to match the first so a loop doesn't pop
       "bones": {
         "torso": { "rotate": [{ "time": 0, "angle": -2 }, { "time": 0.5, "angle": 2 }] }
-        // "translate": [{ "time": t, "x": ..., "y": ... }] is also read through unchanged
+        // this schema's "angle" becomes Spine 4.x's own "value" on output (see above);
+        // "translate": [{ "time": t, "x": ..., "y": ... }] is read through unchanged;
+        // a keyframe "curve" is refused, not translated -- author linear keys only
       }
     }
   }
@@ -87,7 +112,10 @@ offset as the image centre relative to the pivot, rotated into bone space:
 dy·cos(rot)`. The skeleton's `x, y, width, height` and `violet.meta.json`'s `height_px`
 are the setup-pose axis-aligned bounding box over every attachment's four corners, after
 walking the bone hierarchy's forward kinematics — exactly the AABB the Spine JSON format
-doc defines for the `skeleton` section.
+doc defines for the `skeleton` section. `skeleton.images` is the relative path from
+`--out`'s own directory to the resolved `parts_dir` (POSIX separators, trailing slash) —
+computed per run, not a fixed string, so it's correct whatever directories the rig
+actually uses.
 
 Scarf bones must **not** appear in `animations.*.bones`: `spinerig generate` computes and
 injects their `rotate` timelines itself (`scarf.py`), for bone *i* of the chain (0-indexed
@@ -97,8 +125,10 @@ from the root end):
 angle_i(t) = -gain_i * trail_deg[anim] + gain_i * flutter_deg * sin(2π · flutter_hz · (t - i * lag_frames/30))
 ```
 
-sampled every 2 frames at 30 fps. Decreasing `gain` along the chain gives decreasing
-amplitude; the `i * lag_frames/30` term gives increasing phase delay.
+sampled every 2 frames at 30 fps and emitted directly as Spine's `value` field (this
+timeline is generated, not translated from authored input). Decreasing `gain` along the
+chain gives decreasing amplitude; the `i * lag_frames/30` term gives increasing phase
+delay.
 
 Each attachment also sets `path` to its image's filename stem, so a slot's name doesn't
 have to match its image's filename for the Spine import to resolve the texture region.
@@ -118,9 +148,14 @@ leg_front_upper/lower, scarf1, scarf2, scarf3`):
   generation fails naming the missing animation.
 - `parts_dir` and every part's `image` are resolved relative to `rig.json`'s own
   directory — point `parts_dir` at wherever Task 4's part PNGs actually land.
+  `skeleton.images` is then computed from `--out`'s directory to that resolved
+  `parts_dir`, so `--out` should be wherever the `.spine` import in Step 4 will read
+  the generated JSON from.
 - `draw_order` must be an exact permutation of the parts' slot names (missing or extra
   slots both fail loudly, naming the offending slot) — this is what fixes the skeleton's
   front-to-back layering.
+- Don't author a keyframe `curve`: `spinerig generate` refuses it (see above). Linear
+  keyframes only.
 - The generator's `--out FILE.json` is the input to `Spine.sh -i ... -r NAME` (Step 4);
   it has not been run through the real Spine 4.3 importer yet, so treat any layout choice
   as provisional until that import succeeds.

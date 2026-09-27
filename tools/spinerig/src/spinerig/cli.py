@@ -28,15 +28,15 @@ def build_parser() -> argparse.ArgumentParser:
 
 def cmd_generate(args: argparse.Namespace) -> int:
     rig_path: Path = args.rig
+    out: Path = args.out
     rig = json.loads(rig_path.read_text())
 
     try:
-        spine_json, meta_json, parts = generate(rig, rig_path.parent)
+        spine_json, meta_json, parts = generate(rig, rig_path.parent, out.parent)
     except RigError as error:
         print(f"spinerig: error: {error}", file=sys.stderr)
         return 1
 
-    out: Path = args.out
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(spine_json, indent=2) + "\n")
 
