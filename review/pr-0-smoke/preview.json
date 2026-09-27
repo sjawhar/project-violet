@@ -1,0 +1,93 @@
+{
+  "pr": "0-smoke",
+  "contact_sheet": "contact-sheet.png",
+  "items": [
+    {
+      "name": "scarf-concept.png",
+      "kind": "image",
+      "media": {
+        "image": "items/01-scarf-concept.webp"
+      },
+      "sha256": "bf412d2f973c2fcac433d29f4a566da81056d58da197c13b32cc3122da48d6fa",
+      "provenance": {
+        "status": "ok",
+        "problems": [],
+        "record": {
+          "origin": "generated",
+          "license": "proprietary",
+          "authors": [],
+          "human_edits": [],
+          "tool": "imagegen",
+          "tool_version": "0.1.0",
+          "provider": "openai",
+          "model": "gpt-image-2",
+          "prompt": "violet head scarf concept, painted",
+          "inputs": []
+        }
+      }
+    },
+    {
+      "name": "sky.png",
+      "kind": "image",
+      "media": {
+        "image": "items/02-sky.webp"
+      },
+      "sha256": "b86bd2b2bb604212d57abc8e0fd715d5b56ec9156fc95399fa82fb9fe5562c6d",
+      "provenance": {
+        "status": "missing",
+        "problems": [
+          "1 of 1 file(s) have no provenance record"
+        ],
+        "record": null
+      }
+    },
+    {
+      "name": "walk",
+      "kind": "animation",
+      "media": {
+        "gif": "items/03-walk.gif",
+        "video": "items/03-walk.mp4"
+      },
+      "sha256": "c1bd660a57845dcb8c703793ee5a5e390f17ed944bb3ff1174319d7c380f95f7",
+      "provenance": {
+        "status": "missing",
+        "problems": [
+          "8 of 8 file(s) have no provenance record"
+        ],
+        "record": null
+      }
+    },
+    {
+      "name": "chime.ogg",
+      "kind": "audio",
+      "media": {
+        "audio": "items/04-chime.m4a",
+        "waveform": "items/04-chime.waveform.png"
+      },
+      "sha256": "2df5f6c70df32530ab82f12e1ba435099a67dfffc914061070fb89bf112c5d1a",
+      "provenance": {
+        "status": "missing",
+        "problems": [
+          "1 of 1 file(s) have no provenance record"
+        ],
+        "record": null
+      }
+    },
+    {
+      "name": "lantern.glb",
+      "kind": "model",
+      "media": {
+        "gif": "items/05-lantern.gif",
+        "video": "items/05-lantern.mp4"
+      },
+      "sha256": "d63e3463c71d6bc04f77a3c2eded0571eb34437aabfa5ad8b7a6d2cf80ce0351",
+      "provenance": {
+        "status": "missing",
+        "problems": [
+          "1 of 1 file(s) have no provenance record"
+        ],
+        "record": null
+      }
+    }
+  ]
+}
