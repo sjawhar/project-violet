@@ -1,0 +1,274 @@
+{
+  "pr": "21",
+  "contact_sheet": "contact-sheet.png",
+  "items": [
+    {
+      "name": "g-a-capture.mp4",
+      "kind": "animation",
+      "media": {
+        "gif": "items/01-g-a-capture.gif",
+        "video": "items/01-g-a-capture.mp4",
+        "poster": "items/01-g-a-capture.poster.webp"
+      },
+      "sha256": "751433c2fa672306124bc44162c337b08f902d0869541803644eb42fa3a05bc3",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "g-a-still-05.png",
+      "kind": "image",
+      "media": {
+        "image": "items/02-g-a-still-05.webp"
+      },
+      "sha256": "4efaeb8a35fcb318b48e9777cfbcf166d2a7f4a4097768f29e6cc6234387a2d4",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "g-a-still-20.png",
+      "kind": "image",
+      "media": {
+        "image": "items/03-g-a-still-20.webp"
+      },
+      "sha256": "d829ba780123858ca97ac5a7fdba4f108690453c52b2d6c821a8a0205824079c",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "g-a-still-40.png",
+      "kind": "image",
+      "media": {
+        "image": "items/04-g-a-still-40.webp"
+      },
+      "sha256": "0ef3bbdda099c304d21ef0fdf26307717cfe589ed551bd76d4651459e8feea4e",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "g-a-still-60.png",
+      "kind": "image",
+      "media": {
+        "image": "items/05-g-a-still-60.webp"
+      },
+      "sha256": "8c343a82cd5525d63c73f907fc36943dc17bea50ace4e99fdad30aaca191dda6",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "g-d-capture.mp4",
+      "kind": "animation",
+      "media": {
+        "gif": "items/06-g-d-capture.gif",
+        "video": "items/06-g-d-capture.mp4",
+        "poster": "items/06-g-d-capture.poster.webp"
+      },
+      "sha256": "751433c2fa672306124bc44162c337b08f902d0869541803644eb42fa3a05bc3",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "g-d-still-05.png",
+      "kind": "image",
+      "media": {
+        "image": "items/07-g-d-still-05.webp"
+      },
+      "sha256": "4efaeb8a35fcb318b48e9777cfbcf166d2a7f4a4097768f29e6cc6234387a2d4",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "g-d-still-20.png",
+      "kind": "image",
+      "media": {
+        "image": "items/08-g-d-still-20.webp"
+      },
+      "sha256": "d829ba780123858ca97ac5a7fdba4f108690453c52b2d6c821a8a0205824079c",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "g-d-still-40.png",
+      "kind": "image",
+      "media": {
+        "image": "items/09-g-d-still-40.webp"
+      },
+      "sha256": "0ef3bbdda099c304d21ef0fdf26307717cfe589ed551bd76d4651459e8feea4e",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "g-d-still-60.png",
+      "kind": "image",
+      "media": {
+        "image": "items/10-g-d-still-60.webp"
+      },
+      "sha256": "8c343a82cd5525d63c73f907fc36943dc17bea50ace4e99fdad30aaca191dda6",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "u-d-capture.mp4",
+      "kind": "animation",
+      "media": {
+        "gif": "items/11-u-d-capture.gif",
+        "video": "items/11-u-d-capture.mp4",
+        "poster": "items/11-u-d-capture.poster.webp"
+      },
+      "sha256": "751433c2fa672306124bc44162c337b08f902d0869541803644eb42fa3a05bc3",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "u-d-still-05.png",
+      "kind": "image",
+      "media": {
+        "image": "items/12-u-d-still-05.webp"
+      },
+      "sha256": "4efaeb8a35fcb318b48e9777cfbcf166d2a7f4a4097768f29e6cc6234387a2d4",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "u-d-still-20.png",
+      "kind": "image",
+      "media": {
+        "image": "items/13-u-d-still-20.webp"
+      },
+      "sha256": "d829ba780123858ca97ac5a7fdba4f108690453c52b2d6c821a8a0205824079c",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "u-d-still-40.png",
+      "kind": "image",
+      "media": {
+        "image": "items/14-u-d-still-40.webp"
+      },
+      "sha256": "0ef3bbdda099c304d21ef0fdf26307717cfe589ed551bd76d4651459e8feea4e",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "u-d-still-60.png",
+      "kind": "image",
+      "media": {
+        "image": "items/15-u-d-still-60.webp"
+      },
+      "sha256": "8c343a82cd5525d63c73f907fc36943dc17bea50ace4e99fdad30aaca191dda6",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "control-capture.mp4",
+      "kind": "animation",
+      "media": {
+        "gif": "items/16-control-capture.gif",
+        "video": "items/16-control-capture.mp4",
+        "poster": "items/16-control-capture.poster.webp"
+      },
+      "sha256": "751433c2fa672306124bc44162c337b08f902d0869541803644eb42fa3a05bc3",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "control-still-05.png",
+      "kind": "image",
+      "media": {
+        "image": "items/17-control-still-05.webp"
+      },
+      "sha256": "4efaeb8a35fcb318b48e9777cfbcf166d2a7f4a4097768f29e6cc6234387a2d4",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "control-still-20.png",
+      "kind": "image",
+      "media": {
+        "image": "items/18-control-still-20.webp"
+      },
+      "sha256": "d829ba780123858ca97ac5a7fdba4f108690453c52b2d6c821a8a0205824079c",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "control-still-40.png",
+      "kind": "image",
+      "media": {
+        "image": "items/19-control-still-40.webp"
+      },
+      "sha256": "0ef3bbdda099c304d21ef0fdf26307717cfe589ed551bd76d4651459e8feea4e",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    },
+    {
+      "name": "control-still-60.png",
+      "kind": "image",
+      "media": {
+        "image": "items/20-control-still-60.webp"
+      },
+      "sha256": "8c343a82cd5525d63c73f907fc36943dc17bea50ace4e99fdad30aaca191dda6",
+      "provenance": {
+        "status": "missing",
+        "problems": [],
+        "record": null
+      }
+    }
+  ]
+}
