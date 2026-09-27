@@ -28,7 +28,7 @@ Part of the Phase 1 bake-off shared inputs; see [README.md](README.md). Every la
 - `inputs`: a list of segments, each either `{"from": T1, "to": T2, "hold": [action...]}` (inclusive tick range) or `{"at": T, "press": [action...]}` (single tick). Actions: `left right jump dash switch`.
   - A tick's pressed set is the union of every segment covering it.
   - The runner presses an action on the first tick it appears and releases it on the first tick it is absent, so two `press` entries on consecutive ticks merge into one hold; leave a gap tick between two separate presses of the same action.
-- `asserts`: a list of `{"cell": [col, row], "active_color": "red"|"green"|"", "passable": "<tagged kind>"}`. An assert fires the first time the player's feet cell equals `cell`; at that tick `active_color` must match, and `passable` names the one tagged legend kind whose bodies must have collision disabled at that moment (every other tagged body must be enabled). An assert that never fires is a failure.
+- `asserts`: a list of `{"cell": [col, row], "active_color": "red"|"green"|"", "passable": "<tagged kind>"}`. An assert fires the first time the player's feet cell equals `cell`; at that tick `active_color` must match, and `passable` names a tagged legend kind; at that tick every tagged body of that kind's color (wall and platform alike) must have collision disabled, and every tagged body of the other color must be enabled. This follows [mechanic.md](mechanic.md): the active color's tagged geometry has no collision. An assert that never fires is a failure.
 - `expect.goal_by_tick`: the run passes when the goal is reached by this tick with no hazard touch and no failed assert.
 
 ## Runner flags
