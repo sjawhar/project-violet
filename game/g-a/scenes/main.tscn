@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://bakeoff/game_2d.gd" id="1"]
+[ext_resource type="Resource" path="res://art/lane_art.tres" id="2"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1")
+art = ExtResource("2")

@@ -1,0 +1,3 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+{"disabled":["dash"],"failures":["tick 1239: touched a hazard at (24, 15)","tick 1239: touched a hazard at (24, 15)","assert 0 at cell [33.0, 12.0] never fired","assert 1 at cell [44.0, 7.0] never fired","assert 2 at cell [48.0, 7.0] never fired","assert 3 at cell [55.0, 7.0] never fired","assert 4 at cell [58.0, 7.0] never fired","goal not reached by tick 3960 (player at (24, 15))"],"goal_tick":-1,"ok":false,"ticks":1239}
