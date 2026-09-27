@@ -383,6 +383,7 @@ for t in 05 20 40 60; do ffmpeg -y -ss "$t" -i "$out/capture.mp4" -frames:v 1 "$
 **Files:**
 - Create under `game/g-a/`: `project.godot`, `export_presets.cfg`, `ci.sh`, `levels/level01.greybox.json` (copy), `replays/level01.replay.json`, `bakeoff/{actions,resonance,greybox,replay,resonance_tag,greybox_builder_2d,greybox_art,player_2d,game_2d,tag_validator}.gd`, `tests/{replay_runner.gd,replay_runner.tscn,validate_tags.gd,validate_tags.tscn}`, `scenes/main.tscn`, `art/{painted_art.gd,lane_art.tres,spine_character_2d.gd,saturation.gdshader,reveal.gdshader}`, `art/*.png` (generated), `protagonist/{violet.spine-json,violet.atlas,violet.png,violet.png.provenance.json,violet.meta.json}`
 - Create: `bakeoff/g-a/LOG.md`, `bakeoff/g-a/replays/level01.replay.json`, `bakeoff/g-a/reports/`, `bakeoff/g-a/capture/`
+- Create: `game/g-a/ci-tools` containing `godot`: the `mise.toml` tools the `bakeoff` workflow installs for this lane besides uv (`docs/bakeoff/README.md`, from Task 3). A missing file fails the workflow's first step.
 
 **Interfaces:**
 - Consumes: Task 1 formats and level; Task 3 scripts and CI contract; Task 5 rig (`violet.json` → `violet.spine-json`); `gen image` for the painted tiles and parallax backdrops.
@@ -624,6 +625,7 @@ test -x "../../out/$lane/violet-$lane.x86_64" && timeout 90 "../../out/$lane/vio
 **Files:**
 - Create under `game/g-d/`: `project.godot` (as G-A but `config/features=PackedStringArray("4.7", "Forward Plus")`, `rendering/renderer/rendering_method="forward_plus"`, no `[shader_globals]`), `export_presets.cfg` (`export_path="../../out/g-d/violet-g-d.x86_64"`), `ci.sh` (G-A's with `lane=g-d`), `levels/`, `replays/level01.replay.json`, `bakeoff/{actions,resonance,greybox,replay,resonance_tag,tag_validator}.gd` (copied), `bakeoff/{greybox_builder_3d,greybox_art_3d,player_3d,game_3d}.gd`, `tests/{replay_runner.gd,replay_runner.tscn,validate_tags.gd,validate_tags.tscn}` (copied; `Game2D` → `Game3D`, `Node2D` → `Node3D`), `scenes/main.tscn`, `art/{kit_art_3d.gd,lane_art.tres,spine_character_3d.gd}`, `kit/*.glb` (copied from `assets/bakeoff/desert-kit-3d/` with sidecars), `protagonist/` (as G-A)
 - Create: `bakeoff/g-d/{LOG.md,replays/,reports/,capture/}`
+- Create: `game/g-d/ci-tools` containing `godot`
 
 **Interfaces:**
 - Consumes: `jj file show -r bakeoff/g-a game/g-a/bakeoff/<file>.gd > game/g-d/bakeoff/<file>.gd` for the six shared scripts and the two test scripts; Task 6 kit; Task 5 rig.
@@ -641,7 +643,7 @@ test -x "../../out/$lane/violet-$lane.x86_64" && timeout 90 "../../out/$lane/vio
 
 **Files:**
 - Create under `game/u-d/` (Unity project): `Packages/manifest.json` additions, `Assets/Bakeoff/Scripts/{Greybox,Replay,Resonance,ResonanceTag,Trigger,GreyboxBuilder3D,IGreyboxArt,GreyboxArt,KitArt,Player3D,IInputSource,KeyboardInput,ReplayRunner,TagValidator,Game3D,FollowCamera,WorldSaturationDriver,SpineCharacter3D}.cs`, `Assets/Bakeoff/Editor/{Build.cs,Violet.Bakeoff.Editor.asmdef}`, `Assets/Bakeoff/Tests/PlayMode/{ReplayTests,TagValidatorTests}.cs` + `Violet.Bakeoff.Tests.asmdef` (`testAssemblies: true`, references `UnityEngine.TestRunner`, `UnityEditor.TestRunner`), `Assets/StreamingAssets/bakeoff/{level01.greybox.json,level01.replay.json}`, `Assets/Bakeoff/Scenes/Level01.unity` (built through MCP), `Assets/Bakeoff/Spine/{violet.json,violet.atlas.txt,violet.png,violet.png.provenance.json,violet.meta.json}`, `Assets/Bakeoff/Kit/*.glb` (+ sidecars), `ci.sh`
-- Create: `bakeoff/u-d/{LOG.md,replays/,reports/,capture/}`; `scripts/capture-unity.sh`
+- Create: `bakeoff/u-d/{LOG.md,replays/,reports/,capture/}`; `game/u-d/ci-tools`, empty (CI only checks the committed reports; Unity runs on machine sami). Captures use Task 3's `scripts/capture-unity.sh`.
 - Modify: `~/.dotfiles/omp/mcp.json` on machine sami (a lazy `unity` server entry; pushed to dotfiles main per its README)
 
 **Interfaces:**
@@ -749,6 +751,7 @@ public class TagValidatorTests {
 **Files:**
 - Modify: `tools/gen/src/gen/providers/recraft.py` (new), `tools/gen/src/gen/cli.py` (`--provider recraft`, `--style-id`, `--style-ref PATH` repeatable; `--out` must end in `.svg` for `*_vector` models), tests `tools/gen/tests/test_recraft_args.py`, `test_recraft_live.py` (marker `live_recraft`), `tools/gen/README.md`
 - Create on `bakeoff/g-c` (branched from `bakeoff/g-a`): `game/g-c/` (G-A's project directory moved), `game/g-c/art/vector_art.gd`, `game/g-c/art/lane_art.tres`, `game/g-c/art/*.svg` (+ sidecars), `bakeoff/g-c/{LOG.md,replays/,reports/,capture/}`
+- `game/g-c/ci-tools` comes over from G-A with the project directory and stays `godot`.
 
 **Interfaces:**
 - Consumes: Recraft `POST https://external.api.recraft.ai/v1/images/generations/vector` (`Authorization: Bearer $RECRAFT_API_KEY`, JSON `prompt, model, size ("WxH"), random_seed, response_format: "b64_json", style_id | style_reference_urls (data URLs)`; the response `data[0].b64_json` is the SVG, `style_id` is returned when references were sent); `POST /v1/styles` is not needed — style references create a style on first use and `params.style_id` records it for `--style-id` reuse.
@@ -763,6 +766,7 @@ public class TagValidatorTests {
 
 **Files:**
 - Create on `bakeoff/control`: `game/control/ci.sh` (verifies `bakeoff/control/reports/render.json` and that `capture/capture.mp4` decodes with `ffprobe`), `game/control/render_reel.py` (Blender script), `game/control/reel.json`, `assets` under `game/control/character/{violet.glb,violet.rigged.glb,motions/*.fbx,anims/*.glb}` (+ sidecars), `bakeoff/control/{LOG.md,reports/render.json,capture/}`
+- Create on `bakeoff/control`: `game/control/ci-tools` containing `ffmpeg` (for `ffprobe`; Blender renders run on oryx, not in CI)
 
 **Interfaces:**
 - Consumes: Task 6's `gen model3d/rig/motion/animate`; Task 4's concept as the image-to-3D input; Blender from `tools/preview/README.md`; Task 0 for CUDA.
