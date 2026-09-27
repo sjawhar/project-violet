@@ -102,12 +102,20 @@ func make_backdrop(level: Greybox) -> Node3D:
 	holder.add_child(ground)
 	return holder
 
-## The file whose presence swaps the STAND-IN for the rig (Rig reads it, its <stem>.meta.json and its part images).
-const RIG_PATH := "res://protagonist/violet.rig.json"
+## The file whose presence swaps the STAND-IN for the rig: assets/bakeoff/protagonist/ copied to res://protagonist/, so
+## rig/violet.json finds violet.meta.json beside it and its parts through skeleton.images.
+const RIG_PATH := "res://protagonist/rig/violet.json"
 
+## A rig file that is there but does not load stops the game (exit 1) rather than falling back to the STAND-IN.
 func attach_character(player: Node) -> void:
 	if FileAccess.file_exists(RIG_PATH):
-		player.add_child(RigCharacter3D.new(Rig.load_file(RIG_PATH)))
+		var rig := Rig.load_file(RIG_PATH)
+		var character := RigCharacter3D.create(rig) if rig != null else null
+		if character == null:
+			push_error("%s: the character rig did not load (see the error above); quitting" % RIG_PATH)
+			player.get_tree().quit(1)
+			return
+		player.add_child(character)
 		return
 	var capsule := MeshInstance3D.new(); capsule.name = "StandIn"
 	var mesh := CapsuleMesh.new(); mesh.radius = 0.4; mesh.height = 1.6; capsule.mesh = mesh

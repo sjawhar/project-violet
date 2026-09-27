@@ -16,14 +16,27 @@ var _sprites := {}  ## slot name -> Sprite3D
 var _texture_scale := {}  ## slot name -> Vector2 from the texture's pixels to the attachment's width and height
 var _pixel_size: float
 
-func _init(rig_: Rig) -> void:
+## The character for RIG, or null after a push_error when the rig lacks an animation RigAnimator needs, a scarf slot, or
+## a loadable part image.
+static func create(rig_: Rig) -> RigCharacter3D:
+	if not RigAnimator.check(rig_): return null
+	var names: Array = rig_.slots.map(func(slot: Rig.Slot) -> String: return slot.name)
+	for slot_name: String in SCARF_SLOTS:
+		if slot_name not in names: push_error("%s: the rig has no %s slot" % [rig_.source, slot_name]); return null
+	var textures := {}
+	for slot in rig_.slots:
+		textures[slot.name] = load(slot.image)
+		if textures[slot.name] is not Texture2D: push_error("%s: slot %s's image %s does not load as a texture" % [rig_.source, slot.name, slot.image]); return null
+	return RigCharacter3D.new(rig_, textures)
+
+## Use create(), which checks the rig first.
+func _init(rig_: Rig, textures: Dictionary) -> void:
 	rig = rig_; name = "Character"
 	animator = RigAnimator.new(rig)
 	_pixel_size = 1.6 / rig.height_px
 	for i in rig.slots.size():
 		var slot := rig.slots[i]
-		var texture: Texture2D = load(slot.image)
-		assert(texture != null, "rig slot %s: cannot load %s" % [slot.name, slot.image])
+		var texture: Texture2D = textures[slot.name]
 		var sprite := Sprite3D.new(); sprite.name = slot.name; sprite.texture = texture
 		sprite.pixel_size = _pixel_size; sprite.shaded = true; sprite.render_priority = i
 		sprite.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
@@ -31,7 +44,6 @@ func _init(rig_: Rig) -> void:
 		add_child(sprite)
 		_sprites[slot.name] = sprite
 		_texture_scale[slot.name] = slot.size / texture.get_size()
-	for slot_name: String in SCARF_SLOTS: assert(_sprites.has(slot_name), "the rig has no %s slot" % slot_name)
 
 func _ready() -> void:
 	player = get_parent() as Player3D
@@ -45,9 +57,10 @@ func _process(delta: float) -> void:
 	_apply()
 
 func _apply() -> void:
-	# Facing mirrors each sprite about the player's vertical axis (x and angle negated, image flipped) rather than
-	# scaling the node by -1 in x, which would turn the shaded sprites' normals away from the lights.
-	var mirror := player.facing * (1 if rig.facing == "right" else -1)
+	# The rig faces right. character-rig.md mirrors it for left with a negative x scale on the root; this lane mirrors
+	# each sprite instead (x and angle negated, image flipped), because a negative root x scale turns the shaded
+	# Sprite3Ds' normals away from the sun and the character renders nearly black whenever it faces left.
+	var mirror := player.facing
 	var pose := animator.pose()
 	for slot_name: String in _sprites:
 		var t: Transform2D = pose[slot_name]

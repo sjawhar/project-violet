@@ -1,12 +1,16 @@
 extends Node
 ## THROWAWAY rig reader tests. godot --headless --path game/g-d res://tests/rig_test.tscn
 ## fk: a two-bone chain with known rotations puts the slot where a hand calculation does.
-## interpolation: a rotate key halfway between 0 and 90 gives 45; time wraps over the duration; outside the keys the
-## first or last key holds.
+## interpolation: a rotate key halfway between 0 and 90 gives 45; idle wraps over its duration; jump plays once and
+## holds its last frame; outside the keys the first or last key holds.
 ## round-trip: tests/rig/placeholder.rig.json (spinerig generate's own output) loads, poses every animation, and its
 ## setup pose's height matches the meta's height_px within a pixel.
 ## reference: every slot's placement in every frame `spinerig render` draws for that rig
 ## (tests/rig/placeholder.reference.json, from render.py's own code) matches Rig.pose.
+## malformed: the fixture with one slot naming an unknown bone makes Rig.load_file return null, naming the file and
+## the slot (the load's push_error prints it to stderr too).
+## refusals: an attachment without a path, a skeleton.spine that isn't 4.3.x, a slot with no attachment, and a meta
+## facing left each make Rig.from_data return null with a message naming the offender.
 ## Regenerate the fixture with tests/rig/make-fixture.sh.
 ## Prints one line per failure and `rig-test: N failure(s)`; exits 0 iff N == 0.
 const FIXTURE := "res://tests/rig/placeholder.rig.json"
@@ -14,7 +18,7 @@ const REFERENCE := "res://tests/rig/placeholder.reference.json"
 var failures: PackedStringArray = []
 
 func _ready() -> void:
-	test_fk(); test_interpolation(); test_round_trip(); test_reference()
+	test_fk(); test_interpolation(); test_round_trip(); test_reference(); test_malformed(); test_refusals()
 	for f in failures: printerr(f)
 	print("rig-test: %d failure(s)" % failures.size())
 	get_tree().quit(0 if failures.is_empty() else 1)
@@ -33,22 +37,26 @@ func test_fk() -> void:
 	_near("fk rotation", rad_to_deg(t.get_rotation()), 105.0)
 	_near("fk scale", t.get_scale().x, 1.0)
 
-## One bone at the origin, keyed 0 at t=0 and 90 at t=1; the slot sits 10 along it.
+## One bone at the origin, keyed 0 at t=0 and 90 at t=1 in idle (loops) and jump (plays once); the slot sits 10 along it.
 func test_interpolation() -> void:
 	var spine := _skeleton([{"name": "root"}], {"x": 10, "y": 0})
-	spine["animations"] = {"turn": {"bones": {"root": {"rotate": [{"time": 0, "value": 0}, {"time": 1, "value": 90}]}}}}
+	var turn := {"bones": {"root": {"rotate": [{"time": 0, "value": 0}, {"time": 1, "value": 90}]}}}
+	spine["animations"] = {"idle": turn, "jump": turn}
 	var rig := Rig.from_data(spine, _meta(), "res://", "interpolation")
-	_near("duration", rig.duration("turn"), 1.0)
-	_near("halfway", _angle(rig.pose("turn", 0.5)), 45.0)
-	var halfway: Transform2D = rig.pose("turn", 0.5)["part"]
+	_near("duration", rig.duration("idle"), 1.0)
+	_near("halfway", _angle(rig.pose("idle", 0.5)), 45.0)
+	var halfway: Transform2D = rig.pose("idle", 0.5)["part"]
 	_near("halfway position.x", halfway.origin.x, 10.0 * cos(PI / 4.0))
 	_near("halfway position.y", halfway.origin.y, 10.0 * sin(PI / 4.0))
-	_near("loop wraps 1.5 to 0.5", _angle(rig.pose("turn", 1.5)), 45.0)
-	_near("loop wraps 2.25 to 0.25", _angle(rig.pose("turn", 2.25)), 22.5)
-	_near("t = duration wraps to the first key", _angle(rig.pose("turn", 1.0)), 0.0)
-	spine["animations"] = {"late": {"bones": {"root": {"rotate": [{"time": 0.5, "value": 30}, {"time": 1, "value": 90}]}}}}
+	_near("idle wraps 1.5 to 0.5", _angle(rig.pose("idle", 1.5)), 45.0)
+	_near("idle wraps 2.25 to 0.25", _angle(rig.pose("idle", 2.25)), 22.5)
+	_near("idle at t = duration wraps to the first key", _angle(rig.pose("idle", 1.0)), 0.0)
+	_near("jump halfway", _angle(rig.pose("jump", 0.5)), 45.0)
+	_near("jump at t = duration holds the last key", _angle(rig.pose("jump", 1.0)), 90.0)
+	_near("jump after its end holds the last key", _angle(rig.pose("jump", 2.25)), 90.0)
+	spine["animations"] = {"idle": {"bones": {"root": {"rotate": [{"time": 0.5, "value": 30}, {"time": 1, "value": 90}]}}}}
 	rig = Rig.from_data(spine, _meta(), "res://", "interpolation")
-	_near("before the first key, the first key holds", _angle(rig.pose("late", 0.25)), 30.0)
+	_near("before the first key, the first key holds", _angle(rig.pose("idle", 0.25)), 30.0)
 
 func test_round_trip() -> void:
 	var rig := Rig.load_file(FIXTURE)
@@ -89,8 +97,36 @@ func test_reference() -> void:
 				if off > 1e-3: failures.append("reference: %s frame %d slot %s: %s %.3f deg, spinerig render %s" % [anim_name, i, names[s], t.origin, rad_to_deg(t.get_rotation()), want])
 	print("reference: worst difference from spinerig render %.6f (px or degrees)" % worst)
 
+func test_malformed() -> void:
+	var path := "user://malformed.rig.json"
+	var spine: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(FIXTURE))
+	spine["slots"][0]["bone"] = "no_such_bone"
+	FileAccess.open(path, FileAccess.WRITE).store_string(JSON.stringify(spine))
+	FileAccess.open("user://malformed.rig.meta.json", FileAccess.WRITE).store_string(FileAccess.get_file_as_string(FIXTURE.get_basename() + ".meta.json"))
+	var rig := Rig.load_file(path)
+	var want := "%s: slot %s names unknown bone no_such_bone" % [path, spine["slots"][0]["name"]]
+	if rig != null: failures.append("malformed: load_file returned a rig for a slot naming an unknown bone")
+	if Rig.last_error != want: failures.append("malformed: error %s, expected %s" % [Rig.last_error, want])
+
+func test_refusals() -> void:
+	var no_path := _skeleton([{"name": "root"}], {}); no_path["skins"][0]["attachments"]["part"]["part"].erase("path")
+	_refused("missing path", no_path, _meta(), "refusals attachment part: missing key path")
+	var old_spine := _skeleton([{"name": "root"}], {}); old_spine["skeleton"]["spine"] = "4.2.43"
+	_refused("spine 4.2", old_spine, _meta(), "refusals: spine 4.2.43 is not 4.3")
+	old_spine["skeleton"]["spine"] = "4.30.1"
+	_refused("spine 4.30", old_spine, _meta(), "refusals: spine 4.30.1 is not 4.3")
+	var no_attachment := _skeleton([{"name": "root"}], {}); no_attachment["slots"][0]["attachment"] = null
+	_refused("slot with no attachment", no_attachment, _meta(), "refusals: slot part has no attachment; every slot names one")
+	var left := _meta(); left["facing"] = "left"
+	_refused("facing left", _skeleton([{"name": "root"}], {}), left, "refusals meta: facing is left; a rig always faces right (lanes mirror it)")
+
+func _refused(what: String, spine: Dictionary, meta: Dictionary, want: String) -> void:
+	Rig.last_error = ""
+	if Rig.from_data(spine, meta, "res://", "refusals") != null: failures.append("refusals: %s loaded" % what)
+	if Rig.last_error != want: failures.append("refusals: %s: error %s, expected %s" % [what, Rig.last_error, want])
+
 func _skeleton(bones: Array, attachment: Dictionary) -> Dictionary:
-	var att := attachment.duplicate(); att["width"] = 4; att["height"] = 2
+	var att := attachment.duplicate(); att["path"] = "part"; att["width"] = 4; att["height"] = 2
 	return {
 		"skeleton": {"spine": "4.3.00", "images": "parts/"},
 		"bones": bones,
