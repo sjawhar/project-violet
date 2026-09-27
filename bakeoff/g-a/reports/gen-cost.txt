@@ -1,0 +1,17 @@
+at	out	model	quality	size	text_in	image_in	image_out	usd
+2026-09-27T08:47:36+00:00	game/g-a/art/wall-tile.png	gpt-image-2	low	1024x1024	233	0	439	0.0143
+2026-09-27T08:48:31+00:00	game/g-a/art/backdrop-near.png	gpt-image-2	low	1536x1024	297	0	158	0.0062
+2026-09-27T08:48:31+00:00	game/g-a/art/wall-tile.png	gpt-image-2	low	1024x1024	286	0	196	0.0073
+2026-09-27T08:48:31+00:00	game/g-a/art/backdrop-far.png	gpt-image-2	low	1536x1024	275	0	158	0.0061
+2026-09-27T08:48:31+00:00	game/g-a/art/orb.png	gpt-image-2	low	1024x1024	276	0	196	0.0073
+2026-09-27T08:48:31+00:00	game/g-a/art/backdrop-mid.png	gpt-image-2	low	1536x1024	304	0	158	0.0063
+2026-09-27T08:48:32+00:00	game/g-a/art/crystal-wall.png	gpt-image-2	low	1024x1024	285	0	196	0.0073
+2026-09-27T08:48:32+00:00	game/g-a/art/ground-tile.png	gpt-image-2	low	1024x1024	296	0	196	0.0074
+2026-09-27T08:48:32+00:00	game/g-a/art/platform-tile.png	gpt-image-2	low	1024x1024	292	0	196	0.0073
+2026-09-27T08:48:32+00:00	game/g-a/art/goal-gate.png	gpt-image-2	low	1024x1024	270	0	196	0.0072
+2026-09-27T08:48:36+00:00	game/g-a/art/crystal-platform.png	gpt-image-2	low	1024x1024	283	0	439	0.0146
+2026-09-27T08:49:48+00:00	game/g-a/art/backdrop-near.png	gpt-image-2	low	1536x1024	325	0	158	0.0064
+2026-09-27T08:49:50+00:00	game/g-a/art/backdrop-mid.png	gpt-image-2	low	1536x1024	330	0	158	0.0064
+2026-09-27T08:49:53+00:00	game/g-a/art/backdrop-far.png	gpt-image-2	low	1536x1024	295	0	343	0.0118
+2026-09-27T08:49:55+00:00	game/g-a/art/goal-gate.png	gpt-image-2	low	1024x1024	285	0	439	0.0146
+total								0.1304

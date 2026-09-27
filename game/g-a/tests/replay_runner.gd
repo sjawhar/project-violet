@@ -32,12 +32,9 @@ func _check_asserts() -> void:
 		fired[i] = tick
 		if a.has("active_color") and Resonance.active != a["active_color"]: failures.append("tick %d at %s: active %s, expected %s" % [tick, cell, Resonance.active, a["active_color"]])
 		if a.has("passable"):
-			# The mechanic makes every body of the active color passable (wall and platform alike) and every other
-			# tagged body solid, so the named kind selects a color: its bodies and their same-color kin must be
-			# passable, every body of another color solid.
-			var passable_color: String = Greybox.TAGGED[a["passable"]][0]
+			# `passable` names a color through its kind: every body of that color passable, every other tagged body solid.
 			for tag in get_tree().get_nodes_in_group("resonance"):
-				var expect: bool = tag.color == passable_color
+				var expect: bool = tag.color == String(a["passable"]).get_slice("_", 1)
 				if bool(tag.get_parent().get_meta("resonance_passable")) != expect: failures.append("tick %d: %s passable should be %s" % [tick, tag.get_parent().name, expect])
 func _finish() -> void:
 	for i in replay.asserts.size(): if not fired.has(i): failures.append("assert %d at cell %s never fired" % [i, replay.asserts[i]["cell"]])

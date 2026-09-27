@@ -19,5 +19,6 @@ common/physics_interpolation=false
 [rendering]
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.176, 0.145, 0.251, 1)
 [shader_globals]
 world_saturation={"type": "float", "value": 0.35}
