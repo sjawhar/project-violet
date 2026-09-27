@@ -74,3 +74,17 @@ def test_background_pink_is_an_argparse_error(capsys: pytest.CaptureFixture[str]
         )
     assert excinfo.value.code == 2
     assert "--background" in capsys.readouterr().err
+
+
+def test_quality_low_parses():
+    args = build_parser().parse_args(
+        ["image", "--provider", "openai", "--model", "gpt-image-2", "--prompt", "a circle", "--quality", "low", "--out", "out.png"]
+    )
+    assert args.quality == "low"
+
+
+def test_quality_ultra_is_an_argparse_error(capsys: pytest.CaptureFixture[str]):
+    with pytest.raises(SystemExit) as excinfo:
+        main(["image", "--provider", "openai", "--model", "gpt-image-2", "--prompt", "a circle", "--quality", "ultra", "--out", "out.png"])
+    assert excinfo.value.code == 2
+    assert "--quality" in capsys.readouterr().err

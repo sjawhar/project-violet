@@ -68,10 +68,15 @@ def generate(
     negative_prompt: str | None,
     inputs: list[Path],
     background: str | None,
+    quality: str | None,
 ) -> GeneratedImage:
     if background is not None:
         raise ProviderError(
             "gemini: --background is not supported by Gemini's generateContent API; omit it for this provider"
+        )
+    if quality is not None:
+        raise ProviderError(
+            "gemini: --quality is not supported by Gemini's generateContent API; omit it for this provider"
         )
     parts: list[dict] = [{"text": combine_prompt(prompt, negative_prompt)}]
     for path in inputs:

@@ -30,6 +30,7 @@ point anywhere the resulting sidecar should live.
 gen image --provider {openai|gemini} --model MODEL --prompt TEXT
           [--negative-prompt TEXT] [--size WxH] [--seed N]
           [--input PATH ...] [--background {transparent,opaque}]
+          [--quality {low,medium,high}]
           [--license proprietary] [--force]
           --out PATH
 ```
@@ -54,6 +55,11 @@ gen image --provider {openai|gemini} --model MODEL --prompt TEXT
   alpha channel rather than a flattened white background. Gemini's `generateContent` has no
   equivalent parameter, so `gen` refuses `--background` for `--provider gemini` with a clear
   error rather than silently ignoring it.
+- `--quality {low,medium,high}` (OpenAI only) sends the Images API's `quality` parameter.
+  Without the flag `gen` sends `high`: left unset, the API picked `low` for every call in
+  testing, which is fine for a draft and wrong for art that gets judged or shipped. Pass
+  `--quality low` for drafts and tests. Gemini has no quality parameter, so `gen` refuses
+  `--quality` for `--provider gemini`.
 
 ### Provenance recorded
 
@@ -69,8 +75,8 @@ separate `provenance record` step) with:
 - `seed`, when given and accepted (OpenAI's Images API has no seed parameter; `gen` refuses
   `--seed` for `--provider openai` rather than silently ignoring it and recording a seed
   that had no effect)
-- `params.size`, the `--size` actually used, and `params.background` when OpenAI's response
-  echoes a `background` value back (i.e. whenever `--background` was passed)
+- `params.size`, the `--size` actually used; for OpenAI, `params.quality` and
+  `params.background` as the response echoes them back, which is what the API actually used
 - `inputs`, each resolved to a repo-relative path and content hash
 
 ### Neither provider has a negative-prompt or (for OpenAI) a seed parameter
@@ -115,7 +121,7 @@ observable in testing, but not stored per-sidecar since it varies run to run:
 
 - OpenAI's `/v1/images/generations` and `/v1/images/edits` responses include a `usage`
   object (`input_tokens`, `output_tokens`, with an `image_tokens` breakdown). A
-  `1024x1024`, default-quality generation used ~200 output tokens in testing.
+  `1024x1024` generation at the API's own default (`low`) used ~200 output tokens in testing.
 - Gemini's `generateContent` responses include `usageMetadata`
   (`promptTokenCount`, `candidatesTokenCount`, with a per-modality breakdown). A
   `1024x1024` generation used ~1,100–1,500 candidate tokens in testing.

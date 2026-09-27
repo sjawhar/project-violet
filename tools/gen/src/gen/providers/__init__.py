@@ -11,6 +11,7 @@ Each provider module (``openai``, ``gemini``) exposes a single function::
         negative_prompt: str | None,
         inputs: list[Path],
         background: str | None,
+        quality: str | None,
     ) -> GeneratedImage: ...
 
 that calls the provider's REST API over plain HTTPS and returns the resulting
@@ -59,6 +60,7 @@ class Provider(Protocol):
         negative_prompt: str | None,
         inputs: list,
         background: str | None,
+        quality: str | None,
     ) -> GeneratedImage: ...
 
 

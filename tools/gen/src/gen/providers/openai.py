@@ -20,6 +20,9 @@ from gen.providers import PNG_MIME, GeneratedImage, ProviderError, combine_promp
 
 API_BASE = "https://api.openai.com/v1"
 TIMEOUT = httpx.Timeout(180.0, connect=10.0)
+DEFAULT_QUALITY = "high"
+"""Sent when `--quality` is not given. Unset, the API picks its own quality, which in testing
+was `low` for every call: fine for a draft, not for art that gets judged or shipped."""
 
 
 def _guess_mime(path: Path) -> str:
@@ -36,6 +39,7 @@ def generate(
     negative_prompt: str | None,
     inputs: list[Path],
     background: str | None,
+    quality: str | None,
 ) -> GeneratedImage:
     if seed is not None:
         raise ProviderError("openai: --seed is not supported by the Images API; omit it for this provider")
@@ -50,7 +54,7 @@ def generate(
     try:
         with httpx.Client(base_url=API_BASE, headers=headers, timeout=TIMEOUT) as client:
             if inputs:
-                data: dict[str, str] = {"model": model, "prompt": combined_prompt}
+                data: dict[str, str] = {"model": model, "prompt": combined_prompt, "quality": quality or DEFAULT_QUALITY}
                 if size is not None:
                     data["size"] = size
                 if background is not None:
@@ -59,7 +63,7 @@ def generate(
                 files = [("image[]", (path.name, path.read_bytes(), _guess_mime(path))) for path in inputs]
                 response = client.post("/images/edits", data=data, files=files)
             else:
-                payload: dict[str, object] = {"model": model, "prompt": combined_prompt, "n": 1}
+                payload: dict[str, object] = {"model": model, "prompt": combined_prompt, "n": 1, "quality": quality or DEFAULT_QUALITY}
                 if size is not None:
                     payload["size"] = size
                 if background is not None:

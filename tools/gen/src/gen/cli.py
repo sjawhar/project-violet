@@ -36,6 +36,11 @@ def build_parser() -> argparse.ArgumentParser:
         choices=["transparent", "opaque"],
         help="OpenAI only; Gemini raises an error if this is set",
     )
+    image.add_argument(
+        "--quality",
+        choices=["low", "medium", "high"],
+        help="OpenAI only, default high; low is for drafts and tests. Gemini raises an error if this is set",
+    )
     image.add_argument("--license", default="proprietary", help="recorded in the sidecar (default: proprietary)")
     image.add_argument("--force", action="store_true", help="replace an existing --out file and sidecar")
     image.add_argument("--out", required=True, type=Path)
@@ -82,6 +87,7 @@ def cmd_image(args: argparse.Namespace) -> int:
             negative_prompt=args.negative_prompt,
             inputs=inputs,
             background=args.background,
+            quality=args.quality,
         )
     except ProviderError as error:
         print(f"gen: error: {error}", file=sys.stderr)

@@ -3,6 +3,7 @@
 They need real credentials: `secrets OPENAI_API_KEY GEMINI_API_KEY -- uv run pytest -m live`.
 """
 
+import json
 from pathlib import Path
 
 import pytest
@@ -86,6 +87,8 @@ def test_openai_transparent_background_has_alpha(repo: Path, run):
         "gpt-image-2",
         "--background",
         "transparent",
+        "--quality",
+        "low",
         "--prompt",
         "a single red circle, nothing else, on a transparent background",
         "--size",
@@ -100,3 +103,28 @@ def test_openai_transparent_background_has_alpha(repo: Path, run):
         image.load()
         assert image.format == "PNG"
         assert image.getchannel("A").getextrema()[0] < 255
+
+    # An explicit --quality reaches the API: the response echoes it and the sidecar records it.
+    assert json.loads(sidecar_path(out).read_text())["generator"]["params"]["quality"] == "low"
+
+
+def test_openai_quality_defaults_to_high(repo: Path, run):
+    out = repo / "circle.png"
+
+    code, _, err = run(
+        "image",
+        "--provider",
+        "openai",
+        "--model",
+        "gpt-image-2",
+        "--prompt",
+        "a single red circle on a white background",
+        "--size",
+        "1024x1024",
+        "--out",
+        str(out),
+    )
+
+    assert code == 0, err
+    # Left to itself the API picked `low` for every call in testing; gen asks for `high`.
+    assert json.loads(sidecar_path(out).read_text())["generator"]["params"]["quality"] == "high"
