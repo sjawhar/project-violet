@@ -116,3 +116,16 @@ def test_refuses_to_report_while_an_asset_lacks_a_valid_record(repo: Path, run):
     assert code != 0
     assert "game/audio/unrecorded.wav" in err
     assert out == ""
+
+
+def test_names_a_model_once_when_its_version_repeats_the_name(repo: Path, run):
+    _record(repo, "game/art/scarf.png", generated_record,
+            generator=_generator("gen", "0.1.0", "gemini", "gemini-3.1-flash-image", model_version="gemini-3.1-flash-image"))
+    _record(repo, "game/art/cloak.png", generated_record,
+            generator=_generator("gen", "0.1.0", "openai", "gpt-image-2", model_version="2026-08-01"))
+
+    code, out, err = run("steam-report")
+
+    assert code == 0, err
+    [models] = [line for line in out.splitlines() if line.startswith("- Models:")]
+    assert models == "- Models: gemini-3.1-flash-image (gemini), gpt-image-2 2026-08-01 (openai)"

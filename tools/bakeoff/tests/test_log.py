@@ -1,5 +1,6 @@
 """Lane log front matter (docs/bakeoff/lane-log-format.md). THROWAWAY bake-off tooling."""
 
+import re
 from pathlib import Path
 
 import pytest
@@ -50,6 +51,19 @@ def test_the_template_is_valid():
     assert problems(parse(TEMPLATE)) == []
 
 
+def _filled_in(template: str) -> str:
+    """The template with each commented example put in place, as a lane fills it in."""
+    text = re.sub(r"^(\w+): \[\]\n# - (.*)$", r"\1:\n  - \2", template, flags=re.M)
+    return re.sub(r"^deliverables: .*\n# e\.g\. (.*)$", r"deliverables: \1", text, flags=re.M)
+
+
+def test_the_template_s_examples_are_valid_once_filled_in(tmp_path: Path):
+    text = _filled_in(TEMPLATE.read_text())
+    assert "# - " not in text and "# e.g." not in text
+
+    assert problems(parse(_write(tmp_path, text)), lane_dir="g-a") == []
+
+
 def test_a_complete_log_is_valid(tmp_path: Path):
     assert problems(parse(_write(tmp_path, LOG)), lane_dir="g-a") == []
 
@@ -69,7 +83,8 @@ def test_a_complete_log_is_valid(tmp_path: Path):
         ("engine: godot", "engine: unity", "engine: lane g-a is"),  # g-a is the Godot lane
         ("direction: A", "direction: D", "direction: lane g-a is"),  # g-a is direction A
         ("machine: oryx", "machine: laptop", "machine:"),
-        ("lane: g-a", 'lane: ""', "lane: must be non-empty"),
+        ("lane: g-a", 'lane: ""', "lane: '' is not one of"),
+        ("lane: g-a", "lane: ga", "lane: 'ga' is not one of"),
         ("usd: 1.25", "usd: lots", "costs[0].usd:"),
         ("usd: 1.25", "usd: -3", "costs[0].usd:"),
         ("usd: 1.25", "usd: .inf", "costs[0].usd:"),
@@ -142,6 +157,19 @@ def test_log_check_holds_a_lane_log_to_its_directory(tmp_path: Path, capsys: pyt
 
     assert main(["log-check", str(copied)]) == 1
     assert f"{copied}: lane:" in capsys.readouterr().err
+
+
+def test_log_check_refuses_a_lane_outside_the_five(tmp_path: Path, capsys: pytest.CaptureFixture[str]):
+    log = _write(tmp_path, LOG.replace("lane: g-a", "lane: ga"), lane="ga")  # CI on bakeoff/ga would otherwise go green
+
+    assert main(["log-check", str(log)]) == 1
+    assert f"{log}: lane:" in capsys.readouterr().err
+
+
+def test_log_check_works_from_inside_the_lane_directory(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]):
+    monkeypatch.chdir(_write(tmp_path, LOG).parent)
+
+    assert main(["log-check", "LOG.md"]) == 0, capsys.readouterr().err
 
 
 def test_log_check_on_a_missing_file_is_a_usage_error(tmp_path: Path, capsys: pytest.CaptureFixture[str]):

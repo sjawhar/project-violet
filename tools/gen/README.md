@@ -29,7 +29,9 @@ point anywhere the resulting sidecar should live.
 ```
 gen image --provider {openai|gemini} --model MODEL --prompt TEXT
           [--negative-prompt TEXT] [--size WxH] [--seed N]
-          [--input PATH ...] [--license proprietary] [--force]
+          [--input PATH ...] [--background {transparent,opaque}]
+          [--quality {low,medium,high}]
+          [--license proprietary] [--force]
           --out PATH
 ```
 
@@ -47,6 +49,18 @@ gen image --provider {openai|gemini} --model MODEL --prompt TEXT
 - The written image is always a real PNG (`--out`'s extension is not consulted): Gemini's
   API returns JPEG by default, so `gen` decodes and re-encodes it before writing; OpenAI's
   API already returns PNG.
+- `--background {transparent,opaque}` (OpenAI only; bake-off body parts use `transparent`)
+  sends the Images API's `background` parameter and forces `output_format: "png"` (in both
+  `/images/generations` and `/images/edits`), so a transparent PNG actually carries an
+  alpha channel rather than a flattened white background. Gemini's `generateContent` has no
+  equivalent parameter, so `gen` refuses `--background` for `--provider gemini` with a clear
+  error rather than silently ignoring it.
+- `--quality {low,medium,high}` (OpenAI only) sends the Images API's `quality` parameter.
+  Without the flag `gen` sends `high`. Left unset, the API chooses per request: it chose `low`
+  for every piece of bake-off art made before this flag existed, and `medium` for one
+  transparent test image. Art that gets judged or shipped shouldn't depend on that choice.
+  Pass `--quality low` for drafts and tests. Gemini has no quality parameter, so `gen` refuses
+  `--quality` for `--provider gemini`.
 
 ### Provenance recorded
 
@@ -62,7 +76,8 @@ separate `provenance record` step) with:
 - `seed`, when given and accepted (OpenAI's Images API has no seed parameter; `gen` refuses
   `--seed` for `--provider openai` rather than silently ignoring it and recording a seed
   that had no effect)
-- `params.size`, the `--size` actually used
+- `params.size`, the `--size` actually used; for OpenAI, `params.quality` and
+  `params.background` as the response echoes them back, which is what the API actually used
 - `inputs`, each resolved to a repo-relative path and content hash
 
 ### Neither provider has a negative-prompt or (for OpenAI) a seed parameter
@@ -107,7 +122,7 @@ observable in testing, but not stored per-sidecar since it varies run to run:
 
 - OpenAI's `/v1/images/generations` and `/v1/images/edits` responses include a `usage`
   object (`input_tokens`, `output_tokens`, with an `image_tokens` breakdown). A
-  `1024x1024`, default-quality generation used ~200 output tokens in testing.
+  `1024x1024` generation where the API chose `low` used ~200 output tokens in testing.
 - Gemini's `generateContent` responses include `usageMetadata`
   (`promptTokenCount`, `candidatesTokenCount`, with a per-modality breakdown). A
   `1024x1024` generation used ~1,100–1,500 candidate tokens in testing.
@@ -165,3 +180,10 @@ explicitly against the absolute `/tmp` path) exited 0 for both. The `/tmp` outpu
 under any `provenance.toml` root, and `provenance check` did not need it to be: an
 explicit file argument is checked directly, without requiring root/extension membership.
 The smoke-run files were deleted afterward and were never committed.
+
+`--background transparent` was also smoke-tested against the live OpenAI API
+(`gpt-image-2`, `--size 1024x1024`): the result loaded as `RGBA` and
+`Image.open(p).getchannel("A").getextrema()` was `(0, 254)` — a real alpha channel, not a
+flattened background — and the sidecar's `params.background` recorded `"transparent"`.
+`gpt-image-2` accepted `--background` directly; the plan's `gpt-image-1.5` fallback (for a
+model that rejects the parameter) was not needed.

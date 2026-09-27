@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "asset": "scarf-gemini.png",
+  "sha256": "903a6bf753c979b0a88ff887019802b0c84ee876a605859d7eb1f53ab536622c",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-27T05:14:04+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-image",
+    "model_version": "gemini-3.1-flash-image",
+    "prompt": "Character concept sheet, front and three-quarter views: a long, flowing head scarf worn by a young heroine in a simple pale robe. The scarf is the only saturated color in the image, a glowing scarlet red with light bleeding from its edges; everything else is soft greyscale. Painterly, hand-drawn look, clean neutral background, no text, no logos.",
+    "params": {
+      "size": "1024x1024"
+    },
+    "inputs": []
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

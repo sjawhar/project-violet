@@ -33,7 +33,8 @@ def _pr(text: str) -> str:
 def cmd_log_check(args: argparse.Namespace) -> int:
     found = []
     for path in args.logs:
-        lane_dir = path.parent.name if path.name == "LOG.md" else None  # bakeoff/<lane>/LOG.md must name <lane>
+        # bakeoff/<lane>/LOG.md must name <lane>; resolved first, so a bare LOG.md run inside the lane works too.
+        lane_dir = path.resolve().parent.name if path.name == "LOG.md" else None
         found += [f"{path}: {problem}" for problem in problems(parse(path), lane_dir=lane_dir)]
     for line in found:
         print(line, file=sys.stderr)

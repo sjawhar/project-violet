@@ -1,6 +1,6 @@
 import pytest
 
-from gen.cli import main
+from gen.cli import build_parser, main
 
 
 def test_missing_prompt_is_an_argparse_error(capsys: pytest.CaptureFixture[str]):
@@ -34,3 +34,57 @@ def test_missing_out_is_an_argparse_error(capsys: pytest.CaptureFixture[str]):
         main(["image", "--provider", "openai", "--model", "gpt-image-2", "--prompt", "a circle"])
     assert excinfo.value.code == 2
     assert "--out" in capsys.readouterr().err
+
+
+def test_background_transparent_parses():
+    args = build_parser().parse_args(
+        [
+            "image",
+            "--provider",
+            "openai",
+            "--model",
+            "gpt-image-2",
+            "--prompt",
+            "a circle",
+            "--background",
+            "transparent",
+            "--out",
+            "out.png",
+        ]
+    )
+    assert args.background == "transparent"
+
+
+def test_background_pink_is_an_argparse_error(capsys: pytest.CaptureFixture[str]):
+    with pytest.raises(SystemExit) as excinfo:
+        main(
+            [
+                "image",
+                "--provider",
+                "openai",
+                "--model",
+                "gpt-image-2",
+                "--prompt",
+                "a circle",
+                "--background",
+                "pink",
+                "--out",
+                "out.png",
+            ]
+        )
+    assert excinfo.value.code == 2
+    assert "--background" in capsys.readouterr().err
+
+
+def test_quality_low_parses():
+    args = build_parser().parse_args(
+        ["image", "--provider", "openai", "--model", "gpt-image-2", "--prompt", "a circle", "--quality", "low", "--out", "out.png"]
+    )
+    assert args.quality == "low"
+
+
+def test_quality_ultra_is_an_argparse_error(capsys: pytest.CaptureFixture[str]):
+    with pytest.raises(SystemExit) as excinfo:
+        main(["image", "--provider", "openai", "--model", "gpt-image-2", "--prompt", "a circle", "--quality", "ultra", "--out", "out.png"])
+    assert excinfo.value.code == 2
+    assert "--quality" in capsys.readouterr().err
