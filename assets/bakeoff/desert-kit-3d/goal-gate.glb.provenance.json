@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "asset": "goal-gate.glb",
+  "sha256": "97b6620e7b760fb7a8b030a0002298613dacc4c991d00a49cca1fd92fbb31152",
+  "kind": "model3d",
+  "origin": "generated",
+  "created_at": "2026-09-27T17:59:31+00:00",
+  "generator": {
+    "tool": "blender",
+    "tool_version": "5.2.2",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "prompt": "goal-gate: 1 m wide sandstone gate with a glowing sky-teal pointed-arch portal and sun disc; low-poly Blender Python piece of the Phase 1 bake-off desert kit following docs/bakeoff/desert-biome-brief.md",
+    "params": {
+      "seed": "20260927"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/desert-kit-3d/build_kit.py",
+        "sha256": "1a80d7495317cb59025cddbc83fa64f099b5a392024d363611c3348f36444c36"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}
