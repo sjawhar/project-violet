@@ -62,8 +62,8 @@ Parallel waves: Task 1 first (one PR). Then 2, 3, 4 in parallel; 7 and 8 start a
 ## Conventions used by every task
 
 - `$VIOLET` = the machine's repo checkout root (on sami `/home/sami/Code/personal/project-violet`; on oryx the checkout Phase 0's provenance work used). All paths and commands are relative to it.
-- A tool or docs PR: `jj new master -m "<title>"`, edit, `jj describe -m "<title>"`, `jj new`, `jj bookmark create phase1/<topic> -r @-`, `git lfs push origin phase1/<topic>` (when binaries changed), `jj git push --bookmark phase1/<topic> --allow-new`, then `gh api repos/sjawhar/project-violet/pulls -f title="<title>" -f head=phase1/<topic> -f base=master -F body=@/tmp/body.md`. The body states what was run and what was observed.
-- A lane: `jj workspace add --name <lane> -r master ~/src/violet-<lane>` (its own working copy so lanes on one machine do not collide), `cd ~/src/violet-<lane>`, `jj bookmark create bakeoff/<lane> -r @`, commit often (`jj describe -m ...; jj new; jj bookmark set bakeoff/<lane> -r @-`), push with `git lfs push origin bakeoff/<lane> && jj git push --bookmark bakeoff/<lane> --allow-new`. Lane branches get no PR; CI runs on push and the gallery links the runs.
+- A tool or docs PR: `jj new master -m "<title>"`, edit, `jj describe -m "<title>"`, `jj new`, `jj bookmark create phase1/<topic> -r @-`, `git lfs push origin phase1/<topic>` (when binaries changed), `jj git push --bookmark phase1/<topic>`, then `gh api repos/sjawhar/project-violet/pulls -f title="<title>" -f head=phase1/<topic> -f base=master -F body=@/tmp/body.md`. The body states what was run and what was observed.
+- A lane: `jj workspace add --name <lane> -r master ~/src/violet-<lane>` (its own working copy so lanes on one machine do not collide), `cd ~/src/violet-<lane>`, `jj bookmark create bakeoff/<lane> -r @`, commit often (`jj describe -m ...; jj new; jj bookmark set bakeoff/<lane> -r @-`), push with `git lfs push origin bakeoff/<lane> && jj git push --bookmark bakeoff/<lane>`. Lane branches get no PR; CI runs on push and the gallery links the runs.
 - Lane layout: `game/<lane>/` (engine project, `ci.sh`), `bakeoff/<lane>/LOG.md` (format in `docs/bakeoff/lane-log-format.md`), `bakeoff/<lane>/replays/*.replay.json` (the lane's own replay; Godot lanes also keep a copy at `game/<lane>/replays/` because `res://` cannot leave the project), `bakeoff/<lane>/reports/` (CI-readable results), `bakeoff/<lane>/capture/capture.mp4` + `still-*.png` (LFS).
 - Every lane copies `docs/bakeoff/level01.greybox.json` into its project unchanged; `ci.sh` runs `cmp` against the docs copy.
 - Every generated image: `secrets OPENAI_API_KEY -- uv run --project tools/gen gen image ...` (or `GEMINI_API_KEY`). Every manual asset edit: `uv run --project tools/provenance provenance edit ASSET --by NAME --description TEXT`.
@@ -601,15 +601,17 @@ cmp ../../docs/bakeoff/level01.greybox.json levels/level01.greybox.json
 godot --headless --path . --import
 run() { godot --headless --fixed-fps 60 --path . "$@"; }
 run res://tests/replay_runner.tscn -- --replay=res://replays/level01.replay.json > "$rep/replay.json"
-! run res://tests/replay_runner.tscn -- --replay=res://replays/level01.replay.json --disable=dash > "$rep/replay-no-dash.json"
-! run res://tests/replay_runner.tscn -- --replay=res://replays/level01.replay.json --disable=double_jump > "$rep/replay-no-double-jump.json"
+if run res://tests/replay_runner.tscn -- --replay=res://replays/level01.replay.json --disable=dash > "$rep/replay-no-dash.json"; then echo "ci.sh: replay without dash reached the goal" >&2; exit 1; fi
+if run res://tests/replay_runner.tscn -- --replay=res://replays/level01.replay.json --disable=double_jump > "$rep/replay-no-double-jump.json"; then echo "ci.sh: replay without double jump reached the goal" >&2; exit 1; fi
 run res://tests/validate_tags.tscn > "$rep/tags.txt" 2>&1
-! run res://tests/validate_tags.tscn -- --mutate > "$rep/tags-mutated.txt" 2>&1
+if run res://tests/validate_tags.tscn -- --mutate > "$rep/tags-mutated.txt" 2>&1; then echo "ci.sh: tag validator passed a mutated level" >&2; exit 1; fi
 godot --headless --path . --export-release Linux "../../out/$lane/violet-$lane.x86_64" > "$rep/export.log" 2>&1
 test -x "../../out/$lane/violet-$lane.x86_64" && timeout 90 "../../out/$lane/violet-$lane.x86_64" --headless --quit-after 120 && ls -l "../../out/$lane/violet-$lane.x86_64" > "$rep/build.txt"
 ```
 
 (Godot's `--export-release` can exit 0 on failure — playtest-qa.md risk 5 — hence `test -x` and the headless smoke run.)
+
+(An expected failure is written `if run ...; then exit 1; fi`, not `! run ...`: bash's `set -e` ignores a command negated with `!`, so `! run` can never fail the script.)
 
 - [ ] **Step 17: Verify the greybox milestone** on oryx: `bash game/g-a/ci.sh` exits 0; `bakeoff/g-a/reports/replay.json` ends with `"ok": true`; `replay-no-dash.json` says `"ok": false` with "goal not reached"; `tags.txt` ends `0 problem(s)`; `tags-mutated.txt` shows one `no tagged body` problem. Commit (`.uid` files included), push `bakeoff/g-a`; the `bakeoff` workflow is green.
 - [ ] **Step 18:** Painted world (account-free): generate each 2D piece in the biome brief with `gen image` (`--input` the biome brief's approved kit turntable or the protagonist concept for palette; tiles `--size 1024x1024`, backdrops `--size 1536x1024`) into `game/g-a/art/`. Check tiles tile: `magick ground-tile.png -roll +512+512 /tmp/roll.png` and look at the seam. `art/painted_art.gd` (`class_name PaintedArt extends GreyboxArt`, `@export` textures) returns `Sprite2D`s (`texture`, `scale = ts / texture.get_width()`), tagged cells get `art/reveal.gdshader` (`uniform float saturation; uniform float glow; ...` grayscale mix and additive glow) via `ShaderMaterial` and a `set_resonance_look` that sets `saturation = 1.0 if revealed else 0.0`, `glow = 0.6 if active else 0.0` and tweens `glow` for the pulse; `make_backdrop` stacks three `Parallax2D` layers (`scroll_scale` 0.2 / 0.5 / 0.8, `repeat_size.x` = texture width) with the backdrop PNGs; `attach_character` adds `SpineCharacter2D` when `res://protagonist/violet.spine-json` exists, else the stand-in. Save as `art/lane_art.tres`. `provenance check game/g-a` OK.
