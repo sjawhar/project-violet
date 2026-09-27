@@ -13,16 +13,11 @@ It has worked when each phase's gate below passes on this machine and Sami appro
 
 ## Decisions needed
 
-**1. Can your friend's 2018 illustration go in the public repo?** The 2018 "Resonate" deck includes a full-body illustration of Violet drawn by your artist friend. Committing it publishes their drawing.
-- *Include it:* you've confirmed they're fine with it being public.
-- *Keep it out:* the archive describes the drawing in words and includes no image of it.
-
-**2. Approve the accounts and purchases for Phases 0–1?** Strike any you don't want.
+**Accounts and purchases for Phase 1: still open.** On 2026-09-26 Sami approved using the existing OpenAI and Gemini keys for art generation ("Yes, you can use those keys for art generation"), and said of the new sign-ups: "I'm not going to do all of those sign-ups tonight". These still need his approval and a sign-up before the lanes that use them:
 - Spine Professional: $379 once, for the cutout-rigged protagonist.
 - Unity AI subscription: about $10/mo, the only channel Unity's terms allow for agents.
 - Meshy or Tripo: about $20/mo, 3D generation for the D lanes.
 - Recraft paid plan: about $12/mo; the free tier is personal-use only.
-- OpenAI and Google image APIs: usage-based.
 
 A Unity Pro seat (about $2,310/yr) is needed only if Unity wins the bake-off.
 
@@ -44,7 +39,7 @@ These points are mine, not things you settled:
 1. **Phase 0 gate: the smoke test.** An agent runs the image tool to make one head-scarf concept for the protagonist. A provenance record sits beside the file. A PR shows the image inline and links its gallery page. CI passes. Sami approves and the PR merges. A fresh clone contains the real image, not an LFS pointer file. Check: the merged PR, the green CI run, and the fresh clone.
 2. **Legion trial.** It decides who runs Phase 2 and does not block Phase 1. In the isolated GitHub-era instance, a trivial issue on project-violet goes architect → implementer → tester → reviewer and ends merge-ready, while the current Legion keeps running undisturbed. Check: the issue timeline and PR, `legion status` for both instances, and the current instance's open work unaffected.
 3. **Phase 1 gate: the bake-off.** Every lane delivers or records a blocker: a playable Linux build, a 60–90 second capture with stills, a passing completability test and color-tag check, and a log of agent hours, dollars and interventions. Sami scores every lane on the gallery page and the winning direction and engine are recorded in `docs/decisions/`. Check: the gallery page, each lane's CI output, and the decision record.
-4. **Phase 2 gate: infrastructure.** A throwaway test room goes through every pipeline: generated art and audio with provenance, level text imported into a scene, tests and capture, vision review, colorblind simulation, an agent playtest through the MCP bridge, and approval on a PR. Check: the PR, the CI run, and the capture.
+4. **Phase 2 gate: infrastructure.** A throwaway test room goes through every pipeline: generated art and audio with provenance, level text imported into a scene, tests and capture, an agent session reviewing the captures, colorblind simulation, an agent playtest through the MCP bridge, and approval on a PR. Check: the PR, the CI run, and the capture.
 
 ## Requirements
 
@@ -61,8 +56,11 @@ These points are mine, not things you settled:
 | Legion runs from a pre-Dispatch commit | "Just checkout an older commit :)" |
 | Mechanics, abilities and feel are designed in the separate brainstorm; nothing in this spec fixes them | "You're getting way ahead of youreself on the core and feel. That's still TBD, we need to brainstorm all of that." |
 | Agents work in Unity only through Unity's official MCP | Unity Terms of Service §17.2 (June 30, 2026) |
-| Every generated asset carries a provenance record; CI blocks unrecorded or unapproved assets | inferred: Steam disclosure requires knowing what was generated and how, and vendors recommend keeping these records |
+| Every generated asset carries a provenance record; CI blocks unrecorded assets; branch protection with CODEOWNERS makes Sami's PR approval mandatory | inferred: Steam disclosure requires knowing what was generated and how, and vendors recommend keeping these records |
 | Third-party art is linked, never committed | inferred: the repo is public |
+| The 2018 illustration by Sami's friend is included in the archive | Sami: "Include it" |
+| Violet may use the existing OpenAI and Gemini keys for art generation | Sami: "Yes, you can use those keys for art generation" |
+| Code never calls an LLM; model review means an agent session looks at captures | Sami: "What exactly do you think you need LLM API keys for?" and his standing rule that code does not call agents |
 
 ## Design
 
@@ -118,7 +116,7 @@ These points are mine, not things you settled:
 - Infrastructure on the winning stack:
   - A prototyping kit that commits to no mechanic.
   - The text-to-scene level pipeline.
-  - The QA harness: test runners, replayed-input tests, capture, vision-model review, colorblind simulation, and an MCP bridge for agent playtests. The solver follows once the abilities are designed.
+  - The QA harness: test runners, replayed-input tests, capture, agent-session review of the captures, colorblind simulation, and an MCP bridge for agent playtests. CI never calls a model. The solver follows once the abilities are designed.
   - The art and audio pipelines with provenance.
   - The studio role skills.
   - CI.
