@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "asset": "arm_back_upper.png",
+  "sha256": "038bb70eb1d9d7c28550856aca97a8ae5607b923209da660a01f523acd58edd4",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-27T17:18:43+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Only the only the upper arm from the shoulder to the elbow, robe sleeve fabric over the arm, no hand, no torso, no lower arm, extending slightly past the elbow for overlap of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
+        "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "lead-agent",
+      "description": "trimmed transparent margin",
+      "at": "2026-09-27T17:53:53+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

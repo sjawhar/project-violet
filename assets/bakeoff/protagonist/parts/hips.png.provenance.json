@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "asset": "hips.png",
+  "sha256": "fa8674fa65a4c6e4e8716271a285023bf0dd49874cc77147b1c73f046f7d4967",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-27T17:16:13+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Only the the robe skirt from the waist down to the knee line only, no torso above the waist, no legs below the hem, just the gray robe fabric flaring out of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
+        "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "lead-agent",
+      "description": "trimmed transparent margin",
+      "at": "2026-09-27T17:53:53+00:00"
+    }
+  ],
+  "license": "proprietary"
+}
