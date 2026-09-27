@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bake-off scores (THROWAWAY)",
+  "description": "docs/bakeoff/scores.json: Sami's judging comment transcribed by the lead; `bakeoff decide` applies the rule in docs/bakeoff/judging.md to it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["scored_by", "scored_at", "source", "lanes"],
+  "properties": {
+    "scored_by": { "type": "string", "minLength": 1 },
+    "scored_at": { "type": "string", "format": "date-time" },
+    "source": { "description": "URL of the judging comment this file transcribes.", "type": "string", "format": "uri" },
+    "prefers_c_over_a": { "description": "Asked only when no D lane got would_ship: yes.", "type": ["boolean", "null"] },
+    "lanes": {
+      "description": "Both D lanes must be present (a blocked one as would_ship: false with null scores): leaving one out could flip the decision.",
+      "type": "object",
+      "required": ["g-d", "u-d"],
+      "propertyNames": { "enum": ["g-a", "g-d", "u-d", "g-c", "control"] },
+      "additionalProperties": { "$ref": "#/$defs/lane" }
+    }
+  },
+  "$defs": {
+    "score": {
+      "description": "1-5, or null for a lane Sami could not score (a blocked lane with nothing to judge).",
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "maximum": 5
+    },
+    "lane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["visual_quality", "character_appeal", "color_readability", "would_ship", "notes"],
+      "properties": {
+        "visual_quality": { "$ref": "#/$defs/score" },
+        "character_appeal": { "$ref": "#/$defs/score" },
+        "color_readability": { "$ref": "#/$defs/score" },
+        "would_ship": { "type": "boolean" },
+        "notes": { "type": "string" }
+      },
+      "if": { "properties": { "would_ship": { "const": true } } },
+      "then": {
+        "description": "A lane Sami would ship has all three scores: they decide the engine.",
+        "properties": {
+          "visual_quality": { "type": "integer" },
+          "character_appeal": { "type": "integer" },
+          "color_readability": { "type": "integer" }
+        }
+      }
+    }
+  }
+}

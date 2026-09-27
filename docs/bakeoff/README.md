@@ -1,6 +1,6 @@
 # Phase 1 bake-off (THROWAWAY)
 
-> Everything under `docs/bakeoff`, `assets/bakeoff`, `bakeoff/` and the `bakeoff/*` branches exists only to run the Phase 1 bake-off. Mechanics are undecided ([decision 0009](../decisions/0009-mechanics-undecided.md)); nothing here is canon.
+> Everything under `docs/bakeoff`, `assets/bakeoff`, `bakeoff/` and the `bakeoff/*` branches exists only to run the Phase 1 bake-off, as does `tools/bakeoff`. Mechanics are undecided ([decision 0009](../decisions/0009-mechanics-undecided.md)); nothing here is canon.
 
 The bake-off runs five lanes of the same throwaway slice — one greybox level, one test mechanic, one protagonist and biome brief — through five engine/art combinations, then Sami scores the results and the next decision record picks the stack. Plan: `docs/superpowers/plans/2026-09-27-phase-1-bake-off.md`.
 
@@ -32,5 +32,16 @@ The bake-off runs five lanes of the same throwaway slice — one greybox level, 
 - [desert-biome-brief.md](desert-biome-brief.md) — the desert biome art brief (THROWAWAY).
 - [judging.md](judging.md) — how Sami scores each lane and the decision rule.
 - [lane-log-format.md](lane-log-format.md) — the `bakeoff/<lane>/LOG.md` front matter every lane keeps.
+- [lane-log-template.md](lane-log-template.md) — the `LOG.md` a lane copies to `bakeoff/<lane>/LOG.md` and fills in.
+- [scores.schema.json](scores.schema.json) — the schema of `docs/bakeoff/scores.json`, the lead's transcription of Sami's judging comment.
 
 `tools/greybox` (a standalone uv project, laid out like `tools/gen` and `tools/provenance`) validates and renders `level01.greybox.json`: `uv run --project tools/greybox greybox check LEVEL` and `greybox render LEVEL --out PNG`.
+
+`tools/bakeoff` (the same layout) runs the lanes' paperwork and the judging, from anywhere inside the repository:
+
+- `uv run --project tools/bakeoff bakeoff log-check bakeoff/<lane>/LOG.md` checks a lane log against the format, including that it names its own lane directory and that lane's direction and engine.
+- `bakeoff gallery --pr N` builds `out/review/pr-N/bakeoff.html`: one row per lane with its checks from `bakeoff/<lane>/reports/`, its log totals, its capture and stills (through `tools/preview`'s `preview build`, whose `index.html` sits beside it), its latest CI run and Sami's scores once they exist. Publish it with `uv run --project tools/preview preview publish N`.
+- `bakeoff results-md --pr N > docs/bakeoff/results.md` writes the same table without the media.
+- `bakeoff decide docs/bakeoff/scores.json` applies the rule in [judging.md](judging.md) and prints the direction, engine and winning lane.
+
+Exit codes: 0 ok, 1 a content problem (a log or the scores), 2 a usage, configuration or I/O error.
