@@ -1,6 +1,6 @@
 # Phase 1 bake-off (THROWAWAY)
 
-> Everything under `docs/bakeoff`, `assets/bakeoff`, `bakeoff/` and the `bakeoff/*` branches exists only to run the Phase 1 bake-off, as does `tools/bakeoff`. Mechanics are undecided ([decision 0009](../decisions/0009-mechanics-undecided.md)); nothing here is canon.
+> Everything under `docs/bakeoff`, `assets/bakeoff`, `bakeoff/` and the `bakeoff/*` branches exists only to run the Phase 1 bake-off, as do `tools/bakeoff`, `scripts/godot-fetch.sh`, `scripts/capture-*.sh` and `.github/workflows/bakeoff.yml`. Mechanics are undecided ([decision 0009](../decisions/0009-mechanics-undecided.md)); nothing here is canon.
 
 The bake-off runs five lanes of the same throwaway slice — one greybox level, one test mechanic, one protagonist and biome brief — through five engine/art combinations, then Sami scores the results and the next decision record picks the stack. Plan: `docs/superpowers/plans/2026-09-27-phase-1-bake-off.md`.
 
@@ -20,7 +20,7 @@ The bake-off runs five lanes of the same throwaway slice — one greybox level, 
 - `game/<lane>/` — each lane's engine project (created when its lane task starts), holding its own copy of `level01.greybox.json` (unchanged; each lane's `ci.sh` runs `cmp` against the `docs/bakeoff` copy) and its `ci.sh`.
 - `bakeoff/<lane>/` — each lane's evidence: `LOG.md` (format in [lane-log-format.md](lane-log-format.md)), `replays/*.replay.json` (format in [replay-format.md](replay-format.md); Godot lanes also keep a copy under `game/<lane>/replays/` because `res://` cannot leave the project), `reports/` (CI-readable results), `capture/capture.mp4` + `still-*.png` (Git LFS).
 - `assets/bakeoff/` — shared generated assets (the Spine protagonist rig, the 3D desert kit) built once and used by every lane that needs them.
-- Lane branches are named `bakeoff/<lane>`; they branch from `master` and never merge.
+- Lane branches are named `bakeoff/<lane>`; they branch from `master` and never merge. Every push to one runs `.github/workflows/bakeoff.yml`: provenance and LFS checks, `bakeoff log-check` on the lane's `LOG.md`, then `game/<lane>/ci.sh`. Its `out/` and `bakeoff/<lane>/reports/` are uploaded as the run's `bakeoff-<lane>` artifact, failed runs included.
 
 ## Files
 
@@ -45,3 +45,8 @@ The bake-off runs five lanes of the same throwaway slice — one greybox level, 
 - `bakeoff decide docs/bakeoff/scores.json` applies the rule in [judging.md](judging.md) and prints the direction, engine and winning lane.
 
 Exit codes: 0 ok, 1 a content problem (a log or the scores), 2 a usage, configuration or I/O error.
+
+Three scripts serve the Godot and Unity lanes, run from the repository root with the mise tools on `PATH`:
+
+- `scripts/godot-fetch.sh game/<lane>` installs Godot 4.7.2's export templates (checksum-verified) and the spine-godot 4.3 GDExtension into `game/<lane>/bin/` (gitignored), and registers the extension in `.godot/extension_list.cfg`: without that, a fresh project's first `godot --headless --import` aborts once the extension is present. Every Godot lane's `ci.sh` runs it before importing.
+- `scripts/capture-godot.sh <lane> [ART_TRES]` records the lane's replay with Godot's Movie Maker, and `scripts/capture-unity.sh` runs the U-D player with frame capture. Both write `bakeoff/<lane>/capture/capture.mp4` and `still-{05,20,40,60}.png` only when the capture is 60-90 s at 1920x1080; a rejected one stays in `out/<lane>/capture/` and the last good capture is kept. With `$DISPLAY` empty they render in software under Xvfb (they need the `xvfb` and `mesa-vulkan-drivers` packages).

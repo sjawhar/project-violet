@@ -35,3 +35,6 @@ __pycache__/
 
 # Visual-companion brainstorm sessions (local only)
 .superpowers/
+
+# Fetched by scripts/godot-fetch.sh, never committed (bake-off spine-godot GDExtension)
+game/*/bin/
