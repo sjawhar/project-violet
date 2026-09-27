@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<!-- THROWAWAY bake-off lane G-C: wall-tile, hand-written flat vector. Layered sandstone, seamless both ways.
+     The strata repeat every 256 px (one game cell), so every cell edge falls in the base rock color. -->
+<defs>
+<g id="band">
+<path fill="#8e5a38" d="M0,118 L150,110 L310,124 L480,112 L650,122 L830,108 L1024,118 L1024,164 L850,172 L690,158 L520,170 L340,156 L170,168 L0,164 Z"/>
+<path fill="#c2875a" d="M0,206 L200,200 L420,210 L610,198 L800,208 L1024,206 L1024,222 L790,226 L600,216 L410,228 L190,218 L0,222 Z"/>
+<path fill="#5a4a7a" d="M250,20 L270,52 L260,86 L276,112 L262,116 L244,88 L252,54 L236,24 Z"/>
+<path fill="#8e5a38" d="M380,176 L520,171 L604,180 L600,190 L520,183 L382,188 Z"/>
+<ellipse fill="#8e5a38" cx="124" cy="68" rx="28" ry="15"/>
+<ellipse fill="#c2875a" cx="120" cy="60" rx="28" ry="15"/>
+<ellipse fill="#8e5a38" cx="904" cy="76" rx="22" ry="12"/>
+<ellipse fill="#c2875a" cx="900" cy="70" rx="22" ry="12"/>
+</g>
+</defs>
+<rect width="1024" height="1024" fill="#a86f46"/>
+<use href="#band"/>
+<use href="#band" transform="translate(1024 256) scale(-1 1)"/>
+<use href="#band" transform="translate(512 512)"/>
+<use href="#band" transform="translate(-512 512)"/>
+<use href="#band" transform="translate(1536 768) scale(-1 1)"/>
+<use href="#band" transform="translate(512 768) scale(-1 1)"/>
+</svg>

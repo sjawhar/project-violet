@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<!-- THROWAWAY bake-off lane G-C: crystal-platform, hand-written flat vector. A ledge of packed upright crystal prisms
+     (the same prism as crystal-wall, shorter) in neutral light grays; the reveal shader tints it #e04a3a / #3fbf6a once
+     acquired. The game shows one 256 px row per cell, so the same ledge band repeats four times; each band spans four
+     cells and tiles horizontally. Transparent under the ledge. -->
+<defs>
+<g id="p">
+<polygon fill="#e6e6e6" points="0,-1 -1,-0.72 -1,0.72 0,1"/>
+<polygon fill="#b8b8b8" points="0,-1 1,-0.72 1,0.72 0,1"/>
+<polygon fill="#ffffff" points="0,-1 -1,-0.72 -0.3,-0.62"/>
+<polygon fill="#d0d0d0" points="0,-1 1,-0.72 0.3,-0.62"/>
+<polygon fill="#ffffff" points="-0.66,-0.52 -0.44,-0.6 -0.44,0.48 -0.66,0.56"/>
+<polygon fill="#d0d0d0" points="0,1 1,0.72 0.3,0.62"/>
+</g>
+<g id="row">
+<use href="#p" transform="translate(85 96) scale(34 82)"/>
+<use href="#p" transform="translate(171 88) scale(30 74)"/>
+<use href="#p" transform="translate(256 100) scale(34 86)"/>
+<use href="#p" transform="translate(341 92) scale(30 78)"/>
+<use href="#p" transform="translate(427 96) scale(34 82)"/>
+<use href="#p" transform="translate(512 88) scale(30 74)"/>
+<use href="#p" transform="translate(597 100) scale(34 86)"/>
+<use href="#p" transform="translate(683 92) scale(30 78)"/>
+<use href="#p" transform="translate(768 96) scale(34 82)"/>
+<use href="#p" transform="translate(853 88) scale(30 74)"/>
+<use href="#p" transform="translate(939 100) scale(34 86)"/>
+<use href="#p" transform="translate(1024 92) scale(30 78)"/>
+</g>
+<g id="front">
+<use href="#p" transform="translate(43 104) scale(40 96)"/>
+<use href="#p" transform="translate(128 116) scale(50 108)"/>
+<use href="#p" transform="translate(213 94) scale(36 86)"/>
+<use href="#p" transform="translate(299 108) scale(50 100)"/>
+<use href="#p" transform="translate(384 100) scale(40 92)"/>
+<use href="#p" transform="translate(469 118) scale(52 110)"/>
+<use href="#p" transform="translate(555 96) scale(38 88)"/>
+<use href="#p" transform="translate(640 110) scale(50 102)"/>
+<use href="#p" transform="translate(725 102) scale(40 94)"/>
+<use href="#p" transform="translate(811 114) scale(50 106)"/>
+<use href="#p" transform="translate(896 94) scale(38 86)"/>
+<use href="#p" transform="translate(981 108) scale(48 100)"/>
+</g>
+<g id="ledge">
+<rect y="30" width="1024" height="96" fill="#7d7d7d"/>
+<use href="#row"/>
+<use href="#row" x="1024"/>
+<use href="#row" x="-1024"/>
+<use href="#front"/>
+<use href="#front" x="1024"/>
+<use href="#front" x="-1024"/>
+</g>
+</defs>
+<use href="#ledge"/>
+<use href="#ledge" y="256"/>
+<use href="#ledge" y="512"/>
+<use href="#ledge" y="768"/>
+</svg>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" width="1536" height="1024">
+<!-- THROWAWAY bake-off lane G-C: backdrop-mid, hand-written flat vector. Layered sandstone mesas, a butte and a
+     wind-cut arch in hazy rock tones with shadow-violet shade sides, on a plain. Transparent above so the far sky shows
+     (also through the arch); seamless horizontally (the plain meets itself flat at the edges, the rocks stay inside). -->
+<defs>
+<path id="mesa" d="M20,780 L80,650 L100,560 L118,440 L128,420 L512,420 L524,440 L544,560 L566,650 L640,780 Z"/>
+<clipPath id="mesa-clip"><use href="#mesa"/></clipPath>
+<path id="butte" d="M676,780 L716,660 L730,560 L738,346 L746,330 L830,330 L838,346 L848,560 L864,660 L912,780 Z"/>
+<clipPath id="butte-clip"><use href="#butte"/></clipPath>
+<path id="arch" d="M980,780 L1000,620 L1008,500 C1012,436 1048,396 1112,390 L1318,390 C1392,396 1426,440 1430,500 L1440,630 L1470,780 L1332,780 L1332,600 C1332,530 1282,490 1214,490 C1148,490 1098,530 1098,600 L1098,780 Z"/>
+<clipPath id="arch-clip"><use href="#arch"/></clipPath>
+</defs>
+<use href="#mesa" fill="#c98f63"/>
+<g clip-path="url(#mesa-clip)">
+<path fill="#b0754f" d="M0,420 H700 V446 H0 Z M0,500 H700 V516 L400,522 L0,512 Z M0,590 L300,584 L700,592 V608 L300,602 L0,606 Z"/>
+<path fill="#7f6488" d="M430,420 L512,420 L524,440 L544,560 L566,650 L640,780 L470,780 L456,650 L440,560 L436,440 Z"/>
+<path fill="#e0a878" d="M128,420 H430 V432 H124 Z"/>
+</g>
+<use href="#butte" fill="#c98f63"/>
+<g clip-path="url(#butte-clip)">
+<path fill="#b0754f" d="M600,346 H960 V364 H600 Z M600,450 H960 V464 H600 Z M600,560 L780,556 L960,562 V576 L780,570 L600,574 Z"/>
+<path fill="#7f6488" d="M800,330 L830,330 L838,346 L848,560 L864,660 L912,780 L820,780 L812,660 L806,560 L802,346 Z"/>
+<path fill="#e0a878" d="M746,330 H800 V340 H744 Z"/>
+</g>
+<use href="#arch" fill="#c98f63"/>
+<g clip-path="url(#arch-clip)">
+<path fill="#b0754f" d="M960,430 L1200,424 L1480,432 V448 L1200,440 L960,446 Z M960,610 H1480 V626 H960 Z"/>
+<path fill="#7f6488" d="M1074,780 L1074,600 C1074,516 1140,466 1214,466 C1290,466 1356,516 1356,600 L1356,780 Z"/>
+<path fill="#7f6488" d="M1356,780 L1370,600 L1384,480 L1392,400 L1430,440 L1440,630 L1470,780 Z"/>
+<path fill="#e0a878" d="M1112,390 H1318 V402 H1100 Z"/>
+</g>
+<path fill="#dcae7c" d="M0,770 C200,770 420,792 768,788 C1100,784 1300,770 1536,770 L1536,1024 L0,1024 Z"/>
+<path fill="#c98f63" d="M0,840 C260,840 520,826 768,830 C1016,834 1276,840 1536,840 L1536,1024 L0,1024 Z"/>
+</svg>

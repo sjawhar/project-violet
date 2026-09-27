@@ -1,0 +1,1 @@
+-rwxr-xr-x 1 agent agent 74327328 Sep 27 17:59 ../../out/g-c/violet-g-c.x86_64

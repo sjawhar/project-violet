@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<!-- THROWAWAY bake-off lane G-C: platform-tile, hand-written flat vector. A sandstone ledge: dusted cap,
+     violet shadow under the lip, strata below. Seamless horizontally; the game shows the top half across two cells,
+     and y=512 sits in the base rock color where the wall tile continues. -->
+<rect width="1024" height="1024" fill="#a86f46"/>
+<path fill="#8e5a38" d="M0,292 L170,282 L350,298 L530,284 L710,298 L880,280 L1024,292 L1024,382 L860,394 L690,376 L510,392 L320,374 L150,390 L0,382 Z"/>
+<path fill="#c2875a" d="M0,444 L240,436 L480,450 L710,438 L900,448 L1024,444 L1024,472 L890,478 L700,466 L470,480 L230,468 L0,472 Z"/>
+<path fill="#8e5a38" d="M0,700 L220,688 L440,706 L660,690 L880,704 L1024,700 L1024,790 L860,800 L640,782 L420,798 L200,784 L0,790 Z"/>
+<path fill="#c2875a" d="M0,860 L260,852 L520,866 L780,854 L1024,860 L1024,888 L770,894 L510,882 L250,894 L0,888 Z"/>
+<path fill="#5a4a7a" d="M0,150 L1024,150 L1024,196 L940,206 L860,194 L760,212 L650,198 L540,214 L430,196 L320,210 L210,194 L100,208 L0,196 Z"/>
+<path fill="#c2875a" d="M0,34 L1024,34 L1024,160 L960,168 L880,158 L790,170 L700,158 L600,172 L512,160 L420,170 L330,158 L240,172 L150,160 L60,168 L0,160 Z"/>
+<path fill="#8e5a38" d="M250,60 L262,60 L270,164 L256,166 Z"/>
+<path fill="#8e5a38" d="M620,56 L632,56 L626,166 L612,168 Z"/>
+<path fill="#8e5a38" d="M890,64 L902,64 L914,158 L900,160 Z"/>
+<path fill="#8e5a38" d="M60,120 L180,114 L240,124 L180,128 L62,130 Z"/>
+<path fill="#8e5a38" d="M680,110 L820,104 L860,114 L820,120 L682,122 Z"/>
+<path fill="#d9b27c" d="M0,0 H1024 V40 C960,40 900,56 820,54 C740,52 690,40 600,44 C510,48 470,62 380,58 C290,54 240,42 160,46 C90,50 50,40 0,40 Z"/>
+<path fill="#5a4a7a" d="M420,240 L452,280 L436,316 L462,356 L440,362 L414,320 L430,284 L400,246 Z"/>
+<ellipse fill="#8e5a38" cx="806" cy="330" rx="40" ry="20"/>
+<ellipse fill="#c2875a" cx="800" cy="320" rx="40" ry="20"/>
+</svg>

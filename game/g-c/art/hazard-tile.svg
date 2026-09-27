@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<!-- THROWAWAY bake-off lane G-C: hazard-tile, hand-written flat vector. Jagged sandstone spikes in rock and shadow
+     violet (desert brief, hazard pieces; never the tag red or green) on a violet rubble base. Drawn whole in one cell,
+     seamless horizontally; transparent above the spikes so the pit's dark floor shows through. -->
+<polygon fill="#8a5634" points="200,940 247,733 276,701 330,480 318,940"/>
+<polygon fill="#43375e" points="330,480 420,940 318,940"/>
+<polygon fill="#8a5634" points="620,940 657,688 685,649 730,420 718,940"/>
+<polygon fill="#43375e" points="730,420 820,940 718,940"/>
+<polygon fill="#a86f46" points="10,940 46,634 75,586 120,260 132,940"/>
+<polygon fill="#5a4a7a" points="120,260 250,940 132,940"/>
+<polygon fill="#c2875a" points="120,260 98,410 112,410"/>
+<polygon fill="#a86f46" points="380,940 429,578 461,545 520,140 530,940"/>
+<polygon fill="#5a4a7a" points="520,140 660,940 530,940"/>
+<polygon fill="#c2875a" points="520,140 498,300 512,300"/>
+<polygon fill="#a86f46" points="780,940 820,616 850,566 900,220 908,940"/>
+<polygon fill="#5a4a7a" points="900,220 1014,940 908,940"/>
+<polygon fill="#c2875a" points="900,220 878,370 892,370"/>
+<path fill="#43375e" d="M0,900 C100,900 220,912 340,898 C460,884 580,914 700,900 C820,886 924,900 1024,900 L1024,1024 L0,1024 Z"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<!-- THROWAWAY bake-off lane G-C: orb, hand-written flat vector. A faceted octagonal crystal orb in neutral light grays
+     with a flat translucent halo; the game multiplies in the orb's tag color (#e04a3a / #3fbf6a). Transparent background. -->
+<circle cx="512" cy="512" r="480" fill="#ffffff" fill-opacity="0.25"/>
+<circle cx="512" cy="512" r="410" fill="#ffffff" fill-opacity="0.35"/>
+<polygon fill="#c8c8c8" points="826,642 642,826 382,826 198,642 198,382 382,198 642,198 826,382"/>
+<polygon fill="#e4e4e4" points="198,642 198,382 382,198 642,198 826,382 683,396 564,277 396,277 277,396 277,564"/>
+<polygon fill="#f4f4f4" points="683,564 564,683 396,683 277,564 277,396 396,277 564,277 683,396"/>
+<polygon fill="#ffffff" points="396,277 277,396 336,408 408,336"/>
+<polygon fill="#e4e4e4" points="683,564 564,683 600,610"/>
+<path fill="#ffffff" d="M250,120 L267,173 L320,190 L267,207 L250,260 L233,207 L180,190 L233,173 Z"/>
+</svg>

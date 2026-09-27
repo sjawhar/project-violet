@@ -1,0 +1,11 @@
+# Lane G-C: Godot 4.7.2 2D, flat-vector desert kit, environment only (THROWAWAY)
+
+THROWAWAY: this project exists only to run the Phase 1 bake-off ([docs/bakeoff/README.md](../../docs/bakeoff/README.md)). Mechanics are undecided (decision 0009); nothing here is canon.
+
+- `bash game/g-c/ci.sh` runs every check and writes `bakeoff/g-c/reports/`.
+- Play: `godot --path game/g-c` (keys in [mechanic.md](../../docs/bakeoff/mechanic.md#controls)).
+- Replay with a trace: `godot --headless --fixed-fps 60 --path game/g-c res://tests/replay_runner.tscn -- --replay=res://replays/level01.replay.json --trace`.
+- Art: the eleven pieces of the desert brief are hand-written SVG in `art/*.svg` (no image generation; each has a provenance sidecar). Godot rasterizes each at its viewBox size (`svg/scale=1.0`, mipmaps on, in the `.import` files). `art/lane_art.tres` is the VectorArt (`art/vector_art.gd`, a PaintedArt with the same slots and placement) the game and captures use. Tiles are 1024x1024 and repeat horizontally; wall-tile and crystal-wall also repeat vertically; the wall strata repeat every 256 px (one cell). crystal-wall, crystal-platform and orb are neutral light gray: the reveal shader and the orb's modulate tint them #e04a3a / #3fbf6a. Backdrops are 1536x1024, transparent where the layer behind shows.
+- Character: `bakeoff/rig.gd` reads the protagonist rig (the Spine 4.3 JSON subset in [character-rig.md](../../docs/bakeoff/character-rig.md), no Spine runtime) and `art/rig_character_2d.gd` draws it, one Sprite2D per part, with the animation `bakeoff/rig_animator.gd` picks from the player's state. `attach_character` uses it once `assets/bakeoff/protagonist/` (`rig/violet.json`, `rig/violet.meta.json`, `parts/*.png` with their sidecars) is copied to `protagonist/`; until then the character is the STAND-IN capsule. A rig that is there but does not load stops the game with exit 1 and the error; it never falls back to the STAND-IN.
+- Rig reader tests: `godot --headless --path game/g-c res://tests/rig_test.tscn` (in `ci.sh`). `bash game/g-c/tests/rig/make-fixture.sh` regenerates their fixture with `spinerig generate` and `spinerig render`'s own code (set `SPINERIG=` to a `tools/spinerig` that has `render.py`).
+- `ci-tools` lists the mise tools the bakeoff workflow installs for this lane.

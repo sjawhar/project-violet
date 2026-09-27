@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="VectorArt" format=3]
+
+[ext_resource type="Script" path="res://art/vector_art.gd" id="1"]
+[ext_resource type="Texture2D" path="res://art/ground-tile.svg" id="2"]
+[ext_resource type="Texture2D" path="res://art/wall-tile.svg" id="3"]
+[ext_resource type="Texture2D" path="res://art/platform-tile.svg" id="4"]
+[ext_resource type="Texture2D" path="res://art/crystal-wall.svg" id="5"]
+[ext_resource type="Texture2D" path="res://art/crystal-platform.svg" id="6"]
+[ext_resource type="Texture2D" path="res://art/orb.svg" id="7"]
+[ext_resource type="Texture2D" path="res://art/goal-gate.svg" id="8"]
+[ext_resource type="Texture2D" path="res://art/backdrop-far.svg" id="9"]
+[ext_resource type="Texture2D" path="res://art/backdrop-mid.svg" id="10"]
+[ext_resource type="Texture2D" path="res://art/backdrop-near.svg" id="11"]
+[ext_resource type="Texture2D" path="res://art/hazard-tile.svg" id="12"]
+
+[resource]
+script = ExtResource("1")
+ground_tile = ExtResource("2")
+wall_tile = ExtResource("3")
+platform_tile = ExtResource("4")
+crystal_wall = ExtResource("5")
+crystal_platform = ExtResource("6")
+orb = ExtResource("7")
+goal_gate = ExtResource("8")
+backdrop_far = ExtResource("9")
+backdrop_mid = ExtResource("10")
+backdrop_near = ExtResource("11")
+hazard_tile = ExtResource("12")

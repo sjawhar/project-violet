@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<!-- THROWAWAY bake-off lane G-C: crystal-wall, hand-written flat vector. Faceted crystal prisms in neutral light
+     grays: the reveal shader (art/reveal.gdshader) shows them gray until acquired and multiplies in the tag color
+     (#e04a3a / #3fbf6a) after. Four 256 px column strips, each a complete one-cell-wide crystal wall that
+     repeats vertically; side by side they also tile horizontally. -->
+<defs>
+<g id="p">
+<polygon fill="#e6e6e6" points="0,-1 -1,-0.72 -1,0.72 0,1"/>
+<polygon fill="#b8b8b8" points="0,-1 1,-0.72 1,0.72 0,1"/>
+<polygon fill="#ffffff" points="0,-1 -1,-0.72 -0.3,-0.62"/>
+<polygon fill="#d0d0d0" points="0,-1 1,-0.72 0.3,-0.62"/>
+<polygon fill="#ffffff" points="-0.66,-0.52 -0.44,-0.6 -0.44,0.48 -0.66,0.56"/>
+<polygon fill="#d0d0d0" points="0,1 1,0.72 0.3,0.62"/>
+</g>
+<g id="a">
+<use href="#p" transform="translate(40 470) scale(36 170)"/>
+<use href="#p" transform="translate(36 900) scale(30 120)"/>
+<use href="#p" transform="translate(128 170) scale(84 210)"/>
+<use href="#p" transform="translate(196 520) scale(56 240)"/>
+<use href="#p" transform="translate(100 420) scale(18 60)"/>
+<use href="#p" transform="translate(212 920) scale(40 150)"/>
+<use href="#p" transform="translate(104 760) scale(60 200)"/>
+</g>
+<g id="b">
+<use href="#p" transform="translate(40 900) scale(32 130)"/>
+<use href="#p" transform="translate(200 400) scale(50 220)"/>
+<use href="#p" transform="translate(120 120) scale(70 180)"/>
+<use href="#p" transform="translate(70 450) scale(60 250)"/>
+<use href="#p" transform="translate(130 330) scale(20 70)"/>
+<use href="#p" transform="translate(225 980) scale(28 140)"/>
+<use href="#p" transform="translate(150 750) scale(90 230)"/>
+</g>
+<g id="sa"><use href="#a"/><use href="#a" y="1024"/><use href="#a" y="-1024"/></g>
+<g id="sb"><use href="#b"/><use href="#b" y="1024"/><use href="#b" y="-1024"/></g>
+</defs>
+<rect width="1024" height="1024" fill="#7d7d7d"/>
+<use href="#sa"/>
+<use href="#sb" x="256"/>
+<use href="#sa" x="512" y="512"/>
+<use href="#sa" x="512" y="-512"/>
+<use href="#sb" x="768" y="512"/>
+<use href="#sb" x="768" y="-512"/>
+</svg>
