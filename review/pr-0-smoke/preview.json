@@ -1,0 +1,55 @@
+{
+  "pr": "0-smoke",
+  "contact_sheet": "contact-sheet.png",
+  "items": [
+    {
+      "name": "scarf-concept.png",
+      "kind": "image",
+      "media": {
+        "image": "items/01-scarf-concept.png.png"
+      },
+      "provenance": {
+        "origin": "generated",
+        "tool": "imagegen",
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "prompt": "violet head scarf concept, painted"
+      }
+    },
+    {
+      "name": "sky.png",
+      "kind": "image",
+      "media": {
+        "image": "items/02-sky.png.png"
+      },
+      "provenance": null
+    },
+    {
+      "name": "walk",
+      "kind": "animation",
+      "media": {
+        "gif": "items/03-walk.gif",
+        "video": "items/03-walk.mp4"
+      },
+      "provenance": null
+    },
+    {
+      "name": "chime.ogg",
+      "kind": "audio",
+      "media": {
+        "audio": "items/04-chime.ogg.ogg",
+        "waveform": "items/04-chime.ogg.waveform.png"
+      },
+      "provenance": null
+    },
+    {
+      "name": "lantern.glb",
+      "kind": "model",
+      "media": {
+        "gif": "items/05-lantern.glb.gif",
+        "video": "items/05-lantern.glb.mp4"
+      },
+      "provenance": null
+    }
+  ]
+}
