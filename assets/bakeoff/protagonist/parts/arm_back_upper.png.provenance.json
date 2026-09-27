@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "asset": "arm_back_upper.png",
-  "sha256": "038bb70eb1d9d7c28550856aca97a8ae5607b923209da660a01f523acd58edd4",
+  "sha256": "f2fbb6ebf23ab331ff92fb82d28183f1c51507c572981ff73fc358fea4b26010",
   "kind": "image",
   "origin": "generated",
   "created_at": "2026-09-27T17:18:43+00:00",
@@ -28,6 +28,16 @@
       "by": "lead-agent",
       "description": "trimmed transparent margin",
       "at": "2026-09-27T17:53:53+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "trimmed transparent margin to the alpha > 8 bounding box: 546x792 -> 404x787",
+      "at": "2026-09-27T18:42:17+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "rescaled by factor 0.4 (Lanczos), 404x787 -> 162x315, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960, so 1.136 rig px per turnaround px); see assets/bakeoff/protagonist/README.md. Bell sleeve from the shoulder (~250 px below the crown) to its cuff at ~560 (turnaround cuff y=520-585); the elbow bone is 153 px (55% of the 278 px shoulder-to-wrist, inferred) inside it.",
+      "at": "2026-09-27T18:42:18+00:00"
     }
   ],
   "license": "proprietary"

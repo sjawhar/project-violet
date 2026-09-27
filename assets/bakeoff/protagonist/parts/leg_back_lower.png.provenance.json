@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "asset": "leg_back_lower.png",
-  "sha256": "5d077d09c0b1ab461f203382789a524c66cac5b92aaa04eb8ddc6a5a5916a078",
+  "sha256": "337670877ea70a45e260a8d614973457dd211963593c6c6523692d9ce1ddfe4c",
   "kind": "image",
   "origin": "generated",
   "created_at": "2026-09-27T17:36:46+00:00",
@@ -28,6 +28,16 @@
       "by": "lead-agent",
       "description": "trimmed transparent margin",
       "at": "2026-09-27T17:53:53+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "trimmed transparent margin to the alpha > 8 bounding box: 577x858 -> 442x849",
+      "at": "2026-09-27T18:42:22+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "rescaled by factor 0.31 (Lanczos), 442x849 -> 137x263, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960, so 1.136 rig px per turnaround px); see assets/bakeoff/protagonist/README.md. Foot length (376 painted px) set to ~117 px, matching the turnaround's foot (108 px, toe to heel); knee to sole is then 250 px against the 248 px shin inferred from the 46% split.",
+      "at": "2026-09-27T18:42:22+00:00"
     }
   ],
   "license": "proprietary"

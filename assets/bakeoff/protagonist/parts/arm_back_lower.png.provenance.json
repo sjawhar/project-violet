@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "asset": "arm_back_lower.png",
-  "sha256": "cccf872d8e1c5ce70ae8667237e4c96091da349ed097273feca0d0ac3013933e",
+  "sha256": "bbc7ee20bd450d8729418556b2b251dc18eb8bbe9c1b1efa12191cdc4e562410",
   "kind": "image",
   "origin": "generated",
   "created_at": "2026-09-27T17:21:06+00:00",
@@ -28,6 +28,16 @@
       "by": "lead-agent",
       "description": "trimmed transparent margin",
       "at": "2026-09-27T17:53:53+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "trimmed transparent margin to the alpha > 8 bounding box: 962x992 -> 699x753",
+      "at": "2026-09-27T18:42:19+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "rescaled by factor 0.235 (Lanczos), 699x753 -> 164x177, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960, so 1.136 rig px per turnaround px); see assets/bakeoff/protagonist/README.md. Elbow to fingertips (833 painted px, along the arm) set to 196 px: forearm 125 (45% of shoulder-to-wrist, inferred) plus the turnaround's hand, wrist y~540 to fingertips y=602 (71 px).",
+      "at": "2026-09-27T18:42:20+00:00"
     }
   ],
   "license": "proprietary"

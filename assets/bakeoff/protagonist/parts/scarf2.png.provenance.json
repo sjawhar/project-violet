@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
   "asset": "scarf2.png",
-  "sha256": "02a939f73bda50c6db3d59007a8e564c91978c028632692a908a3cac25c53080",
+  "sha256": "9804d4f50315ab042310ca59eb1134627c99d1c5aa181c4cb48e379d0cf4dab8",
   "kind": "image",
   "origin": "generated",
-  "created_at": "2026-09-27T17:49:23+00:00",
+  "created_at": "2026-09-27T18:22:56+00:00",
   "generator": {
     "tool": "gen",
     "tool_version": "0.1.0",
     "provider": "openai",
     "model": "gpt-image-2",
-    "prompt": "Only one single straight flat ribbon-shaped segment of the character's long trailing scarf, the saturated scarf red seen in the reference, soft frayed edges, no body, no head, no other object of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
+    "prompt": "Only one single straight flat ribbon-shaped segment of the character's long trailing scarf, about one third of the scarf's length, a long narrow strip hanging straight down vertically, painted a neutral light gray (plain undyed pale gray cloth, no red and no other color at all), soft cloth with gentle folds, both ends cut cleanly straight across and not frayed, no body, no head, no other object of the character in the reference, side view facing right, same painted soft-edged style as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
     "params": {
       "size": "1024x1024",
       "quality": "high",
@@ -25,9 +25,29 @@
   },
   "human_edits": [
     {
-      "by": "lead-agent",
-      "description": "trimmed transparent margin",
-      "at": "2026-09-27T17:53:54+00:00"
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "trimmed transparent margin to the alpha > 8 bounding box: 1024x1024 -> 128x867",
+      "at": "2026-09-27T18:42:25+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "cropped rows 260-610 of the painted strip (128x350): one straight segment, about a third of the scarf's length",
+      "at": "2026-09-27T18:42:25+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "converted to neutral light gray (Rec. 709 luminance, scaled to mean 0.72) so lanes can tint the scarf by multiplying",
+      "at": "2026-09-27T18:42:25+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "feathered the alpha of the cropped ends (top 30 px, bottom 40 px) so overlapping segments blend at the joints",
+      "at": "2026-09-27T18:42:26+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "rescaled by factor 0.62 (Lanczos), 128x350 -> 79x217, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960, so 1.136 rig px per turnaround px); see assets/bakeoff/protagonist/README.md. Width set to ~79 px (the turnaround's trailing tail is 60-90 px wide); the chain's three bones total 560 px, the turnaround tail's length from the neck.",
+      "at": "2026-09-27T18:42:26+00:00"
     }
   ],
   "license": "proprietary"
