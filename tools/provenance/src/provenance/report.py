@@ -45,8 +45,10 @@ def _assets(count: int) -> str:
 
 
 def _model(generator: dict) -> str:
-    version = f" {generator['model_version']}" if "model_version" in generator else ""
-    return f"{generator['model']}{version} ({generator['provider']})"
+    """'<model> <version> (<provider>)', leaving out a version that only repeats the model name."""
+    version = generator.get("model_version")
+    suffix = f" {version}" if version and version != generator["model"] else ""
+    return f"{generator['model']}{suffix} ({generator['provider']})"
 
 
 def steam_report(assets: list[str], records: dict[str, Record]) -> str:
