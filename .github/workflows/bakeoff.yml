@@ -18,16 +18,25 @@ jobs:
         with:
           lfs: true
           persist-credentials: false
-      # Installs every tool mise.toml pins (godot, ffmpeg, imagemagick, git-lfs, uv, ...).
-      - uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
-        with:
-          version: 2026.8.10
-      - name: Lane name
+      - name: Lane name and tools
         id: lane
         run: |
           lane="${GITHUB_REF_NAME#bakeoff/}"
           case "$lane" in */*) echo "::error::branch $GITHUB_REF_NAME: a lane branch is bakeoff/<lane>, with no further '/'"; exit 1 ;; esac
+          list="game/$lane/ci-tools"
+          [ -f "$list" ] || { echo "::error::$list is missing: it names the mise.toml tools game/$lane/ci.sh needs besides uv (e.g. godot), or is empty"; exit 1; }
+          tools=$(tr -s ' \t\n' ' ' < "$list")
+          for tool in $tools; do
+            [[ "$tool" =~ ^[a-z0-9:@._-]+$ ]] || { echo "::error::$list: '$tool' is not a mise tool name"; exit 1; }
+          done
           echo "LANE=$lane" >> "$GITHUB_ENV"
+          echo "tools=uv $tools" >> "$GITHUB_OUTPUT"
+      # Only what the lane needs, not every mise.toml pin: Blender or ImageMagick in every lane's mise cache would
+      # cost each lane branch a share of the repository's 10 GB cache budget for tools its CI never runs.
+      - uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
+        with:
+          version: 2026.8.10
+          install_args: ${{ steps.lane.outputs.tools }}
       # Every check runs even when an earlier one failed, so one CI run reports every problem.
       - name: Provenance
         if: ${{ !cancelled() && steps.lane.outcome == 'success' }}

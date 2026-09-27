@@ -17,10 +17,10 @@ The bake-off runs five lanes of the same throwaway slice — one greybox level, 
 ## Directory conventions
 
 - `docs/bakeoff/` — the shared inputs every lane consumes: this README, the throwaway mechanic, the greybox level and its format, the replay format, the protagonist and desert-biome briefs, the judging sheet, and the lane-log format. All files here are read-only inputs to every lane; nothing here is lane-specific.
-- `game/<lane>/` — each lane's engine project (created when its lane task starts), holding its own copy of `level01.greybox.json` (unchanged; each lane's `ci.sh` runs `cmp` against the `docs/bakeoff` copy) and its `ci.sh`.
+- `game/<lane>/` — each lane's engine project (created when its lane task starts), holding its own copy of `level01.greybox.json` (unchanged; each lane's `ci.sh` runs `cmp` against the `docs/bakeoff` copy) its `ci.sh`, and `ci-tools`: the `mise.toml` tools `ci.sh` needs in CI besides uv, space-separated (`godot` for the Godot lanes, `ffmpeg` for control's `ffprobe`; empty for U-D).
 - `bakeoff/<lane>/` — each lane's evidence: `LOG.md` (format in [lane-log-format.md](lane-log-format.md)), `replays/*.replay.json` (format in [replay-format.md](replay-format.md); Godot lanes also keep a copy under `game/<lane>/replays/` because `res://` cannot leave the project), `reports/` (CI-readable results), `capture/capture.mp4` + `still-*.png` (Git LFS).
 - `assets/bakeoff/` — shared generated assets (the Spine protagonist rig, the 3D desert kit) built once and used by every lane that needs them.
-- Lane branches are named `bakeoff/<lane>`; they branch from `master` and never merge. Every push to one runs `.github/workflows/bakeoff.yml`: provenance and LFS checks, `bakeoff log-check` on the lane's `LOG.md`, then `game/<lane>/ci.sh`. Its `out/` and `bakeoff/<lane>/reports/` are uploaded as the run's `bakeoff-<lane>` artifact, failed runs included.
+- Lane branches are named `bakeoff/<lane>`; they branch from `master` and never merge. Every push to one runs `.github/workflows/bakeoff.yml`: it installs uv and the tools in `game/<lane>/ci-tools`, then runs provenance and LFS checks, `bakeoff log-check` on the lane's `LOG.md`, then `game/<lane>/ci.sh`. Its `out/` and `bakeoff/<lane>/reports/` are uploaded as the run's `bakeoff-<lane>` artifact, failed runs included.
 
 ## Files
 
