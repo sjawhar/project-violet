@@ -5,7 +5,7 @@
 **Goal:** Run the one-week agent bake-off that decides Violet's art direction and engine from measured output: five lanes build the same throwaway slice, every lane delivers (or records a blocker for) a playable Linux build, a 60–90 s capture with stills, an automated completability test plus color-tag check, and a log of agent-hours, dollars and human interventions; Sami scores the lanes on a gallery page and the result becomes the next decision record (0013 at the time of writing; 0011 records Sami's merge-queue waiver, 0012 the no-purchase ruling).
 
 **Architecture:**
-- Shared inputs land on `master` through PRs Sami approves: the throwaway mechanic, one greybox level as JSON, the protagonist and desert briefs, the judging sheet, the Spine protagonist rig, and the 3D desert kit. Each lane then branches from `master` onto `bakeoff/<lane>` and never merges.
+- Shared inputs land on `master` through PRs Sami approves: the throwaway mechanic, one greybox level as JSON, the protagonist and desert briefs, the judging sheet, the protagonist rig, and the 3D desert kit. Each lane then branches from `master` onto `bakeoff/<lane>` and never merges.
 - A lane branch holds one engine project under `game/<lane>/` and its evidence under `bakeoff/<lane>/` (`LOG.md`, `replays/`, `reports/`, `capture/` in LFS). `.github/workflows/bakeoff.yml` runs `game/<lane>/ci.sh` on every push to `bakeoff/**`.
 - `tools/greybox`, `tools/bakeoff` and `tools/spinerig` are uv projects like `tools/provenance` and `tools/gen`. `tools/gen` gains `--background`. The 3D desert kit (Task 6) and the Control protagonist (Task 11) are agent-authored Blender Python, and G-C's kit (Task 10) is hand-written SVG — none of them a `tools/gen` adapter (decision 0012). `tools/bakeoff gallery` assembles the judging page on top of `preview build/publish`; `tools/bakeoff decide` applies the decision rule.
 
@@ -16,7 +16,7 @@
 ## Global Constraints
 
 - Phase 0 is merged before Task 1 starts: PRs #7, #11, #6, #10, and `preview` from issue #8 (`preview build PR PATH...`, `preview publish PR`) on `master`. `provenance check` and `lfs-check` run in CI.
-- Lanes are fixed: **G-A** Godot 4.7.2 2D painted world; **G-D** Godot 4.7.2 3D hybrid (AI 3D desert kit, toon/painterly shading, real colored lights, Spine character lit in 3D); **U-D** Unity 6.3 LTS URP hybrid, agents drive the editor through Unity's official MCP only; **G-C** Godot 2D flat-vector desert kit, environment only; **Control** full-3D protagonist (agent-authored Blender Python: model, rig, motion) rendered in Blender. No third-party Unity MCP, ever (Unity ToS §17.2, decision 0006).
+- Lanes are fixed: **G-A** Godot 4.7.2 2D painted world; **G-D** Godot 4.7.2 3D hybrid (AI 3D desert kit, toon/painterly shading, real colored lights, rig character lit in 3D); **U-D** Unity 6.3 LTS URP hybrid, agents drive the editor through Unity's official MCP only; **G-C** Godot 2D flat-vector desert kit, environment only; **Control** full-3D protagonist (agent-authored Blender Python: model, rig, motion) rendered in Blender. No third-party Unity MCP, ever (Unity ToS §17.2, decision 0006).
 - Mechanics are undecided (decision 0009). The test mechanic in `docs/bakeoff/mechanic.md` is **THROWAWAY**; every bake-off file carries the word THROWAWAY in its header or README and nothing from it is promoted to canon.
 - The protagonist is built once as a Spine-4.3-JSON cutout rig (one painted image per body part via `gen image`; skeleton and animations authored by an agent, generated with `spinerig generate` and proven with `spinerig render` — no Spine editor or runtime, per decision 0012). `spine-animation-ai` (PolyForm Noncommercial) is not used; its technique is reimplemented in `tools/spinerig`.
 - Public repo: no secrets, no third-party art. Generation inputs are in-repo files with their own provenance records (`gen` enforces this). Every asset under `game/` or `assets/` has a sidecar; lane CI runs `provenance check`.
@@ -45,7 +45,7 @@
 | 2. `tools/bakeoff`: log-check, decide, gallery, results-md | oryx agent | 1 | none |
 | 3. Bake-off CI, `scripts/godot-fetch.sh`, capture scripts | oryx agent | 1 | none |
 | 4. Protagonist concept + body parts; `gen image --background` | lead / sami | 1 | none (approved keys) |
-| 5. Spine rig: `tools/spinerig`, `assets/bakeoff/protagonist/rig/` | lead / sami | 4 | none |
+| 5. Protagonist rig: `tools/spinerig`, `assets/bakeoff/protagonist/rig/` | lead / sami | 4 | none |
 | 6. `assets/bakeoff/desert-kit-3d/build_kit.py` (agent-authored Blender Python) | oryx agent | 1 (turntables also 0) | none |
 | 7. Lane G-A | oryx agent (captures on oryx, software) | 1, 3 (final look: 5) | none |
 | 8. Lane G-D | oryx agent (captures on oryx, software; RADV check on sami) | 1, 3 (final look: 5, 6) | none |
@@ -154,7 +154,7 @@ echo "oryx GPU OK"
 - [ ] **Step 7:** Write `docs/bakeoff/protagonist-brief.md` (THROWAWAY): Violet, a slight traveller about 4.5 heads tall in a long hooded robe in muted warm gray (`#8a8078`) with darker hem, bare feet or soft wraps, and a long scarf (three segments, ends trailing 1.5× head length) that is the only saturated element: gray when no color is active, the active color otherwise. Painted, soft-edged, GRIS / Planet of Lana register; no outlines, no anime line work, no pixel art. Silhouette must read at 100 px tall. Body parts painted once each, all facing right, on transparent background: `head`, `torso`, `hips`, `arm_back_upper`, `arm_back_lower`, `arm_front_upper`, `arm_front_lower`, `leg_back_upper`, `leg_back_lower`, `leg_front_upper`, `leg_front_lower`, `scarf1`, `scarf2`, `scarf3`. The Phase 0 head-scarf concept in `assets/concept/` is the reference input.
 - [ ] **Step 8:** Write `docs/bakeoff/desert-biome-brief.md` (THROWAWAY): golden-hour high desert; ochre dunes, layered sandstone mesas, wind-cut arches, dry acacia and saguaro silhouettes; sky peach → teal; palette sand `#d9b27c`, rock `#a86f46`, shadow violet `#5a4a7a`, sky `#f2c49b`/`#3f7f8c`; tagged elements are crystal: ember red `#e04a3a`, verdant green `#3fbf6a`, gray `#8c8c8c` until acquired. Kit lists: **3D** (`assets/bakeoff/desert-kit-3d/`): `mesa-large`, `mesa-small`, `arch`, `boulder-a`, `boulder-b`, `saguaro`, `acacia`, `dune-ridge`, `ruin-column`, `ruin-wall`, `sand-tile`, `rock-tile`, `crystal-cluster` (untinted), `orb-pedestal`, `goal-gate`, `hazard-spikes`; **2D painted** (G-A): `ground-tile`, `wall-tile`, `platform-tile`, `crystal-wall`, `crystal-platform`, `orb`, `goal-gate`, `hazard-tile`, `backdrop-far`, `backdrop-mid`, `backdrop-near`; **SVG** (G-C): the same eleven as flat vector. The hazard pieces dress `hazard` cells: jagged sandstone spikes in rock and shadow violet, never the tag red or green.
 - [ ] **Step 9:** Write `docs/bakeoff/judging.md`: Sami scores each lane 1–5 against the GRIS / Planet of Lana bar on `visual_quality`, `character_appeal`, `color_readability`, and answers `would_ship` yes/no ("would you ship this direction?"); if no D lane gets yes he also answers `prefers_c_over_a`. Control is scored for information and does not enter the rule. Decision rule verbatim from the spec: D wins if Sami answers yes for at least one D lane; otherwise A wins, and C instead only if Sami prefers it. The engine is whichever lane Sami scored higher for the winning direction (sum of the three scores, among that direction's lanes with yes); a tie goes to Godot. Scoring happens as one comment on the judging PR in the block format `lane: g-a | visual_quality: 4 | character_appeal: 3 | color_readability: 4 | would_ship: no | notes: ...`; the lead transcribes it into `docs/bakeoff/scores.json` (schema in Task 2) citing the comment URL.
-- [ ] **Step 10:** Write `docs/bakeoff/lane-log-format.md`: `bakeoff/<lane>/LOG.md` starts with YAML front matter `lane, direction (A|C|D|control), engine (godot|unity|blender), machine, status (in-progress|delivered|blocked), sessions: [{start, end, purpose}] (ISO-8601 UTC), costs: [{item, usd, evidence}], interventions: [{at, who, what, minutes}] (anything a human did or was asked), friction: [{at, what, workaround}] (engine/MCP/tool trouble), blockers: [{what, since, waiting_on}], deliverables: {build, capture, stills: [], tests}` followed by free-form notes. Agent-hours = Σ(end − start). Shared costs (Spine, the kit, the rig) go in `docs/bakeoff/shared-costs.md` on master, not in a lane.
+- [ ] **Step 10:** Write `docs/bakeoff/lane-log-format.md`: `bakeoff/<lane>/LOG.md` starts with YAML front matter `lane, direction (A|C|D|control), engine (godot|unity|blender), machine, status (in-progress|delivered|blocked), sessions: [{start, end, purpose}] (ISO-8601 UTC), costs: [{item, usd, evidence}], interventions: [{at, who, what, minutes}] (anything a human did or was asked), friction: [{at, what, workaround}] (engine/MCP/tool trouble), blockers: [{what, since, waiting_on}], deliverables: {build, capture, stills: [], tests}` followed by free-form notes. Agent-hours = Σ(end − start). Shared costs (the desert kit, the protagonist rig) go in `docs/bakeoff/shared-costs.md` on master, not in a lane.
 - [ ] **Step 11:** Create `tools/greybox` (copy `tools/gen/pyproject.toml` shape: `requires-python>=3.12`, deps `pillow>=11`, script `greybox = "greybox.cli:main"`, `uv_build`). `cli.py`:
 
 ```python
@@ -251,29 +251,37 @@ def decide(scores: dict) -> dict:
 
 **Files:**
 - Create: `.github/workflows/bakeoff.yml`, `scripts/godot-fetch.sh`, `scripts/capture-godot.sh`, `scripts/capture-unity.sh`
-- Modify: `.gitignore` (add `game/*/bin/` — the spine GDExtension binaries are fetched, not committed)
 
 **Interfaces:**
-- Produces: `scripts/godot-fetch.sh PROJECT_DIR` (idempotent: export templates into `~/.local/share/godot/export_templates/4.7.2.stable/`, spine-godot GDExtension 4.3 for Godot 4.7.2 into `PROJECT_DIR/bin/`); `scripts/capture-godot.sh LANE [ART]` and `scripts/capture-unity.sh` (Task 9 defines the Unity player flags); the CI contract: `game/<lane>/ci.sh` exits 0 and writes `bakeoff/<lane>/reports/*`.
+- Produces: `scripts/godot-fetch.sh PROJECT_DIR` (idempotent: fetches Godot's own export templates, checksummed against the `SHA512-SUMS.txt` Godot publishes with the release, into `~/.local/share/godot/export_templates/4.7.2.stable/`; refuses a `PROJECT_DIR` with no `project.godot`); `scripts/capture-godot.sh LANE [ART]` and `scripts/capture-unity.sh` (Task 9 defines the Unity player flags); the CI contract: `game/<lane>/ci.sh` exits 0 and writes `bakeoff/<lane>/reports/*`.
 
 - [ ] **Step 1:** `scripts/godot-fetch.sh`:
 
 ```bash
 #!/usr/bin/env bash
-# Installs what a Godot bake-off lane needs beyond mise's godot 4.7.2: export templates and the spine-godot GDExtension.
+# THROWAWAY (Phase 1 bake-off). Installs what a Godot bake-off lane needs beyond mise's godot 4.7.2: the
+# export templates, checked against the SHA512-SUMS.txt Godot publishes with the release.
+# Idempotent: a second run downloads nothing and prints only the summary line.
 set -euo pipefail
-GODOT=4.7.2; SPINE=4.3; project="${1:?usage: godot-fetch.sh PROJECT_DIR}"
+GODOT=4.7.2
+TEMPLATES_SHA512=ca4d71c4d7b81dfc15d1a98baa07534aa95b03fdda78a0075b06672e1648d2e5f40980c9adc28d23e1b92e732ee7bf3461997aa804af74ec2fcd7a93ccb84079
+project="${1:?usage: godot-fetch.sh PROJECT_DIR}"
+[ -f "$project/project.godot" ] || { echo "godot-fetch: $project/project.godot not found" >&2; exit 1; }
 tpl="$HOME/.local/share/godot/export_templates/$GODOT.stable"
+
 if [ ! -f "$tpl/linux_release.x86_64" ]; then
-  tmp=$(mktemp -d); curl -fsSL -o "$tmp/t.tpz" "https://github.com/godotengine/godot/releases/download/$GODOT-stable/Godot_v$GODOT-stable_export_templates.tpz"
-  mkdir -p "$tpl"; unzip -q -j "$tmp/t.tpz" 'templates/*' -d "$tpl"; rm -rf "$tmp"; fi
-if [ ! -f "$project/bin/spine_godot_extension.gdextension" ]; then
-  tmp=$(mktemp -d); curl -fsSL -o "$tmp/s.zip" "https://spine-godot.s3.eu-central-1.amazonaws.com/$SPINE/$GODOT-stable/spine-godot-extension-$SPINE-$GODOT-stable.zip"
-  unzip -q "$tmp/s.zip" -d "$tmp/s"; mkdir -p "$project/bin"; cp -r "$tmp"/s/bin/. "$project/bin/"; rm -rf "$tmp"; fi
-echo "godot-fetch: templates in $tpl; spine-godot in $project/bin"
+  tmp=$(mktemp -d)
+  trap 'rm -rf "$tmp"' EXIT  # a failed download or checksum leaves nothing behind
+  curl -fsSL -o "$tmp/t.tpz" "https://github.com/godotengine/godot/releases/download/$GODOT-stable/Godot_v$GODOT-stable_export_templates.tpz"
+  echo "$TEMPLATES_SHA512  $tmp/t.tpz" | sha512sum -c --quiet
+  mkdir -p "$tpl"
+  unzip -q -o -j "$tmp/t.tpz" 'templates/*' -d "$tpl"
+fi
+
+echo "godot-fetch: export templates in $tpl for $project"
 ```
 
-(The S3 URL pattern and the 4.7.2-stable build are what esotericsoftware.com/spine-godot's download script and `spine-runtimes/.github/workflows/spine-godot-extension-v4-all.yml` on branch 4.3 publish; if the zip's top level is not `bin/`, adjust the `cp` to whatever `unzip -l` shows and note it in the script.)
+(No spine-godot fetch and no `bin/` directory: #24 removed it — the rig is read as data by each lane's own reader, per decision 0012, so no GDExtension is needed. The SHA512 check (`TEMPLATES_SHA512`) replaces the earlier unchecked download, and the `project.godot` check fails loudly on a bad `PROJECT_DIR` instead of silently fetching into nowhere.)
 
 - [ ] **Step 2:** `.github/workflows/bakeoff.yml`:
 
@@ -322,7 +330,7 @@ dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$out/capture.m
 for t in 05 20 40 60; do ffmpeg -y -ss "$t" -i "$out/capture.mp4" -frames:v 1 "$out/still-$t.png"; done
 ```
 
-- [ ] **Step 4: Verify** on machine sami with the Phase 0 tree: `scripts/godot-fetch.sh /tmp/gf-test` creates `/tmp/gf-test/bin/spine_godot_extension.gdextension` and the templates directory; a second run prints only the summary line. Push a throwaway `bakeoff/ci-smoke` bookmark containing `game/ci-smoke/ci.sh` (`echo ok`) plus a template `bakeoff/ci-smoke/LOG.md`; the workflow goes green (`gh run list --branch bakeoff/ci-smoke`); then `jj bookmark delete bakeoff/ci-smoke && jj git push --bookmark bakeoff/ci-smoke` (an agent-made smoke branch, not a lane). Commit `.gitignore`, scripts and workflow on `phase1/bakeoff-ci`; open the PR.
+- [ ] **Step 4: Verify** on machine sami with the Phase 0 tree: `scripts/godot-fetch.sh /tmp/gf-test` (a directory containing a `project.godot`) creates the export templates directory and prints the summary line; a second run downloads nothing; run it against a directory with no `project.godot` and it exits 1 naming the missing file. Push a throwaway `bakeoff/ci-smoke` bookmark containing `game/ci-smoke/ci.sh` (`echo ok`) plus a template `bakeoff/ci-smoke/LOG.md`; the workflow goes green (`gh run list --branch bakeoff/ci-smoke`); then `jj bookmark delete bakeoff/ci-smoke && jj git push --bookmark bakeoff/ci-smoke` (an agent-made smoke branch, not a lane). Commit the scripts and workflow on `phase1/bakeoff-ci`; open the PR.
 
 ### Task 4: Protagonist concept and body parts (`gen image --background`)
 
@@ -339,7 +347,7 @@ for t in 05 20 40 60; do ffmpeg -y -ss "$t" -i "$out/capture.mp4" -frames:v 1 "$
 - [ ] **Step 3:** Parts (after approval), one command per part, e.g. `secrets OPENAI_API_KEY -- uv run --project tools/gen gen image --provider openai --model gpt-image-2 --background transparent --input assets/bakeoff/protagonist/concept/violet-turnaround.png --prompt "Only the <part description> of the character in the reference, side view facing right, same painted style and palette, centred, nothing else, transparent background" --size 1024x1024 --out assets/bakeoff/protagonist/parts/<part>.png`, with descriptions: head "hooded head and neck", torso "robe torso from shoulders to waist", hips "robe skirt from waist to knee line", `arm_*_upper` "upper arm shoulder to elbow", `arm_*_lower` "forearm and hand", `leg_*_upper` "thigh under the robe hem", `leg_*_lower` "shin and foot", `scarf1..3` "one straight segment of the scarf, gray". Check each: `magick <part>.png -format '%[opaque]\n' info:` prints `False`; `uv run --project tools/provenance provenance check assets/bakeoff/protagonist` OK.
 - [ ] **Step 4:** `assets/bakeoff/protagonist/README.md`: THROWAWAY, the part list with sizes (`magick identify`), which model made them, and that Task 5 consumes them. Commit (`git lfs push origin phase1/protagonist-parts` first), open PR `phase1/protagonist-parts` stacked on the concept PR, with the `preview` contact sheet inline.
 
-### Task 5: Spine rig — `tools/spinerig` and the shared protagonist export
+### Task 5: Protagonist rig — `tools/spinerig` and the shared protagonist export
 
 **Files:**
 - Create: `tools/spinerig/pyproject.toml` (deps `pillow>=11`, `provenance` path dep), `tools/spinerig/src/spinerig/{__init__,cli,generate,render,scarf}.py`, `tools/spinerig/tests/{test_generate,test_render}.py`, `tools/spinerig/README.md`, `docs/bakeoff/character-rig.md`
@@ -600,8 +608,13 @@ if run res://tests/replay_runner.tscn -- --replay=res://replays/level01.replay.j
 run res://tests/validate_tags.tscn > "$rep/tags.txt" 2>&1
 if run res://tests/validate_tags.tscn -- --mutate > "$rep/tags-mutated.txt" 2>&1; then echo "ci.sh: tag validator passed a mutated level" >&2; exit 1; fi
 godot --headless --path . --export-release Linux "../../out/$lane/violet-$lane.x86_64" > "$rep/export.log" 2>&1
-test -x "../../out/$lane/violet-$lane.x86_64" && timeout 90 "../../out/$lane/violet-$lane.x86_64" --headless --quit-after 120 && ls -l "../../out/$lane/violet-$lane.x86_64" > "$rep/build.txt"
+test -x "../../out/$lane/violet-$lane.x86_64"
+timeout 90 "../../out/$lane/violet-$lane.x86_64" --headless --quit-after 120 2>&1 | tee "$rep/smoke.log"
+if grep -qE '^(SCRIPT )?ERROR' "$rep/smoke.log"; then echo "ci.sh: the exported build logged errors" >&2; exit 1; fi
+ls -l "../../out/$lane/violet-$lane.x86_64" > "$rep/build.txt"
 ```
+
+(The smoke run's exit code alone doesn't prove the export works: a compile failure in an exported script prints a `SCRIPT ERROR` line and the process still exits 0 — a G-D type error got past this check before — hence teeing to `smoke.log` and grepping it for error lines.)
 
 (Godot's `--export-release` can exit 0 on failure — playtest-qa.md risk 5 — hence `test -x` and the headless smoke run.)
 
