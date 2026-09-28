@@ -15,16 +15,16 @@ Golden-hour high desert; ochre dunes, layered sandstone mesas, wind-cut arches, 
 | Shadow | violet `#5a4a7a` |
 | Sky | `#f2c49b` / `#3f7f8c` |
 
-Tagged elements are crystal: ember red `#e04a3a`, verdant green `#3fbf6a`, gray `#8c8c8c` until acquired.
+Tagged elements are ordinary walls and platforms in the tag color, never crystals: ember red `#e04a3a`, verdant green `#3fbf6a`, gray `#8c8c8c` until acquired.
 
 ## Kit lists
 
-- **3D** (`assets/bakeoff/desert-kit-3d/`): `mesa-large`, `mesa-small`, `arch`, `boulder-a`, `boulder-b`, `saguaro`, `acacia`, `dune-ridge`, `ruin-column`, `ruin-wall`, `sand-tile`, `rock-tile`, `crystal-cluster` (untinted), `orb-pedestal`, `goal-gate`, `hazard-spikes`.
-- **2D painted** (G-A): `ground-tile`, `wall-tile`, `platform-tile`, `crystal-wall`, `crystal-platform`, `orb`, `goal-gate`, `hazard-tile`, `backdrop-far`, `backdrop-mid`, `backdrop-near`.
+- **3D** (`assets/bakeoff/desert-kit-3d/`): `mesa-large`, `mesa-small`, `arch`, `boulder-a`, `boulder-b`, `saguaro`, `acacia`, `dune-ridge`, `ruin-column`, `ruin-wall`, `sand-tile`, `rock-tile`, `tag-block` (a solid 1 m block, untinted), `orb-pedestal`, `goal-gate`, `hazard-spikes`.
+- **2D painted** (G-A): `ground-tile`, `wall-tile`, `platform-tile`, `tag-wall`, `tag-platform`, `orb`, `goal-gate`, `hazard-tile`, `backdrop-far`, `backdrop-mid`, `backdrop-near`.
 - **SVG** (G-C): the same eleven as flat vector.
 
-The 2D and SVG `crystal-wall`, `crystal-platform` and `orb` pieces are drawn neutral
+The 2D and SVG `tag-wall`, `tag-platform` and `orb` pieces are drawn neutral
 light gray, because the engine's reveal shader multiplies them by the tag red or
 green, so art drawn already colored would come out wrong.
 
-The hazard pieces (`hazard-spikes` in 3D, `hazard-tile` in 2D) dress the level's `hazard` cells. They are jagged sandstone spikes in rock `#a86f46` and shadow violet `#5a4a7a`: they have to read as dangerous at a glance, and they never use the tag red or green, which are reserved for tagged crystals.
+The hazard pieces (`hazard-spikes` in 3D, `hazard-tile` in 2D) dress the level's `hazard` cells. They are jagged sandstone spikes in rock `#a86f46` and shadow violet `#5a4a7a`: they have to read as dangerous at a glance, and they never use the tag red or green, which are reserved for the tagged walls and platforms.
