@@ -1,15 +1,15 @@
 class_name GreyboxArt3D
 extends Resource
-## Greybox visuals for the 3D lane: toon-shaded unit cubes per kind, crystal lights on tagged cells, a desert
+## Greybox visuals for the 3D lane: toon-shaded unit cubes per kind, colored lights on tagged cells, a desert
 ## environment, and the protagonist rig once it is in the project (else a STAND-IN capsule for the character).
 ## KitArt3D subclasses it once the desert kit exists. THROWAWAY.
-## Colors match tools/greybox (Task 1); sky, sand and crystal colors come from docs/bakeoff/desert-biome-brief.md.
+## Colors match tools/greybox (Task 1); sky, sand and tag light colors come from docs/bakeoff/desert-biome-brief.md.
 const COLORS := {
 	"empty": Color8(245, 240, 230), "solid": Color8(90, 80, 70), "wall_red": Color8(200, 60, 50), "wall_green": Color8(60, 170, 90),
 	"platform_red": Color8(230, 120, 110), "platform_green": Color8(120, 210, 150), "start": Color8(40, 120, 220), "goal": Color8(240, 200, 40),
 	"orb_red": Color8(255, 30, 30), "orb_green": Color8(30, 220, 80), "hazard": Color8(20, 20, 20),
 }
-const CRYSTAL := {"red": Color("#e04a3a"), "green": Color("#3fbf6a")}
+const TAG_COLORS := {"red": Color("#e04a3a"), "green": Color("#3fbf6a")}
 const GRAY := Color(0.55, 0.55, 0.55)
 const SAND := Color("#d9b27c")
 const SKY_TOP := Color("#3f7f8c")
@@ -20,14 +20,14 @@ const STAND_IN := Color("#7a4fb8")
 ## One material per untagged kind, shared by every cube of that kind.
 var _materials := {}
 
-## A tagged cell's cube and crystal light: gray and dark until its color is acquired, its color with a soft light
+## A tagged cell's cube and colored light: gray and dark until its color is acquired, its color with a soft light
 ## once acquired, emissive with a pulsing bright light while active.
 class TaggedBox extends MeshInstance3D:
 	var base: Color
 	var material: StandardMaterial3D
 	var light: OmniLight3D
 	var pulse: Tween
-	## Multiplies the light energies below; a lane art with many stacked crystals dims them so they do not wash out.
+	## Multiplies the light energies below; a lane art with many stacked tagged blocks dims them so they do not wash out.
 	var energy_scale := 1.0
 	func set_resonance_look(revealed: bool, active: bool) -> void:
 		material.albedo_color = base if revealed else GRAY
@@ -61,10 +61,10 @@ func make_cell(kind: String, _cell: Vector2i) -> Node3D:
 		var color: String = Greybox.TAGGED[kind][0]
 		var tagged := _new_tagged_box(); tagged.base = COLORS[kind]
 		var box := BoxMesh.new(); box.size = Vector3.ONE; tagged.mesh = box
-		tagged.material = toon(GRAY); tagged.material.emission = CRYSTAL[color]; tagged.material.emission_energy_multiplier = 0.6
+		tagged.material = toon(GRAY); tagged.material.emission = TAG_COLORS[color]; tagged.material.emission_energy_multiplier = 0.6
 		tagged.material_override = tagged.material
-		tagged.light = OmniLight3D.new(); tagged.light.name = "Crystal"
-		tagged.light.light_color = CRYSTAL[color]; tagged.light.omni_range = 4.0; tagged.light.light_energy = 0.0
+		tagged.light = OmniLight3D.new(); tagged.light.name = "TagLight"
+		tagged.light.light_color = TAG_COLORS[color]; tagged.light.omni_range = 4.0; tagged.light.light_energy = 0.0
 		tagged.light.position.z = 0.9  # in front of the cube, so it lights the player's plane rather than the cube's inside
 		tagged.add_child(tagged.light)
 		return tagged

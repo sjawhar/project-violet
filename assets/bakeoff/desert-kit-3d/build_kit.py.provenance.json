@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "asset": "build_kit.py",
-  "sha256": "1a80d7495317cb59025cddbc83fa64f099b5a392024d363611c3348f36444c36",
+  "sha256": "62a68eef07cd36bebd68ee3531100d897e6d39f75bc87d8609743f22e6645a90",
   "kind": "text",
   "origin": "generated",
-  "created_at": "2026-09-27T18:00:00+00:00",
+  "created_at": "2026-09-28T17:06:41+00:00",
   "generator": {
     "tool": "hand-written-python",
     "tool_version": "1",

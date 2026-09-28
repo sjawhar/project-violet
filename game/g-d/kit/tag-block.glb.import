@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://by3wfuw4bwgu4"
-path="res://.godot/imported/crystal-cluster.glb-e0afd8fda456b2ff36066d7aeaaffa52.scn"
+uid="uid://bdnm2qjtmtbl4"
+path="res://.godot/imported/tag-block.glb-3df1d510af9000239ae98dc9b2d74681.scn"
 
 [deps]
 
-source_file="res://kit/crystal-cluster.glb"
-dest_files=["res://.godot/imported/crystal-cluster.glb-e0afd8fda456b2ff36066d7aeaaffa52.scn"]
+source_file="res://kit/tag-block.glb"
+dest_files=["res://.godot/imported/tag-block.glb-3df1d510af9000239ae98dc9b2d74681.scn"]
 
 [params]
 

@@ -4,7 +4,7 @@
   "sha256": "f95a6fb5b2000b3a5c03c2e355aca1c7722076b7ca33c0377f4b37512536ae91",
   "kind": "model3d",
   "origin": "generated",
-  "created_at": "2026-09-27T17:59:32+00:00",
+  "created_at": "2026-09-28T17:06:43+00:00",
   "generator": {
     "tool": "blender",
     "tool_version": "5.2.2",
@@ -17,7 +17,7 @@
     "inputs": [
       {
         "path": "assets/bakeoff/desert-kit-3d/build_kit.py",
-        "sha256": "1a80d7495317cb59025cddbc83fa64f099b5a392024d363611c3348f36444c36"
+        "sha256": "62a68eef07cd36bebd68ee3531100d897e6d39f75bc87d8609743f22e6645a90"
       }
     ]
   },

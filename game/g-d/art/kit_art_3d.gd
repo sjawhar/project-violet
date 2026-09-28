@@ -2,7 +2,7 @@ class_name KitArt3D
 extends GreyboxArt3D
 ## Lane G-D's desert look: the agent-built 3D desert kit (res://kit/, copied from assets/bakeoff/desert-kit-3d/) on
 ## GreyboxArt3D's environment, lights and character. Art only: the builder still makes every collider. THROWAWAY.
-## Kit conventions (kit/README.md): metres, +Y up, origin at the base centre, front toward +Z; `crystal` and `orb`
+## Kit conventions (kit/README.md): metres, +Y up, origin at the base centre, front toward +Z; `tag-block` and `orb`
 ## are untinted gray, so tagged cells and orbs are tinted here per docs/bakeoff/mechanic.md.
 const KIT := "res://kit/%s.glb"
 ## Deterministic backdrop placement, so every capture shows the same desert.
@@ -14,11 +14,11 @@ const NEAR := ["boulder-a", "boulder-b", "saguaro"]
 const PROP_FRONT_Z := -1.5
 ## Parallax slides a prop a few metres against the level as the camera moves, so pit avoidance keeps this much clear.
 const PIT_MARGIN := 2.0
-## Crystal albedo before its color is acquired (mechanic.md: grayscale).
-const CRYSTAL_GRAY := Color(0.6, 0.6, 0.6)
-## Emission energy of an active crystal: enough to glow, low enough that ACES keeps its hue instead of going peach.
-const CRYSTAL_GLOW := 0.5
-## Crystal lights at this share of GreyboxArt3D's: a 13-cell wall of full-energy lights washed its surroundings out.
+## Tag block albedo before its color is acquired (mechanic.md: grayscale).
+const TAG_GRAY := Color(0.6, 0.6, 0.6)
+## Emission energy of an active tag block: enough to glow, low enough that ACES keeps its hue instead of going peach.
+const TAG_GLOW := 0.5
+## Tag lights at this share of GreyboxArt3D's: a 13-cell wall of full-energy lights washed its surroundings out.
 const LIGHT_SCALE := 0.35
 ## Depth fog (aerial perspective): the play plane, 32 m from the camera, stays clear; the backdrop fades toward the sky.
 const FOG_BEGIN := 34.0
@@ -33,17 +33,17 @@ var _orb_materials := {}
 ## The level being dressed, kept by make_backdrop (called before the builder) so make_cell can see a cell's neighbours.
 var _level: Greybox
 
-## A tagged cell drawn as a full-cell crystal cluster instead of GreyboxArt3D's box (the biome brief makes tagged
-## elements crystal), keeping the box's crystal light: gray until the color is acquired, the tag color once acquired,
-## glowing while active. Emission stays enabled and only its energy moves, so no shader variant is compiled mid-game.
+## A tagged cell drawn as the kit's solid 1 m tag-block instead of GreyboxArt3D's box, keeping the box's light: gray
+## until the color is acquired, the tag color once acquired, glowing while active. Emission stays enabled and only its
+## energy moves, so no shader variant is compiled mid-game.
 class KitTaggedBox extends GreyboxArt3D.TaggedBox:
-	var crystal_color: Color
-	var crystal_materials: Array[StandardMaterial3D] = []
+	var tag_color: Color
+	var block_materials: Array[StandardMaterial3D] = []
 	func set_resonance_look(revealed: bool, active: bool) -> void:
 		super(revealed, active)
-		for mat in crystal_materials:
-			mat.albedo_color = crystal_color if revealed else CRYSTAL_GRAY
-			mat.emission_energy_multiplier = CRYSTAL_GLOW if active else 0.0
+		for mat in block_materials:
+			mat.albedo_color = tag_color if revealed else TAG_GRAY
+			mat.emission_energy_multiplier = TAG_GLOW if active else 0.0
 
 ## An orb cell's visual. Picking the orb up frees its Area3D and everything under it, so once in the tree the pedestal
 ## moves up to the World node and only the floating orb stays with the area.
@@ -84,17 +84,17 @@ func make_cell(kind: String, cell: Vector2i) -> Node3D:
 			return holder
 	var tagged := super.make_cell(kind, cell) as KitTaggedBox
 	var color: String = Greybox.TAGGED[kind][0]
-	tagged.mesh = null  # the crystal is the visual; the box's light and look stay
+	tagged.mesh = null  # the tag-block is the visual; the box's light and look stay
 	tagged.energy_scale = LIGHT_SCALE
-	tagged.crystal_color = CRYSTAL[color]
-	var crystal := _on_cell_floor(_piece("crystal-cluster")); crystal.name = "Crystal"
-	for mi: MeshInstance3D in _meshes(crystal):
+	tagged.tag_color = TAG_COLORS[color]
+	var block := _on_cell_floor(_piece("tag-block")); block.name = "TagBlock"
+	for mi: MeshInstance3D in _meshes(block):
 		for s in mi.mesh.get_surface_count():
 			var mat := (mi.get_active_material(s) as StandardMaterial3D).duplicate() as StandardMaterial3D
-			mat.albedo_color = CRYSTAL_GRAY; mat.emission_enabled = true; mat.emission = CRYSTAL[color]; mat.emission_energy_multiplier = 0.0
-			tagged.crystal_materials.append(mat)
+			mat.albedo_color = TAG_GRAY; mat.emission_enabled = true; mat.emission = TAG_COLORS[color]; mat.emission_energy_multiplier = 0.0
+			tagged.block_materials.append(mat)
 			mi.set_surface_override_material(s, mat)
-	tagged.add_child(crystal)
+	tagged.add_child(block)
 	return tagged
 
 func make_backdrop(level: Greybox) -> Node3D:

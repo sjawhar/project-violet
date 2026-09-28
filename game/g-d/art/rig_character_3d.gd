@@ -3,7 +3,7 @@ extends Node3D
 ## The protagonist rig in 3D: one Sprite3D per slot in the player's XY plane, in draw order, posed by Rig every frame
 ## from the parent Player3D's state (RigAnimator). Skeleton space is y up like the world, so nothing flips but the
 ## facing; pixel_size makes the setup pose 1.6 m tall, feet on the player's origin. Sprites are shaded, so the sun and
-## the crystal lights reach the character; the scarf slots take the active color. THROWAWAY.
+## the tag lights reach the character; the scarf slots take the active color. THROWAWAY.
 const SCARF_SLOTS := ["scarf1", "scarf2", "scarf3"]
 const SCARF_COLORS := {"red": Color("#e04a3a"), "green": Color("#3fbf6a"), "": Color(0.55, 0.55, 0.55)}
 ## Metres between successive slots along z, toward the camera, so the draw order also holds in depth; render_priority
