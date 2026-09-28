@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "asset": "jump.gif",
-  "sha256": "c9e2f11748bffb70a1fac12b3beefccd7dd7218ac91c8bb7182ae348eb0d7419",
+  "sha256": "11962e11c3a98448aecbbcba2d94e698f857a1d9abf0604ff1f4afdfaef9c6c1",
   "kind": "animation",
   "origin": "derived",
-  "created_at": "2026-09-27T21:34:59+00:00",
+  "created_at": "2026-09-28T17:16:37+00:00",
   "generator": {
     "tool": "spinerig",
     "tool_version": "0.1.0 (master 028cb554, with #30's canvas fix)",
@@ -15,23 +15,23 @@
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/rig/violet.json",
-        "sha256": "f297520a156640ad8a40c4cf3ea6ff83289a5cd6d198c30c1fc6f9a9655c106c"
+        "sha256": "f6319ff24ba4a39e4f09138a5551c06d95a807b53d8b097df0feaec695b8d3aa"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/arm_back_lower.png",
-        "sha256": "bbc7ee20bd450d8729418556b2b251dc18eb8bbe9c1b1efa12191cdc4e562410"
+        "sha256": "4345ce799fa7b60cd01892f5c58a6003f514ba36cf5c5c320ba53e79899f5a4e"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/arm_back_upper.png",
-        "sha256": "f2fbb6ebf23ab331ff92fb82d28183f1c51507c572981ff73fc358fea4b26010"
+        "sha256": "3a83c513f692e927b150ded7b0fa252ba33ff5bbaf50cd93b898708eef20dd9c"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/arm_front_lower.png",
-        "sha256": "e6c6d5d49228753677fcbf1c7a138c7132acb944b671bb352c3e93f10f45afb4"
+        "sha256": "8f1df9ed8700868b3d71da7d036f36e2ee1af19f14779f11f9a736fa7b0c3c13"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/arm_front_upper.png",
-        "sha256": "077ba972ef4434e62faeb1218d11ad8833b4f40a4d89a7368dc806c9932ee417"
+        "sha256": "1bcaab8efcf8c888aae0a0c24809f0ddb8da5d8d7b660bdd9a703d4826565b30"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/head.png",

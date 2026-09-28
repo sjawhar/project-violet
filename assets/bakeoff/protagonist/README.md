@@ -53,10 +53,10 @@ bounding box, the scarf crops and gray conversion, the head collar recolor, and 
 | `head.png` | 200×216 | hooded head, neck, gray collar | 0.335 |
 | `torso.png` | 126×274 | robe torso with the dark sash | 0.40 |
 | `hips.png` | 256×581 | ankle-length robe skirt, darker hem (regenerated) | 0.639 |
-| `arm_back_upper.png` | 162×315 | bell sleeve, shoulder to cuff (back) | 0.40 |
-| `arm_back_lower.png` | 164×177 | forearm sleeve, forearm and hand (back) | 0.235 |
-| `arm_front_upper.png` | 164×325 | bell sleeve, shoulder to cuff (front) | 0.40 |
-| `arm_front_lower.png` | 192×108 | forearm sleeve, forearm and hand (front) | 0.223 |
+| `arm_back_upper.png` | 82×204 | upper arm in the robe sleeve, shoulder to a rounded elbow (back; repainted) | 0.295 |
+| `arm_back_lower.png` | 76×227 | forearm in the sleeve from the elbow to the cuff, relaxed hand below (back; repainted) | 0.25 |
+| `arm_front_upper.png` | 82×203 | upper arm in the robe sleeve, shoulder to a rounded elbow (front; repainted) | 0.315 |
+| `arm_front_lower.png` | 69×232 | forearm in the sleeve from the elbow to the cuff, relaxed hand below (front; repainted) | 0.25 |
 | `leg_back_upper.png` | 109×312 | thigh wrapped in robe fabric, tapering to the knee (regenerated) | 0.352 |
 | `leg_back_lower.png` | 137×263 | wrapped shin and bare foot (back) | 0.31 |
 | `leg_front_upper.png` | 116×321 | thigh wrapped in robe fabric, tapering to the knee | 0.476 |
@@ -122,24 +122,42 @@ the turnaround's, so the head was fitted to the crown, face and chin rather than
   turnaround's ankle-length hem that made a skirt 488 px wide against the turnaround's ~235.
   Regenerated as an ankle-length robe skirt with a darker hem and gentle flare, 0.44:1, close to the
   turnaround's 0.42:1.
+- **Arms (all four):** in the first rig the upper-arm piece was the whole bell sleeve, shoulder to
+  cuff. That is about twice the upper-arm bone, so the elbow sat halfway down a stiff piece. The
+  forearm turned underneath it and poked out of the cuff at an angle, which read as a broken wrist.
+  `docs/bakeoff/protagonist-rig-notes.md` has the frames that show it. The four arm parts are
+  repainted:
+  - Each upper arm is the sleeve from the shoulder to a closed, rounded elbow.
+  - Each forearm is the rest of the sleeve, from the elbow to the cuff, with a relaxed hand below
+    it, painted straight along the bone.
+  - The rounded elbow end draws over the forearm's top, and its centre is the pivot, so the seam
+    stays hidden at any bend.
 - **Scale:** every part now shares the one scale above. The first pass's parts each filled their own
   1024 canvas, so the forearm was nearly as big as the head. The old trims were also inflated by faint
   alpha specks: `magick -trim` kept pixels with alpha 1–8.
 
 ## Rejects and regeneration count
 
-Five new `gen image` calls in the rig pass, none rejected: `scarf1`, `scarf2`, `scarf3`,
-`leg_back_upper`, `hips`. Each result was checked by eye against the turnaround before use: isolated
-part, facing right, real alpha, and the requested shape and colour. The scarf crops and gray
-conversion above are post-processing on the kept images, not rejections. The earlier painting pass had
-one safety-filter rejection (`leg_front_upper`'s first prompt, "bare skin or soft wrap",
+Rig pass: five `gen image` calls, none rejected: `scarf1`, `scarf2`, `scarf3`, `leg_back_upper`,
+`hips`. Arm round: six calls.
+- Kept: the two forearms (first try) and the two upper arms (second try).
+- Rejected: the two first-try upper arms. The prompt asked for no cuff, but both came back as bell
+  sleeves flaring to a wide open cuff at the elbow. That would leave a sleeve opening halfway down
+  every arm.
+
+Each result was checked by eye against the turnaround before use: isolated part, facing right, real
+alpha, and the requested shape and colour. The scarf crops and gray conversion above are
+post-processing on the kept images, not rejections. The earlier painting pass had one safety-filter
+rejection (`leg_front_upper`'s first prompt, "bare skin or soft wrap",
 `req_35b66a8b163840a4b19de583e1f83e59`, no image and no charge).
 
-## Estimated spend
+## Spend
 
-OpenAI's API reports no dollar cost, so these are estimates at ~$0.17 per `gpt-image-2` high-quality
-1024×1024 image (`tools/gen/README.md`'s pricing pointer), plus the reference image's input tokens:
+OpenAI reports token usage per call, not dollars. The arm round logged each response's `usage`: every
+call was 1,536 image-input, 102–126 text-input and 7,024 image-output tokens. At the pricing page's
+`gpt-image-2` rates ($8 / $5 / $30 per million), that is $0.2236 per call.
 
-- First painting pass: 14 billable images, about $2.38.
-- Rig pass: 5 billable images, about $0.85–1.00.
-- Total: about $3.25–3.40.
+- Arm round (from the reported usage): 6 calls, $1.34. Kept $0.89, rejected $0.45.
+- Earlier passes: usage was not logged. The same per-call figure gives 14 calls ≈ $3.13 for the first
+  painting pass and 5 calls ≈ $1.12 for the rig pass. They were first estimated at $0.17 per call.
+- Total: ≈ $5.59.

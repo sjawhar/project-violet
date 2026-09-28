@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "asset": "mkrig.py",
-  "sha256": "2a86e72ba3f6d566297446809284447425f68db6e75b402d8771df46ea122b2e",
+  "sha256": "3cee963aed0a1421946e75ce17ad67a889a3473838b07b3c1d4862ee715c2e8d",
   "kind": "text",
   "origin": "generated",
-  "created_at": "2026-09-28T03:07:18+00:00",
+  "created_at": "2026-09-28T17:16:35+00:00",
   "generator": {
     "tool": "hand-written-python",
     "tool_version": "1",
