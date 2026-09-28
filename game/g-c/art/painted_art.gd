@@ -1,13 +1,13 @@
 class_name PaintedArt
 extends GreyboxArt
-## Painted desert visuals (docs/bakeoff/desert-biome-brief.md): generated tiles and sprites, crystal reveal shader,
+## Painted desert visuals (docs/bakeoff/desert-biome-brief.md): generated tiles and sprites, tag reveal shader,
 ## three parallax backdrop layers. The character is GreyboxArt's: the rig once it is in the project, else the STAND-IN.
 ## THROWAWAY.
 @export var ground_tile: Texture2D
 @export var wall_tile: Texture2D
 @export var platform_tile: Texture2D
-@export var crystal_wall: Texture2D
-@export var crystal_platform: Texture2D
+@export var tag_wall: Texture2D
+@export var tag_platform: Texture2D
 @export var orb: Texture2D
 @export var goal_gate: Texture2D
 @export var hazard_tile: Texture2D
@@ -21,7 +21,7 @@ const REVEAL := preload("res://art/reveal.gdshader")
 var _level: Greybox
 var _ground_row := -1
 
-## A tagged cell's crystal: gray until its color is acquired, tinted once acquired, glowing and pulsing while active.
+## A tagged cell's wall or platform: gray until its color is acquired, tinted once acquired, glowing and pulsing while active.
 class RevealSprite extends Sprite2D:
 	var _pulse: Tween
 	func set_resonance_look(revealed: bool, active: bool) -> void:
@@ -54,10 +54,10 @@ func make_backdrop(level: Greybox) -> Node2D:
 func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 	if Greybox.TAGGED.has(kind):
 		var color: String = Greybox.TAGGED[kind][0]
-		var crystal := RevealSprite.new()
+		var tagged := RevealSprite.new()
 		var mat := ShaderMaterial.new(); mat.shader = REVEAL; mat.set_shader_parameter("tint", TINTS[color])
-		crystal.material = mat
-		return _tile(crystal, crystal_wall if Greybox.TAGGED[kind][1] == "wall" else crystal_platform, cell, ts, 4, false)
+		tagged.material = mat
+		return _tile(tagged, tag_wall if Greybox.TAGGED[kind][1] == "wall" else tag_platform, cell, ts, 4, false)
 	match kind:
 		"solid":
 			if _level.kind_at(cell.x, cell.y - 1) == "solid": return _tile(Sprite2D.new(), wall_tile, cell, ts, 4, false)

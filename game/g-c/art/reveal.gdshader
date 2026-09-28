@@ -1,5 +1,5 @@
-// THROWAWAY (bake-off lane G-A): crystal reveal for tagged cells (docs/bakeoff/mechanic.md, Reveal).
-// The crystal textures are untinted pale gray. saturation 0: plain gray (#8c8c8c-ish, unacquired color);
+// THROWAWAY (bake-off lane G-A): tag reveal for tagged cells (docs/bakeoff/mechanic.md, Reveal).
+// The tag-wall and tag-platform textures are untinted pale gray. saturation 0: plain gray (#8c8c8c-ish, unacquired color);
 // saturation 1: tinted with the cell's color (acquired); glow adds the color on top (active, pulsed by a tween).
 shader_type canvas_item;
 uniform float saturation = 0.0;

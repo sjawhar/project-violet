@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<!-- THROWAWAY bake-off lane G-C: tag-wall, hand-written flat vector. The same layered sandstone as wall-tile, drawn in
+     neutral light grays: the reveal shader (art/reveal.gdshader) shows it gray until its color is acquired and
+     multiplies in the tag color (#e04a3a / #3fbf6a) after. The strata repeat every 256 px (one cell) and every detail
+     sits inside its 256 px column, so a one-cell-wide wall shows whole details. Seamless both ways. -->
+<defs>
+<g id="band">
+<path fill="#b2b2b2" d="M0,118 L150,110 L310,124 L480,112 L650,122 L830,108 L1024,118 L1024,164 L850,172 L690,158 L520,170 L340,156 L170,168 L0,164 Z"/>
+<path fill="#efefef" d="M0,206 L200,200 L420,210 L610,198 L800,208 L1024,206 L1024,222 L790,226 L600,216 L410,228 L190,218 L0,222 Z"/>
+<path fill="#8c8c8c" d="M118,20 L138,52 L128,86 L144,112 L130,116 L112,88 L120,54 L104,24 Z"/>
+<path fill="#8c8c8c" d="M640,168 L658,190 L648,206 L634,202 L642,188 L626,174 Z"/>
+<path fill="#b2b2b2" d="M300,176 L400,171 L470,180 L466,190 L400,183 L302,188 Z"/>
+<ellipse fill="#b2b2b2" cx="884" cy="66" rx="26" ry="14"/>
+<ellipse fill="#efefef" cx="880" cy="58" rx="26" ry="14"/>
+<ellipse fill="#b2b2b2" cx="404" cy="62" rx="16" ry="9"/>
+<ellipse fill="#efefef" cx="400" cy="56" rx="16" ry="9"/>
+</g>
+</defs>
+<rect width="1024" height="1024" fill="#d6d6d6"/>
+<use href="#band"/>
+<use href="#band" transform="translate(1024 256) scale(-1 1)"/>
+<use href="#band" transform="translate(512 512)"/>
+<use href="#band" transform="translate(-512 512)"/>
+<use href="#band" transform="translate(1536 768) scale(-1 1)"/>
+<use href="#band" transform="translate(512 768) scale(-1 1)"/>
+</svg>

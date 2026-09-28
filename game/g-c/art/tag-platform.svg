@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<!-- THROWAWAY bake-off lane G-C: tag-platform, hand-written flat vector. The same sandstone slab as platform-tile (a
+     dusted cap with block joints, a shadow under the lip, a stratum in the body) as a floating ledge with a rough
+     underside, drawn in neutral light grays so the reveal shader tints it #e04a3a / #3fbf6a once acquired. The game
+     shows one 256 px row per cell, so the same ledge band repeats four times; each band spans four cells and tiles
+     horizontally. Transparent under the ledge. -->
+<defs>
+<g id="ledge">
+<path fill="#c8c8c8" d="M0,120 H1024 V220 L960,232 L880,224 L800,240 L720,226 L640,236 L560,222 L480,238 L400,226 L320,234 L240,222 L160,238 L80,226 L0,220 Z"/>
+<path fill="#b0b0b0" d="M0,170 L200,164 L420,176 L640,166 L860,176 L1024,170 L1024,194 L850,200 L640,190 L410,202 L190,192 L0,194 Z"/>
+<path fill="#8c8c8c" d="M0,104 H1024 V136 L940,146 L860,134 L760,150 L650,138 L540,152 L430,136 L320,148 L210,134 L100,146 L0,136 Z"/>
+<path fill="#e0e0e0" d="M0,22 H1024 V112 L960,120 L880,110 L790,122 L700,110 L600,124 L512,112 L420,122 L330,110 L240,124 L150,112 L60,120 L0,112 Z"/>
+<path fill="#b0b0b0" d="M120,40 L132,40 L138,110 L126,112 Z M380,36 L392,36 L388,112 L376,114 Z M630,42 L642,42 L650,108 L638,110 Z M890,38 L902,38 L898,112 L886,114 Z"/>
+<path fill="#b0b0b0" d="M220,70 L330,64 L370,74 L330,78 L222,80 Z M720,62 L820,58 L850,66 L820,70 L722,72 Z"/>
+<path fill="#f2f2f2" d="M0,0 H1024 V26 C960,26 900,40 820,38 C740,36 690,26 600,30 C510,34 470,46 380,42 C290,38 240,28 160,32 C90,36 50,26 0,26 Z"/>
+</g>
+</defs>
+<use href="#ledge"/>
+<use href="#ledge" y="256"/>
+<use href="#ledge" y="512"/>
+<use href="#ledge" y="768"/>
+</svg>

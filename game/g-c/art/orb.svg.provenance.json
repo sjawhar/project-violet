@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
   "asset": "orb.svg",
-  "sha256": "8ccdfec956c213936e2194937312a7ff72d9c396d80ab05cabf321325c1f5447",
+  "sha256": "da8133423d64d14c5423b8aaf1e119e9e2da8ef231bdcae942fcd4ada2bdc7a9",
   "kind": "image",
   "origin": "generated",
-  "created_at": "2026-09-27T18:12:02+00:00",
+  "created_at": "2026-09-28T17:06:18+00:00",
   "generator": {
     "tool": "hand-written-svg",
     "tool_version": "1",
     "provider": "anthropic",
     "model": "claude-opus-5-5",
-    "prompt": "Hand-written flat-vector SVG for bake-off lane G-C, following docs/bakeoff/desert-biome-brief.md (palette sand #d9b27c, rock #a86f46, shadow violet #5a4a7a, sky #f2c49b/#3f7f8c) and docs/bakeoff/mechanic.md; 4-6 flat colors, no gradients, no outlines: orb, 1024x1024, faceted octagonal crystal orb in neutral light gray with a flat translucent halo (tinted by the orb color), transparent background",
+    "prompt": "Hand-written flat-vector SVG for bake-off lane G-C, following docs/bakeoff/desert-biome-brief.md (palette sand #d9b27c, rock #a86f46, shadow violet #5a4a7a, sky #f2c49b/#3f7f8c) and docs/bakeoff/mechanic.md; 4-6 flat colors, no gradients, no outlines, no crystals: orb, 1024x1024, plain round orb in neutral light gray with a flat shaded crescent, lit face, highlight and translucent halo (tinted by the orb color), transparent background",
     "params": {},
     "inputs": []
   },
