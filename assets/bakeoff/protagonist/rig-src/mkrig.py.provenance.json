@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "asset": "mkrig.py",
+  "sha256": "2a86e72ba3f6d566297446809284447425f68db6e75b402d8771df46ea122b2e",
+  "kind": "text",
+  "origin": "generated",
+  "created_at": "2026-09-28T03:07:18+00:00",
+  "generator": {
+    "tool": "hand-written-python",
+    "tool_version": "1",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "prompt": "Throwaway Python script that writes Violet's violet-rig v1 rig.json (bones, parts, draw order, scarf) for the Phase 1 bake-off, fitted to the approved turnaround",
+    "params": {},
+    "inputs": []
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

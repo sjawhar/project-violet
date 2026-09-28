@@ -103,7 +103,7 @@ delta swings its far end forward; for the torso, a negative delta leans forward.
 **Feet on the floor.** On every ground frame the lowest sole is at skeleton y = 0 (`feet_y_px`):
 every `run` and `dash` frame, every `land` frame (both feet), and `jump`'s crouch and take-off
 until the back foot leaves. Those animations key `hips` translate at 60 fps, and each key's `y` is
-solved from the feet's opaque pixels under spinerig's own FK. Checked at 120 fps, the lowest sole
+solved from the feet's opaque pixels under spinerig's own FK (`rig-src/ground.py`). Checked at 120 fps, the lowest sole
 stays within 2 px of the floor (`land` within 1 px). The feet are rigid with the shins, so a planted
 crouch (`land`, `jump`'s crouch) tilts the shins only 8–10° and sends the hips back instead. That is
 a squat that keeps each ankle where it stood. A shin tilted further would pitch the foot onto its

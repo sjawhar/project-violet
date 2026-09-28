@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "asset": "ground.py",
+  "sha256": "668faed81ca9daefed6dd73fadfb3c6f74033ca0e997513516e36ae292332ca1",
+  "kind": "text",
+  "origin": "generated",
+  "created_at": "2026-09-28T03:07:19+00:00",
+  "generator": {
+    "tool": "hand-written-python",
+    "tool_version": "1",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "prompt": "Throwaway Python script that solves the rig's lower-leg pivots and hips translate keys so Violet's soles stay on the floor on every ground frame",
+    "params": {},
+    "inputs": []
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

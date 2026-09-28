@@ -9,14 +9,37 @@ in #19 (`concept/violet-turnaround.png`):
 
 - `parts/`: fourteen painted body parts, all at one shared scale (below).
 - `rig-src/rig.json`: the `violet-rig` v1 description (bones, pivots, draw order, scarf, animations).
-  Its layout and the reasoning behind each value are in `docs/bakeoff/protagonist-rig-notes.md`.
+  It is written by the THROWAWAY scripts beside it, so edit those scripts rather than the JSON.
+  The layout and the reasoning behind each value are in `docs/bakeoff/protagonist-rig-notes.md`.
+  - `mkrig.py`: bones, parts, draw order and scarf config; it runs the other scripts.
+  - `anims.py`: the seven animations.
+  - `ground.py`: puts the soles on the floor.
+  - `feet.py`: measures foot heights per frame.
 - `rig/violet.json` + `rig/violet.meta.json`: `spinerig generate`'s output, the Spine 4.3 JSON subset
   every lane reads (`docs/bakeoff/character-rig.md`). Regenerate it with
   `uv run --project tools/spinerig spinerig generate assets/bakeoff/protagonist/rig-src/rig.json --out assets/bakeoff/protagonist/rig/violet.json`.
 - `preview/<anim>.gif`: `spinerig render` playback of each animation at `--scale 0.5`.
 
-The rig references every part by file name, so renaming a part means updating `rig-src/rig.json`
+The rig references every part by file name, so renaming a part means updating `rig-src/mkrig.py`
 too.
+
+## Changing an animation or the rig
+
+Run everything from the repository root:
+
+1. Edit `rig-src/anims.py` to change an animation (angles are deltas on the setup pose; its header
+   explains the sign conventions). Edit `rig-src/mkrig.py` for bones, pivots, draw order or the scarf.
+2. Rewrite `rig.json`:
+   `uv run --project tools/spinerig --with numpy python assets/bakeoff/protagonist/rig-src/mkrig.py`.
+   It re-solves the grounded feet each time. To print every animation's per-frame foot heights (0 is
+   the floor), run `feet.py` the same way.
+3. Regenerate the rig:
+   `uv run --project tools/spinerig spinerig generate assets/bakeoff/protagonist/rig-src/rig.json --out assets/bakeoff/protagonist/rig/violet.json`.
+4. Re-render each changed animation, then copy the GIF over `preview/<anim>.gif`:
+   `uv run --project tools/spinerig spinerig render assets/bakeoff/protagonist/rig/violet.json --parts assets/bakeoff/protagonist/parts --anim <anim> --out /tmp/<anim> --scale 0.5`.
+5. Refresh the provenance records of everything that changed: the edited script, `rig.json`,
+   `violet.json`, `violet.meta.json` and the re-rendered GIFs. The commands are in each sidecar's
+   fields. Then run `provenance check`.
 
 ## Parts
 
