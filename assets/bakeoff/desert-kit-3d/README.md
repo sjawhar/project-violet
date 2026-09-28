@@ -25,9 +25,9 @@ blender -b --factory-startup --python assets/bakeoff/desert-kit-3d/preview/rende
 - glTF binary, +Y up, meters, modifiers applied, no cameras or lights. The origin is at the base center, and the front faces +Z (toward a side-scroller camera).
 - Colors are named Principled BSDF materials in the biome palette. `sand` `#d9b27c`, `rock` `#a86f46`, `shadow` `#5a4a7a` and `portal` (sky teal `#3f7f8c`, emissive) come from the brief. `sand_deep`, `sand_shade`, `rock_light`, `rock_dark` and `stone` are mixes of those colors.
 - A neutral gray vertex color (`COLOR_0`) multiplies the base color to add painterly variation. It is gray, so a lane can still tint a material.
-- `crystal` and `orb` are untinted neutral light gray (`#d4d4d4`). Lanes tint them red, green or gray per [mechanic.md](../../../docs/bakeoff/mechanic.md). No piece uses the tag red or green, and there is no vegetation green anywhere: saguaro and acacia are silhouettes in shadow violet.
+- `tag` and `orb` are untinted neutral light gray (`#d4d4d4`). Lanes tint them red, green or gray per [mechanic.md](../../../docs/bakeoff/mechanic.md). No piece uses the tag red or green, and there is no vegetation green anywhere: saguaro and acacia are silhouettes in shadow violet.
 - In `orb-pedestal`, the orb is a child node named `orb`, so a lane can bob or spin it.
-- Godot 4.7's glTF importer never applies `COLOR_0` to the material of a mesh's first primitive (in `modules/gltf/gltf_document.cpp`, the primitive's material is set up before its colors are read). To make that harmless, the first material slot is always a flat one (`shadow`, `sand_deep` or `sand_shade`) whose vertex colors are all white. The pieces with a single material (`saguaro`, `acacia`, `crystal-cluster` and the `orb` node) lose their subtle vertex shading in Godot unless the lane sets `vertex_color_use_as_albedo` on them.
+- Godot 4.7's glTF importer never applies `COLOR_0` to the material of a mesh's first primitive (in `modules/gltf/gltf_document.cpp`, the primitive's material is set up before its colors are read). To make that harmless, the first material slot is always a flat one (`shadow`, `sand_deep` or `sand_shade`) whose vertex colors are all white. The pieces with a single material (`saguaro`, `acacia`, `tag-block` and the `orb` node) lose their subtle vertex shading in Godot unless the lane sets `vertex_color_use_as_albedo` on them.
 
 ## Pieces
 
@@ -47,7 +47,7 @@ Sizes are width (X) × depth (Z) × height (Y) in meters, as `build_kit.py` prin
 | `ruin-wall` | 384 | 5.5 × 1.9 × 2.8 | Crumbling block wall with a window and fallen blocks |
 | `sand-tile` | 386 | 1.0 × 1.0 × 1.02 | 1 m sand block; rippled top, wavy strata; tiles seamlessly side by side and stacked |
 | `rock-tile` | 410 | 1.0 × 1.0 × 1.03 | 1 m layered sandstone block with violet strata lines; tiles seamlessly |
-| `crystal-cluster` | 288 | 0.9 × 0.9 × 0.95 | Dense crystal cluster that fills its cell; untinted gray |
+| `tag-block` | 44 | 1.0 × 1.0 × 1.0 | Solid cut-stone block that fills its cell, for tagged walls and platforms; slight chamfers, a few chisel facets; untinted gray |
 | `orb-pedestal` | 240 | 0.7 × 0.7 × 0.96 | Carved pedestal with a floating untinted orb |
 | `goal-gate` | 394 | 1.0 × 0.5 × 2.95 | Sandstone gate with a glowing sky-teal pointed-arch portal and a sun disc |
 | `hazard-spikes` | 159 | 0.9 × 0.9 × 0.94 | Jagged sandstone spikes in rock and shadow violet |

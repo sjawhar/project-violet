@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "asset": "kit-at-32m.png",
-  "sha256": "d3912ca6348e05e50f1adaf6ef0a200e8be9a21d86c0329b096876e33c4f0c82",
+  "sha256": "7ed075c75f4784a63d91566d859ff4664551d20239918866319a19b52222804f",
   "kind": "image",
   "origin": "derived",
-  "created_at": "2026-09-27T19:46:55+00:00",
+  "created_at": "2026-09-28T17:06:44+00:00",
   "generator": {
     "tool": "blender",
     "tool_version": "5.2.2",
@@ -13,11 +13,11 @@
     "inputs": [
       {
         "path": "assets/bakeoff/desert-kit-3d/build_kit.py",
-        "sha256": "1a80d7495317cb59025cddbc83fa64f099b5a392024d363611c3348f36444c36"
+        "sha256": "62a68eef07cd36bebd68ee3531100d897e6d39f75bc87d8609743f22e6645a90"
       },
       {
         "path": "assets/bakeoff/desert-kit-3d/preview/render_scene.py",
-        "sha256": "e3d662ddb392d9e973bc60d00d2c01db0ba31a7ff3ccea4c0af9d3e5afb93e2b"
+        "sha256": "0e4267cb5a18b4da1d81a814eee5dfb2f7d80537e081e501275c8917ff8c2f52"
       },
       {
         "path": "assets/bakeoff/desert-kit-3d/acacia.glb",
@@ -34,10 +34,6 @@
       {
         "path": "assets/bakeoff/desert-kit-3d/boulder-b.glb",
         "sha256": "422bf5d2f5e7916357ba4373aa0dfd04b287fe433ba7ba337ff317640465953f"
-      },
-      {
-        "path": "assets/bakeoff/desert-kit-3d/crystal-cluster.glb",
-        "sha256": "3b7947e4689f1e64abb8027db61828c4c8eca74d25eee9ad1157a7eafdc5d22c"
       },
       {
         "path": "assets/bakeoff/desert-kit-3d/dune-ridge.glb",
@@ -82,6 +78,10 @@
       {
         "path": "assets/bakeoff/desert-kit-3d/sand-tile.glb",
         "sha256": "7769a1ab84f63cb21f51ec37652f9538d858b8b6557edf186ceeba2daac1b39b"
+      },
+      {
+        "path": "assets/bakeoff/desert-kit-3d/tag-block.glb",
+        "sha256": "bfc65536b902021d2f1f1d08befe3b23584fa7dda7ca3ebc36401eb5543f2471"
       }
     ]
   },

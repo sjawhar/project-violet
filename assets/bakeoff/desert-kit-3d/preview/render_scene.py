@@ -47,9 +47,9 @@ def main():
         for z in (0, 1):
             place(kit, "rock-tile", x, 0, z)
     for x in (-6, -5):
-        place(kit, "crystal-cluster", x, 0, 0)
+        place(kit, "tag-block", x, 0, 0)
     for x in (-4, -3):
-        place(kit, "crystal-cluster", x, 0, 2)
+        place(kit, "tag-block", x, 0, 2)
     place(kit, "hazard-spikes", -1, 0)
     place(kit, "hazard-spikes", 0, 0)
     place(kit, "orb-pedestal", -9, 0)

@@ -34,8 +34,8 @@ PALETTE = {
     "rock_dark": "916456",  # rock 70% + shadow 30%
     "shadow": "5a4a7a",
     "stone": "c89b69",  # sand 65% + rock 35%
-    "crystal": "d4d4d4",  # untinted neutral light gray: lanes tint it red, green or gray
-    "orb": "d4d4d4",  # untinted, as crystal
+    "tag": "d4d4d4",  # untinted neutral light gray: lanes tint it red, green or gray
+    "orb": "d4d4d4",  # untinted, as tag
     "portal": "3f7f8c",  # sky teal
 }
 EMISSION = {"portal": ("4fb8c8", 1.2)}
@@ -122,12 +122,16 @@ class Geo:
         var = self.rng.uniform(0.9, 1.0) if var is None else var
         return [self.f([idx[q] for q in quad], mat, var) for quad in quads]
 
-    def hull(self, points, mat, shade_fn=None):
+    def hull(self, points, mat, shade_fn=None, flat_faces=False):
+        """Convex hull of points. flat_faces merges coplanar triangles into single faces of one shade."""
         bm = bmesh.new()
         for p in points:
             bm.verts.new(p)
         bmesh.ops.convex_hull(bm, input=list(bm.verts))
         bmesh.ops.recalc_face_normals(bm, faces=list(bm.faces))
+        if flat_faces:
+            bmesh.ops.dissolve_limit(bm, angle_limit=math.radians(0.5), verts=list(bm.verts), edges=list(bm.edges))
+        bm.verts.index_update()
         remap = {}
         start = len(self.faces)
         for face in bm.faces:
@@ -136,7 +140,7 @@ class Geo:
                 if vert.index not in remap:
                     remap[vert.index] = self.v(vert.co, shade_fn(vert.co) if shade_fn else 1.0)
                 idx.append(remap[vert.index])
-            self.f(idx, mat)
+            self.f(idx, mat, 1.0 if flat_faces else None)
         bm.free()
         return range(start, len(self.faces))
 
@@ -786,45 +790,26 @@ def rock_tile(rng):
     return [g.build("rock-tile")]
 
 
-def prism(g, base, axis, radius, length, tip_len, mat, sides=6, twist=0.0):
-    axis = axis.normalized()
-    helper = Vector((1, 0, 0)) if abs(axis.x) < 0.9 else Vector((0, 1, 0))
-    n = axis.cross(helper).normalized()
-    b = axis.cross(n)
-    radii = [radius * g.rng.uniform(0.85, 1.12) for _ in range(sides)]
-
-    def loop(center, scale, shade):
-        idx = []
-        for k in range(sides):
-            a = TAU * k / sides + twist
-            p = center + (n * math.cos(a) + b * math.sin(a)) * radii[k] * scale
-            idx.append(g.v((p.x, p.y, max(p.z, 0.0)), shade))
-        return idx
-
-    root = loop(base - axis * 0.15, 1.0, 0.7)
-    shoulder = loop(base + axis * length, 1.0, 0.95)
-    g.band(root, shoulder, mat)
-    tip = base + axis * (length + tip_len) + n * radius * g.rng.uniform(-0.15, 0.15)
-    g.fan(shoulder, g.v(tip, 1.0), mat)
-
-
-def crystal_cluster(rng):
-    """A dense cluster that fills its cell, so it reads as a solid block of tagged crystal."""
+def tag_block(rng):
+    """A solid 1 m block of cut stone that fills its cell: flat faces flush with the cell, a slight chamfer on
+    every edge, and a few corners chipped deeper as chisel facets. Untinted, so lanes tint it with the tag color."""
     g = Geo(rng)
-    g.hull([Vector((0.43 * math.cos(TAU * i / 10 + rng.uniform(-0.15, 0.15)),
-                    0.4 * math.sin(TAU * i / 10 + rng.uniform(-0.15, 0.15)), z))
-            for i in range(10) for z in (0.0, rng.uniform(0.1, 0.2))], "crystal",
-           shade_fn=lambda p: 0.7)
-    prism(g, Vector((0.0, 0.0, 0.05)), Vector((0.04, 0.02, 1.0)), 0.19, 0.6, 0.3, "crystal", twist=rng.uniform(0, 1))
-    # (ring radius, count, crystal radius, shaft length, tip, lean)
-    for ring_r, count, r, length, tip, lean in ((0.21, 6, 0.13, 0.46, 0.2, 0.3), (0.31, 7, 0.08, 0.24, 0.11, 0.3)):
-        offset = rng.uniform(0, TAU)
-        for i in range(count):
-            a = offset + TAU * i / count + rng.uniform(-0.2, 0.2)
-            d = Vector((math.cos(a), math.sin(a), 0.0))
-            prism(g, Vector((ring_r * d.x, ring_r * d.y, 0.05)), d * lean * rng.uniform(0.8, 1.2) + Vector((0, 0, 1)),
-                  r * rng.uniform(0.85, 1.1), length * rng.uniform(0.8, 1.15), tip, "crystal", twist=rng.uniform(0, 1))
-    return [g.build("crystal-cluster")]
+    pts = []
+    for axis in range(3):  # each face's four corners, pulled in from the edges by the chamfer
+        u, v = (a for a in range(3) if a != axis)
+        for side in (-1, 1):
+            for su in (-1, 1):
+                for sv in (-1, 1):
+                    p = Vector((0.0, 0.0, 0.0))
+                    p[axis] = 0.5 * side
+                    p[u] = su * (0.5 - rng.uniform(0.04, 0.055))
+                    p[v] = sv * (0.5 - rng.uniform(0.04, 0.055))
+                    pts.append(p)
+    for i in rng.sample(range(len(pts)), 4):  # chisel facets: a few corners chipped deeper
+        axis = rng.choice([a for a in range(3) if abs(abs(pts[i][a]) - 0.5) > 1e-9])
+        pts[i][axis] = math.copysign(0.5 - rng.uniform(0.13, 0.19), pts[i][axis])
+    g.hull([p + Vector((0.0, 0.0, 0.5)) for p in pts], "tag", shade_fn=lambda p: 0.9 + 0.1 * p.z, flat_faces=True)
+    return [g.build("tag-block")]
 
 
 def orb_pedestal(rng):
@@ -954,7 +939,7 @@ PIECES = {
     # cell pieces: (half footprint, max height) that the 1 m grid needs
     "sand-tile": (sand_tile, (0.5, 1.03)),
     "rock-tile": (rock_tile, (0.5, 1.04)),
-    "crystal-cluster": (crystal_cluster, (0.5, 1.0)),
+    "tag-block": (tag_block, (0.5, 1.0)),
     "orb-pedestal": (orb_pedestal, (0.5, 1.0)),
     "goal-gate": (goal_gate, (0.5, 3.0)),
     "hazard-spikes": (hazard_spikes, (0.5, 1.0)),
