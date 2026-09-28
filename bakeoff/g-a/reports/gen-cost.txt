@@ -14,7 +14,7 @@ at	out	model	quality	size	status	text_in	image_in	image_out	usd
 2026-09-27T08:49:50+00:00	game/g-a/art/backdrop-mid.png	gpt-image-2	low	1536x1024	superseded	330	0	158	0.0064
 2026-09-27T08:49:53+00:00	game/g-a/art/backdrop-far.png	gpt-image-2	low	1536x1024	superseded	295	0	343	0.0118
 2026-09-27T08:49:55+00:00	game/g-a/art/goal-gate.png	gpt-image-2	low	1024x1024	superseded	285	0	439	0.0146
-2026-09-27T09:21:50+00:00	game/g-a/art/orb.png	gpt-image-2	high	1024x1024	kept	253	0	7024	0.2120
+2026-09-27T09:21:50+00:00	game/g-a/art/orb.png	gpt-image-2	high	1024x1024	superseded	253	0	7024	0.2120
 2026-09-27T09:23:27+00:00	game/g-a/art/backdrop-far.png	gpt-image-2	high	1536x1024	kept	295	0	5488	0.1661
 2026-09-27T09:23:42+00:00	game/g-a/art/backdrop-near.png	gpt-image-2	high	1536x1024	rejected	306	0	5488	0.1662
 2026-09-27T09:23:43+00:00	game/g-a/art/backdrop-mid.png	gpt-image-2	high	1536x1024	kept	311	0	5488	0.1662
@@ -34,7 +34,11 @@ at	out	model	quality	size	status	text_in	image_in	image_out	usd
 2026-09-27T09:49:03+00:00	game/g-a/art/backdrop-near.png	gpt-image-2	high	1536x1024	kept	374	0	5488	0.1665
 2026-09-27T09:49:58+00:00	game/g-a/art/goal-gate.png	gpt-image-2	high	1024x1024	kept	275	0	7024	0.2121
 2026-09-27T15:55:22+00:00	game/g-a/art/hazard-tile.png	gpt-image-2	high	1024x1024	kept	328	0	7024	0.2124
-total kept									2.1965
-total rejected									1.4333
-total superseded									0.4686
-total									4.0985
+2026-09-28T17:07:10+00:00	game/g-a/art/orb.png	gpt-image-2	high	1024x1024	kept	288	0	7024	0.2122
+2026-09-28T17:07:41+00:00	game/g-a/art/tag-wall.png	gpt-image-2	high	1024x1024	kept	382	0	7024	0.2126
+2026-09-28T17:07:42+00:00	game/g-a/art/tag-platform.png	gpt-image-2	high	1024x1024	rejected	374	0	7024	0.2126
+2026-09-28T17:11:36+00:00	game/g-a/art/tag-platform.png	gpt-image-2	high	1024x1024	kept	374	0	7024	0.2126
+total kept									2.6219
+total rejected									1.6459
+total superseded									0.6806
+total									4.9485

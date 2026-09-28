@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
   "asset": "orb.png",
-  "sha256": "af291946874a8ae4b89b495c7903f2e7a164928ca251f0b90b41875d1c057e83",
+  "sha256": "ba80668f0ecf8b2b6247be34dc6eafc27448292b7c24b78ee0a87e27ca89149b",
   "kind": "image",
   "origin": "generated",
-  "created_at": "2026-09-27T09:21:50+00:00",
+  "created_at": "2026-09-28T17:07:10+00:00",
   "generator": {
     "tool": "gen",
     "tool_version": "0.1.0",
     "provider": "openai",
     "model": "gpt-image-2",
-    "prompt": "A single glowing crystal orb: a sphere of pale, untinted, near-white and light gray crystal (no hue, only grays) with soft inner light and faint facets, centered, filling the middle two thirds of the square. The background is fully transparent. Fine-art hand-painted 2D game art in soft gouache and watercolor washes: large simple shapes, low detail, muted atmospheric golden-hour color, gentle gradients, soft edges, visible brush texture; a serene illustrated indie-game look, not cartoon and not mobile-game style. Brief palette: sand #d9b27c, rock #a86f46, shadow violet #5a4a7a, sky peach #f2c49b and teal #3f7f8c; crystal colors ember red #e04a3a, verdant green #3fbf6a, gray #8c8c8c (crystal colors appear only on crystal pieces).",
-    "negative_prompt": "text, letters, numbers, watermark, signature, black outlines, ink line art, cel shading, cartoon, mobile-game style, bricks, anime, pixel art, photorealism, 3D render, frame, border, vignette, drop shadow",
+    "prompt": "A single softly glowing orb of light: a smooth round sphere in neutral light gray and white (no hue at all) with a soft inner glow and a faint halo, centered, filling the middle two thirds of the square. Smooth and round: no crystal, no facets, no gems, no cracks. The background is fully transparent. Fine-art hand-painted 2D game art in soft gouache and watercolor washes: large simple shapes, low detail, muted atmospheric golden-hour color, gentle gradients, soft edges, visible brush texture; a serene illustrated indie-game look, not cartoon and not mobile-game style. Brief palette: sand #d9b27c, rock #a86f46, shadow violet #5a4a7a, sky peach #f2c49b and teal #3f7f8c; tag colors ember red #e04a3a, verdant green #3fbf6a, gray #8c8c8c (these belong only to the tagged walls and platforms, which are painted neutral light gray and tinted in the game).",
+    "negative_prompt": "text, letters, numbers, watermark, signature, black outlines, ink line art, cel shading, cartoon, mobile-game style, bricks, crystals, gems, faceted gemstones, anime, pixel art, photorealism, 3D render, frame, border, vignette, drop shadow",
     "params": {
       "size": "1024x1024",
       "quality": "high",

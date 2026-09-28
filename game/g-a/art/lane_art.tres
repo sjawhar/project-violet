@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" path="res://art/ground-tile.png" id="2"]
 [ext_resource type="Texture2D" path="res://art/wall-tile.png" id="3"]
 [ext_resource type="Texture2D" path="res://art/platform-tile.png" id="4"]
-[ext_resource type="Texture2D" path="res://art/crystal-wall.png" id="5"]
-[ext_resource type="Texture2D" path="res://art/crystal-platform.png" id="6"]
+[ext_resource type="Texture2D" path="res://art/tag-wall.png" id="5"]
+[ext_resource type="Texture2D" path="res://art/tag-platform.png" id="6"]
 [ext_resource type="Texture2D" path="res://art/orb.png" id="7"]
 [ext_resource type="Texture2D" path="res://art/goal-gate.png" id="8"]
 [ext_resource type="Texture2D" path="res://art/backdrop-far.png" id="9"]
@@ -18,8 +18,8 @@ script = ExtResource("1")
 ground_tile = ExtResource("2")
 wall_tile = ExtResource("3")
 platform_tile = ExtResource("4")
-crystal_wall = ExtResource("5")
-crystal_platform = ExtResource("6")
+tag_wall = ExtResource("5")
+tag_platform = ExtResource("6")
 orb = ExtResource("7")
 goal_gate = ExtResource("8")
 backdrop_far = ExtResource("9")

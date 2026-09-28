@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "asset": "tag-platform.png",
+  "sha256": "7cd94e98dbd051ad5cd773d51ff6e1931e883bab652aa5c5f5a278f3e1c42abd",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-28T17:11:36+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "A square texture tile of the top of an ordinary raised stone ledge seen from the side: the same kind of weathered flat slab as a sandstone ledge, with a flat top edge along the top and a thick slab body below with worn horizontal strata, but painted entirely in neutral light grays (no hue at all, from #b4b4b4 to #e6e6e6), filling the whole square edge to edge. This is a seamless repeating texture: it wraps around horizontally, so the left edge continues exactly into the right edge, with even lighting and nothing cut at the sides. Flat side view, no perspective, no sky. Plain stone only: no crystal, no facets, no gems, no glow, no plants. Fine-art hand-painted 2D game art in soft gouache and watercolor washes: large simple shapes, low detail, muted atmospheric golden-hour color, gentle gradients, soft edges, visible brush texture; a serene illustrated indie-game look, not cartoon and not mobile-game style. Brief palette: sand #d9b27c, rock #a86f46, shadow violet #5a4a7a, sky peach #f2c49b and teal #3f7f8c; tag colors ember red #e04a3a, verdant green #3fbf6a, gray #8c8c8c (these belong only to the tagged walls and platforms, which are painted neutral light gray and tinted in the game).",
+    "negative_prompt": "text, letters, numbers, watermark, signature, black outlines, ink line art, cel shading, cartoon, mobile-game style, bricks, crystals, gems, faceted gemstones, anime, pixel art, photorealism, 3D render, frame, border, vignette, drop shadow",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "opaque"
+    },
+    "inputs": []
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

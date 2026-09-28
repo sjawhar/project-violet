@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckfytxbu4fra4"
-path="res://.godot/imported/crystal-wall.png-5600b47e6d973e9b508afae79b6c0f2b.ctex"
+uid="uid://vs1fo1r2tjjb"
+path="res://.godot/imported/tag-wall.png-37fa37b7e1e25d625cf987cf50771867.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/crystal-wall.png"
-dest_files=["res://.godot/imported/crystal-wall.png-5600b47e6d973e9b508afae79b6c0f2b.ctex"]
+source_file="res://art/tag-wall.png"
+dest_files=["res://.godot/imported/tag-wall.png-37fa37b7e1e25d625cf987cf50771867.ctex"]
 
 [params]
 
