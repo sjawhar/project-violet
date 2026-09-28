@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "asset": "violet.json",
-  "sha256": "f297520a156640ad8a40c4cf3ea6ff83289a5cd6d198c30c1fc6f9a9655c106c",
+  "sha256": "f6319ff24ba4a39e4f09138a5551c06d95a807b53d8b097df0feaec695b8d3aa",
   "kind": "animation",
   "origin": "derived",
-  "created_at": "2026-09-27T21:34:58+00:00",
+  "created_at": "2026-09-28T17:16:36+00:00",
   "generator": {
     "tool": "spinerig",
     "tool_version": "0.1.0",
@@ -13,7 +13,7 @@
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/rig-src/rig.json",
-        "sha256": "6a1e1e9c56a89a5538590ccc5069978e47a834ae4229c6e6890033a0fcaf4210"
+        "sha256": "895776da5e9c37a731f119f8ca629bd9376b3cb1a19dbacccc0ebc7404a97f61"
       }
     ]
   },

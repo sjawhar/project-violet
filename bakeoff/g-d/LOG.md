@@ -14,6 +14,7 @@ sessions:
   - {start: "2026-09-27T19:45:00Z", end: "2026-09-27T20:31:00Z", purpose: "kit dressing (plan Task 8 Step 6): desert kit from PR #31 copied into kit/, KitArt3D, two software renders of the replay looked at and the art adjusted"}
   - {start: "2026-09-27T19:50:00Z", end: "2026-09-27T21:40:51Z", purpose: "protagonist rig re-copied from PR #28 at eafccae8 (feet together in idle, soles on the floor on ground frames), replacing the fd76d946 copy; soles checked in rendered idle and landing frames"}
   - {start: "2026-09-28T17:02:00Z", end: "2026-09-28T17:28:00Z", purpose: "no crystals (Sami, relayed: stacked crystal clusters look silly; his 2019 design has plain colored walls): tagged cells are the kit's solid 1 m tag-block (PR #31 at c202b565) tinted gray, red or green; crystal-cluster removed; crystal names renamed; software render looked at"}
+  - {start: "2026-09-28T17:29:00Z", end: "2026-09-28T17:50:00Z", purpose: "protagonist rig re-copied from PR #28 at 9b22572d (arms repainted and bending at the elbow, double jump without the flip), replacing the eafccae8 copy; running and double-jump frames rendered in software and looked at"}
 costs: []
 interventions: []
 friction:
