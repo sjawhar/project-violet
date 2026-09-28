@@ -125,7 +125,7 @@
       "media": {
         "image": "items/04-arm_back_upper.webp"
       },
-      "sha256": "f2fbb6ebf23ab331ff92fb82d28183f1c51507c572981ff73fc358fea4b26010",
+      "sha256": "3a83c513f692e927b150ded7b0fa252ba33ff5bbaf50cd93b898708eef20dd9c",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -135,23 +135,19 @@
           "authors": [],
           "human_edits": [
             {
-              "by": "lead-agent",
-              "description": "trimmed transparent margin"
+              "by": "anthropic/claude-opus-5-5 (omp)",
+              "description": "trimmed transparent margin to the alpha > 8 bounding box: 1024x1024 -> 278x691"
             },
             {
               "by": "anthropic/claude-opus-5-5 (omp)",
-              "description": "trimmed transparent margin to the alpha > 8 bounding box: 546x792 -> 404x787"
-            },
-            {
-              "by": "anthropic/claude-opus-5-5 (omp)",
-              "description": "rescaled by factor 0.4 (Lanczos), 404x787 -> 162x315, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960, so 1.136 rig px per turnaround px); see assets/bakeoff/protagonist/README.md. Bell sleeve from the shoulder (~250 px below the crown) to its cuff at ~560 (turnaround cuff y=520-585); the elbow bone is 153 px (55% of the 278 px shoulder-to-wrist, inferred) inside it."
+              "description": "rescaled by factor 0.295 (Lanczos), 278x691 -> 82x204, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960); see assets/bakeoff/protagonist/README.md. Shoulder cap to the centre of the rounded elbow end (518 painted px) set to the 153 px upper-arm bone (55% of the 278 px shoulder-to-wrist, inferred)."
             }
           ],
           "tool": "gen",
           "tool_version": "0.1.0",
           "provider": "openai",
           "model": "gpt-image-2",
-          "prompt": "Only the only the upper arm from the shoulder to the elbow, robe sleeve fabric over the arm, no hand, no torso, no lower arm, extending slightly past the elbow for overlap of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
+          "prompt": "Only the upper arm from the shoulder to the elbow, covered by the top half of the robe's loose sleeve, a closed soft fabric tube hanging straight down vertically that ends at the elbow in a smooth rounded end, the sleeve does not flare and shows no opening and no cuff, no forearm, no hand, no torso of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
           "inputs": [
             "assets/bakeoff/protagonist/concept/violet-turnaround.png"
           ]
@@ -164,7 +160,7 @@
       "media": {
         "image": "items/05-arm_back_lower.webp"
       },
-      "sha256": "bbc7ee20bd450d8729418556b2b251dc18eb8bbe9c1b1efa12191cdc4e562410",
+      "sha256": "4345ce799fa7b60cd01892f5c58a6003f514ba36cf5c5c320ba53e79899f5a4e",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -174,23 +170,19 @@
           "authors": [],
           "human_edits": [
             {
-              "by": "lead-agent",
-              "description": "trimmed transparent margin"
+              "by": "anthropic/claude-opus-5-5 (omp)",
+              "description": "trimmed transparent margin to the alpha > 8 bounding box: 1024x1024 -> 303x907"
             },
             {
               "by": "anthropic/claude-opus-5-5 (omp)",
-              "description": "trimmed transparent margin to the alpha > 8 bounding box: 962x992 -> 699x753"
-            },
-            {
-              "by": "anthropic/claude-opus-5-5 (omp)",
-              "description": "rescaled by factor 0.235 (Lanczos), 699x753 -> 164x177, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960, so 1.136 rig px per turnaround px); see assets/bakeoff/protagonist/README.md. Elbow to fingertips (833 painted px, along the arm) set to 196 px: forearm 125 (45% of shoulder-to-wrist, inferred) plus the turnaround's hand, wrist y~540 to fingertips y=602 (71 px)."
+              "description": "rescaled by factor 0.25 (Lanczos), 303x907 -> 76x227, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960); see assets/bakeoff/protagonist/README.md. Elbow to fingertips (817 painted px) set to ~204 px: the sleeve cuff lands ~150 px below the elbow, at the turnaround's cuff (y=520-585), and the hand is ~55 px (turnaround 62-71)."
             }
           ],
           "tool": "gen",
           "tool_version": "0.1.0",
           "provider": "openai",
           "model": "gpt-image-2",
-          "prompt": "Only the only the forearm and hand, bare skin forearm and hand past the sleeve cuff, no upper arm, no torso of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
+          "prompt": "Only the forearm and relaxed hand, hanging straight down vertically from the elbow at the top, the forearm covered by the lower part of the robe's wide bell sleeve from the elbow to its wide open cuff, the relaxed hand and wrist emerging below the cuff with fingers gently curled, forearm and hand in one straight line, no upper arm, no shoulder, no torso of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
           "inputs": [
             "assets/bakeoff/protagonist/concept/violet-turnaround.png"
           ]
@@ -203,7 +195,7 @@
       "media": {
         "image": "items/06-arm_front_upper.webp"
       },
-      "sha256": "077ba972ef4434e62faeb1218d11ad8833b4f40a4d89a7368dc806c9932ee417",
+      "sha256": "1bcaab8efcf8c888aae0a0c24809f0ddb8da5d8d7b660bdd9a703d4826565b30",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -213,23 +205,19 @@
           "authors": [],
           "human_edits": [
             {
-              "by": "lead-agent",
-              "description": "trimmed transparent margin"
+              "by": "anthropic/claude-opus-5-5 (omp)",
+              "description": "trimmed transparent margin to the alpha > 8 bounding box: 1024x1024 -> 259x646"
             },
             {
               "by": "anthropic/claude-opus-5-5 (omp)",
-              "description": "trimmed transparent margin to the alpha > 8 bounding box: 419x819 -> 409x812"
-            },
-            {
-              "by": "anthropic/claude-opus-5-5 (omp)",
-              "description": "rescaled by factor 0.4 (Lanczos), 409x812 -> 164x325, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960, so 1.136 rig px per turnaround px); see assets/bakeoff/protagonist/README.md. Bell sleeve from the shoulder (~250 px below the crown) to its cuff at ~560 (turnaround cuff y=520-585); the elbow bone is 153 px (55% of the 278 px shoulder-to-wrist, inferred) inside it."
+              "description": "rescaled by factor 0.315 (Lanczos), 259x646 -> 82x203, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960); see assets/bakeoff/protagonist/README.md. Shoulder cap to the centre of the rounded elbow end (487 painted px) set to the 153 px upper-arm bone (55% of the 278 px shoulder-to-wrist, inferred)."
             }
           ],
           "tool": "gen",
           "tool_version": "0.1.0",
           "provider": "openai",
           "model": "gpt-image-2",
-          "prompt": "Only the upper arm from the shoulder to the elbow, robe sleeve fabric over the arm, no hand, no torso, no lower arm, extending slightly past the elbow for overlap of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
+          "prompt": "Only the upper arm from the shoulder to the elbow, covered by the top half of the robe's loose sleeve, a closed soft fabric tube hanging straight down vertically that ends at the elbow in a smooth rounded end, the sleeve does not flare and shows no opening and no cuff, no forearm, no hand, no torso of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
           "inputs": [
             "assets/bakeoff/protagonist/concept/violet-turnaround.png"
           ]
@@ -242,7 +230,7 @@
       "media": {
         "image": "items/07-arm_front_lower.webp"
       },
-      "sha256": "e6c6d5d49228753677fcbf1c7a138c7132acb944b671bb352c3e93f10f45afb4",
+      "sha256": "8f1df9ed8700868b3d71da7d036f36e2ee1af19f14779f11f9a736fa7b0c3c13",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -252,23 +240,19 @@
           "authors": [],
           "human_edits": [
             {
-              "by": "lead-agent",
-              "description": "trimmed transparent margin"
+              "by": "anthropic/claude-opus-5-5 (omp)",
+              "description": "trimmed transparent margin to the alpha > 8 bounding box: 1024x1024 -> 275x928"
             },
             {
               "by": "anthropic/claude-opus-5-5 (omp)",
-              "description": "trimmed transparent margin to the alpha > 8 bounding box: 898x947 -> 863x484"
-            },
-            {
-              "by": "anthropic/claude-opus-5-5 (omp)",
-              "description": "rescaled by factor 0.223 (Lanczos), 863x484 -> 192x108, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960, so 1.136 rig px per turnaround px); see assets/bakeoff/protagonist/README.md. Elbow to fingertips (878 painted px, along the arm) set to 196 px: forearm 125 (45% of shoulder-to-wrist, inferred) plus the turnaround's hand, wrist y~540 to fingertips y=602 (71 px)."
+              "description": "rescaled by factor 0.25 (Lanczos), 275x928 -> 69x232, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960); see assets/bakeoff/protagonist/README.md. Elbow to fingertips (853 painted px) set to ~213 px: the sleeve cuff lands ~150 px below the elbow, at the turnaround's cuff (y=520-585), and the hand is ~65 px (turnaround 62-71)."
             }
           ],
           "tool": "gen",
           "tool_version": "0.1.0",
           "provider": "openai",
           "model": "gpt-image-2",
-          "prompt": "Only the forearm and hand, bare skin forearm and hand past the sleeve cuff, no upper arm, no torso of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
+          "prompt": "Only the forearm and relaxed hand, hanging straight down vertically from the elbow at the top, the forearm covered by the lower part of the robe's wide bell sleeve from the elbow to its wide open cuff, the relaxed hand and wrist emerging below the cuff with fingers gently curled, forearm and hand in one straight line, no upper arm, no shoulder, no torso of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
           "inputs": [
             "assets/bakeoff/protagonist/concept/violet-turnaround.png"
           ]
@@ -576,7 +560,7 @@
         "video": "items/15-idle.mp4",
         "poster": "items/15-idle.poster.webp"
       },
-      "sha256": "23fb4c7c262ad44fc7febd4ed85b05eff664492d976ed11c130660e826ae5340",
+      "sha256": "b92f0d8af008e6043abd1fa8c229e9372d41707659b254945291da7947edaecd",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -615,7 +599,7 @@
         "video": "items/16-run.mp4",
         "poster": "items/16-run.poster.webp"
       },
-      "sha256": "b8c645f98f5c233046a56fab10ecf2899aeb656ca092a8b7a22cf925364df5d8",
+      "sha256": "264653ba2ec946dd80ca2732d07efd3bfc793814a1aabd7be6815b583f5f5284",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -654,7 +638,7 @@
         "video": "items/17-jump.mp4",
         "poster": "items/17-jump.poster.webp"
       },
-      "sha256": "c9e2f11748bffb70a1fac12b3beefccd7dd7218ac91c8bb7182ae348eb0d7419",
+      "sha256": "11962e11c3a98448aecbbcba2d94e698f857a1d9abf0604ff1f4afdfaef9c6c1",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -693,7 +677,7 @@
         "video": "items/18-fall.mp4",
         "poster": "items/18-fall.poster.webp"
       },
-      "sha256": "99bd04e91a3e41f61bf2d32ef8b81540458de7b8bde5c917162c78799ad31972",
+      "sha256": "b3d3d6d7497f30a721ccc116a4e9de390e2d08a6cb6bb34e753084eb4731edfb",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -732,7 +716,7 @@
         "video": "items/19-double_jump.mp4",
         "poster": "items/19-double_jump.poster.webp"
       },
-      "sha256": "6528aedecbdf9446124e3ad4fda339a403d452c730442eb222e19ac1dc123df6",
+      "sha256": "3259a4bbd69c4058d6f624debdd6d9f5e03b6603490f415942791a9e0830081d",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -771,7 +755,7 @@
         "video": "items/20-dash.mp4",
         "poster": "items/20-dash.poster.webp"
       },
-      "sha256": "02d115c7916b9dc421cbc2ce2b7d6c23da5a6b345f714fe7a291393721862e1e",
+      "sha256": "5d6bcb62819a3b7bd2fa6ff73049a1ffff64bc0c3c3c9033709913fc49f15c6c",
       "provenance": {
         "status": "ok",
         "problems": [],
@@ -810,7 +794,7 @@
         "video": "items/21-land.mp4",
         "poster": "items/21-land.poster.webp"
       },
-      "sha256": "7b61b84a93352e0ef475ebfe4c142e5784d6c6a0aafafd901e057f1fc03f0996",
+      "sha256": "7064f52fcdc32356c65b06bb7f5aaea1b0d7c201dc9a87ea45e5c8185e166165",
       "provenance": {
         "status": "ok",
         "problems": [],
