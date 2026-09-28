@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "asset": "backdrop-near.svg",
-  "sha256": "11ab82d07b7b48ec218292f77c0f633dd9842047eac6f45d3754639995c78adc",
+  "sha256": "7f24f049b0cd327544822f6364a54dc5db58a01b99f2b0ce4aceb17276c38991",
   "kind": "image",
   "origin": "generated",
   "created_at": "2026-09-27T18:12:00+00:00",
@@ -14,6 +14,12 @@
     "params": {},
     "inputs": []
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "anthropic claude-opus-5-5 (agent)",
+      "description": "Redrew the four dry-brush silhouettes on the dunes as rounded clumps of thin curved blades on a soft mound (they were sharp triangular clumps that read as small crystal clusters); saguaros, acacia, dunes and the horizontal seam unchanged",
+      "at": "2026-09-28T17:21:06+00:00"
+    }
+  ],
   "license": "proprietary"
 }
