@@ -23,8 +23,8 @@ at	out	model	quality	size	status	text_in	image_in	image_out	usd
 2026-09-27T09:24:39+00:00	game/g-a/art/crystal-wall.png	gpt-image-2	high	1024x1024	rejected	285	0	7024	0.2121
 2026-09-27T09:24:39+00:00	game/g-a/art/platform-tile.png	gpt-image-2	high	1024x1024	rejected	292	0	7024	0.2122
 2026-09-27T09:24:46+00:00	game/g-a/art/ground-tile.png	gpt-image-2	high	1024x1024	rejected	296	0	7024	0.2122
-2026-09-27T09:24:47+00:00	game/g-a/art/crystal-platform.png	gpt-image-2	high	1024x1024	kept	283	0	7024	0.2121
-2026-09-27T09:28:45+00:00	game/g-a/art/crystal-wall.png	gpt-image-2	high	1024x1024	kept	306	0	7024	0.2122
+2026-09-27T09:24:47+00:00	game/g-a/art/crystal-platform.png	gpt-image-2	high	1024x1024	superseded	283	0	7024	0.2121
+2026-09-27T09:28:45+00:00	game/g-a/art/crystal-wall.png	gpt-image-2	high	1024x1024	superseded	306	0	7024	0.2122
 2026-09-27T09:28:46+00:00	game/g-a/art/platform-tile.png	gpt-image-2	high	1024x1024	superseded	309	0	7024	0.2123
 2026-09-27T09:28:46+00:00	game/g-a/art/ground-tile.png	gpt-image-2	high	1024x1024	superseded	322	0	7024	0.2123
 2026-09-27T09:28:49+00:00	game/g-a/art/wall-tile.png	gpt-image-2	high	1024x1024	superseded	318	0	7024	0.2123
@@ -38,11 +38,12 @@ at	out	model	quality	size	status	text_in	image_in	image_out	usd
 2026-09-28T17:07:41+00:00	game/g-a/art/tag-wall.png	gpt-image-2	high	1024x1024	kept	382	0	7024	0.2126
 2026-09-28T17:07:42+00:00	game/g-a/art/tag-platform.png	gpt-image-2	high	1024x1024	rejected	374	0	7024	0.2126
 2026-09-28T17:11:36+00:00	game/g-a/art/tag-platform.png	gpt-image-2	high	1024x1024	kept	374	0	7024	0.2126
-2026-09-29T02:59:53+00:00	game/g-a/art/ground-tile.png	gpt-image-2	high	1024x1024	kept	386	0	7024	0.2127
+2026-09-29T02:59:53+00:00	game/g-a/art/ground-tile.png	gpt-image-2	high	1024x1024	superseded	386	0	7024	0.2127
 2026-09-29T03:00:03+00:00	game/g-a/art/platform-tile.png	gpt-image-2	high	1024x1024	rejected	385	0	7024	0.2126
-2026-09-29T03:00:13+00:00	game/g-a/art/wall-tile.png	gpt-image-2	high	1024x1024	kept	371	0	7024	0.2126
-2026-09-29T03:05:20+00:00	game/g-a/art/platform-tile.png	gpt-image-2	high	1024x1024	kept	385	0	7024	0.2126
-total kept									2.6229
+2026-09-29T03:00:13+00:00	game/g-a/art/wall-tile.png	gpt-image-2	high	1024x1024	superseded	371	0	7024	0.2126
+2026-09-29T03:05:20+00:00	game/g-a/art/platform-tile.png	gpt-image-2	high	1024x1024	superseded	385	0	7024	0.2126
+2026-09-29T03:30:45+00:00	game/g-a/art/rock-face.png	gpt-image-2	high	1536x1024	kept	355	0	5488	0.1664
+total kept									1.7271
 total rejected									1.8586
-total superseded									1.3175
-total									5.7990
+total superseded									2.3797
+total									5.9654

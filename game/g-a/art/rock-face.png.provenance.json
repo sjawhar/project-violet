@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "asset": "rock-face.png",
+  "sha256": "71ef060b53caa6a7a7bbd6b7eefcffdf112111e3c87a6dc2591ad0a749bf73b4",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-29T03:30:45+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "A wide painting of a desert sandstone cliff face seen straight on, filling the whole image edge to edge with rock: long horizontal strata of uneven thickness that wave gently across the image, in warm sandstone, rust, ochre and pale cream bands, with softly eroded ledges casting cool violet shadow onto the band below, a few irregular cracks at uneven spacing, and loose broad brushwork like the painted mesas of a backdrop. No sky, no horizon, no ground surface, no top edge, no plants, no bricks, no blocks, no masonry. Even lighting from the upper left. The left and right edges match exactly so the painting repeats seamlessly side by side. Fine-art hand-painted 2D game art in soft gouache and watercolor washes: large simple shapes, low detail, muted atmospheric golden-hour color, gentle gradients, soft edges, visible brush texture; a serene illustrated indie-game look, not cartoon and not mobile-game style. Brief palette: sand #d9b27c, rock #a86f46, shadow violet #5a4a7a, sky peach #f2c49b and teal #3f7f8c; tag colors ember red #e04a3a, verdant green #3fbf6a, gray #8c8c8c (these belong only to the tagged walls and platforms, which are painted neutral light gray and tinted in the game).",
+    "negative_prompt": "text, letters, numbers, watermark, signature, black outlines, ink line art, cel shading, cartoon, mobile-game style, bricks, crystals, gems, faceted gemstones, anime, pixel art, photorealism, 3D render, frame, border, vignette, drop shadow",
+    "params": {
+      "size": "1536x1024",
+      "quality": "high",
+      "background": "opaque"
+    },
+    "inputs": []
+  },
+  "human_edits": [
+    {
+      "by": "claude (lane G-A agent)",
+      "description": "bakeoff/g-a/art_edit.py seam: cropped to the best-matching edge bands and crossfaded 48 px so it repeats side by side",
+      "at": "2026-09-29T03:30:59+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

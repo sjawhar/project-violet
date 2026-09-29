@@ -4,10 +4,10 @@
 #   bash bakeoff/g-a/edit-art.sh [PIECE...]   # default: the three backdrops
 set -euo pipefail
 art=game/g-a/art
-pieces=("$@"); [ ${#pieces[@]} -gt 0 ] || pieces=(backdrop-far backdrop-mid backdrop-near)
+pieces=("$@"); [ ${#pieces[@]} -gt 0 ] || pieces=(backdrop-far backdrop-mid backdrop-near rock-face)
 for p in "${pieces[@]}"; do
   case "$p" in
-    backdrop-far|backdrop-mid|backdrop-near) ;;
+    backdrop-far|backdrop-mid|backdrop-near|rock-face) ;;
     *) echo "edit-art.sh: no edit for $p" >&2; exit 1 ;;
   esac
   uv run --no-project --quiet --with pillow --with numpy python bakeoff/g-a/art_edit.py seam "$art/$p.png"

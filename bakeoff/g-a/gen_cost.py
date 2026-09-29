@@ -1,7 +1,8 @@
 """THROWAWAY (bake-off lane G-A): prices bakeoff/g-a/reports/gen-usage.jsonl (written by gen_usage.py) into gen-cost.txt.
 
-Status per generation: `kept` is the latest generation of a piece; `superseded` was kept in a pushed commit until a
-later regeneration replaced it (listed in SUPERSEDED with what replaced it); `rejected` is every other earlier generation.
+Status per generation: `superseded` was kept in a pushed commit until something replaced it (listed in SUPERSEDED with
+what replaced it: a regeneration, a revert or a new piece); otherwise `kept` is the latest generation of a piece and
+`rejected` is every other earlier generation.
 
     python3 bakeoff/g-a/gen_cost.py > bakeoff/g-a/reports/gen-cost.txt          # the table
     python3 bakeoff/g-a/gen_cost.py --yaml                                       # LOG.md `costs` entries
@@ -30,9 +31,12 @@ SUPERSEDED = {
     ("2026-09-27T09:28:45+00:00", "crystal-wall.png"): "the no-crystal regeneration (tag-wall)",
     ("2026-09-27T09:24:47+00:00", "crystal-platform.png"): "the no-crystal regeneration (tag-platform)",
     ("2026-09-27T09:21:50+00:00", "orb.png"): "the no-crystal regeneration (smooth orb)",
-    ("2026-09-27T09:28:46+00:00", "platform-tile.png"): "the painterly regeneration (glow-up round 6)",
-    ("2026-09-27T09:28:46+00:00", "ground-tile.png"): "the painterly regeneration (glow-up round 6)",
-    ("2026-09-27T09:28:49+00:00", "wall-tile.png"): "the painterly regeneration (glow-up round 6)",
+    ("2026-09-27T09:28:46+00:00", "platform-tile.png"): "the rock-face painting (glow-up round 7)",
+    ("2026-09-27T09:28:46+00:00", "ground-tile.png"): "the rock-face painting (glow-up round 7)",
+    ("2026-09-27T09:28:49+00:00", "wall-tile.png"): "the rock-face painting (glow-up round 7)",
+    ("2026-09-29T02:59:53+00:00", "ground-tile.png"): "the round 6 revert (glow-up round 6 not kept)",
+    ("2026-09-29T03:00:13+00:00", "wall-tile.png"): "the round 6 revert (glow-up round 6 not kept)",
+    ("2026-09-29T03:05:20+00:00", "platform-tile.png"): "the round 6 revert (glow-up round 6 not kept)",
 }
 
 rows = [json.loads(line) for line in Path("bakeoff/g-a/reports/gen-usage.jsonl").read_text().splitlines()]
@@ -46,7 +50,7 @@ for i, row in enumerate(rows):
     image_out = usage["output_tokens_details"]["image_tokens"]
     usd = (text_in * price["text_in"] + image_in * price["image_in"] + image_out * price["image_out"]) / 1e6
     replaced_by = SUPERSEDED.get((row["at"], row["out"].rsplit("/", 1)[-1]))
-    status = "kept" if last[row["out"]] == i else "superseded" if replaced_by else "rejected"
+    status = "superseded" if replaced_by else "kept" if last[row["out"]] == i else "rejected"
     totals[status] += usd
     out.append((row, status, text_in, image_in, image_out, usd, replaced_by))
 

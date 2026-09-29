@@ -3,9 +3,7 @@ extends GreyboxArt
 ## Painted desert visuals (docs/bakeoff/desert-biome-brief.md): generated tiles and sprites, the tag reveal shader,
 ## three parallax backdrop layers. The character is GreyboxArt's: the rig once it is in the project, else the STAND-IN.
 ## THROWAWAY.
-@export var ground_tile: Texture2D
-@export var wall_tile: Texture2D
-@export var platform_tile: Texture2D
+@export var rock_face: Texture2D
 @export var tag_wall: Texture2D
 @export var tag_platform: Texture2D
 @export var orb: Texture2D
@@ -86,7 +84,7 @@ func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 		mat.set_shader_parameter("base", float(_level.kind_at(cell.x, cell.y + 1) == "solid"))
 		tagged.material = mat
 		if is_wall: _tile(tagged, tag_wall, cell, ts, 4, false)
-		else: _tile(tagged, tag_platform, cell, ts, 2, true)  # sampled like platform-tile: the slab top on every cell
+		else: _tile(tagged, tag_platform, cell, ts, 2, true)  # the slab top on every cell
 		mat.set_shader_parameter("side", tagged.region_rect.size.x)
 		# The halo hangs off the sprite (ResonanceTag looks for set_resonance_look on the body's direct children),
 		# scaled back to cell pixels.
@@ -188,18 +186,24 @@ func _pit_wall(cell: Vector2i, sgn: float, top: float, bottom: float, ts: float)
 	wall.polygon = pts; wall.vertex_colors = cols
 	return wall
 
-## A terrain cell: its stone tile drawn through the terrain shader (eroded open sides, rounded open corners, a dark
-## mass under a lit lip), plus a contact shadow on each open side.
+## How far a surface cell's quad reaches above the cell, as a fraction of a cell: room for the sand crust's drifts
+## and the dry grass (terrain.gdshader).
+const LIP := 0.45
+
+## A terrain cell: a quad drawn through the terrain shader (the rock-face painting in level space, eroded open sides,
+## rounded open corners, a dark mass under a lit lip), plus a contact shadow on each open side.
 func _terrain(cell: Vector2i, ts: float) -> Node2D:
 	var covered := _level.kind_at(cell.x, cell.y - 1) == "solid"
-	var sprite: Sprite2D
-	if covered: sprite = _tile(Sprite2D.new(), wall_tile, cell, ts, 4, false)
-	else: sprite = _tile(Sprite2D.new(), ground_tile if cell.y == _ground_row else platform_tile, cell, ts, 2, true)
+	var h := ts / 2.0
+	var quad := Polygon2D.new()
+	var top := -h - (0.0 if covered else ts * LIP)  # a surface cell's quad reaches above it for the crust and grass
+	quad.polygon = PackedVector2Array([Vector2(-h, top), Vector2(h, top), Vector2(h, h), Vector2(-h, h)])
 	var open := Vector4(
 		float(_level.kind_at(cell.x - 1, cell.y) in OPEN_KINDS), float(not covered),
 		float(_level.kind_at(cell.x + 1, cell.y) in OPEN_KINDS), float(_level.kind_at(cell.x, cell.y + 1) in OPEN_KINDS))
 	var mat := ShaderMaterial.new(); mat.shader = TERRAIN
-	mat.set_shader_parameter("side", sprite.region_rect.size.x)
+	mat.set_shader_parameter("side", ts)
+	mat.set_shader_parameter("rock_face", rock_face)
 	mat.set_shader_parameter("open", open)
 	mat.set_shader_parameter("cell", Vector2(cell))
 	var foot := func(dx: int) -> float:  # a surface cell at the foot of rock rising beside it
@@ -207,9 +211,9 @@ func _terrain(cell: Vector2i, ts: float) -> Node2D:
 	mat.set_shader_parameter("foot", Vector2(foot.call(-1), foot.call(1)))
 	mat.set_shader_parameter("air", Vector4(_corner_air(cell), _corner_air(cell + Vector2i(1, 0)),
 		_corner_air(cell + Vector2i(0, 1)), _corner_air(cell + Vector2i(1, 1))))
-	sprite.material = mat
+	quad.material = mat
 	var holder := Node2D.new()
-	holder.add_child(sprite)
+	holder.add_child(quad)
 	for side_open: Array in [[open.x, -1.0], [open.z, 1.0]]:  # a soft shadow dropped onto the backdrop beside an open side
 		if side_open[0] < 0.5: continue
 		var face: float = side_open[1] * ts * 0.1  # starts under the rock, so the eroded edge shows the gradient too
