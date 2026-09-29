@@ -32,6 +32,7 @@ The bake-off runs five lanes of the same throwaway slice — one greybox level, 
 - [character-rig.md](character-rig.md) — the protagonist rig's Spine 4.3 JSON subset contract: what each lane's own reader implements, the FK and placement math, and the scale/tint conventions.
 - [desert-biome-brief.md](desert-biome-brief.md) — the desert biome art brief (THROWAWAY).
 - [judging.md](judging.md) — how Sami scores each lane and the decision rule.
+- [glow-up.md](glow-up.md) — the glow-up round: how each workstream improves its look before judging, the critic, and when it stops.
 - [lane-log-format.md](lane-log-format.md) — the `bakeoff/<lane>/LOG.md` front matter every lane keeps.
 - [lane-log-template.md](lane-log-template.md) — the `LOG.md` a lane copies to `bakeoff/<lane>/LOG.md` and fills in.
 - [scores.schema.json](scores.schema.json) — the schema of `docs/bakeoff/scores.json`, the lead's transcription of Sami's judging comment.
