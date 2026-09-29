@@ -82,13 +82,18 @@ func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 		var mat := ShaderMaterial.new(); mat.shader = REVEAL; mat.set_shader_parameter("tint", TINTS[color])
 		mat.set_shader_parameter("vertical", is_wall)
 		mat.set_shader_parameter("base", float(_level.kind_at(cell.x, cell.y + 1) == "solid"))
+		mat.set_shader_parameter("cell", Vector2(cell))
+		mat.set_shader_parameter("rock_face", rock_face)
+		mat.set_shader_parameter("ends", Vector4(float(_level.kind_at(cell.x - 1, cell.y) != kind), float(_level.kind_at(cell.x, cell.y - 1) != kind),
+			float(_level.kind_at(cell.x + 1, cell.y) != kind), float(_level.kind_at(cell.x, cell.y + 1) != kind)))
 		tagged.material = mat
 		if is_wall: _tile(tagged, tag_wall, cell, ts, 4, false)
 		else: _tile(tagged, tag_platform, cell, ts, 2, true)  # the slab top on every cell
 		mat.set_shader_parameter("side", tagged.region_rect.size.x)
 		# The halo hangs off the sprite (ResonanceTag looks for set_resonance_look on the body's direct children),
 		# scaled back to cell pixels.
-		tagged.halo = _halo(TINTS[color], is_wall, ts); tagged.halo.visible = false
+		var broken_top := is_wall and _level.kind_at(cell.x, cell.y - 1) != kind  # the column's broken top: no halo above it
+		tagged.halo = _halo(TINTS[color], is_wall, ts, broken_top); tagged.halo.visible = false
 		tagged.halo.scale = Vector2.ONE / tagged.scale
 		tagged.add_child(tagged.halo)
 		return tagged
@@ -109,19 +114,24 @@ func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 	return null
 
 ## Two soft strips of the piece's colour, added onto the backdrop either side of a wall cell (above and below a
-## platform cell); each strip spans exactly its own cell, so a column's strips meet without overlapping.
-static func _halo(color: Color, is_wall: bool, ts: float) -> Node2D:
+## platform cell): bright at the piece's worn edge and easing out within half a cell. Each strip spans exactly its own
+## cell, so a column's strips meet without overlapping; on a column's broken top cell they start below the break.
+static func _halo(color: Color, is_wall: bool, ts: float, broken_top: bool) -> Node2D:
 	var holder := Node2D.new(); holder.z_index = -1
 	var add := CanvasItemMaterial.new(); add.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
-	var h := ts / 2.0; var reach := ts * 0.7
+	var h := ts / 2.0; var mid := ts * 0.12; var reach := ts * 0.42
+	var top := ts * 0.1 if broken_top else -h  # below the deepest part of a broken top, so no glow hangs over the break
 	for sgn: float in [-1.0, 1.0]:
 		var strip := Polygon2D.new(); strip.material = add
-		if is_wall:
-			strip.polygon = PackedVector2Array([Vector2(sgn * h, -h), Vector2(sgn * (h + reach), -h), Vector2(sgn * (h + reach), h), Vector2(sgn * h, h)])
-		else:
-			strip.polygon = PackedVector2Array([Vector2(-h, sgn * h), Vector2(-h, sgn * (h + reach)), Vector2(h, sgn * (h + reach)), Vector2(h, sgn * h)])
-		var near := Color(color, 0.3); var far := Color(color, 0.0)
-		strip.vertex_colors = PackedColorArray([near, far, far, near])
+		# three bands out from the piece's edge (0, mid, reach): a tight bright rim that eases out, not a flat band
+		var d := [h - ts * 0.08, h + mid, h + reach]
+		var pts := PackedVector2Array()
+		for i in 3: pts.append(Vector2(sgn * d[i], top) if is_wall else Vector2(-h, sgn * d[i]))
+		for i in [2, 1, 0]: pts.append(Vector2(sgn * d[i], h) if is_wall else Vector2(h, sgn * d[i]))
+		strip.polygon = pts
+		strip.polygons = [PackedInt32Array([0, 1, 4, 5]), PackedInt32Array([1, 2, 3, 4])]
+		var a := [Color(color, 0.42), Color(color, 0.14), Color(color, 0.0)]
+		strip.vertex_colors = PackedColorArray([a[0], a[1], a[2], a[2], a[1], a[0]])
 		holder.add_child(strip)
 	return holder
 
@@ -206,8 +216,9 @@ func _terrain(cell: Vector2i, ts: float) -> Node2D:
 	mat.set_shader_parameter("rock_face", rock_face)
 	mat.set_shader_parameter("open", open)
 	mat.set_shader_parameter("cell", Vector2(cell))
-	var foot := func(dx: int) -> float:  # a surface cell at the foot of rock rising beside it
-		return float(not covered and _level.kind_at(cell.x + dx, cell.y) == "solid" and _level.kind_at(cell.x + dx, cell.y - 1) == "solid")
+	var foot := func(dx: int) -> float:  # a surface cell at the foot of rock, or a tagged wall, rising beside it
+		var above: String = _level.kind_at(cell.x + dx, cell.y - 1)
+		return float(not covered and _level.kind_at(cell.x + dx, cell.y) == "solid" and (above == "solid" or (Greybox.TAGGED.has(above) and Greybox.TAGGED[above][1] == "wall")))
 	mat.set_shader_parameter("foot", Vector2(foot.call(-1), foot.call(1)))
 	mat.set_shader_parameter("run", Vector2(_run(cell, -1), _run(cell, 1)))
 	mat.set_shader_parameter("ground_y", float(_ground_row))
