@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
   "asset": "platform-tile.png",
-  "sha256": "da6a1d771b653d9f72ccc1e23352a05b84af6baec718cbf38a0375b02a05871b",
+  "sha256": "c7506303a8bb2bf03fddc7c77dc2c4ca73463d5ac4a0832fbb3f5cd78ae27d39",
   "kind": "image",
   "origin": "generated",
-  "created_at": "2026-09-29T03:05:20+00:00",
+  "created_at": "2026-09-27T09:28:46+00:00",
   "generator": {
     "tool": "gen",
     "tool_version": "0.1.0",
     "provider": "openai",
     "model": "gpt-image-2",
-    "prompt": "A square texture tile of the top of a raised sandstone ledge seen from the side, filling the whole square edge to edge: a weathered, gently rounded slab top dusted with golden sand along the top, a darker rock body below. Paint it loosely in oil and gouache, like a painted desert backdrop's mesas: broad flat planes of warm sandstone and cool violet shadow laid in with big simple brushstrokes, a few large soft cracks and ledges, no small repeated stones, no brick or masonry courses, no photographic detail. This is a seamless repeating texture: it wraps around horizontally, so the left edge continues exactly into the right edge, with even lighting and nothing cut at the sides. Flat side view, no perspective, no sky. No plants, no grass, no crystals, no gems. Fine-art hand-painted 2D game art in soft gouache and watercolor washes: large simple shapes, low detail, muted atmospheric golden-hour color, gentle gradients, soft edges, visible brush texture; a serene illustrated indie-game look, not cartoon and not mobile-game style. Brief palette: sand #d9b27c, rock #a86f46, shadow violet #5a4a7a, sky peach #f2c49b and teal #3f7f8c; tag colors ember red #e04a3a, verdant green #3fbf6a, gray #8c8c8c (these belong only to the tagged walls and platforms, which are painted neutral light gray and tinted in the game).",
-    "negative_prompt": "text, letters, numbers, watermark, signature, black outlines, ink line art, cel shading, cartoon, mobile-game style, bricks, crystals, gems, faceted gemstones, anime, pixel art, photorealism, 3D render, frame, border, vignette, drop shadow",
+    "prompt": "A square texture tile of the top of a raised sandstone ledge seen from the side, filling the whole square edge to edge: a weathered flat slab top edge dusted with golden sand along the top, a darker rock body below with worn strata and violet shadow. This is a seamless repeating texture: it wraps around horizontally, so the left edge continues exactly into the right edge, with even lighting and nothing cut at the sides. Flat side view, no perspective, no sky. No plants, no grass, no crystals, no gems. Fine-art hand-painted 2D game art in soft gouache and watercolor washes: large simple shapes, low detail, muted atmospheric golden-hour color, gentle gradients, soft edges, visible brush texture; a serene illustrated indie-game look, not cartoon and not mobile-game style. Brief palette: sand #d9b27c, rock #a86f46, shadow violet #5a4a7a, sky peach #f2c49b and teal #3f7f8c; crystal colors ember red #e04a3a, verdant green #3fbf6a, gray #8c8c8c (crystal colors appear only on crystal pieces).",
+    "negative_prompt": "text, letters, numbers, watermark, signature, black outlines, ink line art, cel shading, cartoon, mobile-game style, bricks, anime, pixel art, photorealism, 3D render, frame, border, vignette, drop shadow",
     "params": {
       "size": "1024x1024",
       "quality": "high",
