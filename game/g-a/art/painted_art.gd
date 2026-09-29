@@ -17,9 +17,16 @@ extends GreyboxArt
 const TINTS := {"red": Color("#e04a3a"), "green": Color("#3fbf6a")}
 const HAZARD := Color("#2d2540")
 const REVEAL := preload("res://art/reveal.gdshader")
+const TERRAIN := preload("res://art/terrain.gdshader")
+const SHADOW := Color("#211728")
+## Kinds that leave a terrain cell's side open (drawn as broken rock with a contact shadow). Tagged and hazard cells
+## are drawn edge to edge, so a terrain cell beside them keeps a straight side.
+const OPEN_KINDS := ["empty", "start", "goal", "orb_red", "orb_green"]
 ## Set by make_backdrop, which Game2D calls before it builds the cells: solid tiles depend on their neighbours.
 var _level: Greybox
 var _ground_row := -1
+## Per cell, the grid distance (8-neighbour steps) to the nearest open cell; the terrain shader darkens with it.
+var _air: PackedInt32Array
 
 ## A tagged cell's wall or platform, painted neutral gray: gray until its color is acquired, tinted once acquired,
 ## glowing and pulsing while active.
@@ -39,6 +46,7 @@ class RevealSprite extends Sprite2D:
 func make_backdrop(level: Greybox) -> Node2D:
 	_level = level
 	_ground_row = _most_common_top_row(level)
+	_air = _distance_to_air(level)
 	var holder := Node2D.new(); holder.name = "Backdrop"; holder.z_index = -10
 	for layer_spec: Array in [["Far", backdrop_far, 0.2], ["Mid", backdrop_mid, 0.5], ["Near", backdrop_near, 0.8]]:
 		var tex: Texture2D = layer_spec[1]
@@ -62,8 +70,7 @@ func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 		return _tile(tagged, tag_platform, cell, ts, 2, true)  # sampled like platform-tile: the slab top on every cell
 	match kind:
 		"solid":
-			if _level.kind_at(cell.x, cell.y - 1) == "solid": return _tile(Sprite2D.new(), wall_tile, cell, ts, 4, false)
-			return _tile(Sprite2D.new(), ground_tile if cell.y == _ground_row else platform_tile, cell, ts, 2, true)
+			return _terrain(cell, ts)
 		"orb_red", "orb_green":
 			var sprite := Sprite2D.new(); sprite.texture = orb; sprite.modulate = TINTS[kind.trim_prefix("orb_")]
 			return _fit(sprite, ts * 0.8)
@@ -75,11 +82,83 @@ func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 		"hazard":  # a row of sandstone spikes per cell over a dark shadow-violet pit floor, so they read against the dunes
 			var pit := super.make_cell(kind, cell, ts) as Polygon2D
 			pit.color = HAZARD
+			# Gloom rising out of the pit over the open cells above it, so the pit reads as a chasm, not a window.
+			var gloom := Polygon2D.new(); gloom.z_index = 1
+			var top := -ts / 2.0 - ts * _open_above(cell)
+			gloom.polygon = PackedVector2Array([Vector2(-ts / 2.0, top), Vector2(ts / 2.0, top), Vector2(ts / 2.0, -ts / 2.0), Vector2(-ts / 2.0, -ts / 2.0)])
+			gloom.vertex_colors = PackedColorArray([Color(HAZARD, 0.0), Color(HAZARD, 0.0), Color(HAZARD, 0.85), Color(HAZARD, 0.85)])
+			pit.add_child(gloom)
 			var spikes := Sprite2D.new(); spikes.texture = hazard_tile
+			spikes.z_index = 2
 			pit.add_child(_fit(spikes, ts))
 			return pit
 	assert(false, "PaintedArt: no visual for %s" % kind)
 	return null
+
+## A terrain cell: its stone tile drawn through the terrain shader (eroded open sides, rounded open corners, a dark
+## mass under a lit lip), plus a contact shadow on each open side.
+func _terrain(cell: Vector2i, ts: float) -> Node2D:
+	var covered := _level.kind_at(cell.x, cell.y - 1) == "solid"
+	var sprite: Sprite2D
+	if covered: sprite = _tile(Sprite2D.new(), wall_tile, cell, ts, 4, false)
+	else: sprite = _tile(Sprite2D.new(), ground_tile if cell.y == _ground_row else platform_tile, cell, ts, 2, true)
+	var open := Vector4(
+		float(_level.kind_at(cell.x - 1, cell.y) in OPEN_KINDS), float(not covered),
+		float(_level.kind_at(cell.x + 1, cell.y) in OPEN_KINDS), float(_level.kind_at(cell.x, cell.y + 1) in OPEN_KINDS))
+	var mat := ShaderMaterial.new(); mat.shader = TERRAIN
+	mat.set_shader_parameter("side", sprite.region_rect.size.x)
+	mat.set_shader_parameter("open", open)
+	mat.set_shader_parameter("cell", Vector2(cell))
+	mat.set_shader_parameter("air", Vector4(_corner_air(cell), _corner_air(cell + Vector2i(1, 0)),
+		_corner_air(cell + Vector2i(0, 1)), _corner_air(cell + Vector2i(1, 1))))
+	sprite.material = mat
+	var holder := Node2D.new()
+	holder.add_child(sprite)
+	for side_open: Array in [[open.x, -1.0], [open.z, 1.0]]:  # a soft shadow dropped onto the backdrop beside an open side
+		if side_open[0] < 0.5: continue
+		var face: float = side_open[1] * ts / 2.0
+		var out: float = face + side_open[1] * ts * 0.5
+		var shadow := Polygon2D.new(); shadow.z_index = -1
+		shadow.polygon = PackedVector2Array([Vector2(face, -ts / 2.0), Vector2(out, -ts / 2.0), Vector2(out, ts / 2.0), Vector2(face, ts / 2.0)])
+		var top_alpha := 0.0 if open.y > 0.5 else 0.5  # a surface cell's shadow fades out at the ground line
+		shadow.vertex_colors = PackedColorArray([Color(SHADOW, top_alpha), Color(SHADOW, 0.0), Color(SHADOW, 0.0), Color(SHADOW, 0.5)])
+		holder.add_child(shadow)
+	return holder
+
+## How many open cells stand directly above a cell (the pit's depth above a hazard cell), at most 3.
+func _open_above(cell: Vector2i) -> int:
+	var n := 0
+	while n < 3 and _level.kind_at(cell.x, cell.y - 1 - n) in OPEN_KINDS: n += 1
+	return n
+
+## The air distance at a cell corner (the corner at the cell's top-left): the mean of the four cells around it,
+## so the darkening runs smoothly across cell borders.
+func _corner_air(corner: Vector2i) -> float:
+	var total := 0.0
+	for c in [corner + Vector2i(-1, -1), corner + Vector2i(0, -1), corner + Vector2i(-1, 0), corner]: total += _air_at(c)
+	return total / 4.0
+
+func _air_at(c: Vector2i) -> int:
+	if c.x < 0 or c.y < 0 or c.x >= _level.width or c.y >= _level.height: return 3  # beyond the level is deep rock
+	return _air[c.y * _level.width + c.x]
+
+## Breadth-first distance from every cell to the nearest open cell, capped at 3.
+static func _distance_to_air(level: Greybox) -> PackedInt32Array:
+	var dist := PackedInt32Array(); dist.resize(level.width * level.height); dist.fill(3)
+	var frontier: Array[Vector2i] = []
+	for r in level.height:
+		for c in level.width:
+			if level.kind_at(c, r) in OPEN_KINDS: dist[r * level.width + c] = 0; frontier.append(Vector2i(c, r))
+	for step in range(1, 3):
+		var next: Array[Vector2i] = []
+		for p in frontier:
+			for dy in [-1, 0, 1]:
+				for dx in [-1, 0, 1]:
+					var q: Vector2i = p + Vector2i(dx, dy)
+					if q.x < 0 or q.y < 0 or q.x >= level.width or q.y >= level.height: continue
+					if dist[q.y * level.width + q.x] > step: dist[q.y * level.width + q.x] = step; next.append(q)
+		frontier = next
+	return dist
 
 ## Shows one 1/n-by-1/n piece of a seamless tile texture per cell, picked by the cell's position, so one texture
 ## spans n cells and reads at its painted scale instead of repeating every tile. Surface tiles (top_row) keep their
