@@ -1,22 +1,26 @@
 {
   "schema_version": 1,
   "asset": "head.png",
-  "sha256": "81960bde8738760d562474083f5398ba8c186b48d35cd6654660a748cb0318fd",
+  "sha256": "868769863498572830942edc04f3bbafb8a677f12a00012fa55ebc8c1fb4dbf4",
   "kind": "image",
   "origin": "generated",
-  "created_at": "2026-09-27T17:09:58+00:00",
+  "created_at": "2026-09-29T01:28:25+00:00",
   "generator": {
     "tool": "gen",
     "tool_version": "0.1.0",
     "provider": "openai",
     "model": "gpt-image-2",
-    "prompt": "Only the hooded head and neck of the character in the reference, matching the front-facing view's hood and face exactly, but turned to the side view facing right (use the reference's right-side view for the head angle), same painted soft-edged style and palette (muted warm gray hood #8a8078, a hint of the red scarf collar at the neck only if it appears at the neck in the reference), centred on the canvas, nothing else in frame, no body, no ground, no shadow, no text, transparent background",
+    "prompt": "Only the hooded head and neck of the character in the reference, same side view facing right, the exact same hood shape, crop, proportions, muted warm gray palette (#8a8078), and the same bigger, flatter, higher-contrast dark eye and brow shape as the reference -- keep that shape and size exactly, do not shrink it back down. The one change: add a small, bright, soft specular catchlight highlight inside the dark eye shape (a single small pale dot or crescent, soft-edged, not a hard glossy anime sparkle), and lighten the iris itself very slightly so the eye is not a flat, fully solid dark shape. Still no ink outlines, no anime line art, no eyelash lines, no blush, no glossy skin -- the painted, matte, soft-edged digital-gouache style of GRIS and Planet of Lana. No crosshatching or fine scratchy texture anywhere on the face, hair or hood. Same calm, plain expression, no smile. Centred on the canvas, nothing else in frame, no body, no ground, no shadow, no text, transparent background",
     "params": {
       "size": "1024x1024",
       "quality": "high",
       "background": "transparent"
     },
     "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/parts/head.round-01.png",
+        "sha256": "9a4b84433f2525a520952797d7fa8fce50db1d58394e27437252c98ae0919bb8"
+      },
       {
         "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
         "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
@@ -25,24 +29,14 @@
   },
   "human_edits": [
     {
-      "by": "lead-agent",
-      "description": "trimmed transparent margin",
-      "at": "2026-09-27T17:53:53+00:00"
+      "by": "anthropic/claude-sonnet-5 (omp)",
+      "description": "Glow-up round 2 (character_appeal gap: round 1's bigger/bolder eye lost the original's small specular catchlight and read as \"dead\"/asleep -- round 0's critic's own suggested fix). Regenerated via an edit call, --input the reverted head.round-01.png plus violet-turnaround.png: keeps round 1's bigger, flatter, higher-contrast eye/brow shape and size exactly, adds back a small soft specular catchlight inside the eye, and lightens the iris slightly.",
+      "at": "2026-09-29T01:28:43+00:00"
     },
     {
-      "by": "anthropic/claude-opus-5-5 (omp)",
-      "description": "trimmed transparent margin to the alpha > 8 bounding box: 903x947 -> 598x644",
-      "at": "2026-09-27T18:42:14+00:00"
-    },
-    {
-      "by": "anthropic/claude-opus-5-5 (omp)",
-      "description": "recolored the saturated red scarf collar (rows 440+) to neutral gray matching scarf1-3, which lanes tint; skin, hair and hood untouched",
-      "at": "2026-09-27T18:42:15+00:00"
-    },
-    {
-      "by": "anthropic/claude-opus-5-5 (omp)",
-      "description": "rescaled by factor 0.335 (Lanczos), 598x644 -> 200x216, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960, so 1.136 rig px per turnaround px); see assets/bakeoff/protagonist/README.md. Fitted so the hood crown and the chin land on the turnaround's (crown 0, chin ~177 px below it at rig scale); 216 px tall, about 4.6 heads to the figure.",
-      "at": "2026-09-27T18:42:15+00:00"
+      "by": "anthropic/claude-sonnet-5 (omp)",
+      "description": "trimmed transparent margin to the alpha > 8 bounding box: 1024x1024 -> 978x979; rescaled by Lanczos to the rig's existing head height (216 px), 978x979 -> 216x216.",
+      "at": "2026-09-29T01:28:44+00:00"
     }
   ],
   "license": "proprietary"

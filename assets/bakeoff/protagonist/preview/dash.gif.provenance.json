@@ -1,21 +1,25 @@
 {
   "schema_version": 1,
   "asset": "dash.gif",
-  "sha256": "5d6bcb62819a3b7bd2fa6ff73049a1ffff64bc0c3c3c9033709913fc49f15c6c",
+  "sha256": "340b7d55f5497190faf36082d4ccd54bd880cf5962985a722c7bb02361d018ab",
   "kind": "animation",
   "origin": "derived",
-  "created_at": "2026-09-28T17:16:38+00:00",
+  "created_at": "2026-09-29T01:48:08+00:00",
   "generator": {
     "tool": "spinerig",
-    "tool_version": "0.1.0 (master 028cb554, with #30's canvas fix)",
+    "tool_version": "0.1.0",
     "model": null,
     "params": {
-      "command": "spinerig render rig/violet.json --parts parts --anim dash --scale 0.5 --fps 30"
+      "command": "uv run --project tools/spinerig spinerig render assets/bakeoff/protagonist/rig/violet.json --parts assets/bakeoff/protagonist/parts --anim dash --out /tmp/dash --scale 0.5"
     },
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/rig/violet.json",
-        "sha256": "f6319ff24ba4a39e4f09138a5551c06d95a807b53d8b097df0feaec695b8d3aa"
+        "sha256": "93debba26483fb5f197d6c85b91de7cc10cf819edb46262025882a59e07ef492"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/rig/violet.meta.json",
+        "sha256": "fb6192cfb3f0b6f14256c7ff8101a5d3afdfa674d520f5bc17d300d3636c3342"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/arm_back_lower.png",
@@ -35,7 +39,7 @@
       },
       {
         "path": "assets/bakeoff/protagonist/parts/head.png",
-        "sha256": "81960bde8738760d562474083f5398ba8c186b48d35cd6654660a748cb0318fd"
+        "sha256": "868769863498572830942edc04f3bbafb8a677f12a00012fa55ebc8c1fb4dbf4"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/hips.png",
