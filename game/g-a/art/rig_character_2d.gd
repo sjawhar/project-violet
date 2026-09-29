@@ -37,8 +37,10 @@ func _init(rig_: Rig, textures: Dictionary) -> void:
 		_texture_scale[slot.name] = slot.size / texture.get_size()
 
 func _ready() -> void:
-	player = get_parent() as Player2D
-	assert(player != null, "RigCharacter2D must be a child of the Player2D")
+	var node := get_parent()
+	while node != null and node is not Player2D: node = node.get_parent()  # the art may wrap her, e.g. in a CanvasGroup
+	player = node as Player2D
+	assert(player != null, "RigCharacter2D must be inside the Player2D")
 	Resonance.changed.connect(_color_scarf); _color_scarf()
 	_apply()
 
