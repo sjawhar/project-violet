@@ -47,7 +47,9 @@ Violet is a story-driven puzzle-platformer being built for a commercial Steam re
 ## Machines
 
 - **sami:** Sami's laptop. Radeon 890M integrated GPU, about 80 GB free disk. Keep large caches and heavy renders elsewhere.
-- **oryx:** RTX 3070 (8 GB) usable offscreen for CUDA, Vulkan, and Blender Cycles once it's healthy; 2.6 TB free disk. Heavy lanes run here. GPU jobs run one at a time: concurrent CUDA processes crashed the driver on 2026-09-27. Agents must never reboot oryx or trigger anything that needs a reboot.
+- **oryx:** RTX 3070 (8 GB) usable offscreen for CUDA, Vulkan, and Blender Cycles; 2.6 TB free disk. Heavy lanes run here. GPU jobs run one at a time: concurrent CUDA processes crashed the driver on 2026-09-27. Agents must never reboot oryx or trigger anything that needs a reboot.
+  - The NVIDIA driver is not loaded at boot, because system76-power's integrated mode blacklists it. After a reboot, `scripts/oryx-gpu-load.sh` loads it without a mode switch. `nvidia_uvm` takes `uvm_disable_hmm=1` from `/etc/modprobe.d/nvidia-uvm.conf`, which turns off the memory path that crashed the kernel.
+  - Start every GPU job with `scripts/oryx-gpu-check.sh && flock /tmp/oryx-gpu.lock <command>`. The check renders a small CUDA frame and fails if the driver, the module setting or the CUDA device is missing, or if the kernel logs a fault.
 
 ## Toolchain
 

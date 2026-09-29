@@ -70,36 +70,17 @@ Parallel waves: Task 1 first (one PR). Then 2, 3, 4 in parallel; 7 and 8 start a
 ### Task 0: oryx GPU healthy precondition
 
 **Files:**
-- Create: `scripts/oryx-gpu-check.sh`
-- Modify: `AGENTS.md` (Machines section: the one-at-a-time rule and the module parameter)
+- Create: `scripts/oryx-gpu-load.sh`, `scripts/oryx-gpu-check.sh` (the authoritative copies; this plan no longer inlines them)
+- Modify: `AGENTS.md` (Machines section: how to load the driver, the check, the one-at-a-time rule)
 
 **Interfaces:**
 - Consumes: the Blender install from `tools/preview/README.md` (`blender` on PATH).
-- Produces: `scripts/oryx-gpu-check.sh` exits 0 only when `nvidia-smi` lists the RTX 3070, `nvidia_uvm` carries `uvm_disable_hmm=1`, and a CUDA render process exits cleanly; every GPU step in Tasks 6 and 11 starts with `scripts/oryx-gpu-check.sh && flock /tmp/oryx-gpu.lock <command>`.
+- Produces: `scripts/oryx-gpu-load.sh` loads the NVIDIA driver after a reboot without a graphics-mode switch, with `nvidia_uvm` taking `uvm_disable_hmm=1` from `/etc/modprobe.d/nvidia-uvm.conf`. `scripts/oryx-gpu-check.sh` exits 0 only when `nvidia-smi` lists the RTX 3070, `nvidia_uvm` carries `uvm_disable_hmm=1`, Cycles finds a CUDA device and renders a frame, and the kernel log (read successfully) shows no fault; every GPU step in Tasks 6 and 11 starts with `scripts/oryx-gpu-check.sh && flock /tmp/oryx-gpu.lock <command>`.
 
-- [ ] **Step 1:** Wait for Sami's reboot (his call; ask once on issue #4 (this project uses GitHub, not Dispatch), keep working on Tasks 1–5 and the greybox lanes). After it: `sudo modprobe nvidia_uvm uvm_disable_hmm=1` and persist it in `/etc/modprobe.d/nvidia-uvm.conf` with `options nvidia_uvm uvm_disable_hmm=1`. Record in `AGENTS.md`.
-- [ ] **Step 2:** Write `scripts/oryx-gpu-check.sh`:
-
-```bash
-#!/usr/bin/env bash
-# oryx only: proves the RTX 3070 is usable before a GPU job. GPU jobs run one at a time: flock /tmp/oryx-gpu.lock <cmd>.
-set -euo pipefail
-nvidia-smi --query-gpu=name,memory.total --format=csv,noheader | grep -q "RTX 3070"
-[ "$(cat /sys/module/nvidia_uvm/parameters/uvm_disable_hmm 2>/dev/null)" = "1" ] || { echo "nvidia_uvm is not loaded with uvm_disable_hmm=1" >&2; exit 1; }
-# CUDA smoke: a real CUDA process (Cycles) that allocates on the device and exits. The exit path is what crashed before.
-rm -f /tmp/oryx-gpu-smoke.png
-flock /tmp/oryx-gpu.lock blender --background --factory-startup --python-expr "
-import bpy; p=bpy.context.preferences.addons['cycles'].preferences; p.compute_device_type='CUDA'; p.get_devices()
-for d in p.devices: d.use = d.type == 'CUDA'
-s=bpy.context.scene; s.render.engine='CYCLES'; s.cycles.device='GPU'; s.cycles.samples=8; s.render.resolution_percentage=10
-s.render.filepath='/tmp/oryx-gpu-smoke.png'; bpy.ops.render.render(write_still=True)"
-test -s /tmp/oryx-gpu-smoke.png
-journalctl -k --since -2min --no-pager 2>/dev/null | grep -qiE 'BUG:|Oops|nvidia_uvm.*fault' && { echo "kernel fault after the CUDA process exited" >&2; exit 1; }
-echo "oryx GPU OK"
-```
-
-- [ ] **Step 3: Verify.** Run it twice in a row; both print `oryx GPU OK` and `nvidia-smi` afterwards shows no lingering process. Post the output on issue #4.
-- [ ] **Step 4:** If the check fails after the reboot, Tasks 6 and 11 use their CPU fallbacks (stated in each) and `bakeoff/control/LOG.md` records the blocker. Commit the script and the AGENTS.md line on `phase1/oryx-gpu`; open the PR.
+- [x] **Step 1:** Sami rebooted oryx on 2026-09-28 at 16:55 UTC. `/etc/modprobe.d/nvidia-uvm.conf` holds `options nvidia_uvm uvm_disable_hmm=1`, and `scripts/oryx-gpu-load.sh` loads the driver (system76-power's integrated mode blacklists it at boot). Recorded in `AGENTS.md`.
+- [x] **Step 2:** `scripts/oryx-gpu-check.sh`.
+- [x] **Step 3: Verify.** Run it twice in a row; both print `oryx GPU OK` and `nvidia-smi` afterwards shows no lingering process. Output in PR #34.
+- [x] **Step 4:** The check passed after the reboot, so Tasks 6 and 11 can use the GPU; if it fails later, they use their CPU fallbacks (stated in each). Committed on `phase1/oryx-gpu` (PR #34).
 
 ### Task 1: Shared inputs — docs, level, formats, `tools/greybox`
 
@@ -823,7 +804,7 @@ Day 0: Task 1 PR + approval; Tasks 2–3 in parallel. Day 1: G-A and G-D greybox
 1. **Agent-authored art quality.** The rig, the 3D kit, and G-C's SVGs are all agent-authored instead of bought (Spine, Meshy, Recraft — decision 0012); they may look worse than a paid tool's equivalent would have. That is exactly what the bake-off measures: `character_appeal` and `visual_quality` scoring captures it, and a bad result here is evidence for a later purchase decision, not a plan failure.
 2. **Unity lane.** COSMIC is unsupported (GNOME only), the MCP needs a Unity Cloud project plus a paid AI subscription, and the editor needs Sami at the keyboard several times. The spec makes a blocker a valid result; the C# and tests are written first so a single good day suffices.
 3. **Agent-authored animation quality.** No verified example exists of an agent producing a platformer moveset (research); `spinerig`'s generated scarf follow-through and the keyed animations may read robotic. Iterate on the GIF previews before lanes integrate; the same rig goes to every lane, so the comparison stays fair.
-4. **oryx GPU.** Unusable until Sami reboots; concurrency crashed it. Only Blender renders depend on it (the kit's `build_kit.py` and its turntables, and the Control reel, if it ever runs) and all have CPU fallbacks; everything else — the image APIs — runs on machine sami or is cloud and GPU-independent.
+4. **oryx GPU.** Sami rebooted oryx on 2026-09-28, and `scripts/oryx-gpu-load.sh` loads the driver with `uvm_disable_hmm=1`, which turns off the memory path that crashed under concurrent CUDA processes on 2026-09-27. Every GPU job starts with `scripts/oryx-gpu-check.sh` and holds `/tmp/oryx-gpu.lock`. If the driver faults anyway, only a reboot clears it. Only Blender renders depend on the GPU (the kit's `build_kit.py` and its turntables, and the Control reel, if it ever runs) and all have CPU fallbacks; everything else — the image APIs — runs on machine sami or is cloud and GPU-independent.
 5. **Headless/offline capture friction.** Godot Movie Maker under XWayland on the 890M, Unity PlayMode tests in batchmode, PhysX/Godot replay drift between ticks. Replays assert cells and "goal by tick", never positions; captures are offline-rendered (frame-exact); each lane's `friction` list is part of what Sami sees.
 
 ## Hardening ledger
