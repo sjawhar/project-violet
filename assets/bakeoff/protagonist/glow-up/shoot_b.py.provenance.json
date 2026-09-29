@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "asset": "shoot_b.py",
+  "sha256": "cf614671e5d3531d6f776caa30276f580ecb1264a68d0ad139c950090b2113c7",
+  "kind": "text",
+  "origin": "generated",
+  "created_at": "2026-09-29T04:42:04+00:00",
+  "generator": {
+    "tool": "hand-written-python",
+    "tool_version": "1",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "prompt": "THROWAWAY (Phase 1 bake-off, Violet glow-up, round 4): shoots technique B's (frame-by-frame painted sprites) contact sheet, in-game-scale contact sheet, and per-animation GIFs in shoot.py's exact fixed round-0 layout, compositing each animation's painted body/scarf frame files per that frame's own finalize-record anchor scheme instead of rendering a spinerig skeleton",
+    "params": {},
+    "inputs": []
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

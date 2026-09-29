@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "asset": "idle.gif",
+  "sha256": "a5140b8e94b21d0991ebd6762a9e3cac5c1954e77f98a6a0fff09808fda98b9c",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-29T04:42:11+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+    "tool_version": "shoot_b.py round-04: technique B (painted frames) in shoot.py's exact fixed layout",
+    "model": null,
+    "params": {
+      "command": "uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/shoot_b.py --rig assets/bakeoff/protagonist/rig/violet.json --out assets/bakeoff/protagonist/glow-up/round-04"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+        "sha256": "cf614671e5d3531d6f776caa30276f580ecb1264a68d0ad139c950090b2113c7"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.png",
+        "sha256": "90c28c4cfe51fe6e4b77e36ba5a02924d01944133d56533b92733753d5606728"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.png",
+        "sha256": "786d40e36a88fc99bba2c4ca9acfa193b0c682d7265cd9e52f8cdcf26c582b1f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-02.png",
+        "sha256": "91ca4220b13adb4a01aedec9335e613ed44cad4f11ba9eb05bfac1ed5a8c364e"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-03.png",
+        "sha256": "2de225822b9c763d20b02314fa9f7a868696ae89ebc83c11c8de1133d6969951"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-04.png",
+        "sha256": "578e1b17037f0201cb54393535a4db800c75c42b16a261d933a898451d31fe0b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-05.png",
+        "sha256": "605751b697907eab136444d5d4234687c5f14a8a570ee929efc642fc08f9c06a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-06.png",
+        "sha256": "c686130ac60c39f0d44d6c55fde8e17c359fb4d938ae5da93ff2f9ff5dc2cb43"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-07.png",
+        "sha256": "d5dd58e8e9a5f57aa718ce6d27c8b6d822ce5ab7a9decdd81835dccd534b711a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.png",
+        "sha256": "7f7e0bf3846d5de8035ee9f02002f27c1a121171e901b4198c578899304b01cd"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-01.png",
+        "sha256": "0c73382375556a8601be5ae03ac6bfeffdf6a340996907c3e729ef45992ab054"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-02.png",
+        "sha256": "06d9502ce9c451181120333849c01a35607a8b0d3de49ad867c4b1ae07c1f50f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-03.png",
+        "sha256": "f3294d87b1e0e3b62e5b8ff81349a0ddd2a25dc1f3900508bc02c96be2fdb548"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-04.png",
+        "sha256": "bdf0ea9dd839cd795c5accaafe2c6f394e8cafaf4ca6dae440e65d0b29b5b68a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-05.png",
+        "sha256": "07dfdfa4474705b7796c18a31269aadf54badf7ef28c95a77eff20e1cb2b87ba"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-06.png",
+        "sha256": "ba5c23a391ea3e7c03a94c8acfba1cd1a29f076283e6e96616aad00de32487a4"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-07.png",
+        "sha256": "70982e6447223d5e46b52b43e980ac123d6fd90579761a5b97be39641f747621"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}
