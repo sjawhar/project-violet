@@ -16,7 +16,9 @@ sessions:
   - {start: "2026-09-28T17:02:00Z", end: "2026-09-28T17:28:00Z", purpose: "no crystals (Sami, relayed: stacked crystal clusters look silly; his 2019 design has plain colored walls): tagged cells are the kit's solid 1 m tag-block (PR #31 at c202b565) tinted gray, red or green; crystal-cluster removed; crystal names renamed; software render looked at"}
   - {start: "2026-09-28T17:29:00Z", end: "2026-09-28T17:50:00Z", purpose: "protagonist rig re-copied from PR #28 at 9b22572d (arms repainted and bending at the elbow, double jump without the flip), replacing the eafccae8 copy; running and double-jump frames rendered in software and looked at"}
   - {start: "2026-09-29T00:24:45Z", end: "2026-09-29T00:37:00Z", purpose: "glow-up round 0"}
-costs: []
+  - {start: "2026-09-29T00:41:00Z", end: "2026-09-29T01:18:00Z", purpose: "glow-up round 1"}
+costs:
+  - {item: "glow-up round 1: art/sky.png, 1 gpt-image-2 call at 1536x1024 quality high", usd: 0.22, evidence: "estimate at the $0.22 per high-quality call measured in docs/bakeoff/shared-costs.md; gen logs no usage; game/g-d/art/sky.png.provenance.json"}
 interventions: []
 friction:
   - {at: "2026-09-27T08:46:00Z", what: "plan says project.godot has no [shader_globals], but the shared bakeoff/resonance.gd (byte-identical to G-A's) sets the world_saturation global on every color change; any rendered run logged 'Condition !global_shader_uniforms.variables.has(p_name) is true' each time (headless runs are silent)", workaround: "declared world_saturation under [shader_globals] in project.godot; no 3D shader reads it, the environment's adjustment_saturation carries the effect"}
@@ -35,6 +37,10 @@ friction:
   - {at: "2026-09-27T20:10:00Z", what: "plan Step 6's look (toon box tinted plus a 0.5 m crystal cluster) rendered as colored boxes with small crystal icons, and an active wall's box plus 13 stacked full-energy lights washed out to peach", workaround: "full-cell crystal clusters replace the box on tagged cells, active emission 0.5, crystal lights at 0.35 of GreyboxArt3D's; the collider is unchanged"}
   - {at: "2026-09-27T20:12:00Z", what: "a software render of the replay (lavapipe, 1920x1080 regardless of --resolution under --write-movie) took 16 minutes for 60 s on a machine shared with other sessions", workaround: "two renders only; the headless replay with --art=res://art/lane_art.tres (ok, goal tick 3757) and a throwaway tag check with the kit art (0 problems, mutated 1) between them"}
   - {at: "2026-09-28T17:08:00Z", what: "the kit commit that added tag-block also changed build_kit.py, so every GLB sidecar in kit/ named a stale input hash", workaround: "re-copied all 16 GLB sidecars and build_kit.py with its sidecar from c202b565; the other 15 GLBs were byte-identical"}
+  - {at: "2026-09-29T00:55:00Z", what: "glow-up round 1: the painted sky repeated with mirroring (to cover the 188 m wide frame at the sky's depth) drew obvious chevrons where the mirrored clouds met", workaround: "one copy stretched about 2x across a 200 x 63 m quad that follows the camera"}
+  - {at: "2026-09-29T00:58:00Z", what: "glow-up round 1: a per-tile brightness jitter made the ground read as a checkerboard of separate blocks, and flat unshaded boulder silhouettes in the foreground read as black holes", workaround: "kept only the depth tint on tiles; foreground silhouettes are acacias and saguaros only"}
+  - {at: "2026-09-29T01:02:00Z", what: "glow-up round 1: depth fog alone could not both keep the near backdrop legible and fade the horizon layer; a fog curve below 1 left the far mesas unfaded", workaround: "linear fog to the sky, plus a fixed haze per backdrop layer (15%, 35%, 60% toward the horizon colour)"}
+  - {at: "2026-09-29T01:05:00Z", what: "each software preview of the replay took 3-6 minutes and the fixed capture 10 minutes on the shared 16-core machine", workaround: "previews to 20 s or 40 s only; one fixed capture per round"}
 blockers: []
 deliverables: {build: bakeoff/g-d/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-d/reports/replay.json}
 ---

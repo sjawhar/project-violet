@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "asset": "sky.png",
+  "sha256": "096532e914ce7251c3dce39df892b95ba03b84c56b7c5237581f68aac13b85d8",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-29T00:44:28+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Painted golden-hour high-desert sky only, for a side-scrolling game backdrop. Soft hazy peach glow (#f2c49b) along the bottom edge rising through warm apricot to a muted teal (#3f7f8c) at the top. Long, soft, layered horizontal clouds with warm lit edges and faint violet (#5a4a7a) undersides, drifting across the middle and upper sky; the lower quarter is clear hazy glow with no clouds. Painterly, soft-edged brushwork in the register of GRIS and Planet of Lana, calm and airy. No sun disc, no ground, no land, no mountains, no birds, no text, no frame.",
+    "params": {
+      "size": "1536x1024",
+      "quality": "high",
+      "background": "opaque"
+    },
+    "inputs": []
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}
