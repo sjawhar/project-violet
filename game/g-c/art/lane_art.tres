@@ -18,6 +18,10 @@
 [ext_resource type="Texture2D" path="res://art/ground-tile-c.svg" id="16"]
 [ext_resource type="Texture2D" path="res://art/foreground.svg" id="17"]
 [ext_resource type="Texture2D" path="res://art/tuft.svg" id="18"]
+[ext_resource type="Texture2D" path="res://art/lip-top.svg" id="19"]
+[ext_resource type="Texture2D" path="res://art/edge-left.svg" id="20"]
+[ext_resource type="Texture2D" path="res://art/edge-right.svg" id="21"]
+[ext_resource type="Texture2D" path="res://art/pit-depth.svg" id="22"]
 
 [resource]
 script = ExtResource("1")
@@ -36,3 +40,7 @@ wall_tile_variants = Array[Texture2D]([ExtResource("13"), ExtResource("14")])
 ground_tile_variants = Array[Texture2D]([ExtResource("15"), ExtResource("16")])
 foreground = ExtResource("17")
 tuft = ExtResource("18")
+lip_top = ExtResource("19")
+edge_left = ExtResource("20")
+edge_right = ExtResource("21")
+pit_depth = ExtResource("22")

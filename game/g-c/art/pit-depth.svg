@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" width="1024" height="512">
+<!-- THROWAWAY bake-off lane G-C: pit-depth, hand-written vector. The inside of a spike pit, drawn over the two open
+     cells above the spikes (art/vector_art.gd): open at the top so the dunes behind still show, then two receding
+     back-wall ledges of hazy rock and a falloff into the shadow-violet pit floor the spikes stand in, so the pit reads
+     as a drop rather than a box. Four cells wide (256 px each), seamless horizontally. -->
+<defs>
+<linearGradient id="fall" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2d2540" stop-opacity="0"/>
+<stop offset="0.35" stop-color="#3a2d4e" stop-opacity="0.25"/>
+<stop offset="0.75" stop-color="#2d2540" stop-opacity="0.85"/>
+<stop offset="1" stop-color="#2d2540" stop-opacity="1"/>
+</linearGradient>
+</defs>
+<path fill="#b88a78" fill-opacity="0.85" d="M0,190 L90,176 L150,188 L260,170 L330,184 L440,168 L520,182 L640,166 L720,180 L830,168 L920,184 L1024,190 L1024,512 L0,512 Z"/>
+<path fill="#8e6a6e" d="M0,280 L70,268 L160,284 L240,262 L320,278 L420,258 L500,276 L600,262 L700,280 L790,262 L880,278 L960,266 L1024,280 L1024,512 L0,512 Z"/>
+<path fill="#6b4f63" d="M0,368 L110,356 L200,372 L300,350 L400,368 L520,352 L610,370 L720,352 L820,368 L920,354 L1024,368 L1024,512 L0,512 Z"/>
+<rect width="1024" height="512" fill="url(#fall)"/>
+</svg>

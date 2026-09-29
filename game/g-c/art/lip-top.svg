@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 80" width="256" height="80">
+<!-- THROWAWAY bake-off lane G-C: lip-top, hand-written flat vector. An uneven sand lip laid along an open block top
+     (art/vector_art.gd), so the top edge is not a ruler line: soft humps rise a few pixels above the collision line
+     and a darker rim tucks under it. y=48 sits on the cell top; x=0 and x=256 meet at the same height, so lips chain
+     seamlessly along a row. Transparent above the humps. -->
+<path fill="#c29460" d="M0,50 C30,52 60,58 96,56 C140,54 170,60 210,58 C230,57 244,52 256,50 L256,64 C220,70 180,64 140,68 C100,72 50,64 0,64 Z"/>
+<path fill="#e3c38e" d="M0,40 C20,40 34,30 58,30 C84,30 96,42 122,42 C150,42 160,26 190,26 C216,26 232,40 256,40 L256,54 C230,58 200,52 170,56 C130,60 90,52 50,56 C30,58 12,54 0,54 Z"/>
+<path fill="#f1d9a8" d="M44,34 C52,31 62,30 72,32 C62,33 52,35 44,38 Z M176,30 C184,27 196,26 206,29 C196,30 186,32 176,35 Z"/>
+</svg>

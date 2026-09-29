@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 256" width="64" height="256">
+<!-- THROWAWAY bake-off lane G-C: edge-right, hand-written flat vector. The eroded far (right, away from the low sun)
+     face of a block: an uneven rock edge that bulges up to 28 px past the face with a shadow-violet core, laid over
+     the face (art/vector_art.gd) so blocks lose their ruler-straight sides. x=24 is the face; y=0 and y=256 meet at
+     the same point, so edges chain seamlessly down a column. Transparent outside the rock. -->
+<path fill="#8a5634" d="M0,0 L30,0 C40,30 36,60 44,86 C50,110 40,140 46,168 C52,196 40,224 30,256 L0,256 Z"/>
+<path fill="#6d4a5c" d="M10,0 L24,0 C32,30 28,62 34,88 C38,112 30,140 34,168 C38,196 30,226 24,256 L10,256 Z"/>
+<path fill="#5a4a7a" d="M30,96 C36,110 34,124 38,138 L32,140 C30,126 30,112 26,100 Z M26,190 C30,202 30,214 28,226 L24,224 C26,214 24,202 22,192 Z"/>
+</svg>

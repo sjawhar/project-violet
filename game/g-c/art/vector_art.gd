@@ -8,13 +8,25 @@ extends PaintedArt
 ## warm sun-side rim, hardened alpha fringe). The character is GreyboxArt's: the rig in protagonist/ once it is there,
 ## else the STAND-IN. Set dressing and atmosphere: soft light shafts from the sun on the far layer, dust motes drifting
 ## in the air, dry-grass tufts on some open block tops, and a dark foreground silhouette strip along the bottom of the
-## frame on a faster parallax layer. THROWAWAY.
+## frame on a faster parallax layer. Terrain construction: each connected rock mass takes its own tone and its wall
+## variant per four-row band (no vertical variant seams inside a block), open tops carry an uneven sand lip, exposed
+## sides an eroded rock edge (warm on the sunward left, shaded on the right), and pits a painted inside that falls
+## away into the shadow the spikes stand in. THROWAWAY.
 ## Extra wall-tile and ground-tile variants; each keeps the band heights where blocks meet, so any mix is seamless.
 @export var wall_tile_variants: Array[Texture2D] = []
 @export var ground_tile_variants: Array[Texture2D] = []
 ## The dark near-plane silhouettes along the bottom of the frame, and the grass tuft set on block tops.
 @export var foreground: Texture2D
 @export var tuft: Texture2D
+## Terrain construction decals (art/lip-top.svg, edge-left.svg, edge-right.svg) and the inside of a pit (pit-depth.svg).
+@export var lip_top: Texture2D
+@export var edge_left: Texture2D
+@export var edge_right: Texture2D
+@export var pit_depth: Texture2D
+## One tone per connected rock mass, so neighbouring blocks don't read as the same tile.
+const MASS_TONES := [Color(1.0, 0.96, 0.9), Color(1.0, 1.0, 1.0), Color(0.97, 0.93, 0.95), Color(1.0, 0.98, 0.94)]
+## Solid cell -> index of the connected rock mass it belongs to (filled by make_backdrop).
+var _mass := {}
 ## Where backdrop-far.svg draws the sun, in its own pixels.
 const SUN := Vector2(900, 660)
 ## The foreground strip's parallax: faster than the playfield, so it reads as nearer.
@@ -29,6 +41,7 @@ const OUTLINE := preload("res://art/character_outline.gdshader")
 
 func make_backdrop(level: Greybox) -> Node2D:
 	var holder := super.make_backdrop(level)
+	_find_masses(level)
 	var ts := float(level.tile_px)
 	var width := level.width * ts
 	# The camera keeps the whole level height in a 1080 px view, so a strip shows above and below the 1024 px level.
@@ -45,6 +58,23 @@ func make_backdrop(level: Greybox) -> Node2D:
 	(holder.get_node("Far") as Node2D).add_child(_light_shafts())
 	holder.add_child(_foreground(level))
 	return holder
+
+## Flood-fills the solid cells into connected rock masses.
+func _find_masses(level: Greybox) -> void:
+	_mass.clear()
+	var next := 0
+	for r in level.height:
+		for c in level.width:
+			var start := Vector2i(c, r)
+			if level.kind_at(c, r) != "solid" or _mass.has(start): continue
+			var todo: Array[Vector2i] = [start]; _mass[start] = next
+			while not todo.is_empty():
+				var cell: Vector2i = todo.pop_back()
+				for d: Vector2i in [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]:
+					var n := cell + d
+					if n.x < 0 or n.y < 0 or n.x >= level.width or n.y >= level.height: continue
+					if level.kind_at(n.x, n.y) == "solid" and not _mass.has(n): _mass[n] = next; todo.append(n)
+			next += 1
 
 ## Faint warm rays fanning up from the low sun, added on top of the far layer so they move with it.
 func _light_shafts() -> Node2D:
@@ -77,40 +107,62 @@ func _foreground(level: Greybox) -> Node2D:
 func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 	match kind:
 		"solid":
+			var m: int = _mass.get(cell, 0)
+			var tile: Sprite2D
 			if _level.kind_at(cell.x, cell.y - 1) == "solid":
-				return _tile(Sprite2D.new(), _pick(_wall_tiles(), Vector2i(floori(cell.x / 4.0), floori(cell.y / 4.0))), cell, ts, 4, false)
-			var surface: Sprite2D
-			if cell.y == _ground_row:
-				surface = _tile(Sprite2D.new(), _pick([ground_tile] + ground_tile_variants, Vector2i(floori(cell.x / 2.0), 0)), cell, ts, 2, true)
+				tile = _tile(Sprite2D.new(), _pick(_wall_tiles(), Vector2i(m * 7919, floori(cell.y / 4.0))), cell, ts, 4, false)
+			elif cell.y == _ground_row:
+				tile = _tile(Sprite2D.new(), _pick([ground_tile] + ground_tile_variants, Vector2i(floori(cell.x / 2.0), 0)), cell, ts, 2, true)
 			else:
-				surface = super.make_cell(kind, cell, ts) as Sprite2D
-			return _with_tuft(surface, cell, ts)
+				tile = super.make_cell(kind, cell, ts) as Sprite2D
+			tile.modulate = MASS_TONES[m % MASS_TONES.size()]
+			return _dress(tile, cell, ts)
 		"hazard":
 			var pit := super.make_cell(kind, cell, ts)
-			var shade := Polygon2D.new(); shade.name = "PitShade"
-			var h := ts / 2.0; var top := -h - PIT_SHADE_CELLS * ts
-			shade.polygon = PackedVector2Array([Vector2(-h, top), Vector2(h, top), Vector2(h, -h), Vector2(-h, -h)])
-			var clear := Color(HAZARD, 0.0); var dark := Color(HAZARD, 0.9)
-			shade.vertex_colors = PackedColorArray([clear, clear, dark, dark])
-			pit.add_child(shade)
+			var inside := Sprite2D.new(); inside.name = "PitDepth"; inside.texture = pit_depth; inside.centered = false
+			var side := pit_depth.get_width() / 4.0
+			inside.region_enabled = true
+			inside.region_rect = Rect2(posmod(cell.x, 4) * side, 0.0, side, pit_depth.get_height())
+			inside.scale = Vector2.ONE * (ts / side)
+			inside.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+			inside.position = Vector2(-ts / 2.0, -ts / 2.0 - PIT_SHADE_CELLS * ts)
+			pit.add_child(inside)
 			return pit
 	var node := super.make_cell(kind, cell, ts)
 	if Greybox.TAGGED.has(kind):
 		(node.material as ShaderMaterial).set_shader_parameter("pattern", PATTERNS[Greybox.TAGGED[kind][0]])
 	return node
 
-## An open-topped block cell, with a grass tuft on about one cell in three (the same cells every run).
-func _with_tuft(surface: Sprite2D, cell: Vector2i, ts: float) -> Node2D:
-	var h := (cell.x * 2654435761) ^ (cell.y * 40503)
-	if posmod(h, 3) != 0: return surface
-	var holder := Node2D.new(); holder.add_child(surface)
-	var grass := Sprite2D.new(); grass.texture = tuft; grass.centered = false
-	var w := ts * 1.1
-	grass.scale = Vector2.ONE * (w / tuft.get_width())
-	grass.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
-	grass.position = Vector2(-w / 2.0 + float(posmod(h >> 3, 17) - 8), -ts / 2.0 - tuft.get_height() * grass.scale.y + 4.0)
-	holder.add_child(grass)
+## A solid cell's tile with its construction: an eroded rock edge on each side open to the air, an uneven sand lip
+## where the top is open, and a grass tuft on about one open top in three (the same cells every run).
+func _dress(tile: Sprite2D, cell: Vector2i, ts: float) -> Node2D:
+	var holder := Node2D.new(); holder.add_child(tile)
+	var h := ts / 2.0
+	var sc := ts / float(edge_left.get_height())
+	if not _is_block(cell + Vector2i.LEFT):
+		holder.add_child(_decal(edge_left, Vector2(-h - 40.0 * sc, -h), sc))
+	if not _is_block(cell + Vector2i.RIGHT):
+		holder.add_child(_decal(edge_right, Vector2(h - 24.0 * sc, -h), sc))
+	if _is_block(cell + Vector2i.UP): return holder
+	var lip_sc := ts / float(lip_top.get_width())
+	holder.add_child(_decal(lip_top, Vector2(-h, -h - 48.0 * lip_sc), lip_sc))
+	var mix := (cell.x * 2654435761) ^ (cell.y * 40503)
+	if posmod(mix, 3) == 0:
+		var w := ts * 1.1
+		var grass := _decal(tuft, Vector2.ZERO, w / tuft.get_width())
+		grass.position = Vector2(-w / 2.0 + float(posmod(mix >> 3, 17) - 8), -h - tuft.get_height() * grass.scale.y + 2.0)
+		holder.add_child(grass)
 	return holder
+
+func _is_block(cell: Vector2i) -> bool:
+	var kind := _level.kind_at(cell.x, cell.y)
+	return kind == "solid" or Greybox.TAGGED.has(kind)
+
+static func _decal(tex: Texture2D, at: Vector2, sc: float) -> Sprite2D:
+	var sprite := Sprite2D.new(); sprite.texture = tex; sprite.centered = false
+	sprite.position = at; sprite.scale = Vector2.ONE * sc
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+	return sprite
 
 ## Warm dust motes drifting on the wind around the character, in world space so they stay put as the camera moves.
 func _dust() -> CPUParticles2D:

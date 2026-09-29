@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "asset": "lip-top.svg",
+  "sha256": "f66c5c097018d78d5a4046b4c919798f848ad967097bd9d17134e1d88cde9d78",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-29T02:10:15+00:00",
+  "generator": {
+    "tool": "hand-written-svg",
+    "tool_version": "1",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "prompt": "Hand-written vector SVG for bake-off lane G-C, following docs/bakeoff/desert-biome-brief.md (palette sand #d9b27c, rock #a86f46, shadow violet #5a4a7a, sky #f2c49b/#3f7f8c); glow-up round 5 (docs/bakeoff/glow-up.md), terrain construction: lip-top, 256x80, uneven sand lip for open block tops with humps above the collision line and a darker under-rim, seamless along a row",
+    "params": {},
+    "inputs": []
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}
