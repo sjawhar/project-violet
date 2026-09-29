@@ -25,6 +25,7 @@ sessions:
   - {start: "2026-09-29T03:23:00Z", end: "2026-09-29T03:38:00Z", purpose: "glow-up round 7"}
   - {start: "2026-09-29T03:41:00Z", end: "2026-09-29T03:57:00Z", purpose: "glow-up round 8"}
   - {start: "2026-09-29T04:00:00Z", end: "2026-09-29T04:15:00Z", purpose: "glow-up round 9"}
+  - {start: "2026-09-29T04:17:00Z", end: "2026-09-29T04:31:00Z", purpose: "glow-up round 10"}
 costs:
   - {item: "glow-up round 1: art/sky.png, 1 gpt-image-2 call at 1536x1024 quality high", usd: 0.22, evidence: "estimate at the $0.22 per high-quality call measured in docs/bakeoff/shared-costs.md; gen logs no usage; game/g-d/art/sky.png.provenance.json"}
 interventions: []
@@ -58,6 +59,7 @@ friction:
   - {at: "2026-09-29T03:26:00Z", what: "glow-up round 7: a dune field 16-34 m back hazed 30% toward the horizon vanished into the pale sand", workaround: "moved it to 14-26 m, taller, and hazed only 10%, so the dunes' shaded slip faces show"}
   - {at: "2026-09-29T03:48:00Z", what: "glow-up round 8: a vertical inlay channel per block, right for walls, cut the horizontal red platform into four separate stubs", workaround: "a shader flag turns the channel horizontal on platform blocks"}
   - {at: "2026-09-29T04:05:00Z", what: "glow-up round 9: edge props at the first scale (rocks 0.22-0.38, saguaros 0.14-0.22) read as specks at gameplay distance", workaround: "scaled up about 1.3x (rocks 0.3-0.5, saguaros 0.18-0.26, scrub 0.12-0.18)"}
+  - {at: "2026-09-29T04:21:00Z", what: "glow-up round 10: the first lighter scarf red (#ff8f7a) rendered as a pale coral, close to the peach the critics had flagged on the walls", workaround: "a more saturated lighter red, #ff6a57"}
 blockers: []
 deliverables: {build: bakeoff/g-d/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-d/reports/replay.json}
 ---

@@ -40,6 +40,16 @@ const OUTLINE_PAD := 0.035
 const CHARACTER_LAYER := 3
 const CHARACTER_KEY_COLOR := Color("#ffe2c4")
 const CHARACTER_KEY_ENERGY := 0.55
+## Her body (every part but the scarf) is tinted darker and cooler, so she reads as a clean dark shape against the pale
+## sand and haze, and a warm rim on her sun side (each part's silhouette, offset up and toward the sun, warm and
+## unshaded, behind the parts) catches the sunset light the mesas get. The outline is alpha-blended, so its edges are
+## smooth.
+const BODY_TINT := Color(0.6, 0.55, 0.64)
+const RIM_COLOR := Color("#ffc890")
+const RIM_SHIFT := Vector2(0.028, 0.022)
+## The scarf shows the active color a step lighter than the tag blocks, so it keeps its own value in front of a wall of
+## the same color.
+const SCARF_LIGHT := {"red": Color("#ff6a57"), "green": Color("#8ee8a2"), "": Color(0.7, 0.7, 0.7)}
 ## Tag lights at this share of GreyboxArt3D's: a 13-cell wall of full-energy lights washed its surroundings out.
 const LIGHT_SCALE := 0.35
 ## Depth fog: the play plane, 32 m from the camera, stays clear, and the sand is fully fogged where it meets the sky.
@@ -67,6 +77,8 @@ const EDGE_SEED := 20260930
 const EDGE_PROPS := [["boulder-a", 0.3, 0.5], ["boulder-b", 0.28, 0.45], ["saguaro", 0.18, 0.26], ["acacia", 0.12, 0.18]]
 const EDGE_BACK_Z := Vector2(-0.4, -0.15)
 const CRUMB_Z := 0.38
+## Each edge prop gets a soft dark contact shadow on the ground under it, sized to its footprint.
+const CONTACT_SHADOW := Color("#3b2a3f", 0.55)
 ## Broad colour drift across the level: tiles warm toward BROAD_WARM or cool toward SHADOW_VIOLET in long waves along
 ## x (four steps), so large stretches of ground differ in colour as well as in their strata bands.
 const BROAD_WARM := Color("#e89a66")
@@ -112,6 +124,8 @@ var _orb_materials := {}
 ## [toon material, depth, broad band] -> its tile variant.
 var _tile_materials := {}
 var _strata_noise: ImageTexture
+var _shadow_material: StandardMaterial3D
+var _shadow_mesh: QuadMesh
 var _lip_mesh: BoxMesh
 var _lip_material: StandardMaterial3D
 ## [toon material, haze] -> its hazed backdrop copy.
@@ -162,9 +176,10 @@ class Bird extends Node3D:
 class OutlineSprite extends Sprite3D:
 	var part: Sprite3D
 	var shift: Vector2  ## in the character plane (Sprite3D already has an `offset`)
+	var depth := -0.05  ## behind every part (they span 0-0.04 m)
 	func _process(_delta: float) -> void:
 		transform = part.transform
-		position += Vector3(shift.x, shift.y, -0.05)  # behind every part (they span 0-0.04 m)
+		position += Vector3(shift.x, shift.y, depth)
 		flip_h = part.flip_h
 
 ## An orb cell's visual. Picking the orb up frees its Area3D and everything under it, so once in the tree the pedestal
@@ -228,13 +243,23 @@ func attach_character(player: Node) -> void:
 	character.position.z = CHARACTER_Z
 	for part: Sprite3D in character.find_children("*", "Sprite3D", false, false):
 		part.layers = 1 << (CHARACTER_LAYER - 1)
-		for i in 8:
+		if String(part.name) not in RigCharacter3D.SCARF_SLOTS: part.modulate = BODY_TINT
+		for i in 9:
+			# Eight dark outline copies around the part, and one warm rim copy toward the sun, drawn after the outline.
 			var outline := OutlineSprite.new(); outline.name = "Outline%s%d" % [part.name, i]; outline.part = part
-			outline.shift = Vector2.from_angle(i * TAU / 8.0) * OUTLINE_PAD
 			outline.texture = part.texture; outline.pixel_size = part.pixel_size; outline.texture_filter = part.texture_filter
-			outline.shaded = false; outline.modulate = OUTLINE_COLOR; outline.render_priority = -1
-			outline.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD; outline.alpha_scissor_threshold = 0.5
+			outline.shaded = false
+			if i < 8:
+				outline.shift = Vector2.from_angle(i * TAU / 8.0) * OUTLINE_PAD
+				outline.modulate = OUTLINE_COLOR; outline.render_priority = -2
+			else:
+				outline.shift = RIM_SHIFT; outline.depth = -0.03
+				outline.modulate = RIM_COLOR; outline.render_priority = -1
 			character.add_child(outline)
+	var recolor := func() -> void:
+		for slot_name: String in RigCharacter3D.SCARF_SLOTS: (character.get_node(slot_name) as Sprite3D).modulate = SCARF_LIGHT[Resonance.active]
+	Resonance.changed.connect(recolor)  # after the character's own scarf coloring, which connected first
+	recolor.call()
 
 func make_backdrop(level: Greybox) -> Node3D:
 	_level = level
@@ -478,16 +503,36 @@ func _edge_dressing() -> Node3D:
 			var roll := rng.randf()
 			if roll < 0.35:
 				var spec: Array = EDGE_PROPS[rng.randi_range(0, EDGE_PROPS.size() - 1)]
-				var prop := _piece(spec[0]); var sc := rng.randf_range(spec[1], spec[2])
+				var prop := _piece(spec[0]); var sc := rng.randf_range(spec[1] * 0.6, spec[2] * 1.7)
 				prop.scale = Vector3.ONE * sc; prop.rotation_degrees.y = rng.randf_range(-180, 180)
 				prop.position = Vector3(c + rng.randf_range(0.2, 0.8), floor_y, rng.randf_range(EDGE_BACK_Z.x, EDGE_BACK_Z.y))
 				holder.add_child(prop)
+				var footprint := _aabb(prop).size * sc
+				holder.add_child(_contact_shadow(prop.position, maxf(footprint.x, footprint.z) * 1.4))
 			if rng.randf() < 0.25:
 				var crumb := _piece("boulder-a" if rng.randf() < 0.5 else "boulder-b"); var sc := rng.randf_range(0.12, 0.2)
 				crumb.scale = Vector3(sc * 1.4, sc, sc); crumb.rotation_degrees.y = rng.randf_range(-180, 180)
 				crumb.position = Vector3(c + rng.randf_range(0.15, 0.85), floor_y - 0.06, CRUMB_Z)
 				holder.add_child(crumb)
 	return holder
+
+## A soft round shadow lying on the ground, SIZE metres across, centred under POS.
+func _contact_shadow(pos: Vector3, size: float) -> MeshInstance3D:
+	if _shadow_material == null:
+		var image := Image.create(64, 64, false, Image.FORMAT_RGBA8)
+		for y in 64:
+			for x in 64:
+				var d := Vector2(x - 31.5, y - 31.5).length() / 32.0
+				image.set_pixel(x, y, Color(CONTACT_SHADOW, CONTACT_SHADOW.a * (1.0 - smoothstep(0.35, 1.0, d))))
+		_shadow_material = StandardMaterial3D.new()
+		_shadow_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		_shadow_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		_shadow_material.albedo_texture = ImageTexture.create_from_image(image)
+		_shadow_mesh = QuadMesh.new(); _shadow_mesh.orientation = PlaneMesh.FACE_Y
+	var shadow := MeshInstance3D.new(); shadow.mesh = _shadow_mesh; shadow.material_override = _shadow_material
+	shadow.scale = Vector3(size, 1.0, size * 0.6)
+	shadow.position = pos + Vector3(0, 0.04, 0)  # just above the sand-tile ripples
+	return shadow
 
 ## True when every level column the span [x0, x1] covers (clamped to the level) has solid ground in the bottom row.
 func _over_ground(x0: float, x1: float) -> bool:
