@@ -1,3 +1,18 @@
+"""THROWAWAY (Phase 1 bake-off, Violet glow-up technique trial). Builds technique B's
+(frame-by-frame painted) run-only contact-sheet row, in-game-scale row, and 30 fps GIF
+from the finalized frame files in frames/ (each already trimmed to its frame's shared
+body+scarf alpha bbox and rescaled to rig units by finalize_frames.py).
+
+Uses shoot.py's own fixed reference box, cell-size formula and background so the sheet
+is directly comparable to technique A's contact-sheet.png run row. Frame timing follows
+rig-src/anims.py's run animation (duration 0.6 s, loop): 8 painted keyframes, evenly
+spaced 0.075 s apart, each held (not interpolated) until the next frame's time -- the
+"the frame showing at that time" rule from the assignment. See technique-trial.md for
+the pose list and calibration reasoning.
+
+Run from the repository root:
+    uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/trial-b/build.py
+"""
 
 from PIL import Image, ImageDraw, ImageFont
 import json
@@ -9,27 +24,27 @@ LABEL_W = 90
 GUTTER = 2
 FRAMES_PER_ROW = 6
 GIF_FPS = 30.0
-DURATION = 0.6
+DURATION = 0.6  # rig-src/anims.py: A["run"] = {"duration": 0.6, "loop": True, ...}
 NFRAMES = 8
-FRAME_DT = DURATION / NFRAMES  # 0.075
-BACKGROUND = (128, 128, 128, 255)
+FRAME_DT = DURATION / NFRAMES  # 0.075 s per painted key
+BACKGROUND = (128, 128, 128, 255)  # #808080, shoot.py's BACKGROUND
 
-# shoot.py's fixed reference box (docs/bakeoff/protagonist/glow-up/rounds.md).
+# shoot.py's fixed reference box (docs/bakeoff/protagonist/glow-up/rounds.md, "Fixed layout").
 REFERENCE_BOX = {"x": -763.6, "y": -40.0, "width": 1316.9, "height": 1434.7}
-
-# Calibration anchor, measured directly from round-00/contact-sheet.png's run row, t=0
-# column (local-to-cell bbox: x 48-229, y 98-306; height 208 canvas px at SCALE=0.22).
-A_CONTACT_HEIGHT_CANVASPX = 208.0
-A_SCALE = 0.22
-A_CONTACT_HEIGHT_RIGUNITS = A_CONTACT_HEIGHT_CANVASPX / A_SCALE  # 945.4545...
+A_SCALE = 0.22  # shoot.py's SCALE
 
 # Ground line and horizontal anchor, as fractions of the cell's own height/width, measured
-# from A's own round-00 run row at SCALE=0.22 (ground: measured sole y 306 of 316; head-x:
-# average bbox-center x 135 of 290 across the six run-row columns) so both anchors scale
-# correctly to any canvas_scale (e.g. the in-game sheet's smaller cells), not just 0.22's.
+# from technique A's own round-00 contact-sheet.png run row at SCALE=0.22 (ground: the
+# measured sole y of every one of its six columns, 306-307 of a 316px cell; horizontal:
+# the average bbox-center x across those six columns, ~135 of a 290px cell). Fractions
+# (not absolute px) so both anchors scale correctly to the in-game sheet's smaller cells
+# too, not just 0.22's.
 GROUND_Y_FRACTION = 306.0 / 316.0
 HEAD_X_FRACTION = 135.0 / 290.0
 
+# character-rig.md's in-game scale formula, evaluated at the live rig's own setup height
+# (violet.meta.json height_px), the same standard technique A's technique-trial.md/
+# rounds.md sheets are held to.
 HEIGHT_PX = 988.58081
 IN_GAME_SCALE = (1.6 * 64.0) / HEIGHT_PX
 
@@ -38,64 +53,33 @@ def canvas_size(scale):
     return (round(REFERENCE_BOX["width"] * scale), round(REFERENCE_BOX["height"] * scale))
 
 
-def alpha_bbox(im):
-    return im.split()[-1].getbbox()
-
-
-def head_centroid_x(im, bbox):
-    left, upper, right, lower = bbox
-    band_h = max(1, int((lower - upper) * 0.18))
-    a = im.split()[-1]
-    px = a.load()
-    total_w = 0.0
-    total = 0.0
-    for y in range(upper, upper + band_h):
-        for x in range(left, right):
-            v = px[x, y]
-            if v > 8:
-                total_w += v
-                total += v * x
-    return total / total_w if total_w else (left + right) / 2.0
-
-
 def load(i, kind):
     return Image.open(f"{RAW_DIR}/run-{kind}-{i:02d}.png").convert("RGBA")
 
 
-# --- Calibration from frame 0's body ---
-body0 = load(0, "body")
-bbox0 = alpha_bbox(body0)
-crown_y0, sole_y0 = bbox0[1], bbox0[3]
-height_raw0 = sole_y0 - crown_y0
-RIG_PER_RAW = A_CONTACT_HEIGHT_RIGUNITS / height_raw0
-print("calibration: height_raw0", height_raw0, "RIG_PER_RAW", RIG_PER_RAW)
-
-frame_anchors = {}
-for i in range(NFRAMES):
-    body = load(i, "body")
-    bbox = alpha_bbox(body)
-    sole_y = bbox[3]
-    head_x = head_centroid_x(body, bbox)
-    frame_anchors[i] = {"sole_y": sole_y, "head_x": head_x}
-    print(i, frame_anchors[i])
+with open(f"{RAW_DIR}/finalize-record.json") as f:
+    FRAME_ANCHORS = {int(k): v for k, v in json.load(f).items()}
 
 
 def render_cell(i, canvas_scale):
-    """Body+scarf for frame i, scaled/translated so sole_y->ground line, head_x->the
-    horizontal anchor, onto a cell sized by canvas_size(canvas_scale) over BACKGROUND."""
+    """Body+scarf for painted frame i, scaled so canvas_scale rig-units-per-px matches
+    shoot.py's own SCALE/in_game_scale, translated so the frame's own sole_y anchor lands
+    on the ground line and its head_x anchor lands on the horizontal anchor, onto a cell
+    sized by canvas_size(canvas_scale) over the fixed neutral-gray BACKGROUND. The frame
+    files are already in rig-unit pixels (finalize_frames.py), so canvas_scale is the only
+    remaining scale factor here."""
     cell_w, cell_h = canvas_size(canvas_scale)
     ground_y = GROUND_Y_FRACTION * cell_h
     head_anchor_x = HEAD_X_FRACTION * cell_w
-    scale = RIG_PER_RAW * canvas_scale
+    anchors = FRAME_ANCHORS[i]
     body = load(i, "body")
     scarf = load(i, "scarf")
-    anchors = frame_anchors[i]
-    new_w = max(1, round(body.width * scale))
-    new_h = max(1, round(body.height * scale))
+    new_w = max(1, round(body.width * canvas_scale))
+    new_h = max(1, round(body.height * canvas_scale))
     body_s = body.resize((new_w, new_h), Image.LANCZOS)
     scarf_s = scarf.resize((new_w, new_h), Image.LANCZOS)
-    dx = head_anchor_x - anchors["head_x"] * scale
-    dy = ground_y - anchors["sole_y"] * scale
+    dx = head_anchor_x - anchors["head_x"] * canvas_scale
+    dy = ground_y - anchors["sole_y"] * canvas_scale
     cell = Image.new("RGBA", (cell_w, cell_h), BACKGROUND)
     cell.paste(scarf_s, (round(dx), round(dy)), scarf_s)
     cell.paste(body_s, (round(dx), round(dy)), body_s)
@@ -103,8 +87,7 @@ def render_cell(i, canvas_scale):
 
 
 def frame_index_at(t):
-    idx = int(t / FRAME_DT)
-    return min(idx, NFRAMES - 1)
+    return min(int(t / FRAME_DT), NFRAMES - 1)
 
 
 def build_row(canvas_scale, sample_times, out_path, label="run"):
@@ -136,12 +119,12 @@ mapping_ingame = build_row(IN_GAME_SCALE, sample_times, f"{OUT_DIR}/run-row-inga
 # GIF at 30 fps, main SCALE (matches shoot.py's own GIFs, which are also at SCALE not
 # in-game scale). Each of the NFRAMES painted frames holds from its own start time to
 # the next frame's start time (a discrete, "on the frame" hold, not resampled every
-# 1/30s tick); durations are each frame's held-span in ms, rounded to GIF's 10ms
-# (centisecond) granularity via cumulative rounding, so the 8 stored durations sum to
-# exactly round(DURATION*1000) rather than drifting from repeatedly rounding a single
-# 1000/30 ms figure down.
-boundaries_ms = [round(i * FRAME_DT * 1000) for i in range(NFRAMES + 1)]  # cumulative
-cum_cs = [round(b / 10) for b in boundaries_ms]  # centiseconds
+# 1/30s tick, since technique B has no in-between interpolation); durations are each
+# frame's held-span in ms, rounded to GIF's 10ms (centisecond) granularity via cumulative
+# rounding, so the 8 stored durations sum to exactly round(DURATION*1000) rather than
+# drifting low from repeatedly rounding a single 1000/30 ms figure down.
+boundaries_ms = [round(i * FRAME_DT * 1000) for i in range(NFRAMES + 1)]
+cum_cs = [round(b / 10) for b in boundaries_ms]
 durations_ms = [(cum_cs[i + 1] - cum_cs[i]) * 10 for i in range(NFRAMES)]
 assert sum(durations_ms) == round(DURATION * 1000), (durations_ms, sum(durations_ms))
 gif_frames = [render_cell(i, A_SCALE).convert("RGB") for i in range(NFRAMES)]
@@ -151,15 +134,12 @@ print("wrote", gif_path, "durations_ms", durations_ms, "sum", sum(durations_ms))
 
 with open(f"{OUT_DIR}/build-calibration.json", "w") as f:
     json.dump({
-        "RIG_PER_RAW": RIG_PER_RAW,
-        "height_raw0": height_raw0,
-        "A_CONTACT_HEIGHT_RIGUNITS": A_CONTACT_HEIGHT_RIGUNITS,
         "GROUND_Y_FRACTION": GROUND_Y_FRACTION,
         "HEAD_X_FRACTION": HEAD_X_FRACTION,
         "IN_GAME_SCALE": IN_GAME_SCALE,
         "main_cell_size": canvas_size(A_SCALE),
         "ingame_cell_size": canvas_size(IN_GAME_SCALE),
-        "frame_anchors": frame_anchors,
+        "frame_anchors": FRAME_ANCHORS,
         "sample_times_mapping": mapping_main,
         "gif_durations_ms": durations_ms,
     }, f, indent=2)

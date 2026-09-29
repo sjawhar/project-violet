@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "asset": "run-scarf-04.png",
-  "sha256": "962efc97223e6a473610f5193816122db06333f76ebae468142d696eabb912d8",
+  "sha256": "b315117376cf2e188c3dd5285f3b14baf4872157c8361952dbae4992f0ba6de8",
   "kind": "image",
   "origin": "generated",
-  "created_at": "2026-09-29T01:54:30+00:00",
+  "created_at": "2026-09-29T02:05:45+00:00",
   "generator": {
     "tool": "gen",
     "tool_version": "0.1.0",
@@ -19,7 +19,7 @@
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-04.png",
-        "sha256": "9fae3363adf9abfc0e331b8343f6be6e3fe4bcaede28d2a2f79e7841ead474fb"
+        "sha256": "30cc19f1e3ad208d4ba2a9a909b659223828788db6d604b63d0423ce4efa3457"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/scarf1.png",
@@ -27,6 +27,12 @@
       }
     ]
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletTrialB)",
+      "description": "trimmed to the frame's shared body+scarf alpha>8 bounding-box union (36,15)-(829,957) of the raw 1024x1024 canvas -> 793x942, then rescaled by factor 1.128227 (Lanczos) to the shared rig scale (calibrated against round-00/contact-sheet.png's run row, t=0 column: bbox height 208 canvas px at SCALE=0.22 = 945.4545 rig units) -> 895x1063",
+      "at": "2026-09-29T02:06:00+00:00"
+    }
+  ],
   "license": "proprietary"
 }
