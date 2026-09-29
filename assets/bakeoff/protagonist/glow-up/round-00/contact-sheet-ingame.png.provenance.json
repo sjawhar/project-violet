@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "asset": "run.gif",
-  "sha256": "c7fca4b97e933a111312f8b006bec2f1c168409d53c55afe3eece85fb8bc3165",
-  "kind": "animation",
+  "asset": "contact-sheet-ingame.png",
+  "sha256": "637130958e360df6ce16a5599a54eecaab13102bbc020ad8935085df5bf6bb49",
+  "kind": "image",
   "origin": "derived",
   "created_at": "2026-09-29T01:01:37+00:00",
   "generator": {

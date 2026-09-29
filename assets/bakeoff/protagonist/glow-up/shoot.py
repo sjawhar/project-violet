@@ -10,6 +10,15 @@ constants below after round 0 ships, even if a later round's rig grows past the
 padding -- the box has headroom for exactly that, and re-fitting it would make rounds
 incomparable.
 
+Also writes contact-sheet-ingame.png (added at round 1; round 0 does not have one), a
+second contact sheet at the actual in-game size: character-rig.md's own scale formula,
+`(1.6 tiles * 64 px/tile) / height_px`, recomputed from *this* rig's own setup height
+every round -- not a frozen pixel size -- because that formula is exactly what a lane
+applies at runtime, and it always normalizes her to 1.6 tiles regardless of height_px.
+This sheet is never shown to the critic (whose inputs stay exactly contact-sheet.png
+plus the seven GIFs, unchanged since round 0); it exists only so a human can see how
+she reads at the size the lanes' fixed camera actually renders her.
+
 Run from the repository root:
     uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/shoot.py \
         --rig assets/bakeoff/protagonist/rig/violet.json \
@@ -40,6 +49,17 @@ GUTTER = 2
 GIF_FPS = 30.0
 
 
+# character-rig.md's own scale formula, recomputed from each round's actual rig height
+# (not frozen), so this sheet always shows her at the exact size a lane's camera renders
+# her -- 1.6 tiles tall, 64 px/tile in Godot 2D.
+TILE_PX = 64.0
+TARGET_HEIGHT_TILES = 1.6
+
+
+def in_game_scale(spine: dict) -> float:
+    return (TARGET_HEIGHT_TILES * TILE_PX) / spine["skeleton"]["height"]
+
+
 def sample_times(anim_name: str, duration: float) -> list[float]:
     """Six evenly spaced sample times. Looping animations (idle, run) sample across one
     loop period, excluding t=duration: their first and last keyframe already match, so
@@ -50,19 +70,19 @@ def sample_times(anim_name: str, duration: float) -> list[float]:
     return [i * duration / (FRAMES_PER_ROW - 1) for i in range(FRAMES_PER_ROW)]
 
 
-def render_still(spine: dict, parts_dir: Path, anim_name: str, t: float, cache: dict) -> Image.Image:
+def render_still(spine: dict, parts_dir: Path, anim_name: str, t: float, cache: dict, *, scale: float = SCALE) -> Image.Image:
     """One frame, composited onto the fixed neutral-gray background (spinerig's own
     render_frame returns a transparent RGBA canvas)."""
-    frame = R.render_frame(spine, parts_dir, anim_name, t, scale=SCALE, margin=MARGIN, image_cache=cache, bounds=REFERENCE_BOX)
+    frame = R.render_frame(spine, parts_dir, anim_name, t, scale=scale, margin=MARGIN, image_cache=cache, bounds=REFERENCE_BOX)
     flat = Image.new("RGBA", frame.size, BACKGROUND)
     flat.paste(frame, (0, 0), frame)
     return flat
 
 
-def build_contact_sheet(spine: dict, parts_dir: Path, cache: dict) -> Image.Image:
+def build_contact_sheet(spine: dict, parts_dir: Path, cache: dict, *, scale: float = SCALE) -> Image.Image:
     """Seven rows (one per animation, in character-rig.md's order), six evenly spaced
     columns each, a label column on the left naming the animation."""
-    cell_w, cell_h = R.canvas_size(REFERENCE_BOX, SCALE, MARGIN)
+    cell_w, cell_h = R.canvas_size(REFERENCE_BOX, scale, MARGIN)
     width = LABEL_W + FRAMES_PER_ROW * cell_w + (FRAMES_PER_ROW - 1) * GUTTER
     height = len(ANIMS) * cell_h + (len(ANIMS) - 1) * GUTTER
     sheet = Image.new("RGBA", (width, height), BACKGROUND)
@@ -73,7 +93,7 @@ def build_contact_sheet(spine: dict, parts_dir: Path, cache: dict) -> Image.Imag
         y0 = row * (cell_h + GUTTER)
         draw.text((6, y0 + cell_h // 2 - 6), anim_name, fill=(20, 20, 20, 255), font=font)
         for col, t in enumerate(sample_times(anim_name, duration)):
-            still = render_still(spine, parts_dir, anim_name, t, cache)
+            still = render_still(spine, parts_dir, anim_name, t, cache, scale=scale)
             x0 = LABEL_W + col * (cell_w + GUTTER)
             sheet.paste(still, (x0, y0))
     return sheet
@@ -103,6 +123,10 @@ def main(argv: list[str] | None = None) -> int:
     sheet_path = args.out / "contact-sheet.png"
     sheet.convert("RGB").save(sheet_path)
 
+    ingame_sheet = build_contact_sheet(spine, args.parts, cache, scale=in_game_scale(spine))
+    ingame_sheet_path = args.out / "contact-sheet-ingame.png"
+    ingame_sheet.convert("RGB").save(ingame_sheet_path)
+
     for anim_name in ANIMS:
         frames = build_gif_frames(spine, args.parts, anim_name, cache)
         gif_path = args.out / f"{anim_name}.gif"
@@ -115,7 +139,7 @@ def main(argv: list[str] | None = None) -> int:
             loop=0,
         )
 
-    print(f"wrote {sheet_path} and {len(ANIMS)} GIFs to {args.out}")
+    print(f"wrote {sheet_path}, {ingame_sheet_path}, and {len(ANIMS)} GIFs to {args.out}")
     return 0
 
 

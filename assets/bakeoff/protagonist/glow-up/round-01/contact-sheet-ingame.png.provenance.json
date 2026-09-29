@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
-  "asset": "run.gif",
-  "sha256": "c7fca4b97e933a111312f8b006bec2f1c168409d53c55afe3eece85fb8bc3165",
-  "kind": "animation",
+  "asset": "contact-sheet-ingame.png",
+  "sha256": "c014a09e47e1babb97386db090716f0a2efca0fbdcac0bb09f1da374d9e590a9",
+  "kind": "image",
   "origin": "derived",
-  "created_at": "2026-09-29T01:01:37+00:00",
+  "created_at": "2026-09-29T01:08:01+00:00",
   "generator": {
     "tool": "assets/bakeoff/protagonist/glow-up/shoot.py",
-    "tool_version": "shoot.py round-00 (spinerig render_frame with a fixed reference box; docs/bakeoff/protagonist/glow-up/rounds.md)",
+    "tool_version": "shoot.py round-01 (spinerig render_frame with the round-0 fixed reference box; docs/bakeoff/protagonist/glow-up/rounds.md)",
     "model": null,
     "params": {
-      "command": "uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/shoot.py --rig assets/bakeoff/protagonist/rig/violet.json --parts assets/bakeoff/protagonist/parts --out assets/bakeoff/protagonist/glow-up/round-00"
+      "command": "uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/shoot.py --rig assets/bakeoff/protagonist/rig/violet.json --parts assets/bakeoff/protagonist/parts --out assets/bakeoff/protagonist/glow-up/round-01"
     },
     "inputs": [
       {
-        "path": "assets/bakeoff/protagonist/rig/violet.round-00.json",
-        "sha256": "f6319ff24ba4a39e4f09138a5551c06d95a807b53d8b097df0feaec695b8d3aa"
+        "path": "assets/bakeoff/protagonist/rig/violet.round-01.json",
+        "sha256": "668357e41d280364afee271c263dbd04c3c363d63dea5c72a5c9d290224d9907"
       },
       {
-        "path": "assets/bakeoff/protagonist/rig/violet.round-00.meta.json",
+        "path": "assets/bakeoff/protagonist/rig/violet.round-01.meta.json",
         "sha256": "fb6192cfb3f0b6f14256c7ff8101a5d3afdfa674d520f5bc17d300d3636c3342"
       },
       {
@@ -38,8 +38,8 @@
         "sha256": "1bcaab8efcf8c888aae0a0c24809f0ddb8da5d8d7b660bdd9a703d4826565b30"
       },
       {
-        "path": "assets/bakeoff/protagonist/parts/head.round-00.png",
-        "sha256": "81960bde8738760d562474083f5398ba8c186b48d35cd6654660a748cb0318fd"
+        "path": "assets/bakeoff/protagonist/parts/head.round-01.png",
+        "sha256": "9a4b84433f2525a520952797d7fa8fce50db1d58394e27437252c98ae0919bb8"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/hips.png",

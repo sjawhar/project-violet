@@ -28,6 +28,14 @@ fair:
 - **Row order**: `idle, run, jump, fall, double_jump, dash, land`, one row each, a label column on the
   left.
 - **GIFs**: one per animation, every frame at 30 fps, same box/scale/background as the contact sheet.
+- **In-game-scale sheet** (added at round 1, from cross-lane feedback that at the lanes' fixed camera
+  she reads muddy/unlit, her face is unreadable at ~95-120 px, and the scarf is a thin ~8 px streak):
+  `contact-sheet-ingame.png`, the same reference box and frame sampling, but at
+  `character-rig.md`'s own scale formula, `(1.6 tiles · 64 px/tile) / height_px`, recomputed from each
+  round's own rig height rather than frozen — that formula is what a lane actually applies at runtime,
+  and it self-normalizes her to 1.6 tiles regardless of small height_px drift. Backfilled for round 0.
+  **Not shown to the critic**: the critic's inputs stay exactly `contact-sheet.png` plus the seven
+  GIFs, unchanged since round 0.
 
 Regenerate with `uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/shoot.py --rig
 assets/bakeoff/protagonist/rig/violet.json --parts assets/bakeoff/protagonist/parts --out
@@ -70,17 +78,27 @@ Before each call the workstream copies the round's `contact-sheet.png` and seven
 directory outside the repo, assigns the letters with Python's `random` module, and records the mapping
 below. The critic is a fresh `astra` subagent each round; its full reply is saved as `round-NN/critic.md`.
 
+**Frozen inputs.** `provenance check` verifies every input's *current* hash, so once a round
+overwrites a live shared file (`parts/*.png`, `rig/violet.json[.meta]`, `rig-src/rig.json`), every
+earlier round's shot provenance that cited it by that path goes stale. Before overwriting, this
+workstream freezes the outgoing content at `<name>.round-NN.<ext>` beside the live file (same
+generator metadata as the live file's own record, since it's the same pixels/bytes, just parked at a
+path nothing will touch again), then re-points the superseded round's own shot records at the frozen
+copy with `provenance record --force`.
+
 ## Round table
 
 | Round | Start (UTC) | End (UTC) | What changed | Spend (est.) | Letter map | Axes: new round better / worse | Scores (A / B): visual_quality, character_appeal, color_readability | Gaps (new round) | Kept? |
 |---|---|---|---|---|---|---|---|---|---|
 | 0 | 2026-09-29T00:40:00Z | 2026-09-29T00:52:00Z | Baseline: the current rig (README.md), unchanged. | $0 | A = round 0 (only set) | — (nothing to compare) | A: 2, 2, 3 (no B) | 1) jump/fall/double_jump read as almost one pose (arms up, one knee bent) — a player can't tell which air-state she's in; 2) no face — every frame is a flat smudge with no eyes/brow, killing "alive" appeal; 3) scribble-texture legs/ankles break the silhouette exactly at the feet, where platforming footing/landing cues need to read cleanest. | kept (round 0 is always kept) |
+| 1 | 2026-09-29T01:05:00Z | 2026-09-29T01:35:00Z | Fixed round 0's gap 2 (no face): repainted `head.png` (technique A, cutout) with a bigger, flatter, higher-contrast eye/brow so it survives the fixed render scale — but the prompt also banned the small specular catchlight the original head had, to avoid drifting into anime style. 1st candidate drifted into anime line art/eyelashes/blush and was rejected before commit (not counted as a round of its own). | ~$0.44 est. (2 gpt-image-2 calls, quality high, 1024x1024, one rejected pre-commit) | A = round 0 (kept), B = round 1 (new) | none better; **worse: character_appeal** | A: 3, 3, 3 — B: 3, 2, 3 | (B's own three gaps) 1) same flat-shading/no-rim-light gap as A; 2) same cloth-edge anti-aliasing halo as A; 3) the bigger/bolder eye lost its catchlight and reads "dead"/asleep even in dash and double_jump — critic's own fix: "add a 1-2px highlight and lighten the iris value slightly." | **not kept — reverted.** `parts/head.png`, `rig/violet.json`, `rig/violet.meta.json` restored to round 0's content; round 1's shots and this critique stay as the historical record. |
 
 ## Running spend
 
 | Round | Calls | Est. USD | Running total |
 |---|---|---|---|
 | 0 | 0 gen calls | $0 | $0 |
+| 1 | 2 gpt-image-2 calls (quality high, 1024x1024, one rejected) | ~$0.44 est. ($0.22 per call, the rate `docs/bakeoff/shared-costs.md` measured from OpenAI's own reported usage in #28's arm round) | ~$0.44 |
 
 ## Stop reason
 
