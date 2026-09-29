@@ -25,7 +25,7 @@ const OPEN_KINDS := ["empty", "start", "goal", "orb_red", "orb_green"]
 ## Set by make_backdrop, which Game2D calls before it builds the cells: solid tiles depend on their neighbours.
 var _level: Greybox
 var _ground_row := -1
-## Per cell, the grid distance (8-neighbour steps) to the nearest open cell; the terrain shader darkens with it.
+## Per cell, its distance under the open air that lights it (see _distance_to_air); the terrain shader darkens with it.
 var _air: PackedInt32Array
 
 ## A tagged cell's wall or platform, painted neutral gray: gray until its color is acquired, tinted once acquired,
@@ -109,6 +109,9 @@ func _terrain(cell: Vector2i, ts: float) -> Node2D:
 	mat.set_shader_parameter("side", sprite.region_rect.size.x)
 	mat.set_shader_parameter("open", open)
 	mat.set_shader_parameter("cell", Vector2(cell))
+	var foot := func(dx: int) -> float:  # a surface cell at the foot of rock rising beside it
+		return float(not covered and _level.kind_at(cell.x + dx, cell.y) == "solid" and _level.kind_at(cell.x + dx, cell.y - 1) == "solid")
+	mat.set_shader_parameter("foot", Vector2(foot.call(-1), foot.call(1)))
 	mat.set_shader_parameter("air", Vector4(_corner_air(cell), _corner_air(cell + Vector2i(1, 0)),
 		_corner_air(cell + Vector2i(0, 1)), _corner_air(cell + Vector2i(1, 1))))
 	sprite.material = mat
@@ -116,8 +119,8 @@ func _terrain(cell: Vector2i, ts: float) -> Node2D:
 	holder.add_child(sprite)
 	for side_open: Array in [[open.x, -1.0], [open.z, 1.0]]:  # a soft shadow dropped onto the backdrop beside an open side
 		if side_open[0] < 0.5: continue
-		var face: float = side_open[1] * ts / 2.0
-		var out: float = face + side_open[1] * ts * 0.5
+		var face: float = side_open[1] * ts * 0.1  # starts under the rock, so the eroded edge shows the gradient too
+		var out: float = side_open[1] * ts * 0.95
 		var shadow := Polygon2D.new(); shadow.z_index = -1
 		shadow.polygon = PackedVector2Array([Vector2(face, -ts / 2.0), Vector2(out, -ts / 2.0), Vector2(out, ts / 2.0), Vector2(face, ts / 2.0)])
 		var top_alpha := 0.0 if open.y > 0.5 else 0.5  # a surface cell's shadow fades out at the ground line
@@ -139,25 +142,29 @@ func _corner_air(corner: Vector2i) -> float:
 	return total / 4.0
 
 func _air_at(c: Vector2i) -> int:
-	if c.x < 0 or c.y < 0 or c.x >= _level.width or c.y >= _level.height: return 3  # beyond the level is deep rock
+	if c.x < 0 or c.y < 0 or c.x >= _level.width or c.y >= _level.height: return AIR_CAP  # beyond the level is deep rock
 	return _air[c.y * _level.width + c.x]
 
-## Breadth-first distance from every cell to the nearest open cell, capped at 3.
+## Per cell, how far it lies under the open air that lights it: the cheapest path to an open cell moving up or
+## diagonally up (cost 1) or sideways (cost 2), never down, capped at AIR_CAP. Rock is lit from above, so a mass darkens
+## steadily from its top down and only a little from its open sides.
+const AIR_CAP := 5
 static func _distance_to_air(level: Greybox) -> PackedInt32Array:
-	var dist := PackedInt32Array(); dist.resize(level.width * level.height); dist.fill(3)
-	var frontier: Array[Vector2i] = []
+	var w := level.width
+	var dist := PackedInt32Array(); dist.resize(w * level.height); dist.fill(AIR_CAP)
+	# Rows top to bottom: a cell's cost depends only on the row above and on its own row, so two sweeps of each row
+	# (left to right, right to left) settle the sideways steps.
 	for r in level.height:
-		for c in level.width:
-			if level.kind_at(c, r) in OPEN_KINDS: dist[r * level.width + c] = 0; frontier.append(Vector2i(c, r))
-	for step in range(1, 3):
-		var next: Array[Vector2i] = []
-		for p in frontier:
-			for dy in [-1, 0, 1]:
-				for dx in [-1, 0, 1]:
-					var q: Vector2i = p + Vector2i(dx, dy)
-					if q.x < 0 or q.y < 0 or q.x >= level.width or q.y >= level.height: continue
-					if dist[q.y * level.width + q.x] > step: dist[q.y * level.width + q.x] = step; next.append(q)
-		frontier = next
+		for c in w:
+			if level.kind_at(c, r) in OPEN_KINDS: dist[r * w + c] = 0; continue
+			var best := AIR_CAP
+			if r > 0:
+				best = mini(best, dist[(r - 1) * w + c] + 1)
+				if c > 0: best = mini(best, dist[(r - 1) * w + c - 1] + 1)
+				if c < w - 1: best = mini(best, dist[(r - 1) * w + c + 1] + 1)
+			dist[r * w + c] = best
+		for c in range(1, w): dist[r * w + c] = mini(dist[r * w + c], dist[r * w + c - 1] + 2)
+		for c in range(w - 2, -1, -1): dist[r * w + c] = mini(dist[r * w + c], dist[r * w + c + 1] + 2)
 	return dist
 
 ## Shows one 1/n-by-1/n piece of a seamless tile texture per cell, picked by the cell's position, so one texture

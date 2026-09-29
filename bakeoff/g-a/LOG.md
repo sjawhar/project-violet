@@ -20,6 +20,7 @@ sessions:
   - {start: "2026-09-28T17:28:00Z", end: "2026-09-28T17:45:00Z", purpose: "protagonist rig re-copied from PR #28 at 9b22572d (four arm parts repainted, every animation bends at the elbow, double jump without the flip), replacing the eafccae8 copy; ci.sh rig-test 0 failures; running and mid-double-jump frames looked at in software"}
   - {start: "2026-09-29T00:25:02Z", end: "2026-09-29T00:34:00Z", purpose: "glow-up round 0"}
   - {start: "2026-09-29T00:41:38Z", end: "2026-09-29T01:07:00Z", purpose: "glow-up round 1"}
+  - {start: "2026-09-29T01:13:38Z", end: "2026-09-29T01:28:00Z", purpose: "glow-up round 2"}
 costs:
   - {item: "gen image gpt-image-2 1024x1024 quality=low, wall-tile (rejected)", usd: 0.0143, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:47:36+00:00)"}
   - {item: "gen image gpt-image-2 1536x1024 quality=low, backdrop-near (rejected)", usd: 0.0062, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
@@ -87,6 +88,7 @@ friction:
   - {at: "2026-09-28T17:05:00Z", what: "Sami on the lanes: 'Why is everything a crystal?' The crystal tag walls and platforms were the desert brief's invention, not his 2019 design (plain colored walls); the orb was a faceted crystal ball too", workaround: "tag-wall and tag-platform generated as ordinary neutral-gray stone, the orb as a smooth glowing sphere; crystal pieces deleted; hazard spikes, goal gate and backdrops checked and have no crystal shapes"}
   - {at: "2026-09-28T17:12:00Z", what: "the first tag-platform broke at its side seam (strata did not continue across the join)", workaround: "regenerated once; the second tiled. tag-platform is sampled like platform-tile (half the texture per cell, slab top on every cell)"}
   - {at: "2026-09-29T00:50:00Z", what: "glow-up round 1: the first terrain shader pass darkened each cell by the count of solid cells straight above it, which drew dark columns under every raised block; a ColorRect's UV did not give the contact shadow a gradient", workaround: "darkening follows a breadth-first distance-to-air field averaged at cell corners, so it runs smoothly across cells; contact shadows are Polygon2D quads with vertex-colour alpha"}
+  - {at: "2026-09-29T01:20:00Z", what: "glow-up round 2: with diagonal-up steps costing 2, the new upward light field still drew darker columns in the ground under the bump and the pillar", workaround: "diagonal-up steps cost 1 like straight up; only sideways steps cost 2"}
 blockers: []
 deliverables: {build: bakeoff/g-a/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-a/reports/replay.json}
 ---

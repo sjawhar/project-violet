@@ -2,14 +2,15 @@
 // Collision stays the grid's; this only changes what is drawn inside each cell.
 // - Open sides (next to empty space) are eroded by a few noisy pixels and open top corners are rounded, so edges
 //   read as broken rock instead of ruled lines. The walkable top is never eroded except at its rounded corners.
-// - The mass darkens with its distance from open air (a smooth field across cells), so the foreground reads as a
-//   dark silhouette under a lit lip.
+// - The mass darkens smoothly from its lit top down (a field interpolated across cells), so the foreground reads
+//   as a dark silhouette under a lit lip; the ground darkens where a block rises out of it (ambient occlusion).
 // - A warm rim picks out the sunlit top and, faintly, the open sides.
 shader_type canvas_item;
 uniform float side = 256.0;        // the sprite's region size in texture pixels (VERTEX spans -side/2..side/2)
 uniform vec4 open = vec4(0.0);     // x left, y top, z right, w bottom: 1 where the neighbour cell is empty
 uniform vec2 cell = vec2(0.0);     // the cell's grid position, so the noise runs on across cells
-uniform vec4 air = vec4(0.0);      // distance to open air, in cells, at the corners: x top-left, y top-right, z bottom-left, w bottom-right
+uniform vec4 air = vec4(0.0);      // depth under the open air, at the corners: x top-left, y top-right, z bottom-left, w bottom-right
+uniform vec2 foot = vec2(0.0);     // x left, y right: 1 on a surface cell at the foot of rock rising beside it
 varying vec2 local;                // 0..1 across the cell, y down
 
 void vertex() { local = VERTEX / side + 0.5; }
@@ -41,8 +42,11 @@ void fragment() {
 	alpha *= mix(1.0, 1.0 - smoothstep(r - aa, r, d_tr), open.z * open.y);
 	// Dark foreground mass: full value at the open surface, falling off over about two cells into the rock.
 	float below = mix(mix(air.x, air.y, local.x), mix(air.z, air.w, local.x), local.y);
-	float shade = mix(1.0, 0.24, smoothstep(0.4, 1.9, below));
-	shade *= 0.92 + 0.16 * fbm(w * 2.0);                       // broad painted value variation, not one flat fill
+	float shade = mix(1.0, 0.26, smoothstep(0.6, 3.6, below));
+	shade *= 0.94 + 0.10 * fbm(w * 0.9);                       // broad, slow value variation, not one flat fill
+	float ao = max(foot.x * (1.0 - smoothstep(0.0, 0.85, length(local * vec2(1.0, 1.6)))),
+		foot.y * (1.0 - smoothstep(0.0, 0.85, length((local - vec2(1.0, 0.0)) * vec2(1.0, 1.6)))));
+	shade *= 1.0 - 0.5 * ao;
 	// Warm rim: the sunlit top edge, and a thin glint on open sides.
 	float rim_top = open.y * (1.0 - smoothstep(0.0, 0.09, local.y));
 	float rim_side = max(open.x * (1.0 - smoothstep(cut_l, cut_l + 0.05, local.x)),
