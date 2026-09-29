@@ -68,7 +68,7 @@ Lane costs and sessions also go in the lane's `LOG.md` as usual, with the purpos
 
 It stops at the first of these:
 
-- two rounds in a row where the critic calls the new round better on no axis, each round fixing a different gap. A round that retries the previous round's gap doesn't extend the streak, so two attempts at one fix can't end a workstream;
+- two rounds in a row where the critic calls the new round better on no axis. A round whose record row says it retries the previous round's gap, and that the critic calls better on no axis, leaves the streak where it was, so two attempts at one fix can't end a workstream. Only the first retry of a gap does this; a retry of a retry extends the streak as usual;
 - $40 of generation spent in the workstream, counted as above;
 - round 10;
 - a wall: the next gap needs a paid tool or a human's skill. A lane records it under `blockers` in its `LOG.md`, and Violet in `rounds.md`, with the evidence. That is how a workstream asks for a purchase under decision 0012.
