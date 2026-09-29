@@ -15,9 +15,9 @@
 <use href="#band" transform="translate(-512 512)"/>
 <use href="#band" transform="translate(1536 768) scale(-1 1)"/>
 <use href="#band" transform="translate(512 768) scale(-1 1)"/>
-<path fill="#5a4a7a" d="M246,280 L266,318 L256,356 L272,388 L258,392 L240,358 L248,320 L232,284 Z"/>
+<path fill="#7a4a2e" d="M246,280 L266,318 L256,356 L272,388 L258,392 L240,358 L248,320 L232,284 Z"/>
 <path fill="#8e5a38" d="M620,690 L780,684 L860,694 L856,702 L780,694 L622,700 Z"/>
-<path fill="#5a4a7a" d="M846,40 L860,70 L852,96 L840,94 L846,70 L834,44 Z"/>
+<path fill="#7a4a2e" d="M846,40 L860,70 L852,96 L840,94 L846,70 L834,44 Z"/>
 <ellipse fill="#8e5a38" cx="124" cy="582" rx="28" ry="15"/>
 <ellipse fill="#c2875a" cx="120" cy="574" rx="28" ry="15"/>
 <ellipse fill="#8e5a38" cx="546" cy="330" rx="18" ry="10"/>

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "asset": "ground-tile-c.svg",
-  "sha256": "4a9d97d0e95755feb935a285f19b3bf206f08f47facb02f53f8835b58ea17713",
+  "sha256": "9d6de4dcdd60462703b8bf77190da1fd6cf471240d642d1a92cb51d212b00432",
   "kind": "image",
   "origin": "generated",
   "created_at": "2026-09-29T00:45:49+00:00",
@@ -14,6 +14,12 @@
     "params": {},
     "inputs": []
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "anthropic claude-opus-5-5 (agent)",
+      "description": "glow-up round 7: the shadow-violet cracks recoloured to dark rock so they stop reading as repeated blue marks",
+      "at": "2026-09-29T02:36:23+00:00"
+    }
+  ],
   "license": "proprietary"
 }

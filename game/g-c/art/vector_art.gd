@@ -6,12 +6,13 @@ extends PaintedArt
 ## the camera shows above and below the level; tag colours locked and lit by the low sun in art/reveal.gdshader, with a
 ## chevron carved on red and a double wave on green; and the character drawn through art/character_outline.gdshader
 ## (dark outline, thin light halo, warm sun-side rim, hardened alpha fringe). The character is GreyboxArt's: the rig in
-## protagonist/ once it is there, else the STAND-IN. Set dressing and atmosphere: soft light shafts from the sun on the
-## far layer, dust motes drifting in the air, dry-grass tufts on some open block tops, and a dark foreground silhouette
-## strip along the bottom of the frame on a faster parallax layer. Terrain construction: each connected rock mass takes
-## its own tone and its wall variant per four-row band (no vertical variant seams inside a block), open tops carry an
-## uneven sand lip, exposed sides an eroded rock edge (warm on the sunward left, shaded on the right), and pits a
-## painted inside that falls away into the shadow the spikes stand in. THROWAWAY.
+## protagonist/ once it is there, else the STAND-IN. Set dressing and atmosphere: aerial haze that grows with each
+## backdrop layer's distance, uneven soft light shafts from the sun on the far layer, dust motes drifting in the air,
+## dry-grass tufts on some open block tops, and a dark foreground silhouette strip along the bottom of the frame on a
+## faster parallax layer. Terrain construction: each connected rock mass takes its own tone and its wall variant per
+## four-row band (no vertical variant seams inside a block), open tops carry an uneven sand lip, exposed sides an
+## eroded rock edge (warm on the sunward left, shaded on the right), and pits a painted inside that falls away into the
+## shadow the spikes stand in. THROWAWAY.
 ## Extra wall-tile and ground-tile variants; each keeps the band heights where blocks meet, so any mix is seamless.
 @export var wall_tile_variants: Array[Texture2D] = []
 @export var ground_tile_variants: Array[Texture2D] = []
@@ -31,6 +32,9 @@ var _mass := {}
 const SUN := Vector2(900, 660)
 ## The foreground strip's parallax: faster than the playfield, so it reads as nearer.
 const FOREGROUND_SCROLL := 1.25
+const HAZE := preload("res://art/haze.gdshader")
+## Aerial perspective per backdrop layer: [haze colour, amount]; the farther the layer, the more it fades.
+const LAYER_HAZE := {"Mid": [Color("#dcb2aa"), 0.3], "Near": [Color("#ecd0aa"), 0.12]}
 ## The top colour of backdrop-far.svg's sky gradient, used above the level.
 const SKY_TOP := Color("#2e6d7e")
 ## How far the pit darkening reaches above a hazard cell, in cells.
@@ -56,6 +60,10 @@ func make_backdrop(level: Greybox) -> Node2D:
 		rock.add_child(tile)
 	holder.add_child(rock)
 	(holder.get_node("Far") as Node2D).add_child(_light_shafts())
+	for layer_name: String in LAYER_HAZE:
+		var mat := ShaderMaterial.new(); mat.shader = HAZE
+		mat.set_shader_parameter("haze", LAYER_HAZE[layer_name][0]); mat.set_shader_parameter("amount", LAYER_HAZE[layer_name][1])
+		(holder.get_node(layer_name).get_child(0) as CanvasItem).material = mat
 	holder.add_child(_foreground(level))
 	return holder
 
@@ -80,13 +88,14 @@ func _find_masses(level: Greybox) -> void:
 func _light_shafts() -> Node2D:
 	var rays := Node2D.new(); rays.name = "LightShafts"
 	var mat := CanvasItemMaterial.new(); mat.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
-	for spec: Vector2 in [Vector2(-160, 9), Vector2(-136, 6), Vector2(-110, 10), Vector2(-82, 7), Vector2(-56, 9), Vector2(-32, 6)]:
+	# [angle, width, strength, length]: uneven on purpose, so the fan does not read as a stamped sunburst
+	for spec: Vector4 in [Vector4(-150, 14, 0.07, 1300), Vector4(-122, 7, 0.05, 900), Vector4(-97, 18, 0.09, 1500), Vector4(-66, 9, 0.05, 1100), Vector4(-41, 16, 0.07, 1400)]:
 		var a0 := deg_to_rad(spec.x - spec.y / 2.0); var a1 := deg_to_rad(spec.x + spec.y / 2.0); var am := deg_to_rad(spec.x)
 		var ray := Polygon2D.new(); ray.material = mat
 		# bright along the middle, fading to nothing at both edges and at the far end
-		ray.polygon = PackedVector2Array([SUN, SUN + Vector2(cos(a0), sin(a0)) * 1500.0, SUN + Vector2(cos(am), sin(am)) * 1500.0, SUN + Vector2(cos(a1), sin(a1)) * 1500.0])
+		ray.polygon = PackedVector2Array([SUN, SUN + Vector2(cos(a0), sin(a0)) * spec.w, SUN + Vector2(cos(am), sin(am)) * spec.w, SUN + Vector2(cos(a1), sin(a1)) * spec.w])
 		var warm := Color(1.0, 0.86, 0.62, 0.0)
-		ray.vertex_colors = PackedColorArray([Color(warm, 0.11), warm, Color(warm, 0.03), warm])
+		ray.vertex_colors = PackedColorArray([Color(warm, spec.z), warm, Color(warm, spec.z * 0.15), warm])
 		ray.polygons = [PackedInt32Array([0, 1, 2]), PackedInt32Array([0, 2, 3])]
 		rays.add_child(ray)
 	return rays

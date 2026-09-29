@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3072 1024" width="3072" height="1024">
 <!-- THROWAWAY bake-off lane G-C: backdrop-far, hand-written vector. Golden-hour sky as a vertical gradient from deep
-     teal to peach, a low sun with a soft bloom, distinct cloud banks and wisps lit on top and shaded underneath, and two distant mesa ranges
+     teal to peach, a low sun with a soft bloom inside a wide light bleed, distinct cloud banks and wisps lit on top and shaded underneath, and two distant mesa ranges
      that fade into horizon haze. 3072 px wide so one screen never shows the same art twice. Opaque; seamless
      horizontally (the ranges meet themselves flat at x=0 and x=3072, the sun and clouds stay inside). -->
 <defs>
@@ -19,6 +19,11 @@
 <stop offset="0.5" stop-color="#f8cda4" stop-opacity="0.22"/>
 <stop offset="1" stop-color="#f2c49b" stop-opacity="0"/>
 </radialGradient>
+<radialGradient id="bleed" cx="0.5" cy="0.5" r="0.5">
+<stop offset="0" stop-color="#ffe2b8" stop-opacity="0.5"/>
+<stop offset="0.4" stop-color="#f6c9a2" stop-opacity="0.2"/>
+<stop offset="1" stop-color="#f2c49b" stop-opacity="0"/>
+</radialGradient>
 <linearGradient id="rangeFar" x1="0" y1="0" x2="0" y2="1">
 <stop offset="0" stop-color="#c7a0a9"/>
 <stop offset="1" stop-color="#f0c7a6"/>
@@ -29,6 +34,7 @@
 </linearGradient>
 </defs>
 <rect width="3072" height="1024" fill="url(#sky)"/>
+<circle cx="900" cy="660" r="1250" fill="url(#bleed)"/>
 <circle cx="900" cy="660" r="760" fill="url(#bloom)"/>
 <circle cx="900" cy="660" r="94" fill="#fff5e0"/>
 <g fill="#f9e2cc" fill-opacity="0.9">

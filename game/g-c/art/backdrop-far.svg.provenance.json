@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "asset": "backdrop-far.svg",
-  "sha256": "2fafd07ffc6654eb26215ea5e0eea6eff93edae345a93010ba32a5002431eed2",
+  "sha256": "213f636617ec890e3c44fae607a556db6205265369b897746524bf09baca79bc",
   "kind": "image",
   "origin": "generated",
   "created_at": "2026-09-27T18:11:59+00:00",
@@ -24,6 +24,11 @@
       "by": "anthropic claude-opus-5-5 (agent)",
       "description": "glow-up round 4: the one reused cloud shape replaced by six distinct hand-drawn cloud banks and wisps",
       "at": "2026-09-29T01:55:24+00:00"
+    },
+    {
+      "by": "anthropic claude-opus-5-5 (agent)",
+      "description": "glow-up round 7: a wide soft light bleed round the sun under the existing bloom",
+      "at": "2026-09-29T02:36:23+00:00"
     }
   ],
   "license": "proprietary"
