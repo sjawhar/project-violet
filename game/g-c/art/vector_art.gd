@@ -135,7 +135,11 @@ func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 			if _level.kind_at(cell.x, cell.y - 1) == "solid":
 				tile = _tile(Sprite2D.new(), _pick(_wall_tiles(), Vector2i(m * 7919, floori(cell.y / 4.0))), cell, ts, 4, false)
 			elif cell.y == _ground_row:
-				tile = _tile(Sprite2D.new(), _pick([ground_tile] + ground_tile_variants, Vector2i(floori(cell.x / 2.0), 0)), cell, ts, 2, true)
+				# variant and texture half picked per cell (every variant shares the same band heights), so the surface
+				# pebbles and cracks do not come back on a fixed beat
+				tile = _tile(Sprite2D.new(), _pick([ground_tile] + ground_tile_variants, Vector2i(cell.x, 7)), cell, ts, 2, true)
+				var gmix := (cell.x * 2246822519) ^ 3266489917
+				tile.region_rect.position.x = posmod(gmix >> 4, 2) * tile.region_rect.size.x
 			else:
 				tile = super.make_cell(kind, cell, ts) as Sprite2D
 			tile.modulate = MASS_TONES[m % MASS_TONES.size()]
@@ -154,16 +158,32 @@ func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 			return pit
 	var node := super.make_cell(kind, cell, ts)
 	if Greybox.TAGGED.has(kind):
+		var sprite := node as Sprite2D
+		var mix := (cell.x * 73856093) ^ (cell.y * 19349663)
+		var is_wall: bool = Greybox.TAGGED[kind][1] == "wall"
+		if is_wall:
+			# a one-cell column shows one texture strip; pick strip and row per cell so the column has no repeating rhythm
+			var side := sprite.region_rect.size.x
+			sprite.region_rect.position = Vector2(posmod(mix >> 2, 4) * side, posmod(mix >> 5, 4) * side)
 		if _level.kind_at(cell.x, cell.y + 1) == "solid":
 			# the pillar's foot on the ground; a child of the scaled sprite, so undo its scale
-			var foot := _soft_ellipse(Vector2(14, ts / 2.0), Vector2(ts * 0.9, 11.0), 0.65)
+			var foot := _soft_ellipse(Vector2(12, ts / 2.0 - 2.0), Vector2(ts * 1.15, 15.0), 0.85)
 			foot.scale = Vector2.ONE / node.scale; foot.position /= node.scale.x; foot.z_index = 1
 			node.add_child(foot)
+		var runs_off_top := cell.y == 0
+		if runs_off_top:
+			# a wall that reaches the top of the level runs on past the top of the frame instead of stopping in mid-sky
+			var above := Sprite2D.new(); above.texture = sprite.texture; above.material = sprite.material
+			above.region_enabled = true; above.texture_filter = sprite.texture_filter
+			above.region_rect = Rect2(sprite.region_rect.position.x, posmod(int(sprite.region_rect.position.y / sprite.region_rect.size.y) - 1, 4) * sprite.region_rect.size.y, sprite.region_rect.size.x, sprite.region_rect.size.y)
+			above.position = Vector2(0, -sprite.region_rect.size.y)
+			node.add_child(above)
 		var mat := node.material as ShaderMaterial
 		mat.set_shader_parameter("pattern", PATTERNS[Greybox.TAGGED[kind][0]])
+		mat.set_shader_parameter("glyph", 1.0 if posmod(mix >> 7, 5) < 2 else 0.0)
 		mat.set_shader_parameter("open_sides", Vector4(
 			0.0 if _level.kind_at(cell.x - 1, cell.y) == kind else 1.0, 0.0 if _level.kind_at(cell.x + 1, cell.y) == kind else 1.0,
-			0.0 if _level.kind_at(cell.x, cell.y - 1) == kind else 1.0, 0.0 if _level.kind_at(cell.x, cell.y + 1) == kind else 1.0))
+			0.0 if runs_off_top or _level.kind_at(cell.x, cell.y - 1) == kind else 1.0, 0.0 if _level.kind_at(cell.x, cell.y + 1) == kind else 1.0))
 		mat.set_shader_parameter("run_v", _run(kind, cell, Vector2i.UP, Vector2i.DOWN))
 		mat.set_shader_parameter("run_h", _run(kind, cell, Vector2i.LEFT, Vector2i.RIGHT))
 	return node

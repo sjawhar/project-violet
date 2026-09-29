@@ -5,7 +5,7 @@
 // the tint, and it is pre-saturated against the world saturation post effect. On top, the scene's low sun from the
 // left: each wall or platform is lit as one object (brighter toward its sunlit top, a warm rim on its open left side,
 // a cool shaded right side, a bright top edge, a darker foot), using its run and open sides that art/vector_art.gd
-// passes per cell. The colour cue that does not rely on hue is a glyph carved into the surface on every other cell:
+// passes per cell. The colour cue that does not rely on hue is a glyph carved into the surface on some cells, picked so they never line up in a rhythm:
 // a chevron on red, a double wave on green, visible in grey too.
 shader_type canvas_item;
 global uniform float world_saturation;
@@ -16,6 +16,7 @@ uniform int pattern = 0; // 1 chevron (red), 2 waves (green)
 uniform vec4 open_sides = vec4(0.0); // left, right, top, bottom: 1 where the side faces open air
 uniform vec2 run_v = vec2(0.0, 1.0); // this cell's index in its vertical run, and the run's length
 uniform vec2 run_h = vec2(0.0, 1.0); // the same horizontally
+uniform float glyph = 0.0; // 1 on the cells that carry the carved glyph (chosen per cell by art/vector_art.gd)
 const float BASE_GREY = 0.84; // tag-wall.svg's base fill #d6d6d6
 const float CELL_PX = 256.0; // texture pixels per game cell
 const vec3 LUMA = vec3(0.299, 0.587, 0.114);
@@ -37,7 +38,7 @@ void fragment() {
 	light -= 0.14 * open_sides.w * smoothstep(0.8, 1.0, local.y);
 	float rim = open_sides.x * smoothstep(0.1, 0.0, local.x);
 	float shade = open_sides.y * smoothstep(0.72, 1.0, local.x);
-	bool glyph_cell = mod(run_v.x + run_h.x, 2.0) < 0.5;
+	bool glyph_cell = glyph > 0.5;
 	float cut = glyph_cell ? carve(local, pattern) : 0.0;
 	float lip = glyph_cell ? carve(local - vec2(0.0, 0.03), pattern) * (1.0 - cut) : 0.0;
 	float value = (t.r / BASE_GREY) * light * (1.0 - 0.32 * cut + 0.14 * lip) * (1.0 - 0.28 * shade);

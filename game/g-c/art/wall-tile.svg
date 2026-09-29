@@ -18,12 +18,10 @@
 <path fill="#7a4a2e" d="M246,280 L266,318 L256,356 L272,388 L258,392 L240,358 L248,320 L232,284 Z"/>
 <path fill="#8e5a38" d="M620,690 L780,684 L860,694 L856,702 L780,694 L622,700 Z"/>
 <path fill="#7a4a2e" d="M846,40 L860,70 L852,96 L840,94 L846,70 L834,44 Z"/>
-<ellipse fill="#8e5a38" cx="124" cy="582" rx="28" ry="15"/>
-<ellipse fill="#c2875a" cx="120" cy="574" rx="28" ry="15"/>
 <ellipse fill="#8e5a38" cx="546" cy="330" rx="18" ry="10"/>
 <ellipse fill="#c2875a" cx="542" cy="324" rx="18" ry="10"/>
-<ellipse fill="#8e5a38" cx="930" cy="870" rx="24" ry="13"/>
-<ellipse fill="#c2875a" cx="926" cy="862" rx="24" ry="13"/>
 <ellipse fill="#8e5a38" cx="402" cy="930" rx="14" ry="8"/>
 <ellipse fill="#c2875a" cx="399" cy="925" rx="14" ry="8"/>
+<ellipse fill="#8e5a38" cx="690" cy="600" rx="11" ry="6"/>
+<ellipse fill="#c2875a" cx="688" cy="596" rx="11" ry="6"/>
 </svg>
