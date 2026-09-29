@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "asset": "land.gif",
-  "sha256": "e64508a1b7ccacbd82204ca2c40cb89189e73f0ba27d073a2d17e80d5b99f1d3",
+  "asset": "double_jump.gif",
+  "sha256": "bce9791a9726d5f2ddb78939008ea658e209ab751373d711d6184ffe6c194f63",
   "kind": "animation",
   "origin": "derived",
-  "created_at": "2026-09-29T01:48:08+00:00",
+  "created_at": "2026-09-29T01:31:40+00:00",
   "generator": {
-    "tool": "spinerig",
-    "tool_version": "0.1.0",
+    "tool": "assets/bakeoff/protagonist/glow-up/shoot.py",
+    "tool_version": "shoot.py round-02 (spinerig render_frame with the round-0 fixed reference box; docs/bakeoff/protagonist/glow-up/rounds.md)",
     "model": null,
     "params": {
-      "command": "uv run --project tools/spinerig spinerig render assets/bakeoff/protagonist/rig/violet.json --parts assets/bakeoff/protagonist/parts --anim land --out /tmp/land --scale 0.5"
+      "command": "uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/shoot.py --rig assets/bakeoff/protagonist/rig/violet.json --parts assets/bakeoff/protagonist/parts --out assets/bakeoff/protagonist/glow-up/round-02"
     },
     "inputs": [
       {
