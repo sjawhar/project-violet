@@ -30,6 +30,9 @@ SUPERSEDED = {
     ("2026-09-27T09:28:45+00:00", "crystal-wall.png"): "the no-crystal regeneration (tag-wall)",
     ("2026-09-27T09:24:47+00:00", "crystal-platform.png"): "the no-crystal regeneration (tag-platform)",
     ("2026-09-27T09:21:50+00:00", "orb.png"): "the no-crystal regeneration (smooth orb)",
+    ("2026-09-27T09:28:46+00:00", "platform-tile.png"): "the painterly regeneration (glow-up round 6)",
+    ("2026-09-27T09:28:46+00:00", "ground-tile.png"): "the painterly regeneration (glow-up round 6)",
+    ("2026-09-27T09:28:49+00:00", "wall-tile.png"): "the painterly regeneration (glow-up round 6)",
 }
 
 rows = [json.loads(line) for line in Path("bakeoff/g-a/reports/gen-usage.jsonl").read_text().splitlines()]

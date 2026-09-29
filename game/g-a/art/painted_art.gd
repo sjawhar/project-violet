@@ -22,6 +22,11 @@ const SPIKES := preload("res://art/spikes.gdshader")
 const SHADOW := Color("#211728")
 const HAZE := Color("#f2c49b")
 const CHASM := Color("#1c1320")
+const LIP_LIT := Color("#dca75e")
+const LIP_BODY := Color("#a8713f")
+const LIP_UNDER := Color("#3a2632")
+const TUFT_BASE := Color("#5a4a3a")
+const TUFT_TIP := Color("#c9975a")
 const PIT_LIP := Color("#8a5a3e")
 ## Kinds that leave a terrain cell's side open (drawn as broken rock with a contact shadow). Tagged and hazard cells
 ## are drawn edge to edge, so a terrain cell beside them keeps a straight side.
@@ -188,6 +193,48 @@ func _pit_wall(cell: Vector2i, sgn: float, top: float, bottom: float, ts: float)
 	wall.polygon = pts; wall.vertex_colors = cols
 	return wall
 
+## The sunlit lip on a surface cell: a band of sand-crusted rock whose top edge wanders a few pixels above the cell
+## (a smooth function of world x, so neighbouring cells join), overhanging an open end by a rounded ledge with a dark
+## underside; and a few dry grass tufts in rock and shadow tones. Collision stays the cell's.
+func _add_lip(holder: Node2D, cell: Vector2i, ts: float, open_left: bool, open_right: bool) -> void:
+	var h := ts / 2.0
+	var x0 := -h - (12.0 if open_left else 0.0); var x1 := h + (12.0 if open_right else 0.0)
+	var wx := func(x: float) -> float: return cell.x * ts + x
+	var top_y := func(x: float) -> float:
+		var w: float = wx.call(x)
+		return -h - 3.0 - 2.2 * sin(w * 0.105) - 1.4 * sin(w * 0.31 + 1.7) - 0.8 * sin(w * 0.77 + 0.4)
+	var under_y := func(x: float) -> float:
+		var w: float = wx.call(x)
+		var y := -h + 10.0 + 2.5 * sin(w * 0.21 + 0.9)
+		var d := minf(x - (-h), h - x)                      # beyond the cell side, the ledge's underside curls up
+		if d < 0.0: y = lerpf(y, top_y.call(x) + 2.0, clampf(-d / 12.0, 0.0, 1.0))
+		return y
+	var lip := Polygon2D.new(); lip.name = "Lip"
+	var pts := PackedVector2Array(); var cols := PackedColorArray(); var quads: Array = []
+	var n := 12
+	for i in n + 1:
+		var x := lerpf(x0, x1, float(i) / n)
+		var inside := x >= -h and x <= h
+		pts.append(Vector2(x, top_y.call(x))); cols.append(LIP_LIT)
+		pts.append(Vector2(x, under_y.call(x))); cols.append(LIP_BODY if inside else LIP_UNDER)
+		if i > 0: quads.append(PackedInt32Array([2 * i - 2, 2 * i, 2 * i + 1, 2 * i - 1]))
+	lip.polygon = pts; lip.vertex_colors = cols; lip.polygons = quads
+	holder.add_child(lip)
+	var rng := RandomNumberGenerator.new(); rng.seed = hash(cell) + 101
+	for t in rng.randi_range(1, 3):
+		var tuft := Polygon2D.new(); tuft.name = "Tuft"
+		var bx := rng.randf_range(-h + 6.0, h - 6.0); var by: float = top_y.call(bx) + 1.0
+		var tp := PackedVector2Array(); var tc := PackedColorArray(); var tris: Array = []
+		for b in rng.randi_range(3, 5):
+			var lean := rng.randf_range(-0.7, 0.7); var tall := rng.randf_range(12.0, 24.0)
+			var k := tp.size()
+			tp.append(Vector2(bx + b * 3.0 - 6.0, by)); tp.append(Vector2(bx + b * 3.0 - 3.5, by))
+			tp.append(Vector2(bx + b * 3.0 - 4.5 + lean * tall, by - tall))
+			tc.append(TUFT_BASE); tc.append(TUFT_BASE); tc.append(TUFT_TIP)
+			tris.append(PackedInt32Array([k, k + 1, k + 2]))
+		tuft.polygon = tp; tuft.vertex_colors = tc; tuft.polygons = tris
+		holder.add_child(tuft)
+
 ## A terrain cell: its stone tile drawn through the terrain shader (eroded open sides, rounded open corners, a dark
 ## mass under a lit lip), plus a contact shadow on each open side.
 func _terrain(cell: Vector2i, ts: float) -> Node2D:
@@ -210,6 +257,7 @@ func _terrain(cell: Vector2i, ts: float) -> Node2D:
 	sprite.material = mat
 	var holder := Node2D.new()
 	holder.add_child(sprite)
+	if open.y > 0.5: _add_lip(holder, cell, ts, open.x > 0.5, open.z > 0.5)
 	for side_open: Array in [[open.x, -1.0], [open.z, 1.0]]:  # a soft shadow dropped onto the backdrop beside an open side
 		if side_open[0] < 0.5: continue
 		var face: float = side_open[1] * ts * 0.1  # starts under the rock, so the eroded edge shows the gradient too

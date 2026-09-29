@@ -24,6 +24,7 @@ sessions:
   - {start: "2026-09-29T01:33:08Z", end: "2026-09-29T01:42:00Z", purpose: "glow-up round 3"}
   - {start: "2026-09-29T01:46:54Z", end: "2026-09-29T02:24:00Z", purpose: "glow-up round 4 (after reverting round 3)"}
   - {start: "2026-09-29T02:29:45Z", end: "2026-09-29T02:53:00Z", purpose: "glow-up round 5"}
+  - {start: "2026-09-29T02:56:36Z", end: "2026-09-29T03:17:00Z", purpose: "glow-up round 6"}
 costs:
   - {item: "gen image gpt-image-2 1024x1024 quality=low, wall-tile (rejected)", usd: 0.0143, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:47:36+00:00)"}
   - {item: "gen image gpt-image-2 1536x1024 quality=low, backdrop-near (rejected)", usd: 0.0062, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
@@ -51,9 +52,9 @@ costs:
   - {item: "gen image gpt-image-2 1024x1024 quality=high, ground-tile (rejected)", usd: 0.2122, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:24:46+00:00)"}
   - {item: "gen image gpt-image-2 1024x1024 quality=high, crystal-platform (kept)", usd: 0.2121, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:24:47+00:00)"}
   - {item: "gen image gpt-image-2 1024x1024 quality=high, crystal-wall (kept)", usd: 0.2122, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:28:45+00:00)"}
-  - {item: "gen image gpt-image-2 1024x1024 quality=high, platform-tile (kept)", usd: 0.2123, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:28:46+00:00)"}
-  - {item: "gen image gpt-image-2 1024x1024 quality=high, ground-tile (kept)", usd: 0.2123, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:28:46+00:00)"}
-  - {item: "gen image gpt-image-2 1024x1024 quality=high, wall-tile (kept)", usd: 0.2123, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:28:49+00:00)"}
+  - {item: "superseded by the painterly regeneration (glow-up round 6): gen image gpt-image-2 1024x1024 quality=high, platform-tile", usd: 0.2123, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:28:46+00:00)"}
+  - {item: "superseded by the painterly regeneration (glow-up round 6): gen image gpt-image-2 1024x1024 quality=high, ground-tile", usd: 0.2123, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:28:46+00:00)"}
+  - {item: "superseded by the painterly regeneration (glow-up round 6): gen image gpt-image-2 1024x1024 quality=high, wall-tile", usd: 0.2123, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:28:49+00:00)"}
   - {item: "superseded by the no-green regeneration: gen image gpt-image-2 1536x1024 quality=high, backdrop-near", usd: 0.1663, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:32:58+00:00)"}
   - {item: "gen image gpt-image-2 1536x1024 quality=high, backdrop-near (rejected)", usd: 0.1663, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:45:59+00:00)"}
   - {item: "gen image gpt-image-2 1024x1024 quality=high, goal-gate (rejected)", usd: 0.2120, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T09:46:41+00:00)"}
@@ -64,6 +65,10 @@ costs:
   - {item: "gen image gpt-image-2 1024x1024 quality=high, tag-wall (kept)", usd: 0.2126, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-28T17:07:41+00:00)"}
   - {item: "gen image gpt-image-2 1024x1024 quality=high, tag-platform (rejected)", usd: 0.2126, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-28T17:07:42+00:00)"}
   - {item: "gen image gpt-image-2 1024x1024 quality=high, tag-platform (kept)", usd: 0.2126, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-28T17:11:36+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, ground-tile (kept)", usd: 0.2127, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-29T02:59:53+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, platform-tile (rejected)", usd: 0.2126, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-29T03:00:03+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, wall-tile (kept)", usd: 0.2126, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-29T03:00:13+00:00)"}
+  - {item: "gen image gpt-image-2 1024x1024 quality=high, platform-tile (kept)", usd: 0.2126, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-29T03:05:20+00:00)"}
 interventions: []
 friction:
   - {at: "2026-09-27T08:26:30Z", what: "plan's export_presets.cfg omits include_filter and exclude_filter; every godot --import printed 'Couldn't find the given section preset.0 and key include_filter' errors", workaround: "added include_filter=\"\" and exclude_filter=\"\" to the preset"}
@@ -95,6 +100,7 @@ friction:
   - {at: "2026-09-29T01:34:00Z", what: "glow-up round 3: RigCharacter2D asserted it is a direct child of the Player2D, so Violet could not be wrapped in a CanvasGroup for a whole-silhouette outline and rim; her part textures imported without mipmaps while drawn with a mipmapped filter, which fringed their downscaled edges", workaround: "RigCharacter2D looks for the Player2D among its ancestors; the parts' .import files turn mipmaps on"}
   - {at: "2026-09-29T02:00:00Z", what: "glow-up round 4: wrapping a tagged piece's sprite in a Node2D (for its halo) hid it from ResonanceTag, which only calls set_resonance_look on the body's direct children, so every wall stayed gray; the upward light field let a block's edge columns reach the air beside it diagonally, which drew a dark vertical band down the middle of tall blocks", workaround: "the halo hangs off the sprite itself, scaled back to cell pixels; the rock's depth is taken straight down from its open top and averaged across the rock cells of the same row"}
   - {at: "2026-09-29T02:40:00Z", what: "glow-up round 5: the first chasm draft put each pit-end rock wall on the wrong side of its cell (a sign error), which drew thin dark posts inside the pit, and left the rock's eroded margin showing bright sky beside the dark chasm", workaround: "the wall is anchored on the side facing the rock; at a pit end the chasm fill extends 0.4 cells under the neighbouring rock"}
+  - {at: "2026-09-29T03:04:00Z", what: "glow-up round 6: the first painterly platform-tile broke at its side seam; the first lip colours were pale enough that the world's 0.35 saturation at the start made them read as snow", workaround: "regenerated the platform tile once (rejected one logged in costs); lips use a warmer, darker sand"}
 blockers: []
 deliverables: {build: bakeoff/g-a/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-a/reports/replay.json}
 ---
@@ -123,3 +129,5 @@ Rejected generations, no-green pass: backdrop-near and goal-gate re-rolled once 
 Protagonist rig: `protagonist/rig/violet.json`, `violet.meta.json` and `protagonist/parts/*.png` are copied byte for byte, with their provenance sidecars, from PR #28 (branch phase1/protagonist-parts, eafccae8, not merged yet; real PNGs from the violet-rig workspace, not LFS pointers), replacing the first copy from fd76d946. Re-copy them if #28 changes. With eafccae8 the lowest point of every idle frame is 0.05 screen px below the floor line and every land frame within half a pixel, and rendered frames show the soles on the ground in all three Godot lanes; no lane code assumed the old setup pose. `attach_character` now shows Violet instead of the STAND-IN; the replay, the tag checks, rig-test and the export smoke run pass with it loaded.
 
 Rejected generations, no-crystal pass: tag-platform v1 (side seam).
+
+Rejected generations, glow-up round 6: platform-tile (side seam).
