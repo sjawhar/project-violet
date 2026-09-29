@@ -34,7 +34,7 @@ The critic may be shown the games' official press screenshots by link. They are 
 
 Round 0 is the look before the round, shot as below. Each later round:
 
-1. Starts from the latest kept round, and fixes the gap expected to improve the look most. It takes the gap from the kept round's most recent critique: the one that kept it or, after a revert, the one that rejected its successor. It doesn't retry the gap whose fix was just reverted unless it takes a materially different approach.
+1. Starts from the latest kept round, and fixes the gap expected to improve the look most, with a change big enough to see in the fixed shots. A change too small to show up there reads as "same". It takes the gap from the kept round's most recent critique: the one that kept it or, after a revert, the one that rejected its successor. It doesn't retry the gap whose fix was just reverted unless it takes a materially different approach.
 2. Shoots the fixed shots again.
 3. Has the critic compare it with the latest kept round, and records the round.
 
@@ -68,7 +68,7 @@ Lane costs and sessions also go in the lane's `LOG.md` as usual, with the purpos
 
 It stops at the first of these:
 
-- two rounds in a row where the critic calls the new round better on no axis;
+- two rounds in a row where the critic calls the new round better on no axis. A round whose record row says it retries the previous round's gap, and that the critic calls better on no axis, leaves the streak where it was, so two attempts at one fix can't end a workstream. Only the first retry of a gap does this; a retry of a retry extends the streak as usual;
 - $40 of generation spent in the workstream, counted as above;
 - round 10;
 - a wall: the next gap needs a paid tool or a human's skill. A lane records it under `blockers` in its `LOG.md`, and Violet in `rounds.md`, with the evidence. That is how a workstream asks for a purchase under decision 0012.
