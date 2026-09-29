@@ -17,14 +17,15 @@ const PIT_MARGIN := 2.0
 ## Tag block color before its color is acquired (mechanic.md: grayscale).
 const TAG_GRAY := Color(0.6, 0.6, 0.6)
 ## Emission energy of an active tag block: enough to glow, low enough that ACES keeps its hue instead of going peach.
-const TAG_GLOW := 0.15
+const TAG_GLOW := 0.4
 ## The tag-blocks keep the brief's colors (TAG_COLORS) and sit on visual layer TAG_BLOCK_LAYER. Their own lights, the
 ## warm sun and the fills skip that layer (lights 0.4 m from each face, 13 to a wall, overexposed the faces to peach, and
 ## the warm sun pushed red toward the orange sandstone); a neutral white key lights only the blocks, at an energy that
 ## renders them close to their own colors.
 const TAG_BLOCK_LAYER := 2
-## The tag-blocks' surface (art/tag_block.gdshader): stone grain, a gradient lit from above, and a carved glyph per
-## color, a diamond for red and a ring for green, so the colors differ by shape as well as hue.
+## The tag-blocks' surface (art/tag_block.gdshader): glyph-stone, dressed blocks with worn edges and a glowing inlay
+## channel that runs up a wall through every block, with a node per block, a diamond for red and a ring for green, so
+## the colors differ by shape as well as hue.
 const TAG_BLOCK_SHADER := preload("res://art/tag_block.gdshader")
 const TAG_KEY_ENERGY := 0.6
 ## Violet is drawn this far in front of the play plane, just past the blocks' front faces, so she stays visible when she
@@ -40,8 +41,9 @@ const OUTLINE_PAD := 0.035
 const CHARACTER_LAYER := 3
 const CHARACTER_KEY_COLOR := Color("#ffe2c4")
 const CHARACTER_KEY_ENERGY := 0.55
-## Tag lights at this share of GreyboxArt3D's: a 13-cell wall of full-energy lights washed its surroundings out.
-const LIGHT_SCALE := 0.35
+## Tag lights at this share of GreyboxArt3D's, so the glow spills onto the sand around a wall without washing it out
+## (the blocks themselves, and Violet, are outside the lights' cull mask).
+const LIGHT_SCALE := 0.7
 ## Depth fog: the play plane, 32 m from the camera, stays clear, and the sand is fully fogged where it meets the sky.
 const FOG_BEGIN := 34.0
 const FOG_END := 190.0
@@ -204,6 +206,7 @@ func make_cell(kind: String, cell: Vector2i) -> Node3D:
 			var mat := ShaderMaterial.new(); mat.shader = TAG_BLOCK_SHADER
 			mat.set_shader_parameter("base_color", TAG_COLORS[color]); mat.set_shader_parameter("gray", TAG_GRAY)
 			mat.set_shader_parameter("glyph_kind", 0.0 if color == "red" else 1.0)
+			mat.set_shader_parameter("horizontal", 1.0 if Greybox.TAGGED[kind][1] == "platform" else 0.0)
 			tagged.block_materials.append(mat)
 			mi.set_surface_override_material(s, mat)
 	tagged.add_child(block)
