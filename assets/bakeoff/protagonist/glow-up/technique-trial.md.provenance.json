@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "asset": "technique-trial.md",
+  "sha256": "8bb1aac10dafa468522c585ff801ac5c1b1493d84781f90ccea253f31918d100",
+  "kind": "text",
+  "origin": "human",
+  "created_at": "2026-09-29T02:19:55+00:00",
+  "authors": [
+    "anthropic/claude-sonnet-5 (VioletTrialB)"
+  ],
+  "human_edits": [],
+  "license": "proprietary"
+}
