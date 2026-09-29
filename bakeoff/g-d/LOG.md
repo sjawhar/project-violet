@@ -25,7 +25,7 @@ sessions:
   - {start: "2026-09-29T03:23:00Z", end: "2026-09-29T03:38:00Z", purpose: "glow-up round 7"}
   - {start: "2026-09-29T03:41:00Z", end: "2026-09-29T03:57:00Z", purpose: "glow-up round 8"}
   - {start: "2026-09-29T04:00:00Z", end: "2026-09-29T04:15:00Z", purpose: "glow-up round 9"}
-  - {start: "2026-09-29T04:17:00Z", end: "2026-09-29T04:31:00Z", purpose: "glow-up round 10"}
+  - {start: "2026-09-29T04:17:00Z", end: "2026-09-29T04:36:00Z", purpose: "glow-up round 10"}
 costs:
   - {item: "glow-up round 1: art/sky.png, 1 gpt-image-2 call at 1536x1024 quality high", usd: 0.22, evidence: "estimate at the $0.22 per high-quality call measured in docs/bakeoff/shared-costs.md; gen logs no usage; game/g-d/art/sky.png.provenance.json"}
 interventions: []
