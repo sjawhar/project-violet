@@ -12,7 +12,10 @@ extends PaintedArt
 ## faster parallax layer. Terrain construction: each connected rock mass takes its own tone and its wall variant per
 ## four-row band (no vertical variant seams inside a block), open tops carry an uneven sand lip, exposed sides an
 ## eroded rock edge (warm on the sunward left, shaded on the right), and pits a painted inside that falls away into the
-## shadow the spikes stand in. THROWAWAY.
+## shadow the spikes stand in. The play layer takes the same low sun as the backdrop: a warm rim on open left faces
+## and top edges and a cool shade on open right faces (art/terrain_light.gdshader, in place, no overlay), soft
+## contact shadows where pillars meet the ground, where blocks shade the ground to their right and under the
+## character, and a warm edge light on the foreground silhouettes (art/rim_light.gdshader). THROWAWAY.
 ## Extra wall-tile and ground-tile variants; each keeps the band heights where blocks meet, so any mix is seamless.
 @export var wall_tile_variants: Array[Texture2D] = []
 @export var ground_tile_variants: Array[Texture2D] = []
@@ -33,10 +36,19 @@ const SUN := Vector2(900, 660)
 ## The foreground strip's parallax: faster than the playfield, so it reads as nearer.
 const FOREGROUND_SCROLL := 1.25
 const HAZE := preload("res://art/haze.gdshader")
+const TERRAIN_LIGHT := preload("res://art/terrain_light.gdshader")
+const RIM_LIGHT := preload("res://art/rim_light.gdshader")
+const SHADE := Color("#2e2440")
+## How far the far layer is raised so its sky, rays and glow also fill the strip the camera shows above the level.
+const FAR_RAISE := 40.0
+
+## A soft ellipse under the character's feet, shown only while it stands on the floor.
+class FootShadow extends Polygon2D:
+	var player: CharacterBody2D
+	func _process(_delta: float) -> void:
+		visible = player.is_on_floor()
 ## Aerial perspective per backdrop layer: [haze colour, amount]; the farther the layer, the more it fades.
 const LAYER_HAZE := {"Mid": [Color("#dcb2aa"), 0.3], "Near": [Color("#ecd0aa"), 0.12]}
-## The top colour of backdrop-far.svg's sky gradient, used above the level.
-const SKY_TOP := Color("#2e6d7e")
 ## How far the pit darkening reaches above a hazard cell, in cells.
 const PIT_SHADE_CELLS := 2.0
 ## art/reveal.gdshader's shape cue per tag colour.
@@ -48,10 +60,8 @@ func make_backdrop(level: Greybox) -> Node2D:
 	_find_masses(level)
 	var ts := float(level.tile_px)
 	var width := level.width * ts
-	# The camera keeps the whole level height in a 1080 px view, so a strip shows above and below the 1024 px level.
-	var sky := ColorRect.new(); sky.name = "SkyAbove"; sky.color = SKY_TOP
-	sky.position = Vector2(-ts, -ts); sky.size = Vector2(width + 2.0 * ts, ts)
-	holder.add_child(sky)
+	# The camera keeps the whole level height in a 1080 px view, so a strip shows above and below the 1024 px level:
+	# the far layer is raised to fill the top one (below), and a row of rock fills the bottom one.
 	var rock := Node2D.new(); rock.name = "RockBelow"
 	for c in range(-1, level.width + 1):
 		var cell := Vector2i(c, level.height)
@@ -59,7 +69,10 @@ func make_backdrop(level: Greybox) -> Node2D:
 		tile.position = Vector2((c + 0.5) * ts, (level.height + 0.5) * ts)
 		rock.add_child(tile)
 	holder.add_child(rock)
-	(holder.get_node("Far") as Node2D).add_child(_light_shafts())
+	var far := holder.get_node("Far") as Node2D
+	(far.get_child(0) as Node2D).position.y -= FAR_RAISE
+	var rays := _light_shafts(); rays.position.y = -FAR_RAISE
+	far.add_child(rays)
 	for layer_name: String in LAYER_HAZE:
 		var mat := ShaderMaterial.new(); mat.shader = HAZE
 		mat.set_shader_parameter("haze", LAYER_HAZE[layer_name][0]); mat.set_shader_parameter("amount", LAYER_HAZE[layer_name][1])
@@ -108,6 +121,7 @@ func _foreground(level: Greybox) -> Node2D:
 	layer.repeat_times = 2
 	layer.z_index = 20  # holder is at -10: this lands in front of the world and the character
 	var sprite := Sprite2D.new(); sprite.texture = foreground; sprite.centered = false
+	var rim := ShaderMaterial.new(); rim.shader = RIM_LIGHT; sprite.material = rim
 	# the camera shows (1080 - 1024) / 2 = 28 px below the level; the strip's bottom edge goes there
 	sprite.position.y = level.height * level.tile_px + 28.0 - foreground.get_height()
 	layer.add_child(sprite)
@@ -125,6 +139,7 @@ func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 			else:
 				tile = super.make_cell(kind, cell, ts) as Sprite2D
 			tile.modulate = MASS_TONES[m % MASS_TONES.size()]
+			_light(tile, cell)
 			return _dress(tile, cell, ts)
 		"hazard":
 			var pit := super.make_cell(kind, cell, ts)
@@ -139,6 +154,11 @@ func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 			return pit
 	var node := super.make_cell(kind, cell, ts)
 	if Greybox.TAGGED.has(kind):
+		if _level.kind_at(cell.x, cell.y + 1) == "solid":
+			# the pillar's foot on the ground; a child of the scaled sprite, so undo its scale
+			var foot := _soft_ellipse(Vector2(14, ts / 2.0), Vector2(ts * 0.9, 11.0), 0.65)
+			foot.scale = Vector2.ONE / node.scale; foot.position /= node.scale.x; foot.z_index = 1
+			node.add_child(foot)
 		var mat := node.material as ShaderMaterial
 		mat.set_shader_parameter("pattern", PATTERNS[Greybox.TAGGED[kind][0]])
 		mat.set_shader_parameter("open_sides", Vector4(
@@ -169,6 +189,12 @@ func _dress(tile: Sprite2D, cell: Vector2i, ts: float) -> Node2D:
 	if _is_block(cell + Vector2i.UP): return holder
 	var lip_sc := ts / float(lip_top.get_width())
 	holder.add_child(_decal(lip_top, Vector2(-h, -h - 48.0 * lip_sc), lip_sc))
+	if _is_block(cell + Vector2i(-1, -1)):
+		# a raised block or pillar to the upper left shades this top, away from the low sun
+		var strip := Polygon2D.new()
+		strip.polygon = PackedVector2Array([Vector2(-h, -h - 5.0), Vector2(-h + 64.0, -h - 5.0), Vector2(-h + 64.0, -h + 14.0), Vector2(-h, -h + 14.0)])
+		strip.vertex_colors = PackedColorArray([Color(SHADE, 0.55), Color(SHADE, 0.0), Color(SHADE, 0.0), Color(SHADE, 0.55)])
+		holder.add_child(strip)
 	var mix := (cell.x * 2654435761) ^ (cell.y * 40503)
 	if posmod(mix, 3) == 0:
 		var w := ts * 1.1
@@ -176,6 +202,27 @@ func _dress(tile: Sprite2D, cell: Vector2i, ts: float) -> Node2D:
 		grass.position = Vector2(-w / 2.0 + float(posmod(mix >> 3, 17) - 8), -h - tuft.get_height() * grass.scale.y + 2.0)
 		holder.add_child(grass)
 	return holder
+
+## The low sun's light on a solid cell with a side open to the air, applied in the tile's own colours.
+func _light(tile: Sprite2D, cell: Vector2i) -> void:
+	var open := Vector4(0.0 if _is_block(cell + Vector2i.LEFT) else 1.0, 0.0 if _is_block(cell + Vector2i.RIGHT) else 1.0,
+		0.0 if _is_block(cell + Vector2i.UP) else 1.0, 0.0 if _is_block(cell + Vector2i.DOWN) else 1.0)
+	if open == Vector4.ZERO: return
+	var mat := ShaderMaterial.new(); mat.shader = TERRAIN_LIGHT
+	mat.set_shader_parameter("open_sides", open); mat.set_shader_parameter("cell_px", tile.region_rect.size.x)
+	tile.material = mat
+
+## A soft dark ellipse centred at AT with half-extents RADII, darkest in the middle.
+static func _soft_ellipse(at: Vector2, radii: Vector2, strength: float) -> Polygon2D:
+	var shadow := Polygon2D.new()
+	var points := PackedVector2Array([at]); var colors := PackedColorArray([Color(SHADE, strength)])
+	var polys: Array = []
+	for i in 24:
+		var a := TAU * i / 24.0
+		points.append(at + Vector2(cos(a) * radii.x, sin(a) * radii.y)); colors.append(Color(SHADE, 0.0))
+		polys.append(PackedInt32Array([0, i + 1, (i + 1) % 24 + 1]))
+	shadow.polygon = points; shadow.vertex_colors = colors; shadow.polygons = polys
+	return shadow
 
 func _is_block(cell: Vector2i) -> bool:
 	var kind := _level.kind_at(cell.x, cell.y)
@@ -208,6 +255,11 @@ func _dust() -> CPUParticles2D:
 func attach_character(player: Node) -> void:
 	super.attach_character(player)
 	player.add_child(_dust())
+	var foot := FootShadow.new(); foot.name = "FootShadow"; foot.player = player; foot.z_index = -1
+	var blob := _soft_ellipse(Vector2(8, 0), Vector2(30, 6), 0.5)
+	foot.polygon = blob.polygon; foot.vertex_colors = blob.vertex_colors; foot.polygons = blob.polygons
+	blob.free()
+	player.add_child(foot)
 	var group := CanvasGroup.new(); group.name = "CharacterOutline"
 	group.fit_margin = 10.0; group.clear_margin = 10.0
 	var mat := ShaderMaterial.new(); mat.shader = OUTLINE; group.material = mat

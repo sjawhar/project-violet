@@ -22,6 +22,7 @@ sessions:
   - {start: "2026-09-29T01:59:37Z", end: "2026-09-29T02:10:17Z", purpose: "glow-up round 5"}
   - {start: "2026-09-29T02:14:09Z", end: "2026-09-29T02:23:06Z", purpose: "glow-up round 6"}
   - {start: "2026-09-29T02:27:43Z", end: "2026-09-29T02:36:25Z", purpose: "glow-up round 7"}
+  - {start: "2026-09-29T02:40:22Z", end: "2026-09-29T03:03:23Z", purpose: "glow-up round 8"}
 costs: []
 interventions:
   - {at: "2026-09-27T17:37:00Z", who: sjawhar, what: "ruled that agents make the bake-off art themselves (no Recraft), which unpaused the lane; asked by the lead, not by this lane, so the minutes Sami spent are not known here and 0 is recorded", minutes: 0}
@@ -41,6 +42,8 @@ friction:
   - {at: "2026-09-29T01:10:00Z", what: "a CanvasGroup with use_mipmaps and a textureLod blur shader rendered unblurred under the gl_compatibility renderer, so the terrain shadow came out as hard dark copies of every block and tag wall", workaround: "replaced it with a feathered gradient quad cast right from each exposed far face"}
   - {at: "2026-09-29T01:05:00Z", what: "a GDScript type error in art/vector_art.gd (a TextureRect returned as Node2D) did not fail the replay: the scene still reached the goal with the art script unloaded, and only ci.sh's export smoke check caught the SCRIPT ERROR", workaround: "fixed the return type; the smoke check is the guard"}
   - {at: "2026-09-29T01:52:00Z", what: "the first light shafts were single triangles with alpha falling off only along their length, so their sides were hard edges and the sky read as a sunburst graphic", workaround: "each shaft is two triangles bright along the middle and clear at both edges, at lower alpha; re-shot before recording"}
+  - {at: "2026-09-29T02:49:00Z", what: "a new canvas shader multiplied texture(TEXTURE, UV) by COLOR, but in Godot 4 COLOR in fragment() already carries the texture, so every lit rock tile came out darker (colour squared); found by a side-by-side test scene under software GL", workaround: "the shaders use COLOR directly; haze.gdshader and reveal.gdshader had the same mistake in their alpha and are fixed too"}
+  - {at: "2026-09-29T02:52:00Z", what: "a first ci.sh run failed on an RID leak at exit: a Polygon2D built only to copy its shape into the foot shadow was never freed", workaround: "free it after copying"}
 blockers: []
 deliverables: {build: bakeoff/g-c/reports/build.txt, capture: bakeoff/g-c/capture/capture.mp4, stills: [bakeoff/g-c/capture/still-05.png, bakeoff/g-c/capture/still-20.png, bakeoff/g-c/capture/still-40.png, bakeoff/g-c/capture/still-60.png], tests: bakeoff/g-c/reports/replay.json}
 ---

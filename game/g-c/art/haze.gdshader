@@ -5,6 +5,5 @@ shader_type canvas_item;
 uniform vec4 haze : source_color = vec4(0.87, 0.72, 0.68, 1.0);
 uniform float amount = 0.25;
 void fragment() {
-	vec4 c = texture(TEXTURE, UV);
-	COLOR = vec4(mix(c.rgb, haze.rgb, amount), c.a * COLOR.a);
+	COLOR = vec4(mix(COLOR.rgb, haze.rgb, amount), COLOR.a); // COLOR is already the texture times the modulate
 }

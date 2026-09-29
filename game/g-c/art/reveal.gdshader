@@ -49,5 +49,5 @@ void fragment() {
 	vec3 rgb = mix(gray, colored, saturation);
 	rgb = mix(rgb, rgb * DUSK * 1.6, 0.35 * shade);
 	rgb += SUN * 0.3 * rim;
-	COLOR = vec4(rgb, t.a * COLOR.a);
+	COLOR = vec4(rgb, COLOR.a); // COLOR.a is already the texture's alpha times the modulate
 }
