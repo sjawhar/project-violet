@@ -14,7 +14,7 @@ const NEAR := ["boulder-a", "boulder-b", "saguaro"]
 const PROP_FRONT_Z := -1.5
 ## Parallax slides a prop a few metres against the level as the camera moves, so pit avoidance keeps this much clear.
 const PIT_MARGIN := 2.0
-## Tag block albedo before its color is acquired (mechanic.md: grayscale).
+## Tag block color before its color is acquired (mechanic.md: grayscale).
 const TAG_GRAY := Color(0.6, 0.6, 0.6)
 ## Emission energy of an active tag block: enough to glow, low enough that ACES keeps its hue instead of going peach.
 const TAG_GLOW := 0.15
@@ -23,6 +23,9 @@ const TAG_GLOW := 0.15
 ## the warm sun pushed red toward the orange sandstone); a neutral white key lights only the blocks, at an energy that
 ## renders them close to their own colors.
 const TAG_BLOCK_LAYER := 2
+## The tag-blocks' surface (art/tag_block.gdshader): stone grain, a gradient lit from above, and a carved glyph per
+## color, a diamond for red and a ring for green, so the colors differ by shape as well as hue.
+const TAG_BLOCK_SHADER := preload("res://art/tag_block.gdshader")
 const TAG_KEY_ENERGY := 0.6
 ## Violet is drawn this far in front of the play plane, just past the blocks' front faces, so she stays visible when she
 ## passes a wall of the active color; her feet still meet the front edge of the ground.
@@ -79,13 +82,12 @@ var _level: Greybox
 ## until the color is acquired, the tag color once acquired, glowing while active. Emission stays enabled and only its
 ## energy moves, so no shader variant is compiled mid-game.
 class KitTaggedBox extends GreyboxArt3D.TaggedBox:
-	var tag_color: Color
-	var block_materials: Array[StandardMaterial3D] = []
+	var block_materials: Array[ShaderMaterial] = []
 	func set_resonance_look(revealed: bool, active: bool) -> void:
 		super(revealed, active)
 		for mat in block_materials:
-			mat.albedo_color = tag_color if revealed else TAG_GRAY
-			mat.emission_energy_multiplier = TAG_GLOW if active else 0.0
+			mat.set_shader_parameter("revealed", 1.0 if revealed else 0.0)
+			mat.set_shader_parameter("glow", TAG_GLOW if active else 0.0)
 
 ## The painted sky quad: follows the camera on x.
 class SkyLayer extends MeshInstance3D:
@@ -156,14 +158,14 @@ func make_cell(kind: String, cell: Vector2i) -> Node3D:
 	var color: String = Greybox.TAGGED[kind][0]
 	tagged.mesh = null  # the tag-block is the visual; the box's light and look stay
 	tagged.energy_scale = LIGHT_SCALE
-	tagged.tag_color = TAG_COLORS[color]
 	tagged.light.light_cull_mask &= ~(1 << (TAG_BLOCK_LAYER - 1))
 	var block := _on_cell_floor(_piece("tag-block")); block.name = "TagBlock"
 	for mi: MeshInstance3D in _meshes(block):
 		mi.layers = 1 << (TAG_BLOCK_LAYER - 1)
 		for s in mi.mesh.get_surface_count():
-			var mat := (mi.get_active_material(s) as StandardMaterial3D).duplicate() as StandardMaterial3D
-			mat.albedo_color = TAG_GRAY; mat.emission_enabled = true; mat.emission = TAG_COLORS[color]; mat.emission_energy_multiplier = 0.0
+			var mat := ShaderMaterial.new(); mat.shader = TAG_BLOCK_SHADER
+			mat.set_shader_parameter("base_color", TAG_COLORS[color]); mat.set_shader_parameter("gray", TAG_GRAY)
+			mat.set_shader_parameter("glyph_kind", 0.0 if color == "red" else 1.0)
 			tagged.block_materials.append(mat)
 			mi.set_surface_override_material(s, mat)
 	tagged.add_child(block)
