@@ -1,22 +1,26 @@
 {
   "schema_version": 1,
   "asset": "arm_front_lower.png",
-  "sha256": "8f1df9ed8700868b3d71da7d036f36e2ee1af19f14779f11f9a736fa7b0c3c13",
+  "sha256": "3bdf492e10e7852f232cee5742c11733ceb69ea881d2e4fdb8caa95c8713d2e0",
   "kind": "image",
   "origin": "generated",
-  "created_at": "2026-09-28T17:07:29+00:00",
+  "created_at": "2026-09-29T02:22:19+00:00",
   "generator": {
     "tool": "gen",
     "tool_version": "0.1.0",
     "provider": "openai",
     "model": "gpt-image-2",
-    "prompt": "Only the forearm and relaxed hand, hanging straight down vertically from the elbow at the top, the forearm covered by the lower part of the robe's wide bell sleeve from the elbow to its wide open cuff, the relaxed hand and wrist emerging below the cuff with fingers gently curled, forearm and hand in one straight line, no upper arm, no shoulder, no torso of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
+    "prompt": "Only the forearm and relaxed hand, hanging straight down vertically from the elbow at the top, the forearm covered by the lower part of the robe's wide bell sleeve from the elbow to its wide open cuff, the relaxed hand and wrist emerging below the cuff with fingers gently curled, no upper arm, no shoulder, no torso of the character in the reference, side view facing right, the exact same silhouette, crop and proportions as the reference image -- do not change the shape or size, keep the exact same hand shape and the same wide open cuff. Repaint the fabric with a noticeably deeper, richer warm gray-brown base tone (not pale beige) and much stronger painterly value structure than a flat wash: a distinct dark cast shadow in every major fold crease, a few brighter highlight ridges along the fold peaks, and visible cloth-grain texture, closer to the fold definition on the standing figures in the reference turnaround. Keep the same warm neutral gray-brown hue family, no new colors, no red, no pattern, same painted soft-edged digital-gouache style. No ink outlines, no anime cel-shading, no hard graphic-novel shadow shapes -- painterly gradients only. Centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
     "params": {
       "size": "1024x1024",
       "quality": "high",
       "background": "transparent"
     },
     "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/parts/arm_front_lower.round-02.png",
+        "sha256": "8f1df9ed8700868b3d71da7d036f36e2ee1af19f14779f11f9a736fa7b0c3c13"
+      },
       {
         "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
         "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
@@ -25,14 +29,14 @@
   },
   "human_edits": [
     {
-      "by": "anthropic/claude-opus-5-5 (omp)",
-      "description": "trimmed transparent margin to the alpha > 8 bounding box: 1024x1024 -> 275x928",
-      "at": "2026-09-28T17:12:18+00:00"
+      "by": "anthropic/claude-sonnet-5 (omp)",
+      "description": "Glow-up round 3 (color_readability/visual_quality gap: round 2's own critique measured the robe body at luminance ~124 against this sheet's own neutral-gray backdrop at ~127, a ~1% difference, so on anything but a pure neutral floor most of the body reads as one dark blob; the critique also flagged a lighter tan patch on the mid-right skirt that cuts across the fabric folds at a hard, straight edge, reading as a leftover texture seam rather than a fold). Repainted via a gen image edit, matching arm_back_lower's kept style; try1 (OpenAI safety rejection, self-harm, using the old arm_front_lower.png as input) rejected first. try2 (kept, same prompt, retried) passed; try3 (a second, differently-worded attempt, also passed) was generated as a backup but not needed once try2 was accepted -- an extra, unused paid call.",
+      "at": "2026-09-29T02:40:23+00:00"
     },
     {
-      "by": "anthropic/claude-opus-5-5 (omp)",
-      "description": "rescaled by factor 0.25 (Lanczos), 275x928 -> 69x232, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960); see assets/bakeoff/protagonist/README.md. Elbow to fingertips (853 painted px) set to ~213 px: the sleeve cuff lands ~150 px below the elbow, at the turnaround's cuff (y=520-585), and the hand is ~65 px (turnaround 62-71).",
-      "at": "2026-09-28T17:12:18+00:00"
+      "by": "anthropic/claude-sonnet-5 (omp)",
+      "description": "trimmed transparent margin to the alpha > 8 bounding box, then rescaled by Lanczos to the rig's existing arm_front_lower height (matching the previous live part's own height in px, so pivots/proportions stay aligned); see assets/bakeoff/protagonist/README.md.",
+      "at": "2026-09-29T02:40:23+00:00"
     }
   ],
   "license": "proprietary"

@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "asset": "double_jump.gif",
-  "sha256": "617a824c0112a0a762d557c9616574545774bd34d1de0c06e9a93d64c0dd77a0",
+  "sha256": "14aca93dd22addf555f3f84bd276fa42d44f781fc019607ff5dffa31cccfe6f7",
   "kind": "animation",
   "origin": "derived",
-  "created_at": "2026-09-29T01:48:08+00:00",
+  "created_at": "2026-09-29T02:54:46+00:00",
   "generator": {
     "tool": "spinerig",
     "tool_version": "0.1.0",
@@ -15,7 +15,7 @@
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/rig/violet.json",
-        "sha256": "93debba26483fb5f197d6c85b91de7cc10cf819edb46262025882a59e07ef492"
+        "sha256": "648eeca697454a59e529ce8ad68b198f125e777d11838cd3b3764d5090c41096"
       },
       {
         "path": "assets/bakeoff/protagonist/rig/violet.meta.json",
@@ -23,19 +23,19 @@
       },
       {
         "path": "assets/bakeoff/protagonist/parts/arm_back_lower.png",
-        "sha256": "4345ce799fa7b60cd01892f5c58a6003f514ba36cf5c5c320ba53e79899f5a4e"
+        "sha256": "52ab46c3d665fe9e8d66bd6b040d2eec6d27a9c0c24d6ec721c053a5176437c1"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/arm_back_upper.png",
-        "sha256": "3a83c513f692e927b150ded7b0fa252ba33ff5bbaf50cd93b898708eef20dd9c"
+        "sha256": "d4a2eae97a6dbf1e194ce974fec367eff07ad55c7190b64bc00471f38a3bbc9d"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/arm_front_lower.png",
-        "sha256": "8f1df9ed8700868b3d71da7d036f36e2ee1af19f14779f11f9a736fa7b0c3c13"
+        "sha256": "3bdf492e10e7852f232cee5742c11733ceb69ea881d2e4fdb8caa95c8713d2e0"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/arm_front_upper.png",
-        "sha256": "1bcaab8efcf8c888aae0a0c24809f0ddb8da5d8d7b660bdd9a703d4826565b30"
+        "sha256": "9c55078ea48176a65f95ad8875db6b109160efca768163b3360849332412e413"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/head.png",
@@ -43,7 +43,7 @@
       },
       {
         "path": "assets/bakeoff/protagonist/parts/hips.png",
-        "sha256": "eccf9520a44b511ce50dc495a18ad737e187bcc8b34f1a7a3c494f6bddefe532"
+        "sha256": "e8be13728e17edc8a3c51ba7de6f7c09aa109755a2cda2157ef3a69d76c1f997"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/leg_back_lower.png",
@@ -51,7 +51,7 @@
       },
       {
         "path": "assets/bakeoff/protagonist/parts/leg_back_upper.png",
-        "sha256": "1c268ce147d6664039b9f3422eb1e8e2118b6567e0052efaddcc7ea48cfd858b"
+        "sha256": "39c08656603b437279a634f49995e46efd3f1b9b520e8bce4d3392e8389257e1"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/leg_front_lower.png",
@@ -59,7 +59,7 @@
       },
       {
         "path": "assets/bakeoff/protagonist/parts/leg_front_upper.png",
-        "sha256": "04461b18d4008c0c114fefc755ad26fae89603a3d87b684f3d32de7ee8c0cfba"
+        "sha256": "2310239e32a26c966792b1a42ffaf0c60ada15cfed90d36c50477c6cb89cf6a1"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/scarf1.png",
@@ -75,10 +75,16 @@
       },
       {
         "path": "assets/bakeoff/protagonist/parts/torso.png",
-        "sha256": "01b8a54e041def8225332b51c447574567b20c455e1200f4986627d1b8485aaa"
+        "sha256": "3d193a689a9e69da28519e3d73d13448389027ab116e274b41242179ad402e06"
       }
     ]
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (omp)",
+      "description": "Glow-up round 3: re-rendered after repainting torso/hips/sleeves for value structure and recoloring the thigh-wrap legs to remove the skirt seam.",
+      "at": "2026-09-29T02:54:46+00:00"
+    }
+  ],
   "license": "proprietary"
 }

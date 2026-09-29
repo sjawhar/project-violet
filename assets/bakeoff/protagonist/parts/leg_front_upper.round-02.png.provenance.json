@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "asset": "leg_front_upper.round-02.png",
+  "sha256": "04461b18d4008c0c114fefc755ad26fae89603a3d87b684f3d32de7ee8c0cfba",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-27T17:41:49+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Only the thigh under the robe hem, from hip to knee, wrapped in the same muted fabric as the robe, no torso, no shin, extending slightly past the knee for overlap of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
+        "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "lead-agent",
+      "description": "trimmed transparent margin",
+      "at": "2026-09-27T17:53:54+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "trimmed transparent margin to the alpha > 8 bounding box: 505x723 -> 243x675",
+      "at": "2026-09-27T18:42:21+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "rescaled by factor 0.476 (Lanczos), 243x675 -> 116x321, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960, so 1.136 rig px per turnaround px); see assets/bakeoff/protagonist/README.md. Hip to knee plus overlap (655 painted px) set to 312 px: thigh 292 = 54% of the 540 px hip-to-floor (hip joint inferred under the robe) plus 20 px overlap.",
+      "at": "2026-09-27T18:42:22+00:00"
+    },
+    {
+      "by": "anthropic/claude-sonnet-5 (omp)",
+      "description": "Frozen as leg_front_upper.round-02.png for rounds 0-2's historical shot provenance (identical bytes to the live leg_front_upper.png through round 2, sha256 04461b18d4008c0c114fefc755ad26fae89603a3d87b684f3d32de7ee8c0cfba) before glow-up round 3 overwrote the live leg_front_upper.png with a repaint; see docs/bakeoff/protagonist/glow-up/rounds.md.",
+      "at": "2026-09-29T02:38:55+00:00"
+    }
+  ],
+  "license": "proprietary"
+}
