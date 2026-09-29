@@ -2,16 +2,16 @@ class_name VectorArt
 extends PaintedArt
 ## Flat-vector desert visuals for lane G-C (docs/bakeoff/desert-biome-brief.md, SVG kit): PaintedArt's slots filled with
 ## hand-written SVGs (art/*.svg) that Godot rasterizes at their viewBox size, placed as PaintedArt places them, plus:
-## wall and ground tiles drawn from several variants picked per block, pits that darken toward the spikes, and sky and
-## rock filling the strips the camera shows above and below the level; tag colours locked by art/reveal.gdshader, with
-## chevrons on red and waves on green; and the character drawn through art/character_outline.gdshader (dark outline,
-## warm sun-side rim, hardened alpha fringe). The character is GreyboxArt's: the rig in protagonist/ once it is there,
-## else the STAND-IN. Set dressing and atmosphere: soft light shafts from the sun on the far layer, dust motes drifting
-## in the air, dry-grass tufts on some open block tops, and a dark foreground silhouette strip along the bottom of the
-## frame on a faster parallax layer. Terrain construction: each connected rock mass takes its own tone and its wall
-## variant per four-row band (no vertical variant seams inside a block), open tops carry an uneven sand lip, exposed
-## sides an eroded rock edge (warm on the sunward left, shaded on the right), and pits a painted inside that falls
-## away into the shadow the spikes stand in. THROWAWAY.
+## wall and ground tiles drawn from several variants, pits with a painted inside, and sky and rock filling the strips
+## the camera shows above and below the level; tag colours locked and lit by the low sun in art/reveal.gdshader, with a
+## chevron carved on red and a double wave on green; and the character drawn through art/character_outline.gdshader
+## (dark outline, thin light halo, warm sun-side rim, hardened alpha fringe). The character is GreyboxArt's: the rig in
+## protagonist/ once it is there, else the STAND-IN. Set dressing and atmosphere: soft light shafts from the sun on the
+## far layer, dust motes drifting in the air, dry-grass tufts on some open block tops, and a dark foreground silhouette
+## strip along the bottom of the frame on a faster parallax layer. Terrain construction: each connected rock mass takes
+## its own tone and its wall variant per four-row band (no vertical variant seams inside a block), open tops carry an
+## uneven sand lip, exposed sides an eroded rock edge (warm on the sunward left, shaded on the right), and pits a
+## painted inside that falls away into the shadow the spikes stand in. THROWAWAY.
 ## Extra wall-tile and ground-tile variants; each keeps the band heights where blocks meet, so any mix is seamless.
 @export var wall_tile_variants: Array[Texture2D] = []
 @export var ground_tile_variants: Array[Texture2D] = []
@@ -130,8 +130,22 @@ func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 			return pit
 	var node := super.make_cell(kind, cell, ts)
 	if Greybox.TAGGED.has(kind):
-		(node.material as ShaderMaterial).set_shader_parameter("pattern", PATTERNS[Greybox.TAGGED[kind][0]])
+		var mat := node.material as ShaderMaterial
+		mat.set_shader_parameter("pattern", PATTERNS[Greybox.TAGGED[kind][0]])
+		mat.set_shader_parameter("open_sides", Vector4(
+			0.0 if _level.kind_at(cell.x - 1, cell.y) == kind else 1.0, 0.0 if _level.kind_at(cell.x + 1, cell.y) == kind else 1.0,
+			0.0 if _level.kind_at(cell.x, cell.y - 1) == kind else 1.0, 0.0 if _level.kind_at(cell.x, cell.y + 1) == kind else 1.0))
+		mat.set_shader_parameter("run_v", _run(kind, cell, Vector2i.UP, Vector2i.DOWN))
+		mat.set_shader_parameter("run_h", _run(kind, cell, Vector2i.LEFT, Vector2i.RIGHT))
 	return node
+
+## This cell's index in the straight run of KIND cells through it along BACK/FORWARD, and the run's length.
+func _run(kind: String, cell: Vector2i, back: Vector2i, forward: Vector2i) -> Vector2:
+	var before := 0
+	while _level.kind_at(cell.x + back.x * (before + 1), cell.y + back.y * (before + 1)) == kind: before += 1
+	var after := 0
+	while _level.kind_at(cell.x + forward.x * (after + 1), cell.y + forward.y * (after + 1)) == kind: after += 1
+	return Vector2(before, before + after + 1)
 
 ## A solid cell's tile with its construction: an eroded rock edge on each side open to the air, an uneven sand lip
 ## where the top is open, and a grass tuft on about one open top in three (the same cells every run).
@@ -186,7 +200,7 @@ func attach_character(player: Node) -> void:
 	super.attach_character(player)
 	player.add_child(_dust())
 	var group := CanvasGroup.new(); group.name = "CharacterOutline"
-	group.fit_margin = 8.0; group.clear_margin = 8.0
+	group.fit_margin = 10.0; group.clear_margin = 10.0
 	var mat := ShaderMaterial.new(); mat.shader = OUTLINE; group.material = mat
 	player.add_child(group)
 	for child in player.get_children():
