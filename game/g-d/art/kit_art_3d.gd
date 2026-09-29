@@ -53,6 +53,13 @@ const HAZE_HORIZON := 0.6
 ## A horizon layer of pale mesas and dunes 60-100 m behind the level fills the band between the play area and the
 ## clouds. It has its own random stream, so the nearer layers keep their placement.
 const HORIZON_LAYER := ["mesa-large", "mesa-small", "arch", "dune-ridge"]
+## The middle distance: rolling dunes 14-26 m back, overlapping, each stretched differently, barely hazed so their
+## shaded slip faces give the empty sand some form.
+const DUNE_Z := Vector2(-26, -14)
+const HAZE_DUNES := 0.1
+## Sand drifts: wind-blown mounds of sand banked against the foot of every solid step on a walkable surface, so the
+## blocks meet the ground with a soft curve instead of a hard corner.
+const DRIFT_COLOR := Color("#e0bd88")
 ## The painted sky (art/sky.png, gen image) hangs on a quad this far back, behind the far end of the sand plane, and
 ## follows the camera on x: a sky at infinity. One copy spans the whole frame, stretched about 2x across.
 ## Its bottom rows are clear haze of HORIZON, which is also the fog color, so the fully fogged
@@ -243,7 +250,10 @@ func make_backdrop(level: Greybox) -> Node3D:
 	_scatter(props, rng, MID, Vector2(-8, level.width + 8), Vector2(-8, -5), Vector2(3, 8), Vector2(0.7, 1.0), 25.0, true, HAZE_MID)
 	_scatter(props, rng, NEAR, Vector2(-6, level.width + 6), Vector2(-3.5, -2.5), Vector2(6, 12), Vector2(0.8, 1.0), 25.0, true, 0.0)
 	var horizon_rng := RandomNumberGenerator.new(); horizon_rng.seed = SEED + 1
-	_scatter(props, horizon_rng, HORIZON_LAYER, Vector2(-60, level.width + 60), Vector2(-100, -60), Vector2(-5, 6), Vector2(0.7, 1.1), 180.0, false, HAZE_HORIZON)
+	_distant(props, horizon_rng, HORIZON_LAYER, Vector2(-60, level.width + 60), Vector2(-100, -60), Vector2(-5, 6), Vector2(0.8, 1.5), Vector2(0.6, 1.2), HAZE_HORIZON)
+	var dune_rng := RandomNumberGenerator.new(); dune_rng.seed = SEED + 2
+	_distant(props, dune_rng, ["dune-ridge"], Vector2(-40, level.width + 40), DUNE_Z, Vector2(-22, -10), Vector2(0.5, 1.1), Vector2(0.6, 1.4), HAZE_DUNES)
+	holder.add_child(_drifts())
 	_add_foreground(holder, rng)
 	return holder
 
@@ -400,6 +410,44 @@ func _haze(inst: Node3D, haze: float) -> Node3D:
 				_haze_materials[key] = mat
 			mi.set_surface_override_material(s, _haze_materials[key])
 	return inst
+
+## Places distant pieces left to right: never the same piece twice in a row, each stretched by its own x and y
+## scale, at any yaw, so no two silhouettes repeat.
+func _distant(parent: Node3D, rng: RandomNumberGenerator, pieces: Array, x_range: Vector2, z_range: Vector2, gap: Vector2, x_scale: Vector2, y_scale: Vector2, haze: float) -> void:
+	var x := x_range.x
+	var last := ""
+	while x < x_range.y:
+		var piece: String = pieces[rng.randi_range(0, pieces.size() - 1)]
+		if pieces.size() > 1:
+			while piece == last: piece = pieces[rng.randi_range(0, pieces.size() - 1)]
+		last = piece
+		var inst := _piece(piece)
+		inst.rotation_degrees.y = rng.randf_range(-180.0, 180.0)
+		var sx := rng.randf_range(x_scale.x, x_scale.y)
+		inst.scale = Vector3(sx, rng.randf_range(y_scale.x, y_scale.y), sx)
+		var width := _aabb(inst).size.x * sx
+		x += width / 2.0
+		inst.position = Vector3(x, 0, rng.randf_range(z_range.x, z_range.y))
+		parent.add_child(_haze(inst, haze))
+		x += width / 2.0 + rng.randf_range(gap.x, gap.y)
+
+## A flattened sand mound at the foot of every solid face that rises from a walkable surface.
+func _drifts() -> Node3D:
+	var holder := Node3D.new(); holder.name = "Drifts"
+	var mesh := SphereMesh.new(); mesh.radius = 0.5; mesh.height = 1.0; mesh.radial_segments = 16; mesh.rings = 8
+	var mat := toon(DRIFT_COLOR)
+	for r in _level.height:
+		for c in _level.width:
+			var walkable := _level.kind_at(c, r) != "solid" and not Greybox.TAGGED.has(_level.kind_at(c, r)) and _level.kind_at(c, r + 1) == "solid"
+			if not walkable: continue
+			for side in [-1, 1]:
+				if _level.kind_at(c + side, r) != "solid": continue
+				var drift := MeshInstance3D.new(); drift.mesh = mesh; drift.material_override = mat
+				var sx := 0.9 + 0.3 * float((c * 7 + r * 3) % 3) / 2.0
+				drift.scale = Vector3(sx, 0.34, 0.95)
+				drift.position = Vector3(c + 0.5 + side * 0.5, _level.height - r - 1, 0)
+				holder.add_child(drift)
+	return holder
 
 ## True when every level column the span [x0, x1] covers (clamped to the level) has solid ground in the bottom row.
 func _over_ground(x0: float, x1: float) -> bool:
