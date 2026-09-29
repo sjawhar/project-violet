@@ -19,7 +19,7 @@
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-01.png",
-        "sha256": "b4245b84d39e35e9cd8df6c094a3a4d4fe01cbec59bcb64f741be8844165bf3c"
+        "sha256": "db80e6eea7cd6f8f0322e4a4db81d2fbc77a0442f6e5a3612672f6365ca7e155"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/scarf1.png",
@@ -32,6 +32,11 @@
       "by": "anthropic/claude-sonnet-5 (VioletBJumpLand)",
       "description": "trimmed to the frame's shared body+scarf alpha>8 bounding-box union (109,60)-(820,960) of the raw 1024x1024 canvas -> 711x900, then rescaled by factor 1.128227 (Lanczos), reused unchanged from the run trial's own calibration, to the shared rig scale -> 802x1015",
       "at": "2026-09-29T03:19:34+00:00"
+    },
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletBJumpLand)",
+      "description": "corrected generator.inputs[0].sha256 to the body file's current (post-trim) hash: the scarf recorded the body's raw pre-trim hash at generation time, then the body's own provenance edit updated its top-level hash, leaving this asset's input reference stale per provenance check",
+      "at": "2026-09-29T03:24:42+00:00"
     }
   ],
   "license": "proprietary"

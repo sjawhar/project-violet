@@ -19,7 +19,7 @@
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-01.png",
-        "sha256": "35b09132efd8caa8b50461fd8fe98f341b2a811cf9f74586bb147e4f57134252"
+        "sha256": "a021683756e9f5abbfda32926ee43c6250259f893da007771a28744723827ddd"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/scarf1.png",
@@ -32,6 +32,11 @@
       "by": "anthropic/claude-sonnet-5 (VioletBJumpLand)",
       "description": "trimmed to the frame's shared body+scarf alpha>8 bounding-box union (175,24)-(743,924) of the raw 1024x1024 canvas -> 568x900, then rescaled by factor 1.128227 (Lanczos), reused unchanged from the run trial's own calibration, to the shared rig scale -> 641x1015",
       "at": "2026-09-29T03:19:33+00:00"
+    },
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletBJumpLand)",
+      "description": "corrected generator.inputs[].sha256 to the referenced asset's current recorded hash (a stale reference left by an earlier provenance edit on the input asset itself)",
+      "at": "2026-09-29T03:25:13+00:00"
     }
   ],
   "license": "proprietary"
