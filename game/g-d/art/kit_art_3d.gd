@@ -60,6 +60,18 @@ const HAZE_DUNES := 0.1
 ## Sand drifts: wind-blown mounds of sand banked against the foot of every solid step on a walkable surface, so the
 ## blocks meet the ground with a soft curve instead of a hard corner.
 const DRIFT_COLOR := Color("#e0bd88")
+## Edge dressing on walkable tops: small rocks, young saguaros and scrub along the back of the platform tops, and
+## rock crumbs on the front edge, so no top edge is a ruler-straight line. Seeded, and kept off the cells with an orb,
+## the start and the goal.
+const EDGE_SEED := 20260930
+const EDGE_PROPS := [["boulder-a", 0.3, 0.5], ["boulder-b", 0.28, 0.45], ["saguaro", 0.18, 0.26], ["acacia", 0.12, 0.18]]
+const EDGE_BACK_Z := Vector2(-0.4, -0.15)
+const CRUMB_Z := 0.38
+## Broad colour drift across the level: tiles warm toward BROAD_WARM or cool toward SHADOW_VIOLET in long waves along
+## x (four steps), so large stretches of ground differ in colour as well as in their strata bands.
+const BROAD_WARM := Color("#e89a66")
+const BROAD_TINT := 0.1
+const BROAD_WAVE := 13.0
 ## The painted sky (art/sky.png, gen image) hangs on a quad this far back, behind the far end of the sand plane, and
 ## follows the camera on x: a sky at infinity. One copy spans the whole frame, stretched about 2x across.
 ## Its bottom rows are clear haze of HORIZON, which is also the fog color, so the fully fogged
@@ -97,7 +109,7 @@ var _toon := {}
 ## [orb kind, imported material] -> its tinted copy. Held here, not only by the orb: when a picked-up orb's material died
 ## with the orb, the headless (dummy) renderer logged 'Parameter "material" is null', which the export smoke run fails on.
 var _orb_materials := {}
-## [toon material, depth] -> its tile variant.
+## [toon material, depth, broad band] -> its tile variant.
 var _tile_materials := {}
 var _strata_noise: ImageTexture
 var _lip_mesh: BoxMesh
@@ -254,6 +266,7 @@ func make_backdrop(level: Greybox) -> Node3D:
 	var dune_rng := RandomNumberGenerator.new(); dune_rng.seed = SEED + 2
 	_distant(props, dune_rng, ["dune-ridge"], Vector2(-40, level.width + 40), DUNE_Z, Vector2(-22, -10), Vector2(0.5, 1.1), Vector2(0.6, 1.4), HAZE_DUNES)
 	holder.add_child(_drifts())
+	holder.add_child(_edge_dressing())
 	_add_foreground(holder, rng)
 	return holder
 
@@ -339,14 +352,17 @@ func _vary_tile(inst: Node3D, cell: Vector2i) -> Node3D:
 	var depth := 0
 	while depth < 3 and _level.kind_at(cell.x, cell.y - depth - 1) == "solid": depth += 1
 	var flipped := (cell.x + cell.y) % 2 == 1
+	# Broad drift: -1 (cool) to 1 (warm) in four steps along x.
+	var band := int(round(sin(cell.x / BROAD_WAVE * TAU) * 1.5 + 1.5)) - 1
 	if flipped: inst.rotation_degrees.y = 180.0
 	for mi: MeshInstance3D in _meshes(inst):
 		for s in mi.mesh.get_surface_count():
 			var base := mi.get_surface_override_material(s) as StandardMaterial3D
-			var key := [base, depth]
+			var key := [base, depth, band]
 			if not _tile_materials.has(key):
 				var mat := base.duplicate() as StandardMaterial3D
-				mat.albedo_color = base.albedo_color.lerp(SHADOW_VIOLET, DEPTH_TINT * depth)
+				var color := base.albedo_color.lerp(SHADOW_VIOLET, DEPTH_TINT * depth)
+				mat.albedo_color = color.lerp(BROAD_WARM if band > 0 else SHADOW_VIOLET, BROAD_TINT * absf(band - 0.5) / 1.5)
 				mat.detail_enabled = true; mat.detail_albedo = _strata_texture(); mat.detail_blend_mode = BaseMaterial3D.BLEND_MODE_MUL
 				mat.detail_uv_layer = BaseMaterial3D.DETAIL_UV_2
 				mat.uv2_triplanar = true; mat.uv2_world_triplanar = true; mat.uv2_scale = Vector3.ONE / STRATA_PERIOD
@@ -447,6 +463,30 @@ func _drifts() -> Node3D:
 				drift.scale = Vector3(sx, 0.34, 0.95)
 				drift.position = Vector3(c + 0.5 + side * 0.5, _level.height - r - 1, 0)
 				holder.add_child(drift)
+	return holder
+
+## Seeded small props on walkable tops: one at the back of about a third of the cells, a rock crumb on the front edge
+## of about a quarter.
+func _edge_dressing() -> Node3D:
+	var holder := Node3D.new(); holder.name = "EdgeDressing"
+	var rng := RandomNumberGenerator.new(); rng.seed = EDGE_SEED
+	for r in _level.height:
+		for c in _level.width:
+			var kind := _level.kind_at(c, r)
+			if kind != "empty" or _level.kind_at(c, r + 1) != "solid": continue
+			var floor_y := float(_level.height - r - 1)
+			var roll := rng.randf()
+			if roll < 0.35:
+				var spec: Array = EDGE_PROPS[rng.randi_range(0, EDGE_PROPS.size() - 1)]
+				var prop := _piece(spec[0]); var sc := rng.randf_range(spec[1], spec[2])
+				prop.scale = Vector3.ONE * sc; prop.rotation_degrees.y = rng.randf_range(-180, 180)
+				prop.position = Vector3(c + rng.randf_range(0.2, 0.8), floor_y, rng.randf_range(EDGE_BACK_Z.x, EDGE_BACK_Z.y))
+				holder.add_child(prop)
+			if rng.randf() < 0.25:
+				var crumb := _piece("boulder-a" if rng.randf() < 0.5 else "boulder-b"); var sc := rng.randf_range(0.12, 0.2)
+				crumb.scale = Vector3(sc * 1.4, sc, sc); crumb.rotation_degrees.y = rng.randf_range(-180, 180)
+				crumb.position = Vector3(c + rng.randf_range(0.15, 0.85), floor_y - 0.06, CRUMB_Z)
+				holder.add_child(crumb)
 	return holder
 
 ## True when every level column the span [x0, x1] covers (clamped to the level) has solid ground in the bottom row.
