@@ -52,7 +52,7 @@ class RevealSprite extends Sprite2D:
 func make_backdrop(level: Greybox) -> Node2D:
 	_level = level
 	_ground_row = _most_common_top_row(level)
-	_air = _distance_to_air(level)
+	_air = _distance_to_air(level, _ground_row)
 	var holder := Node2D.new(); holder.name = "Backdrop"; holder.z_index = -10
 	for layer_spec: Array in [["Far", backdrop_far, 0.2], ["Mid", backdrop_mid, 0.5], ["Near", backdrop_near, 0.8]]:
 		var tex: Texture2D = layer_spec[1]
@@ -209,6 +209,9 @@ func _terrain(cell: Vector2i, ts: float) -> Node2D:
 	var foot := func(dx: int) -> float:  # a surface cell at the foot of rock rising beside it
 		return float(not covered and _level.kind_at(cell.x + dx, cell.y) == "solid" and _level.kind_at(cell.x + dx, cell.y - 1) == "solid")
 	mat.set_shader_parameter("foot", Vector2(foot.call(-1), foot.call(1)))
+	mat.set_shader_parameter("run", Vector2(_run(cell, -1), _run(cell, 1)))
+	mat.set_shader_parameter("ground_y", float(_ground_row))
+	mat.set_shader_parameter("raised", float(cell.y <= _ground_row and _column_top(cell.x) < _ground_row))
 	mat.set_shader_parameter("air", Vector4(_corner_air(cell), _corner_air(cell + Vector2i(1, 0)),
 		_corner_air(cell + Vector2i(0, 1)), _corner_air(cell + Vector2i(1, 1))))
 	quad.material = mat
@@ -224,6 +227,21 @@ func _terrain(cell: Vector2i, ts: float) -> Node2D:
 		shadow.vertex_colors = PackedColorArray([Color(SHADOW, top_alpha), Color(SHADOW, 0.0), Color(SHADOW, 0.0), Color(SHADOW, 0.5)])
 		holder.add_child(shadow)
 	return holder
+
+## How many cells of rock lie between this cell and the open air beside it, in direction dx (0 when the neighbour is
+## open), capped at 3: the shader lights the face toward the sunset and shades the far face from it.
+func _run(cell: Vector2i, dx: int) -> float:
+	for k in 3:
+		var c := cell.x + dx * (k + 1)
+		if c < 0 or c >= _level.width: return 3.0
+		if _level.kind_at(c, cell.y) in OPEN_KINDS: return float(k)
+	return 3.0
+
+## The first row from the top that is not open in a column, so a mass rising above the ground line can be found.
+func _column_top(c: int) -> int:
+	for r in _level.height:
+		if not _level.kind_at(c, r) in OPEN_KINDS: return r
+	return _level.height
 
 ## The air distance at a cell corner (the corner at the cell's top-left): the mean over the rock cells around it,
 ## so the darkening runs smoothly across cell borders. Open cells are left out, so a mass is not lightened along its
@@ -242,16 +260,19 @@ func _air_at(c: Vector2i) -> float:
 ## Per cell, how far it lies under the open air that lights it: its depth below the open cell straight above it,
 ## averaged with the rock cells beside it in the same row (open cells are left out), capped at AIR_CAP. Rock is lit
 ## from above, so a mass darkens steadily from its top down, the same across its whole width, and the ground under a
-## narrow pillar darkens only softly.
+## narrow pillar darkens only softly. At and below the ground line a cell is never deeper than its depth under that
+## line, so the ground under a raised block shades like the ground beside it and its bands line up.
 const AIR_CAP := 5
-static func _distance_to_air(level: Greybox) -> PackedFloat32Array:
+static func _distance_to_air(level: Greybox, ground_row: int) -> PackedFloat32Array:
 	var w := level.width; var h := level.height
 	var straight := PackedFloat32Array(); straight.resize(w * h)
 	for c in w:
 		var depth := float(AIR_CAP)  # the level's top edge counts as deep rock
 		for r in h:
 			if level.kind_at(c, r) in OPEN_KINDS or Greybox.TAGGED.has(level.kind_at(c, r)): depth = 0.0; straight[r * w + c] = 0.0; continue  # a tagged wall standing on rock does not shade it
-			depth = minf(depth + 1.0, AIR_CAP); straight[r * w + c] = depth
+			depth = minf(depth + 1.0, AIR_CAP)
+			if r >= ground_row: depth = minf(depth, float(r - ground_row + 1))
+			straight[r * w + c] = depth
 	var dist := PackedFloat32Array(); dist.resize(w * h)
 	for r in h:
 		for c in w:

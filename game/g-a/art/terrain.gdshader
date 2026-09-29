@@ -5,6 +5,9 @@
 // - The mass darkens smoothly from its lit top down (a field interpolated across cells), so the foreground reads
 //   as a dark silhouette under a lit lip; the ground darkens where a block rises out of it (ambient occlusion).
 // - A warm rim picks out the sunlit top and, faintly, the open sides.
+// - Form (glow-up round 8): the sunset is to the left, so a mass's left face takes a warm lit band and its right face
+//   falls into a cool shadow over about a cell; the rock just under a sand crust is in the crust's shadow; and a mass
+//   that rises above the ground darkens toward its base at the ground line and just below it, so it stands on the ground.
 // - The rock is one wide cliff-face painting laid over the whole level in level space (glow-up round 7), so a mass
 //   shows one continuous stretch of strata instead of a tile per cell; it repeats only every 30-odd cells. A surface
 //   cell gets a sand crust of wandering thickness over it.
@@ -14,6 +17,9 @@ uniform vec4 open = vec4(0.0);     // x left, y top, z right, w bottom: 1 where 
 uniform vec2 cell = vec2(0.0);     // the cell's grid position, so the noise runs on across cells
 uniform vec4 air = vec4(0.0);      // depth under the open air, at the corners: x top-left, y top-right, z bottom-left, w bottom-right
 uniform vec2 foot = vec2(0.0);     // x left, y right: 1 on a surface cell at the foot of rock rising beside it
+uniform vec2 run = vec2(3.0);      // x left, y right: cells of rock between this cell and the open air on that side (capped at 3)
+uniform float ground_y = 0.0;      // the ground line's row: where the ground's walkable top is
+uniform float raised = 0.0;        // 1 on a cell of a mass that rises above the ground line, down to the line
 varying vec2 local;                // 0..1 across the cell, y down
 
 void vertex() { local = VERTEX / side + 0.5; }
@@ -55,9 +61,11 @@ void fragment() {
 	alpha = max(alpha, blade);
 	rock = mix(rock, GRASS * (0.8 + 0.5 * clamp(rise / 0.2, 0.0, 1.0)), blade);  // blades lighter toward their tips
 	vec4 c = vec4(rock, 1.0);
-	// Side and bottom erosion: 6-26 px of a 64 px cell, a slow wobble plus fine chipping along the edge.
-	float cut_l = 0.10 + 0.22 * fbm(vec2(w.y * 1.1, cell.x * 3.1)) + 0.08 * noise(vec2(w.y * 9.0, cell.x));
-	float cut_r = 0.10 + 0.22 * fbm(vec2(w.y * 1.1, cell.x * 3.1 + 17.0)) + 0.08 * noise(vec2(w.y * 9.0, cell.x + 5.0));
+	// Side and bottom erosion: 4-35 px of a 64 px cell, a slow wobble plus fine chipping along the edge; on the sides the
+	// painting's dark (recessed) strata are cut deeper than its lit ones, so the silhouette steps out at each ledge.
+	float ledge = 0.45 * (0.55 - dot(texture(rock_face, w * TS / (vec2(textureSize(rock_face, 0)) * ROCK_SCALE)).rgb, vec3(0.299, 0.587, 0.114)));
+	float cut_l = max(0.06, 0.12 + 0.20 * fbm(vec2(w.y * 1.1, cell.x * 3.1)) + 0.08 * noise(vec2(w.y * 9.0, cell.x)) + ledge);
+	float cut_r = max(0.06, 0.12 + 0.20 * fbm(vec2(w.y * 1.1, cell.x * 3.1 + 17.0)) + 0.08 * noise(vec2(w.y * 9.0, cell.x + 5.0)) + ledge);
 	float cut_b = 0.06 + 0.08 * fbm(vec2(w.x * 5.0, cell.y * 2.3 + 41.0));
 	alpha *= mix(1.0, smoothstep(cut_l, cut_l + aa, local.x), open.x);
 	alpha *= mix(1.0, smoothstep(cut_r, cut_r + aa, 1.0 - local.x), open.z);
@@ -70,15 +78,22 @@ void fragment() {
 	alpha *= mix(1.0, 1.0 - smoothstep(r - aa, r, d_tr), open.z * open.y);
 	// Dark foreground mass: full value at the open surface, falling off over about two cells into the rock.
 	float below = mix(mix(air.x, air.y, local.x), mix(air.z, air.w, local.x), local.y);
-	float shade = mix(1.0, 0.36, smoothstep(0.6, 3.6, below));
+	float shade = mix(1.0, 0.36, smoothstep(0.2, 3.4, below));
 	shade *= 0.94 + 0.10 * fbm(w * 0.9);                       // broad, slow value variation, not one flat fill
 	float ao = max(foot.x * (1.0 - smoothstep(0.0, 0.85, length(local * vec2(1.0, 1.6)))),
 		foot.y * (1.0 - smoothstep(0.0, 0.85, length((local - vec2(1.0, 0.0)) * vec2(1.0, 1.6)))));
 	shade *= 1.0 - 0.5 * ao;
+	float d_left = run.x + local.x, d_right = run.y + (1.0 - local.x);   // distance to the open face on each side, in cells
+	float shadow_side = 1.0 - smoothstep(0.0, 1.8, d_right);
+	float lit_side = 1.0 - smoothstep(0.0, 0.8, d_left);
+	shade *= 1.0 - 0.5 * shadow_side;
+	shade *= 1.0 - 0.38 * open.y * smoothstep(crust, crust + 0.03, local.y) * (1.0 - smoothstep(crust, crust + 0.3, local.y));
+	float base = raised * (w.y < ground_y ? 1.0 - smoothstep(0.0, 1.1, ground_y - w.y) : 1.0 - smoothstep(0.0, 0.35, w.y - ground_y));
+	shade *= 1.0 - 0.55 * base;
 	// Warm rim: the sunlit top edge, and a thin glint on open sides.
 	float rim_top = open.y * (1.0 - smoothstep(0.0, 0.09, local.y - crust_top));
 	float rim_side = max(open.x * (1.0 - smoothstep(cut_l, cut_l + 0.05, local.x)),
 		open.z * (1.0 - smoothstep(cut_r, cut_r + 0.05, 1.0 - local.x))) * (1.0 - smoothstep(0.0, 1.5, below));
-	vec3 col = c.rgb * shade + vec3(1.0, 0.70, 0.38) * (0.22 * rim_top + 0.22 * rim_side);
+	vec3 col = c.rgb * shade * mix(vec3(1.0), vec3(0.82, 0.80, 1.0), shadow_side) + vec3(1.0, 0.70, 0.38) * (0.22 * rim_top + 0.22 * rim_side + 0.20 * lit_side * (1.0 - smoothstep(0.0, 2.5, below)));
 	COLOR = vec4(col, c.a * alpha * COLOR.a);
 }
