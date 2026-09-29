@@ -24,6 +24,7 @@ sessions:
   - {start: "2026-09-29T02:27:43Z", end: "2026-09-29T02:36:25Z", purpose: "glow-up round 7"}
   - {start: "2026-09-29T02:40:22Z", end: "2026-09-29T03:03:23Z", purpose: "glow-up round 8"}
   - {start: "2026-09-29T03:07:12Z", end: "2026-09-29T03:32:14Z", purpose: "glow-up round 9"}
+  - {start: "2026-09-29T03:36:11Z", end: "2026-09-29T03:46:47Z", purpose: "glow-up round 10"}
 costs: []
 interventions:
   - {at: "2026-09-27T17:37:00Z", who: sjawhar, what: "ruled that agents make the bake-off art themselves (no Recraft), which unpaused the lane; asked by the lead, not by this lane, so the minutes Sami spent are not known here and 0 is recorded", minutes: 0}

@@ -48,7 +48,9 @@ class FootShadow extends Polygon2D:
 	func _process(_delta: float) -> void:
 		visible = player.is_on_floor()
 ## Aerial perspective per backdrop layer: [haze colour, amount]; the farther the layer, the more it fades.
-const LAYER_HAZE := {"Mid": [Color("#dcb2aa"), 0.3], "Near": [Color("#ecd0aa"), 0.12]}
+## [haze colour, amount at the layer's top, amount at its bottom, texture-y ramp]: four value steps from the far ranges
+## (in the far art itself) through the mid mesas and the near layer's back ridge to its front dune.
+const LAYER_HAZE := {"Mid": [Color("#dcb2aa"), 0.4, 0.3, Vector2(0.3, 0.8)], "Near": [Color("#e9c9ac"), 0.34, 0.0, Vector2(0.62, 0.76)]}
 ## How far the pit darkening reaches above a hazard cell, in cells.
 const PIT_SHADE_CELLS := 2.0
 ## art/reveal.gdshader's shape cue per tag colour.
@@ -75,7 +77,9 @@ func make_backdrop(level: Greybox) -> Node2D:
 	far.add_child(rays)
 	for layer_name: String in LAYER_HAZE:
 		var mat := ShaderMaterial.new(); mat.shader = HAZE
-		mat.set_shader_parameter("haze", LAYER_HAZE[layer_name][0]); mat.set_shader_parameter("amount", LAYER_HAZE[layer_name][1])
+		var spec: Array = LAYER_HAZE[layer_name]
+		mat.set_shader_parameter("haze", spec[0]); mat.set_shader_parameter("amount", spec[1])
+		mat.set_shader_parameter("amount_low", spec[2]); mat.set_shader_parameter("ramp", spec[3])
 		(holder.get_node(layer_name).get_child(0) as CanvasItem).material = mat
 	holder.add_child(_foreground(level))
 	return holder

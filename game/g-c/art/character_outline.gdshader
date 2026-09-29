@@ -28,8 +28,8 @@ void fragment() {
 	float far = ring(SCREEN_UV, d * 2.2);
 	float outline = clamp(near - a, 0.0, 1.0);
 	float halo = clamp(far - max(near, a), 0.0, 1.0);
-	float rim = a * (1.0 - alpha_at(SCREEN_UV - vec2(d.x * 1.8, 0.0)));
-	vec3 rgb = mix(c.rgb, rim_color.rgb, rim * 0.6);
+	float rim = a * (1.0 - alpha_at(SCREEN_UV - vec2(d.x * 2.6, 0.0)));
+	vec3 rgb = mix(c.rgb, rim_color.rgb, rim * 0.8);
 	vec3 col = mix(outline_color.rgb, rgb, a);
 	col = mix(col, halo_color.rgb, halo);
 	COLOR = vec4(col, max(max(a, outline), halo * halo_color.a));

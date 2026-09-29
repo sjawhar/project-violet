@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "asset": "backdrop-near.svg",
-  "sha256": "36e77b6a7c4688a3a197b37894d82f29b6cdfc0de54eda4e6cbf4153ab78eb9c",
+  "sha256": "d38126df7ed9d324c63645e3db43e2c256cca4ab9052948b1b5d4ec09a2386ad",
   "kind": "image",
   "origin": "generated",
   "created_at": "2026-09-27T18:12:00+00:00",
@@ -24,6 +24,11 @@
       "by": "anthropic claude-opus-5-5 (agent)",
       "description": "glow-up round 1: widened to 3072x1024 with new art in the second half so one screen never shows the same art twice; far: vertical gradient sky, sun bloom, cloud streaks with lit tops and shaded bases, two distant ranges fading into haze; mid: second mesa, spire and hoodoo cluster, warm rim on sunward edges, haze thickening toward the plain; near: extended dunes, sunlit crest strips, more plants reused from the first half",
       "at": "2026-09-29T00:45:50+00:00"
+    },
+    {
+      "by": "anthropic claude-opus-5-5 (agent)",
+      "description": "glow-up round 10: warm rim light on the sunward (left) edges of the saguaros and the acacia canopy",
+      "at": "2026-09-29T03:46:46+00:00"
     }
   ],
   "license": "proprietary"

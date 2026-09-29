@@ -12,9 +12,9 @@ void fragment() {
 	vec2 local = fract(UV * vec2(textureSize(TEXTURE, 0)) / cell_px);
 	float rim = open_sides.x * smoothstep(0.22, 0.0, local.x);
 	float top = open_sides.z * smoothstep(0.2, 0.0, local.y);
-	float shade = open_sides.y * smoothstep(0.62, 1.0, local.x);
+	float shade = open_sides.y * smoothstep(0.5, 1.0, local.x);
 	vec3 rgb = c.rgb;
-	rgb = mix(rgb, rgb * 1.3 + SUN * 0.16, max(rim, top));
+	rgb = mix(rgb, rgb * 1.38 + SUN * 0.2, max(rim, top));
 	rgb = mix(rgb, rgb * DUSK, shade * 0.7);
 	COLOR = vec4(rgb, c.a);
 }

@@ -36,7 +36,7 @@ void fragment() {
 	float light = 1.08 - 0.24 * v;
 	light += 0.3 * open_sides.z * smoothstep(0.07, 0.0, local.y);
 	light -= 0.14 * open_sides.w * smoothstep(0.8, 1.0, local.y);
-	float rim = open_sides.x * smoothstep(0.1, 0.0, local.x);
+	float rim = open_sides.x * smoothstep(0.18, 0.0, local.x);
 	float shade = open_sides.y * smoothstep(0.72, 1.0, local.x);
 	bool glyph_cell = glyph > 0.5;
 	float cut = glyph_cell ? carve(local, pattern) : 0.0;
@@ -49,6 +49,6 @@ void fragment() {
 	colored = clamp(vec3(g) + (colored - vec3(g)) / s, 0.0, 1.0);
 	vec3 rgb = mix(gray, colored, saturation);
 	rgb = mix(rgb, rgb * DUSK * 1.6, 0.35 * shade);
-	rgb += SUN * 0.3 * rim;
+	rgb += SUN * 0.45 * rim;
 	COLOR = vec4(rgb, COLOR.a); // COLOR.a is already the texture's alpha times the modulate
 }
