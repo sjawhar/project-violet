@@ -55,7 +55,7 @@
 | 11b. Glow-up round: Violet, G-A, G-D, G-C | lead / sami (Violet, gallery, 890M frame times); oryx agent (the three lanes) | 5, 6, 7, 8, 10 | none (approved keys) |
 | 12. Judging gallery, scores, decision record 0013 | lead / sami | 2, 11b, all lanes delivered or blocked | none |
 
-Parallel waves: Task 1 first (one PR). Then 2, 3, 4 in parallel; 7 and 8 start as soon as 1 and 3 are on `master` (greybox visuals, stand-in character). 5, 6 and 10 start once their own inputs are ready (Task 4 for 5; Task 1 for 6; the G-A branch for 10) — none of them wait on an account. 9 starts the day Sami's Unity account exists. 11 waits (decision 0012). 12 starts when the last lane reports `status: delivered` or `blocked`.
+Parallel waves: Task 1 first (one PR). Then 2, 3, 4 in parallel; 7 and 8 start as soon as 1 and 3 are on `master` (greybox visuals, stand-in character). 5, 6 and 10 start once their own inputs are ready (Task 4 for 5; Task 1 for 6; the G-A branch for 10) — none of them wait on an account. 9 starts the day Sami's Unity account exists. 11 waits (decision 0012). 11b starts once Sami has approved the stand-in Violet and kit (#28, #31). 12 starts when 11b's calibration gallery is published and the last lane reports `status: delivered` or `blocked`.
 
 ## Conventions used by every task
 
