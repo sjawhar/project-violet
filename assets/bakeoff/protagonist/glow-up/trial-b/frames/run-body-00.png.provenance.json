@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "asset": "run-body-00.png",
-  "sha256": "5aabdaafdcc356689af20198ec91764b57e7cc9dcf238f77b06c565a460a6012",
+  "sha256": "ce487d4ef731535263ed676870868c01d7707db67a0306b2b578c83f2cc90dfe",
   "kind": "image",
   "origin": "generated",
   "created_at": "2026-09-29T01:45:59+00:00",
@@ -23,6 +23,12 @@
       }
     ]
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletTrialB)",
+      "description": "trimmed to the frame's shared body+scarf alpha>8 bounding-box union (18,47)-(838,929) of the raw 1024x1024 canvas -> 820x882, then rescaled by factor 1.128227 (Lanczos) to the shared rig scale (calibrated against round-00/contact-sheet.png's run row, t=0 column: bbox height 208 canvas px at SCALE=0.22 = 945.4545 rig units) -> 925x995",
+      "at": "2026-09-29T02:04:40+00:00"
+    }
+  ],
   "license": "proprietary"
 }
