@@ -28,6 +28,7 @@ sessions:
   - {start: "2026-09-29T03:21:27Z", end: "2026-09-29T03:54:00Z", purpose: "glow-up round 7"}
   - {start: "2026-09-29T03:59:19Z", end: "2026-09-29T04:22:00Z", purpose: "glow-up round 8"}
   - {start: "2026-09-29T04:27:04Z", end: "2026-09-29T04:43:00Z", purpose: "glow-up round 9"}
+  - {start: "2026-09-29T04:48:13Z", end: "2026-09-29T05:00:00Z", purpose: "glow-up round 10"}
 costs:
   - {item: "gen image gpt-image-2 1024x1024 quality=low, wall-tile (rejected)", usd: 0.0143, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:47:36+00:00)"}
   - {item: "gen image gpt-image-2 1536x1024 quality=low, backdrop-near (rejected)", usd: 0.0062, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
@@ -109,6 +110,7 @@ friction:
   - {at: "2026-09-29T03:28:00Z", what: "glow-up round 7: a fully procedural strata shader (no texture) read as flat planks and CG gradients at 64 px per cell", workaround: "dropped it for one generated cliff-face painting sampled in level space; the shader keeps only the crust, grass, erosion and shading"}
   - {at: "2026-09-29T04:08:00Z", what: "glow-up round 8: each full-length software draft (to 60 s) takes about 6 minutes at 15% of real time, so tuning the tall blocks seen only at 40 and 60 s cost two drafts", workaround: "tuned the step pillars on 5 s drafts (about 30 s each) and ran only two full drafts before the fixed capture"}
   - {at: "2026-09-29T04:34:00Z", what: "glow-up round 9: the first rock-grain pass lifted the painting's value too little, so the columns read as smooth plastic tubes, and the halo strips on a column's top cell still glowed above its new broken top", workaround: "raised the grain contrast and added brush strokes along the piece; the halo on a column's top cell now starts below the break"}
+  - {at: "2026-09-29T04:53:00Z", what: "glow-up round 10: the foot shadow at z_index -1 drew under the terrain, so it never showed on the sand, and the first rim (6 px, 0.85) was too faint to see in the fixed shots", workaround: "added the shadow before her at the player's own z, so it draws over the ground and under her; widened the rim to 8 px at 1.1"}
 blockers: []
 deliverables: {build: bakeoff/g-a/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-a/reports/replay.json}
 ---
