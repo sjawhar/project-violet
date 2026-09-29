@@ -32,4 +32,4 @@ With DISPLAY unset, the script renders in software (llvmpipe and lavapipe under 
 
 | round | start (UTC) | end (UTC) | what changed | USD | letter mapping | axes better | axes worse | scores A and B (visual_quality / character_appeal / color_readability) | the new round's three gaps | kept |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 0 | 2026-09-29T00:24:45Z | 2026-09-29T00:37:00Z | the look before the round | 0 | A = round 0 (only set) | — | — | | | yes |
+| 0 | 2026-09-29T00:24:45Z | 2026-09-29T00:37:00Z | the look before the round | 0 | A = round 0 (only set) | — (nothing to compare) | — | A: 2 / 2 / 2 | 1. red walls render peach (~255,175,115), on the sandstone hue, in 2 of 3 shots; 2. Violet is lost: hidden behind a wall in A-4, brown robe on tan mesa in A-3, no rim light or detail; 3. the world looks like greybox: one strata texture everywhere, sharp cuboids, repeated spikes, a horizon seam at y≈640, an empty sky, saturated low-poly mesas, black slivers ([critic.md](glow-up/round-00/critic.md)) | yes |
