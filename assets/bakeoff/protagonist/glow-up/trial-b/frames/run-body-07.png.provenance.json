@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "asset": "run-body-07.png",
+  "sha256": "219aa8cbe412ae42473f685de50496476386b1289e30ac3ff517be32b73f7388",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-29T01:49:42+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Frame-by-frame hand-painted 2D game sprite of Violet, a slender young girl adventurer, side-view profile facing right. She wears a hooded gray robe with a darker waist sash, an ankle-length robe skirt with a slightly darker hem, and goes barefoot with simple ankle wraps. Pale skin, dark hair just visible under the hood, a clearly readable young face in profile with a visible eye, brow, nose and mouth. Realistic child body proportions, about 5.5 head-heights tall, matching the reference turnaround exactly in design, coloring and proportions. Rendered as a single cohesive hand-painted illustration with soft painterly brushwork and visible brush texture, in a muted earthy palette (grays, browns, warm skin tones), NOT a flat vector cutout, in the painted-storybook register of games like Hollow Knight or GRIS. A grounded running drive/push-off pose, mirrored, NOT a jump: her back leg is extending and pushing off at the ball of the foot -- this foot stays in contact with the ground and is the lowest point of the image, heel lifting as the leg straightens. Her other leg, having been drawn up, is swinging forward and opening out toward the ground ahead but not yet touching. Tallest, most upright moment of the cycle. Arms swing (mirrored), one up and forward, one back, elbows bent. Full body visible from the top of the hood to the soles of both bare feet, and both hands, entirely inside the canvas with generous empty margin on every side so nothing is cropped. She stands at a consistent scale and vertical position: the same distance from the top of her hood to the ground line as in the reference image(s). Transparent background, no ground plane, no cast shadow, no vignette, no border, no text, no watermark, no second copy of the character, no scarf or neck wrap of any kind -- bare gray robe collar at the neck; a separate layer will add the scarf later.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
+        "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}
