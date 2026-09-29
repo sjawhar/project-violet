@@ -59,11 +59,23 @@ const HORIZON := Color8(252, 193, 119)
 ## Dark foreground silhouettes, between the camera and the play plane, frame the bottom of the shot (as Planet of Lana
 ## and INSIDE do). Their tops stay below this height on the play plane, under the 3 m walking surface.
 const FOREGROUND_TOP := 2.2
-const FOREGROUND_COLOR := Color("#3a2e4d")
+## Hazed: a mid violet, slightly see-through, so the silhouettes sit in the air in front of the play layer instead of
+## outweighing it.
+const FOREGROUND_COLOR := Color("#5d4d6e", 0.82)
 const FOREGROUND := ["saguaro", "acacia"]
 ## Tile shading: each cell of rock under the surface is pulled this far toward shadow violet (up to three cells deep),
 ## so the strata darken with depth instead of repeating identically down a block.
 const DEPTH_TINT := 0.08
+## World-space strata variation: a seamless noise, mapped in world space across every tile and stretched along x (one
+## period per STRATA_PERIOD metres), multiplies the tiles toward STRATA_DARK in long horizontal bands, so neighbouring
+## blocks stop repeating and the strata vary in tone like real layered rock.
+const STRATA_PERIOD := Vector3(16.0, 3.5, 16.0)
+const STRATA_DARK := Color(0.82, 0.77, 0.88)
+const STRATA_SEED := 20260929
+## Walkable edges: a dark lip line just under the top edge of every tile that is open above, so the cream tops read
+## against the cream sand behind them.
+const LIP_COLOR := Color("#5b3f55")
+const LIP_HEIGHT := 0.06
 
 var _scenes := {}
 ## Imported material -> its toon copy, shared by every instance of that piece.
@@ -73,6 +85,9 @@ var _toon := {}
 var _orb_materials := {}
 ## [toon material, depth] -> its tile variant.
 var _tile_materials := {}
+var _strata_noise: ImageTexture
+var _lip_mesh: BoxMesh
+var _lip_material: StandardMaterial3D
 ## [toon material, haze] -> its hazed backdrop copy.
 var _haze_materials := {}
 ## The level being dressed, kept by make_backdrop (called before the builder) so make_cell can see a cell's neighbours.
@@ -95,19 +110,26 @@ class SkyLayer extends MeshInstance3D:
 		position.x = get_viewport().get_camera_3d().global_position.x
 
 ## A bird: two dark wings that flap, flying across the sky and wrapping around the camera's view.
+## A bird: a small body and two jointed wings whose outer halves lag the inner halves as they flap, gliding across
+## the sky and wrapping around the camera's view.
 class Bird extends Node3D:
 	var speed: float
 	var phase: float
 	var home: Vector3
-	var wings: Array[Node3D] = []
+	var inner: Array[Node3D] = []  ## left, right
+	var outer: Array[Node3D] = []
 	var t := 0.0
 	func _process(delta: float) -> void:
 		t += delta
 		var cam_x := get_viewport().get_camera_3d().global_position.x
 		position = Vector3(cam_x + fposmod(home.x + t * speed + 45.0, 90.0) - 45.0, home.y + sin(t * 0.7 + phase) * 0.6, home.z)
-		var flap := sin(t * 6.0 + phase) * 30.0
-		wings[0].rotation_degrees.z = 20.0 + flap
-		wings[1].rotation_degrees.z = -20.0 - flap
+		var beat := t * 4.5 + phase
+		var flap := sin(beat) * 28.0
+		var tip := sin(beat - 0.9) * 34.0
+		for i in 2:
+			var side := -1.0 if i == 0 else 1.0
+			inner[i].rotation_degrees.z = side * (12.0 + flap)
+			outer[i].rotation_degrees.z = side * (tip - 8.0)
 
 ## One outline sprite: the parent part's image, dark and unshaded, a little larger, behind every part of the character.
 class OutlineSprite extends Sprite3D:
@@ -226,15 +248,26 @@ func _sky_layer() -> SkyLayer:
 func _add_birds(holder: Node3D) -> void:
 	var mat := StandardMaterial3D.new()
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED; mat.disable_fog = true; mat.albedo_color = Color("#4a3a5a")
-	var wing_mesh := BoxMesh.new(); wing_mesh.size = Vector3(0.9, 0.08, 0.08)
+	var body_mesh := SphereMesh.new(); body_mesh.radius = 0.16; body_mesh.height = 0.2
+	var inner_mesh := PrismMesh.new(); inner_mesh.size = Vector3(0.5, 0.06, 0.34); inner_mesh.left_to_right = 0.0
+	var outer_mesh := PrismMesh.new(); outer_mesh.size = Vector3(0.48, 0.05, 0.24); outer_mesh.left_to_right = 0.0
 	var flock := [Vector3(-20, 17, -35), Vector3(-17.5, 18.2, -35), Vector3(-15.5, 16.6, -35), Vector3(10, 19.5, -40), Vector3(12, 20.3, -40)]
 	for i in flock.size():
 		var bird := Bird.new(); bird.name = "Bird%d" % i
 		bird.home = flock[i]; bird.speed = 2.2 + 0.15 * i; bird.phase = i * 1.3
+		var body := MeshInstance3D.new(); body.mesh = body_mesh; body.material_override = mat; body.scale = Vector3(1.8, 1.0, 1.0)
+		bird.add_child(body)
 		for side in [-1.0, 1.0]:
-			var pivot := Node3D.new()
-			var wing := MeshInstance3D.new(); wing.mesh = wing_mesh; wing.material_override = mat; wing.position.x = side * 0.45
-			pivot.add_child(wing); bird.add_child(pivot); bird.wings.append(pivot)
+			# Each wing is a tapered inner half at the shoulder and an outer half at its tip; the prism's point faces
+			# forward, so the wings sweep back.
+			var shoulder := Node3D.new(); shoulder.position.x = side * 0.1
+			var inner := MeshInstance3D.new(); inner.mesh = inner_mesh; inner.material_override = mat
+			inner.position.x = side * 0.25; inner.rotation_degrees = Vector3(90, 0, 0)
+			var elbow := Node3D.new(); elbow.position.x = side * 0.5
+			var outer := MeshInstance3D.new(); outer.mesh = outer_mesh; outer.material_override = mat
+			outer.position.x = side * 0.24; outer.rotation_degrees = Vector3(90, 0, 0)
+			elbow.add_child(outer); shoulder.add_child(inner); shoulder.add_child(elbow); bird.add_child(shoulder)
+			bird.inner.append(shoulder); bird.outer.append(elbow)
 		holder.add_child(bird)
 
 ## Two weak shadowless fills from either side of the camera, so the side faces of the pits and steps stop reading black.
@@ -252,6 +285,7 @@ func _add_foreground(holder: Node3D, rng: RandomNumberGenerator) -> void:
 	var fg := Node3D.new(); fg.name = "Foreground"; holder.add_child(fg)
 	var mat := StandardMaterial3D.new()
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED; mat.disable_fog = true; mat.albedo_color = FOREGROUND_COLOR
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	var cam := Vector2(32.0, 10.5)  # the camera's distance from the play plane and its height (Game3D)
 	var x := -12.0
 	while x < _level.width + 12:
@@ -272,11 +306,13 @@ func _add_foreground(holder: Node3D, rng: RandomNumberGenerator) -> void:
 		x += size.x * s / 2.0 + rng.randf_range(1.0, 6.0)
 
 ## Darkens a tile toward shadow violet with its depth under the surface, and turns every other tile around, so
-## neighbouring blocks stop showing identical strata.
+## neighbouring blocks stop showing identical strata. The strata noise (world space) varies them further, and a tile
+## that is open above gets the dark lip line under its top edge.
 func _vary_tile(inst: Node3D, cell: Vector2i) -> Node3D:
 	var depth := 0
 	while depth < 3 and _level.kind_at(cell.x, cell.y - depth - 1) == "solid": depth += 1
-	if (cell.x + cell.y) % 2 == 1: inst.rotation_degrees.y = 180.0
+	var flipped := (cell.x + cell.y) % 2 == 1
+	if flipped: inst.rotation_degrees.y = 180.0
 	for mi: MeshInstance3D in _meshes(inst):
 		for s in mi.mesh.get_surface_count():
 			var base := mi.get_surface_override_material(s) as StandardMaterial3D
@@ -284,9 +320,36 @@ func _vary_tile(inst: Node3D, cell: Vector2i) -> Node3D:
 			if not _tile_materials.has(key):
 				var mat := base.duplicate() as StandardMaterial3D
 				mat.albedo_color = base.albedo_color.lerp(SHADOW_VIOLET, DEPTH_TINT * depth)
+				mat.detail_enabled = true; mat.detail_albedo = _strata_texture(); mat.detail_blend_mode = BaseMaterial3D.BLEND_MODE_MUL
+				mat.detail_uv_layer = BaseMaterial3D.DETAIL_UV_2
+				mat.uv2_triplanar = true; mat.uv2_world_triplanar = true; mat.uv2_scale = Vector3.ONE / STRATA_PERIOD
 				_tile_materials[key] = mat
 			mi.set_surface_override_material(s, _tile_materials[key])
+	if depth == 0:
+		var lip := MeshInstance3D.new(); lip.name = "Lip"; lip.mesh = _lip(); lip.material_override = _lip_material
+		lip.position = Vector3(0, 1.0 - LIP_HEIGHT, -0.512 if flipped else 0.512)  # front face, in the tile's own space
+		inst.add_child(lip)
 	return inst
+
+## The seamless strata noise, white where a tile keeps its colour and STRATA_DARK where it darkens most.
+func _strata_texture() -> ImageTexture:
+	if _strata_noise == null:
+		var noise := FastNoiseLite.new(); noise.seed = STRATA_SEED; noise.frequency = 0.012; noise.fractal_octaves = 3
+		var image := noise.get_seamless_image(256, 256)
+		image.convert(Image.FORMAT_RGB8)
+		for y in 256:
+			for x in 256:
+				var n := smoothstep(0.35, 0.75, image.get_pixel(x, y).r)
+				image.set_pixel(x, y, Color.WHITE.lerp(STRATA_DARK, n))
+		_strata_noise = ImageTexture.create_from_image(image)
+	return _strata_noise
+
+func _lip() -> BoxMesh:
+	if _lip_mesh == null:
+		_lip_mesh = BoxMesh.new(); _lip_mesh.size = Vector3(1.0, LIP_HEIGHT, 0.02)
+		_lip_material = StandardMaterial3D.new(); _lip_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		_lip_material.albedo_color = LIP_COLOR
+	return _lip_mesh
 
 ## Places pieces left to right across x_range, each at a random depth in z_range (pulled back so its front stays behind
 ## PROP_FRONT_Z), with a random gap after it, a random uniform scale and a random yaw of up to yaw_deg. With avoid_pits,
