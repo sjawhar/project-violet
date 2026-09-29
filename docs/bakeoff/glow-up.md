@@ -30,7 +30,7 @@ The bar is the one in [judging.md](judging.md): GRIS and Planet of Lana. Each wo
 
 ## Rounds
 
-Round 0 is the look before the round, shot as below. Each later round:
+Round 0 is the look before the round, shot as below. It has nothing to compare against, so its critic sees that one set alone: it scores it 1-5 on each axis and names the three biggest gaps against the bar. Each later round:
 
 1. Takes the critic's list of gaps from the previous round, and fixes the one expected to improve the look most.
 2. Shoots the fixed shots again.
@@ -44,7 +44,15 @@ Round 0 is the look before the round, shot as below. Each later round:
 - a 1-5 score on each axis for each of A and B;
 - the three biggest gaps between the better set and the bar, each concrete enough to act on. "The ground tiles repeat every 4 m" is usable; "needs polish" isn't.
 
-The workstream records which of A and B was the new round.
+The workstream records which of A and B was the new round. Every workstream gives its critic this prompt, filling in the braces, so that scores compare across workstreams:
+
+> You are judging art for a 2D puzzle-platformer. The bar is GRIS and Planet of Lana{, and the workstream's extra games}. You may open these official press screenshots to compare against: {links}.
+>
+> {Round 0: Here is one set of screenshots: {files}.} {Later rounds: Here are two sets, A: {files} and B: {files}. They are in a random order, and nothing about them says which is newer.}
+>
+> Judge them on three axes. visual_quality: how beautiful and finished it looks. character_appeal: how appealing and alive the character looks. color_readability: whether the red and green walls and platforms, and the character's scarf and silhouette, read at a glance.
+>
+> Return: {later rounds: for each axis, A, B or same;} for each set, a score from 1 to 5 on each axis, where 5 means as good as the bar; and the three biggest gaps between {the better set | this set} and the bar, each concrete enough to act on ("the ground tiles repeat every 4 m", not "needs polish").
 
 **The record** has one row per round: round number, start and end time (UTC), what changed, dollars spent, the axes the critic called better, its scores for the new round, and its three gaps. Lane costs and sessions also go in the lane's `LOG.md` as usual, with the purpose "glow-up round N". Violet's costs go in [shared-costs.md](shared-costs.md).
 
