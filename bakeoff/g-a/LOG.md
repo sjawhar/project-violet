@@ -18,6 +18,7 @@ sessions:
   - {start: "2026-09-27T19:50:00Z", end: "2026-09-27T21:40:51Z", purpose: "protagonist rig re-copied from PR #28 at eafccae8 (feet together in idle, soles on the floor on ground frames), replacing the fd76d946 copy; soles checked in rendered idle and landing frames"}
   - {start: "2026-09-28T17:02:47Z", end: "2026-09-28T17:27:00Z", purpose: "no crystals (Sami, relayed by the lead): crystal-wall and crystal-platform replaced by plain gray stone tag-wall and tag-platform, the faceted crystal orb by a smooth glowing orb"}
   - {start: "2026-09-28T17:28:00Z", end: "2026-09-28T17:45:00Z", purpose: "protagonist rig re-copied from PR #28 at 9b22572d (four arm parts repainted, every animation bends at the elbow, double jump without the flip), replacing the eafccae8 copy; ci.sh rig-test 0 failures; running and mid-double-jump frames looked at in software"}
+  - {start: "2026-09-29T00:25:02Z", end: "2026-09-29T00:34:00Z", purpose: "glow-up round 0"}
 costs:
   - {item: "gen image gpt-image-2 1024x1024 quality=low, wall-tile (rejected)", usd: 0.0143, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:47:36+00:00)"}
   - {item: "gen image gpt-image-2 1536x1024 quality=low, backdrop-near (rejected)", usd: 0.0062, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
