@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "asset": "ground-tile-b.svg",
+  "sha256": "8a308b206b4ef6752646385e063cfc49213332238444aaa3d21c7df75d6b8576",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-29T00:45:49+00:00",
+  "generator": {
+    "tool": "hand-written-svg",
+    "tool_version": "1",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "prompt": "Hand-written flat-vector SVG for bake-off lane G-C, following docs/bakeoff/desert-biome-brief.md (palette sand #d9b27c, rock #a86f46, shadow violet #5a4a7a, sky #f2c49b/#3f7f8c) and docs/bakeoff/mechanic.md; glow-up round 1 (docs/bakeoff/glow-up.md), tile variation: ground-tile variant, 1024x1024, same edges, different ripples, a half-buried stone in the sand, a boulder in the rock, seamless horizontally",
+    "params": {},
+    "inputs": []
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

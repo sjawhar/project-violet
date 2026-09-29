@@ -1,18 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" width="1536" height="1024">
-<!-- THROWAWAY bake-off lane G-C: backdrop-far, hand-written flat vector. Golden-hour sky in flat bands from teal to
-     peach (no gradients), a low sun, flat cloud streaks and a hazy far mesa line. Opaque; seamless horizontally
-     (every band edge meets itself flat at x=0 and x=1536, and nothing else crosses an edge). -->
-<rect width="1536" height="1024" fill="#f2c49b"/>
-<path fill="#d9a79c" d="M0,0 H1536 V690 C1236,690 1036,672 768,672 C500,672 300,690 0,690 Z"/>
-<path fill="#a98fa6" d="M0,0 H1536 V580 C1236,580 1036,600 768,600 C500,600 300,580 0,580 Z"/>
-<path fill="#6d86a0" d="M0,0 H1536 V460 C1236,460 1036,444 768,444 C500,444 300,460 0,460 Z"/>
-<path fill="#3f7f8c" d="M0,0 H1536 V320 C1236,320 1036,338 768,338 C500,338 300,320 0,320 Z"/>
-<path fill="#6d86a0" d="M140,200 H520 A18,18 0 0 1 520,236 H140 A18,18 0 0 1 140,200 Z"/>
-<path fill="#6d86a0" d="M300,262 H640 A12,12 0 0 1 640,286 H300 A12,12 0 0 1 300,262 Z"/>
-<path fill="#a98fa6" d="M880,380 H1300 A20,20 0 0 1 1300,420 H880 A20,20 0 0 1 880,380 Z"/>
-<path fill="#a98fa6" d="M1040,428 H1380 A11,11 0 0 1 1380,450 H1040 A11,11 0 0 1 1040,428 Z"/>
-<path fill="#d9a79c" d="M200,520 H560 A16,16 0 0 1 560,552 H200 A16,16 0 0 1 200,520 Z"/>
-<circle fill="#fbe3bf" cx="1010" cy="650" r="112"/>
-<path fill="#f2c49b" d="M1080,560 H1420 A14,14 0 0 1 1420,588 H1080 A14,14 0 0 1 1080,560 Z"/>
-<path fill="#a98fa6" d="M0,760 L90,760 L110,700 L150,650 L420,650 L450,700 L470,740 L560,740 L570,700 L620,694 L630,740 L1140,740 L1170,700 L1190,684 L1390,684 L1410,720 L1440,760 L1536,760 L1536,1024 L0,1024 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3072 1024" width="3072" height="1024">
+<!-- THROWAWAY bake-off lane G-C: backdrop-far, hand-written vector. Golden-hour sky as a vertical gradient from deep
+     teal to peach, a low sun with a soft bloom, layered cloud streaks lit from below-left, and two distant mesa ranges
+     that fade into horizon haze. 3072 px wide so one screen never shows the same art twice. Opaque; seamless
+     horizontally (the ranges meet themselves flat at x=0 and x=3072, the sun and clouds stay inside). -->
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2e6d7e"/>
+<stop offset="0.30" stop-color="#47818f"/>
+<stop offset="0.47" stop-color="#7c8fa8"/>
+<stop offset="0.59" stop-color="#ae9aac"/>
+<stop offset="0.69" stop-color="#d9a79c"/>
+<stop offset="0.79" stop-color="#f0bf98"/>
+<stop offset="1" stop-color="#f8d9b2"/>
+</linearGradient>
+<radialGradient id="bloom" cx="0.5" cy="0.5" r="0.5">
+<stop offset="0" stop-color="#fff3d6" stop-opacity="0.95"/>
+<stop offset="0.18" stop-color="#ffe7c2" stop-opacity="0.6"/>
+<stop offset="0.5" stop-color="#f8cda4" stop-opacity="0.22"/>
+<stop offset="1" stop-color="#f2c49b" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="rangeFar" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#c7a0a9"/>
+<stop offset="1" stop-color="#f0c7a6"/>
+</linearGradient>
+<linearGradient id="rangeNear" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#a98a9e"/>
+<stop offset="1" stop-color="#e4b8a2"/>
+</linearGradient>
+<path id="cloudTop" d="M0,0 C18,-26 64,-32 86,-16 C104,-46 172,-52 196,-22 C220,-38 264,-34 276,-12 C298,-16 318,-8 320,0 Z"/>
+<path id="cloudBase" d="M0,0 H320 C300,12 40,14 0,0 Z"/>
+</defs>
+<rect width="3072" height="1024" fill="url(#sky)"/>
+<circle cx="900" cy="660" r="760" fill="url(#bloom)"/>
+<circle cx="900" cy="660" r="94" fill="#fff5e0"/>
+<g fill="#f9e2cc" fill-opacity="0.9">
+<use href="#cloudTop" transform="translate(160 214) scale(1.7 1)"/>
+<use href="#cloudTop" transform="translate(1180 330) scale(1.3 0.8)"/>
+<use href="#cloudTop" transform="translate(1860 190) scale(2 1.1)"/>
+<use href="#cloudTop" transform="translate(2520 420) scale(1.2 0.7)"/>
+<use href="#cloudTop" transform="translate(560 470) scale(1 0.55)"/>
+<use href="#cloudTop" transform="translate(2280 520) scale(0.9 0.5)"/>
+</g>
+<g fill="#c9a2b2" fill-opacity="0.6">
+<use href="#cloudBase" transform="translate(160 214) scale(1.7 1)"/>
+<use href="#cloudBase" transform="translate(1180 330) scale(1.3 0.8)"/>
+<use href="#cloudBase" transform="translate(1860 190) scale(2 1.1)"/>
+<use href="#cloudBase" transform="translate(2520 420) scale(1.2 0.7)"/>
+<use href="#cloudBase" transform="translate(560 470) scale(1 0.55)"/>
+<use href="#cloudBase" transform="translate(2280 520) scale(0.9 0.5)"/>
+</g>
+<path fill="url(#rangeFar)" d="M0,740 L120,740 L150,690 L190,650 L420,650 L450,690 L500,712 L700,712 L720,690 L760,684 L780,712 L1140,720 L1170,690 L1200,672 L1390,672 L1420,700 L1500,716 L1760,716 L1790,676 L1830,640 L2010,640 L2040,676 L2090,700 L2380,704 L2400,686 L2430,680 L2450,704 L2640,712 L2670,682 L2700,664 L2860,664 L2890,694 L2960,740 L3072,740 L3072,1024 L0,1024 Z"/>
+<path fill="url(#rangeNear)" d="M0,780 L260,780 L290,742 L330,726 L520,726 L550,752 L640,770 L980,770 L1010,738 L1050,722 L1180,722 L1210,748 L1330,766 L1620,772 L1650,744 L1690,730 L1900,730 L1930,756 L2120,770 L2440,770 L2470,740 L2510,728 L2600,728 L2630,752 L2760,776 L3072,780 L3072,1024 L0,1024 Z"/>
 </svg>

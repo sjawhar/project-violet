@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<!-- THROWAWAY bake-off lane G-C: ground-tile-c, hand-written flat vector. A variant of ground-tile placed at random per
+     two-cell block (art/vector_art.gd): same edges, wind-streaked sand, a single long fault in the rock and a pebble
+     scatter. Sand over layered sandstone, seamless horizontally.
+     The game shows the top half across two cells (drawn at half the wall tile's scale, so strata are twice as thick);
+     y=512 sits in the base rock color, where the wall tile below continues. -->
+<rect width="1024" height="1024" fill="#a86f46"/>
+<path fill="#8e5a38" d="M0,300 L180,288 L360,306 L540,290 L720,304 L880,286 L1024,300 L1024,392 L860,404 L700,384 L520,400 L330,382 L160,398 L0,392 Z"/>
+<path fill="#c2875a" d="M0,448 L230,440 L470,454 L700,442 L900,452 L1024,448 L1024,478 L880,484 L690,472 L460,486 L220,474 L0,478 Z"/>
+<path fill="#8e5a38" d="M0,700 L200,690 L420,708 L640,692 L860,706 L1024,700 L1024,790 L840,800 L620,782 L400,798 L180,784 L0,790 Z"/>
+<path fill="#c2875a" d="M0,860 L260,852 L520,866 L780,854 L1024,860 L1024,888 L770,894 L510,882 L250,894 L0,888 Z"/>
+<path fill="#5a4a7a" d="M700,232 L716,300 L706,360 L722,430 L712,480 L700,480 L710,430 L694,360 L704,300 L690,236 Z"/>
+<ellipse fill="#c2875a" cx="220" cy="350" rx="16" ry="9"/>
+<ellipse fill="#c2875a" cx="300" cy="330" rx="10" ry="6"/>
+<ellipse fill="#c2875a" cx="420" cy="360" rx="13" ry="8"/>
+<path fill="#8e5a38" d="M0,176 C80,176 170,206 250,194 C340,180 410,212 512,210 C610,208 680,178 770,190 C860,202 944,176 1024,176 L1024,226 C944,226 860,246 770,236 C680,226 610,256 512,258 C410,260 340,228 250,242 C170,254 80,226 0,226 Z"/>
+<path fill="#d9b27c" d="M0,0 H1024 V176 C944,176 860,202 770,190 C680,178 610,208 512,210 C410,212 340,180 250,194 C170,206 80,176 0,176 Z"/>
+<path fill="#ecd3a0" d="M0,0 H1024 V30 C900,40 780,26 650,36 C520,46 400,28 260,38 C150,46 70,34 0,30 Z"/>
+<path fill="#ecd3a0" d="M60,70 C200,62 320,66 420,74 C320,78 200,78 60,76 Z"/>
+<path fill="#ecd3a0" d="M520,110 C660,102 780,106 900,112 C780,118 660,118 520,116 Z"/>
+<path fill="#c2875a" d="M160,140 C220,128 300,128 360,140 C300,150 220,150 160,140 Z"/>
+<path fill="#c2875a" d="M700,64 C740,56 790,56 830,64 C790,72 740,72 700,64 Z"/>
+</svg>

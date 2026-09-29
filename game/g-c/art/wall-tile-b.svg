@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<!-- THROWAWAY bake-off lane G-C: wall-tile-b, hand-written flat vector. A variant of wall-tile placed at random per
+     4x4-cell block (art/vector_art.gd): the same layered sandstone with the same band heights where it meets the
+     block edges (x=0 and x=1024, every 256 px), different band waves inside, a long hairline crack and two embedded
+     boulders instead of the violet squiggles. Seamless both ways and with wall-tile and wall-tile-c. -->
+<defs>
+<g id="band">
+<path fill="#8e5a38" d="M0,118 L120,126 L280,112 L460,128 L640,114 L800,126 L920,110 L1024,118 L1024,164 L900,158 L760,172 L600,160 L420,174 L260,160 L120,170 L0,164 Z"/>
+<path fill="#c2875a" d="M0,206 L160,212 L380,202 L600,212 L820,200 L1024,206 L1024,222 L830,216 L600,228 L380,218 L160,226 L0,222 Z"/>
+<path fill="#8e5a38" d="M140,64 L380,58 L520,66 L516,74 L380,68 L142,72 Z"/>
+<ellipse fill="#8e5a38" cx="786" cy="64" rx="20" ry="11"/>
+<ellipse fill="#c2875a" cx="782" cy="58" rx="20" ry="11"/>
+</g>
+</defs>
+<rect width="1024" height="1024" fill="#a86f46"/>
+<use href="#band"/>
+<use href="#band" transform="translate(1024 256) scale(-1 1)"/>
+<use href="#band" transform="translate(512 512)"/>
+<use href="#band" transform="translate(-512 512)"/>
+<use href="#band" transform="translate(1536 768) scale(-1 1)"/>
+<use href="#band" transform="translate(512 768) scale(-1 1)"/>
+<ellipse fill="#8e5a38" cx="632" cy="612" rx="118" ry="64"/>
+<ellipse fill="#b57a50" cx="620" cy="600" rx="110" ry="58"/>
+<path fill="#c98f63" d="M540,586 C560,560 620,548 680,556 C640,560 580,570 548,596 Z"/>
+<ellipse fill="#8e5a38" cx="252" cy="372" rx="54" ry="30"/>
+<ellipse fill="#b57a50" cx="246" cy="366" rx="50" ry="27"/>
+<path fill="#5a4a7a" d="M820,300 L832,360 L824,420 L838,470 L830,472 L816,420 L824,362 L812,302 Z"/>
+</svg>

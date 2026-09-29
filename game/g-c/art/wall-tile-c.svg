@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<!-- THROWAWAY bake-off lane G-C: wall-tile-c, hand-written flat vector. A variant of wall-tile placed at random per
+     4x4-cell block (art/vector_art.gd): the same band heights at the block edges, deeper band waves inside, a thin
+     pale stratum, one long shadow-violet fault line and a scatter of small pebbles. Seamless both ways and with
+     wall-tile and wall-tile-b. -->
+<defs>
+<g id="band">
+<path fill="#8e5a38" d="M0,118 L200,104 L380,130 L560,106 L760,132 L900,112 L1024,118 L1024,164 L880,176 L720,154 L540,178 L360,154 L180,174 L0,164 Z"/>
+<path fill="#c2875a" d="M0,206 L240,196 L480,214 L720,196 L900,210 L1024,206 L1024,222 L880,228 L720,212 L480,232 L240,214 L0,222 Z"/>
+<path fill="#b57a50" d="M0,40 L300,34 L620,44 L1024,38 L1024,48 L620,54 L300,44 L0,50 Z"/>
+<ellipse fill="#c2875a" cx="96" cy="84" rx="12" ry="7"/>
+<ellipse fill="#c2875a" cx="470" cy="80" rx="9" ry="6"/>
+<ellipse fill="#c2875a" cx="660" cy="88" rx="14" ry="8"/>
+</g>
+</defs>
+<rect width="1024" height="1024" fill="#a86f46"/>
+<use href="#band"/>
+<use href="#band" transform="translate(1024 256) scale(-1 1)"/>
+<use href="#band" transform="translate(512 512)"/>
+<use href="#band" transform="translate(-512 512)"/>
+<use href="#band" transform="translate(1536 768) scale(-1 1)"/>
+<use href="#band" transform="translate(512 768) scale(-1 1)"/>
+<path fill="#5a4a7a" d="M300,180 L318,260 L306,340 L326,430 L312,520 L330,600 L318,690 L306,690 L318,600 L300,520 L314,430 L294,340 L306,260 L288,182 Z"/>
+<path fill="#5a4a7a" d="M318,430 L380,452 L430,446 L428,454 L380,460 L316,440 Z"/>
+</svg>

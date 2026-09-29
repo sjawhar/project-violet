@@ -1,7 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" width="1536" height="1024">
-<!-- THROWAWAY bake-off lane G-C: backdrop-mid, hand-written flat vector. Layered sandstone mesas, a butte and a
-     wind-cut arch in hazy rock tones with shadow-violet shade sides, on a plain. Transparent above so the far sky shows
-     (also through the arch); seamless horizontally (the plain meets itself flat at the edges, the rocks stay inside). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3072 1024" width="3072" height="1024">
+<!-- THROWAWAY bake-off lane G-C: backdrop-mid, hand-written vector. Layered sandstone mesas, a butte, a wind-cut arch,
+     a spire and a hoodoo cluster in hazy rock tones: shadow-violet shade sides away from the low sun on the left, a
+     warm rim on the sunward edges, and haze that thickens toward the plain. 3072 px wide, so one screen never shows
+     the same art twice. Transparent above so the far sky shows (also through the arch); seamless horizontally (the
+     plain meets itself flat at the edges, the rocks stay inside). -->
 <defs>
 <path id="mesa" d="M20,780 L80,650 L100,560 L118,440 L128,420 L512,420 L524,440 L544,560 L566,650 L640,780 Z"/>
 <clipPath id="mesa-clip"><use href="#mesa"/></clipPath>
@@ -9,18 +11,33 @@
 <clipPath id="butte-clip"><use href="#butte"/></clipPath>
 <path id="arch" d="M980,780 L1000,620 L1008,500 C1012,436 1048,396 1112,390 L1318,390 C1392,396 1426,440 1430,500 L1440,630 L1470,780 L1332,780 L1332,600 C1332,530 1282,490 1214,490 C1148,490 1098,530 1098,600 L1098,780 Z"/>
 <clipPath id="arch-clip"><use href="#arch"/></clipPath>
+<path id="mesa2" d="M1620,780 L1664,650 L1680,540 L1692,480 L1702,462 L2040,462 L2050,480 L2066,560 L2086,650 L2140,780 Z"/>
+<clipPath id="mesa2-clip"><use href="#mesa2"/></clipPath>
+<path id="spire" d="M2176,780 L2198,650 L2210,470 L2218,360 L2226,318 L2240,306 L2252,312 L2258,350 L2264,470 L2276,650 L2304,780 Z"/>
+<clipPath id="spire-clip"><use href="#spire"/></clipPath>
+<path id="hoodoos" d="M2440,780 L2470,690 L2482,610 L2490,586 L2560,586 L2568,610 L2576,660 L2600,660 L2610,560 L2604,532 L2590,520 L2596,500 L2660,496 L2668,514 L2652,532 L2648,560 L2660,660 L2700,660 L2712,600 L2720,578 L2800,578 L2808,600 L2822,690 L2860,780 Z"/>
+<clipPath id="hoodoos-clip"><use href="#hoodoos"/></clipPath>
+<clipPath id="rocks">
+<use href="#mesa"/><use href="#butte"/><use href="#arch"/><use href="#mesa2"/><use href="#spire"/><use href="#hoodoos"/>
+</clipPath>
+<linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#f2c49b" stop-opacity="0"/>
+<stop offset="1" stop-color="#f2c49b" stop-opacity="0.62"/>
+</linearGradient>
 </defs>
 <use href="#mesa" fill="#c98f63"/>
 <g clip-path="url(#mesa-clip)">
 <path fill="#b0754f" d="M0,420 H700 V446 H0 Z M0,500 H700 V516 L400,522 L0,512 Z M0,590 L300,584 L700,592 V608 L300,602 L0,606 Z"/>
 <path fill="#7f6488" d="M430,420 L512,420 L524,440 L544,560 L566,650 L640,780 L470,780 L456,650 L440,560 L436,440 Z"/>
 <path fill="#e0a878" d="M128,420 H430 V432 H124 Z"/>
+<path fill="#f1bf8e" d="M20,780 L80,650 L100,560 L118,440 L128,420 L140,420 L128,444 L112,560 L94,650 L40,780 Z"/>
 </g>
 <use href="#butte" fill="#c98f63"/>
 <g clip-path="url(#butte-clip)">
 <path fill="#b0754f" d="M600,346 H960 V364 H600 Z M600,450 H960 V464 H600 Z M600,560 L780,556 L960,562 V576 L780,570 L600,574 Z"/>
 <path fill="#7f6488" d="M800,330 L830,330 L838,346 L848,560 L864,660 L912,780 L820,780 L812,660 L806,560 L802,346 Z"/>
 <path fill="#e0a878" d="M746,330 H800 V340 H744 Z"/>
+<path fill="#f1bf8e" d="M676,780 L716,660 L730,560 L738,346 L746,330 L756,330 L748,350 L740,560 L728,660 L694,780 Z"/>
 </g>
 <use href="#arch" fill="#c98f63"/>
 <g clip-path="url(#arch-clip)">
@@ -28,7 +45,29 @@
 <path fill="#7f6488" d="M1074,780 L1074,600 C1074,516 1140,466 1214,466 C1290,466 1356,516 1356,600 L1356,780 Z"/>
 <path fill="#7f6488" d="M1356,780 L1370,600 L1384,480 L1392,400 L1430,440 L1440,630 L1470,780 Z"/>
 <path fill="#e0a878" d="M1112,390 H1318 V402 H1100 Z"/>
+<path fill="#f1bf8e" d="M980,780 L1000,620 L1008,500 C1012,436 1048,396 1112,390 L1112,402 C1060,410 1026,446 1022,500 L1014,620 L998,780 Z"/>
 </g>
-<path fill="#dcae7c" d="M0,770 C200,770 420,792 768,788 C1100,784 1300,770 1536,770 L1536,1024 L0,1024 Z"/>
-<path fill="#c98f63" d="M0,840 C260,840 520,826 768,830 C1016,834 1276,840 1536,840 L1536,1024 L0,1024 Z"/>
+<use href="#mesa2" fill="#c98f63"/>
+<g clip-path="url(#mesa2-clip)">
+<path fill="#b0754f" d="M1600,462 H2160 V486 H1600 Z M1600,548 L1900,542 L2160,550 V566 L1900,558 L1600,564 Z M1600,640 H2160 V654 H1600 Z"/>
+<path fill="#7f6488" d="M1960,462 L2040,462 L2050,480 L2066,560 L2086,650 L2140,780 L2000,780 L1986,650 L1972,560 L1964,480 Z"/>
+<path fill="#e0a878" d="M1702,462 H1960 V474 H1698 Z"/>
+<path fill="#f1bf8e" d="M1620,780 L1664,650 L1680,540 L1692,480 L1702,462 L1714,462 L1704,484 L1692,540 L1678,650 L1640,780 Z"/>
+</g>
+<use href="#spire" fill="#c98f63"/>
+<g clip-path="url(#spire-clip)">
+<path fill="#b0754f" d="M2160,400 H2320 V414 H2160 Z M2160,520 H2320 V534 H2160 Z"/>
+<path fill="#7f6488" d="M2240,306 L2252,312 L2258,350 L2264,470 L2276,650 L2304,780 L2250,780 L2246,650 L2242,470 L2240,350 Z"/>
+<path fill="#f1bf8e" d="M2176,780 L2198,650 L2210,470 L2218,360 L2226,318 L2232,316 L2226,362 L2220,470 L2210,650 L2190,780 Z"/>
+</g>
+<use href="#hoodoos" fill="#c98f63"/>
+<g clip-path="url(#hoodoos-clip)">
+<path fill="#b0754f" d="M2420,610 H2880 V624 H2420 Z M2420,700 H2880 V712 H2420 Z"/>
+<path fill="#7f6488" d="M2540,586 L2560,586 L2568,610 L2576,660 L2600,780 L2560,780 L2552,660 L2546,610 Z M2636,496 L2660,496 L2668,514 L2652,532 L2648,560 L2660,660 L2700,780 L2650,780 L2632,660 L2630,560 L2636,532 Z M2780,578 L2800,578 L2808,600 L2822,690 L2860,780 L2800,780 L2790,690 L2784,600 Z"/>
+<path fill="#e0a878" d="M2490,586 H2540 V596 H2486 Z M2596,500 H2636 V510 H2594 Z M2720,578 H2780 V588 H2716 Z"/>
+<path fill="#f1bf8e" d="M2440,780 L2470,690 L2482,610 L2490,586 L2498,586 L2490,612 L2480,690 L2456,780 Z"/>
+</g>
+<rect clip-path="url(#rocks)" x="0" y="470" width="3072" height="320" fill="url(#haze)"/>
+<path fill="#dcae7c" d="M0,770 C200,770 420,792 768,788 C1100,784 1300,770 1536,770 C1780,770 2000,790 2304,786 C2640,782 2860,770 3072,770 L3072,1024 L0,1024 Z"/>
+<path fill="#c98f63" d="M0,840 C260,840 520,826 768,830 C1016,834 1276,840 1536,840 C1800,840 2050,828 2304,832 C2560,836 2820,840 3072,840 L3072,1024 L0,1024 Z"/>
 </svg>

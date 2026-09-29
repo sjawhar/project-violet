@@ -12,6 +12,10 @@
 [ext_resource type="Texture2D" path="res://art/backdrop-mid.svg" id="10"]
 [ext_resource type="Texture2D" path="res://art/backdrop-near.svg" id="11"]
 [ext_resource type="Texture2D" path="res://art/hazard-tile.svg" id="12"]
+[ext_resource type="Texture2D" path="res://art/wall-tile-b.svg" id="13"]
+[ext_resource type="Texture2D" path="res://art/wall-tile-c.svg" id="14"]
+[ext_resource type="Texture2D" path="res://art/ground-tile-b.svg" id="15"]
+[ext_resource type="Texture2D" path="res://art/ground-tile-c.svg" id="16"]
 
 [resource]
 script = ExtResource("1")
@@ -26,3 +30,5 @@ backdrop_far = ExtResource("9")
 backdrop_mid = ExtResource("10")
 backdrop_near = ExtResource("11")
 hazard_tile = ExtResource("12")
+wall_tile_variants = Array[Texture2D]([ExtResource("13"), ExtResource("14")])
+ground_tile_variants = Array[Texture2D]([ExtResource("15"), ExtResource("16")])
