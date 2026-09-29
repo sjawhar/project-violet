@@ -17,7 +17,18 @@ const PIT_MARGIN := 2.0
 ## Tag block albedo before its color is acquired (mechanic.md: grayscale).
 const TAG_GRAY := Color(0.6, 0.6, 0.6)
 ## Emission energy of an active tag block: enough to glow, low enough that ACES keeps its hue instead of going peach.
-const TAG_GLOW := 0.5
+const TAG_GLOW := 0.3
+## The tag-blocks' own colors. Red is a crimson a few degrees toward magenta, so under the warm sun it renders as a true
+## red, clear of the orange sandstone. The blocks sit on visual layer TAG_BLOCK_LAYER, which their own lights skip:
+## lights 0.4 m from each face, 13 to a wall, overexposed the faces to peach.
+const KIT_TAG_COLORS := {"red": Color("#c4162a"), "green": Color("#3fbf6a")}
+const TAG_BLOCK_LAYER := 2
+## Violet is drawn this far in front of the play plane, just past the blocks' front faces, so she stays visible when she
+## passes a wall of the active color; her feet still meet the front edge of the ground.
+const CHARACTER_Z := 0.6
+## A dark outline behind her, PAD metres wide, gives her a value break from sand, sky and mesa alike.
+const OUTLINE_COLOR := Color("#241a33")
+const OUTLINE_PAD := 0.05
 ## Tag lights at this share of GreyboxArt3D's: a 13-cell wall of full-energy lights washed its surroundings out.
 const LIGHT_SCALE := 0.35
 ## Depth fog: the play plane, 32 m from the camera, stays clear, and the sand is fully fogged where it meets the sky.
@@ -95,6 +106,14 @@ class Bird extends Node3D:
 		wings[0].rotation_degrees.z = 20.0 + flap
 		wings[1].rotation_degrees.z = -20.0 - flap
 
+## One outline sprite: the parent part's image, dark and unshaded, a little larger, behind every part of the character.
+class OutlineSprite extends Sprite3D:
+	var part: Sprite3D
+	func _process(_delta: float) -> void:
+		flip_h = part.flip_h
+		var size := part.texture.get_size() * part.pixel_size * Vector2(absf(part.scale.x), absf(part.scale.y))
+		scale = Vector3(1.0 + 2.0 * OUTLINE_PAD / maxf(size.x, 0.001), 1.0 + 2.0 * OUTLINE_PAD / maxf(size.y, 0.001), 1.0)
+
 ## An orb cell's visual. Picking the orb up frees its Area3D and everything under it, so once in the tree the pedestal
 ## moves up to the World node and only the floating orb stays with the area.
 class OrbPedestal extends Node3D:
@@ -136,16 +155,30 @@ func make_cell(kind: String, cell: Vector2i) -> Node3D:
 	var color: String = Greybox.TAGGED[kind][0]
 	tagged.mesh = null  # the tag-block is the visual; the box's light and look stay
 	tagged.energy_scale = LIGHT_SCALE
-	tagged.tag_color = TAG_COLORS[color]
+	tagged.tag_color = KIT_TAG_COLORS[color]
+	tagged.light.light_cull_mask &= ~(1 << (TAG_BLOCK_LAYER - 1))
 	var block := _on_cell_floor(_piece("tag-block")); block.name = "TagBlock"
 	for mi: MeshInstance3D in _meshes(block):
+		mi.layers = 1 << (TAG_BLOCK_LAYER - 1)
 		for s in mi.mesh.get_surface_count():
 			var mat := (mi.get_active_material(s) as StandardMaterial3D).duplicate() as StandardMaterial3D
-			mat.albedo_color = TAG_GRAY; mat.emission_enabled = true; mat.emission = TAG_COLORS[color]; mat.emission_energy_multiplier = 0.0
+			mat.albedo_color = TAG_GRAY; mat.emission_enabled = true; mat.emission = KIT_TAG_COLORS[color]; mat.emission_energy_multiplier = 0.0
 			tagged.block_materials.append(mat)
 			mi.set_surface_override_material(s, mat)
 	tagged.add_child(block)
 	return tagged
+
+## GreyboxArt3D's character, moved in front of the play plane and outlined.
+func attach_character(player: Node) -> void:
+	super.attach_character(player)
+	var character := player.get_node("Character") as RigCharacter3D
+	character.position.z = CHARACTER_Z
+	for part: Sprite3D in character.find_children("*", "Sprite3D", false, false):
+		var outline := OutlineSprite.new(); outline.name = "Outline"; outline.part = part
+		outline.texture = part.texture; outline.pixel_size = part.pixel_size; outline.texture_filter = part.texture_filter
+		outline.shaded = false; outline.modulate = OUTLINE_COLOR; outline.render_priority = -1
+		outline.position.z = -0.05  # behind every part (they span 0-0.04 m)
+		part.add_child(outline)
 
 func make_backdrop(level: Greybox) -> Node3D:
 	_level = level
