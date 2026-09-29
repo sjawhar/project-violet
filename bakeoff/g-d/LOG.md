@@ -21,6 +21,7 @@ sessions:
   - {start: "2026-09-29T01:42:00Z", end: "2026-09-29T02:15:00Z", purpose: "glow-up round 3 (reshot with the brief's red)"}
   - {start: "2026-09-29T02:18:00Z", end: "2026-09-29T02:31:00Z", purpose: "glow-up round 4"}
   - {start: "2026-09-29T02:33:00Z", end: "2026-09-29T02:49:00Z", purpose: "glow-up round 5"}
+  - {start: "2026-09-29T02:52:00Z", end: "2026-09-29T03:20:00Z", purpose: "glow-up round 6"}
 costs:
   - {item: "glow-up round 1: art/sky.png, 1 gpt-image-2 call at 1536x1024 quality high", usd: 0.22, evidence: "estimate at the $0.22 per high-quality call measured in docs/bakeoff/shared-costs.md; gen logs no usage; game/g-d/art/sky.png.provenance.json"}
 interventions: []
@@ -50,6 +51,7 @@ friction:
   - {at: "2026-09-29T02:00:00Z", what: "glow-up round 3: under the warm sun and ACES the brief's ember red #e04a3a rendered orange-peach, and the first fix (a crimson #c4162a) broke the biome brief's fixed tag colors", workaround: "tag-blocks back on #e04a3a, excluded from the warm sun and fills and lit by their own neutral white key at 0.6, tuned with a throwaway probe scene until the rendered red measured about 227,57,51 inactive"}
   - {at: "2026-09-29T02:21:00Z", what: "glow-up round 4: an active block's glow filled its carved glyph back to the body's brightness, so the red diamond vanished whenever red was active", workaround: "the glyph's emission is 8x the body's, so an active glyph glows brighter than the block"}
   - {at: "2026-09-29T02:38:00Z", what: "glow-up round 5: an isotropic world-space noise on the tiles read as dappled tree shade (camouflage blotches), not as varied strata", workaround: "noise stretched along x (16 m by 3.5 m period) and softened, so it reads as long bands of rock tone"}
+  - {at: "2026-09-29T03:00:00Z", what: "glow-up round 6: a GDScript member named offset on a Sprite3D subclass is a parse error (Sprite3D already has offset); the art script then failed to load and the copied G-A replay runner looped on errors instead of exiting, until a timeout stopped it", workaround: "renamed the member; ran later headless checks under timeout"}
 blockers: []
 deliverables: {build: bakeoff/g-d/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-d/reports/replay.json}
 ---

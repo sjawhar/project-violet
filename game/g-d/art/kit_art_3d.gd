@@ -30,9 +30,16 @@ const TAG_KEY_ENERGY := 0.6
 ## Violet is drawn this far in front of the play plane, just past the blocks' front faces, so she stays visible when she
 ## passes a wall of the active color; her feet still meet the front edge of the ground.
 const CHARACTER_Z := 0.6
-## A dark outline behind her, PAD metres wide, gives her a value break from sand, sky and mesa alike.
+## A dark outline behind her gives her a value break from sand, sky and mesa alike: every part's silhouette is drawn
+## eight times, OUTLINE_PAD metres out in each compass direction, dark, unshaded and alpha-cut, so the line is even and
+## crisp rather than following the painted parts' ragged edges.
 const OUTLINE_COLOR := Color("#241a33")
-const OUTLINE_PAD := 0.05
+const OUTLINE_PAD := 0.035
+## Violet's sprites sit on visual layer CHARACTER_LAYER. The tag-blocks' colored lights skip it, so she no longer turns
+## pink or green beside a wall, and a warm key that lights only her makes her read lighter and warmer than the haze.
+const CHARACTER_LAYER := 3
+const CHARACTER_KEY_COLOR := Color("#ffe2c4")
+const CHARACTER_KEY_ENERGY := 0.55
 ## Tag lights at this share of GreyboxArt3D's: a 13-cell wall of full-energy lights washed its surroundings out.
 const LIGHT_SCALE := 0.35
 ## Depth fog: the play plane, 32 m from the camera, stays clear, and the sand is fully fogged where it meets the sky.
@@ -131,13 +138,15 @@ class Bird extends Node3D:
 			inner[i].rotation_degrees.z = side * (12.0 + flap)
 			outer[i].rotation_degrees.z = side * (tip - 8.0)
 
-## One outline sprite: the parent part's image, dark and unshaded, a little larger, behind every part of the character.
+## One outline copy of a part: follows the part's pose every frame (it is processed after the character that poses the
+## parts), offset in the character's plane and pushed behind every part.
 class OutlineSprite extends Sprite3D:
 	var part: Sprite3D
+	var shift: Vector2  ## in the character plane (Sprite3D already has an `offset`)
 	func _process(_delta: float) -> void:
+		transform = part.transform
+		position += Vector3(shift.x, shift.y, -0.05)  # behind every part (they span 0-0.04 m)
 		flip_h = part.flip_h
-		var size := part.texture.get_size() * part.pixel_size * Vector2(absf(part.scale.x), absf(part.scale.y))
-		scale = Vector3(1.0 + 2.0 * OUTLINE_PAD / maxf(size.x, 0.001), 1.0 + 2.0 * OUTLINE_PAD / maxf(size.y, 0.001), 1.0)
 
 ## An orb cell's visual. Picking the orb up frees its Area3D and everything under it, so once in the tree the pedestal
 ## moves up to the World node and only the floating orb stays with the area.
@@ -180,7 +189,7 @@ func make_cell(kind: String, cell: Vector2i) -> Node3D:
 	var color: String = Greybox.TAGGED[kind][0]
 	tagged.mesh = null  # the tag-block is the visual; the box's light and look stay
 	tagged.energy_scale = LIGHT_SCALE
-	tagged.light.light_cull_mask &= ~(1 << (TAG_BLOCK_LAYER - 1))
+	tagged.light.light_cull_mask &= ~((1 << (TAG_BLOCK_LAYER - 1)) | (1 << (CHARACTER_LAYER - 1)))
 	var block := _on_cell_floor(_piece("tag-block")); block.name = "TagBlock"
 	for mi: MeshInstance3D in _meshes(block):
 		mi.layers = 1 << (TAG_BLOCK_LAYER - 1)
@@ -199,11 +208,14 @@ func attach_character(player: Node) -> void:
 	var character := player.get_node("Character") as RigCharacter3D
 	character.position.z = CHARACTER_Z
 	for part: Sprite3D in character.find_children("*", "Sprite3D", false, false):
-		var outline := OutlineSprite.new(); outline.name = "Outline"; outline.part = part
-		outline.texture = part.texture; outline.pixel_size = part.pixel_size; outline.texture_filter = part.texture_filter
-		outline.shaded = false; outline.modulate = OUTLINE_COLOR; outline.render_priority = -1
-		outline.position.z = -0.05  # behind every part (they span 0-0.04 m)
-		part.add_child(outline)
+		part.layers = 1 << (CHARACTER_LAYER - 1)
+		for i in 8:
+			var outline := OutlineSprite.new(); outline.name = "Outline%s%d" % [part.name, i]; outline.part = part
+			outline.shift = Vector2.from_angle(i * TAU / 8.0) * OUTLINE_PAD
+			outline.texture = part.texture; outline.pixel_size = part.pixel_size; outline.texture_filter = part.texture_filter
+			outline.shaded = false; outline.modulate = OUTLINE_COLOR; outline.render_priority = -1
+			outline.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD; outline.alpha_scissor_threshold = 0.5
+			character.add_child(outline)
 
 func make_backdrop(level: Greybox) -> Node3D:
 	_level = level
@@ -270,8 +282,13 @@ func _add_birds(holder: Node3D) -> void:
 			bird.inner.append(shoulder); bird.outer.append(elbow)
 		holder.add_child(bird)
 
-## Two weak shadowless fills from either side of the camera, so the side faces of the pits and steps stop reading black.
+## Violet's warm key (CHARACTER_LAYER only), and two weak shadowless fills from either side of the camera, so the side
+## faces of the pits and steps stop reading black.
 func _add_fill_lights(holder: Node3D) -> void:
+	var key := DirectionalLight3D.new(); key.name = "CharacterKey"
+	key.light_color = CHARACTER_KEY_COLOR; key.light_energy = CHARACTER_KEY_ENERGY; key.shadow_enabled = false
+	key.light_cull_mask = 1 << (CHARACTER_LAYER - 1); key.rotation_degrees = Vector3(-25, -35, 0)
+	holder.add_child(key)
 	for yaw in [-60.0, 60.0]:
 		var fill := DirectionalLight3D.new(); fill.name = "Fill%d" % int(yaw)
 		fill.light_color = Color("#e6d2e8"); fill.light_energy = 0.3; fill.shadow_enabled = false
