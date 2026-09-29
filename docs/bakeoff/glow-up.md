@@ -34,7 +34,7 @@ The critic may be shown the games' official press screenshots by link. They are 
 
 Round 0 is the look before the round, shot as below. Each later round:
 
-1. Starts from the latest kept round, and fixes the one gap from that round's critique expected to improve the look most.
+1. Starts from the latest kept round, and fixes the gap expected to improve the look most. It takes the gap from the kept round's most recent critique: the one that kept it or, after a revert, the one that rejected its successor. It doesn't retry the gap whose fix was just reverted unless it takes a materially different approach.
 2. Shoots the fixed shots again.
 3. Has the critic compare it with the latest kept round, and records the round.
 
