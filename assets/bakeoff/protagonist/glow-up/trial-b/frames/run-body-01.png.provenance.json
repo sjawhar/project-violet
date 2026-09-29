@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "asset": "run-body-01.png",
+  "sha256": "6b799e60b5445d963fb3f87c5896f59727e44f5a0fd9785a82dbe19b7c480c2e",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-29T01:49:35+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Frame-by-frame hand-painted 2D game sprite of Violet, a slender young girl adventurer, side-view profile facing right. She wears a hooded gray robe with a darker waist sash, an ankle-length robe skirt with a slightly darker hem, and goes barefoot with simple ankle wraps. Pale skin, dark hair just visible under the hood, a clearly readable young face in profile with a visible eye, brow, nose and mouth. Realistic child body proportions, about 5.5 head-heights tall, matching the reference turnaround exactly in design, coloring and proportions. Rendered as a single cohesive hand-painted illustration with soft painterly brushwork and visible brush texture, in a muted earthy palette (grays, browns, warm skin tones), NOT a flat vector cutout, in the painted-storybook register of games like Hollow Knight or GRIS. A grounded running recoil pose, a beat after a footstrike, NOT a jump: her weight has settled fully onto her bent front leg, now directly beneath her hips, absorbing the impact -- her front foot stays planted on the ground and is the lowest point of the image, knee bent, this is the lowest point her whole body reaches in the running cycle. Her other (back) leg is lifting off the ground behind her, knee starting to bend and rise, foot clearly in the air. Torso leans forward. Arms swing in opposition to the legs, elbows bent. Full body visible from the top of the hood to the soles of both bare feet, and both hands, entirely inside the canvas with generous empty margin on every side so nothing is cropped. She stands at a consistent scale and vertical position: the same distance from the top of her hood to the ground line as in the reference image(s). Transparent background, no ground plane, no cast shadow, no vignette, no border, no text, no watermark, no second copy of the character, no scarf or neck wrap of any kind -- bare gray robe collar at the neck; a separate layer will add the scarf later.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
+        "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletTrialB)",
+      "description": "trimmed to the frame's shared body+scarf alpha>8 bounding-box union (51,34)-(872,934) of the raw 1024x1024 canvas -> 821x900, then rescaled by factor 1.128227 (Lanczos) to the shared rig scale (calibrated against round-00/contact-sheet.png's run row, t=0 column: bbox height 208 canvas px at SCALE=0.22 = 945.4545 rig units) -> 926x1015",
+      "at": "2026-09-29T02:04:40+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

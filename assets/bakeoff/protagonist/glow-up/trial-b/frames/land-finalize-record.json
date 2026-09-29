@@ -1,0 +1,77 @@
+{
+  "0": {
+    "union_bbox_orig_1024canvas": [
+      113,
+      192,
+      888,
+      901
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      775,
+      709
+    ],
+    "final_size": [
+      874,
+      800
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 649.652170173334,
+    "head_y": 84.97452030991043,
+    "sole_y": 799.9132132783685,
+    "anchor_mode": "grounded"
+  },
+  "1": {
+    "union_bbox_orig_1024canvas": [
+      109,
+      60,
+      820,
+      960
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      711,
+      900
+    ],
+    "final_size": [
+      802,
+      1015
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 615.3821765407233,
+    "head_y": 102.68217692698768,
+    "sole_y": 1015.4046430896074,
+    "anchor_mode": "grounded"
+  },
+  "2": {
+    "union_bbox_orig_1024canvas": [
+      140,
+      28,
+      668,
+      991
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      528,
+      963
+    ],
+    "final_size": [
+      596,
+      1086
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 448.7749896612976,
+    "head_y": 105.71370336036627,
+    "sole_y": 1086.48296810588,
+    "anchor_mode": "grounded"
+  }
+}

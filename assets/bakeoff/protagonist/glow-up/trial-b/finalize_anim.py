@@ -1,0 +1,221 @@
+"""THROWAWAY (Phase 1 bake-off, Violet glow-up, technique B). Generalizes run's
+finalize_frames.py to any held animation: trims each frame's body+scarf pair to their
+shared alpha>8 bbox, rescales by the trial's own RIG_PER_RAW (reused unchanged, not
+re-derived, per the rules -- "one shared scale... so every animation is the same size as
+the run"), and records per-frame anchors in <anim>-finalize-record.json.
+
+Two anchor modes, chosen per animation by the rules in docs/bakeoff/glow-up.md's lane
+contract and the glow-up task ("Frames with ground contact... put the soles on the
+ground line... airborne frames... place them so the head centroid matches technique A's
+head position in the same animation at the same time"):
+
+- grounded (land): records sole_y and head_x/head_y exactly like run's own scheme, so a
+  build step can anchor sole_y to the shared ground line the same way run's frames do.
+- airborne (jump, fall, double_jump): records head_x/head_y (this frame's own painted
+  head centroid, in rig units) AND target_head_x/target_head_y -- technique A's own
+  head-slot world centre at the same sample time, computed via spinerig's FK
+  (`_placements` + `world_to_canvas`) against the fixed REFERENCE_BOX (rounds.md's "Fixed
+  layout", scale=1.0, margin=0, so the value is in raw rig units, comparable across every
+  animation, not just this one). A build step places each frame so head_x/head_y lands
+  exactly on target_head_x/target_head_y (times whatever canvas_scale it uses) -- no
+  ground line at all for an airborne animation.
+
+**Incremental.** Frame indices already present in `<anim>-finalize-record.json` were
+trimmed+rescaled by a previous run of this script; their on-disk pixels are no longer raw
+1024x1024 generations, so redoing the trim+rescale on them would compound RIG_PER_RAW a
+second time. Each run only discovers and processes `<anim>-body-NN.png` indices that are
+NOT already in the record (via glob over the frames directory, not a required --nframes
+count), merges the new entries into the existing record, and leaves every already-
+finalized frame's bytes and record entry untouched. Re-running with nothing new to do
+prints "already finalized, nothing to do" and writes no files at all.
+
+Run from the repository root:
+    uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/trial-b/finalize_anim.py \\
+        jump --mode airborne
+    uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/trial-b/finalize_anim.py \\
+        land --mode grounded
+    uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/trial-b/finalize_anim.py \\
+        fall --mode airborne
+    uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/trial-b/finalize_anim.py \\
+        double_jump --mode airborne
+
+`--times` is optional: given explicitly (one value per newly-processed index, in index
+order) when a frame's own sample time doesn't fall on an even grid, or left out to let
+each new index `i` default to `t = i * (animation_duration / frame_count)` -- the run
+trial's own `FRAME_DT = duration/NFRAMES` convention, generalized. `--nframes` is
+likewise optional, used only to size that default grid; when omitted it is the discovered
+frame count (existing + new).
+"""
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+from PIL import Image
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[5] / "tools" / "spinerig" / "src"))
+from spinerig import render as R  # noqa: E402
+
+FRAMES_DIR = Path(__file__).resolve().parent / "frames"
+ALPHA_THRESH = 8  # README.md: "kept pixels with alpha 1-8" was the bug; strict is > 8
+
+# Reused verbatim from the run trial's own calibration (technique-trial.md,
+# finalize_frames.py): calibrated once against technique A's round-00 contact-sheet.png
+# run row, t=0 column (208 canvas px at SCALE=0.22 = 945.4545 rig units), divided by the
+# run's own frame 0 raw body bbox height (838 px). One shared scale for every animation,
+# not re-derived per animation.
+RIG_PER_RAW = 1.128227381210675
+
+RIG_JSON = Path(__file__).resolve().parents[2] / "rig" / "violet.json"
+# rounds.md's "Fixed layout": skeleton space, rig units, root at the feet.
+REFERENCE_BOX = {"x": -763.6, "y": -40.0, "width": 1316.9, "height": 1434.7}
+
+
+def strict_bbox(im: Image.Image):
+    a = im.split()[-1]
+    a2 = a.point(lambda v: 255 if v > ALPHA_THRESH else 0)
+    return a2.getbbox()
+
+
+def load(anim: str, i: int, kind: str) -> Image.Image:
+    return Image.open(FRAMES_DIR / f"{anim}-{kind}-{i:02d}.png").convert("RGBA")
+
+
+def head_centroid(im: Image.Image, bbox, band_frac: float = 0.18):
+    """Alpha-weighted centroid of the top band of bbox (the head/hood region) -- same
+    heuristic as finalize_frames.py's head_centroid_x, extended to also return y."""
+    left, upper, right, lower = bbox
+    band_h = max(1, int((lower - upper) * band_frac))
+    a = im.split()[-1]
+    px = a.load()
+    total_w = total_x = total_y = 0.0
+    for y in range(upper, upper + band_h):
+        for x in range(left, right):
+            v = px[x, y]
+            if v > ALPHA_THRESH:
+                total_w += v
+                total_x += v * x
+                total_y += v * y
+    if total_w == 0:
+        return (left + right) / 2.0, upper + band_h / 2.0
+    return total_x / total_w, total_y / total_w
+
+
+def technique_a_head_targets(anim: str, times: dict[int, float]) -> dict[int, tuple[float, float]]:
+    """Technique A's own head-slot world centre at each requested frame index's time, in
+    raw rig units, y-down, against the fixed REFERENCE_BOX (rounds.md) -- the same
+    coordinate space every technique's frames are ultimately composited into, so a value
+    measured here is comparable across animations, not just within one spinerig render
+    call."""
+    with open(RIG_JSON) as f:
+        spine = json.load(f)
+    animation = spine["animations"][anim]
+    out = {}
+    for i, t in times.items():
+        placements = R._placements(spine, animation, t)
+        _, _attachment, cx, cy, _rotation = next(p for p in placements if p[0] == "head")
+        out[i] = R.world_to_canvas(cx, cy, REFERENCE_BOX, 1.0, 0.0)
+    return out
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("anim")
+    parser.add_argument("--mode", choices=["airborne", "grounded"], required=True)
+    parser.add_argument("--nframes", type=int, default=None, help="total frame count, for the default even time grid; discovered from disk when omitted")
+    parser.add_argument("--times", type=float, nargs="*", default=None, help="airborne mode only: one sample time per NEWLY processed index, in index order; defaults to an even i*(duration/nframes) grid")
+    args = parser.parse_args()
+
+    indices = sorted(
+        int(p.stem.rsplit("-", 1)[-1])
+        for p in FRAMES_DIR.glob(f"{args.anim}-body-*.png")
+    )
+    if not indices:
+        parser.error(f"no {args.anim}-body-NN.png frames found in {FRAMES_DIR}")
+
+    record_path = FRAMES_DIR / f"{args.anim}-finalize-record.json"
+    records: dict[int, dict] = {}
+    if record_path.exists():
+        with open(record_path) as f:
+            records = {int(k): v for k, v in json.load(f).items()}
+
+    # Frames already in the record were trimmed+rescaled by a previous run -- redoing the
+    # trim+rescale on them would compound RIG_PER_RAW a second time. Only process indices
+    # new since the last run; leave already-finalized frames' bytes and record entries
+    # untouched (not even a re-serialize of the unchanged JSON, so hashes stay stable).
+    to_process = [i for i in indices if i not in records]
+    if not to_process:
+        print(f"{args.anim}: frames {indices} already finalized, nothing to do")
+        return 0
+    print(f"{args.anim}: finalizing new frames {to_process} (already finalized: {sorted(records)})")
+
+    nframes = args.nframes or len(indices)
+    if args.mode == "airborne":
+        if args.times is not None:
+            if len(args.times) != len(to_process):
+                parser.error("--times must give exactly one value per newly-processed index")
+            times = dict(zip(to_process, args.times))
+        else:
+            with open(RIG_JSON) as f:
+                spine = json.load(f)
+            duration = R.animation_duration(spine["animations"][args.anim])
+            frame_dt = duration / nframes
+            times = {i: i * frame_dt for i in to_process}
+        a_targets = technique_a_head_targets(args.anim, times)
+
+    for i in to_process:
+        body = load(args.anim, i, "body")
+        scarf = load(args.anim, i, "scarf")
+        bbody = strict_bbox(body)
+        bscarf = strict_bbox(scarf)
+        union = (min(bbody[0], bscarf[0]), min(bbody[1], bscarf[1]),
+                 max(bbody[2], bscarf[2]), max(bbody[3], bscarf[3]))
+
+        # anchors measured on the ORIGINAL (untrimmed) body, before crop/rescale
+        sole_y_orig = bbody[3]
+        head_x_orig, head_y_orig = head_centroid(body, bbody)
+
+        body_c = body.crop(union)
+        scarf_c = scarf.crop(union)
+        new_w = max(1, round(body_c.width * RIG_PER_RAW))
+        new_h = max(1, round(body_c.height * RIG_PER_RAW))
+        body_r = body_c.resize((new_w, new_h), Image.LANCZOS)
+        scarf_r = scarf_c.resize((new_w, new_h), Image.LANCZOS)
+        body_r.save(FRAMES_DIR / f"{args.anim}-body-{i:02d}.png")
+        scarf_r.save(FRAMES_DIR / f"{args.anim}-scarf-{i:02d}.png")
+
+        # anchors in the NEW cropped+rescaled coordinate system
+        sole_y_new = (sole_y_orig - union[1]) * RIG_PER_RAW
+        head_x_new = (head_x_orig - union[0]) * RIG_PER_RAW
+        head_y_new = (head_y_orig - union[1]) * RIG_PER_RAW
+
+        record = {
+            "union_bbox_orig_1024canvas": union,
+            "orig_size": list(body.size),
+            "trimmed_size": list(body_c.size),
+            "final_size": [new_w, new_h],
+            "rig_per_raw": RIG_PER_RAW,
+            "head_x": head_x_new,
+            "head_y": head_y_new,
+        }
+        if args.mode == "grounded":
+            record["sole_y"] = sole_y_new
+            record["anchor_mode"] = "grounded"
+        else:
+            target_x, target_y = a_targets[i]
+            record["t"] = times[i]
+            record["target_head_x"] = target_x
+            record["target_head_y"] = target_y
+            record["anchor_mode"] = "airborne_head"
+        records[i] = record
+        print(i, record)
+
+    with open(record_path, "w") as f:
+        json.dump({str(k): v for k, v in sorted(records.items())}, f, indent=2)
+    print("wrote", record_path)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

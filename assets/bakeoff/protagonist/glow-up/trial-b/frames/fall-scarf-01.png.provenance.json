@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "asset": "fall-scarf-01.png",
+  "sha256": "4b4b473b54612833b29836c634f2f115fcad640c94b6475b3c43e86789e4f78c",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-29T03:06:21+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Using the exact pose, camera angle, character scale and canvas framing of the first reference image (an airborne girl), paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf drapes from around her neck/collar and streams and trails upward above and behind her from the rush of falling air -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Paint exactly ONE continuous, solid, opaque scarf shape -- never multiple overlapping copies or echoes of the ribbon at different offsets, and never several semi-transparent stacked layers. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text -- only the gray scarf shape, positioned and posed exactly where it would drape and trail relative to her neck and shoulders in the pose shown in the first reference image, on the same size canvas with the same framing, fully transparent everywhere else.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-01.png",
+        "sha256": "f308408b488266b85a07b423b915f48fd2ee2080e4896d9d36057463ced4a860"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/scarf1.png",
+        "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletBFallDJ)",
+      "description": "trimmed to the frame's shared body+scarf alpha>8 bounding-box union (73,10)-(864,939) of 1024x1024 raw -> 791x929, rescaled 1.128227 -> 892x1048 (same union-bbox-trim-then-rescale-by-RIG_PER_RAW approach as run's finalize_frames.py, reusing run's own calibrated factor 1.128227381210675)",
+      "at": "2026-09-29T03:15:29+00:00"
+    },
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletBFallDJ)",
+      "description": "updated recorded input hash for fall-body-01.png from 5294110454ef5852cd273e71dac7fec10172c599a7467a7b272c415050264fb0 to f308408b488266b85a07b423b915f48fd2ee2080e4896d9d36057463ced4a860 after finalize_anim.py trimmed/rescaled the body file in place (the scarf was generated from the pre-trim body; the body's post-trim pixels are what this scarf is now paired with)",
+      "at": "2026-09-29T03:15:00+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

@@ -1,0 +1,86 @@
+{
+  "0": {
+    "t": 0.0,
+    "union_bbox_orig_1024canvas": [
+      116,
+      151,
+      932,
+      882
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      816,
+      731
+    ],
+    "final_size": [
+      921,
+      825
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 824.7342156650034,
+    "head_x": 776.7842286762593,
+    "head_y": 86.40374372005364,
+    "target_head_x_fraction": 0.6093334570630922,
+    "target_head_y_fraction": 0.359166509470597,
+    "ground_anchored": false
+  },
+  "1": {
+    "t": 0.06666666666666667,
+    "union_bbox_orig_1024canvas": [
+      113,
+      120,
+      995,
+      908
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      882,
+      788
+    ],
+    "final_size": [
+      995,
+      889
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 889.0431763940118,
+    "head_x": 839.9317579152711,
+    "head_y": 93.46651678785128,
+    "target_head_x_fraction": 0.6593429031245497,
+    "target_head_y_fraction": 0.38645000294276177,
+    "ground_anchored": false
+  },
+  "2": {
+    "t": 0.13333333333333333,
+    "union_bbox_orig_1024canvas": [
+      95,
+      80,
+      992,
+      911
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      897,
+      831
+    ],
+    "final_size": [
+      1012,
+      938
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 937.5569537860708,
+    "head_x": 846.9141673860358,
+    "head_y": 98.28811217435272,
+    "target_head_x_fraction": 0.6686998153644428,
+    "target_head_y_fraction": 0.3921805552964657,
+    "ground_anchored": false
+  }
+}

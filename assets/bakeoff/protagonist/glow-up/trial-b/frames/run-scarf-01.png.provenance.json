@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "asset": "run-scarf-01.png",
+  "sha256": "72890de53d1d6b5830b10e9a3451f2eff6633a31e05cd2e03f179e2aff40a720",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-29T03:03:53+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Using the exact pose, camera angle, character scale and canvas framing of the first reference image (a running girl), paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf drapes from around her neck/collar and streams and trails behind and above her from the wind of her running motion -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Paint exactly one solid, opaque scarf shape -- not several overlapping or duplicated semi-transparent copies. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text -- only the gray scarf shape, positioned and posed exactly where it would drape and trail relative to her neck and shoulders in the pose shown in the first reference image, on the same size canvas with the same framing, fully transparent everywhere else.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-01.png",
+        "sha256": "6b799e60b5445d963fb3f87c5896f59727e44f5a0fd9785a82dbe19b7c480c2e"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/scarf1.png",
+        "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletBDashRunFix)",
+      "description": "QA fix (production, not redesign): the trial's run-scarf-01 painted as three overlapping, semi-transparent copies of the same ribbon (critic-flagged and confirmed in technique-trial.md's own honest-read section). Regenerated the scarf layer only, using run-body-01.png (unchanged) as --input, exactly the trial's own recipe. Cropped the new raw scarf to its own alpha>8 bbox (29,34)-(935,599) of the raw 1024x1024 canvas -- not reused/clamped to the frame's original body+scarf union box, since the new single-piece scarf trails slightly further than the old defective one -- then rescaled by the same shared factor 1.128227 (Lanczos) to 1022x637, and recorded its offset from the body's own crop origin, (-24.821, 0.0) in rig units, as scarf_offset_final so build.py's render_cell can place it correctly relative to the untouched body.",
+      "at": "2026-09-29T03:05:01+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

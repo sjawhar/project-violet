@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "asset": "double_jump-scarf-04.png",
+  "sha256": "c82a08c1020cc1fcfdbe2a1f39e2712e9d4e01e7d51ac2ab3a01aa62766db73c",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-29T04:10:24+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Using the exact pose, camera angle, character scale and canvas framing of the first reference image (an airborne girl), paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf drapes from around her neck/collar and hangs gently outward and sideways, settled after the burst but still drifting rather than hanging straight down -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Paint exactly ONE continuous, solid, opaque scarf shape -- never multiple overlapping copies or echoes of the ribbon at different offsets, and never several semi-transparent stacked layers. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text -- only the gray scarf shape, positioned and posed exactly where it would drape and trail relative to her neck and shoulders in the pose shown in the first reference image, on the same size canvas with the same framing, fully transparent everywhere else, with no vignette or darkened backdrop of any kind.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-04.png",
+        "sha256": "bdadcb472afce8c1df89cbfe67dee5e3f3bdb68df84c62d4222fd93d7a09fe6b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/scarf1.png",
+        "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletBFallDJ2)",
+      "description": "trimmed to the frame's shared body+scarf alpha>8 bounding-box union (111,39)-(789,964) of 1024x1024 raw -> 678x925, rescaled 1.128227 -> 765x1044 (same union-bbox-trim-then-rescale-by-RIG_PER_RAW approach as run's finalize_frames.py, reusing run's own calibrated factor 1.128227381210675)",
+      "at": "2026-09-29T04:10:50+00:00"
+    },
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletBFallDJ2)",
+      "description": "updated recorded input hash for double_jump-body-04.png from 87085ff837e334afce30db4ac06ba8155837ad2711fbfd3627bd01682727d723 to bdadcb472afce8c1df89cbfe67dee5e3f3bdb68df84c62d4222fd93d7a09fe6b after finalize_anim.py trimmed/rescaled the body file in place (the scarf was generated from the pre-trim body; the body's post-trim pixels are what this scarf is now paired with)",
+      "at": "2026-09-29T04:10:50+00:00"
+    }
+  ],
+  "license": "proprietary"
+}
