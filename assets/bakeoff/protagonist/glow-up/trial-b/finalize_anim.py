@@ -88,10 +88,25 @@ def main():
     )
     if not indices:
         raise SystemExit(f"no {anim}-body-NN.png frames found in {RAW_DIR}")
-    print(f"{anim}: finalizing frames {indices}")
 
+    out_path = f"{RAW_DIR}/{anim}-finalize-record.json"
     records = {}
-    for i in indices:
+    if Path(out_path).exists():
+        with open(out_path) as f:
+            records = {int(k): v for k, v in json.load(f).items()}
+
+    # Frames already in the record were trimmed+rescaled by a previous run of this
+    # script and their on-disk pixels are no longer raw 1024x1024 generations -- redoing
+    # the trim+rescale on them would compound RIG_PER_RAW a second time. Only process
+    # indices new since the last run; leave already-finalized frames' bytes and record
+    # entries untouched.
+    to_process = [i for i in indices if i not in records]
+    if not to_process:
+        print(f"{anim}: frames {indices} already finalized, nothing to do")
+        return
+    print(f"{anim}: finalizing new frames {to_process} (already finalized: {sorted(records)})")
+
+    for i in to_process:
         body = load(anim, i, "body")
         scarf = load(anim, i, "scarf")
         bbody = strict_bbox(body)
@@ -133,9 +148,8 @@ def main():
         }
         print(i, records[i])
 
-    out_path = f"{RAW_DIR}/{anim}-finalize-record.json"
     with open(out_path, "w") as f:
-        json.dump(records, f, indent=2)
+        json.dump({str(k): v for k, v in sorted(records.items())}, f, indent=2)
     print("wrote", out_path)
 
 
