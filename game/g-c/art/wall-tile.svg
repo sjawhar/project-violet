@@ -1,16 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
 <!-- THROWAWAY bake-off lane G-C: wall-tile, hand-written flat vector. Layered sandstone, seamless both ways.
-     The strata repeat every 256 px (one game cell), so every cell edge falls in the base rock color. -->
+     The strata repeat every 256 px (one game cell), so every cell edge falls in the base rock color; cracks and pebbles are scattered
+     once per tile, not repeated per band. -->
 <defs>
 <g id="band">
 <path fill="#8e5a38" d="M0,118 L150,110 L310,124 L480,112 L650,122 L830,108 L1024,118 L1024,164 L850,172 L690,158 L520,170 L340,156 L170,168 L0,164 Z"/>
 <path fill="#c2875a" d="M0,206 L200,200 L420,210 L610,198 L800,208 L1024,206 L1024,222 L790,226 L600,216 L410,228 L190,218 L0,222 Z"/>
-<path fill="#5a4a7a" d="M250,20 L270,52 L260,86 L276,112 L262,116 L244,88 L252,54 L236,24 Z"/>
-<path fill="#8e5a38" d="M380,176 L520,171 L604,180 L600,190 L520,183 L382,188 Z"/>
-<ellipse fill="#8e5a38" cx="124" cy="68" rx="28" ry="15"/>
-<ellipse fill="#c2875a" cx="120" cy="60" rx="28" ry="15"/>
-<ellipse fill="#8e5a38" cx="904" cy="76" rx="22" ry="12"/>
-<ellipse fill="#c2875a" cx="900" cy="70" rx="22" ry="12"/>
 </g>
 </defs>
 <rect width="1024" height="1024" fill="#a86f46"/>
@@ -20,4 +15,15 @@
 <use href="#band" transform="translate(-512 512)"/>
 <use href="#band" transform="translate(1536 768) scale(-1 1)"/>
 <use href="#band" transform="translate(512 768) scale(-1 1)"/>
+<path fill="#5a4a7a" d="M246,280 L266,318 L256,356 L272,388 L258,392 L240,358 L248,320 L232,284 Z"/>
+<path fill="#8e5a38" d="M620,690 L780,684 L860,694 L856,702 L780,694 L622,700 Z"/>
+<path fill="#5a4a7a" d="M846,40 L860,70 L852,96 L840,94 L846,70 L834,44 Z"/>
+<ellipse fill="#8e5a38" cx="124" cy="582" rx="28" ry="15"/>
+<ellipse fill="#c2875a" cx="120" cy="574" rx="28" ry="15"/>
+<ellipse fill="#8e5a38" cx="546" cy="330" rx="18" ry="10"/>
+<ellipse fill="#c2875a" cx="542" cy="324" rx="18" ry="10"/>
+<ellipse fill="#8e5a38" cx="930" cy="870" rx="24" ry="13"/>
+<ellipse fill="#c2875a" cx="926" cy="862" rx="24" ry="13"/>
+<ellipse fill="#8e5a38" cx="402" cy="930" rx="14" ry="8"/>
+<ellipse fill="#c2875a" cx="399" cy="925" rx="14" ry="8"/>
 </svg>

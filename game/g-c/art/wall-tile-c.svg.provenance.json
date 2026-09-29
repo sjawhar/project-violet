@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "asset": "wall-tile-c.svg",
-  "sha256": "45de3af2564c62056e9c7201139042ee6eccb612c0a80cfe0aeb382ecb573f53",
+  "sha256": "3f5b94c0f90e68e0f6c4863903d1548309b7d82c54af32d943ffb4cb4d196597",
   "kind": "image",
   "origin": "generated",
   "created_at": "2026-09-29T00:45:49+00:00",
@@ -14,6 +14,12 @@
     "params": {},
     "inputs": []
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "anthropic claude-opus-5-5 (agent)",
+      "description": "glow-up round 4: cracks and pebbles moved out of the repeated band so they are scattered once per tile instead of repeating every 256 px",
+      "at": "2026-09-29T01:55:24+00:00"
+    }
+  ],
   "license": "proprietary"
 }

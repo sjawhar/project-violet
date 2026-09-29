@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 128" width="256" height="128">
+<!-- THROWAWAY bake-off lane G-C: tuft, hand-written flat vector. A small clump of dry curved blades on a sand lip,
+     set on some open block tops (art/vector_art.gd) so the blocks' top edges are not bare lines; shadow violet, no
+     green. The bottom edge sits on the block top. Transparent background. -->
+<path fill="#e3c38e" d="M28,128 C40,112 80,104 128,104 C176,104 216,112 228,128 Z"/>
+<g fill="#5a4a7a">
+<path d="M104,124 Q94,90 64,70 Q100,92 112,124 Z"/>
+<path d="M114,124 Q112,76 96,44 Q122,80 122,124 Z"/>
+<path d="M124,124 Q130,70 150,36 Q138,76 132,124 Z"/>
+<path d="M134,124 Q146,88 178,66 Q152,94 142,124 Z"/>
+<path d="M144,124 Q160,100 196,94 Q162,106 152,124 Z"/>
+<path d="M96,124 Q80,106 52,104 Q84,110 104,124 Z"/>
+</g>
+</svg>
