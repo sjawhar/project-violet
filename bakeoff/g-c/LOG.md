@@ -14,6 +14,7 @@ sessions:
   - {start: "2026-09-28T17:03:45Z", end: "2026-09-28T17:16:54Z", purpose: "no crystals (Sami, relayed by the lead): crystal-wall and crystal-platform redrawn as tag-wall and tag-platform (plain sandstone in neutral gray), orb made a plain round orb, slots renamed, capture re-rendered"}
   - {start: "2026-09-28T17:19:00Z", end: "2026-09-28T17:36:04Z", purpose: "dry brush on the dunes redrawn as curved-blade clumps (the triangular clumps read as small crystal clusters), capture re-rendered"}
   - {start: "2026-09-28T17:34:00Z", end: "2026-09-28T17:51:25Z", purpose: "protagonist rig re-copied from PR #28 at 9b22572d (arms repainted and bent at the elbow in every animation, double jump without the flip), replacing the eafccae8 copy; run and double-jump frames looked at; capture re-rendered"}
+  - {start: "2026-09-29T00:25:01Z", end: "2026-09-29T00:33:29Z", purpose: "glow-up round 0"}
 costs: []
 interventions:
   - {at: "2026-09-27T17:37:00Z", who: sjawhar, what: "ruled that agents make the bake-off art themselves (no Recraft), which unpaused the lane; asked by the lead, not by this lane, so the minutes Sami spent are not known here and 0 is recorded", minutes: 0}
@@ -28,6 +29,7 @@ friction:
   - {at: "2026-09-27T18:00:00Z", what: "oryx's NVIDIA GPU is off limits (wedged driver)", workaround: "scripts/capture-godot.sh with DISPLAY unset (llvmpipe and lavapipe under Xvfb) plus __GLX_VENDOR_LIBRARY_NAME=mesa; Godot reported Mesa llvmpipe; 66 s capture took 3.5-11 min"}
   - {at: "2026-09-28T17:05:00Z", what: "Sami, relayed by the lead: \"Why is everything a crystal?\" The crystal walls, platforms and orb were the desert brief's invention, not his design (plain vivid-colored walls)", workaround: "tag-wall and tag-platform are the same sandstone strata and slab as wall-tile and platform-tile in neutral grays, so the unchanged reveal shader shows them gray, red or green; orb is a plain round orb; slots crystal_wall/crystal_platform renamed tag_wall/tag_platform in painted_art.gd and lane_art.tres; the old crystal SVGs and records deleted"}
   - {at: "2026-09-27T18:05:00Z", what: "the preliminary capture with the rig took 12-14 minutes of wall time per Godot lane (g-a 848 s, g-d 795 s, g-c 735 s run back to back), not the 4 minutes measured earlier, on a machine shared with other sessions", workaround: "none needed; captures stay in scratch copies until the rig PR is approved"}
+  - {at: "2026-09-29T00:26:00Z", what: "/tmp was emptied between sessions, so the capture's log redirect into /tmp/gc2 failed before the capture ran (and a first copy took the previous capture's stills)", workaround: "stills deleted and re-shot; capture logs now go to out/g-c/ in the workspace (gitignored)"}
 blockers: []
 deliverables: {build: bakeoff/g-c/reports/build.txt, capture: bakeoff/g-c/capture/capture.mp4, stills: [bakeoff/g-c/capture/still-05.png, bakeoff/g-c/capture/still-20.png, bakeoff/g-c/capture/still-40.png, bakeoff/g-c/capture/still-60.png], tests: bakeoff/g-c/reports/replay.json}
 ---
