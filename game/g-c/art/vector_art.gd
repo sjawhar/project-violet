@@ -3,8 +3,10 @@ extends PaintedArt
 ## Flat-vector desert visuals for lane G-C (docs/bakeoff/desert-biome-brief.md, SVG kit): PaintedArt's slots filled with
 ## hand-written SVGs (art/*.svg) that Godot rasterizes at their viewBox size, placed as PaintedArt places them, plus:
 ## wall and ground tiles drawn from several variants picked per block, pits that darken toward the spikes, and sky and
-## rock filling the strips the camera shows above and below the level. The character is GreyboxArt's: the rig in
-## protagonist/ once it is there, else the STAND-IN. THROWAWAY.
+## rock filling the strips the camera shows above and below the level; tag colours locked by art/reveal.gdshader, with
+## chevrons on red and waves on green; and the character drawn through art/character_outline.gdshader (dark outline,
+## warm sun-side rim, hardened alpha fringe). The character is GreyboxArt's: the rig in protagonist/ once it is there,
+## else the STAND-IN. THROWAWAY.
 ## Extra wall-tile and ground-tile variants; each keeps the band heights where blocks meet, so any mix is seamless.
 @export var wall_tile_variants: Array[Texture2D] = []
 @export var ground_tile_variants: Array[Texture2D] = []
@@ -12,6 +14,9 @@ extends PaintedArt
 const SKY_TOP := Color("#2e6d7e")
 ## How far the pit darkening reaches above a hazard cell, in cells.
 const PIT_SHADE_CELLS := 2.0
+## art/reveal.gdshader's shape cue per tag colour.
+const PATTERNS := {"red": 1, "green": 2}
+const OUTLINE := preload("res://art/character_outline.gdshader")
 
 func make_backdrop(level: Greybox) -> Node2D:
 	var holder := super.make_backdrop(level)
@@ -46,7 +51,20 @@ func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 			shade.vertex_colors = PackedColorArray([clear, clear, dark, dark])
 			pit.add_child(shade)
 			return pit
-	return super.make_cell(kind, cell, ts)
+	var node := super.make_cell(kind, cell, ts)
+	if Greybox.TAGGED.has(kind):
+		(node.material as ShaderMaterial).set_shader_parameter("pattern", PATTERNS[Greybox.TAGGED[kind][0]])
+	return node
+
+## The character inside a CanvasGroup that outlines and rim-lights the whole silhouette.
+func attach_character(player: Node) -> void:
+	super.attach_character(player)
+	var group := CanvasGroup.new(); group.name = "CharacterOutline"
+	group.fit_margin = 8.0; group.clear_margin = 8.0
+	var mat := ShaderMaterial.new(); mat.shader = OUTLINE; group.material = mat
+	player.add_child(group)
+	for child in player.get_children():
+		if child is RigCharacter2D or child.name in ["StandIn"]: child.reparent(group, false)
 
 func _wall_tiles() -> Array:
 	return [wall_tile] + wall_tile_variants
