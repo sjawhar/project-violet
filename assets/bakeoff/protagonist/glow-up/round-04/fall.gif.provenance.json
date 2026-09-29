@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "asset": "fall.gif",
-  "sha256": "e4449bc74d68791a15cb325a0aefd132f423b2aae5392532000b83250b4e7e76",
+  "sha256": "94bd13afab65710418cb473a0556e7659a9ff067014bfde61ccdf54881b5d439",
   "kind": "image",
   "origin": "derived",
-  "created_at": "2026-09-29T04:42:12+00:00",
+  "created_at": "2026-09-29T05:03:11+00:00",
   "generator": {
     "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
     "tool_version": "shoot_b.py round-04: technique B (painted frames) in shoot.py's exact fixed layout",

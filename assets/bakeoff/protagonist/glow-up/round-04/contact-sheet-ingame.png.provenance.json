@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "asset": "contact-sheet-ingame.png",
-  "sha256": "a21121cabed11307f638e4826487a1a35f425b8c1ceaccb0dd967ca7fe4a9753",
+  "sha256": "0fde3b768231269b3860c036f787f730ebe8c76c53839a9097ae27c553d29cbd",
   "kind": "image",
   "origin": "derived",
-  "created_at": "2026-09-29T04:42:11+00:00",
+  "created_at": "2026-09-29T05:03:11+00:00",
   "generator": {
     "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
     "tool_version": "shoot_b.py round-04: technique B (painted frames) in shoot.py's exact fixed layout",

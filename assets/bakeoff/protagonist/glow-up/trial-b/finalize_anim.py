@@ -29,6 +29,16 @@ count), merges the new entries into the existing record, and leaves every alread
 finalized frame's bytes and record entry untouched. Re-running with nothing new to do
 prints "already finalized, nothing to do" and writes no files at all.
 
+**Head-position trust check.** The top-band alpha centroid above is a heuristic, and can
+lock onto a flared sleeve, scarf, or hair strand that happens to reach higher than the
+hood instead of the head itself (found in `fall` frame 4, round 4's integration pass:
+the heuristic put her head off in the flared sleeve, ~180px away from her actual face).
+Every genuine head band in this style shows some visible face (skin tone), so a newly
+processed frame whose top band has none raises loudly instead of silently recording a
+wrong position -- see `skin_fraction()`/`SKIN_MIN_FRACTION`. A frame flagged this way (or
+any other known-bad automatic measurement) gets a hand-measured `HEAD_OVERRIDES` entry
+instead, in the frame's own original (pre-crop) coordinates.
+
 Run from the repository root:
     uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/trial-b/finalize_anim.py \\
         jump --mode airborne
@@ -71,6 +81,34 @@ RIG_JSON = Path(__file__).resolve().parents[2] / "rig" / "violet.json"
 # rounds.md's "Fixed layout": skeleton space, rig units, root at the feet.
 REFERENCE_BOX = {"x": -763.6, "y": -40.0, "width": 1316.9, "height": 1434.7}
 
+# Explicit per-frame head-position overrides, in the frame's ORIGINAL (untrimmed
+# 1024-canvas, pre-crop/rescale) coordinate space -- the same space head_centroid()
+# below measures in, before the union-crop transform converts it into the record's own
+# final coordinates. Populated when the automatic top-band heuristic (below) locks onto
+# something that is not the head -- most often a flared sleeve or scarf reaching higher
+# than the hood -- and a human re-measures the real head position by eye.
+#
+# ("fall", 4): the heuristic's top-18%-band centroid landed on this pose's flared sleeve
+# tip (which reaches above the hood crown here), not the head. Re-measured by
+# VioletRound4Integrate, 2026-09-29, as the alpha-weighted centroid of a hand-picked
+# hood+face box on the CURRENT (already finalized) fall-body-04.png, [385,210]-[620,425],
+# verified against a red-crosshair overlay, then converted back to this original-space
+# coordinate system via the frame's own union_bbox_orig_1024canvas/rig_per_raw. See
+# fall-finalize-record.json frame "4"'s own "head_correction" note for the full story.
+HEAD_OVERRIDES: dict[tuple[str, int], tuple[float, float]] = {
+    ("fall", 4): (656.9768968282829, 313.8777457761695),
+}
+
+# A frame whose top band is genuinely the head always shows some of her face (every
+# painted frame in this style keeps "a clearly readable young face in profile with a
+# visible eye, brow, nose and mouth" -- technique-trial.md's own body prompt, reused
+# unchanged by every later lane). A flared sleeve or scarf tip has none of that warm
+# skin-tone color at all. Measured on the known-good/known-bad frames on hand when this
+# check was added: every correctly-measured head band had at least 0.27% skin-toned
+# pixels; the one known bad case (fall frame 4, before its HEAD_OVERRIDES entry above)
+# had 0.00%. This threshold sits with a wide margin below the lowest genuine value.
+SKIN_MIN_FRACTION = 0.0015
+
 
 def strict_bbox(im: Image.Image):
     a = im.split()[-1]
@@ -100,6 +138,29 @@ def head_centroid(im: Image.Image, bbox, band_frac: float = 0.18):
     if total_w == 0:
         return (left + right) / 2.0, upper + band_h / 2.0
     return total_x / total_w, total_y / total_w
+
+
+def skin_fraction(im: Image.Image, bbox, band_frac: float = 0.18) -> float:
+    """The fraction of the same top band head_centroid() measures that is warm skin-tone
+    color -- a cheap, semantically-grounded trust check: every one of this style's heads
+    shows a visible face (see SKIN_MIN_FRACTION's own comment), so a top band with none
+    of that color is not the head, whatever its alpha centroid says."""
+    left, upper, right, lower = bbox
+    band_h = max(1, int((lower - upper) * band_frac))
+    rgb = im.convert("RGB")
+    a = im.split()[-1]
+    pxrgb = rgb.load()
+    pxa = a.load()
+    skin = total = 0
+    for y in range(upper, upper + band_h):
+        for x in range(left, right):
+            if pxa[x, y] <= ALPHA_THRESH:
+                continue
+            total += 1
+            r, g, b = pxrgb[x, y]
+            if r > 180 and g > 130 and b > 90 and (r - b) > 40 and (r - g) < 60:
+                skin += 1
+    return skin / total if total else 0.0
 
 
 def technique_a_head_targets(anim: str, times: dict[int, float]) -> dict[int, tuple[float, float]]:
@@ -174,7 +235,21 @@ def main() -> int:
 
         # anchors measured on the ORIGINAL (untrimmed) body, before crop/rescale
         sole_y_orig = bbody[3]
-        head_x_orig, head_y_orig = head_centroid(body, bbody)
+        if (args.anim, i) in HEAD_OVERRIDES:
+            head_x_orig, head_y_orig = HEAD_OVERRIDES[(args.anim, i)]
+        else:
+            head_x_orig, head_y_orig = head_centroid(body, bbody)
+            trust = skin_fraction(body, bbody)
+            if trust < SKIN_MIN_FRACTION:
+                raise RuntimeError(
+                    f"{args.anim} frame {i}: the top-band head heuristic's own region has "
+                    f"only {trust:.3%} skin-tone pixels (< {SKIN_MIN_FRACTION:.3%}) -- it "
+                    "almost certainly caught a sleeve, scarf, or hair strand reaching above "
+                    "the hood, not the actual head (every frame in this style shows a "
+                    "visible face). Look at the frame, hand-measure the real head_x/head_y "
+                    "in its ORIGINAL (pre-crop) coordinates, and add "
+                    f"(\"{args.anim}\", {i}) to HEAD_OVERRIDES with that value."
+                )
 
         body_c = body.crop(union)
         scarf_c = scarf.crop(union)
