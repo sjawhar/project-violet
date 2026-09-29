@@ -16,6 +16,7 @@ sessions:
   - {start: "2026-09-28T17:34:00Z", end: "2026-09-28T17:51:25Z", purpose: "protagonist rig re-copied from PR #28 at 9b22572d (arms repainted and bent at the elbow in every animation, double jump without the flip), replacing the eafccae8 copy; run and double-jump frames looked at; capture re-rendered"}
   - {start: "2026-09-29T00:25:01Z", end: "2026-09-29T00:33:29Z", purpose: "glow-up round 0"}
   - {start: "2026-09-29T00:39:38Z", end: "2026-09-29T00:51:35Z", purpose: "glow-up round 1"}
+  - {start: "2026-09-29T00:55:56Z", end: "2026-09-29T01:21:18Z", purpose: "glow-up round 2"}
 costs: []
 interventions:
   - {at: "2026-09-27T17:37:00Z", who: sjawhar, what: "ruled that agents make the bake-off art themselves (no Recraft), which unpaused the lane; asked by the lead, not by this lane, so the minutes Sami spent are not known here and 0 is recorded", minutes: 0}
@@ -32,6 +33,8 @@ friction:
   - {at: "2026-09-27T18:05:00Z", what: "the preliminary capture with the rig took 12-14 minutes of wall time per Godot lane (g-a 848 s, g-d 795 s, g-c 735 s run back to back), not the 4 minutes measured earlier, on a machine shared with other sessions", workaround: "none needed; captures stay in scratch copies until the rig PR is approved"}
   - {at: "2026-09-29T00:26:00Z", what: "/tmp was emptied between sessions, so the capture's log redirect into /tmp/gc2 failed before the capture ran (and a first copy took the previous capture's stills)", workaround: "stills deleted and re-shot; capture logs now go to out/g-c/ in the workspace (gitignored)"}
   - {at: "2026-09-29T00:58:00Z", what: "/tmp was emptied again mid-session, taking the throwaway rasterizer with it", workaround: "throwaway tooling and capture logs live under out/g-c/ in the workspace (gitignored)"}
+  - {at: "2026-09-29T01:10:00Z", what: "a CanvasGroup with use_mipmaps and a textureLod blur shader rendered unblurred under the gl_compatibility renderer, so the terrain shadow came out as hard dark copies of every block and tag wall", workaround: "replaced it with a feathered gradient quad cast right from each exposed far face"}
+  - {at: "2026-09-29T01:05:00Z", what: "a GDScript type error in art/vector_art.gd (a TextureRect returned as Node2D) did not fail the replay: the scene still reached the goal with the art script unloaded, and only ci.sh's export smoke check caught the SCRIPT ERROR", workaround: "fixed the return type; the smoke check is the guard"}
 blockers: []
 deliverables: {build: bakeoff/g-c/reports/build.txt, capture: bakeoff/g-c/capture/capture.mp4, stills: [bakeoff/g-c/capture/still-05.png, bakeoff/g-c/capture/still-20.png, bakeoff/g-c/capture/still-40.png, bakeoff/g-c/capture/still-60.png], tests: bakeoff/g-c/reports/replay.json}
 ---
