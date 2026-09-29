@@ -23,10 +23,13 @@ const LIGHT_SCALE := 0.35
 ## Depth fog: the play plane, 32 m from the camera, stays clear, and the sand is fully fogged where it meets the sky.
 const FOG_BEGIN := 34.0
 const FOG_END := 190.0
-## Aerial perspective per backdrop layer: each layer's materials are pulled this far toward HORIZON, so every layer is
-## paler than the one in front of it and none competes with the play plane.
-const HAZE_MID := 0.15
-const HAZE_FAR := 0.35
+## Aerial perspective per backdrop layer. The near layers (mid and far props, and the sand behind the level) are pulled
+## toward BACKDROP_HAZE, a dusty rose one value step darker than the sunlit sand tops of the play plane, so the platform
+## edges read against them. The horizon layer is pulled toward HORIZON and sits above the play area in the frame.
+const BACKDROP_HAZE := Color("#c4937f")
+const BACKDROP_SAND := Color("#b58a6c")
+const HAZE_MID := 0.25
+const HAZE_FAR := 0.4
 const HAZE_HORIZON := 0.6
 ## A horizon layer of pale mesas and dunes 60-100 m behind the level fills the band between the play area and the
 ## clouds. It has its own random stream, so the nearer layers keep their placement.
@@ -41,14 +44,9 @@ const SKY_SIZE := Vector2(200, 63)
 const SKY_BOTTOM := -9.5
 ## Mean of sky.png's bottom 20 rows (ImageMagick), so fog and sky meet at the same color.
 const HORIZON := Color8(252, 193, 119)
-## Dark foreground silhouettes, between the camera and the play plane, frame the bottom of the shot (as Planet of Lana
-## and INSIDE do). Their tops stay below this height on the play plane, under the 3 m walking surface.
-const FOREGROUND_TOP := 2.2
-const FOREGROUND_COLOR := Color("#3a2e4d")
-const FOREGROUND := ["saguaro", "acacia"]
 ## Tile shading: each cell of rock under the surface is pulled this far toward shadow violet (up to three cells deep),
 ## so the strata darken with depth instead of repeating identically down a block.
-const DEPTH_TINT := 0.08
+const DEPTH_TINT := 0.05
 
 var _scenes := {}
 ## Imported material -> its toon copy, shared by every instance of that piece.
@@ -58,7 +56,7 @@ var _toon := {}
 var _orb_materials := {}
 ## [toon material, depth] -> its tile variant.
 var _tile_materials := {}
-## [toon material, haze] -> its hazed backdrop copy.
+## [toon material, haze, haze color] -> its hazed backdrop copy.
 var _haze_materials := {}
 ## The level being dressed, kept by make_backdrop (called before the builder) so make_cell can see a cell's neighbours.
 var _level: Greybox
@@ -156,6 +154,7 @@ func make_backdrop(level: Greybox) -> Node3D:
 	env.fog_depth_begin = FOG_BEGIN; env.fog_depth_end = FOG_END; env.fog_sky_affect = 0.0
 	# The sand runs back to the sky quad, so its far edge is fully fogged to HORIZON where it meets the sky.
 	var sand := holder.get_node("Sand") as MeshInstance3D
+	(sand.material_override as StandardMaterial3D).albedo_color = BACKDROP_SAND
 	(sand.mesh as PlaneMesh).size = Vector2(level.width + 600, 180)
 	sand.position = Vector3(level.width / 2.0, 0, SKY_Z + 90.0)
 	holder.add_child(_sky_layer())
@@ -163,12 +162,11 @@ func make_backdrop(level: Greybox) -> Node3D:
 	_add_fill_lights(holder)
 	var props := Node3D.new(); props.name = "Props"; holder.add_child(props)
 	var rng := RandomNumberGenerator.new(); rng.seed = SEED
-	_scatter(props, rng, FAR, Vector2(-10, level.width + 10), Vector2(-12, -9), Vector2(-2, 6), Vector2(0.7, 1.0), 10.0, false, HAZE_FAR)
-	_scatter(props, rng, MID, Vector2(-8, level.width + 8), Vector2(-8, -5), Vector2(3, 8), Vector2(0.7, 1.0), 25.0, true, HAZE_MID)
-	_scatter(props, rng, NEAR, Vector2(-6, level.width + 6), Vector2(-3.5, -2.5), Vector2(6, 12), Vector2(0.8, 1.0), 25.0, true, 0.0)
+	_scatter(props, rng, FAR, Vector2(-10, level.width + 10), Vector2(-12, -9), Vector2(-2, 6), Vector2(0.7, 1.0), 10.0, false, HAZE_FAR, BACKDROP_HAZE)
+	_scatter(props, rng, MID, Vector2(-8, level.width + 8), Vector2(-8, -5), Vector2(3, 8), Vector2(0.7, 1.0), 25.0, true, HAZE_MID, BACKDROP_HAZE)
+	_scatter(props, rng, NEAR, Vector2(-6, level.width + 6), Vector2(-3.5, -2.5), Vector2(6, 12), Vector2(0.8, 1.0), 25.0, true, 0.0, BACKDROP_HAZE)
 	var horizon_rng := RandomNumberGenerator.new(); horizon_rng.seed = SEED + 1
-	_scatter(props, horizon_rng, HORIZON_LAYER, Vector2(-60, level.width + 60), Vector2(-100, -60), Vector2(-5, 6), Vector2(0.7, 1.1), 180.0, false, HAZE_HORIZON)
-	_add_foreground(holder, rng)
+	_scatter(props, horizon_rng, HORIZON_LAYER, Vector2(-60, level.width + 60), Vector2(-100, -60), Vector2(-5, 6), Vector2(0.7, 1.1), 180.0, false, HAZE_HORIZON, HORIZON)
 	return holder
 
 func _sky_layer() -> SkyLayer:
@@ -203,31 +201,6 @@ func _add_fill_lights(holder: Node3D) -> void:
 		fill.rotation_degrees = Vector3(-15, yaw, 0)
 		holder.add_child(fill)
 
-## Flat dark kit silhouettes at z 4.5-7, each scaled so its top stays below FOREGROUND_TOP on the play plane, and kept
-## off the pits (the hazards must stay in view) with a margin for their stronger parallax.
-func _add_foreground(holder: Node3D, rng: RandomNumberGenerator) -> void:
-	var fg := Node3D.new(); fg.name = "Foreground"; holder.add_child(fg)
-	var mat := StandardMaterial3D.new()
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED; mat.disable_fog = true; mat.albedo_color = FOREGROUND_COLOR
-	var cam := Vector2(32.0, 10.5)  # the camera's distance from the play plane and its height (Game3D)
-	var x := -12.0
-	while x < _level.width + 12:
-		var piece: String = FOREGROUND[rng.randi_range(0, FOREGROUND.size() - 1)]
-		var inst := _piece(piece)
-		var z := rng.randf_range(4.5, 7.0)
-		var max_h := cam.y - (cam.y - FOREGROUND_TOP) * (cam.x - z) / cam.x
-		var size := _aabb(inst).size
-		var s := max_h / size.y * rng.randf_range(0.75, 1.0)
-		inst.scale = Vector3.ONE * s
-		inst.rotation_degrees.y = rng.randf_range(-40, 40)
-		x += size.x * s / 2.0
-		inst.position = Vector3(x, 0, z)
-		for mi: MeshInstance3D in _meshes(inst):
-			for i in mi.mesh.get_surface_count(): mi.set_surface_override_material(i, mat)
-		if _over_ground(x - size.x * s / 2.0 - 2.0 * PIT_MARGIN, x + size.x * s / 2.0 + 2.0 * PIT_MARGIN): fg.add_child(inst)
-		else: inst.free()
-		x += size.x * s / 2.0 + rng.randf_range(1.0, 6.0)
-
 ## Darkens a tile toward shadow violet with its depth under the surface, and turns every other tile around, so
 ## neighbouring blocks stop showing identical strata.
 func _vary_tile(inst: Node3D, cell: Vector2i) -> Node3D:
@@ -248,8 +221,8 @@ func _vary_tile(inst: Node3D, cell: Vector2i) -> Node3D:
 ## Places pieces left to right across x_range, each at a random depth in z_range (pulled back so its front stays behind
 ## PROP_FRONT_Z), with a random gap after it, a random uniform scale and a random yaw of up to yaw_deg. With avoid_pits,
 ## pieces are skipped where they would stand behind a pit: seen through the gap they read as ledges inside it. Every
-## piece is hazed toward HORIZON by haze.
-func _scatter(parent: Node3D, rng: RandomNumberGenerator, pieces: Array, x_range: Vector2, z_range: Vector2, gap: Vector2, scale_range: Vector2, yaw_deg: float, avoid_pits: bool, haze: float) -> void:
+## piece is pulled toward haze_color by haze.
+func _scatter(parent: Node3D, rng: RandomNumberGenerator, pieces: Array, x_range: Vector2, z_range: Vector2, gap: Vector2, scale_range: Vector2, yaw_deg: float, avoid_pits: bool, haze: float, haze_color: Color) -> void:
 	var x := x_range.x
 	while x < x_range.y:
 		var piece: String = pieces[rng.randi_range(0, pieces.size() - 1)]
@@ -260,20 +233,20 @@ func _scatter(parent: Node3D, rng: RandomNumberGenerator, pieces: Array, x_range
 		inst.rotation_degrees.y = rng.randf_range(-yaw_deg, yaw_deg)
 		x += size.x / 2.0
 		inst.position = Vector3(x, 0, minf(rng.randf_range(z_range.x, z_range.y), PROP_FRONT_Z - size.z / 2.0))
-		if not avoid_pits or _over_ground(x - size.x / 2.0 - PIT_MARGIN, x + size.x / 2.0 + PIT_MARGIN): parent.add_child(_haze(inst, haze))
+		if not avoid_pits or _over_ground(x - size.x / 2.0 - PIT_MARGIN, x + size.x / 2.0 + PIT_MARGIN): parent.add_child(_haze(inst, haze, haze_color))
 		else: inst.free()
 		x += size.x / 2.0 + rng.randf_range(gap.x, gap.y)
 
-func _haze(inst: Node3D, haze: float) -> Node3D:
+func _haze(inst: Node3D, haze: float, toward: Color) -> Node3D:
 	if haze == 0.0: return inst
 	for mi: MeshInstance3D in _meshes(inst):
 		for s in mi.mesh.get_surface_count():
 			var base := mi.get_surface_override_material(s) as StandardMaterial3D
-			var key := [base, haze]
+			var key := [base, haze, toward]
 			if not _haze_materials.has(key):
 				var mat := base.duplicate() as StandardMaterial3D
-				mat.albedo_color = base.albedo_color.lerp(HORIZON, haze)
-				if mat.emission_enabled: mat.emission = mat.emission.lerp(HORIZON, haze)
+				mat.albedo_color = base.albedo_color.lerp(toward, haze)
+				if mat.emission_enabled: mat.emission = mat.emission.lerp(toward, haze)
 				_haze_materials[key] = mat
 			mi.set_surface_override_material(s, _haze_materials[key])
 	return inst
