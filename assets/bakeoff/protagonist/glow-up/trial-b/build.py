@@ -67,21 +67,24 @@ def render_cell(i, canvas_scale):
     on the ground line and its head_x anchor lands on the horizontal anchor, onto a cell
     sized by canvas_size(canvas_scale) over the fixed neutral-gray BACKGROUND. The frame
     files are already in rig-unit pixels (finalize_frames.py), so canvas_scale is the only
-    remaining scale factor here."""
+    remaining scale factor here. Body and scarf are resized independently (not forced to a
+    shared size): the two QA-fixed frames (run-scarf-01/05, finalize_run_scarf_fix.py) crop
+    the scarf to its own bbox rather than reusing the body's, and carry an extra
+    `scarf_offset_final` (rig-unit space, absent/[0,0] for every other frame) shifting the
+    scarf paste relative to the body's own anchor-derived position."""
     cell_w, cell_h = canvas_size(canvas_scale)
     ground_y = GROUND_Y_FRACTION * cell_h
     head_anchor_x = HEAD_X_FRACTION * cell_w
     anchors = FRAME_ANCHORS[i]
     body = load(i, "body")
     scarf = load(i, "scarf")
-    new_w = max(1, round(body.width * canvas_scale))
-    new_h = max(1, round(body.height * canvas_scale))
-    body_s = body.resize((new_w, new_h), Image.LANCZOS)
-    scarf_s = scarf.resize((new_w, new_h), Image.LANCZOS)
+    body_s = body.resize((max(1, round(body.width * canvas_scale)), max(1, round(body.height * canvas_scale))), Image.LANCZOS)
+    scarf_s = scarf.resize((max(1, round(scarf.width * canvas_scale)), max(1, round(scarf.height * canvas_scale))), Image.LANCZOS)
     dx = head_anchor_x - anchors["head_x"] * canvas_scale
     dy = ground_y - anchors["sole_y"] * canvas_scale
+    scarf_dx, scarf_dy = anchors.get("scarf_offset_final", [0.0, 0.0])
     cell = Image.new("RGBA", (cell_w, cell_h), BACKGROUND)
-    cell.paste(scarf_s, (round(dx), round(dy)), scarf_s)
+    cell.paste(scarf_s, (round(dx + scarf_dx * canvas_scale), round(dy + scarf_dy * canvas_scale)), scarf_s)
     cell.paste(body_s, (round(dx), round(dy)), body_s)
     return cell
 

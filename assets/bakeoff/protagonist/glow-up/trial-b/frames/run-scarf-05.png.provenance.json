@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
   "asset": "run-scarf-05.png",
-  "sha256": "6f959eef63fe0b3090684723dc602b825fd180ff0a1ab4f1f5af60ab434bc4e7",
+  "sha256": "124a3eb5793607ccc2128ca4b46b9d3702784efb535b821db886425ca0dac129",
   "kind": "image",
   "origin": "generated",
-  "created_at": "2026-09-29T02:05:45+00:00",
+  "created_at": "2026-09-29T03:04:31+00:00",
   "generator": {
     "tool": "gen",
     "tool_version": "0.1.0",
     "provider": "openai",
     "model": "gpt-image-2",
-    "prompt": "Using the exact pose, camera angle, character scale and canvas framing of the first reference image (a running girl), paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf drapes from around her neck/collar and streams and trails behind and above her from the wind of her running motion -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text -- only the gray scarf shape, positioned and posed exactly where it would drape and trail relative to her neck and shoulders in the pose shown in the first reference image, on the same size canvas with the same framing, fully transparent everywhere else.",
+    "prompt": "Using the exact pose, camera angle, character scale and canvas framing of the first reference image (a running girl), paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf drapes from around her neck/collar and streams and trails behind and above her from the wind of her running motion -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Paint exactly one solid, opaque scarf shape -- not several overlapping or duplicated semi-transparent copies. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text -- only the gray scarf shape, positioned and posed exactly where it would drape and trail relative to her neck and shoulders in the pose shown in the first reference image, on the same size canvas with the same framing, fully transparent everywhere else.",
     "params": {
       "size": "1024x1024",
       "quality": "high",
@@ -29,9 +29,9 @@
   },
   "human_edits": [
     {
-      "by": "anthropic/claude-sonnet-5 (VioletTrialB)",
-      "description": "trimmed to the frame's shared body+scarf alpha>8 bounding-box union (60,49)-(876,937) of the raw 1024x1024 canvas -> 816x888, then rescaled by factor 1.128227 (Lanczos) to the shared rig scale (calibrated against round-00/contact-sheet.png's run row, t=0 column: bbox height 208 canvas px at SCALE=0.22 = 945.4545 rig units) -> 921x1002",
-      "at": "2026-09-29T02:06:00+00:00"
+      "by": "anthropic/claude-sonnet-5 (VioletBDashRunFix)",
+      "description": "QA fix (production, not redesign): the trial's run-scarf-05 painted as three overlapping, semi-transparent copies of the same ribbon (critic-flagged and confirmed in technique-trial.md's own honest-read section). Regenerated the scarf layer only, using run-body-05.png (unchanged) as --input, exactly the trial's own recipe. Cropped the new raw scarf to its own alpha>8 bbox of the raw 1024x1024 canvas -- not reused/clamped to the frame's original body+scarf union box, since the new single-piece scarf trails slightly further than the old defective one -- then rescaled by the same shared factor 1.128227 (Lanczos) to 1009x613, and recorded its offset from the body's own crop origin, (-28.206, 9.026) in rig units, as scarf_offset_final so build.py's render_cell can place it correctly relative to the untouched body.",
+      "at": "2026-09-29T03:05:10+00:00"
     }
   ],
   "license": "proprietary"

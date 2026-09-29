@@ -248,3 +248,14 @@ pair, before finalizing:
 - **Ground/scale alignment:** solid. All 8 frames' soles land on the same measured ground line and all
   8 share one calibration factor (not re-derived per frame), so the GIF doesn't jitter vertically or
   grow/shrink between frames the way independent, uncalibrated generations often do.
+- **QA fix (2026-09-29, full glow-up pass, `VioletBDashRunFix`):** regenerated the scarf layer only
+  for frames 1 and 5, the two flagged above. Each used that frame's existing (unchanged) body PNG as
+  `--input`, exactly this trial's own recipe, plus an explicit "paint exactly one solid, opaque scarf
+  shape" guard added to the scarf prompt. Both came back as a single coherent flowing ribbon on the
+  first call (no rejections). The new scarves trail slightly further than the old defective ones, so
+  each was cropped to its own alpha bbox rather than clamped to the frame's original body+scarf union
+  box, rescaled by the same shared factor, and given a recorded `scarf_offset_final` (rig units) so
+  `build.py`'s `render_cell` places it correctly relative to the untouched body
+  (`finalize_run_scarf_fix.py`). `run-row.png`/`run.gif` were rebuilt; frames 1 and 5 now read as one
+  opaque scarf, matching the other six. The body frames and the other six scarves are unchanged.
+
