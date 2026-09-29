@@ -18,7 +18,7 @@ sessions:
   - {start: "2026-09-29T00:24:45Z", end: "2026-09-29T00:37:00Z", purpose: "glow-up round 0"}
   - {start: "2026-09-29T00:41:00Z", end: "2026-09-29T01:18:00Z", purpose: "glow-up round 1"}
   - {start: "2026-09-29T01:20:00Z", end: "2026-09-29T01:38:00Z", purpose: "glow-up round 2"}
-  - {start: "2026-09-29T01:42:00Z", end: "2026-09-29T02:00:00Z", purpose: "glow-up round 3"}
+  - {start: "2026-09-29T01:42:00Z", end: "2026-09-29T02:15:00Z", purpose: "glow-up round 3 (reshot with the brief's red)"}
 costs:
   - {item: "glow-up round 1: art/sky.png, 1 gpt-image-2 call at 1536x1024 quality high", usd: 0.22, evidence: "estimate at the $0.22 per high-quality call measured in docs/bakeoff/shared-costs.md; gen logs no usage; game/g-d/art/sky.png.provenance.json"}
 interventions: []
@@ -45,6 +45,7 @@ friction:
   - {at: "2026-09-29T01:05:00Z", what: "each software preview of the replay took 3-6 minutes and the fixed capture 10 minutes on the shared 16-core machine", workaround: "previews to 20 s or 40 s only; one fixed capture per round"}
   - {at: "2026-09-29T01:24:00Z", what: "glow-up round 2: the round-1 haze pulled the backdrop toward the bright horizon colour, the same value as the sunlit sand tops, so platform edges washed into the dunes; lightened foreground silhouettes shrunk to cropped stubs at the frame bottom", workaround: "near backdrop hazed toward a darker dusty rose and the sand behind the level darkened; foreground layer removed"}
   - {at: "2026-09-29T01:44:00Z", what: "glow-up round 3: the active red walls rendered peach because each tag-block's own omni light sat 0.4 m from its face, 13 overlapping per wall, and ACES flattened the overexposed red toward orange", workaround: "the blocks sit on visual layer 2, which their lights' cull mask excludes; the lights still reach Violet and the ground"}
+  - {at: "2026-09-29T02:00:00Z", what: "glow-up round 3: under the warm sun and ACES the brief's ember red #e04a3a rendered orange-peach, and the first fix (a crimson #c4162a) broke the biome brief's fixed tag colors", workaround: "tag-blocks back on #e04a3a, excluded from the warm sun and fills and lit by their own neutral white key at 0.6, tuned with a throwaway probe scene until the rendered red measured about 227,57,51 inactive"}
 blockers: []
 deliverables: {build: bakeoff/g-d/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-d/reports/replay.json}
 ---

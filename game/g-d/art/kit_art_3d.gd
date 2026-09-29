@@ -17,12 +17,13 @@ const PIT_MARGIN := 2.0
 ## Tag block albedo before its color is acquired (mechanic.md: grayscale).
 const TAG_GRAY := Color(0.6, 0.6, 0.6)
 ## Emission energy of an active tag block: enough to glow, low enough that ACES keeps its hue instead of going peach.
-const TAG_GLOW := 0.3
-## The tag-blocks' own colors. Red is a crimson a few degrees toward magenta, so under the warm sun it renders as a true
-## red, clear of the orange sandstone. The blocks sit on visual layer TAG_BLOCK_LAYER, which their own lights skip:
-## lights 0.4 m from each face, 13 to a wall, overexposed the faces to peach.
-const KIT_TAG_COLORS := {"red": Color("#c4162a"), "green": Color("#3fbf6a")}
+const TAG_GLOW := 0.15
+## The tag-blocks keep the brief's colors (TAG_COLORS) and sit on visual layer TAG_BLOCK_LAYER. Their own lights, the
+## warm sun and the fills skip that layer (lights 0.4 m from each face, 13 to a wall, overexposed the faces to peach, and
+## the warm sun pushed red toward the orange sandstone); a neutral white key lights only the blocks, at an energy that
+## renders them close to their own colors.
 const TAG_BLOCK_LAYER := 2
+const TAG_KEY_ENERGY := 0.6
 ## Violet is drawn this far in front of the play plane, just past the blocks' front faces, so she stays visible when she
 ## passes a wall of the active color; her feet still meet the front edge of the ground.
 const CHARACTER_Z := 0.6
@@ -155,14 +156,14 @@ func make_cell(kind: String, cell: Vector2i) -> Node3D:
 	var color: String = Greybox.TAGGED[kind][0]
 	tagged.mesh = null  # the tag-block is the visual; the box's light and look stay
 	tagged.energy_scale = LIGHT_SCALE
-	tagged.tag_color = KIT_TAG_COLORS[color]
+	tagged.tag_color = TAG_COLORS[color]
 	tagged.light.light_cull_mask &= ~(1 << (TAG_BLOCK_LAYER - 1))
 	var block := _on_cell_floor(_piece("tag-block")); block.name = "TagBlock"
 	for mi: MeshInstance3D in _meshes(block):
 		mi.layers = 1 << (TAG_BLOCK_LAYER - 1)
 		for s in mi.mesh.get_surface_count():
 			var mat := (mi.get_active_material(s) as StandardMaterial3D).duplicate() as StandardMaterial3D
-			mat.albedo_color = TAG_GRAY; mat.emission_enabled = true; mat.emission = KIT_TAG_COLORS[color]; mat.emission_energy_multiplier = 0.0
+			mat.albedo_color = TAG_GRAY; mat.emission_enabled = true; mat.emission = TAG_COLORS[color]; mat.emission_energy_multiplier = 0.0
 			tagged.block_materials.append(mat)
 			mi.set_surface_override_material(s, mat)
 	tagged.add_child(block)
@@ -192,6 +193,12 @@ func make_backdrop(level: Greybox) -> Node3D:
 	(sand.mesh as PlaneMesh).size = Vector2(level.width + 600, 180)
 	sand.position = Vector3(level.width / 2.0, 0, SKY_Z + 90.0)
 	holder.add_child(_sky_layer())
+	var tag_bit := 1 << (TAG_BLOCK_LAYER - 1)
+	(holder.get_node("Sun") as DirectionalLight3D).light_cull_mask &= ~tag_bit
+	var tag_key := DirectionalLight3D.new(); tag_key.name = "TagKey"
+	tag_key.light_color = Color.WHITE; tag_key.light_energy = TAG_KEY_ENERGY; tag_key.light_cull_mask = tag_bit
+	tag_key.rotation_degrees = Vector3(-50, 30, 0)
+	holder.add_child(tag_key)
 	_add_birds(holder)
 	_add_fill_lights(holder)
 	var props := Node3D.new(); props.name = "Props"; holder.add_child(props)
@@ -234,6 +241,7 @@ func _add_fill_lights(holder: Node3D) -> void:
 		var fill := DirectionalLight3D.new(); fill.name = "Fill%d" % int(yaw)
 		fill.light_color = Color("#e6d2e8"); fill.light_energy = 0.3; fill.shadow_enabled = false
 		fill.rotation_degrees = Vector3(-15, yaw, 0)
+		fill.light_cull_mask &= ~(1 << (TAG_BLOCK_LAYER - 1))
 		holder.add_child(fill)
 
 ## Flat dark kit silhouettes at z 4.5-7, each scaled so its top stays below FOREGROUND_TOP on the play plane, and kept
