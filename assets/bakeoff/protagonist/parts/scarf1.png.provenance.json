@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "asset": "scarf1.png",
+  "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-27T18:22:53+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Only one single straight flat ribbon-shaped segment of the character's long trailing scarf, about one third of the scarf's length, a long narrow strip hanging straight down vertically, painted a neutral light gray (plain undyed pale gray cloth, no red and no other color at all), soft cloth with gentle folds, both ends cut cleanly straight across and not frayed, no body, no head, no other object of the character in the reference, side view facing right, same painted soft-edged style as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
+        "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "trimmed transparent margin to the alpha > 8 bounding box: 1024x1024 -> 127x872",
+      "at": "2026-09-27T18:42:23+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "cropped rows 0-350 of the painted strip (127x350): one straight segment, about a third of the scarf's length",
+      "at": "2026-09-27T18:42:24+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "converted to neutral light gray (Rec. 709 luminance, scaled to mean 0.72) so lanes can tint the scarf by multiplying",
+      "at": "2026-09-27T18:42:24+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "feathered the alpha of the cropped ends (top 0 px, bottom 40 px) so overlapping segments blend at the joints",
+      "at": "2026-09-27T18:42:24+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "rescaled by factor 0.62 (Lanczos), 127x350 -> 79x217, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960, so 1.136 rig px per turnaround px); see assets/bakeoff/protagonist/README.md. Width set to ~79 px (the turnaround's trailing tail is 60-90 px wide); the chain's three bones total 560 px, the turnaround tail's length from the neck.",
+      "at": "2026-09-27T18:42:25+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

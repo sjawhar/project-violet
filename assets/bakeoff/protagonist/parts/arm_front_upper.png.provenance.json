@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "asset": "arm_front_upper.png",
+  "sha256": "1bcaab8efcf8c888aae0a0c24809f0ddb8da5d8d7b660bdd9a703d4826565b30",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-28T17:10:26+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Only the upper arm from the shoulder to the elbow, covered by the top half of the robe's loose sleeve, a closed soft fabric tube hanging straight down vertically that ends at the elbow in a smooth rounded end, the sleeve does not flare and shows no opening and no cuff, no forearm, no hand, no torso of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
+        "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "trimmed transparent margin to the alpha > 8 bounding box: 1024x1024 -> 259x646",
+      "at": "2026-09-28T17:12:16+00:00"
+    },
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "rescaled by factor 0.315 (Lanczos), 259x646 -> 82x203, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960); see assets/bakeoff/protagonist/README.md. Shoulder cap to the centre of the rounded elbow end (487 painted px) set to the 153 px upper-arm bone (55% of the 278 px shoulder-to-wrist, inferred).",
+      "at": "2026-09-28T17:12:17+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

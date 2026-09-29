@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "asset": "dash.gif",
+  "sha256": "5d6bcb62819a3b7bd2fa6ff73049a1ffff64bc0c3c3c9033709913fc49f15c6c",
+  "kind": "animation",
+  "origin": "derived",
+  "created_at": "2026-09-28T17:16:38+00:00",
+  "generator": {
+    "tool": "spinerig",
+    "tool_version": "0.1.0 (master 028cb554, with #30's canvas fix)",
+    "model": null,
+    "params": {
+      "command": "spinerig render rig/violet.json --parts parts --anim dash --scale 0.5 --fps 30"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/rig/violet.json",
+        "sha256": "f6319ff24ba4a39e4f09138a5551c06d95a807b53d8b097df0feaec695b8d3aa"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/arm_back_lower.png",
+        "sha256": "4345ce799fa7b60cd01892f5c58a6003f514ba36cf5c5c320ba53e79899f5a4e"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/arm_back_upper.png",
+        "sha256": "3a83c513f692e927b150ded7b0fa252ba33ff5bbaf50cd93b898708eef20dd9c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/arm_front_lower.png",
+        "sha256": "8f1df9ed8700868b3d71da7d036f36e2ee1af19f14779f11f9a736fa7b0c3c13"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/arm_front_upper.png",
+        "sha256": "1bcaab8efcf8c888aae0a0c24809f0ddb8da5d8d7b660bdd9a703d4826565b30"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/head.png",
+        "sha256": "81960bde8738760d562474083f5398ba8c186b48d35cd6654660a748cb0318fd"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/hips.png",
+        "sha256": "eccf9520a44b511ce50dc495a18ad737e187bcc8b34f1a7a3c494f6bddefe532"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/leg_back_lower.png",
+        "sha256": "337670877ea70a45e260a8d614973457dd211963593c6c6523692d9ce1ddfe4c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/leg_back_upper.png",
+        "sha256": "1c268ce147d6664039b9f3422eb1e8e2118b6567e0052efaddcc7ea48cfd858b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/leg_front_lower.png",
+        "sha256": "d72bb0d2e4092ef2f301bd1026e7bc65cf4c7db52d07252aeffb292a8ab4c1d2"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/leg_front_upper.png",
+        "sha256": "04461b18d4008c0c114fefc755ad26fae89603a3d87b684f3d32de7ee8c0cfba"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/scarf1.png",
+        "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/scarf2.png",
+        "sha256": "9804d4f50315ab042310ca59eb1134627c99d1c5aa181c4cb48e379d0cf4dab8"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/scarf3.png",
+        "sha256": "c6094a364a44bcde650932ce83b8b44f05d67eb4119da24a254dc36c5c491d74"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/torso.png",
+        "sha256": "01b8a54e041def8225332b51c447574567b20c455e1200f4986627d1b8485aaa"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}
