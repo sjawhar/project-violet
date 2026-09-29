@@ -19,6 +19,7 @@ const HAZARD := Color("#2d2540")
 const REVEAL := preload("res://art/reveal.gdshader")
 const TERRAIN := preload("res://art/terrain.gdshader")
 const SHADOW := Color("#211728")
+const HAZE := Color("#f2c49b")
 ## Kinds that leave a terrain cell's side open (drawn as broken rock with a contact shadow). Tagged and hazard cells
 ## are drawn edge to edge, so a terrain cell beside them keeps a straight side.
 const OPEN_KINDS := ["empty", "start", "goal", "orb_red", "orb_green"]
@@ -26,22 +27,26 @@ const OPEN_KINDS := ["empty", "start", "goal", "orb_red", "orb_green"]
 var _level: Greybox
 var _ground_row := -1
 ## Per cell, its distance under the open air that lights it (see _distance_to_air); the terrain shader darkens with it.
-var _air: PackedInt32Array
+var _air: PackedFloat32Array
 
 ## A tagged cell's wall or platform, painted neutral gray: gray until its color is acquired, tinted once acquired,
 ## glowing and pulsing while active.
 class RevealSprite extends Sprite2D:
 	var _pulse: Tween
+	var halo: Node2D  ## the light an active piece throws onto the backdrop beside it; hidden otherwise
 	func set_resonance_look(revealed: bool, active: bool) -> void:
 		var mat := material as ShaderMaterial
 		mat.set_shader_parameter("saturation", 1.0 if revealed else 0.0)
-		mat.set_shader_parameter("glow", 0.6 if active else 0.0)
+		mat.set_shader_parameter("glow", 0.35 if active else 0.0)
+		if halo: halo.visible = active; halo.modulate.a = 1.0
 		if _pulse: _pulse.kill(); _pulse = null
 		if active:
-			var set_glow := func(g: float): mat.set_shader_parameter("glow", g)
+			var set_glow := func(g: float):
+				mat.set_shader_parameter("glow", g)
+				if halo: halo.modulate.a = 0.55 + g
 			_pulse = create_tween().set_loops().set_trans(Tween.TRANS_SINE)
-			_pulse.tween_method(set_glow, 0.6, 0.2, 0.7)
-			_pulse.tween_method(set_glow, 0.2, 0.6, 0.7)
+			_pulse.tween_method(set_glow, 0.35, 0.1, 0.7)
+			_pulse.tween_method(set_glow, 0.1, 0.35, 0.7)
 
 func make_backdrop(level: Greybox) -> Node2D:
 	_level = level
@@ -58,16 +63,34 @@ func make_backdrop(level: Greybox) -> Node2D:
 		var sprite := Sprite2D.new(); sprite.texture = tex; sprite.centered = false
 		sprite.position.y = level.height * level.tile_px - tex.get_height()  # bottom edge on the level's bottom edge
 		layer.add_child(sprite); holder.add_child(layer)
+	# Warm haze thickening toward the ground line: the mesas and what shows down the pits fade into the air.
+	var haze := Polygon2D.new(); haze.name = "Haze"
+	var w := float(level.width * level.tile_px); var ground := float(_ground_row * level.tile_px)
+	var top := ground - 4.0 * level.tile_px; var bottom := float(level.height * level.tile_px)
+	haze.polygon = PackedVector2Array([Vector2(0, top), Vector2(w, top), Vector2(w, ground), Vector2(0, ground), Vector2(0, bottom), Vector2(w, bottom)])
+	haze.polygons = [PackedInt32Array([0, 1, 2, 3]), PackedInt32Array([3, 2, 5, 4])]
+	haze.vertex_colors = PackedColorArray([Color(HAZE, 0.0), Color(HAZE, 0.0), Color(HAZE, 0.42), Color(HAZE, 0.42), Color(HAZE, 0.62), Color(HAZE, 0.62)])
+	holder.add_child(haze)
 	return holder
 
 func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 	if Greybox.TAGGED.has(kind):
 		var color: String = Greybox.TAGGED[kind][0]
+		var is_wall: bool = Greybox.TAGGED[kind][1] == "wall"
 		var tagged := RevealSprite.new()
 		var mat := ShaderMaterial.new(); mat.shader = REVEAL; mat.set_shader_parameter("tint", TINTS[color])
+		mat.set_shader_parameter("vertical", is_wall)
+		mat.set_shader_parameter("base", float(_level.kind_at(cell.x, cell.y + 1) == "solid"))
 		tagged.material = mat
-		if Greybox.TAGGED[kind][1] == "wall": return _tile(tagged, tag_wall, cell, ts, 4, false)
-		return _tile(tagged, tag_platform, cell, ts, 2, true)  # sampled like platform-tile: the slab top on every cell
+		if is_wall: _tile(tagged, tag_wall, cell, ts, 4, false)
+		else: _tile(tagged, tag_platform, cell, ts, 2, true)  # sampled like platform-tile: the slab top on every cell
+		mat.set_shader_parameter("side", tagged.region_rect.size.x)
+		# The halo hangs off the sprite (ResonanceTag looks for set_resonance_look on the body's direct children),
+		# scaled back to cell pixels.
+		tagged.halo = _halo(TINTS[color], is_wall, ts); tagged.halo.visible = false
+		tagged.halo.scale = Vector2.ONE / tagged.scale
+		tagged.add_child(tagged.halo)
+		return tagged
 	match kind:
 		"solid":
 			return _terrain(cell, ts)
@@ -82,18 +105,28 @@ func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 		"hazard":  # a row of sandstone spikes per cell over a dark shadow-violet pit floor, so they read against the dunes
 			var pit := super.make_cell(kind, cell, ts) as Polygon2D
 			pit.color = HAZARD
-			# Gloom rising out of the pit over the open cells above it, so the pit reads as a chasm, not a window.
-			var gloom := Polygon2D.new(); gloom.z_index = 1
-			var top := -ts / 2.0 - ts * _open_above(cell)
-			gloom.polygon = PackedVector2Array([Vector2(-ts / 2.0, top), Vector2(ts / 2.0, top), Vector2(ts / 2.0, -ts / 2.0), Vector2(-ts / 2.0, -ts / 2.0)])
-			gloom.vertex_colors = PackedColorArray([Color(HAZARD, 0.0), Color(HAZARD, 0.0), Color(HAZARD, 0.85), Color(HAZARD, 0.85)])
-			pit.add_child(gloom)
 			var spikes := Sprite2D.new(); spikes.texture = hazard_tile
-			spikes.z_index = 2
 			pit.add_child(_fit(spikes, ts))
 			return pit
 	assert(false, "PaintedArt: no visual for %s" % kind)
 	return null
+
+## Two soft strips of the piece's colour, added onto the backdrop either side of a wall cell (above and below a
+## platform cell); each strip spans exactly its own cell, so a column's strips meet without overlapping.
+static func _halo(color: Color, is_wall: bool, ts: float) -> Node2D:
+	var holder := Node2D.new(); holder.z_index = -1
+	var add := CanvasItemMaterial.new(); add.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+	var h := ts / 2.0; var reach := ts * 0.7
+	for sgn: float in [-1.0, 1.0]:
+		var strip := Polygon2D.new(); strip.material = add
+		if is_wall:
+			strip.polygon = PackedVector2Array([Vector2(sgn * h, -h), Vector2(sgn * (h + reach), -h), Vector2(sgn * (h + reach), h), Vector2(sgn * h, h)])
+		else:
+			strip.polygon = PackedVector2Array([Vector2(-h, sgn * h), Vector2(-h, sgn * (h + reach)), Vector2(h, sgn * (h + reach)), Vector2(h, sgn * h)])
+		var near := Color(color, 0.3); var far := Color(color, 0.0)
+		strip.vertex_colors = PackedColorArray([near, far, far, near])
+		holder.add_child(strip)
+	return holder
 
 ## A terrain cell: its stone tile drawn through the terrain shader (eroded open sides, rounded open corners, a dark
 ## mass under a lit lip), plus a contact shadow on each open side.
@@ -128,43 +161,43 @@ func _terrain(cell: Vector2i, ts: float) -> Node2D:
 		holder.add_child(shadow)
 	return holder
 
-## How many open cells stand directly above a cell (the pit's depth above a hazard cell), at most 3.
-func _open_above(cell: Vector2i) -> int:
-	var n := 0
-	while n < 3 and _level.kind_at(cell.x, cell.y - 1 - n) in OPEN_KINDS: n += 1
-	return n
-
-## The air distance at a cell corner (the corner at the cell's top-left): the mean of the four cells around it,
-## so the darkening runs smoothly across cell borders.
+## The air distance at a cell corner (the corner at the cell's top-left): the mean over the rock cells around it,
+## so the darkening runs smoothly across cell borders. Open cells are left out, so a mass is not lightened along its
+## open sides: its value depends on depth under its top alone.
 func _corner_air(corner: Vector2i) -> float:
-	var total := 0.0
-	for c in [corner + Vector2i(-1, -1), corner + Vector2i(0, -1), corner + Vector2i(-1, 0), corner]: total += _air_at(c)
-	return total / 4.0
+	var total := 0.0; var n := 0
+	for c: Vector2i in [corner + Vector2i(-1, -1), corner + Vector2i(0, -1), corner + Vector2i(-1, 0), corner]:
+		if c.x >= 0 and c.y >= 0 and c.x < _level.width and c.y < _level.height and _level.kind_at(c.x, c.y) in OPEN_KINDS: continue
+		total += _air_at(c); n += 1
+	return total / n if n > 0 else 0.0
 
-func _air_at(c: Vector2i) -> int:
+func _air_at(c: Vector2i) -> float:
 	if c.x < 0 or c.y < 0 or c.x >= _level.width or c.y >= _level.height: return AIR_CAP  # beyond the level is deep rock
 	return _air[c.y * _level.width + c.x]
 
-## Per cell, how far it lies under the open air that lights it: the cheapest path to an open cell moving up or
-## diagonally up (cost 1) or sideways (cost 2), never down, capped at AIR_CAP. Rock is lit from above, so a mass darkens
-## steadily from its top down and only a little from its open sides.
+## Per cell, how far it lies under the open air that lights it: its depth below the open cell straight above it,
+## averaged with the rock cells beside it in the same row (open cells are left out), capped at AIR_CAP. Rock is lit
+## from above, so a mass darkens steadily from its top down, the same across its whole width, and the ground under a
+## narrow pillar darkens only softly.
 const AIR_CAP := 5
-static func _distance_to_air(level: Greybox) -> PackedInt32Array:
-	var w := level.width
-	var dist := PackedInt32Array(); dist.resize(w * level.height); dist.fill(AIR_CAP)
-	# Rows top to bottom: a cell's cost depends only on the row above and on its own row, so two sweeps of each row
-	# (left to right, right to left) settle the sideways steps.
-	for r in level.height:
+static func _distance_to_air(level: Greybox) -> PackedFloat32Array:
+	var w := level.width; var h := level.height
+	var straight := PackedFloat32Array(); straight.resize(w * h)
+	for c in w:
+		var depth := float(AIR_CAP)  # the level's top edge counts as deep rock
+		for r in h:
+			if level.kind_at(c, r) in OPEN_KINDS or Greybox.TAGGED.has(level.kind_at(c, r)): depth = 0.0; straight[r * w + c] = 0.0; continue  # a tagged wall standing on rock does not shade it
+			depth = minf(depth + 1.0, AIR_CAP); straight[r * w + c] = depth
+	var dist := PackedFloat32Array(); dist.resize(w * h)
+	for r in h:
 		for c in w:
-			if level.kind_at(c, r) in OPEN_KINDS: dist[r * w + c] = 0; continue
-			var best := AIR_CAP
-			if r > 0:
-				best = mini(best, dist[(r - 1) * w + c] + 1)
-				if c > 0: best = mini(best, dist[(r - 1) * w + c - 1] + 1)
-				if c < w - 1: best = mini(best, dist[(r - 1) * w + c + 1] + 1)
-			dist[r * w + c] = best
-		for c in range(1, w): dist[r * w + c] = mini(dist[r * w + c], dist[r * w + c - 1] + 2)
-		for c in range(w - 2, -1, -1): dist[r * w + c] = mini(dist[r * w + c], dist[r * w + c + 1] + 2)
+			if level.kind_at(c, r) in OPEN_KINDS: dist[r * w + c] = 0.0; continue
+			var total := 0.0; var n := 0
+			for dc in [-1, 0, 1]:
+				var cc: int = c + dc
+				if cc < 0 or cc >= w or level.kind_at(cc, r) in OPEN_KINDS: continue
+				total += straight[r * w + cc]; n += 1
+			dist[r * w + c] = total / n
 	return dist
 
 ## Shows one 1/n-by-1/n piece of a seamless tile texture per cell, picked by the cell's position, so one texture
