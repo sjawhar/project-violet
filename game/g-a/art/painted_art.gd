@@ -18,7 +18,6 @@ const TINTS := {"red": Color("#e04a3a"), "green": Color("#3fbf6a")}
 const HAZARD := Color("#2d2540")
 const REVEAL := preload("res://art/reveal.gdshader")
 const TERRAIN := preload("res://art/terrain.gdshader")
-const CHARACTER_LIGHT := preload("res://art/character_light.gdshader")
 const SHADOW := Color("#211728")
 ## Kinds that leave a terrain cell's side open (drawn as broken rock with a contact shadow). Tagged and hazard cells
 ## are drawn edge to edge, so a terrain cell beside them keeps a straight side.
@@ -43,33 +42,6 @@ class RevealSprite extends Sprite2D:
 			_pulse = create_tween().set_loops().set_trans(Tween.TRANS_SINE)
 			_pulse.tween_method(set_glow, 0.6, 0.2, 0.7)
 			_pulse.tween_method(set_glow, 0.2, 0.6, 0.7)
-
-## Violet as GreyboxArt attaches her, wrapped in a CanvasGroup whose shader outlines and rim-lights her whole
-## silhouette (art/character_light.gdshader), plus a soft shadow under her feet while she stands on something.
-func attach_character(player: Node) -> void:
-	super.attach_character(player)
-	var character := player.get_node_or_null("Character")
-	if character == null: return  # the STAND-IN capsule: nothing to light
-	var group := CanvasGroup.new(); group.name = "CharacterLight"; group.fit_margin = 12.0
-	var mat := ShaderMaterial.new(); mat.shader = CHARACTER_LIGHT; group.material = mat
-	player.remove_child(character); group.add_child(character); player.add_child(group)
-	player.add_child(FootShadow.new())
-
-## A soft ellipse at the player's feet, shown while the player is on the floor.
-class FootShadow extends Polygon2D:
-	func _ready() -> void:
-		name = "FootShadow"; z_index = -1
-		var points := PackedVector2Array(); var colors := PackedColorArray()
-		points.append(Vector2.ZERO); colors.append(Color(SHADOW, 0.45))
-		for i in 25:
-			var a := TAU * i / 24.0
-			points.append(Vector2(cos(a) * 30.0, sin(a) * 6.0)); colors.append(Color(SHADOW, 0.0))
-		polygon = points; vertex_colors = colors
-		var fan: Array = []
-		for i in 24: fan.append(PackedInt32Array([0, i + 1, i + 2]))
-		polygons = fan
-	func _process(_delta: float) -> void:
-		visible = (get_parent() as Player2D).is_on_floor()
 
 func make_backdrop(level: Greybox) -> Node2D:
 	_level = level
