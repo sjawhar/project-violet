@@ -18,8 +18,11 @@ const TINTS := {"red": Color("#e04a3a"), "green": Color("#3fbf6a")}
 const HAZARD := Color("#2d2540")
 const REVEAL := preload("res://art/reveal.gdshader")
 const TERRAIN := preload("res://art/terrain.gdshader")
+const SPIKES := preload("res://art/spikes.gdshader")
 const SHADOW := Color("#211728")
 const HAZE := Color("#f2c49b")
+const CHASM := Color("#1c1320")
+const PIT_LIP := Color("#8a5a3e")
 ## Kinds that leave a terrain cell's side open (drawn as broken rock with a contact shadow). Tagged and hazard cells
 ## are drawn edge to edge, so a terrain cell beside them keeps a straight side.
 const OPEN_KINDS := ["empty", "start", "goal", "orb_red", "orb_green"]
@@ -102,12 +105,8 @@ func make_cell(kind: String, cell: Vector2i, ts: float) -> Node2D:
 			_fit(sprite, ts * 2.0)
 			sprite.position.y = ts / 2.0 - ts  # two tiles tall, standing on the goal cell's floor
 			return sprite
-		"hazard":  # a row of sandstone spikes per cell over a dark shadow-violet pit floor, so they read against the dunes
-			var pit := super.make_cell(kind, cell, ts) as Polygon2D
-			pit.color = HAZARD
-			var spikes := Sprite2D.new(); spikes.texture = hazard_tile
-			pit.add_child(_fit(spikes, ts))
-			return pit
+		"hazard":
+			return _chasm(cell, ts)
 	assert(false, "PaintedArt: no visual for %s" % kind)
 	return null
 
@@ -127,6 +126,67 @@ static func _halo(color: Color, is_wall: bool, ts: float) -> Node2D:
 		strip.vertex_colors = PackedColorArray([near, far, far, near])
 		holder.add_child(strip)
 	return holder
+
+## A hazard cell and the open column above it, painted as a chasm: the column darkens from the pit's rim down into
+## shadow (so the backdrop fades out instead of showing as a window), a ragged rock wall slants in from each end of
+## the pit, and the spikes on the floor vary in size and catch the warm light at their tips.
+func _chasm(cell: Vector2i, ts: float) -> Node2D:
+	var holder := Node2D.new()
+	var rim := _rim_row(cell)
+	var top := (rim - cell.y) * ts - ts / 2.0            # the rim's y, relative to this hazard cell's centre
+	var bottom := ts / 2.0; var depth := bottom - top; var h := ts / 2.0
+	var fill := Polygon2D.new(); fill.z_index = -1
+	var ys: Array[float] = [top, top + depth * 0.35, top + depth * 0.7, bottom]
+	var alphas: Array[float] = [0.0, 0.62, 0.9, 1.0]
+	var pts := PackedVector2Array(); var cols := PackedColorArray(); var quads: Array = []
+	# At an end of the pit the fill runs on under the rock beside it, so the rock's eroded edge shows chasm, not sky.
+	var left := -h - (ts * 0.4 if _level.kind_at(cell.x - 1, cell.y) == "solid" else 0.0)
+	var right := h + (ts * 0.4 if _level.kind_at(cell.x + 1, cell.y) == "solid" else 0.0)
+	for i in 4:
+		pts.append(Vector2(left, ys[i])); pts.append(Vector2(right, ys[i]))
+		cols.append(Color(CHASM, alphas[i])); cols.append(Color(CHASM, alphas[i]))
+		if i > 0: quads.append(PackedInt32Array([2 * i - 2, 2 * i - 1, 2 * i + 1, 2 * i]))
+	fill.polygon = pts; fill.vertex_colors = cols; fill.polygons = quads
+	holder.add_child(fill)
+	for sgn: int in [-1, 1]:  # a wall slanting in from each end of the pit
+		if _level.kind_at(cell.x + sgn, cell.y) != "solid": continue
+		holder.add_child(_pit_wall(cell, float(sgn), top, bottom, ts))
+	var rng := RandomNumberGenerator.new(); rng.seed = hash(cell)
+	var spikes := Sprite2D.new(); spikes.texture = hazard_tile
+	var mat := ShaderMaterial.new(); mat.shader = SPIKES; spikes.material = mat
+	_fit(spikes, ts)
+	var tall := rng.randf_range(0.75, 1.3)
+	spikes.scale.y *= tall; spikes.position.y = h - h * tall  # grow or shrink from the pit floor
+	spikes.flip_h = rng.randf() < 0.5
+	holder.add_child(spikes)
+	return holder
+
+## The row of a pit's rim for the hazard cell CELL: the lower of the two walls' tops that bound its pit.
+func _rim_row(cell: Vector2i) -> int:
+	var rim := 0
+	for sgn: int in [-1, 1]:
+		var c := cell.x
+		while _level.kind_at(c, cell.y) == "hazard": c += sgn
+		var r := cell.y
+		while r > 0 and _level.kind_at(c, r - 1) == "solid": r -= 1
+		rim = maxi(rim, r)
+	return rim
+
+## A dark rock face inside the pit at one end: ragged, a lit lip at the rim, slanting further in as it goes down.
+func _pit_wall(cell: Vector2i, sgn: float, top: float, bottom: float, ts: float) -> Polygon2D:
+	var wall := Polygon2D.new(); wall.z_index = 1
+	var rng := RandomNumberGenerator.new(); rng.seed = hash(cell) + 7
+	var edge := sgn * (ts / 2.0 + 6.0)                     # starts just under the rock beside the pit (SGN points at it)
+	var pts := PackedVector2Array([Vector2(edge, top + 2.0)]); var cols := PackedColorArray([Color(PIT_LIP, 1.0)])
+	var steps := 8
+	for i in steps + 1:
+		var f := float(i) / steps
+		var reach := lerpf(0.18, 0.6, f) * ts + rng.randf_range(-6.0, 6.0)
+		pts.append(Vector2(sgn * ts / 2.0 - sgn * reach, lerpf(top, bottom, f)))
+		cols.append(PIT_LIP.lerp(CHASM, smoothstep(0.0, 0.5, f)))
+	pts.append(Vector2(edge, bottom)); cols.append(Color(CHASM, 1.0))
+	wall.polygon = pts; wall.vertex_colors = cols
+	return wall
 
 ## A terrain cell: its stone tile drawn through the terrain shader (eroded open sides, rounded open corners, a dark
 ## mass under a lit lip), plus a contact shadow on each open side.

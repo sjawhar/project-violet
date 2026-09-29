@@ -23,6 +23,7 @@ sessions:
   - {start: "2026-09-29T01:13:38Z", end: "2026-09-29T01:28:00Z", purpose: "glow-up round 2"}
   - {start: "2026-09-29T01:33:08Z", end: "2026-09-29T01:42:00Z", purpose: "glow-up round 3"}
   - {start: "2026-09-29T01:46:54Z", end: "2026-09-29T02:24:00Z", purpose: "glow-up round 4 (after reverting round 3)"}
+  - {start: "2026-09-29T02:29:45Z", end: "2026-09-29T02:53:00Z", purpose: "glow-up round 5"}
 costs:
   - {item: "gen image gpt-image-2 1024x1024 quality=low, wall-tile (rejected)", usd: 0.0143, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:47:36+00:00)"}
   - {item: "gen image gpt-image-2 1536x1024 quality=low, backdrop-near (rejected)", usd: 0.0062, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
@@ -93,6 +94,7 @@ friction:
   - {at: "2026-09-29T01:20:00Z", what: "glow-up round 2: with diagonal-up steps costing 2, the new upward light field still drew darker columns in the ground under the bump and the pillar", workaround: "diagonal-up steps cost 1 like straight up; only sideways steps cost 2"}
   - {at: "2026-09-29T01:34:00Z", what: "glow-up round 3: RigCharacter2D asserted it is a direct child of the Player2D, so Violet could not be wrapped in a CanvasGroup for a whole-silhouette outline and rim; her part textures imported without mipmaps while drawn with a mipmapped filter, which fringed their downscaled edges", workaround: "RigCharacter2D looks for the Player2D among its ancestors; the parts' .import files turn mipmaps on"}
   - {at: "2026-09-29T02:00:00Z", what: "glow-up round 4: wrapping a tagged piece's sprite in a Node2D (for its halo) hid it from ResonanceTag, which only calls set_resonance_look on the body's direct children, so every wall stayed gray; the upward light field let a block's edge columns reach the air beside it diagonally, which drew a dark vertical band down the middle of tall blocks", workaround: "the halo hangs off the sprite itself, scaled back to cell pixels; the rock's depth is taken straight down from its open top and averaged across the rock cells of the same row"}
+  - {at: "2026-09-29T02:40:00Z", what: "glow-up round 5: the first chasm draft put each pit-end rock wall on the wrong side of its cell (a sign error), which drew thin dark posts inside the pit, and left the rock's eroded margin showing bright sky beside the dark chasm", workaround: "the wall is anchored on the side facing the rock; at a pit end the chasm fill extends 0.4 cells under the neighbouring rock"}
 blockers: []
 deliverables: {build: bakeoff/g-a/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-a/reports/replay.json}
 ---
