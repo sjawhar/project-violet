@@ -52,7 +52,8 @@
 | 9. Lane U-D | sami agent | 1, 3, Sami's Unity checklist (final look: 5, 6) | Unity Hub + Unity AI |
 | 10. Lane G-C | oryx agent (captures on oryx, software) | 7 (branches from it), hand-written SVGs | none |
 | 11. Lane Control | oryx agent | 4 (concept), 0 (GPU; CPU fallback) | waiting (decision 0012) |
-| 12. Judging gallery, scores, decision record 0013 | lead / sami | 2, all lanes delivered or blocked | none |
+| 11b. Glow-up round: Violet, G-A, G-D, G-C | lead / sami (Violet, gallery, 890M frame times); oryx agent (the three lanes) | 5, 6, 7, 8, 10 | none (approved keys) |
+| 12. Judging gallery, scores, decision record 0013 | lead / sami | 2, 11b, all lanes delivered or blocked | none |
 
 Parallel waves: Task 1 first (one PR). Then 2, 3, 4 in parallel; 7 and 8 start as soon as 1 and 3 are on `master` (greybox visuals, stand-in character). 5, 6 and 10 start once their own inputs are ready (Task 4 for 5; Task 1 for 6; the G-A branch for 10) — none of them wait on an account. 9 starts the day Sami's Unity account exists. 11 waits (decision 0012). 12 starts when the last lane reports `status: delivered` or `blocked`.
 
@@ -784,6 +785,19 @@ public class TagValidatorTests {
 - [ ] **Step 3:** `ffmpeg -y -framerate 30 -i out/control/frames/frame_%06d.png -c:v libx264 -pix_fmt yuv420p -crf 18 bakeoff/control/capture/capture.mp4`; stills at 5/20/40/60 s; duration 60–90 s (adjust `seconds` in `reel.json`). Look at the reel: does the character keep its identity across clips, do dash and double-jump read as those moves (art-feasibility §4 task 2 expects them not to — record what you see).
 - [ ] **Step 4:** `LOG.md` (`direction: control, engine: blender, machine: oryx`; blockers: "no playable build/completability test by design"), `git lfs push`, push `bakeoff/control`; CI green (`ci.sh` verifies the report and the mp4).
 
+### Task 11b: Glow-up round
+
+**Files:**
+- Create: `docs/bakeoff/glow-up.md` (the round's rules); on `master`, by PR, `assets/bakeoff/protagonist/glow-up/{rounds.md,round-NN/}`; on each lane branch, `bakeoff/<lane>/glow-up.md` and `bakeoff/<lane>/glow-up/round-NN/`.
+
+**Interfaces:**
+- Consumes: Violet (#28) and the 3D kit (#31) as approved stand-ins; `scripts/capture-godot.sh`; `tools/spinerig`; `tools/gen`.
+- Produces: each workstream's best look, its rounds record, and one calibration gallery for Sami. Task 12's judging captures are taken after it.
+
+- [ ] **Step 1:** Each workstream shoots round 0 and runs rounds under `docs/bakeoff/glow-up.md` until one of its stop conditions holds: Violet on machine sami (lead), and G-A, G-D and G-C on oryx (oryx agent).
+- [ ] **Step 2:** A Violet technique the rig contract lacks goes into `docs/bakeoff/character-rig.md` and `tools/spinerig` by PR, and each lane ports its reader. The glowed-up Violet reaches the lanes only after Sami approves her (decision 0002).
+- [ ] **Step 3:** The lead measures each lane's final look at 1920x1080 on machine sami's Radeon 890M, publishes the calibration gallery, and asks Sami on #4 what he makes of it.
+
 ### Task 12: Judging gallery, scores, decision record 0013
 
 **Files:**
@@ -825,5 +839,6 @@ Day 0: Task 1 PR + approval; Tasks 2–3 in parallel. Day 1: G-A and G-D greybox
 3. **Agent-authored animation quality.** No verified example exists of an agent producing a platformer moveset (research); `spinerig`'s generated scarf follow-through and the keyed animations may read robotic. Iterate on the GIF previews before lanes integrate; the same rig goes to every lane, so the comparison stays fair.
 4. **oryx GPU.** Unusable until Sami reboots; concurrency crashed it. Only Blender renders depend on it (the kit's `build_kit.py` and its turntables, and the Control reel, if it ever runs) and all have CPU fallbacks; everything else — the image APIs — runs on machine sami or is cloud and GPU-independent.
 5. **Headless/offline capture friction.** Godot Movie Maker under XWayland on the 890M, Unity PlayMode tests in batchmode, PhysX/Godot replay drift between ticks. Replays assert cells and "goal by tick", never positions; captures are offline-rendered (frame-exact); each lane's `friction` list is part of what Sami sees.
+6. **The glow-up's critic doesn't share Sami's taste.** Task 11b steers each round by a model critic, so a workstream can get better by the critic's lights and worse by Sami's. The calibration gallery shows every round in order, so he can see where that happened, and the judging is his.
 
 ## Hardening ledger
