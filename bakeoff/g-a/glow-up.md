@@ -30,6 +30,6 @@ The four stills (`bakeoff/g-a/capture/still-{05,20,40,60}.png`) are copied to `b
 
 | round | start (UTC) | end (UTC) | what changed | USD | letter mapping (which letter was the new round) | axes better | axes worse | scores A and B (visual_quality / character_appeal / color_readability) | the new round's three gaps | kept |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 0 | 2026-09-29T00:25:02Z | 2026-09-29T00:34:00Z | the look before the round | 0 | A (one set) | n/a | n/a | | | yes |
+| 0 | 2026-09-29T00:25:02Z | 2026-09-29T00:34:00Z | the look before the round | 0 | A = round 00 (one set) | n/a | n/a | A: 2 / 3 / 3 | 1. terrain is flat grid rectangles: one stone fill, same sand strip, no edges/corners/contact shadow, pits are pasted panels; 2. red/green walls are flat unlit bars, red value varies, red and green equal luminance (colorblind fail); 3. Violet is muddy unlit grey, no warm rim, sinks into purple trees, thin dark scarf. Full text: [critic.md](glow-up/round-00/critic.md) | yes |
 
 Round 0's capture took 7 min 50 s wall time (00:25:26-00:33:16Z; 3961 frames at 15% of real time, with other lanes shooting at the same time).
