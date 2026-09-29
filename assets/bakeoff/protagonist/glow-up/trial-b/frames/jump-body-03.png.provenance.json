@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "asset": "jump-body-03.png",
+  "sha256": "7a9a5c18028a59dcffbe61e0d29ec371d9fcdb1936db19a1b66c90da1cf27cb2",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-29T03:06:30+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Frame-by-frame hand-painted 2D game sprite of Violet, a slender young girl adventurer, side-view profile facing right. She wears a hooded gray robe with a darker waist sash, an ankle-length robe skirt with a slightly darker hem, and goes barefoot with simple ankle wraps. Pale skin, dark hair just visible under the hood, a clearly readable young face in profile with a visible eye, brow, nose and mouth. Realistic child body proportions, about 5.5 head-heights tall, matching the reference turnaround exactly in design, coloring and proportions. Rendered as a single cohesive hand-painted illustration with soft painterly brushwork and visible brush texture, in a muted earthy palette (grays, browns, warm skin tones), NOT a flat vector cutout, in the painted-storybook register of games like Hollow Knight or GRIS. A mid-air body position with knees bent and drawn up close beneath her, feet not touching anything. Torso upright with a slight backward lean, head level, looking forward calmly. Both arms are out to the sides and slightly raised, elbows bent. Her robe skirt lifts from the motion. Distinct from a ground crouch and from a leg-extended pose. Full body visible from the top of the hood to the soles of both bare feet, and both hands, entirely inside the canvas with generous empty margin on every side so nothing is cropped. She is airborne and may sit higher or lower in the frame than a grounded pose depending on how high she has risen, but keep her at the exact same body scale (head-to-foot size) as the reference image(s), never bigger or smaller. Transparent background, no ground plane, no cast shadow, no vignette, no border, no text, no watermark, no second copy of the character, no scarf or neck wrap of any kind -- bare gray robe collar at the neck; a separate layer will add the scarf later.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
+        "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-00.png",
+        "sha256": "a0087c8559d679e76e58a311f791fa3fd80f58a77432dcb42d6836f1ca7bf8c1"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletBJumpLand)",
+      "description": "trimmed to the frame's shared body+scarf alpha>8 bounding-box union (97,57)-(836,887) of the raw 1024x1024 canvas -> 739x830, then rescaled by factor 1.128227 (Lanczos), reused unchanged from the run trial's own calibration, to the shared rig scale -> 834x936",
+      "at": "2026-09-29T03:19:34+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

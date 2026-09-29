@@ -1,0 +1,137 @@
+{
+  "0": {
+    "union_bbox_orig_1024canvas": [
+      68,
+      184,
+      884,
+      928
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      816,
+      744
+    ],
+    "final_size": [
+      921,
+      839
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 764.1522048403602,
+    "head_y": 89.34712528829066,
+    "t": 0.0,
+    "target_head_x": 726.7227736873933,
+    "target_head_y": 558.8444206062311,
+    "anchor_mode": "airborne_head"
+  },
+  "1": {
+    "union_bbox_orig_1024canvas": [
+      175,
+      24,
+      743,
+      924
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      568,
+      900
+    ],
+    "final_size": [
+      641,
+      1015
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 443.3430893623823,
+    "head_y": 98.48129659563503,
+    "t": 0.1,
+    "target_head_x": 730.1850478539568,
+    "target_head_y": 500.7510351659639,
+    "anchor_mode": "airborne_head"
+  },
+  "2": {
+    "union_bbox_orig_1024canvas": [
+      90,
+      25,
+      865,
+      942
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      775,
+      917
+    ],
+    "final_size": [
+      874,
+      1035
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 611.2505297911432,
+    "head_y": 102.85817117422162,
+    "t": 0.2,
+    "target_head_x": 734.4520773385968,
+    "target_head_y": 503.23158579094047,
+    "anchor_mode": "airborne_head"
+  },
+  "3": {
+    "union_bbox_orig_1024canvas": [
+      97,
+      57,
+      836,
+      887
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      739,
+      830
+    ],
+    "final_size": [
+      834,
+      936
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 669.044944746163,
+    "head_y": 99.01637308829658,
+    "t": 0.3,
+    "target_head_x": 739.4540335424745,
+    "target_head_y": 514.5178174644241,
+    "anchor_mode": "airborne_head"
+  },
+  "4": {
+    "union_bbox_orig_1024canvas": [
+      45,
+      29,
+      817,
+      894
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      772,
+      865
+    ],
+    "final_size": [
+      871,
+      976
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 702.8942794228761,
+    "head_y": 130.7263224041795,
+    "t": 0.4,
+    "target_head_x": 739.4540335424745,
+    "target_head_y": 514.5178174644241,
+    "anchor_mode": "airborne_head"
+  }
+}
