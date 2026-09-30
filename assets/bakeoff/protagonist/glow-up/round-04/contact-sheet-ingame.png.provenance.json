@@ -4,7 +4,7 @@
   "sha256": "0fde3b768231269b3860c036f787f730ebe8c76c53839a9097ae27c553d29cbd",
   "kind": "image",
   "origin": "derived",
-  "created_at": "2026-09-29T05:03:11+00:00",
+  "created_at": "2026-09-30T04:36:32+00:00",
   "generator": {
     "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
     "tool_version": "shoot_b.py round-04: technique B (painted frames) in shoot.py's exact fixed layout",
@@ -15,7 +15,7 @@
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
-        "sha256": "c3ae07dead5e03bcac46e9ab598ca95842114c534c345666a2ab7b2d03eb095b"
+        "sha256": "6a949541543d38f1957c20d4138361d20ace0dc746d60639689860d0405f4100"
       },
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-04.png",
@@ -317,9 +317,9 @@
   },
   "human_edits": [
     {
-      "by": "anthropic/claude-sonnet-5 (VioletRound5)",
-      "description": "corrected generator.inputs[].sha256 for assets/bakeoff/protagonist/glow-up/shoot_b.py to its current recorded hash (round 5's frame_count() bugfix changed shoot_b.py's own content; this reference predates that fix)",
-      "at": "2026-09-30T02:58:54+00:00"
+      "by": "VioletRound6 (Claude)",
+      "description": "corrected generator.inputs[].sha256 for assets/bakeoff/protagonist/glow-up/shoot_b.py to its current recorded hash (round 6's torso_x/place_dy_offset grounded-placement support changed shoot_b.py's own content a second time since this round-4 record was last corrected for round 5's frame_count() bugfix; this reference predates round 6's change).",
+      "at": "2026-09-30T04:36:39+00:00"
     }
   ],
   "license": "proprietary"

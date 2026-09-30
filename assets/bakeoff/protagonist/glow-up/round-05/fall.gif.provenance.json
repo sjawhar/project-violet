@@ -4,7 +4,7 @@
   "sha256": "6587ba9722b5af5ec056e441275d4a65198725fca6c739510e8e86b1263ee89d",
   "kind": "image",
   "origin": "derived",
-  "created_at": "2026-09-30T02:56:48+00:00",
+  "created_at": "2026-09-30T04:35:01+00:00",
   "generator": {
     "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
     "tool_version": "shoot_b.py round-05: technique B (graded painted frames) in shoot.py's exact fixed layout",
@@ -15,7 +15,7 @@
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
-        "sha256": "c3ae07dead5e03bcac46e9ab598ca95842114c534c345666a2ab7b2d03eb095b"
+        "sha256": "6a949541543d38f1957c20d4138361d20ace0dc746d60639689860d0405f4100"
       },
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-00.png",
@@ -34,7 +34,7 @@
         "sha256": "b538d40eee95de708943f3e43eed7da8b38f40f17b43aaad49264bea088af137"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-04.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-04.round-05.png",
         "sha256": "ff6d5d79424f61252382ba01412fdd7d68822f93fe45dae2fe6304215e317b51"
       },
       {
@@ -54,11 +54,17 @@
         "sha256": "9beabccb2b593c32b50805b561b31184431a05ada78debdfc4cfc701109ca3f3"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-04.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-04.round-05.png",
         "sha256": "c8b56684ce9954ab33abae5307cb993180e78af92deb31b06b703e395b919ae7"
       }
     ]
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "VioletRound6 (Claude)",
+      "description": "Round 6 (rounds.md's 'Frozen inputs' convention): re-pointed the inputs that changed this round (idle's 8 scarf layers and fall frame 4's body+scarf) at their frozen assets/bakeoff/protagonist/glow-up/trial-b/frames/*.round-05.png copies, since round 6 overwrote the live files with a repaint; every other input is unchanged.",
+      "at": "2026-09-30T04:35:09+00:00"
+    }
+  ],
   "license": "proprietary"
 }

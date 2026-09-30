@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "asset": "shoot_b.py",
-  "sha256": "c3ae07dead5e03bcac46e9ab598ca95842114c534c345666a2ab7b2d03eb095b",
+  "sha256": "6a949541543d38f1957c20d4138361d20ace0dc746d60639689860d0405f4100",
   "kind": "text",
   "origin": "generated",
   "created_at": "2026-09-29T04:42:04+00:00",
@@ -19,6 +19,11 @@
       "by": "anthropic/claude-sonnet-5 (VioletRound5)",
       "description": "Fixed frame_count() to match only <anim>-body-NN.png exactly via regex, not the frozen <anim>-body-NN.round-04.png copies that also matched its previous plain glob(f\"{anim}-body-*.png\") and doubled the frame count once round 5 froze inputs beside the live frames (rounds.md's 'Frozen inputs' convention); added the `re` import it needs.",
       "at": "2026-09-30T02:56:06+00:00"
+    },
+    {
+      "by": "VioletRound6 (Claude)",
+      "description": "Added two optional per-frame overrides to render_cell_b()'s grounded (idle/run/land) placement branch, read only when present so land (untouched this round) keeps its round-4 behavior byte-for-byte: torso_x (the body's own whole-mask alpha centroid, used in place of head_x for the horizontal anchor so the torso stays put across a loop instead of sliding with the head) and place_dy_offset (a rig-unit lift added to sole_y before it meets the ground line, so a frame can rise off or settle below the shared floor by design without moving GROUND_Y_FRACTION/HEAD_X_FRACTION themselves). Fixes round 5's gap 1, 'the loops aren't built as loops' (run's head-height jumping with no rhythm and its centre of mass sliding 24px sideways; idle's head moving 16px vertically and its scarf billowing ~60px). Docstring updated to document the two new fields; the fixed layout constants (REFERENCE_BOX, SCALE, GROUND_Y_FRACTION, HEAD_X_FRACTION, sampling) are unchanged.",
+      "at": "2026-09-30T04:35:53+00:00"
     }
   ],
   "license": "proprietary"

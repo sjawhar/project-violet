@@ -104,30 +104,30 @@
     "target_head_y": 515.2678032860051
   },
   "4": {
-    "t": 0.48,
     "union_bbox_orig_1024canvas": [
-      232,
-      23,
-      807,
-      936
+      164,
+      20,
+      895,
+      968
     ],
     "orig_size": [
       1024,
       1024
     ],
     "trimmed_size": [
-      575,
-      913
+      731,
+      948
     ],
     "final_size": [
-      649,
-      1030
+      825,
+      1070
     ],
     "rig_per_raw": 1.128227381210675,
-    "head_x": 479.47057138361265,
-    "head_y": 328.17623736951214,
-    "head_correction": "finalize_anim.py's top-18%-band heuristic caught this pose's flared sleeve/cloth (which reaches higher than the hood) instead of the head; VioletRound4Integrate re-measured by hand as the alpha-weighted centroid of the hood+face region alone (box [385,210]-[620,425] in this file's own final_size coordinates, verified by eye against a red-crosshair overlay), 2026-09-29. Original (wrong) value was head_x=199.5053241863969, head_y=133.88619775397095.",
-    "target_head_x": 725.1281809754482,
-    "target_head_y": 515.4327931426947
+    "head_x": 464.7266391204522,
+    "head_y": 137.46645069565454,
+    "t": 0.48,
+    "target_head_x": 723.208473400748,
+    "target_head_y": 515.4663017630543,
+    "anchor_mode": "airborne_head"
   }
 }

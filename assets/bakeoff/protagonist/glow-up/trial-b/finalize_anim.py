@@ -59,6 +59,7 @@ frame count (existing + new).
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -88,16 +89,14 @@ REFERENCE_BOX = {"x": -763.6, "y": -40.0, "width": 1316.9, "height": 1434.7}
 # something that is not the head -- most often a flared sleeve or scarf reaching higher
 # than the hood -- and a human re-measures the real head position by eye.
 #
-# ("fall", 4): the heuristic's top-18%-band centroid landed on this pose's flared sleeve
-# tip (which reaches above the hood crown here), not the head. Re-measured by
-# VioletRound4Integrate, 2026-09-29, as the alpha-weighted centroid of a hand-picked
-# hood+face box on the CURRENT (already finalized) fall-body-04.png, [385,210]-[620,425],
-# verified against a red-crosshair overlay, then converted back to this original-space
-# coordinate system via the frame's own union_bbox_orig_1024canvas/rig_per_raw. See
-# fall-finalize-record.json frame "4"'s own "head_correction" note for the full story.
-HEAD_OVERRIDES: dict[tuple[str, int], tuple[float, float]] = {
-    ("fall", 4): (656.9768968282829, 313.8777457761695),
-}
+# Round 4's ("fall", 4) entry (a flared-sleeve heuristic miss on that pose) applied only
+# to that pose's own pixels. Round 6 (rounds.md, fixing round 5's gap "fall's held last
+# frame pops to a head-down tumble") repainted `fall` frame 4 from scratch with a new
+# pose, so the old override's hand-measured coordinates no longer describe anything on
+# disk; removed rather than left to silently miscorrect the new pixels. The new frame 4
+# passed the automatic heuristic and its `skin_fraction` trust check on the first try, so
+# no replacement override was needed -- see rounds.md's round-6 row.
+HEAD_OVERRIDES: dict[tuple[str, int], tuple[float, float]] = {}
 
 # A frame whose top band is genuinely the head always shows some of her face (every
 # painted frame in this style keeps "a clearly readable young face in profile with a
@@ -188,9 +187,18 @@ def main() -> int:
     parser.add_argument("--times", type=float, nargs="*", default=None, help="airborne mode only: one sample time per NEWLY processed index, in index order; defaults to an even i*(duration/nframes) grid")
     args = parser.parse_args()
 
+    # Exact live-frame names only (`<anim>-body-NN.png`): a loose `*.png` glob would also
+    # match frozen `<anim>-body-NN.round-NN.png` copies (rounds.md's "Frozen inputs"
+    # convention) and mis-parse their own `-NN` round suffix as a bogus extra frame index
+    # -- found the hard way when round 6 froze `fall-body-04.round-05.png` next to a
+    # `fall-body-04.round-04.png` already sitting here from round 5, which together made
+    # this glob discover frame index 4 six times over and a phantom index 5 (shoot_b.py's
+    # own `frame_count()` already guards against this the same way).
+    _index_re = re.compile(rf"^{re.escape(args.anim)}-body-(\d+)\.png$")
     indices = sorted(
-        int(p.stem.rsplit("-", 1)[-1])
+        int(m.group(1))
         for p in FRAMES_DIR.glob(f"{args.anim}-body-*.png")
+        if (m := _index_re.match(p.name))
     )
     if not indices:
         parser.error(f"no {args.anim}-body-NN.png frames found in {FRAMES_DIR}")

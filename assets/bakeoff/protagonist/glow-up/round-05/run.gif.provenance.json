@@ -4,7 +4,7 @@
   "sha256": "bf413561c462299475ea84a03157914683afdbf7fbeb90b56e1efb2387c9981e",
   "kind": "image",
   "origin": "derived",
-  "created_at": "2026-09-30T02:56:48+00:00",
+  "created_at": "2026-09-30T04:35:26+00:00",
   "generator": {
     "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
     "tool_version": "shoot_b.py round-05: technique B (graded painted frames) in shoot.py's exact fixed layout",
@@ -15,7 +15,7 @@
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
-        "sha256": "c3ae07dead5e03bcac46e9ab598ca95842114c534c345666a2ab7b2d03eb095b"
+        "sha256": "6a949541543d38f1957c20d4138361d20ace0dc746d60639689860d0405f4100"
       },
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-00.png",
@@ -83,6 +83,12 @@
       }
     ]
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "VioletRound6 (Claude)",
+      "description": "corrected generator.inputs[].sha256 for assets/bakeoff/protagonist/glow-up/shoot_b.py to its current recorded hash (round 6's torso_x/place_dy_offset grounded-placement support changed shoot_b.py's own content; this reference predates that change) -- same kind of fix round 5 itself needed for round 4's frame_count() bugfix.",
+      "at": "2026-09-30T04:35:33+00:00"
+    }
+  ],
   "license": "proprietary"
 }

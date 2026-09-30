@@ -15,7 +15,15 @@ entry records how to place it, in one of the schemes the six painting lanes used
 - **grounded** (`idle`, `run`, `land`): `sole_y` lands on `build.py`'s own
   `GROUND_Y_FRACTION` of the cell height, and `head_x` lands on its `HEAD_X_FRACTION` of
   the cell width -- reused unchanged from `build.py`, not re-derived, so every grounded
-  animation shares one floor line and one horizontal anchor.
+  animation shares one floor line and one horizontal anchor. Round 6 (rounds.md, fixing
+  round 5's gap 1 "the loops aren't built as loops") adds two optional per-frame
+  overrides on top, present only on `run` and `idle` so far: `torso_x` (the body's own
+  whole-mask alpha centroid, replacing `head_x` as the horizontal anchor so the torso
+  stays put across a loop instead of sliding with the head) and `place_dy_offset` (a
+  rig-unit lift added to `sole_y` before it meets the ground line, so a frame can rise
+  off or settle below the shared floor by design -- a running bob's non-contact frames,
+  or a small idle correction -- without moving `GROUND_Y_FRACTION`/`HEAD_X_FRACTION`
+  themselves). `land` has neither field yet and keeps its round-4 behavior byte-for-byte.
 - **airborne, absolute rig units** (`jump`, `fall`, `double_jump`): `head_x`/`head_y`
   land exactly on that frame's own `target_head_x`/`target_head_y` -- technique A's own
   head position in the same animation at the same time, in the same rig-unit space
@@ -134,11 +142,23 @@ def render_cell_b(anim: str, i: int, record: dict, canvas_scale: float, cell_w: 
         dy = (anchors["target_head_y"] - anchors["head_y"]) * canvas_scale
     else:
         # grounded (idle, run, land): sole_y onto the shared ground line, head_x onto the
-        # shared horizontal anchor -- build.py's own render_cell formula for run.
+        # shared horizontal anchor -- build.py's own render_cell formula for run. Round 6
+        # (rounds.md, run's/idle's loop fix) adds two optional per-frame overrides, read
+        # only if present so `land` (untouched this round) keeps its old byte-identical
+        # behavior:
+        #   torso_x -- the body's own whole-mask alpha centroid (not the scarf, not just
+        #     the head band), used in place of head_x for the horizontal anchor so the
+        #     pelvis/torso stays put across a loop instead of sliding with the head.
+        #   place_dy_offset -- rig-unit lift added to sole_y before it meets the ground
+        #     line, so a frame can rise off (or settle below) the shared floor line by
+        #     design (a running bob's non-contact frames, or a small idle correction)
+        #     without moving the fixed GROUND_Y_FRACTION/HEAD_X_FRACTION anchors
+        #     themselves.
         ground_y = GROUND_Y_FRACTION * cell_h
         head_anchor_x = HEAD_X_FRACTION * cell_w
-        dx = head_anchor_x - anchors["head_x"] * canvas_scale
-        dy = ground_y - anchors["sole_y"] * canvas_scale
+        x_anchor_val = anchors.get("torso_x", anchors["head_x"])
+        dx = head_anchor_x - x_anchor_val * canvas_scale
+        dy = ground_y - (anchors["sole_y"] + anchors.get("place_dy_offset", 0.0)) * canvas_scale
 
     scarf_dx, scarf_dy = anchors.get("scarf_offset_final", [0.0, 0.0])
 
