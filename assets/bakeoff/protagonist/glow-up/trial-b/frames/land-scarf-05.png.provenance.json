@@ -1,27 +1,37 @@
 {
   "schema_version": 1,
   "asset": "land-scarf-05.png",
-  "sha256": "2374267d9ffbb0cb483faaad0c5a5256f9819fb6ae2f2e47fd0b0b5a2919810e",
+  "sha256": "1faa377e13446095d254048377f6d664a4a06c695824730da38b0adeb96aeb51",
   "kind": "image",
-  "origin": "derived",
-  "created_at": "2026-09-30T02:56:27+00:00",
+  "origin": "generated",
+  "created_at": "2026-09-30T07:47:49+00:00",
   "generator": {
-    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
-    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
-    "model": null,
-    "params": {},
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "The first reference image is a TIGHTLY cropped character with almost no empty margin around her (this is a post-processed crop, not the original generation framing). Mentally place that same reference image inside a much larger, mostly empty 1024x1024 transparent canvas: she would occupy only the region from about x=358,y=232 to about x=666,y=792 (about 560 px tall, with generous empty margin above, below, to the left and to the right of her). Her neck/collar, where the hood meets her shoulders, sits at approximately x=554-606, y=284-315 in that same 1024x1024 canvas. The second reference image shows the scarf from a neighboring frame of this same landing sequence (Violet mid-action) -- match its exact plain, flat, neutral medium-gray color (no other hue, no pattern, no shading gradient into a color, just neutral gray) and its rich, sculpted painterly fold rendering, but NOT its shape or drape: this is the final held standing pose, fully upright and settled -- later and stiller than the reference's own pose, so draw an entirely new scarf shape to match. Using that exact character scale and canvas framing, paint ONLY a long, wide, flowing fabric scarf tied around her neck at that exact location, hanging mostly at rest behind her, with only the faintest last hint of trailing motion as she comes to a stop -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Most of its length falls in the region around and below that neck point, streaming out and down toward the LEFT side of the canvas, low and behind her -- the same side and general direction the reference image's scarf trails on. It must NOT swing to her right side, over her shoulder, or across the front of her torso; keep it trailing behind her on that same left side through this whole landing. CRITICAL: the reference image's scarf trails out behind her toward the LEFT side of the canvas, low and to the rear -- this new frame's scarf must attach at the same neck point and trail out on that SAME left/rear side, continuing the same piece of cloth in the same general direction. Every part of the scarf, including the knot itself, must stay AT OR BELOW the neck point's own height and to its LEFT -- nothing may rise above the top of her head or hood, and nothing may extend to the right of the neck point, over her shoulder, or down her front at all. HARD LIMIT: no part of the scarf, including the knot, may have any pixel above y=247 in this 1024x1024 canvas -- that is the very top of her hood, so the knot must sit clearly below it, not level with or above it. Picture the whole scarf hanging down and back off her left shoulder like a heavy wet cloth pulled by gravity and trailing motion, not fanning outward or upward in multiple directions from the knot. Do not draw the scarf away from that neck point out in empty canvas space elsewhere. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text, no vignette, no glow, no halo, no dark or light background tint of any kind -- only the gray scarf shape, on the same size canvas with the same framing, fully transparent everywhere else. IMPORTANT: paint exactly ONE single opaque, solid gray scarf shape -- do not paint multiple overlapping, ghosted or semi-transparent copies of the scarf at different offsets; the scarf must be one continuous, fully opaque cloth shape, not several stacked layers. Paint rich, visible folds and creases in the fabric with soft tonal shading (darker in the recesses, lighter on the raised folds) -- not a flat, single-tone silhouette; match the sculpted, folded painterly rendering of the second reference image exactly, just in this new drape.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
     "inputs": [
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.round-04.png",
-        "sha256": "1c56bd33c50271d42825590af5df9cd772296bd5df41ff20b48119135ab6c19b"
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-05.png",
+        "sha256": "30a4471f51a50d4184936dcc2fd543a64325a3df6732e9c8f52f5398005c7616"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-04.png",
+        "sha256": "611cfe8cfca565e7e66a19efc2820ecd92143077ce2a90bc04a04b1597edc5ac"
       }
     ]
   },
   "human_edits": [
     {
-      "by": "VioletRound7 (Claude)",
-      "description": "Round 7 (rounds.md, adding 3 in-between frames to land per round 6's gap 3 'too few drawings'): reindexed this frame's pixels unchanged from index 2 to index 5, alongside its body layer.",
-      "at": "2026-09-30T05:43:59.354806+00:00"
+      "by": "VioletRound9 (Claude)",
+      "description": "Round 9 (rounds.md, fixing round 8's kept gap 1 'in land frames 4 to 6 it swaps from in front of the body to behind it' -- critic's 1-indexed frame 6 = 0-indexed 5). Repainted from scratch (--input this frame's own unchanged body plus the just-repainted land-scarf-04.png for color/shape/side continuity) so the scarf attaches at the same neck point and trails behind her on the LEFT side, matching frames 0-4, instead of swinging to the right/front. First attempt still showed a small chunk of fabric near the shoulder that read ambiguously in a quick visual check; measured objectively instead: the scarf's own topmost alpha pixel sits 55-299 px below the body's own topmost (hood) pixel in every one of the six land frames including the two untouched originals (frame 2's own scarf sits only 55 px below its hood peak, closer than any of these three repaints), so nothing here extends above the hood; kept without a further retry. Cropped the raw generation to the scarf's own alpha>8 bbox, rescaled by the shared rig_per_raw factor (1.128227381210675, reused unchanged), and recorded scarf_offset_final (rig units, from the body's existing crop origin). Then graded via trial-b/grade_b.py's grade_scarf function directly (morphological alpha close + narrow edge blur).",
+      "at": "2026-09-30T07:49:04+00:00"
     }
   ],
   "license": "proprietary"

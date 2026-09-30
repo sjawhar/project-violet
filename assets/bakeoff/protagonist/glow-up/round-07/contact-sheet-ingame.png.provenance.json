@@ -98,7 +98,7 @@
         "sha256": "d3c537726f97405fbd5dc7221c8fafcad253acec36504555c1f057b2ff267857"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-01.round-08.png",
         "sha256": "1ab6f28219c246df398aeccbc3cc4c8b52c70c4525c7a83585afea05934b44eb"
       },
       {
@@ -130,7 +130,7 @@
         "sha256": "25e2122719b6b160da8f2d2717de8e5df6c17c02e64dcb9a150744b2aea60f4a"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-05.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-05.round-08.png",
         "sha256": "39cfee9f147b130fa8f26e4d6b5f42aef907d0bcd6743f1fc7677a9e3de1da30"
       },
       {
@@ -162,7 +162,7 @@
         "sha256": "a9b73075da824bcb34119e36deed6206bea51d3e53fb10414e036cc0532a57f0"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-01.round-08.png",
         "sha256": "7d6bb20d42491bca288e7a48eb4a725ddb81960364bb56a7cc5f5a52eca0488f"
       },
       {
@@ -274,7 +274,7 @@
         "sha256": "04f0bd3f49e1a853a2e3df7be36a6e11feb403cdb1309787ea96560756d5ee6d"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.round-08.png",
         "sha256": "026452145e3eac341c393433d32971590a5453d50940876ee7f1ca5b6937d9e8"
       },
       {
@@ -290,7 +290,7 @@
         "sha256": "6b177ff1ec904b4d8a03aea6f0e234dbb05e2fe09cd945718f632a11cb911108"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.round-08.png",
         "sha256": "8290de302c1dbac69fe305c3ea71b7ed93e0717773868f05aaed0838cde6567b"
       },
       {
@@ -314,7 +314,7 @@
         "sha256": "0fc46ce8baac21607714f340c5c96b4f86d43a7d4376ad12928cc43953e98b8f"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-05.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-05.round-08.png",
         "sha256": "5a2c59dee178199bf57970f7f3d18999eecbca6b84e0835f00bd2a4776494720"
       },
       {
@@ -346,7 +346,7 @@
         "sha256": "e88966db86795d80bf07184c0793eaada247a0eb78d97c247ead78edfd59e0db"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-03.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-03.round-08.png",
         "sha256": "72a8dbcd391125e1496f271e0e90721fce74d0f0ee4123729689a84fb9c8fdac"
       },
       {
@@ -354,7 +354,7 @@
         "sha256": "abe6332394362b3706edf40ae44f2881685c97d48420a1eecf9c55e2cf68a256"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-04.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-04.round-08.png",
         "sha256": "b5dc204d0caf64ff1eb1d18072f6127dac24192c2f8e172971103b1b4d417fa9"
       },
       {
@@ -362,7 +362,7 @@
         "sha256": "30a4471f51a50d4184936dcc2fd543a64325a3df6732e9c8f52f5398005c7616"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-05.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-05.round-08.png",
         "sha256": "2374267d9ffbb0cb483faaad0c5a5256f9819fb6ae2f2e47fd0b0b5a2919810e"
       }
     ]
@@ -372,6 +372,11 @@
       "by": "VioletRound8 (Claude)",
       "description": "Re-pointed 16 stale generator.inputs path(s) (idle body/scarf frames that glow-up round 8's idle_hybrid.py overwrote at their live paths) to the matching round-07 frozen copies, which carry the exact bytes this record originally cited by hash; no bytes of this asset itself changed. rounds.md's 'Frozen inputs' convention.",
       "at": "2026-09-30T06:41:01+00:00"
+    },
+    {
+      "by": "VioletRound9 (Claude)",
+      "description": "Round 9: re-pointed this round-08 shot record's own stale generator.inputs entries (run-scarf-01.png, run-scarf-05.png, jump-scarf-01.png, dash-scarf-00.png, dash-scarf-02.png, dash-scarf-05.png, land-scarf-03.png, land-scarf-04.png, land-scarf-05.png) at their round-08-frozen copies (same bytes/sha256, since round 9 overwrote the live scarf-only repaint targets) -- same correction round 6/7 made for their own predecessor rounds' shot records.",
+      "at": "2026-09-30T07:53:23+00:00"
     }
   ],
   "license": "proprietary"

@@ -26,7 +26,7 @@
         "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-05.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-05.round-08.png",
         "sha256": "5a2c59dee178199bf57970f7f3d18999eecbca6b84e0835f00bd2a4776494720"
       }
     ]
@@ -41,6 +41,11 @@
       "by": "VioletRound7 (Claude)",
       "description": "Round 7: corrected the stale inputs[] hash for assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-04.png -- it was recorded at generation time (before that frame's own body was cropped+rescaled to match its scarf's shared union bbox), so the hash on file went stale the moment the crop/rescale ran; updated to the current (post-crop) hash, matching the same correction round 4/6 made for fall/double_jump/idle's scarves.",
       "at": "2026-09-30T05:43:03.080934+00:00"
+    },
+    {
+      "by": "VioletRound9 (Claude)",
+      "description": "Round 9: re-pointed this round-08 shot record's own stale generator.inputs entries (dash-scarf-05.png) at their round-08-frozen copies (same bytes/sha256, since round 9 overwrote the live scarf-only repaint targets) -- same correction round 6/7 made for their own predecessor rounds' shot records.",
+      "at": "2026-09-30T07:53:23+00:00"
     }
   ],
   "license": "proprietary"

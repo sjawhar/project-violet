@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "asset": "jump-scarf-01.round-08.png",
+  "sha256": "7d6bb20d42491bca288e7a48eb4a725ddb81960364bb56a7cc5f5a52eca0488f",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:24+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-01.round-04.png",
+        "sha256": "b3fc709f790ab8292598198f02053b9218a92400c9592630654e91876e921241"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound9 (Claude)",
+      "description": "Frozen as jump-scarf-01.round-08.png for round 8's own shot provenance (identical bytes to the live jump-scarf-01.png through round 8) before glow-up round 9 repaints the flat/mis-sided scarf on this frame (rounds.md round 9); see assets/bakeoff/protagonist/glow-up/rounds.md.",
+      "at": "2026-09-30T07:09:23+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

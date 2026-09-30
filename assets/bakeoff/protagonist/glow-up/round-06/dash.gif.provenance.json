@@ -22,7 +22,7 @@
         "sha256": "04f0bd3f49e1a853a2e3df7be36a6e11feb403cdb1309787ea96560756d5ee6d"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.round-08.png",
         "sha256": "026452145e3eac341c393433d32971590a5453d50940876ee7f1ca5b6937d9e8"
       },
       {
@@ -48,6 +48,11 @@
       "by": "VioletRound7 (Claude)",
       "description": "Round 7 (rounds.md's 'Frozen inputs' convention): re-pointed the inputs that changed this round (double_jump's scarf-02/03 repaint, and dash's/land's frame additions moving dash-body/scarf-01/02 and land-body/scarf-02's pixels to new indices) at their frozen assets/bakeoff/protagonist/glow-up/trial-b/frames/*.round-06.png copies, since round 7 overwrote or moved the live files; every other input is unchanged.",
       "at": "2026-09-30T05:09:42.659924+00:00"
+    },
+    {
+      "by": "VioletRound9 (Claude)",
+      "description": "Round 9: re-pointed this round-08 shot record's own stale generator.inputs entries (dash-scarf-00.png) at their round-08-frozen copies (same bytes/sha256, since round 9 overwrote the live scarf-only repaint targets) -- same correction round 6/7 made for their own predecessor rounds' shot records.",
+      "at": "2026-09-30T07:53:23+00:00"
     }
   ],
   "license": "proprietary"

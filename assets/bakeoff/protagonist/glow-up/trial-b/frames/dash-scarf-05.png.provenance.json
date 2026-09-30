@@ -1,27 +1,37 @@
 {
   "schema_version": 1,
   "asset": "dash-scarf-05.png",
-  "sha256": "5a2c59dee178199bf57970f7f3d18999eecbca6b84e0835f00bd2a4776494720",
+  "sha256": "3b23412eff92f611337b444ba480da2c7e168763cdb506c452e92f2bf3fb3e6c",
   "kind": "image",
-  "origin": "derived",
-  "created_at": "2026-09-30T02:56:26+00:00",
+  "origin": "generated",
+  "created_at": "2026-09-30T07:30:18+00:00",
   "generator": {
-    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
-    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
-    "model": null,
-    "params": {},
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "The first reference image is a TIGHTLY cropped character with almost no empty margin around her (this is a post-processed crop, not the original generation framing). Mentally place that same reference image inside a much larger, mostly empty 1024x1024 transparent canvas: she would occupy only the region from about x=210,y=232 to about x=814,y=792 (about 560 px tall, with generous empty margin above, below, to the left and to the right of her). Her neck/collar, where the hood meets her shoulders, sits at approximately x=622-682, y=342-375 in that same 1024x1024 canvas. The second reference image shows the scarf from a neighboring frame of this same dashing sequence (a dashing girl) -- match its exact plain, flat, neutral medium-gray color (no other hue, no pattern, no shading gradient into a color, just neutral gray) and its rich, sculpted painterly fold rendering, but NOT its shape or drape: this is the final held pose after the dash burst has fully eased -- a later, calmer moment than the reference's own still-easing pose, so draw an entirely new scarf shape to match. Using that exact character scale and canvas framing, paint ONLY a long, wide, flowing fabric scarf tied around her neck at that exact location, settled from the burst, hanging with only a light residual trailing sway, far less flared than mid-dash -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Most of its length falls in the region around and below that neck point, overlapping where her robe, arms and legs would be (that overlap is correct and expected, since her body will be drawn on top of it afterward). Do not draw the scarf away from that neck point out in empty canvas space elsewhere. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text, no vignette, no glow, no halo, no dark or light background tint of any kind -- only the gray scarf shape, on the same size canvas with the same framing, fully transparent everywhere else. IMPORTANT: paint exactly ONE single opaque, solid gray scarf shape -- do not paint multiple overlapping, ghosted or semi-transparent copies of the scarf at different offsets; the scarf must be one continuous, fully opaque cloth shape, not several stacked layers. Paint rich, visible folds and creases in the fabric with soft tonal shading (darker in the recesses, lighter on the raised folds) -- not a flat, single-tone silhouette; match the sculpted, folded painterly rendering of the second reference image exactly, just in this new drape.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
     "inputs": [
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.round-04.png",
-        "sha256": "c9738895e692c4e3972d9014950804b99ed6c90bbef61adab5249682c1a8492d"
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-05.png",
+        "sha256": "0fc46ce8baac21607714f340c5c96b4f86d43a7d4376ad12928cc43953e98b8f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-04.png",
+        "sha256": "bdfeeb3cff6b178038ce5d6f476f7d0fb2659336df7fed3e17fbc1070b00112a"
       }
     ]
   },
   "human_edits": [
     {
-      "by": "VioletRound7 (Claude)",
-      "description": "Round 7 (rounds.md, adding 3 in-between frames to dash per round 6's gap 3 'too few drawings'): reindexed this frame's pixels unchanged from index 2 to index 5, alongside its body layer.",
-      "at": "2026-09-30T05:20:06.283396+00:00"
+      "by": "VioletRound9 (Claude)",
+      "description": "Round 9 (rounds.md, fixing round 8's kept gap 1 'the scarf... redrawn every frame... painted as a flat, untextured light-gray shape' -- measured: pixel std of luminance inside the scarf's alpha>200 opaque interior was 5.74 before this repaint, against 11-24 for every textured frame in this animation). Cropped the raw generation to the scarf's own alpha>8 bbox, rescaled by the shared rig_per_raw factor (1.128227381210675, reused unchanged), and recorded scarf_offset_final (rig units, from the body's existing crop origin, read from union_bbox_orig_1024canvas) so shoot_b.py's render_cell_b can register it without moving or re-cropping the body -- same recipe as finalize_run_scarf_fix.py / round 7's double_jump-scarf-02/03 fix. Then graded via trial-b/grade_b.py's grade_scarf function directly (morphological alpha close + narrow edge blur), applied directly rather than through grade_b.py's own round-5 batch pipeline, since that pipeline reads a now-stale round-04 frozen copy that predates this repaint. Post-fix measurement: std 19.48, now inside the textured range.",
+      "at": "2026-09-30T07:30:53+00:00"
     }
   ],
   "license": "proprietary"

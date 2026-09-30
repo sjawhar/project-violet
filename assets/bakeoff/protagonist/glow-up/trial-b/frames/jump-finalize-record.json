@@ -51,7 +51,21 @@
     "t": 0.1,
     "target_head_x": 730.1850478539568,
     "target_head_y": 500.7510351659639,
-    "anchor_mode": "airborne_head"
+    "anchor_mode": "airborne_head",
+    "scarf_bbox_orig_1024canvas": [
+      175,
+      43,
+      718,
+      945
+    ],
+    "scarf_final_size": [
+      613,
+      1018
+    ],
+    "scarf_offset_final": [
+      0.0,
+      21.43632024300282
+    ]
   },
   "2": {
     "union_bbox_orig_1024canvas": [

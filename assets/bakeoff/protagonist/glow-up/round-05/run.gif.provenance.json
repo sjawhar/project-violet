@@ -54,7 +54,7 @@
         "sha256": "65694dc1d2b20e98cb791492341f714e563f120564b043ea2bde5eac42d9c4ae"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-01.round-08.png",
         "sha256": "1ab6f28219c246df398aeccbc3cc4c8b52c70c4525c7a83585afea05934b44eb"
       },
       {
@@ -70,7 +70,7 @@
         "sha256": "e20a1b33657e36ba52effabdc9b7b8825de90af5d90bf62ef2d4cc28ffd3f456"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-05.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-05.round-08.png",
         "sha256": "39cfee9f147b130fa8f26e4d6b5f42aef907d0bcd6743f1fc7677a9e3de1da30"
       },
       {
@@ -88,6 +88,11 @@
       "by": "VioletRound6 (Claude)",
       "description": "corrected generator.inputs[].sha256 for assets/bakeoff/protagonist/glow-up/shoot_b.py to its current recorded hash (round 6's torso_x/place_dy_offset grounded-placement support changed shoot_b.py's own content; this reference predates that change) -- same kind of fix round 5 itself needed for round 4's frame_count() bugfix.",
       "at": "2026-09-30T04:35:33+00:00"
+    },
+    {
+      "by": "VioletRound9 (Claude)",
+      "description": "Round 9: re-pointed this round-08 shot record's own stale generator.inputs entries (run-scarf-01.png, run-scarf-05.png) at their round-08-frozen copies (same bytes/sha256, since round 9 overwrote the live scarf-only repaint targets) -- same correction round 6/7 made for their own predecessor rounds' shot records.",
+      "at": "2026-09-30T07:53:23+00:00"
     }
   ],
   "license": "proprietary"

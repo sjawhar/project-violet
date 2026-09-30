@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "asset": "double_jump.gif",
+  "sha256": "14ef33534017bc6303c9087b71215b214d8d316fb883189b138cce32e42f98a6",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T07:50:24+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+    "tool_version": "shoot_b.py round-09: technique B, nine scarf layers repainted (round 8's kept gap 1): run frame 5, jump frame 1, dash frames 0/2/5 (flat/untextured scarf, measured by std of luminance inside the scarf's opaque interior) and land frames 3/4/5 (scarf repainted to trail behind her on the same left side as frames 0-2, instead of swinging to the front/right); bodies, idle and the fixed shot layout unchanged from round 8; in shoot.py's exact fixed layout",
+    "model": null,
+    "params": {
+      "command": "uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/shoot_b.py --rig assets/bakeoff/protagonist/rig/violet.json --out assets/bakeoff/protagonist/glow-up/round-09"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+        "sha256": "6a949541543d38f1957c20d4138361d20ace0dc746d60639689860d0405f4100"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/rig/violet.json",
+        "sha256": "648eeca697454a59e529ce8ad68b198f125e777d11838cd3b3764d5090c41096"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.png",
+        "sha256": "b918e6567a539fa4338ada89eaea197af9bf44f07351a172951f0edfcf268436"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.png",
+        "sha256": "518f7c76b99878986078dad6bcf32abcf17225b4d4af638a730fb9b5222eef93"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.png",
+        "sha256": "d73c956f3e341eedc9a814ff939849c5855f37f25fb89fa2d662b7dfa5d2e881"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-01.png",
+        "sha256": "82ae954a34b3c932fbebd298dbb6b8735b479ec96c8bc572db72d652a36ded27"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-02.png",
+        "sha256": "74cd0fe3a9e7763087f009f82cb03b7658bc63c097591d8d83b390c820ca2997"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-02.png",
+        "sha256": "870a9a2767c7937cb8e4cc9c3eb724342f7cc9bc21ad48d63fcfcaad6d6f4ef4"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-03.png",
+        "sha256": "ce691f9fdbdd61f360f1b9f6aa45ee6e21ff5be2b378978eccccccbf6770a676"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-03.png",
+        "sha256": "82ae954a34b3c932fbebd298dbb6b8735b479ec96c8bc572db72d652a36ded27"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-04.png",
+        "sha256": "b164bbdac7bd66d5e378eedb6768d70cda9f684b632d7958d414c2ca0968177c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-04.png",
+        "sha256": "7fb2662507c561456c65c448d179f7bf1ff07629a01ee0df777219bb6d537f41"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-05.png",
+        "sha256": "ce691f9fdbdd61f360f1b9f6aa45ee6e21ff5be2b378978eccccccbf6770a676"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-05.png",
+        "sha256": "a5e1a948e6cea3106d5ac1824a828d29d1d5384b3dd31165ea0f0012206a2f36"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-06.png",
+        "sha256": "74cd0fe3a9e7763087f009f82cb03b7658bc63c097591d8d83b390c820ca2997"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-06.png",
+        "sha256": "ec77cf3b0b314c0d7f33dc2a8024a511fd8e4fcf4738ccb7f88c44224136d8a1"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-07.png",
+        "sha256": "d73c956f3e341eedc9a814ff939849c5855f37f25fb89fa2d662b7dfa5d2e881"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-07.png",
+        "sha256": "a5e1a948e6cea3106d5ac1824a828d29d1d5384b3dd31165ea0f0012206a2f36"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-00.png",
+        "sha256": "3efba95248266100749d252dc32beac482c938d3553b48403f6dd9a3bd71aa11"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-00.png",
+        "sha256": "65694dc1d2b20e98cb791492341f714e563f120564b043ea2bde5eac42d9c4ae"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-01.png",
+        "sha256": "d3c537726f97405fbd5dc7221c8fafcad253acec36504555c1f057b2ff267857"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-01.png",
+        "sha256": "07d0eda50ef3ed33c505ad1cc303fdd3b515ed9e8c965fed628e13ff1764b350"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-02.png",
+        "sha256": "da7b38a0c4fa333495c57d5f0befd75f3f3b901525947f6286372f0fd813a5bc"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-02.png",
+        "sha256": "2334555e7b652af67b3a9ee2bb58c9cbbad7e431f7c526acb7aea6baa470c805"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-03.png",
+        "sha256": "7f09ad2943f11477f2d3ebd5ff8e8aa91d581428e012928f3a8e1b78072dfba8"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-03.png",
+        "sha256": "065e6f7fa9716fc175a9341dfac5b50bf889f27d719a33d6a48936ddea9e6cac"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-04.png",
+        "sha256": "e5377d56b9f1f4da99ef19f0441c1d75655f0660b5cf4b7a3ad3a54c3ecb63eb"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-04.png",
+        "sha256": "e20a1b33657e36ba52effabdc9b7b8825de90af5d90bf62ef2d4cc28ffd3f456"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-05.png",
+        "sha256": "25e2122719b6b160da8f2d2717de8e5df6c17c02e64dcb9a150744b2aea60f4a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-05.png",
+        "sha256": "f5194c0a7c7fc781cc10dcd15aac6e5d260c65062a331ecd692f823de06640d2"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-06.png",
+        "sha256": "20d7b7f16ab152342cfc61443d4148e0b69fddcc0e2913c28c719d54b9b4af7f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-06.png",
+        "sha256": "159e2ce3de7598885923b769fe30df3481c0a2b92f1b3c69cc9efef4702a0878"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-07.png",
+        "sha256": "3a8eea1959146c48ed331466ba96dbd4c3a0b9d3f93c4a597b74fe5c21af792c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-07.png",
+        "sha256": "e7ea8eac9d2b0af8ae970fccb4fdf16f9421027a0e58c7047f0aa9235480ac5f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-00.png",
+        "sha256": "abf6ecd9bf1b7e3efb1b83393333f6e9d678bc5fe9878fd77fe5eeba0fac17eb"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-00.png",
+        "sha256": "9e2580fd5a9fee0d55e7ea827dca6832cdff76eda60128f1179e21ad3c80f0f8"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-01.png",
+        "sha256": "a9b73075da824bcb34119e36deed6206bea51d3e53fb10414e036cc0532a57f0"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-01.png",
+        "sha256": "2415af0dfa351f3388587577bf8720d44bfc83fdbacda26d8692f815fbb4a1f3"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-02.png",
+        "sha256": "e4304243d0d95b6bc6c8ace6434c4f305b027418515f634f56bd54a17b3c73e7"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-02.png",
+        "sha256": "01e7c4c7904ef79fa41cf85dd7de17a1872eaec26ff4e899e7479e34b67e12fe"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-03.png",
+        "sha256": "ee18a5a922a70d6fff2af71ba415a5c1618cf4e7fb444ecc9c01b97479c6561c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-03.png",
+        "sha256": "dfc9e692c6ba58cac28265f12e3f9a088c097f0cafded1152fd49becf0e89974"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-04.png",
+        "sha256": "ef79cfb75c750969ac5331c67026d40fc37e64f6cb85549e19221b1f6451ed63"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-04.png",
+        "sha256": "41ddf233e3b051290bc4da8c6538aa25c86743f5099046d9ef10a48ecd94afd2"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-00.png",
+        "sha256": "8f6c4ad4004dcdadfcfb0601545c5d56923c9a198df605b0140ff0537ff413b8"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-00.png",
+        "sha256": "8a62a26001af47a4abb6ff9b78d940c4a5914f120313b868e9a872af22038761"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-01.png",
+        "sha256": "b6b1cd6023f23ed9258b312c35c423e562f4fdef3ec870c583451ced4cfbc775"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-01.png",
+        "sha256": "db33d5b8b85624cf4bdbf3ff74be31473e34b49498533436f221cbb5a90db004"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-02.png",
+        "sha256": "ec55ad630e81d9152f65150eac81e459e676dfacae3d3024592c2405dcfaecd7"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-02.png",
+        "sha256": "6d8be4fd8b1eccf2ef2570441efeff8516a64064184b1107d7aa121906b81ff6"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-03.png",
+        "sha256": "b538d40eee95de708943f3e43eed7da8b38f40f17b43aaad49264bea088af137"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-03.png",
+        "sha256": "9beabccb2b593c32b50805b561b31184431a05ada78debdfc4cfc701109ca3f3"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-04.png",
+        "sha256": "c123a07b822b8fba0f0d7bf91ecbacaaefb08a816f58a70815441a05684b5e98"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-04.png",
+        "sha256": "7668c07b5f2fda34d745fd26ef45b905ce3efdce2bd53fb4124738d144cebf40"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-00.png",
+        "sha256": "0cd48705d89d149fb768a1c790469485d249e62284c5b3b6bdf06e2b12d48d4c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-00.png",
+        "sha256": "35fa2c3c13872d6fea32d08fa1417beee1b577df8160ed8315bd10c5ee2d66eb"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-01.png",
+        "sha256": "f754dfbaf32414b82eeb845a5656b97b2fba6e423b32ff0a9690d14b3ca313c2"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-01.png",
+        "sha256": "f15d97e2b8bea8b538dd31ce692f2b6ab1c386e1f9265467e8c6edab6615bc3a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-02.png",
+        "sha256": "7c379878472cf0e1bf0814d8d63d7f710aec98ce26a7fe356142c17a66ab1017"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-02.png",
+        "sha256": "bc8f2e930e0efdc23fb12a8f4f23373f263c4a45887e3667bf7c88bed359b9cc"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-03.png",
+        "sha256": "0ccde770b78b83e84300a9459d3aff1e327a5b6889a10907d2ccf90ef1162cf5"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-03.png",
+        "sha256": "0e31a966f18a007fd1fdb996039f459e12bd2063a80623367686132962994cf7"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-04.png",
+        "sha256": "52fedcb5c5775746248ca3e8eab55e96ec5d5ebd0a090ff760ea665efcde76d4"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-04.png",
+        "sha256": "d0c450d10a3e3e954c0d833cca05cc4a5347cb7e5f0c6e1aa865de46b17fd29c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.png",
+        "sha256": "04f0bd3f49e1a853a2e3df7be36a6e11feb403cdb1309787ea96560756d5ee6d"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.png",
+        "sha256": "7c93c14cc43437da9ca266bd31522c1b4974718965b11c5244fb1e048bb4ee2a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png",
+        "sha256": "590dacbd2ca4ed08f95556515769540af43dc6c190aaea0f34284f5739124ee9"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.png",
+        "sha256": "4be05ae0846fe637f58b71ab46da52576d8fd6d9584368fa174b16462d79c9f5"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.png",
+        "sha256": "6b177ff1ec904b4d8a03aea6f0e234dbb05e2fe09cd945718f632a11cb911108"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.png",
+        "sha256": "b7ae5bda5d7d6c3cce3eb1b6a807f9e0af2d67e4358bfca7af7c67549a6a39f8"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-03.png",
+        "sha256": "a2f706838b808243725468bda206c99e5c10aa7884ce6525e34494339256359e"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-03.png",
+        "sha256": "3a6c5949d7a3ce900d51189943601c82ef4ddfd79d9deff70ab944250e3d285a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-04.png",
+        "sha256": "ef245a996c60b34de43a86def22ecfc8e5d11512699f8c9ae293899f1931ec6d"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-04.png",
+        "sha256": "bdfeeb3cff6b178038ce5d6f476f7d0fb2659336df7fed3e17fbc1070b00112a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-05.png",
+        "sha256": "0fc46ce8baac21607714f340c5c96b4f86d43a7d4376ad12928cc43953e98b8f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-05.png",
+        "sha256": "3b23412eff92f611337b444ba480da2c7e168763cdb506c452e92f2bf3fb3e6c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-00.png",
+        "sha256": "4fc774ca366836b52af4a9813da8cdb2295c2cad6b1af89e1652210fe553b479"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-00.png",
+        "sha256": "7e4ece0287bfbb9f47f8d31c568ac54a9c2e40fede983369275d4492fcdd3e6b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-01.png",
+        "sha256": "a3ff23d233c92c171343dbb9ad230fff0bd09ad6cb112d45e804f4e80f764934"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-01.png",
+        "sha256": "afbafd3473b2fbba4dd7c250e1fc07f5c72cb09db847b7740394608246bd0225"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.png",
+        "sha256": "57ae0bee6812c2d8bae4b0e16c319b959988ccb043af516e14ee0444391006fc"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.png",
+        "sha256": "b6f1da4cf5bd6dfa3dd38968f169d600059fa36653d20157d6d919d8b177fc8f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-03.png",
+        "sha256": "e88966db86795d80bf07184c0793eaada247a0eb78d97c247ead78edfd59e0db"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-03.png",
+        "sha256": "8bcd05cc0f5a79f71ec9b2793f3a0aa206c35953a86e432f4a28ad1ac80cab58"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-04.png",
+        "sha256": "abe6332394362b3706edf40ae44f2881685c97d48420a1eecf9c55e2cf68a256"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-04.png",
+        "sha256": "611cfe8cfca565e7e66a19efc2820ecd92143077ce2a90bc04a04b1597edc5ac"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-05.png",
+        "sha256": "30a4471f51a50d4184936dcc2fd543a64325a3df6732e9c8f52f5398005c7616"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-05.png",
+        "sha256": "1faa377e13446095d254048377f6d664a4a06c695824730da38b0adeb96aeb51"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

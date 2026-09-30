@@ -118,7 +118,7 @@
         "sha256": "65694dc1d2b20e98cb791492341f714e563f120564b043ea2bde5eac42d9c4ae"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-01.round-08.png",
         "sha256": "1ab6f28219c246df398aeccbc3cc4c8b52c70c4525c7a83585afea05934b44eb"
       },
       {
@@ -134,7 +134,7 @@
         "sha256": "e20a1b33657e36ba52effabdc9b7b8825de90af5d90bf62ef2d4cc28ffd3f456"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-05.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-05.round-08.png",
         "sha256": "39cfee9f147b130fa8f26e4d6b5f42aef907d0bcd6743f1fc7677a9e3de1da30"
       },
       {
@@ -170,7 +170,7 @@
         "sha256": "9e2580fd5a9fee0d55e7ea827dca6832cdff76eda60128f1179e21ad3c80f0f8"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-01.round-08.png",
         "sha256": "7d6bb20d42491bca288e7a48eb4a725ddb81960364bb56a7cc5f5a52eca0488f"
       },
       {
@@ -278,7 +278,7 @@
         "sha256": "0fc46ce8baac21607714f340c5c96b4f86d43a7d4376ad12928cc43953e98b8f"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.round-08.png",
         "sha256": "026452145e3eac341c393433d32971590a5453d50940876ee7f1ca5b6937d9e8"
       },
       {
@@ -335,6 +335,11 @@
       "by": "VioletRound8 (Claude)",
       "description": "Re-pointed 8 stale generator.inputs path(s) (idle body/scarf frames that glow-up round 8's idle_hybrid.py overwrote at their live paths) to the matching round-07 frozen copies, which carry the exact bytes this record originally cited by hash; no bytes of this asset itself changed. rounds.md's 'Frozen inputs' convention.",
       "at": "2026-09-30T06:41:01+00:00"
+    },
+    {
+      "by": "VioletRound9 (Claude)",
+      "description": "Round 9: re-pointed this round-08 shot record's own stale generator.inputs entries (run-scarf-01.png, run-scarf-05.png, jump-scarf-01.png, dash-scarf-00.png) at their round-08-frozen copies (same bytes/sha256, since round 9 overwrote the live scarf-only repaint targets) -- same correction round 6/7 made for their own predecessor rounds' shot records.",
+      "at": "2026-09-30T07:53:23+00:00"
     }
   ],
   "license": "proprietary"

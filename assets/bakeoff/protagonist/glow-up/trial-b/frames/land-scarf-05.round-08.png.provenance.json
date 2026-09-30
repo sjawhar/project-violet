@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "asset": "land-scarf-05.round-08.png",
+  "sha256": "2374267d9ffbb0cb483faaad0c5a5256f9819fb6ae2f2e47fd0b0b5a2919810e",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:27+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.round-04.png",
+        "sha256": "1c56bd33c50271d42825590af5df9cd772296bd5df41ff20b48119135ab6c19b"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md, adding 3 in-between frames to land per round 6's gap 3 'too few drawings'): reindexed this frame's pixels unchanged from index 2 to index 5, alongside its body layer.",
+      "at": "2026-09-30T05:43:59.354806+00:00"
+    },
+    {
+      "by": "VioletRound9 (Claude)",
+      "description": "Frozen as land-scarf-05.round-08.png for round 8's own shot provenance (identical bytes to the live land-scarf-05.png through round 8) before glow-up round 9 repaints the flat/mis-sided scarf on this frame (rounds.md round 9); see assets/bakeoff/protagonist/glow-up/rounds.md.",
+      "at": "2026-09-30T07:09:23+00:00"
+    }
+  ],
+  "license": "proprietary"
+}
