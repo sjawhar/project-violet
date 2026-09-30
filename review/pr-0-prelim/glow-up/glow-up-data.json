@@ -1,0 +1,1921 @@
+{
+ "lanes": {
+  "g-a": {
+   "sha": "e25ea49734b9017373ad02eef3629cc007ba9f00",
+   "stop": "round 10, the rules' cap (docs/bakeoff/glow-up.md). Final look: round 10.",
+   "hours": 3.75,
+   "usd": 1.0169,
+   "final_round": 10,
+   "rows": [
+    {
+     "round": 0,
+     "kept": true,
+     "vs": null,
+     "start": "2026-09-29T00:25:02Z",
+     "end": "2026-09-29T00:34:00Z",
+     "changed": "the look before the round",
+     "usd": 0.0,
+     "usd_text": "0",
+     "new_letter": "A",
+     "old_letter": null,
+     "better": [],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 3,
+      "color_readability": 3
+     },
+     "scores_kept": null,
+     "gaps_new": [
+      "The terrain is flat rectangles on a grid of about 128 px. Every raised block and floor slab is a hard rectangle with square corners, filled with the same stone texture and topped with the same sand strip. There are no corner or edge pieces, no lip or overhang, and no contact shadow where a block meets the backdrop. Pits are rectangular cut-outs that show a separately pasted dune panel over a flat strip of spikes (A-1 about x 1215-1790, A-4 about x 510-960). Paint irregular rock silhouettes with cap, edge and corner variants and overhanging growth, and darken the foreground mass, the way Planet of Lana frames its cliffs.",
+      "The red and green walls are flat, saturated color bars with a faint brick overlay. They have no lighting, no edge or rim, and no painted texture, so they look like debug placeholders over the oil-painted backdrop. The red also changes from frame to frame: sampled RGB is (222,116,100) in A-2, (254,100,79) in A-4 and (197,64,47) in A-3. In A-4 the red (254,100,79) and green (53,158,87) have almost the same luminance, about 130/255, so they differ only in hue and red-green colorblind players cannot tell them apart. Give each color its own shape or pattern language and at least a 25% difference in lightness, and fix one red value per state.",
+      "The character is rendered in muddy neutral grey. The golden sunset key light does not reach it: there is no warm rim or bounce light. At about 120 px tall the face is unreadable, and the mid-grey value sinks into the purple-grey acacia behind her in A-3. The scarf is a thin, dark streak about 8 px wide at (152,59,41). In A-4, against the coral wall at (254,100,79), it loses most of its contrast. Push her to a clean value (a dark silhouette or a light cloak), add a warm rim light, and make the scarf wider and brighter than any wall of the same color, the way GRIS and Lana read as crisp shapes against busy scenes."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/01-g-a-r00-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-00/still-05.png",
+       "sha256": "bdd32186252c88dab5c6bb51ae05bdc5be758ba71d4faae302bc4549fa90729e",
+       "path": "bakeoff/g-a/glow-up/round-00/still-05.png"
+      },
+      "20": {
+       "webp": "items/02-g-a-r00-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-00/still-20.png",
+       "sha256": "3617e77caaff60bd8ae3feac411cf86564d7175027fff5d8b0108975ad69bbad",
+       "path": "bakeoff/g-a/glow-up/round-00/still-20.png"
+      },
+      "40": {
+       "webp": "items/03-g-a-r00-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-00/still-40.png",
+       "sha256": "c27c36c64f0493bc09eed7524c0bc688e92a1f4c9945c866fccf085f1ffcaa04",
+       "path": "bakeoff/g-a/glow-up/round-00/still-40.png"
+      },
+      "60": {
+       "webp": "items/04-g-a-r00-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-00/still-60.png",
+       "sha256": "2374042a8ab3e4bb0845edc9ccb33ffef76a345d7e5f9e16fd33cec21d281e02",
+       "path": "bakeoff/g-a/glow-up/round-00/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 1,
+     "kept": true,
+     "vs": 0,
+     "start": "2026-09-29T00:41:38Z",
+     "end": "2026-09-29T01:07:00Z",
+     "changed": "Gap 1, the terrain (Violet's grey and the walls are later gaps). A terrain shader on every stone cell (art/terrain.gdshader): open sides eroded by 6-26 px of noise, open top corners rounded, the rock mass darkening with a smooth distance-to-air field so the foreground reads as a dark mass under a lit lip, a warm rim on the sunlit top and sides, broad value variation. A soft contact shadow on the backdrop beside every open rock face, and gloom rising out of each pit over the spikes. Collision unchanged. Draw cost: one extra fragment shader (about 7 value-noise lookups per pixel) on the roughly 270 terrain sprites, plus about 60 vertex-coloured shadow quads; no extra passes or render targets.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation calls)",
+     "new_letter": "B",
+     "old_letter": "A",
+     "better": [
+      "visual_quality",
+      "color_readability"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The new lighting pass leaves lighter rectangular halo strips, about 15\u201320 px wide, beside every block. In B-3 they sit at about x=1170\u20131185 and 1598\u20131619; in B-4 at about x=64\u201380, 494\u2013512, 961\u2013976 and 1394\u20131408 (1920-px frame). The block interiors carry blotchy dark smears that read as dirt, not as form shadow. To fix: remove the halo pass, or clip it to the block alpha, and replace the smears with a smooth top-to-bottom value ramp plus ambient occlusion at the base.",
+      "The pits are still rectangular windows into a different background painting, with hard vertical seams. The dimmed dune panel in B-2 around x=790\u20131365 and the one in B-4 are examples. The spike strip is one repeated sprite on a flat navy band, and the blocks are still square boxes with a tiled brick texture. To fix: paint the pit into the same backdrop so it continues, add irregular rock lips and overhangs, and vary the spike sizes.",
+      "The character sprite is identical to A: a mid-grey robe about 92 px tall with no rim light, and a stiff pose with little flow in the cloth. The red scarf vanishes against the red wall in B-4. To fix: raise the robe to a light value, add a sun-side rim light, add follow-through to the robe hem and scarf in the jump and fall poses, and outline or darken the scarf so it reads against red gates."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/05-g-a-r01-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-01/still-05.png",
+       "sha256": "f35330722500905a68414e09a8381bfaf0d0d9cc332b9a2c8ec0c359a11aa4a0",
+       "path": "bakeoff/g-a/glow-up/round-01/still-05.png"
+      },
+      "20": {
+       "webp": "items/06-g-a-r01-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-01/still-20.png",
+       "sha256": "b23aca06508a37b570e0bb0ccfce5eae47f1eb6e29c3868d6b648a3eb5fa5c1b",
+       "path": "bakeoff/g-a/glow-up/round-01/still-20.png"
+      },
+      "40": {
+       "webp": "items/07-g-a-r01-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-01/still-40.png",
+       "sha256": "d99f0394d775c002fc482bc67a67ef8aeb285ee9260dfb36290858d535414a0b",
+       "path": "bakeoff/g-a/glow-up/round-01/still-40.png"
+      },
+      "60": {
+       "webp": "items/08-g-a-r01-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-01/still-60.png",
+       "sha256": "69ded92b0d0ea323fe8eb0d9a60588aa8fedd56c436a41a43e1236be743dbe9d",
+       "path": "bakeoff/g-a/glow-up/round-01/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 2,
+     "kept": true,
+     "vs": 1,
+     "start": "2026-09-29T01:13:38Z",
+     "end": "2026-09-29T01:28:00Z",
+     "changed": "Gap 1 of round 01 (the halo strips and interior smears that round 1 introduced; gap 3 is mostly a Violet change, gap 2 is next). The contact shadow now starts under the rock instead of at the cell edge, so the eroded margin shows the same gradient and the lighter strips are gone. The rock's darkening follows a new field: the cheapest path up to open air (up or diagonally up cost 1, sideways 2, never down, capped at 5 cells), which gives a smooth top-to-bottom ramp with no dark columns under raised blocks and no blotches in big blocks; the painted value variation is broader and weaker. Ambient occlusion darkens the ground at the foot of every block that rises out of it. Collision unchanged. Draw cost: unchanged from round 1 (the same terrain shader and shadow quads).",
+     "usd": 0.0,
+     "usd_text": "0 (no generation calls)",
+     "new_letter": "B",
+     "old_letter": "A",
+     "better": [
+      "visual_quality"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The terrain is brighter and its strata read, but it is still one sandstone brick texture wrapped onto flat rectangles. The same slab rows run unbroken across the whole ground strip in B-1 and B-2, and the faces carry a generic dark vignette in the middle (B-3 tall block, B-4 pillars). Break the tiling with unique painted edge pieces, cracks, vegetation and value variation, and light the faces from the sunset direction rather than with a centre darkening.",
+      "Every piece of level geometry is a hard rectangle with visible sprite-box artifacts. There are translucent boxes and dark halos around the blocks: right of the pillar in B-1, both sides of the tall block in B-3, and at the pillar edges in B-4. The spike pits are rectangular cutouts showing a different, cooler backdrop plate with hard vertical edges (B-1 x\u2248993\u20131463). Give the platforms organic silhouettes and blend the pit plates with atmospheric fade.",
+      "The character is a small, desaturated grey figure pasted on with no scene lighting. It gets no warm key or rim light from the sunset, its value sits close to the clouds and sand behind it, and the edges of the scarf and robe are jagged with pixel fringing (visible at 4\u00d7 zoom in B-4). The green scarf in B-3 almost disappears against the olive-purple acacia behind it. Add a warm rim light and a darker core value to the robe so it stands off the sky, clean up the alpha edges, and give the scarf a brighter, thicker, flowing shape with secondary motion, like Lana's or Gris's clothing."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/09-g-a-r02-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-02/still-05.png",
+       "sha256": "64d7ed735a8d973fa3813a00b3d9c54d62200f5c7f81c06e71528a911b080753",
+       "path": "bakeoff/g-a/glow-up/round-02/still-05.png"
+      },
+      "20": {
+       "webp": "items/10-g-a-r02-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-02/still-20.png",
+       "sha256": "c4e1f2c27225523f1197e04f111fbe076094c043ccfc19a7829a4b98e8161fad",
+       "path": "bakeoff/g-a/glow-up/round-02/still-20.png"
+      },
+      "40": {
+       "webp": "items/11-g-a-r02-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-02/still-40.png",
+       "sha256": "e527e639813e068b6a7b727d68f235c28c2ba24114a39a4a9f1c8edd80faf31a",
+       "path": "bakeoff/g-a/glow-up/round-02/still-40.png"
+      },
+      "60": {
+       "webp": "items/12-g-a-r02-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-02/still-60.png",
+       "sha256": "0fae1d7fb3821104a6d4b1386d469c5713cfb8fed57510f31a4908508bd2dd6e",
+       "path": "bakeoff/g-a/glow-up/round-02/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 3,
+     "kept": false,
+     "vs": 2,
+     "start": "2026-09-29T01:33:08Z",
+     "end": "2026-09-29T01:42:00Z",
+     "changed": "Gap 3 of round 02, the part that is how Violet reads in the world (her parts, rig, animation and scarf shape stay the lead's, so the thicker, flowing scarf and secondary motion are not done here). Her whole drawn silhouette now goes through a CanvasGroup with art/character_light.gdshader: a 2 px shadow-violet outline around the silhouette (not the part seams), which also separates the scarf from walls of its own colour, her values pulled down 18% so she sits darker than the peach sky, and a warm rim on the edges facing the low sunset key light. Her 14 part textures now import with mipmaps, which removes the jagged, fringed edges of the downscaled parts (an import setting in protagonist/parts/*.import, not a change to the parts). A soft shadow ellipse sits under her feet while she is on the ground. RigCharacter2D now finds the player as an ancestor rather than its parent. Draw cost: one CanvasGroup (an offscreen buffer the size of her bounding box plus 12 px) with a 10-tap shader, and one 25-vertex polygon.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation calls)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [],
+     "worse": [
+      "visual_quality",
+      "character_appeal",
+      "color_readability"
+     ],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 1,
+      "color_readability": 2
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The character looks like a cut-out sticker. A thick, lumpy dark outline wraps the whole figure, with a cream fringe outside it, like a leftover alpha matte (clearest in A-1 and A-4). Remove the outline and the fringe. Separate the figure from the background with value and a soft rim light, as Planet of Lana does with Lana.",
+      "The scarf doesn't read as a scarf. In A-1, A-2 and A-4 it is a muddy brown-red with cream edges, lying along the outstretched arm, so it looks like a sleeve. Make it a saturated cloth shape that trails behind and flutters, with its own silhouette against the sky. The green scarf in A-3 blurs into the arm too.",
+      "The playable layer doesn't match the painted sky and mesas. The stone blocks are hard-edged rectangles. A dark vertical smear runs down the middle of each tall block (A-4, left block at about x=220\u2013400 px of 1920; A-3, right block). Each pit is covered by a flat, semi-transparent grey-violet rectangle with hard vertical edges, and a different, washed-out dune painting sits behind it (A-2, about x=785\u20131360). The spikes are a uniform strip of copied cones. Paint the edges of the ground masses with irregular, lit tops and silhouettes. Delete the pit overlay boxes and fade the pits into atmospheric depth."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/13-g-a-r03-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-03/still-05.png",
+       "sha256": "108c6c198a0da3461552f7fc8254a8ede7b992f1f5caa5fd0e4c88553d14b76e",
+       "path": "bakeoff/g-a/glow-up/round-03/still-05.png"
+      },
+      "20": {
+       "webp": "items/14-g-a-r03-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-03/still-20.png",
+       "sha256": "00d1dc8b8b9e90ea1a43a3ee3022c69e9362a9e817d836b9fe4c21241db17c04",
+       "path": "bakeoff/g-a/glow-up/round-03/still-20.png"
+      },
+      "40": {
+       "webp": "items/15-g-a-r03-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-03/still-40.png",
+       "sha256": "4c668788c2f59e7fc453fcfc8470d26441bbb9dd06b579eba06b49688a351b55",
+       "path": "bakeoff/g-a/glow-up/round-03/still-40.png"
+      },
+      "60": {
+       "webp": "items/16-g-a-r03-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-03/still-60.png",
+       "sha256": "d06efaff63668ea0d636262dd5c615f9c97b691cb4808de4b5057cd1c2451d6c",
+       "path": "bakeoff/g-a/glow-up/round-03/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 4,
+     "kept": true,
+     "vs": 2,
+     "start": "2026-09-29T01:46:54Z",
+     "end": "2026-09-29T02:24:00Z",
+     "changed": "Starts from round 02 (round 3 reverted). Gap 3 of round 02's latest critique (placeholder walls and terrain); gap 1 asks for Violet's scale, which is fixed, and gap 2 (one red, one green) is partly a scarf change. Tagged walls and platforms are lit like the rock: a lighter sunlit face (a wall's left side, a platform's top) with a bright lip, a shadowed far edge, and a contact shadow where a wall stands on rock; the active colour no longer washes the whole piece lighter (the fill keeps one red and one green), it brightens the lit face and throws a soft pulsing halo of its colour onto the backdrop beside it (additive strips). The pit gloom boxes are deleted, and a warm haze band thickens toward the ground line in the backdrop, so the mesas and what shows down the pits fade into atmospheric depth. The dark vertical smear in tall blocks is gone: the rock darkens with its depth straight down from its open top, averaged with the rock beside it in the same row, so a block is the same value across its width. Collision unchanged. Draw cost: the reveal shader gains a few ALU ops; up to about 70 additive halo quads while a colour is active; one full-width haze polygon.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation calls)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [
+      "visual_quality",
+      "color_readability"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 4
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The character is a flat grey robe about 70 px tall (roughly 6% of the 1080 px frame). It has the same value as the pale sky and the sandstone, so the face is a few muddy pixels, and the scarf tip has stair-stepped alpha edges (see the 4\u00d7 crops of A-1 and A-4). Scale it to about 120\u2013150 px. Give the robe a darker value or a warm/cool rim light so it separates from the sky. Clean up the anti-aliasing on the scarf and hood.",
+      "Every pit is a hard-edged rectangle. A pale haze box covers the background (A-1 x\u2248980\u20131475, A-2 x\u2248630\u20131115, A-4 x\u2248400\u2013785), its vertical edges are ruler-straight, and a flat purple strip of spikes is pasted underneath. Paint the chasm instead: soft vertical falloff into shadow, ragged rock lips, and spikes that pick up the scene's warm light.",
+      "The terrain is extruded boxes filled with one tiled stone texture. The same brick-row pattern and sand cap repeat on every block, with seams where blocks meet (A-1 x\u2248420/520/735/835). A mechanical top-to-bottom gradient takes the lower two-thirds to near-black brown (A-3 raised block, A-4 pillars). A soft white glow outlines the block edges. The silhouettes have no organic variation: no overhangs, grass or foreground framing like Ori's painted ledges."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/17-g-a-r04-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-04/still-05.png",
+       "sha256": "12826f24709d74e2a67571efc799dd167c12913880177cc1272f4ac38887fe1e",
+       "path": "bakeoff/g-a/glow-up/round-04/still-05.png"
+      },
+      "20": {
+       "webp": "items/18-g-a-r04-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-04/still-20.png",
+       "sha256": "55218fea63442a957e0a3d3e4e2f89a08962666fd8ebc75c4abf5bb7736177ec",
+       "path": "bakeoff/g-a/glow-up/round-04/still-20.png"
+      },
+      "40": {
+       "webp": "items/19-g-a-r04-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-04/still-40.png",
+       "sha256": "cda39aad2e99b92238400a32e40be0294a7def044329de44b57dd1271733ab74",
+       "path": "bakeoff/g-a/glow-up/round-04/still-40.png"
+      },
+      "60": {
+       "webp": "items/20-g-a-r04-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-04/still-60.png",
+       "sha256": "6b0972c1f6db28c1d3e3ed769c9d6ca72ce946f2ba48b662f8fb8c5089b05408",
+       "path": "bakeoff/g-a/glow-up/round-04/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 5,
+     "kept": true,
+     "vs": 4,
+     "start": "2026-09-29T02:29:45Z",
+     "end": "2026-09-29T02:53:00Z",
+     "changed": "Gap 2 of round 04's critique: pits as hard-edged boxes (a new gap, not a retry). Gap 1 asks for Violet's scale, which is fixed. Each pit is painted as a chasm: the column above every spike cell darkens from the pit's rim down into deep shadow (0 to 62 to 90 to 100% in four bands), so the backdrop fades out instead of showing as a pale window; at each end of the pit a ragged dark rock face with a lit lip slants inward as it goes down, and the fill runs on under the neighbouring rock so its eroded edge shows chasm, not sky. The flat navy floor strip is gone; the spikes vary in height (0.75x to 1.3x, flipped at random, seeded per cell) and a shader lights their tips warm and sinks their bases into shadow. Collision unchanged. Draw cost: per spike cell one 8-vertex gradient polygon, a spike sprite with a 1-sample shader, and at the pit ends a 10-vertex wall polygon (about 16 cells in all).",
+     "usd": 0.0,
+     "usd_text": "0 (no generation calls)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [
+      "visual_quality"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "Blockout geometry in the foreground. Every platform is a perfect rectangle with a flat sand band on top, and the same horizontal stone-course texture is stamped across every face (A-1 ground from x\u224850 to 980; the A-4 pillars at x\u224865\u2013400 and 790\u20131140). There are no rounded lips, overhangs, grass tufts or broken edges. The painted background has painterly mesas, but the foreground uses photo-like tiled texture, so the two layers look like different games. GRIS and Planet of Lana shape each foreground silhouette by hand.",
+      "The character is about 70 px tall on a 1080 px frame. Its cloak is mid-grey, the same value as the pale sky and clouds behind it (A-2, A-4). Nothing reads in the face or hands, and the poses are stiff single keyframes: a straight-legged run in A-3, a rigid arm-up grab in A-4. Planet of Lana solves the same small scale with a dark, high-contrast body shape, a warm rim light and cloth follow-through.",
+      "The red and green gates are flat, fully saturated extruded bars with a wood-grain stamp and a uniform outer glow. The sunset light doesn't touch them and they cast no shadow on the sand. The red is close in hue to the terracotta mesas (A-2 at x\u22481380), and on A-4 the red scarf disappears completely against the red wall at x\u2248785\u2013835. The spike beds are one identical spike repeated in a comb, and the pit edges are thin dark slivers (A-1 at x\u2248990 and 1450)."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/21-g-a-r05-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-05/still-05.png",
+       "sha256": "209ed64ea31fd9df0dbb3904975775504e64ddc4896148c45454224fa61fa75c",
+       "path": "bakeoff/g-a/glow-up/round-05/still-05.png"
+      },
+      "20": {
+       "webp": "items/22-g-a-r05-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-05/still-20.png",
+       "sha256": "7d926b86a7f1e99cd7e140b80042943c7559f8b58e44b394d2db5a1b3421f70f",
+       "path": "bakeoff/g-a/glow-up/round-05/still-20.png"
+      },
+      "40": {
+       "webp": "items/23-g-a-r05-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-05/still-40.png",
+       "sha256": "6464a67bc7e2ccf6b4f276d59ff9478fbb9775fb4c9c773847e356889b841f5f",
+       "path": "bakeoff/g-a/glow-up/round-05/still-40.png"
+      },
+      "60": {
+       "webp": "items/24-g-a-r05-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-05/still-60.png",
+       "sha256": "c6a306c33945254198b56fbf616f7a66a573a8f090cdfb6f9ebbf086d995e87d",
+       "path": "bakeoff/g-a/glow-up/round-05/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 6,
+     "kept": false,
+     "vs": 5,
+     "start": "2026-09-29T02:56:36Z",
+     "end": "2026-09-29T03:17:00Z",
+     "changed": "Gap 1 of round 05's critique: blockout foreground (a new gap, not a retry). Gap 2 is Violet's scale and poses, which are fixed. The three stone tiles (ground, wall, platform) are regenerated with gpt-image-2 at quality=high, painted loosely in oil and gouache like the backdrop mesas (broad planes of warm sandstone and violet shadow, no stone courses, no photographic detail), so the foreground and the backdrop read as one painting; the first platform tile broke at its side seam and was regenerated. Every sunlit surface gets a painted lip: a sand-crusted band whose top edge wanders a few pixels above the cell, overhanging open block ends by a rounded ledge with a dark underside, and one to three dry grass tufts in rock and ochre tones (no green) per cell. Collision unchanged. Draw cost: about 90 extra small polygons (a 26-vertex lip per surface cell plus tufts); the tiles are the same size as before.",
+     "usd": 0.8505,
+     "usd_text": "0.8505 (4 gpt-image-2 calls at the provider-reported token usage, priced at OpenAI's published rates: 0.6379 kept, 0.2126 rejected)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [],
+     "worse": [
+      "visual_quality"
+     ],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The wall rock repeats on a grid of about 120 px. The same cracked blobs and vertical crack lines recur across every block (A-3 right block, both blocks in A-4), and the olive-brown fill with purple cracks looks muddy against the warm, sunlit mesas behind it. Repaint each block uniquely, or use a larger non-repeating texture with horizontal strata that echo the background mesas.",
+      "Every foreground shape is a plain rectangle topped with a scalloped sand strip that overhangs the block edge by about 15 px with a pale rim, so it looks pasted on (pillar caps in A-1, both blocks in A-4). The A-1 pillar cap is a wider slab over a lighter rectangular band. There is no sunset rim light on the block edges, no contact shadow under the caps, and no foreground plants overlapping the edges. The lower part of the A-1 pillar is semi-transparent, and the acacia behind it shows through.",
+      "The character is only about 5% of screen height. She is flat, desaturated grey with no warm key light or rim light, she looks soft from scaling, and she reads as a paper cutout. The scarf is her only color. Scale her up, shade her with the orange sunset key light plus a rim light, and add follow-through on the robe hem and hood."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/25-g-a-r06-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-06/still-05.png",
+       "sha256": "ea92cc3cc4d39d6bf23897458efaf7721e96321cf55dd2add734d6bff5e2f1b3",
+       "path": "bakeoff/g-a/glow-up/round-06/still-05.png"
+      },
+      "20": {
+       "webp": "items/26-g-a-r06-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-06/still-20.png",
+       "sha256": "40f5ea00ab6d592a9e29cb005d9c17229cbb34f3e42fde0af408b35ada835dca",
+       "path": "bakeoff/g-a/glow-up/round-06/still-20.png"
+      },
+      "40": {
+       "webp": "items/27-g-a-r06-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-06/still-40.png",
+       "sha256": "08fe9f6879fc512522380765790d44a22cebaddebb38a217ae62eeccbc2884b3",
+       "path": "bakeoff/g-a/glow-up/round-06/still-40.png"
+      },
+      "60": {
+       "webp": "items/28-g-a-r06-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-06/still-60.png",
+       "sha256": "886f661b5677c40a7ae2494d0cc3a846560d9fd4e0637837fcacbbaeb5202a70",
+       "path": "bakeoff/g-a/glow-up/round-06/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 7,
+     "kept": true,
+     "vs": 5,
+     "start": "2026-09-29T03:21:27Z",
+     "end": "2026-09-29T03:54:00Z",
+     "changed": "Retry of round 6's gap: gap 1 of round 05's critique, the blockout foreground (masonry strata, flat box tops). It takes a materially different approach from round 6's regenerated tiles and scalloped lip polygons: the rock has no per-cell tile at all. A new wide cliff-face painting (gpt-image-2, 1536x1024, quality=high: long waving strata of uneven thickness in sandstone, rust, ochre and cream, violet shadow under each ledge, irregular cracks; seamed by edit-art.sh to repeat side by side) is laid over the whole level in level space at 1.5x, so a mass shows one continuous stretch of strata that repeats only every 32 cells, wider than the screen. The ground, wall and platform tiles are gone (files, prompts and exports). The terrain shader now also draws, on every surface cell, a sand crust whose top wanders up to about 17 px above the cell in drifts and whose bottom wanders too, plus clumps of dry ochre grass blades (2-3 px wide, up to about 24 px tall) rising from it; surface quads reach 0.45 cell above the cell to make room. The mass darkens less with depth (to 36% instead of 26%), so the painting stays readable low down. Collision unchanged. Draw cost: one extra texture sample and about 12 noise evaluations per terrain fragment (terrain covers roughly a third of the screen), and surface quads 45% taller.",
+     "usd": 0.1664,
+     "usd_text": "0.1664 (1 gpt-image-2 call at the provider-reported token usage, priced at OpenAI's published rates)",
+     "new_letter": "B",
+     "old_letter": "A",
+     "better": [
+      "visual_quality"
+     ],
+     "worse": [
+      "color_readability"
+     ],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The step pillars in B-1 and B-2 are pale cream rectangles with almost no shading and no base, so they read as haze rather than solid footing. The raised blocks in B-4 show smeared horizontal paint layers inside a hard box outline, and their dark lower band doesn't line up with the ground behind them. Add a shadow side, a dark base and an irregular top edge so every block reads as solid rock.",
+      "The character sprite is the same as in A. She is about 75 px tall with a grey, desaturated robe and an aliased, noisy outline, and in B-3 she melts into the mauve acacia. Use a cleaner, higher-resolution sprite with a rim light or value separation from the backdrop, and give her readable facial and posture cues.",
+      "The ground's front face is topped by a flat, desaturated purple band that reads as a muddy stripe, and the walkable top is only a 5\u20138 px sand lip. The red and green columns are still flat rectangles with a noisy grain, the same glow all around and no contact shadow. Break the purple band up with lit edges, thicken and brighten the walkable edge, and give the colored columns painted form where they meet the ground."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/29-g-a-r07-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-07/still-05.png",
+       "sha256": "350d4ce24a0c882ce7ae783f06a969b00a5bf0abb9b67f43ef82b701037b4edc",
+       "path": "bakeoff/g-a/glow-up/round-07/still-05.png"
+      },
+      "20": {
+       "webp": "items/30-g-a-r07-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-07/still-20.png",
+       "sha256": "fc1ee4c35bf803d83bc5fc9f9f9ff7bb75de2e26ff64cccbfc2cbf68ef1ef64f",
+       "path": "bakeoff/g-a/glow-up/round-07/still-20.png"
+      },
+      "40": {
+       "webp": "items/31-g-a-r07-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-07/still-40.png",
+       "sha256": "d5c4b94117ad9757cf631452d621f2cd22f18980a6d8968aa530b5c9554f6112",
+       "path": "bakeoff/g-a/glow-up/round-07/still-40.png"
+      },
+      "60": {
+       "webp": "items/32-g-a-r07-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-07/still-60.png",
+       "sha256": "006b670abd60cb4defd051ffbd2c1c0276e4f56c5c9efcd9072baf6a3a5bf759",
+       "path": "bakeoff/g-a/glow-up/round-07/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 8,
+     "kept": true,
+     "vs": 7,
+     "start": "2026-09-29T03:59:19Z",
+     "end": "2026-09-29T04:22:00Z",
+     "changed": "Gap 1 of round 07's critique: blocks and step pillars don't read as solid rock. This is a new gap, not a retry: round 7 changed the rock's painting and its top edge, and this round changes how the masses are lit and how they stand on the ground. Gap 2 asks for a new Violet sprite, which is fixed. All changes are in the terrain shader and its per-cell inputs. The sunset is to the left, so each mass's left face gets a warm lit band (about 0.8 cell) and its right face a cool shadow (about 1.8 cells, down to 50%). The rock under a sand crust sits in the crust's shadow. A mass that rises above the ground line darkens toward its base (down to 45% at the line and just below it), so blocks and pillars stand on the ground. Under the ground line the depth shading is measured from the ground line, so the ground's bands continue under the blocks. The first cell of rock under the open air now darkens too, so the one-cell pillars are no longer flat pale cream. Open sides are cut deeper where the painting's strata are dark, so the silhouette steps out at each lit ledge. Collision unchanged. Draw cost: one more texture sample and a few ALU ops per terrain fragment, and three more uniforms per terrain cell.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation calls)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [
+      "visual_quality"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The character is about 90 px tall in a 1080 px frame, and the robe is flat grey with no rim light. In shot 3 she disappears against the grey-purple ground band, and in shots 1 and 2 against the peach clouds. The face and hands can't be read. Make her about 1.5\u00d7 larger or zoom the camera in, darken the robe's value, and add a warm rim light on the side facing the sky. That gives the clear silhouette Lana and Gris have at every size.",
+      "The red and green columns and slabs look pasted onto the painting. They are flat rectangles running off the top of the frame, with a uniform horizontal plank texture, perfectly straight edges, a hard vertical glow band, and no contact shadow or occlusion where they meet the ground. In shot 4 the red slab also sits on a pink cloud and its glow haze softens the edge. Give them painted edge wear, a darker core, a contact shadow on the ground, and a tighter glow. Their tops should end in a shape, not at the frame edge.",
+      "The foreground terrain is a stack of cut-out boxes. Every raised block in shots 3 and 4 reuses the same four-band strata texture (purple, orange, olive, olive) at the same heights, ending in straight vertical sides with a jagged alpha fringe. The ground slab is a thin sand strip with a few grass tufts, and nothing sits in front of the play plane. Vary the strata on each block, round and erode the top corners, and add a dark foreground layer of rocks or grass in front of the player, the way Planet of Lana frames its shots. The olive drum-shaped crates in shots 1 and 2 also read as pottery, not desert rock."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/33-g-a-r08-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-08/still-05.png",
+       "sha256": "d169a01ebfd1ac4d18a34b30e02c4de6f6a591d5aa03cd9f5f1c2d661aa4be8a",
+       "path": "bakeoff/g-a/glow-up/round-08/still-05.png"
+      },
+      "20": {
+       "webp": "items/34-g-a-r08-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-08/still-20.png",
+       "sha256": "32c6d11ce6d3b55fba65f3054f675c648ac9bcdc1e8e5fb3eb124cca7986afee",
+       "path": "bakeoff/g-a/glow-up/round-08/still-20.png"
+      },
+      "40": {
+       "webp": "items/35-g-a-r08-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-08/still-40.png",
+       "sha256": "f86546f9050b3e2583aee6a6509941671e89289ff909cb80770452e92907dd20",
+       "path": "bakeoff/g-a/glow-up/round-08/still-40.png"
+      },
+      "60": {
+       "webp": "items/36-g-a-r08-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-08/still-60.png",
+       "sha256": "963d1538f834f226d57b6d7b935452dfca2a406a2270496ba00e8b23e1767932",
+       "path": "bakeoff/g-a/glow-up/round-08/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 9,
+     "kept": true,
+     "vs": 8,
+     "start": "2026-09-29T04:27:04Z",
+     "end": "2026-09-29T04:43:00Z",
+     "changed": "Gap 2 of round 08's critique: the red and green columns and slabs look pasted on. This is a new gap, not a retry: rounds 7 and 8 changed the terrain, and round 4 last touched the tagged pieces. Gap 1 asks for a larger Violet or a closer camera, both fixed. All changes are in the reveal shader and the tagged pieces' halo; collision and the tag rule are unchanged. The pieces are now carved from the terrain's rock. Their grain is the rock-face painting's value in level space, turned upright on a column, with brush strokes along the piece and broad value breaks, so the repeating horizontal plank texture is gone. They have a darker core falling into shadow on the far face, and every open edge is worn by 2-9 px of noise. A column's top is broken off in a rough shape up to about half a cell below the level top, so it ends inside the frame, and a slab's free ends are broken off too. The ground beside a column's foot gets the same contact shadow as rock rising beside it. The halo is tighter: bright at the worn edge and easing out within 0.42 cell instead of a flat 0.7-cell band, and none above a broken top. Draw cost: one texture sample and 7 noise evaluations per tagged-piece fragment, and 2 extra vertices per halo strip.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation calls)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [
+      "visual_quality"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 4
+     },
+     "scores_kept": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 4
+     },
+     "gaps_new": [
+      "The platforms are cut-away boxes with hard edges, like slices of cake: a purple top band over an ochre face, and vertical seams in the lower rock band every ~250\u2013350 px where the tile restarts. The two tall blocks in A-3 and A-4 reuse the same three-band strata texture, stretched to different widths. Give the platform tops irregular silhouettes, overhangs and grass or rock breakups, and vary the strata per block, the way Planet of Lana's foreground shapes break the horizon.",
+      "The character is a flat mid-grey (cloak, hood and face all about the same value). Although the whole scene is sunset-backlit, it has no warm rim light, no contact shadow and no painted line or edge treatment, so it looks pasted over the painting. In A-3 it disappears into the acacia silhouette behind it. Add a warm orange rim on the side facing the sun, a darker core-shadow value, and a soft ground shadow.",
+      "The character is ~95 px tall at 1080p (~9% of screen height), the face has no readable features, and the scarf is only ~8\u201310 px thick. Its silhouette and pose do not carry emotion the way Gris or Lana do. Give it a readable head/body proportion (a bigger head or hood shape, a visible face or eyes), a longer and thicker scarf with secondary motion, and more exaggerated arm and leg extension in the jump and climb poses."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/37-g-a-r09-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-09/still-05.png",
+       "sha256": "d169a01ebfd1ac4d18a34b30e02c4de6f6a591d5aa03cd9f5f1c2d661aa4be8a",
+       "path": "bakeoff/g-a/glow-up/round-09/still-05.png"
+      },
+      "20": {
+       "webp": "items/38-g-a-r09-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-09/still-20.png",
+       "sha256": "59be7f139e7f092216c03f839c546f518f5914d7d55009b25ada3e8397e11212",
+       "path": "bakeoff/g-a/glow-up/round-09/still-20.png"
+      },
+      "40": {
+       "webp": "items/39-g-a-r09-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-09/still-40.png",
+       "sha256": "8dede693768a6f04955983a14b281a81305ee2acc8864966f613ba97e1cae24e",
+       "path": "bakeoff/g-a/glow-up/round-09/still-40.png"
+      },
+      "60": {
+       "webp": "items/40-g-a-r09-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-09/still-60.png",
+       "sha256": "21a7180f24e8fdbd190fdfd9aabe06d5824a98492640160bef4164f80ea1caa4",
+       "path": "bakeoff/g-a/glow-up/round-09/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 10,
+     "kept": true,
+     "vs": 9,
+     "start": "2026-09-29T04:48:13Z",
+     "end": "2026-09-29T05:00:00Z",
+     "changed": "Gap 2 of round 09's critique: Violet reads as flat mid-grey, with no warm rim, core shadow or ground shadow. This is a new gap, not a retry of round 9's gap, which was the tagged pieces. Round 3 worked on how Violet reads and was reverted; this round takes a materially different approach. There is no outline (round 3's dark outline read as a sticker), and her value is graded, not just darkened, following the G-D round that moved character_appeal. Gap 3 asks for a new Violet (head, face, scarf, poses), which is fixed. Her parts, rig, animations and scale are unchanged. Her whole drawn silhouette goes through one CanvasGroup shader. Her body is graded darker and cooler (x 0.50 / 0.50 / 0.66), so she reads as a dark shape against the peach sky and the pale sand; saturated pixels (the scarf in its active color) keep their color. A warm orange rim, graded over 8 px, lights the edges facing the sunset to the left, which also separates her from the dark acacia. A soft shadow-violet ellipse (68 x 14 px) lies under her feet while she is on the floor. Draw cost: one CanvasGroup (an extra backbuffer pass over her bounding box, about 120 x 170 px) with 4 texture reads per pixel, and a 25-vertex polygon.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation calls)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [
+      "visual_quality",
+      "character_appeal",
+      "color_readability"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 3,
+      "color_readability": 4
+     },
+     "scores_kept": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The platform layer looks like boxes pasted onto the painted backdrop. The ground slab repeats one texture, with vertical crack seams every ~200 px (A-1 at x\u2248415/680/890 px in the original). The stacked cliff blocks in A-3 and A-4 are perfect rectangles, each with a blurred rectangular shadow around it, and the pit walls are thin flat dark planks. Paint unique silhouettes for the platforms: irregular tops, overhangs, grass and rocks breaking the edges. Drop the rectangular halos. Add at least one foreground layer in front of the play plane.",
+      "The character is ~55 px tall at 1080p. The face is a dark smudge inside the hood, the hands are pale spikes, and the A-2 jump is a stiff, splayed star pose. Next to Lana or GRIS's girl, it lacks a clear head and face shape, a clear line of action in each pose, and follow-through on the robe hem. Enlarge the head and hands, simplify the robe into 2\u20133 value shapes, and animate the hem and hood.",
+      "The coded colors aren't integrated. The red and green walls are flat, evenly textured bars with the same glow all the way up. They cast no light onto the ground, the blocks or the character: in A-4 the character presses against the red wall and gets no red tint. The scarf also drifts off-code. In A-4 it fades from red to peach-orange, and in A-3 from green to lime-yellow. Hold the scarf at the wall's hue along its whole length, and add colored light falloff from the walls onto nearby surfaces."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/41-g-a-r10-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-10/still-05.png",
+       "sha256": "91c844b5d92ed8bbf2956d54218f183612367264240489dca410510e0cd02c6e",
+       "path": "bakeoff/g-a/glow-up/round-10/still-05.png"
+      },
+      "20": {
+       "webp": "items/42-g-a-r10-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-10/still-20.png",
+       "sha256": "d0030031d8646d157f66e1ac9723fca2e4925e411a4f245aeb17289cad5a209c",
+       "path": "bakeoff/g-a/glow-up/round-10/still-20.png"
+      },
+      "40": {
+       "webp": "items/43-g-a-r10-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-10/still-40.png",
+       "sha256": "673cac1b8275dedeb805a6dce81162fb72bc39fb367cada71bc0454d651a0e8d",
+       "path": "bakeoff/g-a/glow-up/round-10/still-40.png"
+      },
+      "60": {
+       "webp": "items/44-g-a-r10-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/e25ea49734b9017373ad02eef3629cc007ba9f00/bakeoff/g-a/glow-up/round-10/still-60.png",
+       "sha256": "63a4f05e290adf8d2c352ff1ae894efa19b38bc577935e28651f031d175a53ec",
+       "path": "bakeoff/g-a/glow-up/round-10/still-60.png"
+      }
+     }
+    }
+   ]
+  },
+  "g-d": {
+   "sha": "dc6224e69116f5823adce9c0081f40308aae622f",
+   "stop": "round 10, the rules' cap (docs/bakeoff/glow-up.md). Final look: round 10.",
+   "hours": 3.7,
+   "usd": 0.22,
+   "final_round": 10,
+   "rows": [
+    {
+     "round": 0,
+     "kept": true,
+     "vs": null,
+     "start": "2026-09-29T00:24:45Z",
+     "end": "2026-09-29T00:37:00Z",
+     "changed": "the look before the round",
+     "usd": 0.0,
+     "usd_text": "0",
+     "new_letter": "A",
+     "old_letter": null,
+     "better": [],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 2
+     },
+     "scores_kept": null,
+     "gaps_new": [
+      "The red walls don't read as red in 2 of the 3 shots that show them. In A-2 the red column averages RGB 255,176,134, and in A-4 the column and its horizontal arm average 255,175,115. That is peach, on about the same hue as the sandstone ground (A-4 terrain is 203,115,52), so it reads as a lighter sandstone block. Only A-3's red (255,105,64) looks clearly red. Take the red walls out of the fog and grading so every one renders at about the A-3 value, and push it toward crimson (around hue 0\u20135\u00b0), away from the orange of the terrain. The green (133,235,131 in A-4) already stands out and can stay.",
+      "The character is often lost, and she has no face or detail. In A-4 the tall peach column hides her body completely, so only the red scarf tip at the column's left edge (about x=945, y=320 in the 1920\u00d71080 frame) is visible. In A-3 her brown robe (104,66,44) is the same hue as the tan mesa behind her (224,156,98), and at about 70 px tall she disappears. Keep gameplay walls out of the depth layer in front of the character. Give her a rim light or thin outline, some cloth or hair colour or a readable face, and scale her up about 1.5\u00d7 so the scarf isn't the only detail that reads. Planet of Lana's Lana is small too, but she carries a bright shirt and dark hair.",
+      "The environment looks like greybox under a warm colour grade. Every ground and pillar block uses the same wavy strata texture: horizontal bands about 26 px apart with a purple wave line, identical on the tall left pillar in A-1, the step blocks and the main slab. Blocks are sharp cuboids with flat tops, and there's no erosion, sand drift or overhang. The spikes are one clump repeated about every 50 px. A hard horizontal seam runs across the full width at y\u2248640 (1080p) in all four shots, where the dune plane meets the flat fog plane. The top 55\u201360% of A-1 and A-2 is an empty cream gradient. The mesas are faceted low-poly stacked cylinders, and in A-3 they are as saturated as the playfield. There are black slivers too: a dark vertical plank at x\u22481760 in A-1 and a black edge line at x\u22481350, y\u2248845\u20131035 in A-2. Fixes: vary the strata texture per block and break up the silhouettes; blend the horizon; add sky elements such as clouds, a sun disc, birds or dust; fade the distant mesas; and add a dark foreground silhouette layer the way Planet of Lana and INSIDE frame their scenes."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/89-g-d-r00-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-00/still-05.png",
+       "sha256": "d3d7cbf3e5a1565fe7235e29eb34a58b85ab48ad55ce4b807b15e7fd34bd8474",
+       "path": "bakeoff/g-d/glow-up/round-00/still-05.png"
+      },
+      "20": {
+       "webp": "items/90-g-d-r00-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-00/still-20.png",
+       "sha256": "c83959d945f37e63057aa04986c6b3e444d001cff0c35075569c5b9179368558",
+       "path": "bakeoff/g-d/glow-up/round-00/still-20.png"
+      },
+      "40": {
+       "webp": "items/91-g-d-r00-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-00/still-40.png",
+       "sha256": "9c10bcd9f3e63e7defb4073e01da8f0ab517d4b9cfef0e5c40973d7c06dd33e6",
+       "path": "bakeoff/g-d/glow-up/round-00/still-40.png"
+      },
+      "60": {
+       "webp": "items/92-g-d-r00-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-00/still-60.png",
+       "sha256": "1cf79337691aaa27275483ee0db0a9bb4d701b3bd24e9c014c9b8e332c4d1a8e",
+       "path": "bakeoff/g-d/glow-up/round-00/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 1,
+     "kept": true,
+     "vs": 0,
+     "start": "2026-09-29T00:41:00Z",
+     "end": "2026-09-29T01:18:00Z",
+     "changed": "Gap 3 (the world looks like greybox), picked as the one expected to lift the look most; gap 1 (red reads peach) and gap 2 (Violet lost) left for later rounds, and gap 2's \"scale her up 1.5x\" is the lead's Violet workstream, not this lane. Changes, all in `art/kit_art_3d.gd`: a painted golden-hour sky (`art/sky.png`, one `gen image` call) on a quad at z \u2212165 that follows the camera; the sand plane runs back to it and fog ends at its colour, so the horizon seam is gone; flapping birds; a pale horizon layer of mesas and dunes 60\u2013100 m back; the far and mid props hazed toward the horizon colour (35% and 15%) so they sit behind the play plane; dark acacia and saguaro silhouettes in the foreground, kept below the walking surface and off the pits; tiles darken toward violet with depth, and every other tile is turned round; two weak shadowless fill lights so the pit side faces are no longer black. Nothing expensive to draw: one extra textured quad, 5 birds of 2 boxes each, about 20 extra meshes, 2 directional lights without shadows.",
+     "usd": 0.22,
+     "usd_text": "about 0.22, estimated (1 gpt-image-2 call, 1536x1024, quality high, at the $0.22 per high-quality call measured in docs/bakeoff/shared-costs.md; gen logs no usage)",
+     "new_letter": "B",
+     "old_letter": "A",
+     "better": [
+      "visual_quality"
+     ],
+     "worse": [
+      "color_readability"
+     ],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The painted sky does not match the geometry. Brushy, textured cumulus clouds with teal gaps sit above untextured, flat-shaded low-poly blocks and mesas, so the frame looks like two art styles pasted together. Give the ground the same brush texture and colour grade as the clouds, or simplify the clouds to match the flat shading.",
+      "The new layering hurts the play layer. The haze runs over the playable plane, so platform tops wash into the dunes behind them (B-1 left ground top edge at y\u2248690, B-2 left blocks). The foreground acacia and cactus silhouettes are pure flat navy, the darkest mass on screen, and are cropped by the bottom of the frame. They pull the eye away from the character, and the B-3 acacia covers the front of the main platform. Keep the haze behind the play layer and lighten or blur the foreground silhouettes.",
+      "The character model is unchanged from A: about 70 px tall and grey-brown, with no rim light and a stiff pose. In B-2 it overlaps a distant pale mesa of almost the same value. In B-4 the orange pillar hides it and only the scarf shows. The strata texture still repeats identically on every block, and the salmon or peach 'red' pillars (B-2, B-4) still sit close in hue to the sandstone."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/93-g-d-r01-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-01/still-05.png",
+       "sha256": "5d02ad10c704e2a76723c97d2eb37023e1d994461a5c1ad96babc8c58e6579fb",
+       "path": "bakeoff/g-d/glow-up/round-01/still-05.png"
+      },
+      "20": {
+       "webp": "items/94-g-d-r01-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-01/still-20.png",
+       "sha256": "45558c0e738141814ee27c10f317e7ee7d3d43d23b221abf1596ef55e9652e9f",
+       "path": "bakeoff/g-d/glow-up/round-01/still-20.png"
+      },
+      "40": {
+       "webp": "items/95-g-d-r01-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-01/still-40.png",
+       "sha256": "4184b01b1eed4f03fafa299efd88af1a842bdcdb1f3b859f5baf990435f66335",
+       "path": "bakeoff/g-d/glow-up/round-01/still-40.png"
+      },
+      "60": {
+       "webp": "items/96-g-d-r01-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-01/still-60.png",
+       "sha256": "bf8ae79a164fbf4419563e5092b185409e588accd3e2ba91a8a8e07a9d3b7dcb",
+       "path": "bakeoff/g-d/glow-up/round-01/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 2,
+     "kept": false,
+     "vs": 1,
+     "start": "2026-09-29T01:20:00Z",
+     "end": "2026-09-29T01:38:00Z",
+     "changed": "Gap 2 (the layering hurts the play layer), picked because it is what made color_readability worse in round 1 and it is fixable in this lane; gap 1 (sky and ground in two styles) left for a later round; gap 3 is mostly Violet herself (the lead's workstream), except her surroundings. Changes, in `art/kit_art_3d.gd`: the near backdrop (mid and far props, the sand behind the level) is hazed toward a dusty rose one value step darker than the sunlit sand tops instead of toward the bright horizon, and the sand plane behind the level is that darker tone too, so platform edges read against what is behind them; only the horizon layer still fades to the horizon colour; the dark foreground silhouettes are removed; the tiles' depth tint is gentler (5% per cell, was 8%). Nothing new to draw; 20-odd foreground meshes fewer.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [],
+     "worse": [
+      "visual_quality"
+     ],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The whole scene sits on one depth plane. There is no dark foreground layer framing the shot, as the black grass and rocks do in the Planet of Lana key art or the dark cliffs do in the GRIS screenshot. The platform tops are flat cream slabs almost the same brightness as the haze behind them (luma about 220 against 217 in A-1), so the walkable edge melts into the dunes. Add a darker, soft-edged foreground layer, and either darken the platform tops or give them a lit lip so they separate from the background.",
+      "Every block in the terrain uses the same strata texture: identical wavy purple lines about 25 px apart, tiled unbroken across every block and pillar (A-1 ground strip, A-4 walls), with sharp box corners and no erosion, debris, grass or overhang. The mesas are flat-shaded low-poly shapes with visible facets and the same purple band repeated. Vary the strata per block, break up the silhouettes of edges and corners, and add hand-painted detail at the ground line.",
+      "The character is about 70 px tall, a grey figure with noisy texture and no readable face, and it sits in the same grey-mauve as the sand shadows (A-3, against the mesa shadow). The jump pose in A-1 has both arms held straight out, which looks stiff. The scarf is its only appealing element. Give the cloak a clear value or hue break from the sand (darker, or rim-lit), enlarge and simplify the head so the face reads, and make the poses more fluid."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/97-g-d-r02-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-02/still-05.png",
+       "sha256": "1333fc2e1988720578f977b80efc1d6b5ddb8512552151284e2c5a295ed44cc8",
+       "path": "bakeoff/g-d/glow-up/round-02/still-05.png"
+      },
+      "20": {
+       "webp": "items/98-g-d-r02-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-02/still-20.png",
+       "sha256": "fa305ed36b0e4bbe1433fdcc8690172304ec4ac0bf0d63e76e436319787deb17",
+       "path": "bakeoff/g-d/glow-up/round-02/still-20.png"
+      },
+      "40": {
+       "webp": "items/99-g-d-r02-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-02/still-40.png",
+       "sha256": "62e8897934087cdb5b610dc6e8d17542efef0d0fb91b23d2b9baf0f3fae506d0",
+       "path": "bakeoff/g-d/glow-up/round-02/still-40.png"
+      },
+      "60": {
+       "webp": "items/100-g-d-r02-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-02/still-60.png",
+       "sha256": "8a63819fc909f49ea4621765fc8c4a668cd1035733bc4116ea54a9baf535ff9d",
+       "path": "bakeoff/g-d/glow-up/round-02/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 3,
+     "kept": true,
+     "vs": 1,
+     "start": "2026-09-29T01:42:00Z",
+     "end": "2026-09-29T02:15:00Z",
+     "changed": "Reshot once before the critique: the first shoot used a crimson #c4162a for red, but the biome brief fixes the tag red at #e04a3a, so the red material went back to #e04a3a and the lighting was changed instead; the four stills are the reshoot. Sampled red wall pixels: 40 s (inactive) 223,55,49; 60 s (active) 242,70,59. Gap 3 (peach red pillars; Violet hidden and blending in). Picked because red has been called peach in every critique so far and Violet disappearing behind a wall is the worst read in the set; gap 1 (foreground) and gap 2 (haze, strata) left for later. Of gap 3, Violet's face, arms and size are the lead's workstream, so this round only changes how she reads in the world. Changes, in `art/kit_art_3d.gd`: the tag-blocks' own lights no longer light the blocks (visual layer 2, excluded from their cull mask), which is what washed active red to peach; the tag-blocks keep the brief's colours (#e04a3a, #3fbf6a) and are lit only by a neutral white key (the warm sun and the fills skip them), at an energy (0.6) that renders them close to those colours, and active glow is 0.15 (was 0.5); Violet is drawn 0.6 m in front of the play plane, so she stays in front of a wall she passes through; a dark 5 cm outline behind her gives her a value break from sand, sky and mesa. Nothing expensive: 14 extra unshaded sprites.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation)",
+     "new_letter": "B",
+     "old_letter": "A",
+     "better": [
+      "character_appeal",
+      "color_readability"
+     ],
+     "worse": [
+      "visual_quality"
+     ],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 4
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 2
+     },
+     "gaps_new": [
+      "The red and green walls are flat, pure primaries with a visible seam at every tile, no texture, and no response to the warm sunset light. They look like debug cubes pasted over a pastel painting (the B-3 pillar at x\u2248430\u2013495, the B-4 ledge at x\u2248575\u2013785). They are also told apart by hue alone, so players with red-green colour blindness can't separate them. Add a bevel or emissive gradient that matches the scene's light, and a distinct glyph or pattern per colour.",
+      "The character's ink outline is jagged and uneven in thickness. It breaks up around the hands and robe hem in B-2 and B-3, so the figure reads as a cut-out sticker rather than something lit by the scene. In B-4 the character standing against the red wall picks up a pink tint, and the red scarf nearly merges with the red blocks behind it. Replace the noisy line with a clean, varied-weight line or a rim light, and make sure the scarf keeps value contrast against same-coloured walls.",
+      "The environment matches A exactly. The same wavy strata tile repeats identically on every block. The midground is empty haze (the centre of B-1 and B-2). The foreground acacia and cactus are flat dark-purple cut-outs with no atmospheric blending. The lighting is even across the whole frame, with no focal pool of light. The hero is only about 7% of frame height, with no framing or depth-of-field to lead the eye to it, unlike the dramatic layered compositions in Planet of Lana and INSIDE."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/101-g-d-r03-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-03/still-05.png",
+       "sha256": "efd5eb348e0d5d5958befdb37b1f10c191e086e49e51d5e936a2e71d45128f79",
+       "path": "bakeoff/g-d/glow-up/round-03/still-05.png"
+      },
+      "20": {
+       "webp": "items/102-g-d-r03-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-03/still-20.png",
+       "sha256": "130f42457fed3831367f9226a39a071e1f23498c85e362fbb3fc9014eb15092d",
+       "path": "bakeoff/g-d/glow-up/round-03/still-20.png"
+      },
+      "40": {
+       "webp": "items/103-g-d-r03-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-03/still-40.png",
+       "sha256": "c604f632a141b6745fcd3940a517dd9568a3f7b6a17bb64f40e0ea5839f88fcd",
+       "path": "bakeoff/g-d/glow-up/round-03/still-40.png"
+      },
+      "60": {
+       "webp": "items/104-g-d-r03-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-03/still-60.png",
+       "sha256": "5b6ac2843e3e0a8c2824b92757b15e8ef52ff0ce271dda8da8197f74f0823ae3",
+       "path": "bakeoff/g-d/glow-up/round-03/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 4,
+     "kept": true,
+     "vs": 3,
+     "start": "2026-09-29T02:18:00Z",
+     "end": "2026-09-29T02:31:00Z",
+     "changed": "Gap 1 (flat \"debug cube\" tag walls, told apart by hue alone). A new gap, not a retry of round 3's. Picked because the flat primaries are what the critic says cost visual_quality in round 3, and a shape per colour also helps color_readability for red-green colour-blind players; gap 2 (Violet's outline, scarf against red) and gap 3 (environment) left for later. Changes: the tag-blocks get their own shader (`art/tag_block.gdshader`, replacing their StandardMaterial): stone grain, a gradient lit from above, and a carved glyph on each front face, a filled diamond for red and a ring for green; active blocks glow, most strongly in the glyph. The colours stay the brief's (#e04a3a, #3fbf6a). Sampled red wall: 40 s (inactive) 211,48,45; 60 s (active) 229,69,58. Cost: one small fragment shader on 33 blocks.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation)",
+     "new_letter": "B",
+     "old_letter": "A",
+     "better": [
+      "color_readability"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 4
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The red and green walls and platforms are still unlit primitive cubes. The new glyphs (diamond on red, ring on green) are flat sticker-like decals centred on each cube face. They read as UI icons, not as part of the world, and repeating them on all 12\u201313 cubes of a pillar makes a busy vertical stripe (B-3, B-4). Carve or emboss the motif into a stone or lacquer material, or make it a faint emissive rune. Add contact shadows and rim light so the pillars sit on the sand.",
+      "The character is about 90 px tall on a 1080 px screen, drawn with a grey, scratchy outline and a muddy grey-brown fill, with no clear shape language or face. The scarf is a 3\u20134 px sliver. In B-4 the figure takes on a red tint against the red wall and the red scarf vanishes into it, even with the diamond glyphs behind it. Redraw the figure as a clean silhouette of 2\u20133 big shapes, with a scarf at least 1.5\u00d7 the body width that trails with lag. Add a value or rim separation so the figure pops off any coloured wall.",
+      "The environment is unfinished. Every platform front uses the same tiled strata texture, identical wavy bands repeating about every 50 px. Platform tops are flat cream, the same value as the background sand, so walkable edges vanish in B-1 and B-2. The birds are single chevron strokes ('^'). The flat navy foreground acacia and cactus outweigh the play layer. Vary the strata per block, rim or darken the walkable top edges, replace the chevron birds, and haze the foreground silhouettes."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/105-g-d-r04-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-04/still-05.png",
+       "sha256": "efd5eb348e0d5d5958befdb37b1f10c191e086e49e51d5e936a2e71d45128f79",
+       "path": "bakeoff/g-d/glow-up/round-04/still-05.png"
+      },
+      "20": {
+       "webp": "items/106-g-d-r04-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-04/still-20.png",
+       "sha256": "ee36d527d704cefd413ad85e0a5e137d9b511c8a68d7ece4589da9f8bd1dad6d",
+       "path": "bakeoff/g-d/glow-up/round-04/still-20.png"
+      },
+      "40": {
+       "webp": "items/107-g-d-r04-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-04/still-40.png",
+       "sha256": "109d49bab290a1db4c0ca95689d9af4e36c496461c9402c025bf1e1e7ad6e159",
+       "path": "bakeoff/g-d/glow-up/round-04/still-40.png"
+      },
+      "60": {
+       "webp": "items/108-g-d-r04-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-04/still-60.png",
+       "sha256": "979b2b741f0015266b4b59070ca467e3de60746d6cec82357fb18e93dfca93dc",
+       "path": "bakeoff/g-d/glow-up/round-04/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 5,
+     "kept": true,
+     "vs": 4,
+     "start": "2026-09-29T02:33:00Z",
+     "end": "2026-09-29T02:49:00Z",
+     "changed": "Gap 3 (unfinished environment: one strata tile, platform edges lost, chevron birds, heavy foreground). A new gap, not a retry of round 4's (the tag walls). Picked because the environment fills most of every frame and visual_quality has not moved since round 1; gap 1 would retry round 4's gap, and gap 2 asks mostly for a redrawn Violet, which is the lead's workstream. Round 2 tried haze and removed the foreground and was reverted; this round keeps the foreground and does not touch the backdrop haze. Changes, in `art/kit_art_3d.gd`: a seamless noise, mapped in world space and stretched along x, darkens the tiles in long horizontal bands (detail texture, multiply), so the strata vary in tone across blocks; every tile that is open above gets a thin dark lip line under its top edge, so walkable edges read against the sand behind; the chevron birds are now birds with a body and jointed, swept wings whose tips lag as they flap; the foreground acacias and saguaros are hazed to a translucent mid violet. Cost: one 256x256 detail texture on the tile materials, 1 lip quad per surface tile (about 40), 7 small meshes per bird, and 20-odd foreground meshes now alpha-blended.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [
+      "color_readability"
+     ],
+     "worse": [
+      "visual_quality"
+     ],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The platforms are extruded boxes with sharp 90\u00b0 corners, and every face uses the same wavy purple stripe texture, repeating about every 25 px vertically (A-3 middle block, A-4 both big blocks). They have no eroded edges, overhangs or sand lips. Hand-shape the platform silhouettes and break up the strata, as GRIS does with its tower and Lana with its pilings.",
+      "The foreground acacia and cactus are drawn as roughly 50%-opacity lavender stamps over the ground face (A-1 bottom left, A-3 under the character, A-4 bottom right), so they read as stains, not depth. The mid-ground mesas are flat, low-poly shapes with hard facets and hard cast shadows, set under a soft painterly sky. Make the foreground an opaque dark layer with a soft edge, and paint shading variation into the mesas so they match the sky.",
+      "The character is a figure about 75 px tall (at 1080p), grey, with a scratchy dark outline and no readable face or hands. Its grey is close to the sand haze (A-2, where it floats in front of a faded mesa). Next to the red wall the whole figure turns pink and the red scarf disappears into the wall (A-4). Give the body a lighter or warmer value than the background, add rim light, and keep the scarf's colour from tinting the body."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/109-g-d-r05-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-05/still-05.png",
+       "sha256": "f4f4dc278423038ecef97307a65cbd8de729f12295d612934fb0938b1888c0b7",
+       "path": "bakeoff/g-d/glow-up/round-05/still-05.png"
+      },
+      "20": {
+       "webp": "items/110-g-d-r05-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-05/still-20.png",
+       "sha256": "13e000627d9fa3f284b86d72f02284933d4203829be1fb4f6f75e747dacd6e7b",
+       "path": "bakeoff/g-d/glow-up/round-05/still-20.png"
+      },
+      "40": {
+       "webp": "items/111-g-d-r05-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-05/still-40.png",
+       "sha256": "2e733df87b9853fe5f478a9519a6700da5c214f2ca0fadef35366431cd591f17",
+       "path": "bakeoff/g-d/glow-up/round-05/still-40.png"
+      },
+      "60": {
+       "webp": "items/112-g-d-r05-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-05/still-60.png",
+       "sha256": "5838e9709eaf357410be732eb70cbdaec71f56cc4126e9f99214eef63316e933",
+       "path": "bakeoff/g-d/glow-up/round-05/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 6,
+     "kept": true,
+     "vs": 5,
+     "start": "2026-09-29T02:52:00Z",
+     "end": "2026-09-29T03:20:00Z",
+     "changed": "Gap 3 (Violet lost in the haze, pink beside the red wall, scratchy outline). A new gap, not a retry of round 5's (the environment). Picked because character_appeal has not moved from 2 in any round, and every critique since round 3 names her pink tint and blending; of this gap, her face, hands and size are the lead's Violet workstream, so this round changes only how she is lit and outlined here. Gap 1 (platform shapes) and gap 2 (foreground and mesas) left for later. Changes, in `art/kit_art_3d.gd`: her sprites sit on their own visual layer, which the tag-blocks' coloured lights skip, so she no longer turns pink or green beside a wall; a warm key light that lights only her makes her read lighter and warmer than the sand haze; the outline is now each part's silhouette drawn eight times, 3.5 cm out in each compass direction, alpha-cut, so it is even and crisp instead of following the painted parts' ragged edges. Cost: 112 small unshaded outline sprites (8 per part) and one shadowless directional light.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation)",
+     "new_letter": "B",
+     "old_letter": "A",
+     "better": [
+      "visual_quality",
+      "character_appeal"
+     ],
+     "worse": [
+      "color_readability"
+     ],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The character's cloak is the same mid-beige value as the sand haze and the mesas. With the thin 1\u20132 px outline, the figure all but dissolves at full-frame size in B-2 (against the hazy distant towers) and B-1, and the face and hands can't be read at her roughly 110 px height. Separate her by value: make the cloak darker or cooler, or add a warm rim light, the way Lana stays a clean dark shape against bright backgrounds.",
+      "Every ground and platform block uses the same horizontal purple wavy-stripe texture at the same scale and phase: the step block in B-3, both cliffs in B-4, and the whole floor in B-1. The blocks are sharp-edged boxes with no lip, erosion or contact shading where they meet the sand. The sand is a flat, empty beige plane, and the three background towers in B-1 are one silhouette repeated. Vary the texture per block, bevel and weather the edges, and fill the middle distance with dune shapes and mesas that each look different.",
+      "The red and green walls are stacks of identical glossy cubes with UI glyphs (a diamond or a ring). They are lit and shaded differently from the painted mesas and look like debug geometry, and in B-4 the red scarf merges into the red wall. The poses are stiff and puppet-like: both arms straight up in B-1 and B-4, and the jump pose in B-2 is a walk cycle frame. Rebuild the walls in the scene's material language with an emissive inlay. Keep the scarf clear of the wall red, and give the jump, climb and walk poses real squash, overlap and a cloak that trails behind her."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/113-g-d-r06-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-06/still-05.png",
+       "sha256": "1b45c530d2fd4ee8dfbb08cb577fd2fbf03e097bc57eb0eb929f4947eef8ce59",
+       "path": "bakeoff/g-d/glow-up/round-06/still-05.png"
+      },
+      "20": {
+       "webp": "items/114-g-d-r06-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-06/still-20.png",
+       "sha256": "9158694acfa07809632c7f4f31e554f3387abd56151c03769b5d085c509c6dc9",
+       "path": "bakeoff/g-d/glow-up/round-06/still-20.png"
+      },
+      "40": {
+       "webp": "items/115-g-d-r06-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-06/still-40.png",
+       "sha256": "968939b46176fd905b966477f5a6fbab9a92d521c63879002991d7dec43c34e6",
+       "path": "bakeoff/g-d/glow-up/round-06/still-40.png"
+      },
+      "60": {
+       "webp": "items/116-g-d-r06-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-06/still-60.png",
+       "sha256": "594835f343df7467ae74b39899c0970f366b32e3f384fdddacbc16b2f18e290d",
+       "path": "bakeoff/g-d/glow-up/round-06/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 7,
+     "kept": true,
+     "vs": 6,
+     "start": "2026-09-29T03:23:00Z",
+     "end": "2026-09-29T03:38:00Z",
+     "changed": "Gap 2 (empty middle distance, repeated background towers, hard block corners). A new gap, not a retry of round 6's (Violet's value). Picked because the empty beige sand and the three identical towers take up half of every frame, and gap 1 would retry round 6's gap; gap 3 is mostly the tag walls (round 4's gap) and Violet's poses, which are the lead's. Changes, in `art/kit_art_3d.gd`: the horizon layer never repeats a piece twice in a row and stretches each one by its own x and y scale at any yaw, so no two silhouettes match (an arch and different mesas now show); a field of overlapping dunes, each stretched differently and barely hazed, fills the sand 14-26 m back so the middle distance has form; flattened sand drifts bank against the foot of every solid step on a walkable surface. Per-block strata variation is already the round-5 world-space bands; this round adds no bevels to the kit tiles. Cost: about 15 more dune meshes (1,672 triangles each) and about 10 drift spheres.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation)",
+     "new_letter": "B",
+     "old_letter": "A",
+     "better": [
+      "visual_quality"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "Every platform face carries the same purple wavy-stripe tile at one scale, with about 10 identical wave rows on the tall pillars in B-3 and B-4. The top edges are perfectly straight, with no lip, crumble or vegetation apart from a few sand drifts in B-1 and B-2, so every platform reads as an extruded rectangle. Scale and tint the strata by block size and break up the top-edge silhouettes.",
+      "The red and green puzzle columns are plain 64 px cubes with the same diamond or ring stamped on each. They are saturated, unlit and untextured, so they look like debug placeholders against the painted sky. Give them a material that belongs in this world, such as crystal or glyph-stone with an inner glow that spills light onto the sand around them. Keep the shapes as the colour-blind cue.",
+      "The character is about 100 px tall on a 1080 px frame. The grey robe has almost no value contrast with the sand, the black outline is aliased, the face has no readable features, and the poses are stiff. The red scarf merges into the red column in B-4. Add a rim or back light, paint clean edges, add a face accent and motion in the robe hem, and outline or hue-shift the scarf against a same-coloured wall."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/117-g-d-r07-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-07/still-05.png",
+       "sha256": "858b8a2b61eff44fe4b1c7741a38e10b45e463c0fe0fb09aa0add444588e13fc",
+       "path": "bakeoff/g-d/glow-up/round-07/still-05.png"
+      },
+      "20": {
+       "webp": "items/118-g-d-r07-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-07/still-20.png",
+       "sha256": "7149003596a37b3e39049c13a8de19e74cc6b4d581326b8d21a33a3fc3b4a909",
+       "path": "bakeoff/g-d/glow-up/round-07/still-20.png"
+      },
+      "40": {
+       "webp": "items/119-g-d-r07-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-07/still-40.png",
+       "sha256": "ffbbaf4cc1c1d218005505831eeef995047c61c8cf2c64ff625006b0738b501b",
+       "path": "bakeoff/g-d/glow-up/round-07/still-40.png"
+      },
+      "60": {
+       "webp": "items/120-g-d-r07-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-07/still-60.png",
+       "sha256": "e87df1cf990b63e942d101530d74fd27e808508ddeb38dd5fdec831b12b472d7",
+       "path": "bakeoff/g-d/glow-up/round-07/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 8,
+     "kept": false,
+     "vs": 7,
+     "start": "2026-09-29T03:41:00Z",
+     "end": "2026-09-29T03:57:00Z",
+     "changed": "Gap 2 (tag columns look like debug cubes). A new gap, not a retry of round 7's (the environment); round 4 last touched the walls. Picked because gap 1 would retry round 7's gap and gap 3 is mostly Violet's drawing and poses (the lead's). Crystal is ruled out, so the material is glyph-stone: `art/tag_block.gdshader` now draws each block as dressed stone, with grain, faces lit from above and edges worn darker; a glowing inlay channel runs up every wall (across every platform) through all its blocks, joining them into one carved monolith, with a node per block, a diamond for red and a ring for green, each a slightly different size; the inlay glows softly once the colour is acquired and brightly while active (TAG_GLOW 0.4, was 0.15); the tag lights spill twice as strongly onto the sand around each wall (LIGHT_SCALE 0.7, was 0.35; the blocks and Violet stay outside their cull mask). Colours stay the brief's. Sampled red wall: 40 s (inactive) 218,72,60; 60 s (active) 220,56,49. Cost: the same small fragment shader on 33 blocks; 33 omni lights at twice the energy, same range.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation)",
+     "new_letter": "B",
+     "old_letter": "A",
+     "better": [],
+     "worse": [
+      "visual_quality",
+      "color_readability"
+     ],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 4
+     },
+     "scores_kept": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 4
+     },
+     "gaps_new": [
+      "The block glyphs look like a rendering bug. The rings and diamonds have horizontal scanline tearing, and the shape changes from tile to tile. It is clearest in B-4 on the 3rd, 5th and 6th green tiles and down the red columns in B-2 and B-3. A pale 1-2 px seam also runs through every tile of every column. Fix: render a clean, consistent glyph per tile and either drop the seam or make it an intentional painted inlay.",
+      "The character is a flat-lit 2D cutout about 75 px tall. It has an aliased black outline with stair-stepped edges, gets no warm key or rim light to match the sunset scene, and has an unreadable face. The grey robe on pale sand haze (B-1, B-2) depends only on the outline to separate. Fix: anti-alias the outline, add rim light and color grading, and add value contrast between the robe and the background.",
+      "Every platform uses the same wavy purple strata texture, repeating about every 40 px and copied block to block. Top edges are single straight purple lines, and the flat purple tree and cactus silhouettes in B-3 and B-4 are laid over the platforms like decals, not like a foreground layer. Fix: paint broken edge silhouettes and large-scale color variation on the platforms, and make the foreground silhouettes a real framing layer with depth blur or darker values at the frame edges."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/121-g-d-r08-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-08/still-05.png",
+       "sha256": "f09fcea791f376187b26e7831d01aedf66368c10983c1ea5c4b34dc38743161e",
+       "path": "bakeoff/g-d/glow-up/round-08/still-05.png"
+      },
+      "20": {
+       "webp": "items/122-g-d-r08-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-08/still-20.png",
+       "sha256": "17bc77eaa2f7e23fe27cef13d5d3cbb4ee04b40532c1af4d0bc73bdbbc8180fd",
+       "path": "bakeoff/g-d/glow-up/round-08/still-20.png"
+      },
+      "40": {
+       "webp": "items/123-g-d-r08-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-08/still-40.png",
+       "sha256": "2d3178c71345a05ef0a6dca4fd57955dd093f8c974a0e8bd7e1f3a09cee362e3",
+       "path": "bakeoff/g-d/glow-up/round-08/still-40.png"
+      },
+      "60": {
+       "webp": "items/124-g-d-r08-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-08/still-60.png",
+       "sha256": "0d8c15e66e943b48c04df961e4fc67399fe8c79aaea03f18c553e4c35bbb239a",
+       "path": "bakeoff/g-d/glow-up/round-08/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 9,
+     "kept": true,
+     "vs": 7,
+     "start": "2026-09-29T04:00:00Z",
+     "end": "2026-09-29T04:15:00Z",
+     "changed": "Gap 2 (ruler-straight platform tops, one colour across the ground). A new gap, not a retry of round 8's (the tag walls); it builds on round 7's kept environment work. Picked because round 7 (environment) was the last round the critic called better on visual_quality, and gap 1 is mostly Violet's drawing (the lead's); gap 3 would retry round 8's gap. Changes, in `art/kit_art_3d.gd`, starting from round 7 (round 8 reverted): seeded edge dressing on every plain walkable top: small rocks, young saguaros and scrub along the back of about a third of the cells, and rock crumbs half sunk into the front edge of about a quarter, so no top edge is a straight line (kept off the start, orb and goal cells); a broad colour drift along x, four steps from cool violet to warm apricot (up to 10%), on top of the round-5 strata bands, so long stretches of ground differ in colour. Cost: about 25 small kit props (under 2,000 triangles each) and about 15 crumbs.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation)",
+     "new_letter": "B",
+     "old_letter": "A",
+     "better": [
+      "visual_quality"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "This set has the same terrain problem as A: rectangular boxes with 90\u00b0 corners and one uniformly tiled purple sine-wave strata texture on every face, so the B-3 and B-4 cliff blocks look like textured cubes. Break up the silhouettes (uneven top edges, overhangs, chips) and vary strata width and tilt per block.",
+      "The red and green gameplay blocks are unlit, fully saturated cubes with icon decals and no shading, ambient occlusion, wear or bounce light. Next to the painterly sky and mesas they look like placeholder debug geometry (B-2 right column, B-3 and B-4 columns). Keep the hue and the diamond and ring icons, but paint them as glazed stone or banners that catch the same warm key light as the mesas.",
+      "The character is identical to A's: about 85 px tall, flat grey with the same value as the sand haze, no readable face or hair, and the red scarf disappears against the red column in B-4. The new ground props also sit at one small scale along ledge edges, and several tiny acacias and rocks have no contact shadow, so they look pasted on (the B-1 left ledge, the B-4 right ledge). Add a rim light or darker body value to the character, and vary prop scale with a grounded shadow under each prop."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/125-g-d-r09-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-09/still-05.png",
+       "sha256": "cc24a930d0ce437d3b213379d837f5bcfb0d3e993cc04f0b9d4f8fae8618c306",
+       "path": "bakeoff/g-d/glow-up/round-09/still-05.png"
+      },
+      "20": {
+       "webp": "items/126-g-d-r09-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-09/still-20.png",
+       "sha256": "3c278c3da126be4b7f2e6f27e8dd8687798648a01883a318cdd1e8226d8a7254",
+       "path": "bakeoff/g-d/glow-up/round-09/still-20.png"
+      },
+      "40": {
+       "webp": "items/127-g-d-r09-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-09/still-40.png",
+       "sha256": "108892b760a7f316ec105f4874fb13d80809e54ee90d0f0c60b7159344146715",
+       "path": "bakeoff/g-d/glow-up/round-09/still-40.png"
+      },
+      "60": {
+       "webp": "items/128-g-d-r09-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-09/still-60.png",
+       "sha256": "d822de8ea350b7bcc5cb1c6f8b7825af590516bf790323d90138635598758013",
+       "path": "bakeoff/g-d/glow-up/round-09/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 10,
+     "kept": true,
+     "vs": 9,
+     "start": "2026-09-29T04:17:00Z",
+     "end": "2026-09-29T04:31:00Z",
+     "changed": "Gap 3 (Violet the same value as the sand haze, scarf lost on the red wall, pasted-on ledge props). A new gap, not a retry of round 9's (the platform tops and ground colour); her face and hair are the lead's Violet workstream, so this round changes only her tint, rim and outline here. Picked over gap 1 (terrain silhouettes, close to round 9's gap) and gap 2 (the tag blocks, round 8's reverted gap), because every critique has named her value, and the ledge props are round 9's own addition. Changes, in `art/kit_art_3d.gd`: her body (every part but the scarf) is tinted darker and cooler, so she reads as a dark shape on the pale sand and haze; a warm rim (each part's silhouette, offset up and toward the sun, warm and unshaded) catches the sunset light on her sun side; the outline is alpha-blended now, so its edges are smooth rather than stair-stepped; the scarf shows the active colour a step lighter than the tag blocks (#ff6a57 for red), so it keeps its own value in front of a red wall; the ledge props vary from 0.6x to 1.7x of round 9's sizes, and each sits on a soft contact shadow. Cost: 14 more unshaded rim sprites and about 25 alpha-blended shadow quads.",
+     "usd": 0.0,
+     "usd_text": "0 (no generation)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [
+      "visual_quality",
+      "character_appeal",
+      "color_readability"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 3,
+      "color_readability": 4
+     },
+     "scores_kept": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The character's umber cloak is one flat brown (about RGB 105,78,78) with no rim light and almost no fold shading, so at 1080p the body is a muddy blob, the hands read as mittens and there's no face. The sky is warm backlight, so add a warm rim on the sun side and 2\u20133 fold values on the cloak.",
+      "The scarf loses its color: in A-3 the green scarf is a washed-out pale mint, and in A-4 the red scarf is salmon-pink hanging right over the red wall, where it vanishes. Push the scarf to full saturation, keep its value clearly apart from the red and green blocks, and give it a darker trailing edge.",
+      "The environment is built from repeats. Every platform uses the same wavy purple-line strata texture, tiled about every 50 px down the face and identical on each block. The red and green walls are stacks of 8\u201313 identical untextured cubes with one stamped diamond or ring icon each, with no wear, bevel lighting or glow. The spike pits are one sprite repeated about 25 times in a row. GRIS and Lana use unique painted shapes with lighting variety, including god rays, bloom and foreground depth, and this has none of it."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/129-g-d-r10-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-10/still-05.png",
+       "sha256": "20066bc17ba5118813c17d0ab00791176b307c380e7ee39529d3a30785cbd3d2",
+       "path": "bakeoff/g-d/glow-up/round-10/still-05.png"
+      },
+      "20": {
+       "webp": "items/130-g-d-r10-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-10/still-20.png",
+       "sha256": "408ae067bd56c9711560cc855f7d9fa62433ee5a2ae7eace43c4799f9386a660",
+       "path": "bakeoff/g-d/glow-up/round-10/still-20.png"
+      },
+      "40": {
+       "webp": "items/131-g-d-r10-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-10/still-40.png",
+       "sha256": "683d0365119be60d704437f94f4a2e890771f979cc0670192647b1d856ef7a87",
+       "path": "bakeoff/g-d/glow-up/round-10/still-40.png"
+      },
+      "60": {
+       "webp": "items/132-g-d-r10-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/dc6224e69116f5823adce9c0081f40308aae622f/bakeoff/g-d/glow-up/round-10/still-60.png",
+       "sha256": "e53e6311050a645c67486e4884ad119fd149015b197300b948260463d594141f",
+       "path": "bakeoff/g-d/glow-up/round-10/still-60.png"
+      }
+     }
+    }
+   ]
+  },
+  "g-c": {
+   "sha": "2f5dede9402c6b2809df3fe6ba512fedcd44efd5",
+   "stop": "round 10, the rules' cap (docs/bakeoff/glow-up.md). Final look: round 10.",
+   "hours": 2.73,
+   "usd": 0.0,
+   "final_round": 10,
+   "rows": [
+    {
+     "round": 0,
+     "kept": true,
+     "vs": null,
+     "start": "2026-09-29T00:25:01Z",
+     "end": "2026-09-29T00:33:29Z",
+     "changed": "the look before the round (lane at 804ca911: hand-written SVG kit, tag-wall/tag-platform, curved-blade brush, Violet 9b22572d)",
+     "usd": 0.0,
+     "usd_text": "0",
+     "new_letter": "A",
+     "old_letter": null,
+     "better": [],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": null,
+     "gaps_new": [
+      "No light or atmosphere, and tiles repeat. The sky is flat teal with one hard step to lavender, the sun is a flat disc with no glow, and clouds are rounded-rectangle pills. The background layer (mesa, saguaro, clouds) repeats every ~1530 px, so the left and right edges of A-1 are the same art. The dirt tile's pebble-and-squiggle pattern repeats every ~255 px, and the same tile stood on end is reused as the A-1 left wall. Pits are flat beige rectangles over a spike strip. Fix: add a vertical sky gradient, sun bloom and haze on distant layers; make 3-4 dirt-tile variants placed at random; darken pits toward the spikes.",
+      "The character does not match the flat-vector world, and it is too small and grey. It looks like a soft-edged, rendered grey figure with a semi-transparent fringe. At ~95 px tall (~9% of frame height) the face cannot be read, and the grey robe loses its outline against the lavender and purple midground. In A-4 the wall-cling pose floats clear of the wall with arms straight up, not gripping. Fix: redraw it as a flat 2-3 tone vector figure with one dark value that holds against sand and teal; scale it to ~120 px; give the wall-cling real hand contact and a bent knee.",
+      "The red and green colors are not locked down. Measured reds: E0816F (salmon, A-2), EC4D3B (A-3), F57D56 and FF5D4B (A-4). Greens: neon mint 65FFA8 (A-3) and forest 288244 (A-4). The A-2 salmon pillar reads as another sandstone rock, and the mint is far too saturated for the muted palette. Pale red and deep green is the one pair that also differs in brightness; the rest separate by hue alone, which fails for red-green colorblind players. The red scarf disappears against the red wall in A-4. Fix: pick one red and one green; give each its own shape cue (chevrons vs waves) or a rim glow; put a dark 2 px outline on the scarf."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/45-g-c-r00-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-00/still-05.png",
+       "sha256": "0e108a20ddbebb78bb9cde09d1f7245208a43c9fc9a818e6d9272ef568ccc3a1",
+       "path": "bakeoff/g-c/glow-up/round-00/still-05.png"
+      },
+      "20": {
+       "webp": "items/46-g-c-r00-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-00/still-20.png",
+       "sha256": "31f0666ea0f1c5d2ee2eafbfa8e0124e4cba02e064479b02084b17043386661b",
+       "path": "bakeoff/g-c/glow-up/round-00/still-20.png"
+      },
+      "40": {
+       "webp": "items/47-g-c-r00-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-00/still-40.png",
+       "sha256": "6ffdaf498f01762b8532865644db7945db2c50b664ba9cba66253f863d18cb21",
+       "path": "bakeoff/g-c/glow-up/round-00/still-40.png"
+      },
+      "60": {
+       "webp": "items/48-g-c-r00-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-00/still-60.png",
+       "sha256": "2b04d7d7606aba4ba6ca6473a74037b0d6e39f5e4aaed1b74c77ac8e75ca10fb",
+       "path": "bakeoff/g-c/glow-up/round-00/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 1,
+     "kept": true,
+     "vs": 0,
+     "start": "2026-09-29T00:39:38Z",
+     "end": "2026-09-29T00:51:35Z",
+     "changed": "gap 1 of round 0 (light, atmosphere, repetition), chosen because it is the biggest visual_quality gap and wholly the lane's (gap 2 asks to redraw and rescale Violet, which is the lead's; gap 3 is partly hers, the scarf outline): backdrops widened to 3072 px with new second halves (a screen no longer shows the same art twice); sky as a teal-to-peach gradient, sun bloom, clouds with lit tops and shaded bases, distant ranges and mesas fading into haze, warm rim light on sunward rock edges, sunlit dune crests; two wall-tile and two ground-tile variants picked per block; pits darken toward the spikes; sky and rock fill the strips above and below the level. Draw cost: three 3072x1024 backdrop textures with mipmaps (about 16 MB each in VRAM) instead of 1536 px ones; everything else is the same sprites and one extra gradient quad per hazard cell",
+     "usd": 0.0,
+     "usd_text": "0 (no generation; hand-written SVG and GDScript)",
+     "new_letter": "B",
+     "old_letter": "A",
+     "better": [
+      "visual_quality"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The lighting stops at the sky. The sky gradient, sun glow and rim-lit mesas are good, but the foreground blocks and dunes are lit evenly: no shadow cast away from the sun, no darkening where a block meets the sand, and no warm highlight on block tops. There is no foreground silhouette layer and no haze between the dunes and the playfield, so the scene has three flat planes where GRIS and Lana have continuous depth fog.",
+      "Ground and pit construction shows. Tile seams are visible as vertical breaks in the strata (B-4 right block at x\u22481150, B-3 left block at x\u2248720), and the same pebble-and-crack motif repeats. The pit fade is a hard-edged grey-violet rectangle whose top starts partway up the dunes (B-1 x\u22481215\u20131790, B-4 x\u2248510\u2013960). Its grey tint is off-palette, and it looks like a box laid over the art rather than depth. Feather the pit edges, tint the fade toward the sky's purple, and break up the tile seams.",
+      "The character has the same problems as in A. It is the same grey, soft-shaded sprite about 85 px tall, with fringe pixels, in a different style from the vector world and low in contrast against the sand. In B-4 its red scarf (\u2248 RGB 200,50,40) sits against the salmon wall (\u2248 255,119,93) and disappears. Give the scarf a darker or cooler outline and the body a rim light, or keep the scarf's red visibly different from the wall reds."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/49-g-c-r01-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-01/still-05.png",
+       "sha256": "ae2b62997fd250286a9847f0f07a148e432f6f14b4688ea9f497b7a3e2769aef",
+       "path": "bakeoff/g-c/glow-up/round-01/still-05.png"
+      },
+      "20": {
+       "webp": "items/50-g-c-r01-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-01/still-20.png",
+       "sha256": "62b2f2f909d7a41807da8dc1832d5097ec94cdaf23d94dd1315587cbd85fa9b2",
+       "path": "bakeoff/g-c/glow-up/round-01/still-20.png"
+      },
+      "40": {
+       "webp": "items/51-g-c-r01-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-01/still-40.png",
+       "sha256": "daa2eb66db5520b1ab03f27d58935285aa104534eb703f601ee120d0c0667a74",
+       "path": "bakeoff/g-c/glow-up/round-01/still-40.png"
+      },
+      "60": {
+       "webp": "items/52-g-c-r01-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-01/still-60.png",
+       "sha256": "0a669050ca6cca11a86510f2e278dfe5ca8056aaabdc067ecbe7c48ad6f6318f",
+       "path": "bakeoff/g-c/glow-up/round-01/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 2,
+     "kept": false,
+     "vs": 1,
+     "start": "2026-09-29T00:55:56Z",
+     "end": "2026-09-29T01:21:18Z",
+     "changed": "gap 1 of round 1 (the lighting stops at the sky), chosen as the largest visual_quality gap that is wholly the lane's (gap 3 is Violet's look; gap 2, seams and the pit box, is smaller): the low sun on the left now lights the foreground. Warm light on open block tops and sunward faces, shade on far faces, and each far face throws a feathered shadow 44 px right onto the backdrop; rock darkens with depth below the surface; a haze gradient between the dunes and the playfield; a contact shadow under Violet while she is grounded (her parts and rig untouched). A first version cast the terrain shadow through a CanvasGroup blurred with mipmaps: the compatibility renderer drew it hard-edged, a dark copy of every block and tag wall, so it was dropped before shooting. Draw cost: up to four vertex-coloured quads per solid cell (about 700 small polygons) and one full-level gradient rect; no offscreen buffers",
+     "usd": 0.0,
+     "usd_text": "0 (no generation; GDScript only)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [],
+     "worse": [
+      "visual_quality",
+      "color_readability"
+     ],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The brown terrain blocks sit under a semi-transparent grey-violet veil: mean colour (143,95,72) against B's (164,107,69) on the same block. That veil ends in a feathered smear about 30\u201340 px wide past each block's edge. You can see it right of the pit block at x\u22481400 in A-4, down the left wall at x\u224865\u2013100 in A-1, and past the step at x\u22481020\u20131060 in A-1. It reads as a compositing bug and hazes the nearest layer, which reverses aerial perspective. Remove it, or move the haze to the far mesas and keep block edges hard.",
+      "The character is a desaturated grey figure with painted shading, about 85\u201395 px tall in a 1080 p frame, so it belongs to a different art style from the flat-vector world. Its alpha has pale fringe pixels at the hands and feet. Apart from the new purple contact shadow in A-3, nothing ties it to the scene: no rim light from the low sun, no sand-coloured bounce. Redraw it in the flat palette with a two-tone cel read, and give it a sun-side rim.",
+      "Every surface is flat fill with no light story. The ground strata are the same horizontal bands on every block, and the blue squiggle crack decals repeat on a grid of about 105 px (A-4, left block). The dunes are hard polygon steps, the clouds are one pill silhouette reused, and there are no god rays, particles, sand drift or foreground framing. GRIS and Lana build their depth from light and atmosphere. Vary the strata per block, scatter the decals, and add a sun-shaft/dust layer plus a dark foreground silhouette layer."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/53-g-c-r02-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-02/still-05.png",
+       "sha256": "52e14e1cba456cc8a5a223d42c667eb6c739326a30c07f594c203bed59797e0c",
+       "path": "bakeoff/g-c/glow-up/round-02/still-05.png"
+      },
+      "20": {
+       "webp": "items/54-g-c-r02-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-02/still-20.png",
+       "sha256": "83ada6d51673b59aa6118b09c8fd95d4f95b4458e943909c2721448b285c2af6",
+       "path": "bakeoff/g-c/glow-up/round-02/still-20.png"
+      },
+      "40": {
+       "webp": "items/55-g-c-r02-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-02/still-40.png",
+       "sha256": "5270c05f4f86f35a83e6937f233790a28a945d4017248385a2cc8aa62aa8e287",
+       "path": "bakeoff/g-c/glow-up/round-02/still-40.png"
+      },
+      "60": {
+       "webp": "items/56-g-c-r02-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-02/still-60.png",
+       "sha256": "6dd46258a010b21bb32c5dd1a249d3fbb31d1fd1ed337df72071866b07b4abe4",
+       "path": "bakeoff/g-c/glow-up/round-02/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 3,
+     "kept": true,
+     "vs": 1,
+     "start": "2026-09-29T01:25:22Z",
+     "end": "2026-09-29T01:35:02Z",
+     "changed": "from round 1 (round 2 reverted). Gap 2 of round 1's latest critique (scarf and wall colours collide, puzzle colours drift), chosen because it is the lane's lever on the two axes that have not moved (color_readability, character_appeal) and is not a retry of round 2's foreground lighting; gap 1 asks for Violet to be redrawn, which is the lead's, and gap 3 is the lighting round 2 lost on. Tag colours locked in art/reveal.gdshader: the base grey maps to exactly #e04a3a / #3fbf6a, the active pulse brightens value instead of adding tint (which washed red to salmon), and the colour is pre-saturated against the world saturation post effect so it reads the same with one or two colours acquired; chevrons on red, waves on green, visible in grey too, as a cue that does not rely on hue. Violet drawn through a CanvasGroup (art/character_outline.gdshader): dark violet 2 px outline round the whole silhouette so the scarf holds against its own wall colour, a warm sun-side rim, alpha fringe hardened (her parts, rig and scale untouched). Draw cost: one CanvasGroup buffer the size of the character (about 120x180 px) with a 9-tap shader, and a few more ALU ops in the tag shader",
+     "usd": 0.0,
+     "usd_text": "0 (no generation; shaders and GDScript)",
+     "new_letter": "B",
+     "old_letter": "A",
+     "better": [
+      "character_appeal",
+      "color_readability"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 2
+     },
+     "gaps_new": [
+      "The new black outline on the character is 2\u20133 px, stair-stepped and uneven: jagged along the scarf and robe hem in B-3, and doubled at the raised hands in B-4. It makes the sprite read like a pasted-on cut-out. The interior is still the same blurry grey 3D render with no face and no lighting from the scene's sun. Fix: anti-alias the stroke (or use a soft coloured rim instead of black), redraw the sprite at native resolution in the flat-vector style, and add a warm sun-side rim plus a ground shadow.",
+      "The white chevrons (red walls) and waves (green walls) are semi-transparent and tile every ~40 px. They do give a shape cue beyond hue, but they sit on top of the strata texture, look noisy, and match no motif in the desert art. The columns still end as hard rectangles cut off at the top of the frame. In B-4 the red ledge meets the red column with a visible seam and misaligned chevrons. Fix: put the motif into the surface as carved glyphs, keep one texture layer, cap the column tops, and align the tiles across joints.",
+      "The environment is unchanged from A. It has the same seamed, repeating strata ground blocks (identical cracks and pebbles every ~100 px, hard rectangular edges, no plants or lips), the same flat gradient spike pits, and the same backdrop: cloned lozenge clouds and one mesa layer with no atmospheric haze, light shafts or foreground silhouettes. Against GRIS/Planet of Lana it reads as stock vector clip-art, not a finished painted world."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/57-g-c-r03-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-03/still-05.png",
+       "sha256": "c474030f4ea699bf893fcd691fc27ce72ab764bf39bfc4449ddf361e8ef54ceb",
+       "path": "bakeoff/g-c/glow-up/round-03/still-05.png"
+      },
+      "20": {
+       "webp": "items/58-g-c-r03-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-03/still-20.png",
+       "sha256": "0ba19b9108d3d60cd7e60655b9e0cec17ae6e6b17edf9edc62939103639fd938",
+       "path": "bakeoff/g-c/glow-up/round-03/still-20.png"
+      },
+      "40": {
+       "webp": "items/59-g-c-r03-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-03/still-40.png",
+       "sha256": "9207c220547dabcbc11e51e2b40a4f2095b1ebf3904911f9b93ced6504f963b0",
+       "path": "bakeoff/g-c/glow-up/round-03/still-40.png"
+      },
+      "60": {
+       "webp": "items/60-g-c-r03-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-03/still-60.png",
+       "sha256": "39493174ed2d2bf7e872403af61475cbb77aa34a76bd8b02d9e2acaf2a7db123",
+       "path": "bakeoff/g-c/glow-up/round-03/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 4,
+     "kept": true,
+     "vs": 3,
+     "start": "2026-09-29T01:38:38Z",
+     "end": "2026-09-29T01:55:25Z",
+     "changed": "from round 3. Gap 3 (environment reads as stock clip-art: repeating cracks and pebbles, bare block edges, cloned clouds, no light shafts or foreground framing), chosen as the biggest visual_quality gap; gap 1 is mostly Violet's own drawing, the lead's, and gap 2 would polish a cue that already won color_readability. A different approach from round 2's reverted overlays on the tiles: set dressing and atmosphere layers, nothing drawn over the blocks. Cracks and pebbles scattered once per wall tile (they repeated every 256 px); six distinct cloud shapes; soft additive light shafts fanning from the sun on the far layer; warm dust motes drifting in the air (CPUParticles2D, fixed seed); dry-grass tufts on one open block top in three; a dark silhouette strip of rocks and brush along the bottom of the frame on a faster (1.25x) parallax layer. Draw cost: 70 CPU particles, six additive triangles pairs, one 3072x160 foreground texture, about 40 tuft sprites",
+     "usd": 0.0,
+     "usd_text": "0 (no generation; hand-written SVG and GDScript)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [
+      "visual_quality"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The character does not match the world. It is a grey, desaturated, render-like cutout with a jagged 1-2 px dark outline, about 100 px tall (under 10% of frame height), in a flat-vector desert. The face and hands don't read, and the grey cloak is close in value to the sand and rock. The red scarf also disappears where it overlaps the red pillar (A-4, around x960 y330). Redraw it as a flat-shape character: 2-3 tone cloak in a value clearly apart from the sand, a clean vector outline, and a scarf with a light rim so it separates from same-hue walls.",
+      "The terrain is ruler-straight rectangles tiled on a visible module. Every dirt face repeats the same ~100 px strata band with the same pebbles and cracks. There are vertical tile seams (right block in A-4, around x1150), and every block edge is a perfect 90-degree corner. Add overhangs, eroded lips and uneven tops, and vary the strata per block. The spike pits are a plain linear gradient box with a hard-edged spike strip (A-1, x1210-1790); give them a painted depth treatment instead.",
+      "The lighting stops at the backdrop. The god rays and dust motes exist only in the sky. The character, the red/green walls and the ledges get no sun rim light, no cast shadow, and no haze between depth layers, so the neon walls look like UI overlays. A flat, darker teal band about 27 px tall also runs across the top of every frame, where the rays and sky gradient cut off hard. Remove the band and add rim light plus depth haze so the walls and character sit in the scene's light."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/61-g-c-r04-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-04/still-05.png",
+       "sha256": "d86a817c83ce4df7ff74d019ce5a066549c62a9be5cde68e7228033b9abd0890",
+       "path": "bakeoff/g-c/glow-up/round-04/still-05.png"
+      },
+      "20": {
+       "webp": "items/62-g-c-r04-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-04/still-20.png",
+       "sha256": "3334a2438c62536e29f5624c816888a47ce0baa7b09e01b8b520b05f4a259296",
+       "path": "bakeoff/g-c/glow-up/round-04/still-20.png"
+      },
+      "40": {
+       "webp": "items/63-g-c-r04-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-04/still-40.png",
+       "sha256": "a55fad2a6e01ccf84be01314746cb1fd538a8ba1a817e52e9cd8c9b6a1071288",
+       "path": "bakeoff/g-c/glow-up/round-04/still-40.png"
+      },
+      "60": {
+       "webp": "items/64-g-c-r04-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-04/still-60.png",
+       "sha256": "8903f1a95f8ca3742acedbfbfedb23faff9fcaf627a910aa02284b0801f8d8a7",
+       "path": "bakeoff/g-c/glow-up/round-04/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 5,
+     "kept": true,
+     "vs": 4,
+     "start": "2026-09-29T01:59:37Z",
+     "end": "2026-09-29T02:10:17Z",
+     "changed": "from round 4. New gap, not a retry: round 4's gap 2, terrain construction (ruler-straight blocks, visible tile module and seams, 90-degree corners, pits a plain gradient box). Chosen as the biggest gap wholly the lane's that the shots show at full size; gap 1 asks for Violet to be redrawn (the lead's), gap 3 is the lighting direction round 2 lost on. Each connected rock mass takes its own tone and one wall variant per four-row band, so no vertical variant seams inside a block; open tops carry an uneven sand lip (hand-written lip-top.svg) that breaks the top line; sides open to the air get an eroded rock edge bulging past the face, warm on the sunward left and shadow-cored on the right (edge-left.svg, edge-right.svg); pits get a painted inside (pit-depth.svg) with two receding hazy back-wall ledges falling into the shadow the spikes stand in, replacing the gradient box. Collision unchanged. Draw cost: up to three extra small sprites per exposed solid cell (about 150)",
+     "usd": 0.0,
+     "usd_text": "0 (no generation; hand-written SVG and GDScript)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [
+      "visual_quality"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The character doesn't match the world. It's a grey, blurry raster sprite with a noisy painted texture and a jagged dark outline about 2 px thick, and it stands in a clean flat-vector desert. At about 90 px tall on a 1080p frame, the face and hands don't read. Redraw it as flat shapes in the scene's palette, with a clean tapered silhouette and a rim light from the sun behind it. Right now it doesn't pick up the glow it stands in front of (A-1, A-2).",
+      "The red and green blocks are flat, fully saturated slabs covered in a chevron or wave stamp that repeats every block (about 50 px). They get no shading, no edge highlight and none of the dusk light, so they look like debug overlays sitting on top of a painted scene. Worse, in A-4 the red scarf sits on the red wall at almost the same hue and value, and it vanishes. Shade the blocks into the scene's lighting, and give the scarf its own value or a light edge wherever it overlaps its matching wall.",
+      "The terrain repeats visibly and has no depth. The raised block in A-3 has the same pair of purple cracks at the same heights on its left and right halves. The pebble dots and the dark foreground bush shapes repeat along the whole ground strip. The mesas behind are as saturated and sharp as the foreground. Break up the crack and pebble placement, and add atmospheric haze or a desaturated value step for each background layer."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/65-g-c-r05-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-05/still-05.png",
+       "sha256": "7925f473a9d91da59d692cc31220f4d4f4c22b16882e7215a7b0be1959929ff3",
+       "path": "bakeoff/g-c/glow-up/round-05/still-05.png"
+      },
+      "20": {
+       "webp": "items/66-g-c-r05-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-05/still-20.png",
+       "sha256": "3188624bdd222746e3dd0f0dca8eaaaad65a1b852fe1e3034830ea886dcb5ec7",
+       "path": "bakeoff/g-c/glow-up/round-05/still-20.png"
+      },
+      "40": {
+       "webp": "items/67-g-c-r05-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-05/still-40.png",
+       "sha256": "914e3cb176e898e5cadcfde5b84db44f44c25b0073a7b000cd0367fb13cf6181",
+       "path": "bakeoff/g-c/glow-up/round-05/still-40.png"
+      },
+      "60": {
+       "webp": "items/68-g-c-r05-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-05/still-60.png",
+       "sha256": "e6179432b95f109bfa37f2164eec23a3c0c67b4540f4159dd52620d5789176ab",
+       "path": "bakeoff/g-c/glow-up/round-05/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 6,
+     "kept": true,
+     "vs": 5,
+     "start": "2026-09-29T02:14:09Z",
+     "end": "2026-09-29T02:23:06Z",
+     "changed": "from round 5. New gap, not a retry (round 5 fixed terrain construction): round 5's gap 2, the tag walls and platforms read as flat debug overlays and the red scarf vanishes on the red wall. Chosen because it is visible in three of the four shots and touches visual_quality and color_readability; gap 1 asks for Violet to be redrawn (the lead's), gap 3 is close to round 5's terrain work. art/reveal.gdshader lights each wall or platform as one object in the low sun (brighter toward its top, bright top edge, warm rim on its open left side, cool shaded right side, darker foot), from per-cell run and open-side uniforms VectorArt sets; the semi-transparent white stamp every ~40 px is replaced by a glyph carved into the surface on every other cell (chevron on red, double wave on green, still visible in grey); colours stay locked. The character's outline is thinner and smoother and gains a thin light halo outside it, so the scarf separates from a wall of its own colour. Draw cost: a few more ALU ops in the tag shader, and the outline shader now takes 24 taps instead of 9 on the character-sized buffer",
+     "usd": 0.0,
+     "usd_text": "0 (no generation; shaders and GDScript)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [
+      "visual_quality",
+      "color_readability"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 4
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The red and green pillars are flat strips cut off by the top of the frame, with nothing at either end. Each repeats one carved tile (chevrons on red, squiggles on green) about every 128 px, roughly 8 repeats per column. They cast no shadow on the sand, and the sun behind them puts no rim light on them. Give them a carved cap and a base where they meet the ground, a contact shadow, and 3\u20134 tile variants so the repeat is not visible.",
+      "The character is about 130 px tall and painted in a muddy grey raster, with a jagged, pixel-stepped dark outline and a pale sticker-like halo around it. It looks pasted onto a clean vector world. The face does not read and the scarf is a sliver about 10 px thick. Redraw it in the world's flat-vector language with a bigger hood and head. Make the scarf about twice as wide and long with trailing secondary motion, and add a warm rim light from the sun in place of the white halo.",
+      "There is no depth or atmosphere. The mesas, dunes and foreground cliffs all have the same saturation and contrast, and the sunburst is a set of even, hard-edged wedges. The foreground stratum repeats the same oval pebbles and blue crack marks at regular spacing, and the purple shrub blobs along the bottom edge are copies of one shape. Add haze that grows with distance, soft light-bleed around the sun, and hand-varied foreground strata, the way GRIS and Planet of Lana grade their layers."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/69-g-c-r06-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-06/still-05.png",
+       "sha256": "d0bf32706a14d71966fce5bbfbb477ea3b8ad7f85156d873c1870fa9a513d734",
+       "path": "bakeoff/g-c/glow-up/round-06/still-05.png"
+      },
+      "20": {
+       "webp": "items/70-g-c-r06-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-06/still-20.png",
+       "sha256": "7c1a8829cb71d0ec7575d7ddfe1c1440e906847e7ce044f41d7bb65a3016aed6",
+       "path": "bakeoff/g-c/glow-up/round-06/still-20.png"
+      },
+      "40": {
+       "webp": "items/71-g-c-r06-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-06/still-40.png",
+       "sha256": "538ed449294ffb17eb9a35eccf58be4910a61c988290aacf715bc0985fa7bceb",
+       "path": "bakeoff/g-c/glow-up/round-06/still-40.png"
+      },
+      "60": {
+       "webp": "items/72-g-c-r06-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-06/still-60.png",
+       "sha256": "e6a224f7fc8a1dffeb75237f91fe062f076658a468f80f0557a9ba8947bb8735",
+       "path": "bakeoff/g-c/glow-up/round-06/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 7,
+     "kept": true,
+     "vs": 6,
+     "start": "2026-09-29T02:27:43Z",
+     "end": "2026-09-29T02:36:25Z",
+     "changed": "from round 6. New gap, not a retry (round 6 fixed the tag walls): round 6's gap 3, no depth or atmosphere. Chosen because it shows in every shot; gap 1 (tag pillar caps and bases) is close to round 6's gap, and gap 2 asks for Violet to be redrawn (the lead's). Aerial perspective per backdrop layer (art/haze.gdshader: mid mesas pulled 30% toward the horizon haze, near dunes 12%), a wide soft light bleed round the sun, the light shafts made uneven (five rays of different width, strength and length, softer), the foreground strip redrawn with every silhouette its own shape, and the tiles' shadow-violet cracks recoloured to dark rock so they stop reading as repeated blue marks. Draw cost: a one-line mix shader on two backdrop sprites; one fewer ray",
+     "usd": 0.0,
+     "usd_text": "0 (no generation; hand-written SVG, shaders and GDScript)",
+     "new_letter": "B",
+     "old_letter": "A",
+     "better": [
+      "visual_quality"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 2,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The character sprite is identical to A. It's a small (~120 px tall), painterly raster cutout with a white sticker outline and a low-contrast grey robe, and it doesn't match the vector world. The red scarf matches the red walls and disappears against the red pillar in B-4. It needs a redraw in flat shapes with a rim light, and a scarf color or edge that stays clear of the wall red.",
+      "The haze and soft sun glow now affect only the sky and mid-ground. The playable strata, pillars and foreground rocks get no light from the sun: no rim light on the sun side, no warm bounce, no contact shadow where the pillars meet the ground. So the lit backdrop and the unlit play layer look composited. Light the play layer from the same source, as GRIS and Lana do.",
+      "The strata tile every 512 px with identical pebble rows and cracks, and the pillar glyphs repeat every 256 px with no weathering, so each pillar reads as one stretched bar. The spike-pit floor is a plain dark-purple gradient. Every frame has a ~27 px solid dark-teal band across the top edge. The new angular foreground rocks are an improvement, but they are pure flat #2a2438 shapes with no edge light or internal value."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/73-g-c-r07-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-07/still-05.png",
+       "sha256": "4726c38713a7687f9a2a941fb0e4c3935183d6b58e5ddeedceb4ea309f9d73f1",
+       "path": "bakeoff/g-c/glow-up/round-07/still-05.png"
+      },
+      "20": {
+       "webp": "items/74-g-c-r07-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-07/still-20.png",
+       "sha256": "e842a21e065b819972803328f664a5762030f4d1be67c3ea474274d0a2ecee07",
+       "path": "bakeoff/g-c/glow-up/round-07/still-20.png"
+      },
+      "40": {
+       "webp": "items/75-g-c-r07-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-07/still-40.png",
+       "sha256": "adc6636fa9779c1d54b89949bbef8762ee908b686cbfcaf83d0c277d7e035b42",
+       "path": "bakeoff/g-c/glow-up/round-07/still-40.png"
+      },
+      "60": {
+       "webp": "items/76-g-c-r07-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-07/still-60.png",
+       "sha256": "508b40d8157fdf5b2092c6f31c5eab77cacf5717d07005652ae1e88631db17e0",
+       "path": "bakeoff/g-c/glow-up/round-07/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 8,
+     "kept": true,
+     "vs": 7,
+     "start": "2026-09-29T02:40:22Z",
+     "end": "2026-09-29T03:03:23Z",
+     "changed": "from round 7. New gap, not a retry (round 7 fixed backdrop depth and atmosphere): round 7's gap 2, the play layer gets no light from the sun. Chosen because the critique says the lit backdrop and unlit play layer look composited, and it is the lane's; gap 1 asks for Violet to be redrawn (the lead's). A materially different approach from round 2's reverted translucent overlays: art/terrain_light.gdshader lights each exposed rock tile in its own colours (warm rim on open left faces and top edges, cool dusk shade on open right faces), nothing laid over the rock; soft contact shadows where pillars meet the ground, a short shade on the ground top to the right of raised blocks and pillars, and a blob under the character when grounded; a warm edge light on the foreground silhouettes (art/rim_light.gdshader). Plus one bug fix: the dark teal band across the top of every frame was a flat sky-colour strip drawn over the raised part of the far layer; it is gone and the far layer's sky, rays and glow now fill the strip. Shader fix found on the way: haze and reveal squared the texture alpha (COLOR already carries the texture). Draw cost: about 250 exposed rock cells now carry their own ShaderMaterial (breaks batching: roughly 250 more draw calls), plus a handful of shadow polygons",
+     "usd": 0.0,
+     "usd_text": "0 (no generation; shaders and GDScript)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [
+      "visual_quality"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "scores_kept": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The character doesn't match the world. The environment is clean flat vector, but the girl is a noisy grey sprite that looks photo-bashed, wrapped in a jagged black-and-white sticker outline. She is only about 100 px tall in a 1080 px frame, and her grey robe is close in value to the sand behind her. The fix: redraw her in the same flat-shaded vector style with a warm rim light facing the sun, drop the white halo, and scale her up 30\u201350%.",
+      "The red/green walls and the ground are tiled from visible repeats. Each wall repeats the same chevron-and-crack segment about every 128 px. Its top is a hard flat cut that stops about 27 px below the top of the frame, so in A-2, A-3 and A-4 the walls end in mid-sky. No wall has a contact shadow where it meets the ledge. On the ground, the big oval pebbles repeat about every 257 px and the vertical cracks repeat on every block. The fix: run the walls past the frame edge or give them a real cap, add ground shadows, and randomise the segment and pebble placement.",
+      "The lighting stops at the background. The sun and light rays sit behind the mesas but never reach the foreground: ledge tops facing the sun have no rim light, the brown strata blocks are lit the same all over, and there is no warm haze between the dune layer and the platform layer. GRIS and Planet of Lana grade light and colour across every depth layer. Also, the scarf is the same red as the red walls, so when she clings to one (A-4) the scarf blends into it. Shift the scarf toward crimson or darken it, or add a light edge."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/77-g-c-r08-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-08/still-05.png",
+       "sha256": "9314088783352482ce04263156c3d3b498bbaa5ac55c1625d97c4ef4c9261c07",
+       "path": "bakeoff/g-c/glow-up/round-08/still-05.png"
+      },
+      "20": {
+       "webp": "items/78-g-c-r08-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-08/still-20.png",
+       "sha256": "e0e4acf454febbd059d6e3821d4ded6ea3d226d82a7ac5d7f96c01a225f73ee0",
+       "path": "bakeoff/g-c/glow-up/round-08/still-20.png"
+      },
+      "40": {
+       "webp": "items/79-g-c-r08-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-08/still-40.png",
+       "sha256": "c66e570aa0c3b50a39f10f53c352b659179d78dd566cfd7c865769306ea94c99",
+       "path": "bakeoff/g-c/glow-up/round-08/still-40.png"
+      },
+      "60": {
+       "webp": "items/80-g-c-r08-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-08/still-60.png",
+       "sha256": "515fe7f490847329e9fc3b1e5c4893a3b54ad15e3c07c65931da65bac5a47d10",
+       "path": "bakeoff/g-c/glow-up/round-08/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 9,
+     "kept": true,
+     "vs": 8,
+     "start": "2026-09-29T03:07:12Z",
+     "end": "2026-09-29T03:32:14Z",
+     "changed": "from round 8. New gap, not a retry (round 8 fixed light on the play layer): round 8's gap 2, visible repeats on the tag walls and the ground, walls ending in mid-sky, no contact shadow at the walls' feet. Chosen because the mid-sky wall ends are a flaw in three of the four shots (left by round 8's top-band fix) and the repeats show in all four; gap 1 asks for Violet to be redrawn (the lead's) and gap 3 would be a retry of round 8. Walls that reach the level top now run on past the frame edge; each wall cell picks its own texture strip and row, and the carved glyph appears on about two cells in five chosen per cell, so a column has no 128 px rhythm; a wider, darker contact shadow where each pillar stands; ground surface cells pick their variant and texture half per cell; the big oval pebbles and boulders that came back every 256 px along the ground removed from wall-tile and wall-tile-b. Draw cost: one extra sprite per wall that reaches the top (three)",
+     "usd": 0.0,
+     "usd_text": "0 (no generation; hand-written SVG and GDScript)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [
+      "visual_quality"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 4
+     },
+     "scores_kept": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 4
+     },
+     "gaps_new": [
+      "The character is a noisy, desaturated grey painted cutout with a jagged white-and-black sticker outline, dropped into a clean flat-vector world. It is about 110 px tall in a 1080 p frame and its face can't be read. Redraw it in the world's language: flat shapes, 2\u20133 value planes, no outline or a thin coloured rim, a readable head and hands, and a warmer robe tone that separates from the sand.",
+      "The terrain is one stamped module. The same brown horizontal strata bands run through every block. The top-edge strip has seams at a regular spacing of about 190 px. The dark foreground rocks and grass tufts repeat the same few shapes along the whole bottom edge. Give each block its own strata curve and erosion silhouette, break the top lip with overhangs and sand drifts, and vary the foreground props.",
+      "The lighting and depth are generic. The sunburst rays and the sun sit behind everything, but the terrain, the pillars and the character get no rim light, no warm/cool split and no cast shadow from it. The mid-ground mesas and cacti are one flat purple-grey with no atmospheric falloff between layers. GRIS and Lana grade every depth layer and let the key light wrap the hero and the puzzle objects. Add 3\u20134 value-stepped haze layers and a rim or bounce light that matches the sun."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/81-g-c-r09-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-09/still-05.png",
+       "sha256": "3fa16c4343bdacac92711cfb2168363f63da6d5b308825bb008e8970799dd0fe",
+       "path": "bakeoff/g-c/glow-up/round-09/still-05.png"
+      },
+      "20": {
+       "webp": "items/82-g-c-r09-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-09/still-20.png",
+       "sha256": "0550a4ff0542424d0eaa11952df621e6794a9d167c4c824adfa558d66a49eeb2",
+       "path": "bakeoff/g-c/glow-up/round-09/still-20.png"
+      },
+      "40": {
+       "webp": "items/83-g-c-r09-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-09/still-40.png",
+       "sha256": "f50c8902c15d7409453a7e61911d34d11c242cdbc28ce0d30907dd9ef0f475da",
+       "path": "bakeoff/g-c/glow-up/round-09/still-40.png"
+      },
+      "60": {
+       "webp": "items/84-g-c-r09-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-09/still-60.png",
+       "sha256": "55b75eef555e4f79da5b7718fa379160307e5f86f693181b5f0c2bc4c58c9a20",
+       "path": "bakeoff/g-c/glow-up/round-09/still-60.png"
+      }
+     }
+    },
+    {
+     "round": 10,
+     "kept": true,
+     "vs": 9,
+     "start": "2026-09-29T03:36:11Z",
+     "end": "2026-09-29T03:46:47Z",
+     "changed": "from round 9. New gap, not a retry (round 9 fixed wall and ground repeats): round 9's gap 3, generic lighting and depth (mid mesas and cacti one flat purple-grey, no key light wrapping terrain, pillars and character). Chosen because gap 1 asks for Violet to be redrawn (the lead's) and gap 2 is close to round 9's terrain work. Four value steps of haze: the far ranges (in their art), the mid mesas pulled harder toward the horizon haze, and within the near layer its back ridge and the plants on it hazed while the front dune stays clear (art/haze.gdshader gains a height ramp); a warm rim on the sunward edges of the saguaros and the acacia; the key light wraps harder: a wider, brighter warm rim on the pillars' open left sides, stronger warm tops and wider cool right faces on exposed rock, and a wider warm rim on the character's sun side. Draw cost: none added beyond a smoothstep in the haze shader",
+     "usd": 0.0,
+     "usd_text": "0 (no generation; hand-written SVG and shaders)",
+     "new_letter": "A",
+     "old_letter": "B",
+     "better": [
+      "visual_quality",
+      "character_appeal",
+      "color_readability"
+     ],
+     "worse": [],
+     "scores_new": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 4
+     },
+     "scores_kept": {
+      "visual_quality": 3,
+      "character_appeal": 2,
+      "color_readability": 3
+     },
+     "gaps_new": [
+      "The character is about 85 px tall in a 1080p frame and reads as a small grey sticker. It is a desaturated grey robe with a jagged 1 px black outline, an extra white halo outline, and visible upscaling stair-steps at 3\u00d7 zoom (A-3 walk, A-4 climb). That clashes with the crisp vector world. Redraw it at native resolution, drop the white halo, and give the robe a real hue with a clear lit/shadow split. It also needs more mass and a readable face or hood shape, like Lana or GRIS, not a noisy grey texture.",
+      "Every terrain block is a perfect rectangle filled with the same brown strata texture. Identical horizontal bands repeat every ~40 px, with only 2\u20133 crack decals per block. The blocks in A-4 (~450 px tall) and the right block in A-3 are big featureless slabs. Break the silhouettes with erosion notches, overhangs, and sand spilling over the edges. Vary the strata per block and add a lit top lip and a shadowed base, so the terrain looks painted rather than tiled.",
+      "The red and green pillars and the red bridge look like debug geometry pasted over the art. They are flat, saturated rectangles with one texture strip (chevron plus crack) repeating every ~120 px, and nothing ties them to the backlit sunset. The pit below is a flat dark-purple band with a uniform row of identical spikes, and the black foreground rocks along the bottom edge are undetailed blobs. Give the pillars the scene's warm rim light on the sun side and real contact shadows. Build the pit and foreground as layered, depth-hazed shapes."
+     ],
+     "shots": {
+      "05": {
+       "webp": "items/85-g-c-r10-still-05.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-10/still-05.png",
+       "sha256": "d838eb054b6c455fb04fa294115ee9f92e1a0a95237b5b54708c5701e9a9dbaa",
+       "path": "bakeoff/g-c/glow-up/round-10/still-05.png"
+      },
+      "20": {
+       "webp": "items/86-g-c-r10-still-20.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-10/still-20.png",
+       "sha256": "932daaeae058f62683a8bbcf0e4f23c8f68955038e2742f71551438ccf8cf1b4",
+       "path": "bakeoff/g-c/glow-up/round-10/still-20.png"
+      },
+      "40": {
+       "webp": "items/87-g-c-r10-still-40.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-10/still-40.png",
+       "sha256": "de28b0dff1ca5ca501ec7f6a7134b286f64a1ce6e091461874ed11a9a2fcfbd3",
+       "path": "bakeoff/g-c/glow-up/round-10/still-40.png"
+      },
+      "60": {
+       "webp": "items/88-g-c-r10-still-60.webp",
+       "png": "https://media.githubusercontent.com/media/sjawhar/project-violet/2f5dede9402c6b2809df3fe6ba512fedcd44efd5/bakeoff/g-c/glow-up/round-10/still-60.png",
+       "sha256": "ecaf850e06a5da701b1efe969c585c20d338373e8918f0f512865f578ca47048",
+       "path": "bakeoff/g-c/glow-up/round-10/still-60.png"
+      }
+     }
+    }
+   ]
+  }
+ },
+ "stills_checked": 132
+}
