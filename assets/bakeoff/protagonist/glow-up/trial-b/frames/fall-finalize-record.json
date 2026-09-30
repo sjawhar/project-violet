@@ -23,7 +23,11 @@
     "head_x": 465.99012086450097,
     "head_y": 98.67583896594874,
     "target_head_x": 737.5340335424744,
-    "target_head_y": 514.5178174644241
+    "target_head_y": 514.5178174644241,
+    "scarf_offset_final": [
+      -69,
+      -134
+    ]
   },
   "1": {
     "t": 0.12,
@@ -49,7 +53,11 @@
     "head_x": 598.2248027796405,
     "head_y": 173.6799239279437,
     "target_head_x": 733.2736695131546,
-    "target_head_y": 514.7424509726368
+    "target_head_y": 514.7424509726368,
+    "scarf_offset_final": [
+      -148,
+      -225
+    ]
   },
   "2": {
     "t": 0.24,
@@ -75,7 +83,11 @@
     "head_x": 491.00420247850445,
     "head_y": 164.77700698591843,
     "target_head_x": 729.0162783784832,
-    "target_head_y": 515.0483019830082
+    "target_head_y": 515.0483019830082,
+    "scarf_offset_final": [
+      -37,
+      -170
+    ]
   },
   "3": {
     "t": 0.36,
@@ -101,7 +113,11 @@
     "head_x": 411.618978954241,
     "head_y": 157.3068404879726,
     "target_head_x": 727.5814704394344,
-    "target_head_y": 515.2678032860051
+    "target_head_y": 515.2678032860051,
+    "scarf_offset_final": [
+      -110,
+      -284
+    ]
   },
   "4": {
     "union_bbox_orig_1024canvas": [
@@ -128,6 +144,10 @@
     "t": 0.48,
     "target_head_x": 723.208473400748,
     "target_head_y": 515.4663017630543,
-    "anchor_mode": "airborne_head"
+    "anchor_mode": "airborne_head",
+    "scarf_offset_final": [
+      -20,
+      -300
+    ]
   }
 }

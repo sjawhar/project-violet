@@ -16,6 +16,13 @@ Run from the repository root:
 
 from PIL import Image, ImageDraw, ImageFont
 import json
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from apply_scarf_attachments import check_attachments
+
+check_attachments()
 
 RAW_DIR = "assets/bakeoff/protagonist/glow-up/trial-b/frames"
 OUT_DIR = "assets/bakeoff/protagonist/glow-up/trial-b"
@@ -67,11 +74,10 @@ def render_cell(i, canvas_scale):
     on the ground line and its head_x anchor lands on the horizontal anchor, onto a cell
     sized by canvas_size(canvas_scale) over the fixed neutral-gray BACKGROUND. The frame
     files are already in rig-unit pixels (finalize_frames.py), so canvas_scale is the only
-    remaining scale factor here. Body and scarf are resized independently (not forced to a
-    shared size): the two QA-fixed frames (run-scarf-01/05, finalize_run_scarf_fix.py) crop
-    the scarf to its own bbox rather than reusing the body's, and carry an extra
-    `scarf_offset_final` (rig-unit space, absent/[0,0] for every other frame) shifting the
-    scarf paste relative to the body's own anchor-derived position."""
+    remaining scale factor here. Body and scarf have independent image dimensions.
+    `scarf_offset_final` is the knot-to-neck translation authored in
+    `scarf_attachments.json` and applied by `apply_scarf_attachments.py`.
+    The scarf is composited above the clothing so its neck wrap remains visible."""
     cell_w, cell_h = canvas_size(canvas_scale)
     ground_y = GROUND_Y_FRACTION * cell_h
     head_anchor_x = HEAD_X_FRACTION * cell_w
@@ -84,8 +90,9 @@ def render_cell(i, canvas_scale):
     dy = ground_y - anchors["sole_y"] * canvas_scale
     scarf_dx, scarf_dy = anchors.get("scarf_offset_final", [0.0, 0.0])
     cell = Image.new("RGBA", (cell_w, cell_h), BACKGROUND)
-    cell.paste(scarf_s, (round(dx + scarf_dx * canvas_scale), round(dy + scarf_dy * canvas_scale)), scarf_s)
     cell.paste(body_s, (round(dx), round(dy)), body_s)
+    # The scarf image includes the neck wrap; clothing must not erase its attachment.
+    cell.paste(scarf_s, (round(dx + scarf_dx * canvas_scale), round(dy + scarf_dy * canvas_scale)), scarf_s)
     return cell
 
 

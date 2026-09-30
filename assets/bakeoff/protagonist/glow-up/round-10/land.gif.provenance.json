@@ -12,7 +12,7 @@
     "params": {},
     "inputs": [
       {
-        "path": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+        "path": "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
         "sha256": "6a949541543d38f1957c20d4138361d20ace0dc746d60639689860d0405f4100"
       },
       {

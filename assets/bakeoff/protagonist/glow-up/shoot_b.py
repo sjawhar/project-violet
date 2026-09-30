@@ -34,17 +34,17 @@ entry records how to place it, in one of the schemes the six painting lanes used
   can happen grounded or airborne and its own rig timeline never translates, so there is
   no absolute rig-unit anchor to measure `dash` against consistently across other anims.
 
-A frame's own `scarf_offset_final` (present only on `run`'s QA-fixed frames 1 and 5,
-`trial-b/finalize_run_scarf_fix.py`) shifts the scarf paste relative to the body's one
-shared anchor, exactly like `build.py`'s `render_cell` already does.
+Each frame's `scarf_offset_final` binds its annotated scarf knot to the body's
+neck in source-pixel coordinates. `apply_scarf_attachments.py` writes and checks
+these offsets against the exact PNG bytes. Body is composited first, then scarf,
+so the scarf's painted neck wrap remains visible over the clothing.
 
 Six-sample and 30 fps-GIF timing reuse `shoot.py`'s own `sample_times()` (looping vs.
 held) and its `main()`'s per-frame GIF duration unchanged; the only new piece is mapping
 a sample/GIF time to "the painted frame showing at that time" -- a held, not
 interpolated, step lookup: `frame_index_at(t) = min(floor(t / (duration / nframes)),
-nframes - 1)`, the same evenly-spaced-frame convention every painting lane's own record
-confirms (`run`'s `FRAME_DT = 0.6/8`, `idle`'s `1.0/8`, `jump`'s `0.5/5`, `land`'s
-`0.25/3`, `dash`'s `0.2/3`, `fall`'s `0.6/5`, `double_jump`'s `0.5/5`).
+nframes - 1)`, using the live frame count and the animation's duration. The fixed
+six-sample layout is independent of how many painted frames each animation has.
 
 Run from the repository root:
     uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/shoot_b.py \\
@@ -63,6 +63,7 @@ from PIL import Image, ImageDraw, ImageFont
 from spinerig import render as R
 
 import shoot as A  # shoot.py: the one place the fixed round-0 layout constants live
+from apply_scarf_attachments import check_attachments
 
 FRAMES_DIR = Path(__file__).resolve().parent / "trial-b" / "frames"
 BUILD_PY = Path(__file__).resolve().parent / "trial-b" / "build.py"
@@ -163,8 +164,9 @@ def render_cell_b(anim: str, i: int, record: dict, canvas_scale: float, cell_w: 
     scarf_dx, scarf_dy = anchors.get("scarf_offset_final", [0.0, 0.0])
 
     cell = Image.new("RGBA", (cell_w, cell_h), A.BACKGROUND)
-    cell.paste(scarf_s, (round(dx + scarf_dx * canvas_scale), round(dy + scarf_dy * canvas_scale)), scarf_s)
     cell.paste(body_s, (round(dx), round(dy)), body_s)
+    # The scarf image includes the neck wrap; clothing must not erase its attachment.
+    cell.paste(scarf_s, (round(dx + scarf_dx * canvas_scale), round(dy + scarf_dy * canvas_scale)), scarf_s)
     return cell
 
 
@@ -209,6 +211,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--rig", required=True, type=Path, metavar="SKELETON.json")
     parser.add_argument("--out", required=True, type=Path, metavar="DIR")
     args = parser.parse_args(argv)
+    check_attachments()
 
     spine = json.loads(args.rig.read_text())
     cache: dict = {}

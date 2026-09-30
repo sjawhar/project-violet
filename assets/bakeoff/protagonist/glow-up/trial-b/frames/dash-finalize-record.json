@@ -37,8 +37,8 @@
       650
     ],
     "scarf_offset_final": [
-      95.89932740290736,
-      125.23323931438492
+      25,
+      50
     ]
   },
   "1": {
@@ -67,7 +67,11 @@
     "head_y": 94.69615778691171,
     "target_head_x_fraction": 0.6334803404995653,
     "target_head_y_fraction": 0.37462373100555946,
-    "ground_anchored": false
+    "ground_anchored": false,
+    "scarf_offset_final": [
+      -90,
+      -121
+    ]
   },
   "2": {
     "t": 0.06666666666666667,
@@ -107,8 +111,8 @@
       715
     ],
     "scarf_offset_final": [
-      -63.1807333477978,
-      107.18160121501411
+      -73,
+      -68
     ]
   },
   "3": {
@@ -137,7 +141,11 @@
     "head_y": 109.01466975879701,
     "target_head_x_fraction": 0.6672851538150086,
     "target_head_y_fraction": 0.39185680117396526,
-    "ground_anchored": false
+    "ground_anchored": false,
+    "scarf_offset_final": [
+      -50,
+      -200
+    ]
   },
   "4": {
     "t": 0.13333333333333333,
@@ -165,7 +173,11 @@
     "head_y": 100.76971574586096,
     "target_head_x_fraction": 0.6672851538150086,
     "target_head_y_fraction": 0.39185680117396526,
-    "ground_anchored": false
+    "ground_anchored": false,
+    "scarf_offset_final": [
+      -67,
+      -107
+    ]
   },
   "5": {
     "t": 0.16666666666666666,
@@ -205,8 +217,8 @@
       684
     ],
     "scarf_offset_final": [
-      3.3846821436320247,
-      189.5422000433934
+      24,
+      100
     ]
   }
 }

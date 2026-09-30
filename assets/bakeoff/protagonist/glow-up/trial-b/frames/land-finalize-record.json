@@ -22,7 +22,11 @@
     "head_x": 649.652170173334,
     "head_y": 84.97452030991043,
     "sole_y": 799.9132132783685,
-    "anchor_mode": "grounded"
+    "anchor_mode": "grounded",
+    "scarf_offset_final": [
+      -9,
+      -34
+    ]
   },
   "1": {
     "union_bbox_orig_1024canvas": [
@@ -47,7 +51,11 @@
     "head_x": 615.3821765407233,
     "head_y": 102.68217692698768,
     "sole_y": 1015.4046430896074,
-    "anchor_mode": "grounded"
+    "anchor_mode": "grounded",
+    "scarf_offset_final": [
+      -68,
+      -66
+    ]
   },
   "2": {
     "union_bbox_orig_1024canvas": [
@@ -72,7 +80,11 @@
     "head_x": 547.1969251340317,
     "head_y": 108.80236632076384,
     "sole_y": 1094.3805597743547,
-    "anchor_mode": "grounded"
+    "anchor_mode": "grounded",
+    "scarf_offset_final": [
+      -110,
+      -76
+    ]
   },
   "3": {
     "union_bbox_orig_1024canvas": [
@@ -109,8 +121,8 @@
       758
     ],
     "scarf_offset_final": [
-      -243.69711434150577,
-      251.5947060099805
+      -412,
+      177
     ]
   },
   "4": {
@@ -148,8 +160,8 @@
       712
     ],
     "scarf_offset_final": [
-      -130.87437622043828,
-      298.98025602082885
+      -218,
+      183
     ]
   },
   "5": {
@@ -187,8 +199,8 @@
       909
     ],
     "scarf_offset_final": [
-      -50.77023215448037,
-      154.56715122586246
+      -200,
+      180
     ]
   }
 }

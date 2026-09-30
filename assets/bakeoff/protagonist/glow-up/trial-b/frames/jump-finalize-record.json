@@ -24,7 +24,11 @@
     "t": 0.0,
     "target_head_x": 726.7227736873933,
     "target_head_y": 558.8444206062311,
-    "anchor_mode": "airborne_head"
+    "anchor_mode": "airborne_head",
+    "scarf_offset_final": [
+      -37,
+      -65
+    ]
   },
   "1": {
     "union_bbox_orig_1024canvas": [
@@ -63,8 +67,8 @@
       1018
     ],
     "scarf_offset_final": [
-      0.0,
-      21.43632024300282
+      -158,
+      -128
     ]
   },
   "2": {
@@ -92,7 +96,11 @@
     "t": 0.2,
     "target_head_x": 734.4520773385968,
     "target_head_y": 503.23158579094047,
-    "anchor_mode": "airborne_head"
+    "anchor_mode": "airborne_head",
+    "scarf_offset_final": [
+      -114,
+      -185
+    ]
   },
   "3": {
     "union_bbox_orig_1024canvas": [
@@ -119,7 +127,11 @@
     "t": 0.3,
     "target_head_x": 739.4540335424745,
     "target_head_y": 514.5178174644241,
-    "anchor_mode": "airborne_head"
+    "anchor_mode": "airborne_head",
+    "scarf_offset_final": [
+      -70,
+      -155
+    ]
   },
   "4": {
     "union_bbox_orig_1024canvas": [
@@ -146,6 +158,10 @@
     "t": 0.4,
     "target_head_x": 739.4540335424745,
     "target_head_y": 514.5178174644241,
-    "anchor_mode": "airborne_head"
+    "anchor_mode": "airborne_head",
+    "scarf_offset_final": [
+      -133,
+      -107
+    ]
   }
 }

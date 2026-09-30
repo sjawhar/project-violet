@@ -128,10 +128,34 @@ All figures here are estimates at $0.22 per counted image call, not billing rece
 
 ## Stop reason
 
-**Stopped at the ten-round cap. Final candidate: round 10.** The verified Codex critic judged rounds 9 and 10 equal on all three axes, at 3/3/4 each. The keep rule retains a tie. This final iteration is not evidence of further quality gain; it records a plateau.
+**The experiment stopped at the ten-round cap.** Round 10 tied round 9 and was retained by the iteration rule, but Sami subsequently identified a missed correctness defect: the scarf was not consistently attached at the neck. Round 10 and its scores are historical evidence, not the corrected candidate.
 
 The cutout track ended after round 3. The frame-by-frame run trial was preferred on character appeal, so rounds 4–10 developed painted action frames, with a deterministic single-painting idle to reduce redraw flicker. This is an art calibration result, not a production character replacement.
 
 The game lanes still use the previously approved cutout character. The painted sequence has not been ported to their readers or tested through gameplay state transitions. Hardware frame-time measurements remain unrun. Sami's approval is required before replacing the character in the lanes.
 
 Six fresh blind Codex spot-checks are recorded in [cross-model-review.json](cross-model-review.json), with source revisions, randomized mappings and input hashes. They favor the final environments over their baselines, and favor the painted character's action/appeal over the cutout. They do **not** find the animation finished: the final character still has cloth/shape discontinuities, and the original cutout's scarf wins readability in both full-character comparisons. These checks validate selected comparisons, not every historical keep/revert decision.
+
+## Scarf attachment correction
+
+The separate scarf drawings were positioned by crop offsets rather than anatomical
+neck/knot landmarks. The renderer then drew the body over the entire scarf, hiding
+its neck wrap. These were placement and compositing defects, not a request for
+another aesthetic iteration.
+
+All 43 body/scarf pairs now have source-hash-bound landmarks in
+`scarf_attachments.json`. `apply_scarf_attachments.py` derives each translation from
+those points, and `shoot_b.py` refuses stale or misregistered bindings before export.
+The body is drawn first, then the scarf so its collar remains visible. Neither the
+body nor scarf paintings were regenerated or changed.
+
+The old offsets missed the annotated necks in 43/43 frames, by as much as 67 px at
+review scale. After correction all knot-to-neck geometric errors are zero. This
+does not make the anatomical annotations pixel-perfect: hood/hair and broad collar
+folds introduce some visual uncertainty, so the composited poses were inspected too.
+The collar-visibility regression failed at both tested scales before the layer fix;
+the full animation suite passes 79 tests after both corrections.
+
+`attachment-fix/` is the corrected preview. The original round captures and
+judgements remain unchanged; none of their scores is a new assessment of this fix.
+Generation spend for the correction is $0.
