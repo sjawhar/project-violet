@@ -1,34 +1,22 @@
 {
   "schema_version": 1,
   "asset": "idle-scarf-00.png",
-  "sha256": "594464eb09091fbe94dfd8e7e7eda6e19a0b54b9d1661252e918cf6a8424eae3",
+  "sha256": "518f7c76b99878986078dad6bcf32abcf17225b4d4af638a730fb9b5222eef93",
   "kind": "image",
-  "origin": "generated",
-  "created_at": "2026-09-30T04:33:26+00:00",
+  "origin": "derived",
+  "created_at": "2026-09-30T06:37:24+00:00",
   "generator": {
-    "tool": "gen",
-    "tool_version": "0.1.0",
-    "provider": "openai",
-    "model": "gpt-image-2",
-    "prompt": "The first reference image is a TIGHTLY cropped character with almost no empty margin around her (this is a post-processed crop, not the original generation framing). Mentally place that same reference image inside a much larger, mostly empty 1024x1024 transparent canvas: she would occupy only the region from about x=230,y=344 to about x=410,y=905 (about 560 px tall, left-of-center, with generous empty margin above, below, to the left and especially to the right of her). Her neck/collar, where the hood meets her shoulders, sits at approximately x=280-380, y=420-470 in that same 1024x1024 canvas. Using that exact character scale and that exact canvas framing, paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf is tied around her neck at that exact x=280-380, y=420-470 location, and hangs straight down from there, loosely and completely at rest, with only the faintest hint of a sway. Most of its length falls in the region below and slightly right of that neck point, mostly overlapping where her robe and torso would be (that overlap is correct and expected, since her body will be drawn on top of it afterward) -- do not draw the scarf away from that neck point out in the empty right two-thirds of the canvas. Wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text -- only the gray scarf shape, on the same size canvas with the same framing, fully transparent everywhere else, with no vignette or darkened backdrop of any kind. IMPORTANT: paint exactly ONE single opaque, solid gray scarf shape -- do not paint multiple overlapping, ghosted or semi-transparent copies of the scarf at different offsets; the scarf must be one continuous, fully opaque cloth shape, not several stacked layers.",
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/idle_hybrid.py",
+    "tool_version": "idle_hybrid.py round 8: idle frame 0/8 (t=0.000s of a 1.0s loop). Holds idle-scarf-00.round-07.png (round 6's own frame-0 scarf painting, paired with idle-body-00 at generation time) as the single source painting and applies a piecewise horizontal shear below a fixed pivot near the neck knot (alpha centroid of the topmost 15 rows; rows at/above the pivot are an exact identity copy) at angle=0.000 degrees (angle(t)=3*sin(2*pi*t), peak 3 degrees), so the tail drifts side to side like a hanging cloth while the knot stays anchored -- fixes round 7's kept gap 1 ('boiling': round-07/critic.md) without redrawing the scarf.",
+    "model": null,
     "params": {},
     "inputs": [
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.png",
-        "sha256": "135c86bc1999684e242b4737628526f493868c80dae2d8332a7b7fd81742c7c8"
-      },
-      {
-        "path": "assets/bakeoff/protagonist/parts/scarf1.png",
-        "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
+        "sha256": "594464eb09091fbe94dfd8e7e7eda6e19a0b54b9d1661252e918cf6a8424eae3"
       }
     ]
   },
-  "human_edits": [
-    {
-      "by": "VioletRound6 (Claude)",
-      "description": "Round 6 (rounds.md, fixing round 5's gap 1, idle's ~60px scarf billow): cropped the raw generation to the scarf's own alpha>8 bbox, rescaled by the shared RIG_PER_RAW factor (1.128227381210675, reused unchanged), and recorded scarf_offset_final (rig units, from the body's existing crop origin) so shoot_b.py's render_cell_b can register it without moving or re-cropping the body -- same recipe as finalize_run_scarf_fix.py. Then graded via trial-b/grade_b.py's grade_scarf function (morphological alpha close + narrow edge blur), applied directly rather than through grade_b.py's own round-5 batch pipeline, since that pipeline reads a now-stale round-04 frozen copy that predates this repaint.",
-      "at": "2026-09-30T04:33:36+00:00"
-    }
-  ],
+  "human_edits": [],
   "license": "proprietary"
 }

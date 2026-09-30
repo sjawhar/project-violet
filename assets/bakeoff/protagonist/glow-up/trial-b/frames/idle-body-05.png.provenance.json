@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
   "asset": "idle-body-05.png",
-  "sha256": "59ec6845fe6385b2d2e7e7b36113e638494fe9efbf14cf688bc56592fea2eeba",
+  "sha256": "ce691f9fdbdd61f360f1b9f6aa45ee6e21ff5be2b378978eccccccbf6770a676",
   "kind": "image",
   "origin": "derived",
-  "created_at": "2026-09-30T02:56:21+00:00",
+  "created_at": "2026-09-30T06:37:25+00:00",
   "generator": {
-    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
-    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/idle_hybrid.py",
+    "tool_version": "idle_hybrid.py round 8: idle frame 5/8 (t=0.625s of a 1.0s loop). Holds idle-body-00.round-07.png (the neutral-rest pose) as the single source painting and applies a piecewise vertical breathing stretch above a fixed waist line (WAIST_Y_FRAC=0.36 of body height; everything at/below the waist, including both feet and the hem, is an exact identity copy) by factor s=1.01707 (breath(t)=(1-cos(2*pi*t))/2, peak amplitude 2%), so the chest/shoulders/hood/head lift slightly while sole_y stays bit-identical across all 8 frames -- fixes round 7's kept gap 1 ('boiling': round-07/critic.md).",
     "model": null,
     "params": {},
     "inputs": [
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-05.round-04.png",
-        "sha256": "605751b697907eab136444d5d4234687c5f14a8a570ee929efc642fc08f9c06a"
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
+        "sha256": "135c86bc1999684e242b4737628526f493868c80dae2d8332a7b7fd81742c7c8"
       }
     ]
   },
