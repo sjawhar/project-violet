@@ -28,6 +28,34 @@
     "ground_anchored": false
   },
   "1": {
+    "t": 0.03333333333333333,
+    "union_bbox_orig_1024canvas": [
+      33,
+      151,
+      1007,
+      901
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      974,
+      750
+    ],
+    "final_size": [
+      1099,
+      846
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 846.1705359080062,
+    "head_x": 907.0103717750812,
+    "head_y": 94.69615778691171,
+    "target_head_x_fraction": 0.6334803404995653,
+    "target_head_y_fraction": 0.37462373100555946,
+    "ground_anchored": false
+  },
+  "2": {
     "t": 0.06666666666666667,
     "union_bbox_orig_1024canvas": [
       113,
@@ -55,8 +83,64 @@
     "target_head_y_fraction": 0.38645000294276177,
     "ground_anchored": false
   },
-  "2": {
+  "3": {
+    "t": 0.1,
+    "union_bbox_orig_1024canvas": [
+      2,
+      133,
+      1023,
+      854
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      1021,
+      721
+    ],
+    "final_size": [
+      1152,
+      813
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 813.4519418528967,
+    "head_x": 986.1860193371776,
+    "head_y": 109.01466975879701,
+    "target_head_x_fraction": 0.6672851538150086,
+    "target_head_y_fraction": 0.39185680117396526,
+    "ground_anchored": false
+  },
+  "4": {
     "t": 0.13333333333333333,
+    "union_bbox_orig_1024canvas": [
+      13,
+      68,
+      1021,
+      905
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      1008,
+      837
+    ],
+    "final_size": [
+      1137,
+      944
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 944.3263180733348,
+    "head_x": 962.567872228967,
+    "head_y": 100.76971574586096,
+    "target_head_x_fraction": 0.6672851538150086,
+    "target_head_y_fraction": 0.39185680117396526,
+    "ground_anchored": false
+  },
+  "5": {
+    "t": 0.16666666666666666,
     "union_bbox_orig_1024canvas": [
       95,
       80,
@@ -79,8 +163,8 @@
     "sole_y": 937.5569537860708,
     "head_x": 846.9141673860358,
     "head_y": 98.28811217435272,
-    "target_head_x_fraction": 0.6686998153644428,
-    "target_head_y_fraction": 0.3921805552964657,
+    "target_head_x_fraction": 0.6672851538150086,
+    "target_head_y_fraction": 0.39185680117396526,
     "ground_anchored": false
   }
 }

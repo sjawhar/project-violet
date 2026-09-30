@@ -22,11 +22,11 @@
         "sha256": "04f0bd3f49e1a853a2e3df7be36a6e11feb403cdb1309787ea96560756d5ee6d"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.round-05.png",
         "sha256": "6b177ff1ec904b4d8a03aea6f0e234dbb05e2fe09cd945718f632a11cb911108"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.round-05.png",
         "sha256": "0fc46ce8baac21607714f340c5c96b4f86d43a7d4376ad12928cc43953e98b8f"
       },
       {
@@ -34,11 +34,11 @@
         "sha256": "026452145e3eac341c393433d32971590a5453d50940876ee7f1ca5b6937d9e8"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.round-05.png",
         "sha256": "8290de302c1dbac69fe305c3ea71b7ed93e0717773868f05aaed0838cde6567b"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.round-05.png",
         "sha256": "5a2c59dee178199bf57970f7f3d18999eecbca6b84e0835f00bd2a4776494720"
       }
     ]
@@ -48,6 +48,11 @@
       "by": "VioletRound6 (Claude)",
       "description": "corrected generator.inputs[].sha256 for assets/bakeoff/protagonist/glow-up/shoot_b.py to its current recorded hash (round 6's torso_x/place_dy_offset grounded-placement support changed shoot_b.py's own content; this reference predates that change) -- same kind of fix round 5 itself needed for round 4's frame_count() bugfix.",
       "at": "2026-09-30T04:35:33+00:00"
+    },
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md's 'Frozen inputs' convention): re-pointed round-05's own shot records at this frozen copy (content unchanged from round 5's grading through round 6, before round 7 reindexes/repaints it while adding in-between frames to fix round 6's gap 3, 'too few drawings... large pose jumps and no in-betweens').",
+      "at": "2026-09-30T05:20:39.440001+00:00"
     }
   ],
   "license": "proprietary"

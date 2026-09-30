@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "asset": "dash-scarf-02.png",
-  "sha256": "5a2c59dee178199bf57970f7f3d18999eecbca6b84e0835f00bd2a4776494720",
+  "sha256": "8290de302c1dbac69fe305c3ea71b7ed93e0717773868f05aaed0838cde6567b",
   "kind": "image",
   "origin": "derived",
   "created_at": "2026-09-30T02:56:26+00:00",
@@ -12,11 +12,17 @@
     "params": {},
     "inputs": [
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.round-04.png",
-        "sha256": "c9738895e692c4e3972d9014950804b99ed6c90bbef61adab5249682c1a8492d"
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.round-04.png",
+        "sha256": "e7f2349ed02789a87186e4305fac8b36093f0bbbc0c0825ad53ca6e1638cb3c8"
       }
     ]
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md, adding 3 in-between frames to dash per round 6's gap 3 'too few drawings'): reindexed this frame's pixels unchanged from index 1 to index 2 ('peak burst'), since t=i*0.2/6 for the new 6-frame even grid puts index 2 at t=0.0667 -- exactly this frame's own original sample time, unchanged.",
+      "at": "2026-09-30T05:20:49.450739+00:00"
+    }
+  ],
   "license": "proprietary"
 }

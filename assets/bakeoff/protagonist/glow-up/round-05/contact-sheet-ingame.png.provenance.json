@@ -270,11 +270,11 @@
         "sha256": "04f0bd3f49e1a853a2e3df7be36a6e11feb403cdb1309787ea96560756d5ee6d"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.round-05.png",
         "sha256": "6b177ff1ec904b4d8a03aea6f0e234dbb05e2fe09cd945718f632a11cb911108"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.round-05.png",
         "sha256": "0fc46ce8baac21607714f340c5c96b4f86d43a7d4376ad12928cc43953e98b8f"
       },
       {
@@ -282,11 +282,11 @@
         "sha256": "026452145e3eac341c393433d32971590a5453d50940876ee7f1ca5b6937d9e8"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.round-05.png",
         "sha256": "8290de302c1dbac69fe305c3ea71b7ed93e0717773868f05aaed0838cde6567b"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.round-05.png",
         "sha256": "5a2c59dee178199bf57970f7f3d18999eecbca6b84e0835f00bd2a4776494720"
       },
       {
@@ -298,7 +298,7 @@
         "sha256": "a3ff23d233c92c171343dbb9ad230fff0bd09ad6cb112d45e804f4e80f764934"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.round-05.png",
         "sha256": "30a4471f51a50d4184936dcc2fd543a64325a3df6732e9c8f52f5398005c7616"
       },
       {
@@ -310,7 +310,7 @@
         "sha256": "afbafd3473b2fbba4dd7c250e1fc07f5c72cb09db847b7740394608246bd0225"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.round-05.png",
         "sha256": "2374267d9ffbb0cb483faaad0c5a5256f9819fb6ae2f2e47fd0b0b5a2919810e"
       }
     ]
@@ -325,6 +325,11 @@
       "by": "VioletRound7 (Claude)",
       "description": "Round 7 (rounds.md's 'Frozen inputs' convention): re-pointed round-05's own shot records at this frozen copy (content unchanged from round 5's grading through round 6, before round 7 repaints it to fix round 6's gap 3, the flat gray ghost scarf).",
       "at": "2026-09-30T05:18:43.596389+00:00"
+    },
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md's 'Frozen inputs' convention): re-pointed round-05's own shot records at this frozen copy (content unchanged from round 5's grading through round 6, before round 7 reindexes/repaints it while adding in-between frames to fix round 6's gap 3, 'too few drawings... large pose jumps and no in-betweens').",
+      "at": "2026-09-30T05:20:39.441470+00:00"
     }
   ],
   "license": "proprietary"

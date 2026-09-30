@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "asset": "dash-body-02.png",
+  "asset": "dash-body-01.round-05.png",
   "sha256": "6b177ff1ec904b4d8a03aea6f0e234dbb05e2fe09cd945718f632a11cb911108",
   "kind": "image",
   "origin": "derived",
@@ -20,8 +20,8 @@
   "human_edits": [
     {
       "by": "VioletRound7 (Claude)",
-      "description": "Round 7 (rounds.md, adding 3 in-between frames to dash per round 6's gap 3 'too few drawings'): reindexed this frame's pixels unchanged from index 1 to index 2 ('peak burst'), since t=i*0.2/6 for the new 6-frame even grid puts index 2 at t=0.0667 -- exactly this frame's own original sample time, unchanged.",
-      "at": "2026-09-30T05:20:49.449949+00:00"
+      "description": "Round 7 (rounds.md's 'Frozen inputs' convention): re-pointed round-05's own shot records at this frozen copy (content unchanged from round 5's grading through round 6, before round 7 reindexes/repaints it while adding in-between frames to fix round 6's gap 3, 'too few drawings... large pose jumps and no in-betweens').",
+      "at": "2026-09-30T05:20:30.163884+00:00"
     }
   ],
   "license": "proprietary"

@@ -26,7 +26,7 @@
         "sha256": "a3ff23d233c92c171343dbb9ad230fff0bd09ad6cb112d45e804f4e80f764934"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.round-05.png",
         "sha256": "30a4471f51a50d4184936dcc2fd543a64325a3df6732e9c8f52f5398005c7616"
       },
       {
@@ -38,7 +38,7 @@
         "sha256": "afbafd3473b2fbba4dd7c250e1fc07f5c72cb09db847b7740394608246bd0225"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.round-05.png",
         "sha256": "2374267d9ffbb0cb483faaad0c5a5256f9819fb6ae2f2e47fd0b0b5a2919810e"
       }
     ]
@@ -48,6 +48,11 @@
       "by": "VioletRound6 (Claude)",
       "description": "corrected generator.inputs[].sha256 for assets/bakeoff/protagonist/glow-up/shoot_b.py to its current recorded hash (round 6's torso_x/place_dy_offset grounded-placement support changed shoot_b.py's own content; this reference predates that change) -- same kind of fix round 5 itself needed for round 4's frame_count() bugfix.",
       "at": "2026-09-30T04:35:34+00:00"
+    },
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md's 'Frozen inputs' convention): re-pointed round-05's own shot records at this frozen copy (content unchanged from round 5's grading through round 6, before round 7 reindexes/repaints it while adding in-between frames to fix round 6's gap 3, 'too few drawings... large pose jumps and no in-betweens').",
+      "at": "2026-09-30T05:20:39.440547+00:00"
     }
   ],
   "license": "proprietary"
