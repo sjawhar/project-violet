@@ -1494,7 +1494,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-04: technique B (painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-02.round-04.png",
@@ -1598,7 +1598,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-04: technique B (painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-02.round-04.png",
@@ -1703,7 +1703,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-04: technique B (painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-02.round-04.png",
@@ -1750,7 +1750,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-04: technique B (painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-00.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-01.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-02.round-04.png",
@@ -1797,7 +1797,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-04: technique B (painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-00.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-01.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-02.round-04.png",
@@ -1838,7 +1838,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-04: technique B (painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-00.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-01.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-02.round-04.png",
@@ -1879,7 +1879,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-04: technique B (painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-00.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-01.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-02.round-04.png",
@@ -1920,7 +1920,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-04: technique B (painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.round-04.png",
@@ -1957,7 +1957,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-04: technique B (painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-00.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-01.round-04.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.round-04.png",
@@ -2009,7 +2009,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-05: technique B (graded painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-02.round-07.png",
@@ -2129,7 +2129,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-05: technique B (graded painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-02.round-07.png",
@@ -2238,7 +2238,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-05: technique B (graded painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-02.round-07.png",
@@ -2289,7 +2289,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-05: technique B (graded painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-01.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-02.png",
@@ -2340,7 +2340,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-05: technique B (graded painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-01.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-02.png",
@@ -2381,7 +2381,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-05: technique B (graded painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-01.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-02.png",
@@ -2426,7 +2426,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-05: technique B (graded painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-01.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-02.png",
@@ -2475,7 +2475,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-05: technique B (graded painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.round-05.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.round-05.png",
@@ -2516,7 +2516,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-05: technique B (graded painted frames) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-01.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.round-05.png",
@@ -2560,7 +2560,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-06: technique B (run/idle torso-lock + head-rhythm placement offsets, idle scarf repaint, fall frame 4 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.round-07.png",
@@ -2672,7 +2672,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-06: technique B (run/idle torso-lock + head-rhythm placement offsets, idle scarf repaint, fall frame 4 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.round-07.png",
@@ -2777,7 +2777,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-06: technique B (run/idle torso-lock + head-rhythm placement offsets, idle scarf repaint, fall frame 4 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.round-07.png",
@@ -2824,7 +2824,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-06: technique B (run/idle torso-lock + head-rhythm placement offsets, idle scarf repaint, fall frame 4 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-01.png",
@@ -2871,7 +2871,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-06: technique B (run/idle torso-lock + head-rhythm placement offsets, idle scarf repaint, fall frame 4 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-01.png",
@@ -2907,7 +2907,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-06: technique B (run/idle torso-lock + head-rhythm placement offsets, idle scarf repaint, fall frame 4 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-01.png",
@@ -2948,7 +2948,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-06: technique B (run/idle torso-lock + head-rhythm placement offsets, idle scarf repaint, fall frame 4 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-01.png",
@@ -2993,7 +2993,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-06: technique B (run/idle torso-lock + head-rhythm placement offsets, idle scarf repaint, fall frame 4 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.round-08.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.round-06.png",
@@ -3030,7 +3030,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-06: technique B (run/idle torso-lock + head-rhythm placement offsets, idle scarf repaint, fall frame 4 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-01.png",
@@ -3070,7 +3070,7 @@
           "tool": "/home/sami/Code/personal/project-violet-vint/assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-07: technique B (dash/land 3-to-6 in-between frames, double_jump scarf-02/03 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
@@ -3191,7 +3191,7 @@
           "tool": "/home/sami/Code/personal/project-violet-vint/assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-07: technique B (dash/land 3-to-6 in-between frames, double_jump scarf-02/03 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
@@ -3313,7 +3313,7 @@
           "tool": "/home/sami/Code/personal/project-violet-vint/assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-07: technique B (dash/land 3-to-6 in-between frames, double_jump scarf-02/03 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
@@ -3435,7 +3435,7 @@
           "tool": "/home/sami/Code/personal/project-violet-vint/assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-07: technique B (dash/land 3-to-6 in-between frames, double_jump scarf-02/03 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
@@ -3557,7 +3557,7 @@
           "tool": "/home/sami/Code/personal/project-violet-vint/assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-07: technique B (dash/land 3-to-6 in-between frames, double_jump scarf-02/03 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
@@ -3679,7 +3679,7 @@
           "tool": "/home/sami/Code/personal/project-violet-vint/assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-07: technique B (dash/land 3-to-6 in-between frames, double_jump scarf-02/03 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
@@ -3801,7 +3801,7 @@
           "tool": "/home/sami/Code/personal/project-violet-vint/assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-07: technique B (dash/land 3-to-6 in-between frames, double_jump scarf-02/03 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
@@ -3923,7 +3923,7 @@
           "tool": "/home/sami/Code/personal/project-violet-vint/assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-07: technique B (dash/land 3-to-6 in-between frames, double_jump scarf-02/03 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
@@ -4045,7 +4045,7 @@
           "tool": "/home/sami/Code/personal/project-violet-vint/assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-07: technique B (dash/land 3-to-6 in-between frames, double_jump scarf-02/03 repaint) in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
@@ -4162,7 +4162,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-08: technique B, idle's body/scarf frames replaced by idle_hybrid.py's procedural breathing/sway hybrid (round 7's kept gap 1, 'boiling', fixed); the other six animations unchanged from round 7; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -4279,7 +4279,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-08: technique B, idle's body/scarf frames replaced by idle_hybrid.py's procedural breathing/sway hybrid (round 7's kept gap 1, 'boiling', fixed); the other six animations unchanged from round 7; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -4397,7 +4397,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-08: technique B, idle's body/scarf frames replaced by idle_hybrid.py's procedural breathing/sway hybrid (round 7's kept gap 1, 'boiling', fixed); the other six animations unchanged from round 7; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -4515,7 +4515,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-08: technique B, idle's body/scarf frames replaced by idle_hybrid.py's procedural breathing/sway hybrid (round 7's kept gap 1, 'boiling', fixed); the other six animations unchanged from round 7; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -4633,7 +4633,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-08: technique B, idle's body/scarf frames replaced by idle_hybrid.py's procedural breathing/sway hybrid (round 7's kept gap 1, 'boiling', fixed); the other six animations unchanged from round 7; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -4751,7 +4751,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-08: technique B, idle's body/scarf frames replaced by idle_hybrid.py's procedural breathing/sway hybrid (round 7's kept gap 1, 'boiling', fixed); the other six animations unchanged from round 7; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -4869,7 +4869,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-08: technique B, idle's body/scarf frames replaced by idle_hybrid.py's procedural breathing/sway hybrid (round 7's kept gap 1, 'boiling', fixed); the other six animations unchanged from round 7; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -4987,7 +4987,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-08: technique B, idle's body/scarf frames replaced by idle_hybrid.py's procedural breathing/sway hybrid (round 7's kept gap 1, 'boiling', fixed); the other six animations unchanged from round 7; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -5105,7 +5105,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-08: technique B, idle's body/scarf frames replaced by idle_hybrid.py's procedural breathing/sway hybrid (round 7's kept gap 1, 'boiling', fixed); the other six animations unchanged from round 7; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -5217,7 +5217,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-09: technique B, nine scarf layers repainted (round 8's kept gap 1): run frame 5, jump frame 1, dash frames 0/2/5 (flat/untextured scarf, measured by std of luminance inside the scarf's opaque interior) and land frames 3/4/5 (scarf repainted to trail behind her on the same left side as frames 0-2, instead of swinging to the front/right); bodies, idle and the fixed shot layout unchanged from round 8; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -5329,7 +5329,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-09: technique B, nine scarf layers repainted (round 8's kept gap 1): run frame 5, jump frame 1, dash frames 0/2/5 (flat/untextured scarf, measured by std of luminance inside the scarf's opaque interior) and land frames 3/4/5 (scarf repainted to trail behind her on the same left side as frames 0-2, instead of swinging to the front/right); bodies, idle and the fixed shot layout unchanged from round 8; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -5442,7 +5442,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-09: technique B, nine scarf layers repainted (round 8's kept gap 1): run frame 5, jump frame 1, dash frames 0/2/5 (flat/untextured scarf, measured by std of luminance inside the scarf's opaque interior) and land frames 3/4/5 (scarf repainted to trail behind her on the same left side as frames 0-2, instead of swinging to the front/right); bodies, idle and the fixed shot layout unchanged from round 8; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -5555,7 +5555,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-09: technique B, nine scarf layers repainted (round 8's kept gap 1): run frame 5, jump frame 1, dash frames 0/2/5 (flat/untextured scarf, measured by std of luminance inside the scarf's opaque interior) and land frames 3/4/5 (scarf repainted to trail behind her on the same left side as frames 0-2, instead of swinging to the front/right); bodies, idle and the fixed shot layout unchanged from round 8; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -5668,7 +5668,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-09: technique B, nine scarf layers repainted (round 8's kept gap 1): run frame 5, jump frame 1, dash frames 0/2/5 (flat/untextured scarf, measured by std of luminance inside the scarf's opaque interior) and land frames 3/4/5 (scarf repainted to trail behind her on the same left side as frames 0-2, instead of swinging to the front/right); bodies, idle and the fixed shot layout unchanged from round 8; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -5781,7 +5781,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-09: technique B, nine scarf layers repainted (round 8's kept gap 1): run frame 5, jump frame 1, dash frames 0/2/5 (flat/untextured scarf, measured by std of luminance inside the scarf's opaque interior) and land frames 3/4/5 (scarf repainted to trail behind her on the same left side as frames 0-2, instead of swinging to the front/right); bodies, idle and the fixed shot layout unchanged from round 8; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -5894,7 +5894,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-09: technique B, nine scarf layers repainted (round 8's kept gap 1): run frame 5, jump frame 1, dash frames 0/2/5 (flat/untextured scarf, measured by std of luminance inside the scarf's opaque interior) and land frames 3/4/5 (scarf repainted to trail behind her on the same left side as frames 0-2, instead of swinging to the front/right); bodies, idle and the fixed shot layout unchanged from round 8; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -6007,7 +6007,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-09: technique B, nine scarf layers repainted (round 8's kept gap 1): run frame 5, jump frame 1, dash frames 0/2/5 (flat/untextured scarf, measured by std of luminance inside the scarf's opaque interior) and land frames 3/4/5 (scarf repainted to trail behind her on the same left side as frames 0-2, instead of swinging to the front/right); bodies, idle and the fixed shot layout unchanged from round 8; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -6120,7 +6120,7 @@
           "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
           "tool_version": "shoot_b.py round-09: technique B, nine scarf layers repainted (round 8's kept gap 1): run frame 5, jump frame 1, dash frames 0/2/5 (flat/untextured scarf, measured by std of luminance inside the scarf's opaque interior) and land frames 3/4/5 (scarf repainted to trail behind her on the same left side as frames 0-2, instead of swinging to the front/right); bodies, idle and the fixed shot layout unchanged from round 8; in shoot.py's exact fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-09.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-09.png",
@@ -6232,7 +6232,7 @@
           "tool": "shoot_b.py",
           "tool_version": "round-10; unchanged fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png",
@@ -6344,7 +6344,7 @@
           "tool": "shoot_b.py",
           "tool_version": "round-10; unchanged fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png",
@@ -6457,7 +6457,7 @@
           "tool": "shoot_b.py",
           "tool_version": "round-10; unchanged fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.png",
@@ -6500,7 +6500,7 @@
           "tool": "shoot_b.py",
           "tool_version": "round-10; unchanged fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-01.png",
@@ -6543,7 +6543,7 @@
           "tool": "shoot_b.py",
           "tool_version": "round-10; unchanged fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-01.png",
@@ -6580,7 +6580,7 @@
           "tool": "shoot_b.py",
           "tool_version": "round-10; unchanged fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-01.png",
@@ -6617,7 +6617,7 @@
           "tool": "shoot_b.py",
           "tool_version": "round-10; unchanged fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-01.png",
@@ -6654,7 +6654,7 @@
           "tool": "shoot_b.py",
           "tool_version": "round-10; unchanged fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png",
@@ -6693,7 +6693,7 @@
           "tool": "shoot_b.py",
           "tool_version": "round-10; unchanged fixed layout",
           "inputs": [
-            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
             "assets/bakeoff/protagonist/rig/violet.json",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-00.png",
             "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-01.png",
@@ -6832,6 +6832,523 @@
         }
       },
       "source": "assets/bakeoff/protagonist/glow-up/trial-b/run-row-ingame.png"
+    },
+    {
+      "name": "contact-sheet.png",
+      "kind": "image",
+      "media": {
+        "image": "items/103-contact-sheet.webp",
+        "original": "originals/attachment-fix/contact-sheet.png"
+      },
+      "sha256": "e475ae158daf7d48c5969d2e941382924f71e149a909232ffb6921f4e495ee5a",
+      "provenance": {
+        "status": "ok",
+        "problems": [],
+        "record": {
+          "origin": "derived",
+          "license": "proprietary",
+          "authors": [],
+          "human_edits": [],
+          "tool": "shoot_b.py",
+          "tool_version": "scarf-attachment-correction",
+          "inputs": [
+            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+            "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+            "assets/bakeoff/protagonist/rig/violet.json",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-06.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-07.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-06.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-07.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-06.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-07.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-06.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-07.png"
+          ]
+        }
+      },
+      "source": "assets/bakeoff/protagonist/glow-up/attachment-fix/contact-sheet.png"
+    },
+    {
+      "name": "contact-sheet-ingame.png",
+      "kind": "image",
+      "media": {
+        "image": "items/104-contact-sheet-ingame.webp",
+        "original": "originals/attachment-fix/contact-sheet-ingame.png"
+      },
+      "sha256": "416d0c7df80af6a8975fcd7c1796e8420a53e72d233f92dff3a91ac469bc9f9d",
+      "provenance": {
+        "status": "ok",
+        "problems": [],
+        "record": {
+          "origin": "derived",
+          "license": "proprietary",
+          "authors": [],
+          "human_edits": [],
+          "tool": "shoot_b.py",
+          "tool_version": "scarf-attachment-correction",
+          "inputs": [
+            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+            "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+            "assets/bakeoff/protagonist/rig/violet.json",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-06.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-07.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-06.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-07.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-06.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-07.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-06.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-07.png"
+          ]
+        }
+      },
+      "source": "assets/bakeoff/protagonist/glow-up/attachment-fix/contact-sheet-ingame.png"
+    },
+    {
+      "name": "idle.gif",
+      "kind": "animation",
+      "media": {
+        "gif": "items/105-idle.gif",
+        "video": "items/105-idle.mp4",
+        "poster": "items/105-idle.poster.webp"
+      },
+      "sha256": "2a488f2bec2d3c0f0b22ceebad6a8019943445699f2f0880c41a96d7f226fc4d",
+      "provenance": {
+        "status": "ok",
+        "problems": [],
+        "record": {
+          "origin": "derived",
+          "license": "proprietary",
+          "authors": [],
+          "human_edits": [],
+          "tool": "shoot_b.py",
+          "tool_version": "scarf-attachment-correction",
+          "inputs": [
+            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+            "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+            "assets/bakeoff/protagonist/rig/violet.json",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-06.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-07.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-06.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-07.png"
+          ]
+        }
+      },
+      "source": "assets/bakeoff/protagonist/glow-up/attachment-fix/idle.gif"
+    },
+    {
+      "name": "run.gif",
+      "kind": "animation",
+      "media": {
+        "gif": "items/106-run.gif",
+        "video": "items/106-run.mp4",
+        "poster": "items/106-run.poster.webp"
+      },
+      "sha256": "c8c76d5ab3972d3b07daae34792d60496f70e22bbc752d7fd47a6acb8dd2292b",
+      "provenance": {
+        "status": "ok",
+        "problems": [],
+        "record": {
+          "origin": "derived",
+          "license": "proprietary",
+          "authors": [],
+          "human_edits": [],
+          "tool": "shoot_b.py",
+          "tool_version": "scarf-attachment-correction",
+          "inputs": [
+            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+            "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+            "assets/bakeoff/protagonist/rig/violet.json",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-06.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-07.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-06.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-07.png"
+          ]
+        }
+      },
+      "source": "assets/bakeoff/protagonist/glow-up/attachment-fix/run.gif"
+    },
+    {
+      "name": "jump.gif",
+      "kind": "animation",
+      "media": {
+        "gif": "items/107-jump.gif",
+        "video": "items/107-jump.mp4",
+        "poster": "items/107-jump.poster.webp"
+      },
+      "sha256": "c0e984a99ffdd48dfb198a7864567f9add6f6dffd8377fc412649a27258b38a0",
+      "provenance": {
+        "status": "ok",
+        "problems": [],
+        "record": {
+          "origin": "derived",
+          "license": "proprietary",
+          "authors": [],
+          "human_edits": [],
+          "tool": "shoot_b.py",
+          "tool_version": "scarf-attachment-correction",
+          "inputs": [
+            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+            "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+            "assets/bakeoff/protagonist/rig/violet.json",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-04.png"
+          ]
+        }
+      },
+      "source": "assets/bakeoff/protagonist/glow-up/attachment-fix/jump.gif"
+    },
+    {
+      "name": "fall.gif",
+      "kind": "animation",
+      "media": {
+        "gif": "items/108-fall.gif",
+        "video": "items/108-fall.mp4",
+        "poster": "items/108-fall.poster.webp"
+      },
+      "sha256": "00f8177cceca76a3434f3d1266ad5ece92e7dac3e35ac1a43b7c10f5d0c4f35d",
+      "provenance": {
+        "status": "ok",
+        "problems": [],
+        "record": {
+          "origin": "derived",
+          "license": "proprietary",
+          "authors": [],
+          "human_edits": [],
+          "tool": "shoot_b.py",
+          "tool_version": "scarf-attachment-correction",
+          "inputs": [
+            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+            "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+            "assets/bakeoff/protagonist/rig/violet.json",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-04.png"
+          ]
+        }
+      },
+      "source": "assets/bakeoff/protagonist/glow-up/attachment-fix/fall.gif"
+    },
+    {
+      "name": "double_jump.gif",
+      "kind": "animation",
+      "media": {
+        "gif": "items/109-double_jump.gif",
+        "video": "items/109-double_jump.mp4",
+        "poster": "items/109-double_jump.poster.webp"
+      },
+      "sha256": "2b372be4fa57532ce1058b78e30e9d253e9b5d1cf33d0aa6bc7fbc8e5321f9d6",
+      "provenance": {
+        "status": "ok",
+        "problems": [],
+        "record": {
+          "origin": "derived",
+          "license": "proprietary",
+          "authors": [],
+          "human_edits": [],
+          "tool": "shoot_b.py",
+          "tool_version": "scarf-attachment-correction",
+          "inputs": [
+            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+            "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+            "assets/bakeoff/protagonist/rig/violet.json",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-04.png"
+          ]
+        }
+      },
+      "source": "assets/bakeoff/protagonist/glow-up/attachment-fix/double_jump.gif"
+    },
+    {
+      "name": "dash.gif",
+      "kind": "animation",
+      "media": {
+        "gif": "items/110-dash.gif",
+        "video": "items/110-dash.mp4",
+        "poster": "items/110-dash.poster.webp"
+      },
+      "sha256": "f355d596a1a1789f2518d82ee464f6b5c45f7ccea649d032c3ba1b7809d0396e",
+      "provenance": {
+        "status": "ok",
+        "problems": [],
+        "record": {
+          "origin": "derived",
+          "license": "proprietary",
+          "authors": [],
+          "human_edits": [],
+          "tool": "shoot_b.py",
+          "tool_version": "scarf-attachment-correction",
+          "inputs": [
+            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+            "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+            "assets/bakeoff/protagonist/rig/violet.json",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-05.png"
+          ]
+        }
+      },
+      "source": "assets/bakeoff/protagonist/glow-up/attachment-fix/dash.gif"
+    },
+    {
+      "name": "land.gif",
+      "kind": "animation",
+      "media": {
+        "gif": "items/111-land.gif",
+        "video": "items/111-land.mp4",
+        "poster": "items/111-land.poster.webp"
+      },
+      "sha256": "eddc617d427fb4a2f9f8ebc84cef493619983b901a35a96ac5f0e81b2804cf68",
+      "provenance": {
+        "status": "ok",
+        "problems": [],
+        "record": {
+          "origin": "derived",
+          "license": "proprietary",
+          "authors": [],
+          "human_edits": [],
+          "tool": "shoot_b.py",
+          "tool_version": "scarf-attachment-correction",
+          "inputs": [
+            "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+            "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+            "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+            "assets/bakeoff/protagonist/rig/violet.json",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-05.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-00.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-01.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-03.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-04.png",
+            "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-05.png"
+          ]
+        }
+      },
+      "source": "assets/bakeoff/protagonist/glow-up/attachment-fix/land.gif"
     }
   ]
 }

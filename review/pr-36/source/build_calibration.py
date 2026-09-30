@@ -51,6 +51,8 @@ def main():
     inputs = [ART / f'round-{r:02d}' / name for r in range(11)
               for name in ['contact-sheet.png', 'contact-sheet-ingame.png', *[a + '.gif' for a in ANIMS]]]
     inputs += [ART / 'trial-b' / name for name in ['run.gif', 'run-row.png', 'run-row-ingame.png']]
+    inputs += [ART / 'attachment-fix' / name
+               for name in ['contact-sheet.png', 'contact-sheet-ingame.png', *[a + '.gif' for a in ANIMS]]]
     if not args.page_only:
         if SCRATCH == OUT or OUT in SCRATCH.parents:
             parser.error('Copy this source directory outside out/review/pr-36 before rebuilding media; --page-only is safe in place.')
@@ -59,7 +61,7 @@ def main():
         command = ['mise', 'exec', '--', 'uv', 'run', '--frozen', '--project', str(ROOT / 'tools/preview'), 'preview', 'build', '36', *map(str, inputs)]
         subprocess.run(command, cwd=ROOT, env=env, check=True)
     manifest = json.loads((OUT / 'preview.json').read_text())
-    assert len(manifest['items']) == len(inputs), 'Preview manifest does not match the 102 calibration inputs'
+    assert len(manifest['items']) == len(inputs), 'Preview manifest does not match the requested calibration and correction inputs'
     media = {}
     for source, item in zip(inputs, manifest['items'], strict=True):
         assert item['sha256'] == hashlib.sha256(source.read_bytes()).hexdigest(), f'Outdated preview: {source}'
@@ -106,9 +108,19 @@ def main():
         motions = ''.join(f'<figure><figcaption>{LABELS[a]}</figcaption>{player(f"round-{r:02d}/{a}.gif", f"Round {r} {LABELS[a]}")}<a href="{esc(media[f"round-{r:02d}/{a}.gif"]["gif"])}">GIF</a></figure>' for a in ANIMS)
         cards.append(f'''<article class="round" id="round-{r}"><header><h3>Round {r:02d}</h3><span class="badge {badge}">{esc(status)}</span></header><p class="round-description">{esc(SUMMARY[r])}</p>{sheet(r)}<details><summary>Motion, scores and critique</summary><div class="round-data"><p><strong>Per-comparison scores:</strong> {esc(scores)}</p><p><strong>Within-round verdict:</strong> {esc(verdict)}</p><p>{critic}</p><p class="muted">Scores are visual quality / character appeal / color readability. Letter mappings belong to that round only.</p><p><strong>Letter map:</strong> {esc(plain(row[5]))}</p><p><strong>Worker-reported window:</strong> {esc(row[1])} to {esc(row[2])} ({duration(elapsed)}). Not verified agent-hours.</p></div><div class="motion-grid">{motions}</div></details></article>''')
         score_rows.append(f'<tr><th scope="row">{r:02d}</th><td>{esc(status)}</td><td>{esc(scores)}</td><td>{esc(row[1])}<br>{esc(row[2])}</td><td>{duration(elapsed)}</td></tr>')
-    pair_data = {a: [media[f'round-00/{a}.gif'], media[f'round-10/{a}.gif']] for a in ANIMS}
+    pair_data = {a: [media[f'round-00/{a}.gif'], media[f'attachment-fix/{a}.gif']] for a in ANIMS}
     buttons = ''.join(f'<button type="button" class="animation-choice" data-animation="{a}" aria-pressed="{str(a == "idle").lower()}">{LABELS[a]}</button>' for a in ANIMS)
-    initial = ''.join(f'<figure><figcaption>{label}</figcaption>{player(f"round-{r:02d}/idle.gif", f"{label} idle", f"id=\"compare-{r}\"", preload="metadata")}<p class="links"><a class="gif-link" href="{esc(media[f"round-{r:02d}/idle.gif"]["gif"])}">Idle GIF</a><a href="{esc(media[f"round-{r:02d}/contact-sheet.png"]["original"])}">Full-resolution sheet</a></p></figure>' for r, label in [(0, 'Original · round 0'), (10, 'Final candidate · round 10')])
+    initial = ''.join(
+        f'<figure><figcaption>{label}</figcaption>{player(f"{prefix}/idle.gif", f"{label} idle", f"id=\"compare-{slot}\"", preload="metadata")}<p class="links"><a class="gif-link" href="{esc(media[f"{prefix}/idle.gif"]["gif"])}">Idle GIF</a><a href="{esc(media[f"{prefix}/contact-sheet.png"]["original"])}">Full-resolution sheet</a></p></figure>'
+        for slot, prefix, label in [
+            (0, 'round-00', 'Original · round 0'),
+            (10, 'attachment-fix', 'Candidate · scarf attachment corrected'),
+        ]
+    )
+    attachment_pairs = ''.join(
+        f'<h3>{LABELS[a]}</h3><div class="comparison-grid"><figure><figcaption>Before · round 10</figcaption>{player(f"round-10/{a}.gif", f"Before attachment fix: {a}")}</figure><figure><figcaption>After · attached at the neck</figcaption>{player(f"attachment-fix/{a}.gif", f"After attachment fix: {a}")}</figure></div>'
+        for a in ANIMS
+    )
     environment = ''
     if meta.get('environment_url'):
         environment = f'''<section id="environments"><h2>The environment studies</h2><p>The world-art lanes are a separate comparison. Each completed ten rounds.</p><p><a class="primary-link" href="{esc(meta['environment_url'])}">Open environment progression</a></p><details><summary>Historical environment scores and generation costs</summary><p>These endpoint scores came from different historical critic sessions, not one calibrated comparison. The fresh Codex comparisons are listed separately below.</p><div class="table-wrap"><table><thead><tr><th>Lane</th><th>Original record</th><th>Final record</th><th>Image-generation cost</th></tr></thead><tbody><tr><th>Painted · G-A</th><td>2 / 3 / 3</td><td>3 / 3 / 4</td><td>$1.02 provider usage</td></tr><tr><th>3D · G-D</th><td>2 / 2 / 2</td><td>3 / 3 / 4</td><td>About $0.22 estimated</td></tr><tr><th>Vector · G-C</th><td>2 / 2 / 3</td><td>3 / 2 / 4</td><td>$0</td></tr></tbody></table></div><p>Scores are visual quality / character appeal / color readability, not human approval. The source records remain on the bake-off branches.</p></details></section>'''
@@ -127,6 +139,7 @@ def main():
         'FINAL_MODEL': esc(meta['final_critic_model_note']), 'ROUND_CARDS': '\n'.join(cards), 'SCORE_ROWS': '\n'.join(score_rows),
         'ENVIRONMENT': environment, 'SOURCE_NOTE': esc(meta['source_note']),
         'ENDPOINT_AUDITS': audits,
+        'ATTACHMENT_PAIRS': attachment_pairs,
         'ROUND_RECORD': source_link('rounds.md', 'Full round record'), 'TRIAL_RECORD': source_link('technique-trial.md', 'Technique-trial record'),
         'EXPERIMENT_TIME': duration((experiment_end - experiment_start).total_seconds()),
         'EXPERIMENT_START': esc(meta['experiment_start']), 'EXPERIMENT_END': esc(meta['experiment_end']),

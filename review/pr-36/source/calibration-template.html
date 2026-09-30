@@ -14,9 +14,9 @@
 <main>
 <header class="masthead">
 <p class="eyebrow">Violet · character study</p>
-<h1>Original to final, in motion</h1>
-<p class="subhead">One baseline and ten rounds of character work. Compare the same animation at the same display size.</p>
-<p class="notice"><strong>Review hold: scarf attachment is incorrect.</strong> The experiment below preserves the reviewed images, but the separate scarf layer is not consistently tied to the neck. This correctness defect is being repaired; the candidate is not ready for art approval.</p>
+<h1>Original to corrected candidate, in motion</h1>
+<p class="subhead">One baseline, ten art rounds, and a scarf-attachment correction. Compare the same animation at the same display size.</p>
+<p class="notice"><strong>Scarf attachment corrected.</strong> Each scarf knot is now bound to the neck, and its collar is drawn above the clothing. The right-hand player shows this correction. The historical rounds below retain the original defect and their original scores.</p>
 <nav aria-label="Page sections"><a href="#progression">All 11 rounds</a><a href="#trial">Cutout vs painted</a><a href="#records">Scores, time and cost</a></nav>
 </header>
 <section id="comparison" aria-label="Original and final animation comparison">
@@ -25,9 +25,10 @@
 <div class="controls"><button id="play-pair" type="button">Play both</button><button id="pause-pair" type="button">Pause both</button><button id="restart-pair" type="button">Restart both</button><label for="speed">Speed</label><select id="speed"><option value="1">1×</option><option value="0.5">½×</option><option value="0.25">¼×</option></select></div>
 <p class="playback-note">Both players start together; each loop keeps its recorded timing. Use the individual controls to scrub or view fullscreen.</p>
 <p class="playback-note" id="playback-status" role="status" aria-live="polite">Idle selected. Press Play both to compare.</p>
-<p class="status"><strong>Round 10:</strong> @@FINAL_STATUS@@. @@FINAL_VERDICT@@</p>
-<p class="notice"><strong>Stronger action drawings, not finished animation.</strong> A fresh Codex comparison preferred the final character for visual quality and appeal, but preferred the original for color readability. The scarf and robe still lose continuity in motion. The round-3-to-4 technique check also favored painted action and cutout readability. <a href="#records">See the per-comparison findings.</a></p>
+<p class="status"><strong>Historical round 10:</strong> @@FINAL_STATUS@@. @@FINAL_VERDICT@@ This score predates the attachment correction.</p>
+<p class="notice"><strong>Stronger action drawings, not finished animation.</strong> The pre-correction Codex comparison preferred the painted character for visual quality and appeal, but preferred the original for color readability. The scarf and robe still lose continuity in motion. Those judgements have not been rerun for the corrected attachment. <a href="#records">See the historical per-comparison findings.</a></p>
 </section>
+<section id="attachment"><h2>The attachment correction</h2><p>The scarf paintings themselves are unchanged. Their knots are now registered to the neck in all 43 frames, and the neck wrap is no longer hidden under the body layer. No new image generation was used.</p><details><summary>Compare before and after the scarf correction</summary>@@ATTACHMENT_PAIRS@@</details></section>
 <section aria-labelledby="changes-title">
 <h2 id="changes-title">What changed, and what still shows</h2>
 <div class="reading"><div><h3>Improved</h3><ul><li>Painted action poses are less rigid than the original cutout rig.</li><li>Darker body values separate the robe from the gray background.</li><li>Idle is steadier, with anchored feet and a small breath and weight shift.</li><li>The scarf has more fabric texture, and the landing scarf stays on one trailing side.</li></ul></div><div><h3>Still limited</h3><ul><li>Cloth, hair and character details change between drawings instead of moving consistently.</li><li>Scarf tips and some feet clip at the capture edges.</li><li>The sprite animations have no runtime reader yet. This page is rendered media, not a playable character.</li><li>Hardware timing is unmeasured. The existing request is on <a href="https://github.com/sjawhar/project-violet/issues/4">the studio task</a>.</li></ul></div></div>
