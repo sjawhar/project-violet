@@ -1,16 +1,24 @@
 {
   "schema_version": 1,
   "asset": "idle-body-04.png",
-  "sha256": "b164bbdac7bd66d5e378eedb6768d70cda9f684b632d7958d414c2ca0968177c",
+  "sha256": "92c24b4091e61e4748efd29c6109e4b5c1a723ca95269432354d4fef81b5561f",
   "kind": "image",
   "origin": "derived",
-  "created_at": "2026-09-30T06:37:25+00:00",
+  "created_at": "2026-09-30T14:09:22+00:00",
   "generator": {
-    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/idle_hybrid.py",
-    "tool_version": "idle_hybrid.py round 8: idle frame 4/8 (t=0.500s of a 1.0s loop). Holds idle-body-00.round-07.png (the neutral-rest pose) as the single source painting and applies a piecewise vertical breathing stretch above a fixed waist line (WAIST_Y_FRAC=0.36 of body height; everything at/below the waist, including both feet and the hem, is an exact identity copy) by factor s=1.02000 (breath(t)=(1-cos(2*pi*t))/2, peak amplitude 2%), so the chest/shoulders/hood/head lift slightly while sole_y stays bit-identical across all 8 frames -- fixes round 7's kept gap 1 ('boiling': round-07/critic.md).",
+    "tool": "idle_hybrid.py",
+    "tool_version": "round-10",
     "model": null,
-    "params": {},
+    "params": {
+      "frame": "4",
+      "time": "0.5",
+      "loop_seconds": "1"
+    },
     "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/idle_hybrid.py",
+        "sha256": "a48705f08a582367f2f30ee0d19679af03efbe81f59793eef7a41aa28055310f"
+      },
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
         "sha256": "135c86bc1999684e242b4737628526f493868c80dae2d8332a7b7fd81742c7c8"

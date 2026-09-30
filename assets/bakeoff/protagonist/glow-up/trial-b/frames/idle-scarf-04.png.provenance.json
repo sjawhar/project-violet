@@ -4,13 +4,21 @@
   "sha256": "7fb2662507c561456c65c448d179f7bf1ff07629a01ee0df777219bb6d537f41",
   "kind": "image",
   "origin": "derived",
-  "created_at": "2026-09-30T06:37:25+00:00",
+  "created_at": "2026-09-30T14:09:22+00:00",
   "generator": {
-    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/idle_hybrid.py",
-    "tool_version": "idle_hybrid.py round 8: idle frame 4/8 (t=0.500s of a 1.0s loop). Holds idle-scarf-00.round-07.png (round 6's own frame-0 scarf painting, paired with idle-body-00 at generation time) as the single source painting and applies a piecewise horizontal shear below a fixed pivot near the neck knot (alpha centroid of the topmost 15 rows; rows at/above the pivot are an exact identity copy) at angle=0.000 degrees (angle(t)=3*sin(2*pi*t), peak 3 degrees), so the tail drifts side to side like a hanging cloth while the knot stays anchored -- fixes round 7's kept gap 1 ('boiling': round-07/critic.md) without redrawing the scarf.",
+    "tool": "idle_hybrid.py",
+    "tool_version": "round-10",
     "model": null,
-    "params": {},
+    "params": {
+      "frame": "4",
+      "time": "0.5",
+      "loop_seconds": "1"
+    },
     "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/idle_hybrid.py",
+        "sha256": "a48705f08a582367f2f30ee0d19679af03efbe81f59793eef7a41aa28055310f"
+      },
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
         "sha256": "594464eb09091fbe94dfd8e7e7eda6e19a0b54b9d1661252e918cf6a8424eae3"

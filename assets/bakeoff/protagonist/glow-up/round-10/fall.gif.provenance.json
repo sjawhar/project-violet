@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "asset": "fall.gif",
+  "sha256": "42d37e150a16b845819a3ca4dba0d7f805741eb8a0bf6777ac4b77d9431cf9f9",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T14:09:22+00:00",
+  "generator": {
+    "tool": "shoot_b.py",
+    "tool_version": "round-10; unchanged fixed layout",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+        "sha256": "6a949541543d38f1957c20d4138361d20ace0dc746d60639689860d0405f4100"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/rig/violet.json",
+        "sha256": "648eeca697454a59e529ce8ad68b198f125e777d11838cd3b3764d5090c41096"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-00.png",
+        "sha256": "8f6c4ad4004dcdadfcfb0601545c5d56923c9a198df605b0140ff0537ff413b8"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-01.png",
+        "sha256": "b6b1cd6023f23ed9258b312c35c423e562f4fdef3ec870c583451ced4cfbc775"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-02.png",
+        "sha256": "ec55ad630e81d9152f65150eac81e459e676dfacae3d3024592c2405dcfaecd7"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-03.png",
+        "sha256": "b538d40eee95de708943f3e43eed7da8b38f40f17b43aaad49264bea088af137"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-04.png",
+        "sha256": "c123a07b822b8fba0f0d7bf91ecbacaaefb08a816f58a70815441a05684b5e98"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-00.png",
+        "sha256": "8a62a26001af47a4abb6ff9b78d940c4a5914f120313b868e9a872af22038761"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-01.png",
+        "sha256": "db33d5b8b85624cf4bdbf3ff74be31473e34b49498533436f221cbb5a90db004"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-02.png",
+        "sha256": "6d8be4fd8b1eccf2ef2570441efeff8516a64064184b1107d7aa121906b81ff6"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-03.png",
+        "sha256": "9beabccb2b593c32b50805b561b31184431a05ada78debdfc4cfc701109ca3f3"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-04.png",
+        "sha256": "7668c07b5f2fda34d745fd26ef45b905ce3efdce2bd53fb4124738d144cebf40"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}
