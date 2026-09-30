@@ -1,0 +1,1229 @@
+{
+  "purpose": "Six blind endpoint/decision spot-checks, not a re-judgement of all historical rounds.",
+  "model": "openai-codex/gpt-6-astra",
+  "provider_verified_from": "model_change plus assistant-response provider fields in all six reviewer transcripts",
+  "billing_route": "existing Codex subscription, not the separately billed OpenAI API",
+  "character_art_commit": "360d1693632e09ddcf3c313ff21cdce8cea0e7b4",
+  "mappings": {
+    "character": {
+      "full-switch": {
+        "A": "round-03",
+        "B": "round-04"
+      },
+      "character": {
+        "A": "round-00",
+        "B": "round-10"
+      },
+      "run-trial": {
+        "A": "cutout",
+        "B": "painted"
+      }
+    },
+    "worlds": {
+      "g-a": {
+        "sha": "e25ea49734b9017373ad02eef3629cc007ba9f00",
+        "mapping": {
+          "A": "round-00",
+          "B": "round-10"
+        }
+      },
+      "g-d": {
+        "sha": "dc6224e69116f5823adce9c0081f40308aae622f",
+        "mapping": {
+          "A": "round-00",
+          "B": "round-10"
+        }
+      },
+      "g-c": {
+        "sha": "2f5dede9402c6b2809df3fe6ba512fedcd44efd5",
+        "mapping": {
+          "A": "round-00",
+          "B": "round-10"
+        }
+      }
+    }
+  },
+  "input_sha256": {
+    "g-a/B-0.png": "91c844b5d92ed8bbf2956d54218f183612367264240489dca410510e0cd02c6e",
+    "g-a/B-1.png": "d0030031d8646d157f66e1ac9723fca2e4925e411a4f245aeb17289cad5a209c",
+    "g-a/A-3.png": "2374042a8ab3e4bb0845edc9ccb33ffef76a345d7e5f9e16fd33cec21d281e02",
+    "g-a/B-2.png": "673cac1b8275dedeb805a6dce81162fb72bc39fb367cada71bc0454d651a0e8d",
+    "g-a/A-2.png": "c27c36c64f0493bc09eed7524c0bc688e92a1f4c9945c866fccf085f1ffcaa04",
+    "g-a/A-1.png": "3617e77caaff60bd8ae3feac411cf86564d7175027fff5d8b0108975ad69bbad",
+    "g-a/B-3.png": "63a4f05e290adf8d2c352ff1ae894efa19b38bc577935e28651f031d175a53ec",
+    "g-a/A-0.png": "bdd32186252c88dab5c6bb51ae05bdc5be758ba71d4faae302bc4549fa90729e",
+    "g-d/B-0.png": "20066bc17ba5118813c17d0ab00791176b307c380e7ee39529d3a30785cbd3d2",
+    "g-d/B-1.png": "408ae067bd56c9711560cc855f7d9fa62433ee5a2ae7eace43c4799f9386a660",
+    "g-d/A-3.png": "1cf79337691aaa27275483ee0db0a9bb4d701b3bd24e9c014c9b8e332c4d1a8e",
+    "g-d/B-2.png": "683d0365119be60d704437f94f4a2e890771f979cc0670192647b1d856ef7a87",
+    "g-d/A-2.png": "9c10bcd9f3e63e7defb4073e01da8f0ab517d4b9cfef0e5c40973d7c06dd33e6",
+    "g-d/A-1.png": "c83959d945f37e63057aa04986c6b3e444d001cff0c35075569c5b9179368558",
+    "g-d/B-3.png": "e53e6311050a645c67486e4884ad119fd149015b197300b948260463d594141f",
+    "g-d/A-0.png": "d3d7cbf3e5a1565fe7235e29eb34a58b85ab48ad55ce4b807b15e7fd34bd8474",
+    "full-switch/A-dash.gif": "7d2b17525974078d4257d73fdbfdb352f9c274df18ba6945117546839307042a",
+    "full-switch/A-idle.gif": "7feb7910207f2850b934c5fe8b6680507b1102f21d94c9a6ddd31555c16cd7fd",
+    "full-switch/B-run.gif": "b6c5232cc6419b86d98373fed5a8f209b8a4503b648e6d575605f12c5c4961eb",
+    "full-switch/B-jump.gif": "a7ddd0bc250dbddc5577727932d67a1aa95af1e03383fcd1764904c0d1ddd3db",
+    "full-switch/A-fall.gif": "266ef0a431b17af37cf3b979bfa049495a887cbd6ffc85d67267894a3eed43dd",
+    "full-switch/B-contact-sheet.png": "a52c847998ab8532877ab8c4b7c8c58382c645a9a312a334dfca12f86d45dc25",
+    "full-switch/A-double_jump.gif": "d57c2c95cf56a788768e7a577f92ab57e14089af87aa3bf555fe68b8ed4dc9bc",
+    "full-switch/A-land.gif": "5684d93b61eaab9854eada59e1ffaf37042eb3fb1a6e61f6666678d155fe05ab",
+    "full-switch/B-idle.gif": "a5140b8e94b21d0991ebd6762a9e3cac5c1954e77f98a6a0fff09808fda98b9c",
+    "full-switch/A-run.gif": "7bed8ddace53d256897f33f6c1c8832a0cc487564db2bc23f2e600a20f3a83d6",
+    "full-switch/B-fall.gif": "94bd13afab65710418cb473a0556e7659a9ff067014bfde61ccdf54881b5d439",
+    "full-switch/B-dash.gif": "8604540a28936cdf971212bf4cfc0efac917003274bb69457d3a600da70183f0",
+    "full-switch/A-jump.gif": "da5c9a012efefc033a7e5ca352b5aaf8b8c307525030a5342a2c73e7eb6de10b",
+    "full-switch/B-double_jump.gif": "d161f26d4c0ae9c904e8792fe44c5ab87a9b67b9eb93a1e6a903db7a585dfc34",
+    "full-switch/A-contact-sheet.png": "8e42b505c861f94c90f6f0475890f2cb5a8b56346d43358eb2e52fa619aeb7cf",
+    "full-switch/B-land.gif": "41deac1c74f971816a4b71fe3184c03a9271f6937ee4f07e2dd980ac9af16794",
+    "character/A-dash.gif": "896217ec321b163a366d41182d9aeb2b7714cec78142052b1b5a43a6c8815bbb",
+    "character/A-idle.gif": "212cc30bb39b3dbc33c1d0e47dc184938a6e6a135c0452e841e2a9f3c14ccead",
+    "character/B-run.gif": "8d2b4a4181dbc5698aa6b35e0107f775a9164492dd0e38ad821cc8b4ae584b25",
+    "character/B-jump.gif": "8a345deed9a16bec4f805a97311b9e20e7f6859747c22bdff003ce4e4133ddf3",
+    "character/A-fall.gif": "3626ef7d23c64c0bbdf5d1a951eda3cc97cf11993af1b4d6013e26a09c767410",
+    "character/B-contact-sheet.png": "b9a3c2b452d1465b4d663e8c877f682fdb1c4854d4babad78381e29c08f73eb1",
+    "character/A-double_jump.gif": "4c27d31a4ed7e65d004cdde2cd8eaeb63fbbcb5ffdc2ca272e439d338568e7d7",
+    "character/A-land.gif": "2cdeddc1d7da300cc8eda6803407e02cb49529ac6b1c163a229871b9188c3ddd",
+    "character/B-idle.gif": "15fc91a3cf81a9fe5e6e236f38e7e2fc66ce5232349fb8f9a69b6f46e36d2ff0",
+    "character/A-run.gif": "c7fca4b97e933a111312f8b006bec2f1c168409d53c55afe3eece85fb8bc3165",
+    "character/B-fall.gif": "42d37e150a16b845819a3ca4dba0d7f805741eb8a0bf6777ac4b77d9431cf9f9",
+    "character/B-dash.gif": "bb1ae90f9cb75131b1aa65830ac635ca99ec2fc76c7ee027d5a108f4cf44bf0e",
+    "character/A-jump.gif": "261eabd1bcdcbb0692a38eac2846e21cd142a3d6659a952594b610df1d9907ed",
+    "character/B-double_jump.gif": "14ef33534017bc6303c9087b71215b214d8d316fb883189b138cce32e42f98a6",
+    "character/A-contact-sheet.png": "565d85b5b55333c9d203fd48083e5123ec66e35875ac02d2c01c30adb143af61",
+    "character/B-land.gif": "0e831ace6c4cbbe7b2cce443b5b5d840e8fe08b7d8c184126d9fd13115341114",
+    "run-trial/B-run.gif": "d5dc6bc923391cb75d30372e07cf5a3d8ec64a0c94ea9b98b20ed33ea8a16ffd",
+    "run-trial/A-run.gif": "20020f205f1bb6238c081a5f6a76a9b71d93015264e8116e5b33e36896b5945d",
+    "g-c/B-0.png": "d838eb054b6c455fb04fa294115ee9f92e1a0a95237b5b54708c5701e9a9dbaa",
+    "g-c/B-1.png": "932daaeae058f62683a8bbcf0e4f23c8f68955038e2742f71551438ccf8cf1b4",
+    "g-c/A-3.png": "2b04d7d7606aba4ba6ca6473a74037b0d6e39f5e4aaed1b74c77ac8e75ca10fb",
+    "g-c/B-2.png": "de28b0dff1ca5ca501ec7f6a7134b286f64a1ce6e091461874ed11a9a2fcfbd3",
+    "g-c/A-2.png": "6ffdaf498f01762b8532865644db7945db2c50b664ba9cba66253f863d18cb21",
+    "g-c/A-1.png": "31f0666ea0f1c5d2ee2eafbfa8e0124e4cba02e064479b02084b17043386661b",
+    "g-c/B-3.png": "ecaf850e06a5da701b1efe969c585c20d338373e8918f0f512865f578ca47048",
+    "g-c/A-0.png": "0e108a20ddbebb78bb9cde09d1f7245208a43c9fc9a818e6d9272ef568ccc3a1"
+  },
+  "summary": {
+    "worlds": "All three final environments are preferred on all three axes over their baselines. Stills establish presentation improvements, not animation quality or hardware performance.",
+    "run_trial": "Painted run preferred for visual quality and appeal; readability tied.",
+    "full_animation_switch": "Painted action set preferred for visual quality and appeal; the original cutout scarf is easier to read.",
+    "character_endpoint": "Final candidate preferred for visual quality and appeal; original cutout retains a readability advantage. Neither is judged finished animation.",
+    "final_idle_iteration": "Round 10 ties round 9 on all axes; kept under the experiment rule. No further quality gain demonstrated.",
+    "limitations": [
+      "Subjective model preferences, not Sami approval or a commercial ceiling measurement.",
+      "Original rounds0-9 and all33 world-round critics actually ran Claude; the original iteration path was not cross-family.",
+      "Timing on Radeon890M and runtime sprite-reader integration remain unverified.",
+      "Generation totals are estimates; exact agent effort and model-agent bill are unmeasured."
+    ],
+    "image_association_correction": "An initial vector moment-3 judgement used misassociated parallel read images. Correct source-labelled composites and SHA256 validation resolved it; no source image was changed. Corrected reviewer result included below."
+  },
+  "reviews": {
+    "AuditPaintedWorld": {
+      "task": "AuditPaintedWorld",
+      "reviewer_session_id": "01a0f2aa-c517-77a2-bf47-010fd36129ff",
+      "model_metadata": {
+        "model": "openai-codex/gpt-6-astra",
+        "source": "Injected workstation runtime metadata; not inferred from the agent name.",
+        "additional_model_api_calls": 0
+      },
+      "scope": {
+        "folder": "/tmp/violet-endpoint-checks/g-a/",
+        "population": 8,
+        "inspected": 8,
+        "matched_moments": 4,
+        "read_only": true,
+        "files_changed": []
+      },
+      "verdicts": {
+        "visual_quality": "B",
+        "character_appeal": "B",
+        "color_readability": "B"
+      },
+      "scores": {
+        "scale": "1–5, with 5 representing exceptional, convincingly finished presentation at the named reference level.",
+        "A": {
+          "visual_quality": 2,
+          "character_appeal": 2,
+          "color_readability": 3
+        },
+        "B": {
+          "visual_quality": 3,
+          "character_appeal": 3,
+          "color_readability": 4
+        }
+      },
+      "rationale": {
+        "visual_quality": "B is the clear preference across all four moments. Its broader rock strata, irregular silhouettes, softened platform caps, foreground shadows and hazy pits belong more convincingly with the painted desert. A places conspicuously rectangular, repetitive masonry and sand tiles in front of that same rich landscape, creating a strong assembled-level impression. B remains short of the reference bar: block construction and abrupt joins are still visible, and the enormous colored posts remain visually disconnected from the natural setting.",
+        "character_appeal": "B's dark clothing, warm edge lighting and more legible head/torso volume make the character feel more tangible and appealing. This is especially evident in the airborne poses and the wall-contact pose. A's predominantly gray, fine-lined treatment loses form at gameplay scale. The underlying gestures are very similar, so this is primarily a rendering and integration advantage—not evidence that B has better animation.",
+        "color_readability": "B better balances a dark character silhouette with a bright scarf and clearly colored walls/platform. Its green scarf remains conspicuous against the tree and rocks in moment 2, while A's green scarf is clear but its body competes with the background. A does have very explicit rectangular platform boundaries and unmistakable colored strips; B's advantage is the combined character/scarf/environment hierarchy rather than simply more saturation. B's red scarf becomes quite orange under its warm lighting, which weakens exact color correspondence with the red wall."
+      },
+      "inspected_files": [
+        {
+          "file": "A-0.png",
+          "observation": "First airborne moment: gray character and red scarf over two square masonry steps. Repetitive bright foreground texture competes with the scenic background; the spike bed reads as a sharply bounded repeated strip."
+        },
+        {
+          "file": "B-0.png",
+          "observation": "Matched airborne moment: dark, rim-lit character; rounded painted step caps and shaded rock faces. Stronger foreground/background separation, although the step bases expose dark rectangular joins."
+        },
+        {
+          "file": "A-1.png",
+          "observation": "Leap across the spike pit toward a tall red wall. The geometry is immediately understandable, but the uniformly straight coral strip, square ledges and repeated masonry read as separate construction layers."
+        },
+        {
+          "file": "B-1.png",
+          "observation": "Matched leap: warmer character lighting, stronger robe silhouette and a shaded pit give the frame more depth. The irregular red wall looks materially integrated, but remains an oversized isolated vertical element."
+        },
+        {
+          "file": "A-2.png",
+          "observation": "Grounded green-scarf moment between a red wall and raised green-wall platform. The scarf is identifiable; the gray body overlaps a dark tree and loses separation. The large raised block prominently exposes repeated masonry texture."
+        },
+        {
+          "file": "B-2.png",
+          "observation": "Matched grounded moment: the bright green scarf and lit character edge separate better from the background tree. Broad painted rock bands reduce texture noise, but the raised block's very dark lower edge and abrupt junction with the floor remain conspicuous."
+        },
+        {
+          "file": "A-3.png",
+          "observation": "Character against the red wall above a horizontal red platform, with the green wall opposite. Color coding is obvious, but the flat rectangular red pieces dominate the frame and the character's gray clothing has limited visual presence."
+        },
+        {
+          "file": "B-3.png",
+          "observation": "Matched wall-contact moment: dark clothing and warm outline read clearly against the red wall; the floating red platform has painted volume and an irregular edge. Deep pit shading helps depth, though the scarf's orange lighting reduces its exact red match."
+        }
+      ],
+      "gaps": {
+        "A": [
+          {
+            "gap": "Unify foreground construction with the painted landscape.",
+            "evidence": "All four images show hard rectangular masonry masses and repetitive sand caps against organic, atmospheric scenery. Moments 2 and 3 make the texture repetition especially prominent."
+          },
+          {
+            "gap": "Give the protagonist stronger large-scale form and separation.",
+            "evidence": "The gray clothing and small linear details flatten the airborne character and compete with the background tree in A-2. The scarf is more identifiable than the person wearing it."
+          },
+          {
+            "gap": "Make colored interactables feel designed into the world.",
+            "evidence": "The tall red/green strips and horizontal red bar have blunt rectangular boundaries and a markedly different visual treatment from the surrounding desert."
+          }
+        ],
+        "B": [
+          {
+            "gap": "Resolve visible joins and heavy shadow patches in the foreground.",
+            "evidence": "B-0 exposes dark step bases; B-2 has a near-black band beneath the raised block; B-3 retains abrupt transitions between upper blocks, lower rock faces and narrow pit sides."
+          },
+          {
+            "gap": "Integrate the colored posts without surrendering readability.",
+            "evidence": "The saturated freestanding red/green pillars remain enormous compared with the protagonist, while the horizontal red platform still reads as a separate bar. Their painted treatment is better, but their forms do not yet feel native to this landscape."
+          },
+          {
+            "gap": "Refine character definition and lighting consistency.",
+            "evidence": "The bright contour improves separation, but hands, feet and facial features remain small and soft. The red scarf shifts toward orange/yellow beside the red wall in B-3. The character needs to retain clear identity without depending so heavily on a luminous outline."
+          }
+        ]
+      },
+      "reference_comparison": {
+        "summary": "B is closer to the integrated painted-world direction demonstrated by Planet of Lana. Neither set yet has the same unity between character, traversable forms and scenic composition. The GRIS material also highlights the value of deliberate shape hierarchy and restrained detail: adding painterly texture alone does not remove the conspicuous level-construction language.",
+        "sources": [
+          {
+            "url": "https://www.devolverdigital.com/games/gris",
+            "inspection": "Official page inspected in Chromium: hero artwork and a visible statue/platform composition."
+          },
+          {
+            "url": "https://www.planetoflana.com/",
+            "inspection": "Official page identifies its main current presentation as Planet of Lana 2."
+          },
+          {
+            "url": "https://www.planetoflana.com/assets/images/pol2/pol1-keyart.jpg",
+            "inspection": "Original Planet of Lana key art directly inspected; selected from the page's 'Where it all began' section."
+          }
+        ]
+      },
+      "recommendation": "Prefer B as the visual direction. Preserve its quieter rock treatment, stronger depth separation and darker character, then concentrate on foreground joins, the architectural treatment of colored interactables, and character/scarf clarity. It is a meaningful improvement in visual cohesion, not yet a GRIS/Planet of Lana-level finished frame.",
+      "verification": {
+        "status": "RAN",
+        "evidence": [
+          "All eight assigned images were visually inspected at full-frame scale, with individual sequential reads confirming filename attribution.",
+          "A labeled browser-decoded crop sheet compared the protagonist in all eight images.",
+          "Browser decoding reported 1920×1080 for A-0 through A-3 and B-0 through B-3.",
+          "No repository files, history, sibling work or previous scores were inspected. No builds, tests or lint were run."
+        ]
+      },
+      "reference_limitations": [
+        "This assignment supplied stills only. Animation timing, transitions, scarf dynamics and actual gameplay responsiveness were not assessed.",
+        "The Planet of Lana homepage is now sequel-led. The original game's explicitly labeled key art was used rather than silently substituting sequel screenshots; key art is not proof of live gameplay quality.",
+        "Static requests to the GRIS page/media returned HTTP 429. Browser access succeeded, but the reference inspection was limited to artwork and the visible page composition—not gameplay playback.",
+        "Model provider identification is supported by the supplied runtime metadata; billing logs were not read because session/history inspection was out of scope."
+      ]
+    },
+    "AuditHybridWorld": {
+      "task": "AuditHybridWorld",
+      "status": "complete",
+      "scope": {
+        "folder": "/tmp/violet-endpoint-checks/g-d/",
+        "population": 8,
+        "inspected": 8,
+        "matched_moments": 4,
+        "method": "Direct visual inspection of every decoded still, comparing A and B at each matched moment. No repository, history, sibling results, or previous scores consulted.",
+        "files_changed": []
+      },
+      "model_metadata": {
+        "model": "openai-codex/gpt-6-astra",
+        "source": "Session-injected workstation metadata explicitly identifies this provider/model.",
+        "subscription_route": "openai-codex",
+        "paid_model_api_calls_made": false,
+        "limitation": "No separate billing or transcript audit performed, preserving the restriction against reading history."
+      },
+      "session_id": "01a0f2aa-c533-73ac-a22a-c01913ff68eb",
+      "verdicts": {
+        "visual_quality": "B",
+        "character_appeal": "B",
+        "color_readability": "B"
+      },
+      "scores": {
+        "scale": "1–5, higher is better; 5 denotes exceptional, finished quality at the intended commercial reference bar.",
+        "A": {
+          "visual_quality": 2,
+          "character_appeal": 2,
+          "color_readability": 2
+        },
+        "B": {
+          "visual_quality": 3,
+          "character_appeal": 3,
+          "color_readability": 4
+        }
+      },
+      "rationale": {
+        "visual_quality": "B is substantially more composed and inhabited: painted clouds, distant landmarks disappearing into haze, surface dressing, and stronger warm/cool relationships replace A's broad empty beige sky and conspicuous horizontal background division. However, B still combines a softly painted sky with hard faceted scenery, visibly repeated terrain bands, block-stack obstacles, and angular birds. It is a stronger game scene, not yet a unified reference-quality finish.",
+        "character_appeal": "B's character has a more assertive dark contour and clearer scarf and limb separation. The benefit is especially evident at ground level in moment 2 and on the wall in moment 3. This is primarily a presentation/readability improvement, not evidence of a fundamentally more expressive character design or better animation. Both retain a small, mostly dark figure whose face and personality are difficult to read at this camera distance.",
+        "color_readability": "B combines color with circle/diamond symbols, more strongly distinguishes red and green obstacles, and defines walkable edges with a contrasting top line. Its character remains visible during the wall interaction where A's body is almost entirely hidden. A's plain colored walls are conspicuous, but their hues do more of the identification work, the protagonist has weaker separation, and the crucial wall moment loses the silhouette."
+      },
+      "inspected_files": [
+        {
+          "file": "/tmp/violet-endpoint-checks/g-d/A-0.png",
+          "status": "RAN",
+          "observation": "Airborne character and trailing red scarf are visible against the pale sky; the raised pedestal and spike pit are easy to locate. Most of the upper frame is empty beige, a straight horizontal background boundary cuts across the scene, and the character's thin limbs and muted clothing are visually delicate."
+        },
+        {
+          "file": "/tmp/violet-endpoint-checks/g-d/B-0.png",
+          "status": "RAN",
+          "observation": "The matched jump has a darker, more legible character silhouette and fuller-looking scarf separation. Clouds, distant rock forms, an arch, small plants, and stones create depth and specificity. Thin purple top edges clarify the stepping surfaces. The angular bird silhouettes and geometric props remain conspicuously different in finish from the painted sky."
+        },
+        {
+          "file": "/tmp/violet-endpoint-checks/g-d/A-1.png",
+          "status": "RAN",
+          "observation": "The character is isolated clearly enough during the long jump, but looks small and washed into the pale environment. The tall coral-colored block column is visible without symbols. The repeating spike units, empty sky, and plain foreground make the composition feel like a dressed test level."
+        },
+        {
+          "file": "/tmp/violet-endpoint-checks/g-d/B-1.png",
+          "status": "RAN",
+          "observation": "The matched jump and red scarf are more firmly outlined. The deeper red column carries repeated pale diamonds, making its identity more explicit. Distant landmarks and sky color improve depth without covering the airborne character; however, the column still reads as a straight stack of repeated cubes rather than a naturally integrated world element."
+        },
+        {
+          "file": "/tmp/violet-endpoint-checks/g-d/A-2.png",
+          "status": "RAN",
+          "observation": "The ground-level character overlaps warm rock and pedestal details and is harder to separate than in the sky-backed moments. The green scarf is detectable, but the body is subdued. Red and mint-green walls are large and easy to locate, yet have no redundant shape identifiers. Strongly repeated terrain stripes dominate the large foreground block."
+        },
+        {
+          "file": "/tmp/violet-endpoint-checks/g-d/B-2.png",
+          "status": "RAN",
+          "observation": "The dark contour separates the character from the orange rock, and the green scarf reads distinctly. Green circles versus red diamonds provide an additional identification channel, while platform rims clarify the traversable surfaces. Bright rock strata, repeated wall symbols, dressing, and foreground silhouettes increase visual competition, though the main character remains findable."
+        },
+        {
+          "file": "/tmp/violet-endpoint-checks/g-d/A-3.png",
+          "status": "RAN",
+          "observation": "The character is almost entirely concealed by the coral wall: the projecting red scarf is the most obvious remaining cue. This is the strongest readability failure in the set. The cyan doorway is easy to spot, but the large identical terrain bands and bright plain wall blocks overwhelm finer character information."
+        },
+        {
+          "file": "/tmp/violet-endpoint-checks/g-d/B-3.png",
+          "status": "RAN",
+          "observation": "The full dark character silhouette is visible against the red diamond-marked wall, making the wall-contact pose understandable. The horizontal red platform shares the diamond code, while the green wall carries circles. The cyan doorway remains visible despite nearby rocks and vegetation. Repeated strata and symbols still dominate the composition, and the scarf-to-red-wall relationship depends more on contour than hue."
+        }
+      ],
+      "gaps": {
+        "A": [
+          {
+            "gap": "Restore dependable protagonist visibility at interaction points.",
+            "evidence": "A-3 hides nearly the entire body behind the wall; A-2 loses substantial body separation against the rock and pedestal.",
+            "desired_result": "A readable head, torso, limbs, and scarf throughout wall contact and ground-level interactions, not just against empty sky."
+          },
+          {
+            "gap": "Replace the empty, divided background with an intentionally composed environment.",
+            "evidence": "A-0 and A-1 devote most of the frame to a featureless pale sky, with an abrupt straight background division; distant forms provide limited atmospheric layering.",
+            "desired_result": "Designed depth, lighting, and focal hierarchy rather than an empty backdrop behind the level geometry."
+          },
+          {
+            "gap": "Reduce the repeated-kit appearance while strengthening object identity.",
+            "evidence": "All four stills expose long repeated terrain bands and repeated spikes; A-1 through A-3 use plain colored cube stacks as major obstacles.",
+            "desired_result": "More coherent material and shape language, less conspicuous repetition, and recognizable obstacle identities beyond color alone."
+          }
+        ],
+        "B": [
+          {
+            "gap": "Unify the rendering language.",
+            "evidence": "Across all four stills, softly painted clouds coexist with faceted rock towers, sharply outlined small character art, and angular bird silhouettes.",
+            "desired_result": "Consistent edge treatment, texture scale, and lighting so the sky, character, scenery, and dressing feel authored as one picture."
+          },
+          {
+            "gap": "Integrate the level geometry without sacrificing its improved readability.",
+            "evidence": "B-2 and B-3 are dominated by large rectangular striped blocks and repeated icon-bearing cubes; decorative additions do not eliminate the modular test-course appearance.",
+            "desired_result": "More varied terrain silhouettes and material transitions around the readable collision surfaces, with calmer large shapes and less relentless stripe/icon repetition."
+          },
+          {
+            "gap": "Give the protagonist more distinct personality at gameplay scale.",
+            "evidence": "B-0 through B-3 make the figure easier to see, but it remains a small, dark robed silhouette with limited visible facial or internal tonal information.",
+            "desired_result": "Stronger face/hair/clothing value grouping and more individually expressive pose shapes. Whether the animation supplies this personality remains unverified by stills."
+          }
+        ]
+      },
+      "recommendation": "Choose B as the stronger visual direction. Preserve its atmospheric layering, character contour, platform-edge definition, and redundant obstacle symbols. The next substantial gain should come from stylistic integration and less repetitive terrain—not simply adding more props. Neither set yet demonstrates the cohesive, deliberately authored finish implied by the GRIS / Planet of Lana target.",
+      "reference_limitations": [
+        {
+          "url": "https://www.devolverdigital.com/games/gris",
+          "observation": "Official reference fetch returned HTTP 429. No fresh GRIS imagery was inspected; this is not a verified shot-for-shot GRIS comparison."
+        },
+        {
+          "url": "https://planetoflana.com/",
+          "observation": "The official homepage currently promotes Planet of Lana II. Its 'Where It All Began' section identifies artwork for the original game."
+        },
+        {
+          "url": "https://www.planetoflana.com/assets/images/pol2/pol1-keyart.jpg",
+          "observation": "Visually inspected the original Planet of Lana key art linked from that section. It supplies a useful reference for coherent painted edges, foreground/background value grouping, and expressive silhouettes, but is promotional artwork rather than matched gameplay footage."
+        },
+        {
+          "observation": "Only still images were assigned. No claims are made about timing, fluidity, transitions, scarf simulation, or animation liveliness."
+        }
+      ],
+      "verification": {
+        "primary": "All eight assigned files were individually opened with read and visually inspected; each was reported as a 1920×1080 source image, displayed at 1568×882.",
+        "auxiliary": "An optional enlarged-character contact sheet was attempted but not produced: Python reported ModuleNotFoundError for PIL; a subsequent subprocess reported FileNotFoundError for magick. The bash utility check also failed with an unrelated service-name validation error, which was reported through xd://report_issue. No judgment relies on these failed auxiliary operations.",
+        "builds_tests_lint": "None run, as instructed.",
+        "scratch": "Only an empty scratch directory at /tmp/violet-audit-AuditHybridWorld/ was created; no source images or repository files were modified."
+      }
+    },
+    "AuditRunTechnique": {
+      "task": "run-technique",
+      "scope": "Blind comparison of the two supplied run GIFs only. No repository, history, sibling results, previous scores, or other character animations inspected.",
+      "model": {
+        "provider": "openai-codex",
+        "model": "gpt-6-astra",
+        "verification_source": "Session workstation metadata explicitly identifies openai-codex/gpt-6-astra."
+      },
+      "verdicts": {
+        "visual_quality": "B",
+        "character_appeal": "B",
+        "color_readability": "same",
+        "overall_run_technique": "B"
+      },
+      "scores": {
+        "scale": "1–5; 5 means finished, reference-level presentation. Scores cover these run loops, not the character or production technique in general.",
+        "A": {
+          "visual_quality": 2,
+          "character_appeal": 2,
+          "color_readability": 3
+        },
+        "B": {
+          "visual_quality": 3,
+          "character_appeal": 3,
+          "color_readability": 3
+        }
+      },
+      "rationale": {
+        "visual_quality": "B has stronger drawn action: forward intent, lifted heels, clearer bent-leg poses, and a skirt silhouette responding to the stride. A preserves its appearance more consistently, but the largely upright body and restrained limb changes read as a moving cutout rather than a convincing run. B's visible frame-to-frame inconsistencies keep it below finished quality.",
+        "character_appeal": "B conveys more determination and physical energy through its posture, bent arms, exposed leg shapes, and billowing costume. A is quieter and more consistent, but its hands, torso, and expression remain nearly fixed as the legs cycle. This preference is for behavior already visible in B, not hypothetical improvements.",
+        "color_readability": "Both separate the pale scarf from the taupe costume on the supplied gray backdrop. Neither provides especially strong whole-body value separation. A's scarf is more restrained and consistent; B's larger scarf is conspicuous but produces a more crowded silhouette. These tradeoffs do not justify a clear winner. The neutral scarf receives no penalty for lacking a gameplay tint."
+      },
+      "gaps": {
+        "A": [
+          {
+            "gap": "Insufficient running mechanics",
+            "evidence": "Across frames 1–18, the torso stays nearly vertical and the feet mostly sweep beneath the long garment. Passing and extension poses lack a strongly articulated compression, push-off, and recovery sequence; the result reads closer to a light shuffle or walk than a committed run."
+          },
+          {
+            "gap": "Upper body does not participate convincingly",
+            "evidence": "The forearms and hands remain held forward through most of the loop, with little readable alternating arm drive or shoulder–hip counterrotation. The head and chest feel attached to a relatively rigid column."
+          },
+          {
+            "gap": "Secondary motion remains too uniform",
+            "evidence": "The scarf retains substantially the same rearward configuration and the dress hangs in a narrow, similar silhouette throughout. Small changes do not supply a clear delayed response to each stride."
+          }
+        ],
+        "B": [
+          {
+            "gap": "Scarf and garment continuity visibly break down",
+            "evidence": "The scarf changes from broad upper ribbons to multiple separated lower streamers, then to a relatively flat upper shape around frame 6. Its apparent width and folding structure vary substantially. Skirt folds and hem masses also change abruptly, making portions read as different drawings rather than one continuous material."
+          },
+          {
+            "gap": "Arm alternation remains weak despite the stronger pose",
+            "evidence": "Across the eight frames, the near fist stays raised ahead of the chest and the other hand stays behind. The legs and skirt change much more than the arm arrangement, so the run remains partly a held action pose rather than a fully coordinated whole-body cycle."
+          },
+          {
+            "gap": "Stride phases need clearer continuity and weight",
+            "evidence": "The transitions from frame 3 to 4 and frame 7 to 8 jump conspicuously between tucked/passing and extended split-leg shapes. The supplied poses do not clearly communicate the intervening load transfer and compression. This is a pose-spacing observation, not a penalty for having eight frames."
+          }
+        ]
+      },
+      "recommendation": "Choose B on the run evidence presently supplied. It communicates running and character intent more successfully now; A's greater drawing stability does not offset its weak action. Neither loop looks finished. For B, the most consequential corrections are consistent scarf/garment construction, actual alternating arm drive, and more legible support-to-flight transitions. This verdict does not establish which production method is better for other animations.",
+      "inspected_files": [
+        {
+          "path": "/tmp/violet-endpoint-checks/run-trial/A-run.gif",
+          "status": "RAN",
+          "dimensions": [
+            290,
+            316
+          ],
+          "decoded_frames": 18,
+          "inspected_frames": "18/18, in sequence, including last-to-first comparison",
+          "frame_durations_ms": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "loop_duration_ms": 540,
+          "changes": "None"
+        },
+        {
+          "path": "/tmp/violet-endpoint-checks/run-trial/B-run.gif",
+          "status": "RAN",
+          "dimensions": [
+            290,
+            316
+          ],
+          "decoded_frames": 8,
+          "inspected_frames": "8/8, in sequence, including last-to-first comparison",
+          "frame_durations_ms": [
+            80,
+            70,
+            70,
+            80,
+            80,
+            70,
+            70,
+            80
+          ],
+          "loop_duration_ms": 600,
+          "changes": "None"
+        }
+      ],
+      "verification": {
+        "method": "Chromium ImageDecoder decoded every frame of both original GIFs. Timestamped full-loop contact sheets were visually inspected, followed by an enlarged side-by-side browser presentation. The motion judgment rests on the complete decoded sequences, not first-frame thumbnails.",
+        "scratch_artifacts": [
+          "/tmp/violet-audit-run-technique/A-all-frames.png",
+          "/tmp/violet-audit-run-technique/B-all-frames.png",
+          "/tmp/violet-audit-run-technique/native-playback.png",
+          "/tmp/violet-audit-run-technique/gris-reference.png",
+          "/tmp/violet-audit-run-technique/gris-gameplay-reference.png",
+          "/tmp/violet-audit-run-technique/inspect.html"
+        ],
+        "repository_changes": "None",
+        "builds_tests_lint": "Not run, as instructed",
+        "browser_tabs": "Closed"
+      },
+      "references": [
+        {
+          "url": "https://www.devolverdigital.com/games/gris",
+          "observed": "Official page inspected in Chromium, including a gameplay still showing the small character clearly separated from a layered pink environment."
+        },
+        {
+          "url": "https://planetoflana.com/",
+          "observed": "The current homepage primarily presents Planet of Lana II. Its separately labeled original-game key art was inspected instead."
+        },
+        {
+          "url": "https://www.planetoflana.com/assets/images/pol2/pol1-keyart.jpg",
+          "observed": "Original Planet of Lana promotional art, used only as a visual-finish and silhouette reference."
+        }
+      ],
+      "reference_limitations": [
+        "GRIS initially returned HTTP 429 through static reading; its official page subsequently loaded successfully in Chromium.",
+        "The Planet of Lana homepage is sequel-led. No sequel imagery was silently treated as evidence of the original game's run animation.",
+        "Official references inspected here were still images, not decoded reference run cycles. No frame-for-frame claim about GRIS or Planet of Lana locomotion is made.",
+        "The supplied GIFs contain a neutral background, no ground surface, and no tagged walls or platforms. Gameplay-background readability, foot sliding relative to world movement, collision alignment, and animation transitions cannot be determined from them."
+      ],
+      "confidence": {
+        "relative_AB_judgment": "High",
+        "absolute_reference_parity": "Moderate; isolated run previews and still reference imagery limit that comparison."
+      }
+    },
+    "AuditAnimationSwitch": {
+      "task": "AuditAnimationSwitch",
+      "status": "complete",
+      "interpretation": "Blind visual comparison of the two character-animation sets, including all seven motions. No attempt was made to identify which set is newer.",
+      "verdicts": {
+        "visual_quality": "B",
+        "character_appeal": "B",
+        "color_readability": "A"
+      },
+      "scores": {
+        "scale": "1 = rough/unconvincing; 3 = promising but visibly unfinished; 5 = reference-level finish. Scores apply to the supplied character assets, not an unseen game.",
+        "A": {
+          "visual_quality": 2,
+          "character_appeal": 2,
+          "color_readability": 4
+        },
+        "B": {
+          "visual_quality": 3,
+          "character_appeal": 3,
+          "color_readability": 3
+        }
+      },
+      "rationale": {
+        "visual_quality": "B has substantially better action drawings: fuller, more intentional silhouettes; convincing bent knees and torso lean; and more attractive garment shapes. A maintains a more consistent model, but much of its animation reads as a narrow upright cutout with moving appendages. B wins despite conspicuous frame-to-frame changes in cloth shape and rendering.",
+        "character_appeal": "B reads as a character exerting herself rather than merely changing pose. The running arm action, tucked airborne legs, forward dash and compressed landing provide personality and physical intent. A's nearly unchanged torso, modest arm movement and minimal landing compression make her feel remote and puppet-like. B is still not convincingly finished animation: changing proportions and cloth contours compete with the intended acting.",
+        "color_readability": "A's bright, consistently delineated scarf stays separate from the brown costume and gray presentation background. B has a stronger body silhouette in many poses, but its scarf varies between modeled fabric, flat pale shapes and very faint gray patches. In B-double_jump frame 3 the trailing scarf nearly disappears into the background. This is a separation judgment, not a criticism of using a neutral scarf color."
+      },
+      "motion_assessment": [
+        {
+          "motion": "idle",
+          "A": {
+            "frames": 30,
+            "duration_ms": 900,
+            "observation": "Consistent, restrained body and scarf movement, but the face, torso and stance offer little sense of awareness or breathing."
+          },
+          "B": {
+            "frames": 8,
+            "duration_ms": 960,
+            "observation": "More visible body and cloth activity, but the head/torso posture changes and broad scarf inflation feel restless rather than like one controlled breath."
+          },
+          "comparison": "B has more life; A has better model and scarf continuity. Neither idle establishes much emotional character."
+        },
+        {
+          "motion": "run",
+          "A": {
+            "frames": 18,
+            "duration_ms": 540,
+            "observation": "Legs alternate beneath a mostly vertical robe; the arms stay extended in front rather than delivering a convincing opposing swing. The resulting stride looks delicate and mechanical."
+          },
+          "B": {
+            "frames": 8,
+            "duration_ms": 540,
+            "observation": "Clear bent elbows, forward intent, tucked recovery legs and extended strides make running immediately recognizable. Scarf folds and garment contours still change abruptly between drawings."
+          },
+          "comparison": "Clear B advantage in action and appeal. A's additional frames do not compensate for weak key poses."
+        },
+        {
+          "motion": "jump",
+          "A": {
+            "frames": 15,
+            "duration_ms": 450,
+            "observation": "The main change is lifting the arms while keeping an elongated, relatively straight body; takeoff compression and leg-driven impulse are weak."
+          },
+          "B": {
+            "frames": 5,
+            "duration_ms": 460,
+            "observation": "A crouched preparation, extension and subsequent knee tuck communicate a jump much more clearly. The few pose changes are large, and the body/cloth transition needs better continuity."
+          },
+          "comparison": "B wins on readable physical intent; its transition polish remains incomplete."
+        },
+        {
+          "motion": "fall",
+          "A": {
+            "frames": 18,
+            "duration_ms": 540,
+            "observation": "Upturned scarf and raised arm suggest descent, but the upright body and limited leg response make the pose close to its jump presentation."
+          },
+          "B": {
+            "frames": 5,
+            "duration_ms": 570,
+            "observation": "Spread arms and lifted skirt layers convey instability and downward motion. The final frame changes the garment into a tall upward flare, while scarf placement shifts conspicuously."
+          },
+          "comparison": "B is more expressive and recognizably falling, but also contains the more distracting cloth-shape discontinuity."
+        },
+        {
+          "motion": "double_jump",
+          "A": {
+            "frames": 15,
+            "duration_ms": 450,
+            "observation": "The lifted knee distinguishes this from the first jump, but the upper-body response remains restrained and the second impulse is not strongly accented."
+          },
+          "B": {
+            "frames": 5,
+            "duration_ms": 460,
+            "observation": "A compact knee tuck and subsequent opening communicate a stronger second action. The scarf loses definition and almost merges with the gray background in the middle of the sequence."
+          },
+          "comparison": "B wins action appeal; A clearly wins scarf continuity here."
+        },
+        {
+          "motion": "dash",
+          "A": {
+            "frames": 6,
+            "duration_ms": 180,
+            "observation": "Forward lean and trailing arms are readable, but the long upright lower-body shape limits the sense of an explosive burst."
+          },
+          "B": {
+            "frames": 3,
+            "duration_ms": 180,
+            "observation": "A low, forward-driving silhouette, swept-back arms and compact legs make a stronger dash image. The three drawings provide little follow-through or recovery within this clip."
+          },
+          "comparison": "B wins the dash silhouette. Neither isolated clip proves entry/exit transitions in gameplay."
+        },
+        {
+          "motion": "land",
+          "A": {
+            "frames": 8,
+            "duration_ms": 240,
+            "observation": "Small torso and hand changes resolve toward standing without substantial knee or hip compression; impact absorption is barely conveyed."
+          },
+          "B": {
+            "frames": 3,
+            "duration_ms": 240,
+            "observation": "A deep crouch, half-rise and upright recovery clearly communicate absorbing a landing. The changes are abrupt, with little visible cloth settling or intermediate recovery."
+          },
+          "comparison": "Strong B advantage. This is one of the clearest improvements in physical readability, although not yet a polished landing."
+        }
+      ],
+      "gaps": {
+        "A": [
+          {
+            "gap": "Weight and force are under-expressed.",
+            "evidence": "Jump mostly raises the arms; land barely compresses; run keeps the torso and robe close to upright.",
+            "recommendation": "Strengthen anticipation, planted support, knee/hip compression and recovery before adding more in-betweens."
+          },
+          {
+            "gap": "The protagonist lacks purposeful acting.",
+            "evidence": "Idle offers little head/gaze behavior, and the run's forward-held arms suggest a manipulated figure rather than an active person.",
+            "recommendation": "Add intentional head/torso responses and clearer arm counteraction while preserving the restrained character."
+          },
+          {
+            "gap": "The elongated robe suppresses action silhouettes.",
+            "evidence": "The body remains a narrow vertical mass across idle, jump, fall and landing, with much of the distinction carried by hands, scarf and small exposed feet.",
+            "recommendation": "Make the major garment and body shapes describe each action, especially at small display sizes."
+          }
+        ],
+        "B": [
+          {
+            "gap": "Model and cloth continuity are not stable enough.",
+            "evidence": "Run changes folds and scarf construction between drawings; fall culminates in a markedly different vertical garment flare; idle changes posture and scarf volume conspicuously.",
+            "recommendation": "Lock body proportions and cloth attachment points, then preserve recognizable fold/hem structures through adjacent poses."
+          },
+          {
+            "gap": "Timing and transitions do not yet support the strong key poses.",
+            "evidence": "Land moves through only three widely separated body configurations; jump and fall make large pose changes; dash has little visible settle.",
+            "recommendation": "Improve the spacing and breakdown poses around takeoff, impact and recovery rather than merely increasing frame count uniformly."
+          },
+          {
+            "gap": "Scarf separation fluctuates.",
+            "evidence": "Its rendering alternates between detailed fabric and flat pale shapes; double_jump frame 3 loses most of the trailing scarf against gray; falling scarf placement becomes difficult to follow.",
+            "recommendation": "Keep a consistent readable value/edge treatment and track the same ribbon through motion. No gameplay tint is required to solve this."
+          }
+        ]
+      },
+      "recommendation": "Prefer B as the character-animation direction because its action poses and landing weight make the largest visible difference. Do not treat it as finished: stabilize the character and cloth between drawings, improve the transitions, and preserve the consistent scarf separation that A already demonstrates. A's smoother stepping alone is not a reason to retain its weaker physical performance.",
+      "verification": {
+        "method": "Viewed both supplied contact sheets. Used Chromium ImageDecoder to decode every frame of all fourteen GIFs, then visually inspected complete chronological frame grids with frame durations, plus enlarged run, land, fall and double-jump details.",
+        "result": "RAN: 16/16 assigned files inspected; 14/14 GIF sequences decoded; 147/147 decoded frames included in inspected sequences; 7/7 motions compared for both sets.",
+        "frame_totals": {
+          "A": 110,
+          "B": 37
+        },
+        "evidence_directory": "/tmp/violet-audit-AuditAnimationSwitch/",
+        "saved_complete_sequences": [
+          "idle-all-frames.png",
+          "run-all-frames.png",
+          "jump-all-frames.png",
+          "fall-all-frames.png",
+          "double_jump-all-frames.png",
+          "dash-all-frames.png",
+          "land-all-frames.png"
+        ],
+        "builds_tests_lint": "Not run, as instructed.",
+        "changes": "No assigned inputs or repository files modified. Only audit evidence was intentionally written under the assigned scratch directory."
+      },
+      "inspected_files": [
+        "/tmp/violet-endpoint-checks/full-switch/A-contact-sheet.png",
+        "/tmp/violet-endpoint-checks/full-switch/B-contact-sheet.png",
+        "/tmp/violet-endpoint-checks/full-switch/A-idle.gif",
+        "/tmp/violet-endpoint-checks/full-switch/A-run.gif",
+        "/tmp/violet-endpoint-checks/full-switch/A-jump.gif",
+        "/tmp/violet-endpoint-checks/full-switch/A-fall.gif",
+        "/tmp/violet-endpoint-checks/full-switch/A-double_jump.gif",
+        "/tmp/violet-endpoint-checks/full-switch/A-dash.gif",
+        "/tmp/violet-endpoint-checks/full-switch/A-land.gif",
+        "/tmp/violet-endpoint-checks/full-switch/B-idle.gif",
+        "/tmp/violet-endpoint-checks/full-switch/B-run.gif",
+        "/tmp/violet-endpoint-checks/full-switch/B-jump.gif",
+        "/tmp/violet-endpoint-checks/full-switch/B-fall.gif",
+        "/tmp/violet-endpoint-checks/full-switch/B-double_jump.gif",
+        "/tmp/violet-endpoint-checks/full-switch/B-dash.gif",
+        "/tmp/violet-endpoint-checks/full-switch/B-land.gif"
+      ],
+      "references": [
+        {
+          "url": "https://www.devolverdigital.com/games/gris",
+          "observed": "Official hero artwork and the gallery's GRIS 03 Screenshot2 gameplay image, inspected through Chromium after the static reader received HTTP 429."
+        },
+        {
+          "url": "https://planetoflana.com/",
+          "observed": "The current site primarily promotes Planet of Lana II; its original-game section remains present."
+        },
+        {
+          "url": "https://www.planetoflana.com/assets/images/pol2/pol1-keyart.jpg",
+          "observed": "Original Planet of Lana key art, inspected directly for simple character shapes and figure/background separation."
+        }
+      ],
+      "reference_limitations": [
+        "Reference inspection was static artwork, not a matched seven-motion animation comparison. No claim about reference frame timing is made.",
+        "The Planet of Lana homepage is sequel-focused; original-game key art was used rather than silently treating sequel imagery as the first game.",
+        "The supplied material contains no tagged walls, platforms, level backgrounds, camera movement or gameplay transitions. World readability and in-game integration cannot be scored from these files.",
+        "Motion was assessed from complete browser-decoded sequences and their encoded durations, not from only first frames. Controller feel, collision alignment and actual gameplay speed were not tested."
+      ],
+      "model_verification": {
+        "provider": "openai-codex",
+        "model": "gpt-6-astra",
+        "evidence": "Inspected the supplied workstation metadata, which explicitly identifies Model: openai-codex/gpt-6-astra. No paid openai/ model calls were initiated.",
+        "scope": "Session history and billing logs were not opened, consistent with the blind-read restriction."
+      },
+      "session_id": "01a0f2aa-c53d-70a2-8878-45af5eed8efb"
+    },
+    "AuditCharacterEndpoint": {
+      "verdicts": {
+        "visual_quality": "B",
+        "character_appeal": "B",
+        "color_readability": "A",
+        "overall": "B"
+      },
+      "recommendation": "Choose B as the stronger character direction, but not as finished animation. Its poses convey effort, speed, and impact much better across the complete set. The main problem is continuity: the skirt, scarf, and body outline change too abruptly between drawings. Preserve B's expressive poses while stabilizing those forms. A's cleaner scarf separation is worth retaining, but its restrained movement does not provide a convincing action set.",
+      "scores": {
+        "scale": "1–5, where 5 means polished enough for the stated GRIS / Planet of Lana quality target. These scores judge the complete supplied set, including motion, rather than illustration alone.",
+        "A": {
+          "visual_quality": 2,
+          "character_appeal": 2,
+          "color_readability": 4
+        },
+        "B": {
+          "visual_quality": 3,
+          "character_appeal": 4,
+          "color_readability": 3
+        }
+      },
+      "rationale": {
+        "visual_quality": "B has the stronger individual drawings: a more substantial hood, layered fabric, convincing bent-limb poses, and a more deliberate silhouette for each action. It also has conspicuous frame-to-frame changes in fabric shape and volume, so the animation does not sustain the finish suggested by its contact sheet. A is comparatively consistent, but its narrow, upright body and limited deformation look like an illustration being articulated rather than a character acting.",
+        "character_appeal": "B feels more capable and vulnerable because the whole body participates: it crouches, reaches, tucks its legs, pitches forward, and absorbs a landing. Its face and hood also read more clearly. A has a quiet, fragile quality, but that same reserve persists through actions that need a stronger physical response. Neither idle communicates much personality beyond standing and subtle movement.",
+        "color_readability": "A's pale scarf usually forms one clear shape away from the brown body. B's scarf has more visual presence but repeatedly overlaps the chest, arms, skirt, and feet, competing with the silhouette it should clarify. Both brown costumes have limited separation from the supplied mid-gray background. The neutral scarf color was not penalized as a gameplay-color choice. No tagged walls or platforms were supplied, so that part of readability is unassessed."
+      },
+      "motion_assessment": {
+        "idle": {
+          "A": "Subtle scarf and body movement preserves a stable, slender silhouette. It is calm rather than distracting, but the pose remains rigid and the face contributes little visible life.",
+          "B": "The hood, exposed face, and layered hem make a more appealing drawing. Across the eight decoded frames, the pose changes very little; the vertically hanging scarf loses the clear outward gesture seen in B's action poses. This is not an expressive idle despite the stronger illustration.",
+          "comparison": "B wins the drawing; neither is a convincing showcase of character acting."
+        },
+        "run": {
+          "A": "The legs cycle, but the torso stays nearly upright and both forearms remain held forward. The robe retains much of its standing shape. It reads closer to a hurried walk or puppet stride than a committed run.",
+          "B": "Forward lean, bent elbows, high heels, and a spreading skirt make the action immediately legible. However, the scarf alternates between high trailing shapes and shapes below the hips, while the skirt's outline changes substantially between steps. The legs become difficult to track under the fabric.",
+          "comparison": "B is substantially more energetic and appealing, but its cloth changes need to follow the stride rather than distract from it."
+        },
+        "jump": {
+          "A": "The arms rise over roughly the first 120 ms, followed by a mostly held upright pose. There is little compression or leg drive, so the body does not visibly generate the jump.",
+          "B": "The initial crouch and subsequent leg extension/tuck establish a much clearer launch. The five drawings make larger pose changes, and the skirt and scarf change shape sharply as the body moves from launch to tucked flight.",
+          "comparison": "B communicates the action better. Its missing continuity is more noticeable than A's, but A lacks the necessary physical gesture."
+        },
+        "fall": {
+          "A": "The lifted arm, trailing leg, and raised scarf indicate being airborne. The torso remains close to the jump pose, and much of the sequence settles into a hold rather than a visibly reactive falling posture.",
+          "B": "Open arms, a pitched body, exposed feet, and the flared hem make the fall distinct from the jump. The scarf swings from behind the body toward the head and down beside the legs, creating substantial silhouette changes and making the cloth hard to follow.",
+          "comparison": "B has the clearer falling attitude; A has the quieter, easier-to-track outline."
+        },
+        "double_jump": {
+          "A": "A raised knee and lifted hem distinguish this from the ordinary jump, but the long upright torso and raised hand are largely retained. The additional impulse feels weak.",
+          "B": "The compact knee tuck produces a much stronger airborne accent. The pale scarf also appears around and beneath the feet in the middle and final drawings, where it reads ambiguously as cloth or an effect. The skirt expands and contracts noticeably.",
+          "comparison": "B supplies a distinct, appealing action pose, but the secondary motion obscures the body and is not yet controlled."
+        },
+        "dash": {
+          "A": "The body gradually leans forward and the arms move behind it. This is readable, but the comparatively upright torso and stride-like legs make it look like an accelerated run rather than a sharp burst.",
+          "B": "The low head, forward torso, rearward arms, and swept skirt establish speed immediately. Across the six 30 ms frames, the body and skirt alternate between compact and stretched arrangements, giving the sequence a visibly unstable outline.",
+          "comparison": "B wins the speed silhouette. Its 180 ms duration makes large adjacent-frame shape changes particularly important to fix."
+        },
+        "land": {
+          "A": "The hands lower and the character returns toward standing, but there is very little crouch or visible absorption of impact. It reads as an arm reset more than a landing.",
+          "B": "The deep initial crouch clearly communicates impact, and the recovery is much more convincing in intention. The change from the broad crouched/action silhouette to the narrow upright body happens abruptly, especially around the transition at 120 ms. The scarf also changes arrangement during recovery.",
+          "comparison": "B is much better at communicating weight, but the recovery needs a coherent path between its drawings."
+        }
+      },
+      "gaps": {
+        "A": [
+          {
+            "gap": "Insufficient whole-body mechanics",
+            "evidence": "The upright torso dominates run, jump, fall, and double_jump; land barely compresses. Stronger anticipation, push-off, airborne balance, and impact absorption are needed."
+          },
+          {
+            "gap": "Limited acting and action differentiation",
+            "evidence": "The small hooded face, restrained hands, and similar upright poses make idle, airborne states, and recovery feel emotionally uniform. Dash is not far enough from a running stride."
+          },
+          {
+            "gap": "Weak large-shape hierarchy at small scale",
+            "evidence": "The brown robe merges toward the gray background, while slender limbs and fine fabric detail contribute little to the readable outline. The scarf is clearer than the body that carries it."
+          }
+        ],
+        "B": [
+          {
+            "gap": "Unstable fabric and silhouette continuity",
+            "evidence": "Run, fall, double_jump, and dash repeatedly change the scarf's position and the skirt's apparent volume. Adjacent drawings do not consistently read as the same fabric moving through space."
+          },
+          {
+            "gap": "Abrupt spacing between strong poses",
+            "evidence": "Jump and double_jump move through only five markedly different drawings; dash changes silhouette every 30 ms; land shifts rapidly from a broad crouch to a narrow standing figure. The issue is the size and logic of the changes, not frame count by itself."
+          },
+          {
+            "gap": "Scarf and costume compete with the character",
+            "evidence": "Pale fabric overlaps the chest, hands, and feet, particularly in fall and double_jump. Combined with the many skirt folds, it makes limb positions harder to read. Idle has the opposite problem: its scarf hangs close to the body and contributes little gesture."
+          }
+        ]
+      },
+      "verification": {
+        "status": "RAN",
+        "method": "Opened both supplied contact sheets. Decoded every frame of every GIF using Chromium ImageDecoder, rendered seven A/B sequence sheets, and visually inspected all frames in order with their encoded durations. This was decoded-sequence inspection, not a first-frame GIF review.",
+        "coverage": {
+          "assigned_files": 16,
+          "contact_sheets": 2,
+          "GIFs": 14,
+          "motions_per_set": 7,
+          "A_decoded_frames": 110,
+          "B_decoded_frames": 43,
+          "total_decoded_frames": 153
+        },
+        "motion_metadata": {
+          "idle": {
+            "A": {
+              "frames": 30,
+              "duration_ms": 900
+            },
+            "B": {
+              "frames": 8,
+              "duration_ms": 960
+            }
+          },
+          "run": {
+            "A": {
+              "frames": 18,
+              "duration_ms": 540
+            },
+            "B": {
+              "frames": 8,
+              "duration_ms": 540
+            }
+          },
+          "jump": {
+            "A": {
+              "frames": 15,
+              "duration_ms": 450
+            },
+            "B": {
+              "frames": 5,
+              "duration_ms": 460
+            }
+          },
+          "fall": {
+            "A": {
+              "frames": 18,
+              "duration_ms": 540
+            },
+            "B": {
+              "frames": 5,
+              "duration_ms": 570
+            }
+          },
+          "double_jump": {
+            "A": {
+              "frames": 15,
+              "duration_ms": 450
+            },
+            "B": {
+              "frames": 5,
+              "duration_ms": 460
+            }
+          },
+          "dash": {
+            "A": {
+              "frames": 6,
+              "duration_ms": 180
+            },
+            "B": {
+              "frames": 6,
+              "duration_ms": 180
+            }
+          },
+          "land": {
+            "A": {
+              "frames": 8,
+              "duration_ms": 240
+            },
+            "B": {
+              "frames": 6,
+              "duration_ms": 240
+            }
+          }
+        },
+        "evidence_directory": "/tmp/violet-audit-character-endpoint/",
+        "commands_and_results": [
+          "Chromium ImageDecoder decoded 14/14 GIFs successfully, yielding 153 frames at 290×316 pixels.",
+          "Rendered and inspected idle-all-frames.png, run-all-frames.png, jump-all-frames.png, fall-all-frames.png, double_jump-all-frames.png, dash-all-frames.png, and land-all-frames.png.",
+          "Official GRIS page returned HTTP 429 through the static reader; browser access succeeded and provided the artwork and gameplay screenshot inspected.",
+          "Both audit-owned browser tabs were closed after inspection."
+        ],
+        "scope": "No repository, history, sibling results, prior scores, builds, tests, or lint were inspected or run. Source assets were not modified. Only scratch inspection artifacts were created."
+      },
+      "inspected_files": {
+        "folder": "/tmp/violet-endpoint-checks/character/",
+        "files": [
+          "A-contact-sheet.png",
+          "B-contact-sheet.png",
+          "A-idle.gif",
+          "B-idle.gif",
+          "A-run.gif",
+          "B-run.gif",
+          "A-jump.gif",
+          "B-jump.gif",
+          "A-fall.gif",
+          "B-fall.gif",
+          "A-double_jump.gif",
+          "B-double_jump.gif",
+          "A-dash.gif",
+          "B-dash.gif",
+          "A-land.gif",
+          "B-land.gif"
+        ]
+      },
+      "references": {
+        "GRIS": {
+          "url": "https://www.devolverdigital.com/games/gris",
+          "observation": "The inspected gameplay screenshot uses a much more economical character shape and clearly organized surrounding values. This supports prioritizing a controlled, readable silhouette over additional costume detail."
+        },
+        "Planet_of_Lana": {
+          "url": "https://planetoflana.com/",
+          "original_game_artwork": "https://www.planetoflana.com/assets/images/pol2/pol1-keyart.jpg",
+          "observation": "The original game's key art separates hair, face, light shirt, and dark legs into simple readable shapes. Both supplied sets rely more heavily on dense folds within a largely similar-value costume."
+        }
+      },
+      "reference_limitations": [
+        "The Planet of Lana homepage primarily promotes Planet of Lana II. Only its explicitly identified original-game key art was used for the original-game comparison.",
+        "Reference inspection covered still artwork and a GRIS gameplay screenshot, not reference-game animation sequences. This is not a frame-for-frame motion comparison against those games.",
+        "The supplied assets are isolated on gray. In-game scale, background contrast, movement trajectories, collision timing, and transitions between gameplay states remain unverified.",
+        "One-shot GIF restart jumps were not treated as animation defects. The continuity findings concern changes within the decoded sequences."
+      ],
+      "model": {
+        "runtime_metadata": "openai-codex/gpt-6-astra",
+        "provider": "openai-codex",
+        "verification_source": "Developer-supplied workstation model metadata, not an inference from the agent name. Session history and billing logs were not opened under the blind-review restriction."
+      },
+      "reviewer_identity": {
+        "agent": "AuditCharacterEndpoint",
+        "envoy_session_id": "01a0f2aa-c503-708e-bc39-dcb0574aa6a7"
+      },
+      "confidence": {
+        "relative_A_B_judgment": "High",
+        "absolute_reference_parity": "Moderate, subject to the reference and gameplay limitations above"
+      }
+    },
+    "AuditVectorWorld": {
+      "status": "corrected_result_superseding_prior_result",
+      "correction": {
+        "answer": "Yes. The filename-bound evidence reverses my moment-3 analysis: B-3, not A-3, has the stronger visual treatment. The overall verdict remains B on all three axes, now consistently across all four matched moments.",
+        "cause": "The initial parallel image reads associated the moment-3 renderings with opposite filenames. The single labelled composite visibly binds the flat/banded image to A-3 and the atmospheric/outlined image to B-3. Independently calculated source SHA-256 hashes match the prefixes embedded in that composite.",
+        "withdrawn_claims": [
+          "The richer treatment switches sides in the last pair.",
+          "A-3 beats B-3.",
+          "The supplied sets contain an intra-set visual discontinuity."
+        ],
+        "first_three_pairs": "I independently composed pairs 0, 1 and 2 with filenames and full source SHA-256 hashes embedded in their pixels, then opened each composite separately. All three confirm the original associations: A is the flatter treatment; B is the more atmospheric, outlined treatment.",
+        "scoring_note": "Aggregate scores were corrected to account for the properly attributed fourth pair. No candidate, source asset or version-order information was added.",
+        "tool_issue": "Reported the parallel image/path association mismatch through xd://report_issue; response: Noted, thanks!"
+      },
+      "verdicts": {
+        "visual_quality": "B",
+        "character_appeal": "B",
+        "color_readability": "B"
+      },
+      "scores": {
+        "scale": "1–5; higher is better. Scores cover all four correctly attributed moments in each set.",
+        "A": {
+          "visual_quality": 2,
+          "character_appeal": 2,
+          "color_readability": 3
+        },
+        "B": {
+          "visual_quality": 3.5,
+          "character_appeal": 3,
+          "color_readability": 4
+        }
+      },
+      "rationale": {
+        "visual_quality": "B consistently gives the desert more depth and finish: atmospheric sky gradients, illuminated platform rims, shaded terrain sides, darker pit interiors and foreground silhouettes. A consistently has broad flat sky bands, capsule-shaped clouds and conspicuously repeating ground decoration. B is substantially more resolved, but its repeated environmental symbols and regular terrain blocks still fall short of a highly authored commercial art direction.",
+        "character_appeal": "B's character contour preserves the head, hands, feet and scarf across all four backgrounds, making the figure easier to recognize and engage with. A's gray figure loses silhouette definition against the tree, arch and wall. This is chiefly a presentation advantage: the matched poses appear substantially alike, and stills cannot establish better animation or emotional acting. B's outlined figure also retains a somewhat pasted-on appearance.",
+        "color_readability": "Both sets make red and green surfaces conspicuous. B better separates the player, platform edges and spike pits, and its red chevron-like marks versus green wavy marks provide visible distinctions beyond hue. The red scarf remains harder to separate beside the red wall in moment 3 than the green scarf against sand in moment 2. Large tagged surfaces are much easier to read than the small scarf in both sets."
+      },
+      "matched_moments": [
+        {
+          "moment": 0,
+          "preferred": {
+            "visual_quality": "B",
+            "character_appeal": "B",
+            "color_readability": "B"
+          },
+          "A": "A-0: The airborne gray figure overlaps the dark tree canopy and loses parts of its silhouette. The red scarf remains visible. Flat sky bands and repeating soil details make the scene feel diagrammatic.",
+          "B": "B-0: The bright sky, character contour, shaded platform edges and darkened spike pit create stronger separation and depth. The outline is useful but slightly sticker-like.",
+          "association_check": "Confirmed by independently generated, singly inspected moment-0-labelled.png."
+        },
+        {
+          "moment": 1,
+          "preferred": {
+            "visual_quality": "B",
+            "character_appeal": "B",
+            "color_readability": "B"
+          },
+          "A": "A-1: The airborne figure blends into the arch and its shadow, particularly around the dress and extended limbs. The red wall is conspicuous but pale and visually flat.",
+          "B": "B-1: The figure is clearly bounded against the arch. The red wall has shading and repeated chevron-like marks; the dark pit and lit landing edge describe the jump space more convincingly.",
+          "association_check": "Confirmed by independently generated, singly inspected moment-1-labelled.png."
+        },
+        {
+          "moment": 2,
+          "preferred": {
+            "visual_quality": "B",
+            "character_appeal": "B",
+            "color_readability": "B"
+          },
+          "A": "A-2: The green scarf reads against the sand, but the body remains low contrast. The bright red and mint-green columns dominate the composition, while repeated purple flecks cover the large platform face.",
+          "B": "B-2: The walking figure and green scarf separate more cleanly. The walls carry visibly different markings, and the raised block has clearer edge depth and less distracting face decoration.",
+          "association_check": "Confirmed by independently generated, singly inspected moment-2-labelled.png."
+        },
+        {
+          "moment": 3,
+          "preferred": {
+            "visual_quality": "B",
+            "character_appeal": "B",
+            "color_readability": "B"
+          },
+          "A": "A-3: Flat sky bands and capsule clouds surround a thin, low-contrast wall-contact pose. The figure overlaps the red wall and background spire. The colored bridge and exit are locatable, but player separation and scene depth are weak.",
+          "B": "B-3: The outlined wall-contact pose remains readable beside the red column. Atmospheric sky, differentiated wall markings, shaded terrain edges and a dark pit produce the more resolved image. The red scarf still competes with the nearby red surface.",
+          "association_check": "Corrected using the singly inspected /tmp/vector-capture-labelled.png. Independently computed source hashes match its embedded A-3 and B-3 hash prefixes."
+        }
+      ],
+      "gaps": {
+        "A": [
+          {
+            "gap": "Flat, repetitive environmental construction",
+            "evidence": "All four frames use broad sky bands and capsule-like clouds; repeated purple flecks and soil motifs are especially visible across the large platform faces in A-2 and A-3.",
+            "priority": "Create consistent depth, edge hierarchy and material variation rather than adding more repeated decoration."
+          },
+          {
+            "gap": "Weak player silhouette and limited readable personality",
+            "evidence": "The gray body blends into the tree in A-0, the arch in A-1 and the wall/spire overlap in A-3. The scarf often identifies the player more readily than the body does.",
+            "priority": "Resolve the head, torso, limbs and scarf as a clear large-scale shape against every background."
+          },
+          {
+            "gap": "Tagged surfaces overpower the character without matching the world's finish",
+            "evidence": "The mint-green column in A-2 and pale red column/bridge in A-3 are immediately noticeable but comparatively flat; their scale and saturation dominate the much smaller scarf.",
+            "priority": "Preserve immediate color recognition while strengthening surface identity and non-color distinctions."
+          }
+        ],
+        "B": [
+          {
+            "gap": "Character readability improves more than character appeal",
+            "evidence": "Across B-0 through B-3, a strong light/dark contour isolates a small, finely textured gray figure from the simpler scenery. Facial expression remains unreadable, and the figure can resemble a sticker.",
+            "priority": "Unify character and environment rendering while putting more appeal into the silhouette and large pose shapes."
+          },
+          {
+            "gap": "The environment remains generic and repetitive despite added polish",
+            "evidence": "Similar arches, mesas, cacti, umbrella-shaped trees and straight soil slabs recur across the four moments. Broad sunburst rays add atmosphere but do not replace distinctive environmental composition.",
+            "priority": "Develop more specific silhouettes, natural variation and intentional focal hierarchy while preserving playable-space clarity."
+          },
+          {
+            "gap": "Gameplay colors are clearer than they are integrated",
+            "evidence": "The saturated red and green columns in B-2 and B-3 remain large, very regular bars against the more atmospheric desert. The red scarf competes with the adjacent red wall in B-3.",
+            "priority": "Keep the useful surface markings and strong color distinction, but better integrate tagged structures into the material language and protect scarf separation at contact points."
+          }
+        ]
+      },
+      "recommendation": "Prefer B consistently across all four moments. Preserve its atmospheric depth, platform-edge clarity and differentiated wall markings. The next highest-value improvements are a character treatment that belongs in the world, more distinctive environmental shape design, and better scarf separation beside matching-color surfaces—not additional visual effects. Neither set yet demonstrates the complete cohesive finish sought from the reference bar.",
+      "inspected_files": [
+        {
+          "path": "/tmp/violet-endpoint-checks/g-c/A-0.png",
+          "status": "RAN; association independently confirmed",
+          "sha256": "0e108a20ddbebb78bb9cde09d1f7245208a43c9fc9a818e6d9272ef568ccc3a1"
+        },
+        {
+          "path": "/tmp/violet-endpoint-checks/g-c/B-0.png",
+          "status": "RAN; association independently confirmed",
+          "sha256": "d838eb054b6c455fb04fa294115ee9f92e1a0a95237b5b54708c5701e9a9dbaa"
+        },
+        {
+          "path": "/tmp/violet-endpoint-checks/g-c/A-1.png",
+          "status": "RAN; association independently confirmed",
+          "sha256": "31f0666ea0f1c5d2ee2eafbfa8e0124e4cba02e064479b02084b17043386661b"
+        },
+        {
+          "path": "/tmp/violet-endpoint-checks/g-c/B-1.png",
+          "status": "RAN; association independently confirmed",
+          "sha256": "932daaeae058f62683a8bbcf0e4f23c8f68955038e2742f71551438ccf8cf1b4"
+        },
+        {
+          "path": "/tmp/violet-endpoint-checks/g-c/A-2.png",
+          "status": "RAN; association independently confirmed",
+          "sha256": "6ffdaf498f01762b8532865644db7945db2c50b664ba9cba66253f863d18cb21"
+        },
+        {
+          "path": "/tmp/violet-endpoint-checks/g-c/B-2.png",
+          "status": "RAN; association independently confirmed",
+          "sha256": "de28b0dff1ca5ca501ec7f6a7134b286f64a1ce6e091461874ed11a9a2fcfbd3"
+        },
+        {
+          "path": "/tmp/violet-endpoint-checks/g-c/A-3.png",
+          "status": "RAN; association corrected with labelled composite and matching source hash",
+          "sha256": "2b04d7d7606aba4ba6ca6473a74037b0d6e39f5e4aaed1b74c77ac8e75ca10fb"
+        },
+        {
+          "path": "/tmp/violet-endpoint-checks/g-c/B-3.png",
+          "status": "RAN; association corrected with labelled composite and matching source hash",
+          "sha256": "ecaf850e06a5da701b1efe969c585c20d338373e8918f0f512865f578ca47048"
+        }
+      ],
+      "verification": {
+        "population": "8 assigned stills; all 8 visually inspected and all 4 A/B pair associations checked with pixel-embedded filenames.",
+        "corrected_method": "Initial individual images were read in parallel. For the correction, each pair was inspected as one composite in a separate, non-parallel read, making filename-to-image association visible within the image itself.",
+        "generated_evidence": [
+          "/tmp/violet-audit-AuditVectorWorld/moment-0-labelled.png",
+          "/tmp/violet-audit-AuditVectorWorld/moment-1-labelled.png",
+          "/tmp/violet-audit-AuditVectorWorld/moment-2-labelled.png"
+        ],
+        "supplied_evidence": "/tmp/vector-capture-labelled.png",
+        "composition_run": "Python/Pillow composition through /usr/bin/python3 completed with exit code 0 and printed all six source hashes and three output paths. Labels include filenames and full SHA-256 hashes. Final-pair hashes were calculated independently and match the supplied composite's prefixes.",
+        "environment_note": "Pillow was initially unavailable. A scratch-only installation was pinned to /usr/bin/python3 after the default installer selected an incompatible interpreter. No shared environment was changed.",
+        "changes": "No source assets or repository files changed. Generated composites and isolated image-decoder dependencies are confined to /tmp/violet-audit-AuditVectorWorld/.",
+        "motion": "Not assessed; only stills were supplied. No animation-timing, smoothness or transition claims are made.",
+        "blindness": "No repository files, history, sibling scores or version-order information were consulted. The coordinator's evidence-identity warning was checked against labelled pixels and source hashes, not accepted as a visual verdict.",
+        "project_validation": "No builds, tests or linters run."
+      },
+      "reference_limitations": [
+        {
+          "url": "https://www.devolverdigital.com/games/gris",
+          "result": "The official reference request returned HTTP 429. No fresh GRIS imagery was inspected, so this is not a fully verified side-by-side GRIS benchmark."
+        },
+        {
+          "url": "https://planetoflana.com/",
+          "result": "The current homepage primarily promotes Planet of Lana II. Only its explicitly labelled original-game key art was used as visual reference."
+        },
+        {
+          "url": "https://www.planetoflana.com/assets/images/pol2/pol1-keyart.jpg",
+          "result": "Visually inspected original Planet of Lana artwork showing strong character silhouettes, painterly edge variation, layered vegetation and coherent atmospheric depth. This promotional artwork supports an aesthetic benchmark, not matched gameplay-readability equivalence."
+        }
+      ],
+      "attribution": {
+        "agent": "AuditVectorWorld",
+        "session_id": "01a0f2aa-c547-7434-a268-502436f66271",
+        "model": "openai-codex/gpt-6-astra",
+        "provider_evidence": "The injected workstation metadata identifies openai-codex/gpt-6-astra. No auxiliary model or paid OpenAI API calls were made; session history remained unopened."
+      }
+    }
+  }
+}

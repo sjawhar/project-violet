@@ -88,6 +88,8 @@ copy with `provenance record --force`.
 
 ## Round table
 
+The historical start/end fields were entered by the workers, not measured by a session timer. Some disagree with push timestamps, and work also overlapped or waited on authentication. They are retained as reported, but must not be summed or presented as verified agent-hours.
+
 | Round | Start (UTC) | End (UTC) | What changed | Spend (est.) | Letter map | Axes: new round better / worse | Scores (A / B): visual_quality, character_appeal, color_readability | Gaps (new round) | Kept? |
 |---|---|---|---|---|---|---|---|---|---|
 | 0 | 2026-09-29T00:40:00Z | 2026-09-29T00:52:00Z | Baseline: the current rig (README.md), unchanged. | $0 | A = round 0 (only set) | — (nothing to compare) | A: 2, 2, 3 (no B) | 1) jump/fall/double_jump read as almost one pose (arms up, one knee bent) — a player can't tell which air-state she's in; 2) no face — every frame is a flat smudge with no eyes/brow, killing "alive" appeal; 3) scribble-texture legs/ankles break the silhouette exactly at the feet, where platforming footing/landing cues need to read cleanest. | kept (round 0 is always kept) |
@@ -131,3 +133,5 @@ All figures here are estimates at $0.22 per counted image call, not billing rece
 The cutout track ended after round 3. The frame-by-frame run trial was preferred on character appeal, so rounds 4–10 developed painted action frames, with a deterministic single-painting idle to reduce redraw flicker. This is an art calibration result, not a production character replacement.
 
 The game lanes still use the previously approved cutout character. The painted sequence has not been ported to their readers or tested through gameplay state transitions. Hardware frame-time measurements remain unrun. Sami's approval is required before replacing the character in the lanes.
+
+Six fresh blind Codex spot-checks are recorded in [cross-model-review.json](cross-model-review.json), with source revisions, randomized mappings and input hashes. They favor the final environments over their baselines, and favor the painted character's action/appeal over the cutout. They do **not** find the animation finished: the final character still has cloth/shape discontinuities, and the original cutout's scarf wins readability in both full-character comparisons. These checks validate selected comparisons, not every historical keep/revert decision.
