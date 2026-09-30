@@ -1,0 +1,20 @@
+{
+  "surface": "http://127.0.0.1:33897/calibration.html",
+  "driver": "host-native managed headless Chromium",
+  "routes": [
+    {"route": "/calibration.html", "status": "RAN", "result": "pass"},
+    {"route": "/index.html", "status": "RAN", "result": "102 items, 78 video elements, zero provenance problems"},
+    {"route": "/originals/round-00/contact-sheet.png", "status": "RAN", "result": "1840 by 2224 original opened through the full-resolution link"}
+  ],
+  "desktop": {"viewport": "1440x1000", "comparison_player_size_css_pixels": "412x412 on both sides", "horizontal_overflow": false, "seven_animation_choices_played": true, "pause_restart_half_speed": "pass"},
+  "phone": {"viewport": "390x844", "comparison_player_size_css_pixels": "178.203125x178.203125 on both sides", "horizontal_overflow": false, "seven_animation_choices_played": true, "pause_restart_quarter_speed": "pass", "reverted_round_details": "opened with scores, mapping and seven animations"},
+  "population": {"rounds": 11, "manifest_items": 102, "animation_items": 78, "image_items": 24, "unique_local_urls_fetched": 286, "images_decoded_in_browser": 205, "videos_decoded_in_browser": 78},
+  "failures": {"asset_fetches": 0, "image_decodes": 0, "video_decodes": 0, "page_errors": 0},
+  "screenshots": [
+    "/tmp/violet-gallery-build/desktop-comparison.png",
+    "/tmp/violet-gallery-build/phone-comparison.png",
+    "/tmp/violet-gallery-build/desktop-progression.png",
+    "/tmp/violet-gallery-build/phone-reverted-round.png"
+  ],
+  "scope": "No external URLs opened, no user desktop, no publishing, no PR edits, no version-control operations, no project-wide tests or builds. Media was built only by tools/preview. One initial offscreen sequential video probe timed out at the browser protocol; a visible batched decode of all 78 videos completed with no failures."
+}
