@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "asset": "grade_b.py",
+  "sha256": "a2984db5073d32553d93a956634d48cb1f3c457bae79db4bf48392ae499f152b",
+  "kind": "text",
+  "origin": "generated",
+  "created_at": "2026-09-30T02:56:06+00:00",
+  "generator": {
+    "tool": "hand-written-python",
+    "tool_version": "1",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "prompt": "THROWAWAY (Phase 1 bake-off, Violet glow-up, round 5): a deterministic value pass over every technique-B painted frame, darkening the body layer's mid/dark values (a curve on each pixel's own V=max(R,G,B) that is a no-op near V=255, preserving hue and saturation exactly since it's a uniform per-pixel RGB scale) with a soft warm rim a few px inside the alpha edge, and solidifying the scarf layer's alpha (morphological close plus a narrow Gaussian edge) so only a couple of px stay soft -- round 5's fix for round 4's gap 3 (the scarf is a pale semi-transparent haze and the body sits close to the gray backdrop)",
+    "params": {},
+    "inputs": []
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

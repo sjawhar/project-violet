@@ -1,38 +1,22 @@
 {
   "schema_version": 1,
   "asset": "dash-scarf-00.png",
-  "sha256": "1f951d1e454f95c1dd22e3ab72097ef10368d1415cc9c2db2256bb7e2fc61d41",
+  "sha256": "026452145e3eac341c393433d32971590a5453d50940876ee7f1ca5b6937d9e8",
   "kind": "image",
-  "origin": "generated",
-  "created_at": "2026-09-29T03:19:55+00:00",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:26+00:00",
   "generator": {
-    "tool": "gen",
-    "tool_version": "0.1.0",
-    "provider": "openai",
-    "model": "gpt-image-2",
-    "prompt": "Using the exact pose, camera angle, character scale and canvas framing of the first reference image (a dashing girl), paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf drapes from around her neck/collar and streams straight back behind her from the wind of her sudden dash burst -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Paint exactly one solid, opaque scarf shape -- not several overlapping or duplicated semi-transparent copies. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text -- only the gray scarf shape, positioned and posed exactly where it would drape and trail relative to her neck and shoulders in the pose shown in the first reference image, on the same size canvas with the same framing, fully transparent everywhere else.",
-    "params": {
-      "size": "1024x1024",
-      "quality": "high",
-      "background": "transparent"
-    },
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
     "inputs": [
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.png",
-        "sha256": "773f71357426c97ffde50f4f0790a779272ddf0a752ffce8c6de9d7711812aec"
-      },
-      {
-        "path": "assets/bakeoff/protagonist/parts/scarf1.png",
-        "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.round-04.png",
+        "sha256": "1f951d1e454f95c1dd22e3ab72097ef10368d1415cc9c2db2256bb7e2fc61d41"
       }
     ]
   },
-  "human_edits": [
-    {
-      "by": "anthropic/claude-sonnet-5 (VioletBDashRunFix)",
-      "description": "trimmed to the frame's shared body+scarf alpha>8 bounding-box union (116,151)-(932,882) of the raw 1024x1024 canvas -> 816x731, then rescaled by the trial's own factor 1.128227 (Lanczos, reused verbatim, not re-derived, so dash matches run's scale) -> 921x825",
-      "at": "2026-09-29T03:20:01+00:00"
-    }
-  ],
+  "human_edits": [],
   "license": "proprietary"
 }

@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "asset": "jump.gif",
+  "sha256": "7ca996baf53427d3d5568065e2aab16e788841c30ffba281e3a830c507475317",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:48+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+    "tool_version": "shoot_b.py round-05: technique B (graded painted frames) in shoot.py's exact fixed layout",
+    "model": null,
+    "params": {
+      "command": "uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/shoot_b.py --rig assets/bakeoff/protagonist/rig/violet.json --out assets/bakeoff/protagonist/glow-up/round-05"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+        "sha256": "c3ae07dead5e03bcac46e9ab598ca95842114c534c345666a2ab7b2d03eb095b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-00.png",
+        "sha256": "abf6ecd9bf1b7e3efb1b83393333f6e9d678bc5fe9878fd77fe5eeba0fac17eb"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-01.png",
+        "sha256": "a9b73075da824bcb34119e36deed6206bea51d3e53fb10414e036cc0532a57f0"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-02.png",
+        "sha256": "e4304243d0d95b6bc6c8ace6434c4f305b027418515f634f56bd54a17b3c73e7"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-03.png",
+        "sha256": "ee18a5a922a70d6fff2af71ba415a5c1618cf4e7fb444ecc9c01b97479c6561c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-04.png",
+        "sha256": "ef79cfb75c750969ac5331c67026d40fc37e64f6cb85549e19221b1f6451ed63"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-00.png",
+        "sha256": "9e2580fd5a9fee0d55e7ea827dca6832cdff76eda60128f1179e21ad3c80f0f8"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-01.png",
+        "sha256": "7d6bb20d42491bca288e7a48eb4a725ddb81960364bb56a7cc5f5a52eca0488f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-02.png",
+        "sha256": "01e7c4c7904ef79fa41cf85dd7de17a1872eaec26ff4e899e7479e34b67e12fe"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-03.png",
+        "sha256": "dfc9e692c6ba58cac28265f12e3f9a088c097f0cafded1152fd49becf0e89974"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-04.png",
+        "sha256": "41ddf233e3b051290bc4da8c6538aa25c86743f5099046d9ef10a48ecd94afd2"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

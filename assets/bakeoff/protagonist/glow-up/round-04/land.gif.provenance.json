@@ -15,34 +15,40 @@
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
-        "sha256": "cf614671e5d3531d6f776caa30276f580ecb1264a68d0ad139c950090b2113c7"
+        "sha256": "c3ae07dead5e03bcac46e9ab598ca95842114c534c345666a2ab7b2d03eb095b"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-00.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-00.round-04.png",
         "sha256": "47109c7fef8fb56e7fa202a895e2e3635bd663ca6d1390cc2de7c5795ba79143"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-01.round-04.png",
         "sha256": "db80e6eea7cd6f8f0322e4a4db81d2fbc77a0442f6e5a3612672f6365ca7e155"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.round-04.png",
         "sha256": "06069002f94579a3a4029ff31d60f7c6664764d6a1930ee25482dfd76cadc157"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-00.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-00.round-04.png",
         "sha256": "d4c1549a65070535814f6ca24ec3d34c806922c940474813e4085e11db09e3f1"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-01.round-04.png",
         "sha256": "0369b5060e519696138b739eb07a29e282fb4d5615445fe95de071dd4de7462e"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.round-04.png",
         "sha256": "1c56bd33c50271d42825590af5df9cd772296bd5df41ff20b48119135ab6c19b"
       }
     ]
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletRound5)",
+      "description": "corrected generator.inputs[].sha256 for assets/bakeoff/protagonist/glow-up/shoot_b.py to its current recorded hash (round 5's frame_count() bugfix changed shoot_b.py's own content; this reference predates that fix)",
+      "at": "2026-09-30T02:58:54+00:00"
+    }
+  ],
   "license": "proprietary"
 }

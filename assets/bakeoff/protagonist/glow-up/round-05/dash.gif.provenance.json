@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "asset": "dash.gif",
+  "sha256": "81f2c72f1f4664a26a52b943f87d9e7fc52029920e30d60aeabf60b691e07e6e",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:48+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+    "tool_version": "shoot_b.py round-05: technique B (graded painted frames) in shoot.py's exact fixed layout",
+    "model": null,
+    "params": {
+      "command": "uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/shoot_b.py --rig assets/bakeoff/protagonist/rig/violet.json --out assets/bakeoff/protagonist/glow-up/round-05"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+        "sha256": "c3ae07dead5e03bcac46e9ab598ca95842114c534c345666a2ab7b2d03eb095b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.png",
+        "sha256": "04f0bd3f49e1a853a2e3df7be36a6e11feb403cdb1309787ea96560756d5ee6d"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png",
+        "sha256": "6b177ff1ec904b4d8a03aea6f0e234dbb05e2fe09cd945718f632a11cb911108"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.png",
+        "sha256": "0fc46ce8baac21607714f340c5c96b4f86d43a7d4376ad12928cc43953e98b8f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.png",
+        "sha256": "026452145e3eac341c393433d32971590a5453d50940876ee7f1ca5b6937d9e8"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.png",
+        "sha256": "8290de302c1dbac69fe305c3ea71b7ed93e0717773868f05aaed0838cde6567b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.png",
+        "sha256": "5a2c59dee178199bf57970f7f3d18999eecbca6b84e0835f00bd2a4776494720"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

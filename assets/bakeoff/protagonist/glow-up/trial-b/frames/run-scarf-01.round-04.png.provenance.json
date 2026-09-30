@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "asset": "run-scarf-01.round-04.png",
+  "sha256": "72890de53d1d6b5830b10e9a3451f2eff6633a31e05cd2e03f179e2aff40a720",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-30T02:43:34+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Using the exact pose, camera angle, character scale and canvas framing of the first reference image (a running girl), paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf drapes from around her neck/collar and streams and trails behind and above her from the wind of her running motion -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Paint exactly one solid, opaque scarf shape -- not several overlapping or duplicated semi-transparent copies. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text -- only the gray scarf shape, positioned and posed exactly where it would drape and trail relative to her neck and shoulders in the pose shown in the first reference image, on the same size canvas with the same framing, fully transparent everywhere else.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-01.round-04.png",
+        "sha256": "6b799e60b5445d963fb3f87c5896f59727e44f5a0fd9785a82dbe19b7c480c2e"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/scarf1.png",
+        "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletRound5)",
+      "description": "Frozen as run-scarf-01.round-04.png for round 4's own shot provenance (identical bytes to the live run-scarf-01.png through round 4, sha256 72890de53d1d6b5830b10e9a3451f2eff6633a31e05cd2e03f179e2aff40a720) before glow-up round 5's grade_b.py overwrote the live run-scarf-01.png with a value/opacity grading pass; see assets/bakeoff/protagonist/glow-up/rounds.md.",
+      "at": "2026-09-30T02:43:34+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

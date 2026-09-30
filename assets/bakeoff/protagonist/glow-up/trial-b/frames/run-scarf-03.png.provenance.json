@@ -1,38 +1,22 @@
 {
   "schema_version": 1,
   "asset": "run-scarf-03.png",
-  "sha256": "4a25b1368054ae59e2d517f7ce3501a36e795150546081ab2bf5cd7d1c43fe62",
+  "sha256": "065e6f7fa9716fc175a9341dfac5b50bf889f27d719a33d6a48936ddea9e6cac",
   "kind": "image",
-  "origin": "generated",
-  "created_at": "2026-09-29T02:05:45+00:00",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:23+00:00",
   "generator": {
-    "tool": "gen",
-    "tool_version": "0.1.0",
-    "provider": "openai",
-    "model": "gpt-image-2",
-    "prompt": "Using the exact pose, camera angle, character scale and canvas framing of the first reference image (a running girl), paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf drapes from around her neck/collar and streams and trails behind and above her from the wind of her running motion -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text -- only the gray scarf shape, positioned and posed exactly where it would drape and trail relative to her neck and shoulders in the pose shown in the first reference image, on the same size canvas with the same framing, fully transparent everywhere else.",
-    "params": {
-      "size": "1024x1024",
-      "quality": "high",
-      "background": "transparent"
-    },
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
     "inputs": [
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-03.png",
-        "sha256": "08105201f6b2a63f755dcdd44f5f310ab1d0eb33d31e7084f5aef9c85d4b22dc"
-      },
-      {
-        "path": "assets/bakeoff/protagonist/parts/scarf1.png",
-        "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-03.round-04.png",
+        "sha256": "4a25b1368054ae59e2d517f7ce3501a36e795150546081ab2bf5cd7d1c43fe62"
       }
     ]
   },
-  "human_edits": [
-    {
-      "by": "anthropic/claude-sonnet-5 (VioletTrialB)",
-      "description": "trimmed to the frame's shared body+scarf alpha>8 bounding-box union (61,27)-(780,933) of the raw 1024x1024 canvas -> 719x906, then rescaled by factor 1.128227 (Lanczos) to the shared rig scale (calibrated against round-00/contact-sheet.png's run row, t=0 column: bbox height 208 canvas px at SCALE=0.22 = 945.4545 rig units) -> 811x1022",
-      "at": "2026-09-29T02:06:00+00:00"
-    }
-  ],
+  "human_edits": [],
   "license": "proprietary"
 }

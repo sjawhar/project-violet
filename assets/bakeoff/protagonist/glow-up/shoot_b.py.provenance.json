@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "asset": "shoot_b.py",
-  "sha256": "cf614671e5d3531d6f776caa30276f580ecb1264a68d0ad139c950090b2113c7",
+  "sha256": "c3ae07dead5e03bcac46e9ab598ca95842114c534c345666a2ab7b2d03eb095b",
   "kind": "text",
   "origin": "generated",
   "created_at": "2026-09-29T04:42:04+00:00",
@@ -14,6 +14,12 @@
     "params": {},
     "inputs": []
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletRound5)",
+      "description": "Fixed frame_count() to match only <anim>-body-NN.png exactly via regex, not the frozen <anim>-body-NN.round-04.png copies that also matched its previous plain glob(f\"{anim}-body-*.png\") and doubled the frame count once round 5 froze inputs beside the live frames (rounds.md's 'Frozen inputs' convention); added the `re` import it needs.",
+      "at": "2026-09-30T02:56:06+00:00"
+    }
+  ],
   "license": "proprietary"
 }

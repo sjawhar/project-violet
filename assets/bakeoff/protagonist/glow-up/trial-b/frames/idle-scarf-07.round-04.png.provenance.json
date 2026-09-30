@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "asset": "idle-scarf-07.round-04.png",
+  "sha256": "70982e6447223d5e46b52b43e980ac123d6fd90579761a5b97be39641f747621",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-30T02:43:32+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Using the exact pose, camera angle, character scale and canvas framing of the first reference image (a standing girl), paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf drapes from around her neck/collar and has almost fully settled back to hanging loosely at rest, just a breath away from completing its gentle sway, wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text -- only the gray scarf shape, positioned and posed exactly where it would drape and trail relative to her neck and shoulders in the pose shown in the first reference image, on the same size canvas with the same framing, fully transparent everywhere else. IMPORTANT: paint exactly ONE single opaque, solid gray scarf shape -- do not paint multiple overlapping, ghosted or semi-transparent copies of the scarf at different offsets; the scarf must be one continuous, fully opaque cloth shape, not several stacked layers.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-07.round-04.png",
+        "sha256": "d5dd58e8e9a5f57aa718ce6d27c8b6d822ce5ab7a9decdd81835dccd534b711a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/scarf1.png",
+        "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletRound5)",
+      "description": "Frozen as idle-scarf-07.round-04.png for round 4's own shot provenance (identical bytes to the live idle-scarf-07.png through round 4, sha256 70982e6447223d5e46b52b43e980ac123d6fd90579761a5b97be39641f747621) before glow-up round 5's grade_b.py overwrote the live idle-scarf-07.png with a value/opacity grading pass; see assets/bakeoff/protagonist/glow-up/rounds.md.",
+      "at": "2026-09-30T02:43:32+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

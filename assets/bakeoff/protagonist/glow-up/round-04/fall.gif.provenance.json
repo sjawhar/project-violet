@@ -15,50 +15,56 @@
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
-        "sha256": "cf614671e5d3531d6f776caa30276f580ecb1264a68d0ad139c950090b2113c7"
+        "sha256": "c3ae07dead5e03bcac46e9ab598ca95842114c534c345666a2ab7b2d03eb095b"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-00.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-00.round-04.png",
         "sha256": "11843007fbb03c8bf9bb2a6f4ae5006b349e0f35d5f2bf5ac5ab06941b4c6dc2"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-01.round-04.png",
         "sha256": "f308408b488266b85a07b423b915f48fd2ee2080e4896d9d36057463ced4a860"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-02.round-04.png",
         "sha256": "d1006d0cd9e84c9499a01f8f9c21b37f1204aa2c175667535f393608e3056af9"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-03.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-03.round-04.png",
         "sha256": "0da87b7cd4317a451d99dc416bdaf76842e261f04fe24f1a41b1c496ed369f31"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-04.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-04.round-04.png",
         "sha256": "4fc97527248fe8bd5108e49da11a7f3b6996d1fc0309f2637fabe12859315167"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-00.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-00.round-04.png",
         "sha256": "62452efb937918f01ea6b81b6ebc2afb063426540fb2ea6bfc7c665ee593ab7c"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-01.round-04.png",
         "sha256": "4b4b473b54612833b29836c634f2f115fcad640c94b6475b3c43e86789e4f78c"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-02.round-04.png",
         "sha256": "48be04d8582b66cdc738c76916368e76cf9fc5e7c8a38ac5cc4156abde82cffa"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-03.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-03.round-04.png",
         "sha256": "14a16dc9cd21da7f7ee4eb93f9135a1607fdb884be0eb2e7b4eb8776006d4209"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-04.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-04.round-04.png",
         "sha256": "7d2626c89959e524b1ef20082bea4c7d8cf4fb7ca08207a1d64817a98fae8057"
       }
     ]
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletRound5)",
+      "description": "corrected generator.inputs[].sha256 for assets/bakeoff/protagonist/glow-up/shoot_b.py to its current recorded hash (round 5's frame_count() bugfix changed shoot_b.py's own content; this reference predates that fix)",
+      "at": "2026-09-30T02:58:54+00:00"
+    }
+  ],
   "license": "proprietary"
 }

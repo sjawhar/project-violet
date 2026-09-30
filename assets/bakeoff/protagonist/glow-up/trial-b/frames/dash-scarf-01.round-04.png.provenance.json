@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "asset": "dash-scarf-01.round-04.png",
+  "sha256": "e7f2349ed02789a87186e4305fac8b36093f0bbbc0c0825ad53ca6e1638cb3c8",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-30T02:43:41+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Using the exact pose, camera angle, character scale and canvas framing of the first reference image (a dashing girl), paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf drapes from around her neck/collar and streams straight back behind her from the wind of her sudden dash burst -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Paint exactly one solid, opaque scarf shape -- not several overlapping or duplicated semi-transparent copies. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text -- only the gray scarf shape, positioned and posed exactly where it would drape and trail relative to her neck and shoulders in the pose shown in the first reference image, on the same size canvas with the same framing, fully transparent everywhere else.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.round-04.png",
+        "sha256": "90dc9368f651ea62b5aca7a786cbb18e3302b8526cbca9725db3adb504e79063"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/scarf1.png",
+        "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletRound5)",
+      "description": "Frozen as dash-scarf-01.round-04.png for round 4's own shot provenance (identical bytes to the live dash-scarf-01.png through round 4, sha256 e7f2349ed02789a87186e4305fac8b36093f0bbbc0c0825ad53ca6e1638cb3c8) before glow-up round 5's grade_b.py overwrote the live dash-scarf-01.png with a value/opacity grading pass; see assets/bakeoff/protagonist/glow-up/rounds.md.",
+      "at": "2026-09-30T02:43:41+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

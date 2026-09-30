@@ -48,6 +48,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -84,7 +85,11 @@ def load_record(anim: str) -> dict[int, dict]:
 
 
 def frame_count(anim: str) -> int:
-    return len(list(FRAMES_DIR.glob(f"{anim}-body-*.png")))
+    # Exact live-frame names only (`<anim>-body-NN.png`): a plain `*.png` glob would
+    # also match frozen `<anim>-body-NN.round-04.png` copies (rounds.md's "Frozen
+    # inputs" convention, introduced by round 5), double-counting frames.
+    pattern = re.compile(rf"^{re.escape(anim)}-body-\d+\.png$")
+    return sum(1 for p in FRAMES_DIR.iterdir() if pattern.match(p.name))
 
 
 def frame_index_at(t: float, duration: float, nframes: int) -> int:

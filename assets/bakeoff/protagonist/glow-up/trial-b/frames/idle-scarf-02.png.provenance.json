@@ -1,38 +1,22 @@
 {
   "schema_version": 1,
   "asset": "idle-scarf-02.png",
-  "sha256": "06d9502ce9c451181120333849c01a35607a8b0d3de49ad867c4b1ae07c1f50f",
+  "sha256": "eb61b2fdc39381088e3a21e21e34cd384f053461c62e61bed0280c2584e02d7a",
   "kind": "image",
-  "origin": "generated",
-  "created_at": "2026-09-29T02:46:07+00:00",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:22+00:00",
   "generator": {
-    "tool": "gen",
-    "tool_version": "0.1.0",
-    "provider": "openai",
-    "model": "gpt-image-2",
-    "prompt": "Using the exact pose, camera angle, character scale and canvas framing of the first reference image (a standing girl), paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf drapes from around her neck/collar and drifts further to the side, caught more in the light unseen breeze, its lower length swaying gently, wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text -- only the gray scarf shape, positioned and posed exactly where it would drape and trail relative to her neck and shoulders in the pose shown in the first reference image, on the same size canvas with the same framing, fully transparent everywhere else. IMPORTANT: paint exactly ONE single opaque, solid gray scarf shape -- do not paint multiple overlapping, ghosted or semi-transparent copies of the scarf at different offsets; the scarf must be one continuous, fully opaque cloth shape, not several stacked layers.",
-    "params": {
-      "size": "1024x1024",
-      "quality": "high",
-      "background": "transparent"
-    },
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
     "inputs": [
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-02.png",
-        "sha256": "91ca4220b13adb4a01aedec9335e613ed44cad4f11ba9eb05bfac1ed5a8c364e"
-      },
-      {
-        "path": "assets/bakeoff/protagonist/parts/scarf1.png",
-        "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-02.round-04.png",
+        "sha256": "06d9502ce9c451181120333849c01a35607a8b0d3de49ad867c4b1ae07c1f50f"
       }
     ]
   },
-  "human_edits": [
-    {
-      "by": "anthropic/claude-sonnet-5 (VioletBIdle)",
-      "description": "trimmed to the frame's shared body+scarf alpha>8 bounding-box union (134, 41, 685, 990) of the raw 1024x1024 canvas -> 551x949, then rescaled by the shared factor 1.128227381210675 (Lanczos), reused byte-for-byte from run's own calibration (not re-derived), to the shared rig scale -> 622x1071",
-      "at": "2026-09-29T03:05:13+00:00"
-    }
-  ],
+  "human_edits": [],
   "license": "proprietary"
 }

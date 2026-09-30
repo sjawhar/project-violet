@@ -1,43 +1,22 @@
 {
   "schema_version": 1,
   "asset": "double_jump-scarf-02.png",
-  "sha256": "41d9e81b5e632d717996171e4f78c1d9498d19ce890cc76e828ea0c1bc22241a",
+  "sha256": "50dcc3e61603bd379f8b349a8f536a9fa0c460374d56c15d517eeb98e6dbc5f3",
   "kind": "image",
-  "origin": "generated",
-  "created_at": "2026-09-29T03:57:45+00:00",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:26+00:00",
   "generator": {
-    "tool": "gen",
-    "tool_version": "0.1.0",
-    "provider": "openai",
-    "model": "gpt-image-2",
-    "prompt": "Using the exact pose, camera angle, character scale and canvas framing of the first reference image (an airborne girl), paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf drapes from around her neck/collar and flares outward and sideways at its widest point, fully fanned out from the sustained held burst of the tuck -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Paint exactly ONE continuous, solid, opaque scarf shape -- never multiple overlapping copies or echoes of the ribbon at different offsets, and never several semi-transparent stacked layers. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text -- only the gray scarf shape, positioned and posed exactly where it would drape and trail relative to her neck and shoulders in the pose shown in the first reference image, on the same size canvas with the same framing, fully transparent everywhere else, with no vignette or darkened backdrop of any kind.",
-    "params": {
-      "size": "1024x1024",
-      "quality": "high",
-      "background": "transparent"
-    },
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
     "inputs": [
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-02.png",
-        "sha256": "e48caede99b6a8549be805e0ce217f9a4e443e1c699f1f16bbab1c20d60a41e8"
-      },
-      {
-        "path": "assets/bakeoff/protagonist/parts/scarf1.png",
-        "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-02.round-04.png",
+        "sha256": "41d9e81b5e632d717996171e4f78c1d9498d19ce890cc76e828ea0c1bc22241a"
       }
     ]
   },
-  "human_edits": [
-    {
-      "by": "anthropic/claude-sonnet-5 (VioletBFallDJ2)",
-      "description": "trimmed to the frame's shared body+scarf alpha>8 bounding-box union (68,84)-(962,879) of 1024x1024 raw -> 894x795, rescaled 1.128227 -> 1009x897 (same union-bbox-trim-then-rescale-by-RIG_PER_RAW approach as run's finalize_frames.py, reusing run's own calibrated factor 1.128227381210675)",
-      "at": "2026-09-29T03:58:21+00:00"
-    },
-    {
-      "by": "anthropic/claude-sonnet-5 (VioletBFallDJ2)",
-      "description": "updated recorded input hash for double_jump-body-02.png from 07d226ff97a2ee349767fa7be3655eff940b36bed2c66355f8efe2dbb23a5401 to e48caede99b6a8549be805e0ce217f9a4e443e1c699f1f16bbab1c20d60a41e8 after finalize_anim.py trimmed/rescaled the body file in place (the scarf was generated from the pre-trim body; the body's post-trim pixels are what this scarf is now paired with)",
-      "at": "2026-09-29T03:58:21+00:00"
-    }
-  ],
+  "human_edits": [],
   "license": "proprietary"
 }

@@ -1,38 +1,22 @@
 {
   "schema_version": 1,
   "asset": "jump-body-00.png",
-  "sha256": "d11e63896c28648e882e485096c7cb96b51c5f09ae4fa7c9bd14e4219fb80db6",
+  "sha256": "abf6ecd9bf1b7e3efb1b83393333f6e9d678bc5fe9878fd77fe5eeba0fac17eb",
   "kind": "image",
-  "origin": "generated",
-  "created_at": "2026-09-29T02:46:46+00:00",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:24+00:00",
   "generator": {
-    "tool": "gen",
-    "tool_version": "0.1.0",
-    "provider": "openai",
-    "model": "gpt-image-2",
-    "prompt": "Frame-by-frame hand-painted 2D game sprite of Violet, a slender young girl adventurer, side-view profile facing right. She wears a hooded gray robe with a darker waist sash, an ankle-length robe skirt with a slightly darker hem, and goes barefoot with simple ankle wraps. Pale skin, dark hair just visible under the hood, a clearly readable young face in profile with a visible eye, brow, nose and mouth. Realistic child body proportions, about 5.5 head-heights tall, matching the reference turnaround exactly in design, coloring and proportions. Rendered as a single cohesive hand-painted illustration with soft painterly brushwork and visible brush texture, in a muted earthy palette (grays, browns, warm skin tones), NOT a flat vector cutout, in the painted-storybook register of games like Hollow Knight or GRIS. A deep anticipatory crouch immediately before a jump: knees bent low and hips dropped down close to the ground, weight sinking onto both feet which stay flat and firmly planted, torso leaning forward and down, head tucked slightly forward. Arms swing back and down behind her, elbows bent, coiled like a spring gathering energy. This is the lowest, most compressed point of her whole body just before launching upward -- a held-breath moment of maximum crouch, not a running stride, not airborne yet. Full body visible from the top of the hood to the soles of both bare feet, and both hands, entirely inside the canvas with generous empty margin on every side so nothing is cropped. She is airborne and may sit higher or lower in the frame than a grounded pose depending on how high she has risen, but keep her at the exact same body scale (head-to-foot size) as the reference image(s), never bigger or smaller. Transparent background, no ground plane, no cast shadow, no vignette, no border, no text, no watermark, no second copy of the character, no scarf or neck wrap of any kind -- bare gray robe collar at the neck; a separate layer will add the scarf later.",
-    "params": {
-      "size": "1024x1024",
-      "quality": "high",
-      "background": "transparent"
-    },
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
     "inputs": [
       {
-        "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
-        "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
-      },
-      {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-00.png",
-        "sha256": "ce487d4ef731535263ed676870868c01d7707db67a0306b2b578c83f2cc90dfe"
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-00.round-04.png",
+        "sha256": "d11e63896c28648e882e485096c7cb96b51c5f09ae4fa7c9bd14e4219fb80db6"
       }
     ]
   },
-  "human_edits": [
-    {
-      "by": "anthropic/claude-sonnet-5 (VioletBJumpLand)",
-      "description": "trimmed to the frame's shared body+scarf alpha>8 bounding-box union (68,184)-(884,928) of the raw 1024x1024 canvas -> 816x744, then rescaled by factor 1.128227 (Lanczos), reused unchanged from the run trial's own calibration, to the shared rig scale -> 921x839",
-      "at": "2026-09-29T03:19:33+00:00"
-    }
-  ],
+  "human_edits": [],
   "license": "proprietary"
 }
