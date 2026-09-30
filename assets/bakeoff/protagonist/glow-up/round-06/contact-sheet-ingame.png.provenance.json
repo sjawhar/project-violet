@@ -246,7 +246,7 @@
         "sha256": "7c379878472cf0e1bf0814d8d63d7f710aec98ce26a7fe356142c17a66ab1017"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-02.round-06.png",
         "sha256": "50dcc3e61603bd379f8b349a8f536a9fa0c460374d56c15d517eeb98e6dbc5f3"
       },
       {
@@ -254,7 +254,7 @@
         "sha256": "0ccde770b78b83e84300a9459d3aff1e327a5b6889a10907d2ccf90ef1162cf5"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-03.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-03.round-06.png",
         "sha256": "e17c30adfcd23400baeb7ff58e3c7fae011b138d11086fd0d5cefc197b82d9a6"
       },
       {
@@ -274,19 +274,19 @@
         "sha256": "026452145e3eac341c393433d32971590a5453d50940876ee7f1ca5b6937d9e8"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.round-06.png",
         "sha256": "6b177ff1ec904b4d8a03aea6f0e234dbb05e2fe09cd945718f632a11cb911108"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.round-06.png",
         "sha256": "8290de302c1dbac69fe305c3ea71b7ed93e0717773868f05aaed0838cde6567b"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.round-06.png",
         "sha256": "0fc46ce8baac21607714f340c5c96b4f86d43a7d4376ad12928cc43953e98b8f"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.round-06.png",
         "sha256": "5a2c59dee178199bf57970f7f3d18999eecbca6b84e0835f00bd2a4776494720"
       },
       {
@@ -306,15 +306,21 @@
         "sha256": "afbafd3473b2fbba4dd7c250e1fc07f5c72cb09db847b7740394608246bd0225"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.round-06.png",
         "sha256": "30a4471f51a50d4184936dcc2fd543a64325a3df6732e9c8f52f5398005c7616"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.round-06.png",
         "sha256": "2374267d9ffbb0cb483faaad0c5a5256f9819fb6ae2f2e47fd0b0b5a2919810e"
       }
     ]
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md's 'Frozen inputs' convention): re-pointed the inputs that changed this round (double_jump's scarf-02/03 repaint, and dash's/land's frame additions moving dash-body/scarf-01/02 and land-body/scarf-02's pixels to new indices) at their frozen assets/bakeoff/protagonist/glow-up/trial-b/frames/*.round-06.png copies, since round 7 overwrote or moved the live files; every other input is unchanged.",
+      "at": "2026-09-30T05:09:42.661142+00:00"
+    }
+  ],
   "license": "proprietary"
 }

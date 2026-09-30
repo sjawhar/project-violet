@@ -46,11 +46,11 @@
         "sha256": "f15d97e2b8bea8b538dd31ce692f2b6ab1c386e1f9265467e8c6edab6615bc3a"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-02.round-05.png",
         "sha256": "50dcc3e61603bd379f8b349a8f536a9fa0c460374d56c15d517eeb98e6dbc5f3"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-03.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-03.round-05.png",
         "sha256": "e17c30adfcd23400baeb7ff58e3c7fae011b138d11086fd0d5cefc197b82d9a6"
       },
       {
@@ -64,6 +64,11 @@
       "by": "VioletRound6 (Claude)",
       "description": "corrected generator.inputs[].sha256 for assets/bakeoff/protagonist/glow-up/shoot_b.py to its current recorded hash (round 6's torso_x/place_dy_offset grounded-placement support changed shoot_b.py's own content; this reference predates that change) -- same kind of fix round 5 itself needed for round 4's frame_count() bugfix.",
       "at": "2026-09-30T04:35:33+00:00"
+    },
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md's 'Frozen inputs' convention): re-pointed round-05's own shot records at this frozen copy (content unchanged from round 5's grading through round 6, before round 7 repaints it to fix round 6's gap 3, the flat gray ghost scarf).",
+      "at": "2026-09-30T05:18:43.595109+00:00"
     }
   ],
   "license": "proprietary"

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "asset": "dash-scarf-01.round-06.png",
+  "sha256": "8290de302c1dbac69fe305c3ea71b7ed93e0717773868f05aaed0838cde6567b",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:26+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.round-04.png",
+        "sha256": "e7f2349ed02789a87186e4305fac8b36093f0bbbc0c0825ad53ca6e1638cb3c8"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "round-06 (kept round)'s dash-scarf-01.png, before round 7 moves this same pixels to dash-scarf-02.png as part of adding 3 in-between frames",
+      "at": "2026-09-30T05:09:10.387989+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

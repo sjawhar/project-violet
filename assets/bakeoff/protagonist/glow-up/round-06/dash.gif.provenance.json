@@ -26,23 +26,29 @@
         "sha256": "026452145e3eac341c393433d32971590a5453d50940876ee7f1ca5b6937d9e8"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.round-06.png",
         "sha256": "6b177ff1ec904b4d8a03aea6f0e234dbb05e2fe09cd945718f632a11cb911108"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.round-06.png",
         "sha256": "8290de302c1dbac69fe305c3ea71b7ed93e0717773868f05aaed0838cde6567b"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.round-06.png",
         "sha256": "0fc46ce8baac21607714f340c5c96b4f86d43a7d4376ad12928cc43953e98b8f"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.round-06.png",
         "sha256": "5a2c59dee178199bf57970f7f3d18999eecbca6b84e0835f00bd2a4776494720"
       }
     ]
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md's 'Frozen inputs' convention): re-pointed the inputs that changed this round (double_jump's scarf-02/03 repaint, and dash's/land's frame additions moving dash-body/scarf-01/02 and land-body/scarf-02's pixels to new indices) at their frozen assets/bakeoff/protagonist/glow-up/trial-b/frames/*.round-06.png copies, since round 7 overwrote or moved the live files; every other input is unchanged.",
+      "at": "2026-09-30T05:09:42.659924+00:00"
+    }
+  ],
   "license": "proprietary"
 }

@@ -34,15 +34,21 @@
         "sha256": "afbafd3473b2fbba4dd7c250e1fc07f5c72cb09db847b7740394608246bd0225"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.round-06.png",
         "sha256": "30a4471f51a50d4184936dcc2fd543a64325a3df6732e9c8f52f5398005c7616"
       },
       {
-        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.png",
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.round-06.png",
         "sha256": "2374267d9ffbb0cb483faaad0c5a5256f9819fb6ae2f2e47fd0b0b5a2919810e"
       }
     ]
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md's 'Frozen inputs' convention): re-pointed the inputs that changed this round (double_jump's scarf-02/03 repaint, and dash's/land's frame additions moving dash-body/scarf-01/02 and land-body/scarf-02's pixels to new indices) at their frozen assets/bakeoff/protagonist/glow-up/trial-b/frames/*.round-06.png copies, since round 7 overwrote or moved the live files; every other input is unchanged.",
+      "at": "2026-09-30T05:09:42.660331+00:00"
+    }
+  ],
   "license": "proprietary"
 }
