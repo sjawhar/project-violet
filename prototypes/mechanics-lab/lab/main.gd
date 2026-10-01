@@ -67,6 +67,9 @@ func _goto_menu() -> void:
 	if _player != null:
 		_player.queue_free()
 		_player = null
+	if _player_juice != null:
+		_player_juice.queue_free()
+		_player_juice = null
 	if _room_view != null:
 		_room_view.queue_free()
 		_room_view = null
@@ -81,6 +84,7 @@ func _on_experiment_chosen(experiment_id: String) -> void:
 	_current_experiment = exp
 	_room_index = 0
 	_deaths = 0
+	_using_bakeoff = str(exp["profile"]) == "bakeoff"
 	_enter_room()
 
 func _enter_room() -> void:

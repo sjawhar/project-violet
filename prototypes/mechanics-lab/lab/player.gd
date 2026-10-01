@@ -147,6 +147,8 @@ func _physics_process(_delta: float) -> void:
 	_move_and_collide()
 	_handle_landing_transition()
 	_handle_hazard_goal_orb()
+	if state == &"dead":
+		return
 	_update_state(ability_active)
 
 func _read_input() -> Dictionary:

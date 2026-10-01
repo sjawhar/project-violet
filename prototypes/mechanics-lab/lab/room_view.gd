@@ -75,7 +75,9 @@ func _draw_cell(kind: String, pos: Vector2, rect: Rect2, ts: float, cell: Vector
 				draw_line(pos, pos + Vector2(ts, ts), PALETTE["background"], 2.0)
 				draw_line(pos + Vector2(ts, 0.0), pos + Vector2(0.0, ts), PALETTE["background"], 2.0)
 		"anchor":
-			draw_circle(pos + Vector2(ts, ts) * 0.5, ts * 0.12, PALETTE["neutral"])
+			var center := pos + Vector2(ts, ts) * 0.5
+			draw_arc(center, ts * 0.34, 0.0, TAU, 32, PALETTE["blue"], 3.0)
+			draw_circle(center, ts * 0.16, PALETTE["blue"])
 		_:
 			if kind.begins_with("orb_"):
 				var oc: String = kind.substr(4)
