@@ -70,6 +70,12 @@ func _build_row(experiment: Dictionary, number: int, done: Dictionary) -> Button
 	btn.custom_minimum_size = Vector2(0, 72)
 	btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	# A few questions (8/9's full 2019-puzzle quote) are long enough to run
+	# past the button's right edge and off the visible screen without this:
+	# Button doesn't wrap by default, so a single-line question just keeps
+	# going and gets clipped. custom_minimum_size.y above is a floor, not a
+	# cap, so wrapped rows grow taller automatically; shorter rows stay at 72.
+	btn.autowrap_mode = TextServer.AUTOWRAP_WORD
 	var mark: String = "✓  " if done.get(experiment.get("id"), false) else "    "
 	btn.text = "%s%d. %s\n     %s" % [mark, number, String(experiment.get("title", "")), String(experiment.get("question", ""))]
 	var experiment_id = experiment.get("id")

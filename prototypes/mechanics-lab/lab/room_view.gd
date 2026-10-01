@@ -28,6 +28,13 @@ var _resonating_fn: Callable
 func setup(room: RoomData, resonating_fn: Callable) -> void:
 	_room = room
 	_resonating_fn = resonating_fn
+	# Player juice's Scarf tail is absolute z_index -1 (behind the player's
+	# own body, which sits at the default 0) so it trails *behind* the
+	# player per DESIGN.md. Without this, this node's own default z_index
+	# (0, tied with the body) draws its opaque background rect over the
+	# tail every frame, hiding the scarf's entire trailing ribbon behind
+	# the room -- only its neck wrap (absolute z_index 1) ever showed.
+	z_index = -2
 	set_process(true)
 	queue_redraw()
 

@@ -2,7 +2,7 @@
 #
 # Loads res://experiments.json: [{id, title, question, model, profile,
 # abilities: [...], acquired: [...], rooms: [room ids]}]. Shared by the menu
-# (lab/menu_plain.gd) and tests/replay_runner.gd.
+# (lab/ui/menu.gd) and tests/replay_runner.gd.
 class_name ExperimentsData
 extends RefCounted
 

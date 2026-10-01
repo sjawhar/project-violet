@@ -52,7 +52,7 @@ var _cur_resonating: Array = []
 func _ready() -> void:
 	set_physics_process(true)
 
-## Called once per room entry (and by Tab live-compare) before gameplay ticks.
+## Called once per room entry, before gameplay ticks.
 func configure(p_profile: PhysicsProfile, p_resonance: ResonanceModel, p_room: RoomData, ability_names: Array) -> void:
 	set_profile(p_profile)
 	room = p_room
@@ -61,6 +61,16 @@ func configure(p_profile: PhysicsProfile, p_resonance: ResonanceModel, p_room: R
 		var a := AbilityRegistry.create(n)
 		if a != null:
 			abilities[n] = a
+	# A previous room's ability can still be "owning movement" the instant
+	# its goal is reached (e.g. reaching the goal cell mid-stomp, mid-dash,
+	# or mid-swing) -- main.gd's _enter_room() does not free/recreate
+	# LabPlayer between rooms of the same experiment, so without this reset
+	# the stale Ability instance (now absent from the fresh `abilities`
+	# dict above, but still referenced here) would resume driving velocity
+	# on the very next tick of the new room, before any input and without
+	# ever calling resonance_model.on_ability_used(). respawn_at() already
+	# clears this for mid-room deaths; room entry needs the same clear.
+	_active_ability = null
 	resonance_model = p_resonance
 	resonance_model.setup(self, profile)
 	_prev_resonating = resonance_model.resonating_colors()

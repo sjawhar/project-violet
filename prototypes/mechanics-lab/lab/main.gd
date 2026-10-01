@@ -83,7 +83,6 @@ func _on_experiment_chosen(experiment_id: String) -> void:
 		return
 	_current_experiment = exp
 	_room_index = 0
-	_deaths = 0
 	_using_bakeoff = str(exp["profile"]) == "bakeoff"
 	_enter_room()
 
@@ -94,6 +93,11 @@ func _enter_room() -> void:
 		_goto_menu()
 		return
 
+	# Deaths are a *per-room* counter (DESIGN.md): reset on every room
+	# entry, not just the experiment's first room, so a death in an
+	# earlier room of the same experiment doesn't keep counting against
+	# the next one.
+	_deaths = 0
 	var room_id := str(rooms[_room_index])
 	_room = RoomLoader.load_room(room_id)
 	if _room == null:
@@ -181,6 +185,7 @@ func _physics_process(_delta: float) -> void:
 		_goto_menu()
 		return
 	if Input.is_action_just_pressed("restart"):
+		_deaths = 0
 		_spawn_player()
 		camera.snap()
 		_respawn_ticks_left = 0
@@ -200,5 +205,4 @@ func _physics_process(_delta: float) -> void:
 
 	var model_state: Dictionary = _player.resonance_model.hud_state() if _player.resonance_model else {}
 	model_state["profile_name"] = "bakeoff" if _using_bakeoff else "tuned"
-	model_state["experiment_title"] = str(_current_experiment.get("title", ""))
 	hud.update_state(_player, model_state, _deaths, _room_ticks / 60.0)

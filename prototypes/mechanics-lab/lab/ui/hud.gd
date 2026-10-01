@@ -118,8 +118,18 @@ func _ready() -> void:
 	_title_card.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_title_card.modulate.a = 0.0
 	root.add_child(_title_card)
+	# A CenterContainer (not set_anchors_preset(PRESET_CENTER) on the panel
+	# directly) so the card stays truly centered as its content size changes
+	# room to room: anchors-preset math bakes in offsets from the control's
+	# size *at the moment it's called*, which here was zero (no children
+	# yet) -- that pinned the panel's top-left corner at the viewport
+	# center and let it grow only rightward, so any room with a long hint
+	# or title overflowed off the right edge instead of being centered.
+	var card_center := CenterContainer.new()
+	card_center.set_anchors_preset(Control.PRESET_FULL_RECT)
+	card_center.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_title_card.add_child(card_center)
 	var card_panel := PanelContainer.new()
-	card_panel.set_anchors_preset(Control.PRESET_CENTER)
 	var card_style := StyleBoxFlat.new()
 	card_style.bg_color = Color(0.0, 0.0, 0.0, 0.55)
 	card_style.content_margin_left = 32.0
@@ -127,7 +137,7 @@ func _ready() -> void:
 	card_style.content_margin_top = 16.0
 	card_style.content_margin_bottom = 16.0
 	card_panel.add_theme_stylebox_override("panel", card_style)
-	_title_card.add_child(card_panel)
+	card_center.add_child(card_panel)
 	var card_box := VBoxContainer.new()
 	card_box.alignment = BoxContainer.ALIGNMENT_CENTER
 	card_panel.add_child(card_box)
@@ -142,6 +152,13 @@ func _ready() -> void:
 	_title_card_hint = Label.new()
 	_title_card_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_title_card_hint.add_theme_font_size_override("font_size", 22)
+	# Several rooms' hints are long single sentences; without a wrap width
+	# the Label (and the PanelContainer/VBoxContainer sizing to fit it)
+	# grows past the 1920px viewport and the ends clip off both edges.
+	# Capping the width and enabling word-wrap keeps the whole hint on
+	# screen as 1-3 lines instead.
+	_title_card_hint.custom_minimum_size.x = 1400.0
+	_title_card_hint.autowrap_mode = TextServer.AUTOWRAP_WORD
 	card_box.add_child(_title_card_hint)
 
 	_profile_toast = Control.new()
