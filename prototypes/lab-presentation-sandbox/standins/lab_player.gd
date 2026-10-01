@@ -306,7 +306,7 @@ func _tick_blink() -> void:
 func _tick_swing(delta: float) -> void:
 	var swing_duration := 40
 	var t := float(_phase_tick) / float(swing_duration)
-	var angle := lerp(-0.9, 0.9, t)
+	var angle := lerpf(-0.9, 0.9, t)
 	var radius := 190.0
 	var prev := position
 	position = _swing_anchor + radius * Vector2(sin(angle), cos(angle))
