@@ -10,6 +10,9 @@ extends RefCounted
 const REGISTRY := {
 	"dash": preload("res://lab/abilities/dash.gd"),
 	"double_jump": preload("res://lab/abilities/double_jump.gd"),
+	"stomp": preload("res://lab/abilities/stomp.gd"),
+	"blink": preload("res://lab/abilities/blink.gd"),
+	"swing": preload("res://lab/abilities/swing.gd"),
 }
 
 static func create(ability_name: String) -> Ability:

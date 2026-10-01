@@ -1,0 +1,27 @@
+{
+ "format": "violet-lab-room",
+ "version": 1,
+ "tile_size_px": 64,
+ "legend": {
+  ".": "empty",
+  "#": "solid",
+  "S": "start",
+  "G": "goal",
+  "^": "hazard",
+  "A": "anchor",
+  "P": "platform_blue"
+ },
+ "rows": [
+  "####################",
+  "#.......A..........#",
+  "#..................#",
+  "#..................#",
+  "#..................#",
+  "#.......PP.........#",
+  "#..S............G..#",
+  "#######^^^^^^#######",
+  "####################"
+ ],
+ "title": "Blue swing: intro",
+ "hint": "Jump, hold ability near the anchor to grab it, hold right to swing, let go to land."
+}

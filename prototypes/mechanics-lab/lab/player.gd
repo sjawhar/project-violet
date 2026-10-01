@@ -418,3 +418,17 @@ func _play_sfx(name: StringName, volume_db: float = 0.0) -> void:
 	var sfx := get_node_or_null("/root/Sfx")
 	if sfx != null:
 		sfx.play(name, volume_db)
+
+## Added by LabAbilities (wave 2). Whether `down` was *just* pressed this
+# tick, as opposed to _read_input()'s "down_held" (continuously held, used
+# for fast-fall): lets StompAbility fire on the press edge instead of every
+# tick down is held in the air.
+func is_down_just_pressed() -> bool:
+	return Input.is_action_just_pressed("down")
+
+## Added by LabAbilities (wave 2). Whether `ability` is currently held, as
+# opposed to _read_input()'s "ability_pressed" (press edge, used by
+# BlinkAbility): lets SwingAbility attach continuously ("hold near an
+# anchor") rather than on a single press.
+func is_ability_held() -> bool:
+	return Input.is_action_pressed("ability")
