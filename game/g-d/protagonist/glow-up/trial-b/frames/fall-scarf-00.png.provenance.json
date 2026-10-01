@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "asset": "fall-scarf-00.png",
+  "sha256": "8a62a26001af47a4abb6ff9b78d940c4a5914f120313b868e9a872af22038761",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:25+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-00.round-04.png",
+        "sha256": "62452efb937918f01ea6b81b6ebc2afb063426540fb2ea6bfc7c665ee593ab7c"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

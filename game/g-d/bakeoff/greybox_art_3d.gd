@@ -1,8 +1,8 @@
 class_name GreyboxArt3D
 extends Resource
 ## Greybox visuals for the 3D lane: toon-shaded unit cubes per kind, colored lights on tagged cells, a desert
-## environment, and the protagonist rig once it is in the project (else a STAND-IN capsule for the character).
-## KitArt3D subclasses it once the desert kit exists. THROWAWAY.
+## environment, and the painted Violet.
+## KitArt3D subclasses it. THROWAWAY.
 ## Colors match tools/greybox (Task 1); sky, sand and tag light colors come from docs/bakeoff/desert-biome-brief.md.
 const COLORS := {
 	"empty": Color8(245, 240, 230), "solid": Color8(90, 80, 70), "wall_red": Color8(200, 60, 50), "wall_green": Color8(60, 170, 90),
@@ -15,7 +15,6 @@ const SAND := Color("#d9b27c")
 const SKY_TOP := Color("#3f7f8c")
 const SKY_HORIZON := Color("#f2c49b")
 const SHADOW_VIOLET := Color("#5a4a7a")
-const STAND_IN := Color("#7a4fb8")
 
 ## One material per untagged kind, shared by every cube of that kind.
 var _materials := {}
@@ -108,26 +107,19 @@ func make_backdrop(level: Greybox) -> Node3D:
 	holder.add_child(ground)
 	return holder
 
-## The file whose presence swaps the STAND-IN for the rig: assets/bakeoff/protagonist/ copied to res://protagonist/, so
-## rig/violet.json finds violet.meta.json beside it and its parts through skeleton.images.
-const RIG_PATH := "res://protagonist/rig/violet.json"
+## The painted Violet, assets/bakeoff/protagonist/sprites/ copied to res://protagonist/sprites/ (its frames keep their
+## relative paths, under res://protagonist/glow-up/).
+const SPRITES_PATH := "res://protagonist/sprites/violet.sprites.json"
 
-## A rig file that is there but does not load stops the game (exit 1) rather than falling back to the STAND-IN.
 func attach_character(player: Node) -> void:
-	if FileAccess.file_exists(RIG_PATH):
-		var rig := Rig.load_file(RIG_PATH)
-		var character := RigCharacter3D.create(rig) if rig != null else null
-		if character == null:
-			push_error("%s: the character rig did not load (see the error above); quitting" % RIG_PATH)
-			player.get_tree().quit(1)
-			return
-		player.add_child(character)
+	attach_sprites(player, SPRITES_PATH)
+
+## Puts the character read from PATH on PLAYER. Sprites that do not load stop the game with exit 1 and the error.
+static func attach_sprites(player: Node, path: String) -> void:
+	var sprites := Sprites.load_file(path)
+	var character := SpriteCharacter3D.create(sprites) if sprites != null else null
+	if character == null:
+		push_error("%s: the character sprites did not load (see the error above); quitting" % path)
+		player.get_tree().quit(1)
 		return
-	var capsule := MeshInstance3D.new(); capsule.name = "StandIn"
-	var mesh := CapsuleMesh.new(); mesh.radius = 0.4; mesh.height = 1.6; capsule.mesh = mesh
-	capsule.position.y = 0.8  # feet at the origin
-	capsule.material_override = toon(STAND_IN)
-	player.add_child(capsule)
-	var label := Label3D.new(); label.name = "StandInLabel"; label.text = "STAND-IN"
-	label.position.y = 2.0; label.font_size = 64; label.pixel_size = 0.01; label.billboard = BaseMaterial3D.BILLBOARD_ENABLED; label.modulate = Color.BLACK; label.outline_modulate = Color.WHITE
-	player.add_child(label)
+	player.add_child(character)

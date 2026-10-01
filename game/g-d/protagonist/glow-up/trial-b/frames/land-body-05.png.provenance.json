@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "asset": "land-body-05.png",
+  "sha256": "30a4471f51a50d4184936dcc2fd543a64325a3df6732e9c8f52f5398005c7616",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:27+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.round-04.png",
+        "sha256": "06069002f94579a3a4029ff31d60f7c6664764d6a1930ee25482dfd76cadc157"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md, adding 3 in-between frames to land per round 6's gap 3 'too few drawings'): reindexed this frame's pixels unchanged from index 2 to index 5, so it stays the pose the land animation holds once it ends ('the held final standing pose unchanged'), now as the last of 6 painted frames instead of 3.",
+      "at": "2026-09-30T05:43:59.354107+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

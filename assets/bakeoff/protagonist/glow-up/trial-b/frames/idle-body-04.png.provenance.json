@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "asset": "idle-body-04.png",
+  "sha256": "92c24b4091e61e4748efd29c6109e4b5c1a723ca95269432354d4fef81b5561f",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T14:09:22+00:00",
+  "generator": {
+    "tool": "idle_hybrid.py",
+    "tool_version": "round-10",
+    "model": null,
+    "params": {
+      "frame": "4",
+      "time": "0.5",
+      "loop_seconds": "1"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/idle_hybrid.py",
+        "sha256": "a48705f08a582367f2f30ee0d19679af03efbe81f59793eef7a41aa28055310f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
+        "sha256": "135c86bc1999684e242b4737628526f493868c80dae2d8332a7b7fd81742c7c8"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

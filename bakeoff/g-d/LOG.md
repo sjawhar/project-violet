@@ -60,6 +60,8 @@ friction:
   - {at: "2026-09-29T03:48:00Z", what: "glow-up round 8: a vertical inlay channel per block, right for walls, cut the horizontal red platform into four separate stubs", workaround: "a shader flag turns the channel horizontal on platform blocks"}
   - {at: "2026-09-29T04:05:00Z", what: "glow-up round 9: edge props at the first scale (rocks 0.22-0.38, saguaros 0.14-0.22) read as specks at gameplay distance", workaround: "scaled up about 1.3x (rocks 0.3-0.5, saguaros 0.18-0.26, scrub 0.12-0.18)"}
   - {at: "2026-09-29T04:21:00Z", what: "glow-up round 10: the first lighter scarf red (#ff8f7a) rendered as a pale coral, close to the peach the critics had flagged on the walls", workaround: "a more saturated lighter red, #ff6a57"}
+  - {at: "2026-10-01T03:56:00Z", what: "Violet sprites port: the 86 frame PNGs' provenance records name repo-root inputs (other frames, their round-07 originals, idle_hybrid.py, the concept and a part), so provenance check failed on 42 inputs in the lane copy", workaround: "copied the whole input closure (146 files) byte for byte from master 5dd9d1ee to assets/bakeoff/protagonist/ in the lane, as with build_kit.py"}
+  - {at: "2026-10-01T03:52:00Z", what: "Violet sprites port: a Sprite3D rebuilds its geometry deferred, so the reader test's get_aabb() read the previous frame's bounds and every anchor check failed", workaround: "the test waits a frame after each pose before measuring"}
 blockers: []
 deliverables: {build: bakeoff/g-d/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-d/reports/replay.json}
 ---

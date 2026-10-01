@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "asset": "fall-body-04.png",
+  "sha256": "c123a07b822b8fba0f0d7bf91ecbacaaefb08a816f58a70815441a05684b5e98",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-30T04:33:52+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Frame-by-frame hand-painted 2D game sprite of Violet, a slender young girl adventurer, side-view profile facing right. She wears a hooded gray robe with a darker waist sash, an ankle-length robe skirt with a slightly darker hem, and goes barefoot with simple ankle wraps. Pale skin, dark hair just visible under the hood, a clearly readable young face in profile with a visible eye, brow, nose and mouth. Realistic child body proportions, about 5.5 head-heights tall, matching the reference turnaround exactly in design, coloring and proportions. Rendered as a single cohesive hand-painted illustration with soft painterly brushwork and visible brush texture, in a muted earthy palette (grays, browns, warm skin tones), NOT a flat vector cutout, in the painted-storybook register of games like Hollow Knight or GRIS. This is the settled falling pose she holds for the rest of the fall, continuing directly from the two reference images (frames 2 and 3 of the same fall): both arms remain raised to about shoulder height and spread wide to the sides like wings, elbows softly bent, hands never rising above the crown of her hood -- the same calm arm height as the two reference images, NOT raised higher above her head. Torso arched back and fully open, matching the two reference images' calm, controlled arch exactly -- she is not spinning, not tumbling, not flipping, not upside-down. Legs hanging loose and apart below her, knees slightly bent. The entire robe skirt and hem trail straight upward above and around her body from the sustained rush of the fall, as one continuous, unbroken flowing cloth shape with no gaps, holes or tears cut through it. Her hair falls naturally down and back, not whipping wildly above her head. Head level or tilted only slightly down, with the same calm, composed expression as the two reference images, looking ahead and down rather than straight down at the ground. A calm, continuous, controlled falling silhouette -- clearly the same character in the same fall as the two reference images, simply a moment further into the same held pose. Absolutely NOT a head-down tumble, NOT a spin, NOT an acrobatic flip. A mid-air fall in progress, not a jump, not a static floating pose, with no ground, floor, or ledge anywhere in the image. Full body visible from the top of the hood to the soles of both bare feet, and both hands, entirely inside the canvas with generous empty margin on every side so nothing is cropped. She stands at a consistent scale and vertical framing similar to the reference images: about the same distance from the top of her hood to the bottom of the canvas. The background must be fully transparent everywhere outside her figure -- absolutely no vignette, no darkened or gradient backdrop, no glow or halo behind her, no ground plane, no floor, no cast shadow or ground shadow of any kind, no border, no text, no watermark, no second copy of the character, no scarf or neck wrap of any kind -- bare gray robe collar at the neck; a separate layer will add the scarf later.",
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-02.png",
+        "sha256": "ec55ad630e81d9152f65150eac81e459e676dfacae3d3024592c2405dcfaecd7"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-03.png",
+        "sha256": "b538d40eee95de708943f3e43eed7da8b38f40f17b43aaad49264bea088af137"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound6 (Claude)",
+      "description": "Round 6 (rounds.md, fixing round 5's gap \"fall's held last frame pops to a head-down tumble\"): repainted this pose from scratch (arms up and out at shoulder height, robe and scarf trailing upward, calm controlled silhouette, matching frames 2-3), then finalized with trial-b/finalize_anim.py (union alpha>8 bbox trim of body+scarf, rescaled by the shared RIG_PER_RAW=1.128227381210675, airborne head_x/head_y anchors auto-measured and passing the skin_fraction trust check on the first try -- no HEAD_OVERRIDES entry needed for the new pixels), then graded via trial-b/grade_b.py's grade_body/grade_scarf functions, applied directly rather than through grade_b.py's own round-5 batch pipeline, since that pipeline reads a now-stale round-04 frozen copy that predates this repaint.",
+      "at": "2026-09-30T04:34:01+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

@@ -30,9 +30,9 @@ const TAG_KEY_ENERGY := 0.6
 ## Violet is drawn this far in front of the play plane, just past the blocks' front faces, so she stays visible when she
 ## passes a wall of the active color; her feet still meet the front edge of the ground.
 const CHARACTER_Z := 0.6
-## A dark outline behind her gives her a value break from sand, sky and mesa alike: every part's silhouette is drawn
-## eight times, OUTLINE_PAD metres out in each compass direction, dark, unshaded and alpha-cut, so the line is even and
-## crisp rather than following the painted parts' ragged edges.
+## A dark outline behind her gives her a value break from sand, sky and mesa alike: each layer's silhouette (body and
+## scarf) is drawn eight times, OUTLINE_PAD metres out in each compass direction, dark, unshaded and alpha-blended, so
+## the line is even and its edges smooth.
 const OUTLINE_COLOR := Color("#241a33")
 const OUTLINE_PAD := 0.035
 ## Violet's sprites sit on visual layer CHARACTER_LAYER. The tag-blocks' colored lights skip it, so she no longer turns
@@ -40,10 +40,9 @@ const OUTLINE_PAD := 0.035
 const CHARACTER_LAYER := 3
 const CHARACTER_KEY_COLOR := Color("#ffe2c4")
 const CHARACTER_KEY_ENERGY := 0.55
-## Her body (every part but the scarf) is tinted darker and cooler, so she reads as a clean dark shape against the pale
-## sand and haze, and a warm rim on her sun side (each part's silhouette, offset up and toward the sun, warm and
-## unshaded, behind the parts) catches the sunset light the mesas get. The outline is alpha-blended, so its edges are
-## smooth.
+## Her body layer is tinted darker and cooler, so she reads as a clean dark shape against the pale sand and haze, and a
+## warm rim on her sun side (each layer's silhouette, offset up and toward the sun, warm and unshaded, behind the
+## layers) catches the sunset light the mesas get.
 const BODY_TINT := Color(0.6, 0.55, 0.64)
 const RIM_COLOR := Color("#ffc890")
 const RIM_SHIFT := Vector2(0.028, 0.022)
@@ -171,13 +170,14 @@ class Bird extends Node3D:
 			inner[i].rotation_degrees.z = side * (12.0 + flap)
 			outer[i].rotation_degrees.z = side * (tip - 8.0)
 
-## One outline copy of a part: follows the part's pose every frame (it is processed after the character that poses the
-## parts), offset in the character's plane and pushed behind every part.
+## One outline copy of a layer: follows the layer's frame and placement every frame (it is processed after the
+## character that sets them), offset in the character's plane and pushed behind both layers.
 class OutlineSprite extends Sprite3D:
 	var part: Sprite3D
 	var shift: Vector2  ## in the character plane (Sprite3D already has an `offset`)
-	var depth := -0.05  ## behind every part (they span 0-0.04 m)
+	var depth := -0.05  ## behind both layers (they span 0-0.002 m)
 	func _process(_delta: float) -> void:
+		texture = part.texture
 		transform = part.transform
 		position += Vector3(shift.x, shift.y, depth)
 		flip_h = part.flip_h
@@ -239,11 +239,12 @@ func make_cell(kind: String, cell: Vector2i) -> Node3D:
 ## GreyboxArt3D's character, moved in front of the play plane and outlined.
 func attach_character(player: Node) -> void:
 	super.attach_character(player)
-	var character := player.get_node("Character") as RigCharacter3D
+	if not player.has_node("Character"): return  # the sprites did not load; attach_sprites has asked the game to quit
+	var character := player.get_node("Character") as SpriteCharacter3D
 	character.position.z = CHARACTER_Z
-	for part: Sprite3D in character.find_children("*", "Sprite3D", false, false):
+	character.body.modulate = BODY_TINT
+	for part: Sprite3D in [character.body, character.scarf]:
 		part.layers = 1 << (CHARACTER_LAYER - 1)
-		if String(part.name) not in RigCharacter3D.SCARF_SLOTS: part.modulate = BODY_TINT
 		for i in 9:
 			# Eight dark outline copies around the part, and one warm rim copy toward the sun, drawn after the outline.
 			var outline := OutlineSprite.new(); outline.name = "Outline%s%d" % [part.name, i]; outline.part = part
@@ -256,8 +257,7 @@ func attach_character(player: Node) -> void:
 				outline.shift = RIM_SHIFT; outline.depth = -0.03
 				outline.modulate = RIM_COLOR; outline.render_priority = -1
 			character.add_child(outline)
-	var recolor := func() -> void:
-		for slot_name: String in RigCharacter3D.SCARF_SLOTS: (character.get_node(slot_name) as Sprite3D).modulate = SCARF_LIGHT[Resonance.active]
+	var recolor := func() -> void: character.scarf.modulate = SCARF_LIGHT[Resonance.active]
 	Resonance.changed.connect(recolor)  # after the character's own scarf coloring, which connected first
 	recolor.call()
 
