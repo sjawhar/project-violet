@@ -86,6 +86,10 @@ func _enter_room() -> void:
 	_room_view = RoomViewScript.new()
 	world.add_child(_room_view)
 
+	var ability_names: Array = _current_experiment.get("abilities", [])
+	var resonance := ResonanceFactory.create(str(_current_experiment.get("model", "none")))
+	var profile := _bakeoff_profile if _using_bakeoff else _tuned_profile
+
 	if _player == null:
 		_player = PlayerScene.instantiate()
 		world.add_child(_player)
@@ -95,16 +99,19 @@ func _enter_room() -> void:
 		_player.reached_goal.connect(_on_player_reached_goal)
 		_player.stomp_impact.connect(func(): camera.shake(6.0, 0.15))
 		_player.landed.connect(func(impact: float): camera.shake(4.0, 0.1) if absf(impact) > 10.0 * LabConstants.TILE_SIZE_PX else null)
+		# configure() BEFORE bind(): PlayerJuice snapshots box_size_px once at bind
+		# time (it doesn't track it live), so it must already reflect the real
+		# profile, not the pre-configure() zero default.
+		_player.configure(profile, resonance, _room, ability_names)
 		_player_juice = PlayerJuiceScript.new()
 		world.add_child(_player_juice)
 		_player_juice.bind(_player)
+	else:
+		_player.configure(profile, resonance, _room, ability_names)
 
-	var ability_names: Array = _current_experiment.get("abilities", [])
-	var resonance := ResonanceFactory.create(str(_current_experiment.get("model", "none")))
-	var profile := _bakeoff_profile if _using_bakeoff else _tuned_profile
-	_player.configure(profile, resonance, _room, ability_names)
 	_spawn_player()
 	tuning_panel.bind(profile)
+	_room_view.setup(_room, func() -> Array: return _player.resonance_model.resonating_colors() if _player.resonance_model else [])
 
 	camera.follow(_player)
 	camera.set_room_rect(_room.world_rect_px())

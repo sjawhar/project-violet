@@ -8,7 +8,7 @@ class_name LabHud
 extends CanvasLayer
 
 const MODEL_LABELS := {
-	"none": "Movement feel",
+	"none": "No resonance",
 	"ability_window": "Ability triggers resonance (2019 design)",
 	"pick_color": "Choose your color (bake-off)",
 	"hold_breath": "Hold to resonate",
