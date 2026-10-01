@@ -1,0 +1,48 @@
+{
+ "format": "violet-lab-replay",
+ "version": 1,
+ "tick_hz": 60,
+ "experiment": "res-hold",
+ "room": "timing-gauntlet",
+ "profile": "tuned",
+ "inputs": [
+  {
+   "from": 0,
+   "to": 600,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "from": 10,
+   "to": 32,
+   "hold": [
+    "resonate"
+   ]
+  },
+  {
+   "from": 75,
+   "to": 97,
+   "hold": [
+    "resonate"
+   ]
+  },
+  {
+   "from": 140,
+   "to": 162,
+   "hold": [
+    "resonate"
+   ]
+  },
+  {
+   "from": 205,
+   "to": 227,
+   "hold": [
+    "resonate"
+   ]
+  }
+ ],
+ "expect": {
+  "goal_by_tick": 400
+ }
+}

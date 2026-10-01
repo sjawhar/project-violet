@@ -1,0 +1,62 @@
+{
+ "format": "violet-lab-replay",
+ "version": 1,
+ "tick_hz": 60,
+ "experiment": "res-window",
+ "room": "two-colors",
+ "profile": "tuned",
+ "inputs": [
+  {
+   "from": 0,
+   "to": 700,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "at": 5,
+   "press": [
+    "dash"
+   ]
+  },
+  {
+   "from": 80,
+   "to": 90,
+   "hold": [
+    "jump"
+   ]
+  },
+  {
+   "at": 95,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "at": 160,
+   "press": [
+    "dash"
+   ]
+  },
+  {
+   "from": 240,
+   "to": 250,
+   "hold": [
+    "jump"
+   ]
+  },
+  {
+   "at": 255,
+   "press": [
+    "jump"
+   ]
+  }
+ ],
+ "expect": {
+  "goal_by_tick": 500
+ },
+ "must_fail_without": [
+  "dash",
+  "double_jump"
+ ]
+}

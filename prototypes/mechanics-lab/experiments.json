@@ -17,7 +17,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump"],
 		"acquired": ["red", "green"],
-		"rooms": ["red-wall", "red-bridge", "high-wall"]
+		"rooms": ["red-wall", "red-bridge", "two-colors", "high-wall", "timing-gauntlet", "flow-run"]
 	},
 	{
 		"id": "res-pick",
@@ -27,7 +27,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump"],
 		"acquired": ["red", "green"],
-		"rooms": ["red-wall", "red-bridge", "high-wall"]
+		"rooms": ["red-wall", "red-bridge", "two-colors", "high-wall", "timing-gauntlet", "flow-run"]
 	},
 	{
 		"id": "res-hold",
@@ -37,7 +37,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump"],
 		"acquired": ["red", "green"],
-		"rooms": ["red-wall", "red-bridge", "high-wall"]
+		"rooms": ["red-wall", "red-bridge", "two-colors", "high-wall", "timing-gauntlet", "flow-run"]
 	},
 	{
 		"id": "stomp",
@@ -77,7 +77,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "stomp"],
 		"acquired": ["red", "green", "yellow"],
-		"rooms": ["archive-puzzle"]
+		"rooms": ["archive-puzzle", "archive-puzzle-2"]
 	},
 	{
 		"id": "archive-puzzle-pick",
@@ -87,6 +87,6 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "stomp"],
 		"acquired": ["red", "green", "yellow"],
-		"rooms": ["archive-puzzle"]
+		"rooms": ["archive-puzzle", "archive-puzzle-2"]
 	}
 ]
