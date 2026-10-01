@@ -43,6 +43,7 @@ var _active_ability: Ability
 var _prev_on_floor := false
 var _coyote_ticks_left := 0
 var _jump_buffer_left := 0
+var _cuttable_jump_active := false
 var _freeze_ticks := 0
 var _landing_impact_px_s := 0.0
 var _prev_resonating: Array = []
@@ -199,7 +200,7 @@ func _handle_jump(input: Dictionary) -> void:
 			var dj: Ability = abilities.get("double_jump")
 			if dj == null or not dj.try_start(self, input):
 				_jump_buffer_left = profile.buffer_ticks
-	if velocity.y < 0.0 and input.jump_released:
+	if velocity.y < 0.0 and input.jump_released and _cuttable_jump_active:
 		var cutoff := -profile.min_jump_cutoff_speed() * LabConstants.TILE_SIZE_PX
 		if velocity.y < cutoff:
 			velocity.y = cutoff
@@ -208,9 +209,15 @@ func _do_ground_jump(kind: StringName) -> void:
 	velocity.y = -profile.jump_speed() * LabConstants.TILE_SIZE_PX
 	on_floor = false
 	_coyote_ticks_left = 0
+	_cuttable_jump_active = true
 	state = &"jump"
 	jumped.emit(kind)
 	_play_sfx(&"jump")
+
+## Called by abilities (double_jump, wall-jump if enabled) whose own ascent
+## must not be clipped by the ground jump's early-release variable-height cut.
+func disable_jump_cutoff() -> void:
+	_cuttable_jump_active = false
 
 func _handle_gravity(input: Dictionary) -> void:
 	if on_floor and velocity.y >= 0.0:

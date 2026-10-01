@@ -138,7 +138,7 @@ func _physics_process(_delta: float) -> void:
 		return
 	if not _setup_ok or _finished:
 		return
-	if _trace and _tick % 10 == 0:
+	if _trace:
 		printerr("tick=%d pos=%s vel=%s on_floor=%s state=%s resonating=%s" % [
 			_tick, _player.position, _player.velocity, _player.on_floor, _player.state,
 			_player.resonance_model.resonating_colors() if _player.resonance_model else [],

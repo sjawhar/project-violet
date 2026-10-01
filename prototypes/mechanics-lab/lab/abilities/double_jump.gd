@@ -22,6 +22,7 @@ func try_start(player: LabPlayer, input: Dictionary) -> bool:
 		return false
 	_used = true
 	player.velocity.y = -player.profile.double_jump_speed() * LabConstants.TILE_SIZE_PX
+	player.disable_jump_cutoff()
 	player.state = &"jump"
 	player.jumped.emit(&"double")
 	player.ability_used.emit(&"double_jump", color)

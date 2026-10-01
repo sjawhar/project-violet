@@ -1,0 +1,20 @@
+{
+ "format": "violet-lab-replay",
+ "version": 1,
+ "tick_hz": 60,
+ "experiment": "res-pick",
+ "room": "red-wall",
+ "profile": "tuned",
+ "inputs": [
+  {
+   "from": 0,
+   "to": 150,
+   "hold": [
+    "right"
+   ]
+  }
+ ],
+ "expect": {
+  "goal_by_tick": 110
+ }
+}
