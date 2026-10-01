@@ -38,7 +38,10 @@ current = true
 [node name="LabHud" type="CanvasLayer" parent="."]
 script = ExtResource("5")
 
-[node name="LabMenu" type="Control" parent="."]
+[node name="MenuLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="LabMenu" type="Control" parent="MenuLayer"]
 script = ExtResource("6")
 
 [node name="TuningPanel" type="CanvasLayer" parent="."]
