@@ -1,0 +1,21 @@
+Violet bake-off lanes: Radeon 890M frame times
+
+Measured 2026-10-01 on machine sami (AMD Radeon 890M, Mesa 26.1.6; display 3440x1440 at 165 Hz) in real fullscreen desktop windows (XWayland), vsync off.
+Each run plays the lane's level01 replay end to end (about 67 s) with the lane's final art (--art=res://art/lane_art.tres); the first 30 frames are dropped.
+"1080p" renders at 1920x1080 (Godot content scale, stretch mode viewport) and scales to the screen; "native" renders at 3440x1440.
+Budgets: 16.7 ms per frame at 60 Hz, 6.1 ms at 165 Hz.
+
+Before the painted-Violet port (heads g-a e25ea497, g-d dc6224e6, g-c 2f5dede9), two 1080p trials and one native run:
+  g-a: 1080p median 1.91 / 1.97 ms, slowest 1% 7.22 / 7.28 ms, 464 / 458 fps; native median 3.61 ms, slowest 1% 11.79 ms, 251 fps (gl_compatibility, AMD Radeon 890M Graphics)
+  g-d: 1080p median 2.39 / 2.43 ms, slowest 1% 8.58 / 8.73 ms, 381 / 374 fps; native median 4.74 ms, slowest 1% 15.01 ms, 195 fps (forward_plus, AMD Radeon 890M Graphics)
+  g-c: 1080p median 1.3 / 1.3 ms, slowest 1% 5.82 / 5.52 ms, 660 / 670 fps; native median 2.69 ms, slowest 1% 9.66 ms, 331 fps (gl_compatibility, AMD Radeon 890M Graphics)
+
+After the painted-Violet port (heads g-a 2b431500, g-d 514e445d, g-c 7b96988f):
+  g-a: 1080p median 1.89 / 1.91 ms, slowest 1% 7.12 / 7.03 ms, 474 / 470 fps; native median 3.66 ms, slowest 1% 11.5 ms, 248 fps
+  g-d: 1080p median 2.24 / 2.27 ms, slowest 1% 8.41 / 8.08 ms, 404 / 400 fps; native median 4.54 ms, slowest 1% 15.08 ms, 203 fps
+  g-c: 1080p median 1.26 / 1.28 ms, slowest 1% 5.22 / 5.47 ms, 686 / 673 fps; native median 2.67 ms, slowest 1% 9.45 ms, 334 fps
+
+Reading: every lane is far inside 60 Hz even in its slowest 1% of frames. At 165 Hz the typical frame fits easily, but the slowest 1% (5 to 9 ms at 1080p) would occasionally miss a refresh in G-A and G-D. The painted Violet did not change the cost measurably.
+Caveat: the after-port runs shared the machine with other agents' headless Godot jobs; they match the quiet before-port runs within about 0.15 ms median.
+
+Earlier private-Xvfb probes (no desktop window) could not reach the Radeon: Vulkan had no presentation support (no DRI3) and OpenGL fell back to CPU llvmpipe.
