@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Violet mechanics lab (throwaway)</title>
+<style>
+body{font:17px/1.5 system-ui,sans-serif;background:#1f2430;color:#e8e3d8;max-width:860px;margin:2rem auto;padding:0 1rem}
+a{color:#7fb2f0} h1{margin-bottom:.2rem} .sub{color:#9aa0a6;margin-top:0}
+.play{display:inline-block;background:#4cc27a;color:#1f2430;font-weight:700;padding:.8rem 1.4rem;border-radius:8px;text-decoration:none;font-size:1.2rem;margin:.6rem .6rem .6rem 0}
+.dl{background:#3a4150;color:#e8e3d8}
+ol li{margin:.6rem 0} ol li span{color:#c9c4b8}
+table{border-collapse:collapse;width:100%} td{border-top:1px solid #3a4150;padding:.3rem .5rem}
+.note{color:#9aa0a6;font-size:.9rem}
+</style></head><body>
+<h1>Violet mechanics lab</h1>
+<p class="sub">Throwaway greybox. Each experiment asks one question for the mechanics brainstorm; nothing here is canon.</p>
+<a class="play" href="play/index.html">Play in the browser</a>
+<a class="play dl" href="violet-mechanics-lab-linux.zip">Linux build (zip)</a>
+<p>Answer the questions in <a href="https://github.com/sjawhar/project-violet/issues/41">issue #41</a>. A gamepad works in both builds; the browser needs a click on the game before sound starts.</p>
+<h2>Experiments</h2>
+<ol>
+<li><b>Movement feel</b><br><span>Does this feel right as the baseline? Tab compares with the bake-off&#x27;s movement; F1 tunes it live.</span></li>
+<li><b>Ability triggers resonance</b><br><span>The 2019 design: using an ability makes its color resonate for 1.5s. Does a dash into a red wall read as &#x27;passing through&#x27;, not a glitch?</span></li>
+<li><b>Choose your color</b><br><span>The bake-off design: switch cycles a persistent active color, and only its ability works. Is losing the other ability while red is selected annoying or fine?</span></li>
+<li><b>Hold to resonate</b><br><span>A third option: abilities always work, but resonating costs a held breath meter. Does metering the &#x27;pass through&#x27; moment feel better or worse than the other two?</span></li>
+<li><b>Yellow stomp</b><br><span>Is stomping through weak floors fun enough to be a color&#x27;s whole ability?</span></li>
+<li><b>Blue as teleport</b><br><span>Blue was undecided in 2019 between swinging and teleporting. Does a short teleport feel different enough from dash?</span></li>
+<li><b>Blue as swing</b><br><span>Does swinging add a kind of movement the other colors don&#x27;t have?</span></li>
+<li><b>Your 2019 example puzzle</b><br><span>&quot;shift to green to double jump over a high wall, then shift to red to dash mid-air through a red wall/opening, and finally shift to yellow before landing to stomp through a weak wooden floor.&quot; Does it work as a moment?</span></li>
+<li><b>Your 2019 example puzzle</b><br><span>&quot;shift to green to double jump over a high wall, then shift to red to dash mid-air through a red wall/opening, and finally shift to yellow before landing to stomp through a weak wooden floor.&quot; Does it work as a moment?</span></li>
+</ol>
+<h2>Controls</h2>
+<table><tr><td><b>Action</b></td><td><b>Keyboard</b></td><td><b>Gamepad</b></td></tr>
+<tr><td>Move</td><td>A / D or arrow keys</td><td>Left stick or d-pad</td></tr>
+<tr><td>Jump (again in the air: double jump)</td><td>Space or K</td><td>A</td></tr>
+<tr><td>Dash</td><td>Shift or J</td><td>X</td></tr>
+<tr><td>Blue ability (blink or swing)</td><td>L or C</td><td>B</td></tr>
+<tr><td>Stomp (yellow)</td><td>S or down arrow, in the air</td><td>Down, in the air</td></tr>
+<tr><td>Switch color</td><td>Q or I</td><td>Y</td></tr>
+<tr><td>Hold to resonate</td><td>E or O</td><td>RB</td></tr>
+<tr><td>Restart room</td><td>R</td><td>Back</td></tr>
+<tr><td>Menu</td><td>Esc</td><td>Start</td></tr>
+<tr><td>Compare with bake-off movement</td><td>Tab</td><td>LB</td></tr>
+<tr><td>Tuning sliders</td><td>F1</td><td></td></tr>
+<tr><td>Show controls</td><td>H</td><td></td></tr>
+<tr><td>Mute</td><td>M</td><td></td></tr>
+</table>
+<p class="note">Built from <a href="https://github.com/sjawhar/project-violet/tree/39a6924afe57/prototypes/mechanics-lab">prototypes/mechanics-lab at 39a6924a</a> on branch proto/mechanics-lab.</p>
+</body></html>
