@@ -17,7 +17,8 @@ const PALETTE := {
 	"yellow": Color("#F2C94C"),
 	"blue": Color("#4A90E2"),
 	"neutral": Color("#9AA0A6"),
-	"hazard": Color("#FF2E4D"),
+	"hazard": Color("#9B5DE5"),
+	"hazard_tip": Color("#E8D9FF"),
 	"goal": Color("#FFFFFF"),
 }
 
@@ -60,11 +61,11 @@ func _draw_cell(kind: String, pos: Vector2, rect: Rect2, ts: float, cell: Vector
 			for i in range(spikes):
 				var x0: float = pos.x + i * ts / float(spikes)
 				var w: float = ts / float(spikes)
+				var tip := Vector2(x0 + w * 0.5, pos.y + ts * 0.35)
 				draw_colored_polygon(PackedVector2Array([
-					Vector2(x0, pos.y + ts),
-					Vector2(x0 + w * 0.5, pos.y + ts * 0.35),
-					Vector2(x0 + w, pos.y + ts),
+					Vector2(x0, pos.y + ts), tip, Vector2(x0 + w, pos.y + ts),
 				]), PALETTE["background"])
+				draw_circle(tip, maxf(w * 0.12, 2.0), PALETTE["hazard_tip"])
 		"goal":
 			draw_rect(rect, Color(1.0, 1.0, 1.0, 0.12))
 			draw_rect(rect.grow(-8.0), PALETTE["goal"])

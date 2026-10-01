@@ -27,9 +27,16 @@ var _jump_puff: CPUParticles2D
 var _landing_dust: CPUParticles2D
 var _stomp_debris: CPUParticles2D
 var _was_running := false
+var _prev_global_pos := Vector2.ZERO
 
 
 func _ready() -> void:
+	# Scarf (and particles) draw behind the body, which lives in a separate
+	# tree branch (player.visual_root) at the default z-index: a short neck
+	# wrap aside, the scarf should read as trailing behind, not bolted over
+	# the face.
+	z_index = -1
+	z_as_relative = false
 	_rng.seed = RNG_SEED
 	_run_dust = _make_particles({
 		"amount": 12, "lifetime": 0.45, "one_shot": false, "explosiveness": 0.0,
@@ -76,6 +83,7 @@ func bind(player: Node) -> void:
 	player.respawned.connect(_on_respawned)
 
 	global_position = player.global_position
+	_prev_global_pos = player.global_position
 	_scarf.reset(_neck_global())
 
 
@@ -84,7 +92,13 @@ func _physics_process(delta: float) -> void:
 		return
 	global_position = _player.global_position
 	_body.scale = Vector2(_player.facing * _squash.x, _squash.y)
-	_scarf.step(_neck_global(), _player.velocity, delta)
+	# Real per-tick displacement, not `_player.velocity`: velocity is the
+	# gameplay-intended speed, which can momentarily disagree with where the
+	# body actually went this tick (e.g. blocked by collision) and made the
+	# scarf swing toward whatever was intended rather than away from motion.
+	var actual_velocity: Vector2 = (_player.global_position - _prev_global_pos) / delta if delta > 0.0 else Vector2.ZERO
+	_prev_global_pos = _player.global_position
+	_scarf.step(_neck_global(), actual_velocity, delta)
 
 	var running: bool = _player.state == &"run" and _player.on_floor
 	if running and not _was_running:

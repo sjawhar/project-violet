@@ -59,10 +59,19 @@ func _ready() -> void:
 	_title_card.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_title_card.modulate.a = 0.0
 	root.add_child(_title_card)
+	var card_panel := PanelContainer.new()
+	card_panel.set_anchors_preset(Control.PRESET_CENTER)
+	var card_style := StyleBoxFlat.new()
+	card_style.bg_color = Color(0.0, 0.0, 0.0, 0.55)
+	card_style.content_margin_left = 32.0
+	card_style.content_margin_right = 32.0
+	card_style.content_margin_top = 16.0
+	card_style.content_margin_bottom = 16.0
+	card_panel.add_theme_stylebox_override("panel", card_style)
+	_title_card.add_child(card_panel)
 	var card_box := VBoxContainer.new()
-	card_box.set_anchors_preset(Control.PRESET_CENTER)
 	card_box.alignment = BoxContainer.ALIGNMENT_CENTER
-	_title_card.add_child(card_box)
+	card_panel.add_child(card_box)
 	_title_card_experiment = Label.new()
 	_title_card_experiment.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_title_card_experiment.add_theme_font_size_override("font_size", 22)

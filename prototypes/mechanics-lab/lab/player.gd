@@ -70,7 +70,10 @@ func configure(p_profile: PhysicsProfile, p_resonance: ResonanceModel, p_room: R
 func set_profile(p: PhysicsProfile) -> void:
 	profile = p
 	box_size_px = Vector2(p.box_w, p.box_h) * LabConstants.TILE_SIZE_PX
-	neck_offset = Vector2(0.0, -box_size_px.y * 0.85)
+	# Negative X = the back of the neck when facing +1 (right); player_juice.gd
+	# multiplies this by `facing`, so it flips to the other side when facing
+	# flips, always landing behind rather than in front of the face.
+	neck_offset = Vector2(-box_size_px.x * 0.3, -box_size_px.y * 0.85)
 
 func has_color(c: String) -> bool:
 	return acquired_colors.get(c, false)
