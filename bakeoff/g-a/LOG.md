@@ -5,7 +5,7 @@ lane: g-a
 direction: A
 engine: godot
 machine: oryx
-status: in-progress
+status: delivered
 sessions:
   - {start: "2026-09-27T08:23:12Z", end: "2026-09-27T08:37:00Z", purpose: "greybox milestone: workspace, project skeleton, scripts, replay, ci.sh (plan Task 7 Steps 1-17)"}
   - {start: "2026-09-27T08:43:18Z", end: "2026-09-27T09:08:00Z", purpose: "painted world (plan Task 7 Step 18): gen image pieces, PaintedArt, reveal shader, parallax backdrop"}
@@ -29,6 +29,7 @@ sessions:
   - {start: "2026-09-29T03:59:19Z", end: "2026-09-29T04:22:00Z", purpose: "glow-up round 8"}
   - {start: "2026-09-29T04:27:04Z", end: "2026-09-29T04:43:00Z", purpose: "glow-up round 9"}
   - {start: "2026-09-29T04:48:13Z", end: "2026-09-29T05:04:00Z", purpose: "glow-up round 10"}
+  - {start: "2026-10-01T03:47:33Z", end: "2026-10-01T04:43:00Z", purpose: "Violet sprites port and judging capture"}
 costs:
   - {item: "gen image gpt-image-2 1024x1024 quality=low, wall-tile (rejected)", usd: 0.0143, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:47:36+00:00)"}
   - {item: "gen image gpt-image-2 1536x1024 quality=low, backdrop-near (rejected)", usd: 0.0062, evidence: "bakeoff/g-a/reports/gen-cost.txt (2026-09-27T08:48:31+00:00)"}
@@ -111,15 +112,18 @@ friction:
   - {at: "2026-09-29T04:08:00Z", what: "glow-up round 8: each full-length software draft (to 60 s) takes about 6 minutes at 15% of real time, so tuning the tall blocks seen only at 40 and 60 s cost two drafts", workaround: "tuned the step pillars on 5 s drafts (about 30 s each) and ran only two full drafts before the fixed capture"}
   - {at: "2026-09-29T04:34:00Z", what: "glow-up round 9: the first rock-grain pass lifted the painting's value too little, so the columns read as smooth plastic tubes, and the halo strips on a column's top cell still glowed above its new broken top", workaround: "raised the grain contrast and added brush strokes along the piece; the halo on a column's top cell now starts below the break"}
   - {at: "2026-09-29T04:53:00Z", what: "glow-up round 10: the foot shadow at z_index -1 drew under the terrain, so it never showed on the sand, and the first rim (6 px, 0.85) was too faint to see in the fixed shots", workaround: "added the shadow before her at the player's own z, so it draws over the ground and under her; widened the rim to 8 px at 1.1"}
+  - {at: "2026-10-01T03:55:00Z", what: "the 86 frame PNGs' provenance records name their inputs at repository paths under assets/bakeoff/protagonist/ (earlier frame rounds, idle_hybrid.py, the scarf part, the concept turnaround, assets/concept/scarf-openai.png), and several frames name other final frames, so provenance check failed with only the game copy", workaround: "copied the whole input closure (146 files with sidecars) from 9d17a872 to its original assets/ paths, besides the game copy under game/g-a/protagonist/"}
+  - {at: "2026-10-01T04:00:00Z", what: "an inner class named Animation hid Godot's native class, the reader failed to parse, and the headless test scene then never quit, so it ran into the 600 s tool timeout", workaround: "renamed the class Clip; test runs are wrapped in timeout 120"}
+  - {at: "2026-10-01T04:15:00Z", what: "the first judging capture, started in the background, never ran (the background shell did not survive the tool call), costing 20 minutes of waiting", workaround: "ran capture-godot.sh in the foreground: 5 min 3 s wall time, 24% of real time"}
 blockers: []
-deliverables: {build: bakeoff/g-a/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-a/reports/replay.json}
+deliverables: {build: bakeoff/g-a/reports/build.txt, capture: bakeoff/g-a/capture/capture.mp4, stills: [bakeoff/g-a/capture/still-05.png, bakeoff/g-a/capture/still-20.png, bakeoff/g-a/capture/still-40.png, bakeoff/g-a/capture/still-60.png], tests: bakeoff/g-a/reports/replay.json}
 ---
 
 THROWAWAY. Lane G-A (Godot 4.7.2 2D, painted world) of the Phase 1 bake-off. Nothing here is canon.
 
-Done: the greybox milestone (plan Task 7 Steps 1-17), the painted world (Step 18) and the rig reader that replaces Step 19's spine-godot (Sami ruled on 2026-09-27 that the bake-off buys no Spine). Still to come: the protagonist rig itself (Task 5) and captures (Step 20); until `assets/bakeoff/protagonist/` is copied to `protagonist/` (the reader checks `protagonist/rig/violet.json`) the character is the STAND-IN capsule.
+Done: the greybox milestone (plan Task 7 Steps 1-17), the painted world (Step 18), the glow-up (rounds 0-10, bakeoff/g-a/glow-up.md), the painted Violet from #36 in place of the cutout rig, and the judging capture (Step 20): `bakeoff/g-a/capture/capture.mp4` and its four stills, shot on oryx with `scripts/capture-godot.sh g-a` in software rendering, the glow-up's command and environment.
 
-Rig reader: `bakeoff/rig.gd` (dimension-agnostic, G-D has the same file) reads the Spine 4.3 JSON subset of docs/bakeoff/character-rig.md and poses it by forward kinematics; `bakeoff/rig_animator.gd` picks the animation (dash; airborne: double_jump once used, else jump while rising, else fall; land plays once on landing; run; idle); `art/rig_character_2d.gd` draws one Sprite2D per slot, scaled to 1.6 tiles from the meta's height_px, flipped with the facing, scarf slots tinted with the active color. `tests/rig_test.tscn` checks FK against a hand calculation, interpolation and looping, the spinerig round trip, and every slot of every frame `spinerig render` draws for the placeholder rig (worst difference 0.000033 px/deg). Looked at in a throwaway copy with the placeholder rig as `protagonist/`: the replay rendered in software shows it idle, run, jump, fall, land, dash (red scarf) and double-jump flip (green scarf); drawn at scale 1 it matches `spinerig render` frames to within 17 edge pixels of about 8000.
+Character: `bakeoff/violet_sprites.gd` reads violet-sprites v1 (docs/bakeoff/character-rig.md) and refuses, with push_error and no fallback, a wrong format, version, facing or units, or a missing animation, field or image; `bakeoff/character_animator.gd` picks the animation (dash; airborne: double_jump once used, else jump while rising, else fall; land plays once on landing; run; idle); `art/sprite_character_2d.gd` draws a body Sprite2D and the scarf Sprite2D over it, uncentered with offset = -anchor, under a root scaled 1.6 tiles / height_px and mirrored with a negative x scale for facing left, the gray scarf multiplied by the active color. PaintedArt wraps her in round 10's CanvasGroup (darker and cooler body, warm sunset rim, no outline) and adds the foot shadow when grounded. `tests/sprite_test.tscn` (in ci.sh) checks frame timing at boundaries, anchors on the ground point both facings, the scarf over the body, and malformed files (the game exits 1); with the anchor's y sign flipped it reported 15 failures.
 
 The replay puts the four moments the capture stills look for on capture-lib's still times: red orb at about 5 s (tick 287), the air-dash over the pit at 20 s (ticks 1194-1206), the green orb at 40 s (tick 2394), the mid-air switch at col 57 at 60 s (tick 3593). The goal is reached at tick 3757; capture mode runs to tick 3960 (66 s). Between them the player idles or walks back and forth through the wall of the active color.
 
@@ -136,7 +140,7 @@ Rejected generations, quality=high pass: wall-tile, platform-tile (side seam), c
 Rejected generations, no-green pass: backdrop-near and goal-gate re-rolled once with the unchanged prompt by a scripting mistake (still green vegetation and grass).
 
 
-Protagonist rig: `protagonist/rig/violet.json`, `violet.meta.json` and `protagonist/parts/*.png` are copied byte for byte, with their provenance sidecars, from PR #28 (branch phase1/protagonist-parts, eafccae8, not merged yet; real PNGs from the violet-rig workspace, not LFS pointers), replacing the first copy from fd76d946. Re-copy them if #28 changes. With eafccae8 the lowest point of every idle frame is 0.05 screen px below the floor line and every land frame within half a pixel, and rendered frames show the soles on the ground in all three Godot lanes; no lane code assumed the old setup pose. `attach_character` now shows Violet instead of the STAND-IN; the replay, the tag checks, rig-test and the export smoke run pass with it loaded.
+Protagonist sprites: `protagonist/sprites/violet.sprites.json` and the 86 frames it names (`protagonist/glow-up/trial-b/frames/`) are copied byte for byte, with their provenance sidecars, from 9d17a872 (phase1/violet-sprites, the painted Violet merged in #36). Their provenance inputs are copied to their original paths under `assets/` so `provenance check` can follow them.
 
 Rejected generations, no-crystal pass: tag-platform v1 (side seam).
 
