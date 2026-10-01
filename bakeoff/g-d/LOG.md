@@ -5,7 +5,7 @@ lane: g-d
 direction: D
 engine: godot
 machine: oryx
-status: in-progress
+status: delivered
 sessions:
   - {start: "2026-09-27T08:39:00Z", end: "2026-09-27T08:52:48Z", purpose: "greybox milestone: workspace, 3D player/builder/art/game, copied G-A scripts and replay, ci.sh (plan Task 8 Steps 1-5)"}
   - {start: "2026-09-27T17:10:00Z", end: "2026-09-27T17:40:41Z", purpose: "rig reader without Spine (Sami 2026-09-27: no Spine purchase): G-A's bakeoff/rig.gd copied, RigCharacter3D, rig tests, placeholder rig seen animating (shared with lane G-A)"}
@@ -26,6 +26,7 @@ sessions:
   - {start: "2026-09-29T03:41:00Z", end: "2026-09-29T03:57:00Z", purpose: "glow-up round 8"}
   - {start: "2026-09-29T04:00:00Z", end: "2026-09-29T04:15:00Z", purpose: "glow-up round 9"}
   - {start: "2026-09-29T04:17:00Z", end: "2026-09-29T04:36:00Z", purpose: "glow-up round 10"}
+  - {start: "2026-10-01T03:35:00Z", end: "2026-10-01T04:17:00Z", purpose: "Violet sprites port and judging capture"}
 costs:
   - {item: "glow-up round 1: art/sky.png, 1 gpt-image-2 call at 1536x1024 quality high", usd: 0.22, evidence: "estimate at the $0.22 per high-quality call measured in docs/bakeoff/shared-costs.md; gen logs no usage; game/g-d/art/sky.png.provenance.json"}
 interventions: []
@@ -62,8 +63,9 @@ friction:
   - {at: "2026-09-29T04:21:00Z", what: "glow-up round 10: the first lighter scarf red (#ff8f7a) rendered as a pale coral, close to the peach the critics had flagged on the walls", workaround: "a more saturated lighter red, #ff6a57"}
   - {at: "2026-10-01T03:56:00Z", what: "Violet sprites port: the 86 frame PNGs' provenance records name repo-root inputs (other frames, their round-07 originals, idle_hybrid.py, the concept and a part), so provenance check failed on 42 inputs in the lane copy", workaround: "copied the whole input closure (146 files) byte for byte from master 5dd9d1ee to assets/bakeoff/protagonist/ in the lane, as with build_kit.py"}
   - {at: "2026-10-01T03:52:00Z", what: "Violet sprites port: a Sprite3D rebuilds its geometry deferred, so the reader test's get_aabb() read the previous frame's bounds and every anchor check failed", workaround: "the test waits a frame after each pose before measuring"}
+  - {at: "2026-10-01T04:13:00Z", what: "Violet sprites port: the #40 review asked lanes to face left with a negative x scale on the node holding the layers, because Sprite2D flip_h moved the anchor; in this 3D lane a negative scale on the character renders the shaded Sprite3Ds nearly black (rendered side by side in software)", workaround: "kept per-sprite mirroring: centered Sprite3Ds with flip_h (which only swaps UVs here) and the x position negated; the reader test checks a left-facing frame's anchor lands on the root, measured from the sprite's drawn bounds"}
 blockers: []
-deliverables: {build: bakeoff/g-d/reports/build.txt, capture: null, stills: [], tests: bakeoff/g-d/reports/replay.json}
+deliverables: {build: bakeoff/g-d/reports/build.txt, capture: bakeoff/g-d/capture/capture.mp4, stills: [bakeoff/g-d/capture/still-05.png, bakeoff/g-d/capture/still-20.png, bakeoff/g-d/capture/still-40.png, bakeoff/g-d/capture/still-60.png], tests: bakeoff/g-d/reports/replay.json}
 ---
 
 THROWAWAY. Lane G-D (Godot 4.7.2 3D hybrid) of the Phase 1 bake-off. Nothing here is canon.
@@ -82,3 +84,5 @@ Protagonist rig: `protagonist/rig/violet.json`, `violet.meta.json` and `protagon
 Kit dressing (plan Task 8 Step 6): `KitArt3D` (`art/kit_art_3d.gd`, now `art/lane_art.tres`) dresses the level with the desert kit (PR #31, `phase1/desert-kit` a836af04, not merged; re-copy if it changes). Solid cells use sand-tile where open above and rock-tile beneath, at the kit's own 1 m size rather than scaled so the largest side is 1 m (the tiles are 1.02-1.035 m tall with their ripples, so that normalisation would open 2-3 cm seams). Tagged cells are full-cell crystal clusters, gray until acquired, the tag color once acquired, glowing while active; hazards are hazard-spikes, the orbs sit on orb-pedestals (the pedestal stays after the pickup), and the goal is the goal-gate. Mesas, arches and dunes stand at z -9 to -12, boulders, ruins, saguaros and acacias at -2.5 to -8, placed from a RandomNumberGenerator seeded 20260927, the nearer ones kept away from the pits (seen through a pit they read as ledges in it); depth fog from 34 m fades them toward the horizon color. After the first render: the boulder that read as a ledge inside the first pit went (pit avoidance), the middle layer moved back and down in scale, the tinted boxes gave way to crystal clusters, the crystal lights were dimmed, and the fog was added. Collision and behaviour are unchanged: the replay with the kit art reaches the goal at tick 3757 as before.
 
 No crystals (2026-09-28): Sami, relayed by the lead, found the stacked crystal clusters silly; his 2019 design has plain colored walls. Tagged cells are now one solid 1 m `tag-block` each (PR #31 at c202b565), tinted gray until the color is acquired, the tag color once acquired, glowing while active; the tag light behind each block stays at 0.35 energy. Nothing in the lane draws a crystal shape, and the colliders are unchanged (replay goal tick 3757 as before).
+
+Delivered (2026-10-01): the painted Violet (violet-sprites v1, PR #36) replaces the cutout rig, with the lane's in-world treatment from the glow-up kept on her two layers (her own light layer, the darker cooler body tint, the warm sun-side rim, the smooth outline, a scarf a step lighter than the walls). The judging capture is `bakeoff/g-d/capture/` (66 s, 1920x1080, software-rendered with the glow-up's recorded command, round 10's look).
