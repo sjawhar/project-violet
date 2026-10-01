@@ -1,6 +1,6 @@
 # Bake-off results (THROWAWAY)
 
-Gallery: https://sjawhar.github.io/project-violet/review/pr-0/bakeoff.html
+Gallery: https://sjawhar.github.io/project-violet/review/pr-39/bakeoff.html
 
 | lane | direction | engine | machine | status | build | replay | no-dash-fails | no-double-jump-fails | tags | mutation-fails | agent-hours | usd | interventions | friction | blockers | visual_quality | character_appeal | color_readability | would_ship | notes |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
