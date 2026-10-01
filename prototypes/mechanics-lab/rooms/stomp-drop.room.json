@@ -8,8 +8,7 @@
   "S": "start",
   "G": "goal",
   "^": "hazard",
-  "C": "cracked",
-  "Y": "wall_yellow"
+  "C": "cracked"
  },
  "rows": [
   "####################",
@@ -21,12 +20,12 @@
   "#..................#",
   "####CCCCCCCC########",
   "#..................#",
-  "####YYYYYYYY########",
+  "#..................#",
   "#..................#",
   "#........G.........#",
   "#..................#",
   "####################"
  ],
  "title": "Yellow stomp: drop",
- "hint": "Fall, then hold down to stomp through the cracked floor before you land."
+ "hint": "Fall, then hold down to stomp through the cracked floor."
 }

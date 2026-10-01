@@ -1,0 +1,28 @@
+{
+ "format": "violet-lab-room",
+ "version": 1,
+ "tile_size_px": 64,
+ "legend": {
+  ".": "empty",
+  "#": "solid",
+  "S": "start",
+  "G": "goal",
+  "^": "hazard",
+  "A": "anchor",
+  "P": "platform_blue"
+ },
+ "rows": [
+  "################################",
+  "#..............................#",
+  "#..........A...................#",
+  "#................A.............#",
+  "#..............................#",
+  "#..............................#",
+  "#.S..........................G.#",
+  "#####...................PPP#####",
+  "#..............................#",
+  "#####^^^^^^^^^^^^^^^^^^^^^######"
+ ],
+ "title": "Blue swing: chain",
+ "hint": "Double-jump to the first anchor, release into the second, then dash the last stretch without ever touching ground."
+}

@@ -1,0 +1,50 @@
+{
+ "format": "violet-lab-replay",
+ "version": 1,
+ "tick_hz": 60,
+ "experiment": "blink",
+ "room": "blink-gauntlet",
+ "profile": "tuned",
+ "inputs": [
+  {
+   "from": 0,
+   "to": 700,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "from": 23,
+   "to": 47,
+   "hold": [
+    "jump"
+   ]
+  },
+  {
+   "at": 49,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "at": 118,
+   "press": [
+    "dash"
+   ]
+  },
+  {
+   "at": 172,
+   "press": [
+    "ability"
+   ]
+  }
+ ],
+ "expect": {
+  "goal_by_tick": 220
+ },
+ "must_fail_without": [
+  "dash",
+  "double_jump",
+  "blink"
+ ]
+}
