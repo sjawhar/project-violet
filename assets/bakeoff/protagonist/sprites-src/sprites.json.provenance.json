@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "asset": "sprites.json",
+  "sha256": "b390282f62bc7cfdb7c2c6103ee26d0a02ec7181118467933bb94b189efdc742",
+  "kind": "animation",
+  "origin": "generated",
+  "created_at": "2026-10-01T03:45:28+00:00",
+  "generator": {
+    "tool": "omp",
+    "tool_version": "omp/18.3.2",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "prompt": "Authored for the violet-sprites v1 format (docs/bakeoff/character-rig.md, 'Painted sprite sequences'; plan Task 11b Step 2): the review cell, ground and horizontal-anchor fractions and record names copied from shoot.py, shoot_b.py and trial-b/build.py, each quoted in its sources field",
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/shoot.py",
+        "sha256": "987f12fd41f913d1b3def09be8fa06f7af5efe3aeeab0bcca76a5c335a5b9dd2"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+        "sha256": "466d3469510472ba329084449b1f2b4cb003a9600566baee78cd5f7470c3f420"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/build.py",
+        "sha256": "31e7c8c81ef3b8660748c7d2240fcbaf3624a07fd4957e46228ff8f9c5d75cc1"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}
