@@ -1,39 +1,23 @@
 {
   "schema_version": 1,
-  "asset": "violet.sprites.json",
-  "sha256": "b0d8e137daa568e0c31fadadbbacd3d6497aa47962f71735d309cfa155652463",
-  "kind": "animation",
+  "asset": "contact-sheet.png",
+  "sha256": "8f142c382be5e048d379f6cd160f06b847a44dfb24ef24a78bbebd924c735612",
+  "kind": "image",
   "origin": "derived",
-  "created_at": "2026-10-01T03:49:07+00:00",
+  "created_at": "2026-10-01T03:48:27+00:00",
   "generator": {
     "tool": "spinerig",
     "tool_version": "0.1.0",
     "model": null,
     "params": {
-      "record:dash-finalize-record.json": "sha256:9b5f991b5fe7a9e7e7a711c3edaa19ca3024595da3e5a9433703aaa73bcbacfc",
-      "record:double_jump-finalize-record.json": "sha256:4de87e5f40a178ace0d0bdc68dbb0e240af896c623353d0b570a85d79492d699",
-      "record:fall-finalize-record.json": "sha256:d0273f288442346bb623a620a80fd409fe4e34d83b8c3b7246b15cf411288f84",
-      "record:finalize-record.json": "sha256:d7e826974050513c95a4afa666f68c250e76b4b4d7e044d13877f319f1b5b880",
-      "record:idle-finalize-record.json": "sha256:13ca8d9f38c3afe8cf9745cb9e3dc9d0861d656b62abc22fa2a6b618d15a4c2f",
-      "record:jump-finalize-record.json": "sha256:bde3ccdb8fbea49d4886da84882ebfc2c6ef992d8e0ab8247b72d0192b705d01",
-      "record:land-finalize-record.json": "sha256:015c54aa1a94c1473060f38b0f445b0471bb94b15feb9b8fb088ecfd5f0c362b"
+      "scale": "0.22",
+      "cell": "290x316",
+      "root": "135,306"
     },
     "inputs": [
       {
-        "path": "assets/bakeoff/protagonist/sprites-src/sprites.json",
-        "sha256": "b390282f62bc7cfdb7c2c6103ee26d0a02ec7181118467933bb94b189efdc742"
-      },
-      {
-        "path": "assets/bakeoff/protagonist/rig/violet.json",
-        "sha256": "648eeca697454a59e529ce8ad68b198f125e777d11838cd3b3764d5090c41096"
-      },
-      {
-        "path": "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
-        "sha256": "595ebb24146248c0ed5ed710829638a36691abf813db7a43a1c39d0dd9eba28b"
-      },
-      {
-        "path": "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
-        "sha256": "b465a5aec57d4adfcfb949b15a0fb72dd35eb8e22763edd487af69e621fed456"
+        "path": "assets/bakeoff/protagonist/sprites/violet.sprites.json",
+        "sha256": "b0d8e137daa568e0c31fadadbbacd3d6497aa47962f71735d309cfa155652463"
       },
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.png",
