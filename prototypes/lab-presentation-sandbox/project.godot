@@ -1,0 +1,38 @@
+; THROWAWAY — Violet mechanics-lab presentation sandbox.
+; Standalone Godot project so the presentation agent can build/verify lab/juice
+; and lab/ui components against a scripted stand-in, without the core gameplay
+; project. Mirrors the contract's project settings (prototypes/mechanics-lab):
+; Compatibility renderer, 1920x1080, canvas_items/expand stretch, 60 Hz physics
+; with interpolation on.
+
+config_version=5
+
+[application]
+
+config/name="Violet mechanics lab — presentation sandbox (THROWAWAY)"
+run/main_scene="res://demo/demo.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon=""
+
+[autoload]
+
+SandboxInput="*res://sandbox/input_setup.gd"
+Sfx="*res://lab/juice/sfx.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[physics]
+
+common/physics_ticks_per_second=60
+common/physics_interpolation=true
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=false
