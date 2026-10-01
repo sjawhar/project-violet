@@ -150,3 +150,9 @@ common/physics_interpolation=true
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+# Rooms smaller than the 1920x1080 viewport otherwise leave Godot's default
+# mid-gray clear color visible around them; this is a darker shade of
+# room_view.gd's own background (#1F2430) so a small room sits in a dark
+# frame instead of a bright gray one.
+environment/defaults/default_clear_color=Color(0.0823529, 0.0941176, 0.121569, 1)

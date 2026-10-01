@@ -12,6 +12,12 @@ const RoomViewScript := preload("res://lab/room_view.gd")
 const PlayerJuiceScript := preload("res://lab/juice/player_juice.gd")
 
 const RESPAWN_TICKS := 21  # 0.35s @ 60 ticks/s
+# A darker shade of room_view.gd's own background (#1F2430), so a room
+# smaller than the 1920x1080 viewport sits in a dark frame instead of
+# Godot's default mid-gray clear color (project.godot's
+# default_clear_color setting alone doesn't reach this 2D-only
+# GL-Compatibility viewport, confirmed against the actual web export).
+const BACKDROP_COLOR := Color8(0x15, 0x18, 0x1F)
 
 @onready var world: Node2D = $World
 @onready var camera: Camera2D = $Camera
@@ -37,10 +43,24 @@ var _respawn_ticks_left := 0
 var _in_room := false
 
 func _ready() -> void:
+	_setup_backdrop()
 	_experiments = ExperimentsData.load_all()
 	menu.chosen.connect(_on_experiment_chosen)
 	tuning_panel.changed.connect(func(): _player.set_profile(_player.profile) if _player != null else null)
 	_goto_menu()
+
+## A CanvasLayer behind every other layer (World's Node2D content is
+## implicitly CanvasLayer 0; negative layers draw before/under it), filling
+## the whole screen regardless of camera position or room size.
+func _setup_backdrop() -> void:
+	var layer := CanvasLayer.new()
+	layer.layer = -10
+	add_child(layer)
+	var rect := ColorRect.new()
+	rect.color = BACKDROP_COLOR
+	rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(rect)
 
 func _goto_menu() -> void:
 	_in_room = false
