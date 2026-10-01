@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "asset": "idle-finalize-record.json",
+  "sha256": "13ca8d9f38c3afe8cf9745cb9e3dc9d0861d656b62abc22fa2a6b618d15a4c2f",
+  "kind": "animation",
+  "origin": "derived",
+  "created_at": "2026-10-01T03:53:48+00:00",
+  "generator": {
+    "tool": "trial-b/idle_hybrid.py",
+    "tool_version": "round-10 (commit 360d169)",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.png",
+        "sha256": "d09f920c9cad4226bb1dd09a27b6412a6628a1ee100d70088d5225ec163319ed"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.png",
+        "sha256": "d1dc6951606687dfea6a9327d0eb005dd94e714e6463686b88cb2d58be062955"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-02.png",
+        "sha256": "ac09ee211991d3abfcab5f66b7b3a85f046dd3ccc5a8938c85443510711f3e46"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-03.png",
+        "sha256": "c2b13c52b6273078bc03122d012e3d17f788d46248635cb550c4fcda34c46863"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-04.png",
+        "sha256": "92c24b4091e61e4748efd29c6109e4b5c1a723ca95269432354d4fef81b5561f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-05.png",
+        "sha256": "d501a18e3d0e7cf3357cf4c7376b01f75b5eb02fa05232daaf5f11df1ea08e79"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-06.png",
+        "sha256": "5fcfc6a6926de1058c1ce841e0310e1b9225e9832df9ca109ac104b52f7e80e8"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-07.png",
+        "sha256": "4213418c1a3a4350aa941ea96e2009f25811648807eb99ee869258220a09c936"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.png",
+        "sha256": "518f7c76b99878986078dad6bcf32abcf17225b4d4af638a730fb9b5222eef93"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-01.png",
+        "sha256": "82ae954a34b3c932fbebd298dbb6b8735b479ec96c8bc572db72d652a36ded27"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-02.png",
+        "sha256": "870a9a2767c7937cb8e4cc9c3eb724342f7cc9bc21ad48d63fcfcaad6d6f4ef4"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-03.png",
+        "sha256": "82ae954a34b3c932fbebd298dbb6b8735b479ec96c8bc572db72d652a36ded27"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-04.png",
+        "sha256": "7fb2662507c561456c65c448d179f7bf1ff07629a01ee0df777219bb6d537f41"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-05.png",
+        "sha256": "a5e1a948e6cea3106d5ac1824a828d29d1d5384b3dd31165ea0f0012206a2f36"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-06.png",
+        "sha256": "ec77cf3b0b314c0d7f33dc2a8024a511fd8e4fcf4738ccb7f88c44224136d8a1"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-07.png",
+        "sha256": "a5e1a948e6cea3106d5ac1824a828d29d1d5384b3dd31165ea0f0012206a2f36"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+        "sha256": "595ebb24146248c0ed5ed710829638a36691abf813db7a43a1c39d0dd9eba28b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+        "sha256": "b465a5aec57d4adfcfb949b15a0fb72dd35eb8e22763edd487af69e621fed456"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/idle_hybrid.py",
+        "sha256": "a48705f08a582367f2f30ee0d19679af03efbe81f59793eef7a41aa28055310f"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "scarf-attachment correction (openai-codex/gpt-6-astra)",
+      "description": "Commit dd40c07 ('Fix painted Violet scarf attachment', rounds.md 'Scarf attachment correction'): apply_scarf_attachments.py apply rewrote every frame's scarf_offset_final as body_neck - scarf_knot from scarf_attachments.json, replacing the crop-offset values; no placement field changed.",
+      "at": "2026-10-01T03:53:48+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

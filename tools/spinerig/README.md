@@ -100,6 +100,50 @@ timeline type other than `rotate`/`translate`, a skin attachment whose `type` is
 FK and placement math, and the y-flip/scale conventions each engine lane's own reader
 needs.
 
+## Painted sprites: `spinerig sprites` and `spinerig sprites-render`
+
+```bash
+uv run --project tools/spinerig spinerig sprites \
+  assets/bakeoff/protagonist/sprites-src/sprites.json \
+  --out assets/bakeoff/protagonist/sprites/violet.sprites.json
+```
+
+Builds a `violet-sprites` v1 file, the painted frame-by-frame character as one anchored
+image per layer (body, scarf) per frame, from a `violet-sprites-src` v1 description:
+
+```jsonc
+{
+  "format": "violet-sprites-src", "version": 1,
+  "rig": "../rig/violet.json",                    // durations: each animation's latest keyframe
+  "frames_dir": "../glow-up/trial-b/frames",       // live <anim>-{body,scarf}-NN.png and the records
+  "scarf_attachments": "../glow-up/scarf_attachments.json",
+  "cell": {"width": 290, "height": 316, "scale": 0.22},  // shoot_b's review cell
+  "ground_y_fraction": [306, 316],                // the root's y, as a fraction of the cell height
+  "head_x_fraction": [135, 290],                  // the root's x, as a fraction of the cell width
+  "animations": {"idle": {"record": "idle-finalize-record.json", "loop": true} /* ... */},
+  "sources": {}                                   // where each value above was copied from
+}
+```
+
+All paths resolve against the source file's directory; image paths in the output are
+relative to `--out`'s directory. The command reads no asset script (shoot.py, shoot_b.py,
+build.py). It refuses, naming the file or frame: a stale scarf binding (the
+`apply_scarf_attachments.py check` rules), a scarf layer that is not neutral gray, a
+missing frame PNG or one with no record entry, an animation the rig lacks, and a record
+frame missing its placement fields. It writes nothing when it fails.
+
+```bash
+uv run --project tools/spinerig spinerig sprites-render \
+  assets/bakeoff/protagonist/sprites/violet.sprites.json --out /tmp/sheet.png \
+  --scale 0.22 --cell 290x316 --root 135,306 [--columns 6] [--tint RRGGBB]
+```
+
+Renders every animation from the `violet-sprites` file alone, one row each, in shoot.py's
+contact-sheet layout: each layer's anchor on `--root` inside a `--cell` cell, body then
+scarf, the scarf multiplied by `--tint` if given. Lane readers are checked against this
+sheet. `docs/bakeoff/character-rig.md`, "Painted sprite sequences", is the format
+contract.
+
 ## `violet-rig` v1
 
 ```jsonc
