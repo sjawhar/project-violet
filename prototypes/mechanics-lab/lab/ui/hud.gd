@@ -50,6 +50,22 @@ const PROFILE_TOAST_LABELS := {
 	"bakeoff": "Bake-off movement",
 }
 
+## Always-visible bottom bar naming the keys THIS experiment needs, so a
+## player never has to find H to learn how to switch, resonate or use blue.
+const CONTROLS_MODEL_KEYS := {
+	"none": "Tab: compare with bake-off movement   F1: tuning sliders",
+	"ability_window": "Using an ability makes its color resonate",
+	"pick_color": "Q: switch color (only that color's ability works)",
+	"hold_breath": "Q: choose color   Hold E: resonate",
+}
+const CONTROLS_ABILITY_KEYS := {
+	"dash": "Shift: dash (red)",
+	"double_jump": "Space in the air: double jump (green)",
+	"stomp": "Down in the air: stomp (yellow)",
+	"blink": "L: blink (blue)",
+	"swing": "Hold L near a blue ring: swing (blue)",
+}
+
 var _resonance_vignette: TextureRect
 var _vignette_alpha := 0.0
 var _vignette_color: Color = RESONANCE_NEUTRAL
@@ -69,6 +85,7 @@ var _profile_toast_label: Label
 var _profile_toast_tween: Tween
 
 var _experiment: Dictionary = {}
+var _controls_bar: Label
 
 
 func _ready() -> void:
@@ -113,6 +130,18 @@ func _ready() -> void:
 	_resonance = _ResonanceIndicator.new()
 	_resonance.position = Vector2(24, 150)
 	root.add_child(_resonance)
+
+	_controls_bar = Label.new()
+	_controls_bar.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+	_controls_bar.offset_top = -74.0
+	_controls_bar.autowrap_mode = TextServer.AUTOWRAP_WORD
+	_controls_bar.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_controls_bar.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_controls_bar.add_theme_font_size_override("font_size", 20)
+	var bar_style := StyleBoxFlat.new()
+	bar_style.bg_color = Color(0.0, 0.0, 0.0, 0.5)
+	_controls_bar.add_theme_stylebox_override("normal", bar_style)
+	root.add_child(_controls_bar)
 
 	_title_card = Control.new()
 	_title_card.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -200,12 +229,26 @@ func _unhandled_input(event: InputEvent) -> void:
 		_hints_panel.visible = not _hints_panel.visible
 
 
+## "Move ... · Jump ... · <model keys> · <one entry per ability> · R/Esc/H".
+## An ability or model missing from the tables is a lab bug: fail loudly.
+func _controls_text(experiment: Dictionary) -> String:
+	var parts: PackedStringArray = ["Move: arrows or A/D", "Jump: Space"]
+	var model_keys: String = CONTROLS_MODEL_KEYS[String(experiment["model"])]
+	if model_keys != "":
+		parts.append(model_keys)
+	for ability in experiment["abilities"]:
+		parts.append(CONTROLS_ABILITY_KEYS[String(ability)])
+	parts.append("R: restart   Esc: menu   H: all controls")
+	return "   ·   ".join(parts)
+
+
 ## Shows a 1.5s title card for the room (title + hint), then fades it.
 func show_room(experiment: Dictionary, room: Dictionary) -> void:
 	_experiment = experiment
 	_title_card_experiment.text = String(experiment.get("title", ""))
 	_title_card_title.text = String(room.get("title", ""))
 	_title_card_hint.text = String(room.get("hint", ""))
+	_controls_bar.text = _controls_text(experiment)
 	if _title_card_tween and _title_card_tween.is_valid():
 		_title_card_tween.kill()
 	_title_card.modulate.a = 1.0

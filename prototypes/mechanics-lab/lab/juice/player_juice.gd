@@ -17,6 +17,10 @@ const RNG_SEED := 20261001
 
 var _player: Node2D
 var _body: _PlayerBody
+## World position of the anchor while swinging; the rope is drawn whenever
+## the player is in the swing state.
+var _rope_anchor := Vector2.ZERO
+const ROPE_COLOR := Color8(0x4A, 0x90, 0xE2)
 var _scarf: Node2D
 var _squash: Vector2 = Vector2.ONE
 var _squash_tween: Tween
@@ -81,8 +85,8 @@ func bind(player: Node) -> void:
 	player.dash_ended.connect(_on_dash_ended)
 	player.stomp_impact.connect(_on_stomp_impact)
 	player.blinked.connect(_on_blinked)
-	player.resonance_changed.connect(_on_resonance_changed)
 	player.respawned.connect(_on_respawned)
+	player.swing_attached.connect(func(anchor: Vector2) -> void: _rope_anchor = anchor)
 
 	global_position = player.global_position
 	_prev_global_pos = player.global_position
@@ -101,6 +105,10 @@ func _physics_process(delta: float) -> void:
 	var actual_velocity: Vector2 = (_player.global_position - _prev_global_pos) / delta if delta > 0.0 else Vector2.ZERO
 	_prev_global_pos = _player.global_position
 	_scarf.step(_neck_global(), actual_velocity, delta)
+	# Read the live state every tick rather than waiting for resonance_changed:
+	# a model can resonate from the first tick (pick-color starts with a color
+	# selected), and no change edge ever fires for that starting color.
+	_show_resonance(_player.resonance_model.resonating_colors())
 
 	var running: bool = _player.state == &"run" and _player.on_floor
 	if running and not _was_running:
@@ -114,7 +122,15 @@ func _physics_process(delta: float) -> void:
 
 	if _player.state == &"dash":
 		_spawn_afterimage()
+	queue_redraw()
 
+
+
+func _draw() -> void:
+	if _player == null or _player.state != &"swing":
+		return
+	var hand := Vector2(0.0, -_player.box_size_px.y * 0.6)
+	draw_line(to_local(_rope_anchor), hand, ROPE_COLOR, 3.0, true)
 
 func _neck_global() -> Vector2:
 	return global_position + Vector2(_player.facing * _player.neck_offset.x, _player.neck_offset.y)
@@ -158,7 +174,7 @@ func _on_blinked(from: Vector2, to: Vector2) -> void:
 	_spawn_blink_trail(from, to)
 
 
-func _on_resonance_changed(colors: Array) -> void:
+func _show_resonance(colors: Array) -> void:
 	var c: StringName = colors[0] if colors.size() > 0 else &""
 	_scarf.set_resonance_color(c)
 

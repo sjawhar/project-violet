@@ -22,7 +22,7 @@
 	{
 		"id": "res-pick",
 		"title": "Choose your color",
-		"question": "The bake-off design: switch cycles a persistent active color, and only its ability works. Is losing the other ability while red is selected annoying or fine?",
+		"question": "The bake-off design: Q switches a persistent active color, and only its ability works. Is losing the other ability while red is selected annoying or fine?",
 		"model": "pick_color",
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump"],
@@ -32,7 +32,7 @@
 	{
 		"id": "res-hold",
 		"title": "Hold to resonate",
-		"question": "A third option: abilities always work, but resonating costs a held breath meter. Does metering the 'pass through' moment feel better or worse than the other two?",
+		"question": "A third option: abilities always work; hold E to resonate (Q picks the color), limited by a breath meter. Does metering the 'pass through' moment feel better or worse than the other two?",
 		"model": "hold_breath",
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump"],
@@ -52,7 +52,7 @@
 	{
 		"id": "blink",
 		"title": "Blue as teleport",
-		"question": "Blue was undecided in 2019 between swinging and teleporting. Does a short teleport feel different enough from dash?",
+		"question": "Blue was undecided in 2019 between swinging and teleporting. L blinks a short distance, through walls. Does it feel different enough from dash?",
 		"model": "ability_window",
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "blink"],
@@ -62,7 +62,7 @@
 	{
 		"id": "swing",
 		"title": "Blue as swing",
-		"question": "Does swinging add a kind of movement the other colors don't have?",
+		"question": "Hold L near a blue ring to swing. Does swinging add a kind of movement the other colors don't have?",
 		"model": "ability_window",
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "swing"],
@@ -82,7 +82,7 @@
 	{
 		"id": "archive-puzzle-pick",
 		"title": "Your 2019 example puzzle (choose your color)",
-		"question": "\"shift to green to double jump over a high wall, then shift to red to dash mid-air through a red wall/opening, and finally shift to yellow before landing to stomp through a weak wooden floor.\" Does it work as a moment?",
+		"question": "\"shift to green to double jump over a high wall, then shift to red to dash mid-air through a red wall/opening, and finally shift to yellow before landing to stomp through a weak wooden floor.\" Does it work as a moment? Q switches color.",
 		"model": "pick_color",
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "stomp"],
