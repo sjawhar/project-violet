@@ -1,0 +1,31 @@
+; THROWAWAY (lab-export-probe). Proves the export + publish pipeline before pointing it at
+; prototypes/mechanics-lab/. Renderer forced to Compatibility, matching the mechanics-lab design
+; contract and the only renderer the Web export target supports.
+
+config_version=5
+
+[application]
+
+config/name="Lab Export Probe"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=540
+window/stretch/mode="canvas_items"
+
+[input]
+
+play_tone={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":32,"physical_keycode":32,"unicode":32,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"button_index":0,"pressure":1.0,"script":null)
+]
+}
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
