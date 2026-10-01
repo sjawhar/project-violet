@@ -1,0 +1,27 @@
+{
+ "format": "violet-lab-room",
+ "version": 1,
+ "tile_size_px": 64,
+ "legend": {
+  ".": "empty",
+  "#": "solid",
+  "S": "start",
+  "G": "goal",
+  "W": "wall_blue"
+ },
+ "rows": [
+  "##############",
+  "#............#",
+  "#............#",
+  "#........WW..#",
+  "#........WW..#",
+  "#........WW..#",
+  "#........WWG.#",
+  "##############",
+  "#............#",
+  "#.....S......#",
+  "##############"
+ ],
+ "title": "Blue blink: shaft",
+ "hint": "Blink straight up through the ceiling, then hurry through the blue gate while it still resonates."
+}

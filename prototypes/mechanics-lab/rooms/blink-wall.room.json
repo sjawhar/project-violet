@@ -1,0 +1,23 @@
+{
+ "format": "violet-lab-room",
+ "version": 1,
+ "tile_size_px": 64,
+ "legend": {
+  ".": "empty",
+  "#": "solid",
+  "S": "start",
+  "G": "goal"
+ },
+ "rows": [
+  "####################",
+  "#.........##.......#",
+  "#.........##.......#",
+  "#.........##.......#",
+  "#.........##.......#",
+  "#.........##.......#",
+  "#.S.......##.....G.#",
+  "####################"
+ ],
+ "title": "Blue blink: wall",
+ "hint": "Hold right and blink through the wall; running into it does nothing."
+}

@@ -1,0 +1,81 @@
+{
+ "format": "violet-lab-replay",
+ "version": 1,
+ "tick_hz": 60,
+ "experiment": "archive-puzzle-pick",
+ "room": "archive-puzzle",
+ "profile": "tuned",
+ "inputs": [
+  {
+   "from": 0,
+   "to": 400,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "from": 3,
+   "to": 26,
+   "hold": [
+    "jump"
+   ]
+  },
+  {
+   "at": 5,
+   "press": [
+    "switch"
+   ]
+  },
+  {
+   "from": 30,
+   "to": 52,
+   "hold": [
+    "jump"
+   ]
+  },
+  {
+   "at": 55,
+   "press": [
+    "switch"
+   ]
+  },
+  {
+   "at": 60,
+   "press": [
+    "switch"
+   ]
+  },
+  {
+   "at": 65,
+   "press": [
+    "dash"
+   ]
+  },
+  {
+   "at": 80,
+   "press": [
+    "switch"
+   ]
+  },
+  {
+   "at": 85,
+   "press": [
+    "switch"
+   ]
+  },
+  {
+   "at": 93,
+   "press": [
+    "down"
+   ]
+  }
+ ],
+ "expect": {
+  "goal_by_tick": 300
+ },
+ "must_fail_without": [
+  "double_jump",
+  "dash",
+  "stomp"
+ ]
+}

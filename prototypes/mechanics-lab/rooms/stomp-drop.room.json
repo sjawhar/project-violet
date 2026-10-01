@@ -1,0 +1,32 @@
+{
+ "format": "violet-lab-room",
+ "version": 1,
+ "tile_size_px": 64,
+ "legend": {
+  ".": "empty",
+  "#": "solid",
+  "S": "start",
+  "G": "goal",
+  "^": "hazard",
+  "C": "cracked",
+  "Y": "wall_yellow"
+ },
+ "rows": [
+  "####################",
+  "#..................#",
+  "#..................#",
+  "#........S.........#",
+  "#..................#",
+  "#..................#",
+  "#..................#",
+  "####CCCCCCCC########",
+  "#..................#",
+  "####YYYYYYYY########",
+  "#..................#",
+  "#........G.........#",
+  "#..................#",
+  "####################"
+ ],
+ "title": "Yellow stomp: drop",
+ "hint": "Fall, then hold down to stomp through the cracked floor before you land."
+}

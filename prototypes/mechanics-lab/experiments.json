@@ -38,5 +38,55 @@
 		"abilities": ["dash", "double_jump"],
 		"acquired": ["red", "green"],
 		"rooms": ["red-wall", "red-bridge", "high-wall"]
+	},
+	{
+		"id": "stomp",
+		"title": "Yellow stomp",
+		"question": "Is stomping through weak floors fun enough to be a color's whole ability?",
+		"model": "ability_window",
+		"profile": "tuned",
+		"abilities": ["dash", "double_jump", "stomp"],
+		"acquired": ["red", "green", "yellow"],
+		"rooms": ["stomp-drop", "stomp-vault"]
+	},
+	{
+		"id": "blink",
+		"title": "Blue as teleport",
+		"question": "Blue was undecided in 2019 between swinging and teleporting. Does a short teleport feel different enough from dash?",
+		"model": "ability_window",
+		"profile": "tuned",
+		"abilities": ["dash", "double_jump", "blink"],
+		"acquired": ["red", "green", "blue"],
+		"rooms": ["blink-wall", "blink-shaft"]
+	},
+	{
+		"id": "swing",
+		"title": "Blue as swing",
+		"question": "Does swinging add a kind of movement the other colors don't have?",
+		"model": "ability_window",
+		"profile": "tuned",
+		"abilities": ["dash", "double_jump", "swing"],
+		"acquired": ["red", "green", "blue"],
+		"rooms": ["swing-intro", "swing-momentum"]
+	},
+	{
+		"id": "archive-puzzle-window",
+		"title": "Your 2019 example puzzle",
+		"question": "\"shift to green to double jump over a high wall, then shift to red to dash mid-air through a red wall/opening, and finally shift to yellow before landing to stomp through a weak wooden floor.\" Does it work as a moment?",
+		"model": "ability_window",
+		"profile": "tuned",
+		"abilities": ["dash", "double_jump", "stomp"],
+		"acquired": ["red", "green", "yellow"],
+		"rooms": ["archive-puzzle"]
+	},
+	{
+		"id": "archive-puzzle-pick",
+		"title": "Your 2019 example puzzle",
+		"question": "\"shift to green to double jump over a high wall, then shift to red to dash mid-air through a red wall/opening, and finally shift to yellow before landing to stomp through a weak wooden floor.\" Does it work as a moment?",
+		"model": "pick_color",
+		"profile": "tuned",
+		"abilities": ["dash", "double_jump", "stomp"],
+		"acquired": ["red", "green", "yellow"],
+		"rooms": ["archive-puzzle"]
 	}
 ]

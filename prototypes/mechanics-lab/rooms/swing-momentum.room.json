@@ -1,0 +1,27 @@
+{
+ "format": "violet-lab-room",
+ "version": 1,
+ "tile_size_px": 64,
+ "legend": {
+  ".": "empty",
+  "#": "solid",
+  "S": "start",
+  "G": "goal",
+  "^": "hazard",
+  "A": "anchor",
+  "P": "platform_blue"
+ },
+ "rows": [
+  "#######################",
+  "#.....................#",
+  "#........A............#",
+  "#.....................#",
+  "#.....................#",
+  "#.....................#",
+  "#..S......PPP......G..#",
+  "#######^^^^^^^^^#######",
+  "#######################"
+ ],
+ "title": "Blue swing: momentum",
+ "hint": "This gap is too wide for a neutral swing -- hold right the whole swing to pump up speed before you let go."
+}

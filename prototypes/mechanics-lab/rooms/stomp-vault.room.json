@@ -1,0 +1,33 @@
+{
+ "format": "violet-lab-room",
+ "version": 1,
+ "tile_size_px": 64,
+ "legend": {
+  ".": "empty",
+  "#": "solid",
+  "S": "start",
+  "G": "goal",
+  "^": "hazard",
+  "C": "cracked",
+  "Q": "platform_yellow"
+ },
+ "rows": [
+  "####################",
+  "#..................#",
+  "#..................#",
+  "#........S.........#",
+  "#..................#",
+  "#..................#",
+  "#..................#",
+  "####QQQQQQQQ########",
+  "#..................#",
+  "#..................#",
+  "####CCCCCCCC########",
+  "#..................#",
+  "#........G.........#",
+  "#..................#",
+  "####################"
+ ],
+ "title": "Yellow stomp: vault",
+ "hint": "Stomp early so yellow resonance drops the platform before you reach it, then break the floor beneath."
+}

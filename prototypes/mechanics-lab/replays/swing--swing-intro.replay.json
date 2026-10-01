@@ -1,0 +1,37 @@
+{
+ "format": "violet-lab-replay",
+ "version": 1,
+ "tick_hz": 60,
+ "experiment": "swing",
+ "room": "swing-intro",
+ "profile": "tuned",
+ "inputs": [
+  {
+   "from": 0,
+   "to": 200,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "from": 3,
+   "to": 5,
+   "hold": [
+    "jump"
+   ]
+  },
+  {
+   "from": 3,
+   "to": 45,
+   "hold": [
+    "ability"
+   ]
+  }
+ ],
+ "expect": {
+  "goal_by_tick": 90
+ },
+ "must_fail_without": [
+  "swing"
+ ]
+}
