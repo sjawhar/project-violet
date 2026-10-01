@@ -145,6 +145,51 @@ def test_scarf_is_drawn_over_the_body(sprites, tmp_path):
     assert r > 0 and g == 0 and b == 0, "the tinted scarf is not on top"
 
 
+def _two_layer_file(tmp_path, body_rgba, scarf_rgba, *, size=(2, 2)) -> dict:
+    """A one-frame violet-sprites file whose layers are flat `size` images, both
+    anchored at their top-left pixel."""
+    for layer, rgba in (("body", body_rgba), ("scarf", scarf_rgba)):
+        Image.new("RGBA", size, rgba).save(tmp_path / f"{layer}.png")
+    frame = {layer: {"image": f"{layer}.png", "anchor": [0.0, 0.0]} for layer in ("body", "scarf")}
+    return {"animations": {"idle": {"duration": 1.0, "loop": True, "frames": [frame]}}}
+
+
+def _over(src, dst):
+    """Exact source-over, straight (non-premultiplied) alpha, 0-255 channels."""
+    sa, da = src[3] / 255, dst[3] / 255
+    out_a = sa + da * (1 - sa)
+    rgb = [(s * sa + d * da * (1 - sa)) / out_a for s, d in zip(src[:3], dst[:3])]
+    return (*rgb, out_a * 255)
+
+
+def _close(actual, expected):
+    return all(abs(a - e) <= 1 for a, e in zip(actual, expected))
+
+
+def test_translucent_layers_keep_their_alpha_on_a_transparent_canvas(tmp_path):
+    """Lanes draw source-over onto whatever is behind the character, so the reference
+    reader's transparent output must carry each translucent pixel's own RGBA."""
+    body = (200, 100, 50, 128)
+    alone = render_frame(_two_layer_file(tmp_path, body, (0, 0, 0, 0)), tmp_path, "idle", 0.0, scale=1.0, root=(1.0, 1.0), size=(4, 4))
+    assert alone.getpixel((1, 1)) == body
+
+    scarf = (60, 60, 60, 128)
+    stacked = render_frame(_two_layer_file(tmp_path, body, scarf), tmp_path, "idle", 0.0, scale=1.0, root=(1.0, 1.0), size=(4, 4))
+    assert _close(stacked.getpixel((1, 1)), _over(scarf, body)), stacked.getpixel((1, 1))
+
+
+def test_translucent_layers_blend_opaque_over_an_opaque_background_even_off_canvas(tmp_path):
+    """Over an opaque background the result is opaque and source-over blended, including
+    for a layer that starts left of and above the canvas."""
+    body, scarf, gray = (200, 100, 50, 128), (60, 60, 60, 128), (128, 128, 128, 255)
+    sprites = _two_layer_file(tmp_path, body, scarf, size=(3, 3))
+    image = render_frame(sprites, tmp_path, "idle", 0.0, scale=1.0, root=(-1.0, -1.0), size=(4, 4), background=gray)
+    expected = _over(scarf, _over(body, gray))
+    for xy in ((0, 0), (1, 1)):
+        assert image.getpixel(xy)[3] == 255 and _close(image.getpixel(xy), expected), image.getpixel(xy)
+    assert image.getpixel((2, 2)) == gray
+
+
 # --- refusals: each runs the real inputs through a copy of the frames directory -------
 
 

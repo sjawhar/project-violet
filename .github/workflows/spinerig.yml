@@ -1,0 +1,35 @@
+name: spinerig
+
+# The spinerig tests read the real protagonist assets: the painted frames, the rig and
+# the generated violet.sprites.json, which test_sprites.py checks against its generator.
+on:
+  pull_request:
+    paths:
+      - 'tools/spinerig/**'
+      - 'assets/bakeoff/protagonist/**'
+      - '.github/workflows/spinerig.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'tools/spinerig/**'
+      - 'assets/bakeoff/protagonist/**'
+      - '.github/workflows/spinerig.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  spinerig:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          lfs: true # the tests decode the frame PNGs, not just their pointers
+          persist-credentials: false
+
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+
+      - name: Test spinerig
+        working-directory: tools/spinerig
+        run: uv run --locked pytest -q

@@ -199,8 +199,10 @@ sprites` from `assets/bakeoff/protagonist/sprites-src/sprites.json` (see
 ```
 
 Refuse a file whose `format` is not `violet-sprites`, whose `version` is not `1`, whose
-`facing` is not `right` or whose `units` are not `px`. Mirror the character for facing
-left, as with the rig.
+`facing` is not `right` or whose `units` are not `px`. Show the character facing left
+with a negative x scale on the node at the root, the parent of both layers, as with the
+rig. Do not use `Sprite2D.flip_h`: it mirrors the texture inside the sprite's own rect,
+so the anchor pixel no longer sits on the root.
 
 - **Animations.** `idle` (8 frames, 1.0 s), `run` (8, 0.6 s), `jump` (5, 0.5 s), `fall`
   (5, 0.6 s), `double_jump` (5, 0.5 s), `dash` (6, 0.2 s), `land` (6, 0.25 s). The
@@ -218,7 +220,12 @@ left, as with the rig.
 The **root** is the player's position: the ground contact point under the character's
 horizontal anchor. An **anchor** is the pixel of its image, measured from the image's
 top-left corner with y down, that sits exactly on the root. Anchors are floats, and they
-can lie outside the image: an airborne frame's anchor is below its feet.
+can lie outside the image. Airborne frames reproduce shoot_b's placement, so their feet
+can sit above or below the root: jump frame 0's lowest body row is 82 source px (7.9 px
+at the Godot 2D scale below) above it, and fall frame 2's is 78 source px (7.5 px) below
+it. Grounded `run` frames 4 and 6 also sink 42 and 54 source px below the root through
+their `place_dy_offset`. A lane must not assume the sprite stays above the collider's
+bottom.
 
 To draw a layer, put the image's anchor pixel on the root, scaled uniformly by `scale`:
 the image's top-left corner goes to `root - anchor * scale`. In Godot 2D that is a
@@ -269,7 +276,9 @@ formula frame 3). Follow the formula.
 ### Draw order and scarf tint
 
 Draw the body first, then the scarf over it, so the scarf's painted neck wrap stays
-visible over the clothing.
+visible over the clothing. Both layers blend source-over (ordinary alpha blending, the
+default for a Godot `Sprite2D`), so their soft edges stay translucent over whatever is
+behind the character.
 
 Every scarf layer is neutral gray: its mean |R−G| + |G−B| over non-transparent pixels is
 at most 4 (today's largest is 2.1). A lane multiplies the scarf by the active tag color

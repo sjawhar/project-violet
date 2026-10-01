@@ -299,8 +299,18 @@ def render_frame(
         if layer == "scarf" and tint is not None:
             image = ImageChops.multiply(image, Image.new("RGBA", image.size, (*tint, 255)))
         ax, ay = frame[layer]["anchor"]
-        canvas.paste(image, (round(root[0] - ax * scale), round(root[1] - ay * scale)), image)
+        _draw_over(canvas, image, (round(root[0] - ax * scale), round(root[1] - ay * scale)))
     return canvas
+
+
+def _draw_over(canvas: Image.Image, image: Image.Image, position: tuple[int, int]) -> None:
+    """Source-over `image` onto `canvas` with its top-left at `position`, which may lie
+    off the canvas: only the visible part of `image` is composited."""
+    x, y = position
+    left, top = max(0, -x), max(0, -y)
+    right, bottom = min(image.width, canvas.width - x), min(image.height, canvas.height - y)
+    if right > left and bottom > top:
+        canvas.alpha_composite(image, dest=(x + left, y + top), source=(left, top, right, bottom))
 
 
 def sample_times(duration: float, loop: bool, columns: int) -> list[float]:
