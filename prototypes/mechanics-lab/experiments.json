@@ -1,0 +1,12 @@
+[
+	{
+		"id": "feel",
+		"title": "Movement feel",
+		"question": "Does this feel right as the baseline? Tab compares with the bake-off's movement; F1 tunes it live.",
+		"model": "none",
+		"profile": "tuned",
+		"abilities": ["dash", "double_jump"],
+		"acquired": ["red", "green"],
+		"rooms": ["feel-ground", "feel-air"]
+	}
+]
