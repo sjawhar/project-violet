@@ -214,7 +214,7 @@ func show_profile_toast(profile_name: String) -> void:
 func update_state(player: Node, model_state: Dictionary, deaths: int, time_s: float) -> void:
 	var model: String = String(model_state.get("model", "none"))
 	var model_label: String = MODEL_LABELS.get(model, model)
-	var profile_name: String = String(_experiment.get("profile", ""))
+	var profile_name: String = String(model_state["profile_name"])
 	var state_name: String = String(player.state) if player != null else ""
 	_model_label.text = model_label
 	_info_label.text = "%s\nprofile: %s   state: %s\nDeaths: %d   Time: %.1fs" % [
