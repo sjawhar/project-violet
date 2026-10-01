@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "asset": "idle-scarf-00.png",
+  "sha256": "518f7c76b99878986078dad6bcf32abcf17225b4d4af638a730fb9b5222eef93",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T14:09:22+00:00",
+  "generator": {
+    "tool": "idle_hybrid.py",
+    "tool_version": "round-10",
+    "model": null,
+    "params": {
+      "frame": "0",
+      "time": "0.0",
+      "loop_seconds": "1"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/idle_hybrid.py",
+        "sha256": "a48705f08a582367f2f30ee0d19679af03efbe81f59793eef7a41aa28055310f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-07.png",
+        "sha256": "594464eb09091fbe94dfd8e7e7eda6e19a0b54b9d1661252e918cf6a8424eae3"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

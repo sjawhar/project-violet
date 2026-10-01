@@ -1,0 +1,254 @@
+{
+  "0": {
+    "union_bbox_orig_1024canvas": [
+      18,
+      47,
+      838,
+      929
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      820,
+      882
+    ],
+    "final_size": [
+      925,
+      995
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 995.0965502278152,
+    "head_x": 734.5752643866525,
+    "torso_x": 634.8432326162987,
+    "place_dy_offset": 37.345275547841275,
+    "scarf_offset_final": [
+      -124,
+      -121
+    ]
+  },
+  "1": {
+    "union_bbox_orig_1024canvas": [
+      51,
+      34,
+      872,
+      934
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      821,
+      900
+    ],
+    "final_size": [
+      926,
+      1015
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 1015.4046430896074,
+    "head_x": 754.4533938643392,
+    "scarf_bbox_orig_1024canvas": [
+      100,
+      58,
+      891,
+      948
+    ],
+    "scarf_final_size": [
+      892,
+      1004
+    ],
+    "scarf_offset_final": [
+      -140,
+      -84
+    ],
+    "torso_x": 622.312270453706,
+    "place_dy_offset": 19.40081904968542
+  },
+  "2": {
+    "union_bbox_orig_1024canvas": [
+      112,
+      34,
+      768,
+      945
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      656,
+      911
+    ],
+    "final_size": [
+      740,
+      1028
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 1027.8151442829248,
+    "head_x": 587.8750234991155,
+    "torso_x": 522.1147584014328,
+    "place_dy_offset": 13.353954220004285,
+    "scarf_offset_final": [
+      -35,
+      -111
+    ]
+  },
+  "3": {
+    "union_bbox_orig_1024canvas": [
+      61,
+      27,
+      780,
+      933
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      719,
+      906
+    ],
+    "final_size": [
+      811,
+      1022
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 1022.1740073768715,
+    "head_x": 594.5784210286764,
+    "torso_x": 516.7944897096219,
+    "place_dy_offset": 27.99509112605776,
+    "scarf_offset_final": [
+      -167,
+      -84
+    ]
+  },
+  "4": {
+    "union_bbox_orig_1024canvas": [
+      36,
+      15,
+      829,
+      957
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      793,
+      942
+    ],
+    "final_size": [
+      895,
+      1063
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 1062.7901931004558,
+    "head_x": 706.1126137240148,
+    "torso_x": 618.2276911680476,
+    "place_dy_offset": -41.34836732479941,
+    "scarf_offset_final": [
+      -52,
+      -101
+    ]
+  },
+  "5": {
+    "union_bbox_orig_1024canvas": [
+      60,
+      49,
+      876,
+      937
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      816,
+      888
+    ],
+    "final_size": [
+      921,
+      1002
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 1001.8659145150793,
+    "head_x": 713.0761742974086,
+    "scarf_bbox_orig_1024canvas": [
+      257,
+      109,
+      884,
+      889
+    ],
+    "scarf_final_size": [
+      707,
+      880
+    ],
+    "scarf_offset_final": [
+      28,
+      -74
+    ],
+    "torso_x": 595.9772014812063,
+    "place_dy_offset": 22.939547624213414
+  },
+  "6": {
+    "union_bbox_orig_1024canvas": [
+      57,
+      35,
+      765,
+      974
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      708,
+      939
+    ],
+    "final_size": [
+      799,
+      1059
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 1059.4055109568237,
+    "head_x": 590.5192932862485,
+    "torso_x": 529.5511540992143,
+    "place_dy_offset": -54.23641245389458,
+    "scarf_offset_final": [
+      -180,
+      -128
+    ]
+  },
+  "7": {
+    "union_bbox_orig_1024canvas": [
+      57,
+      33,
+      803,
+      929
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      746,
+      896
+    ],
+    "final_size": [
+      842,
+      1011
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 1010.8917335647648,
+    "head_x": 588.8086570767961,
+    "torso_x": 550.1210349874269,
+    "place_dy_offset": -2.722635061835632,
+    "scarf_offset_final": [
+      -99,
+      -197
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "asset": "double_jump-scarf-03.png",
+  "sha256": "0e31a966f18a007fd1fdb996039f459e12bd2063a80623367686132962994cf7",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-30T05:16:16+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "The first reference image is a TIGHTLY cropped character with almost no empty margin around her (this is a post-processed crop, not the original generation framing). Mentally place that same reference image inside a much larger, mostly empty 1024x1024 transparent canvas: she would occupy only the region from about x=310,y=232 to about x=714,y=792 (about 560 px tall, with generous empty margin above, below, to the left and to the right of her). Her neck/collar, where the hood meets her shoulders, sits at approximately x=546-636, y=323-383 in that same 1024x1024 canvas. The second reference image shows the scarf from a neighboring frame of this same double-jump sequence (the held pose right after the tuck releases and reopens) -- match its exact plain, flat, neutral medium-gray color (no other hue, no pattern, no shading gradient into a color, just neutral gray), but NOT its shape or drape: this frame's pose is mid-way between the tightest tuck and that fully reopened pose, so draw an entirely new scarf shape to match. Using that exact character scale and canvas framing, paint ONLY a long, wide, flowing fabric scarf tied around her neck at that exact location, settling back down from its widest flare -- still fanned out but less extreme than at the peak of the tuck -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Most of its length falls in the region around and below that neck point, overlapping where her robe, arms and legs would be (that overlap is correct and expected, since her body will be drawn on top of it afterward) -- do not draw the scarf away from that neck point out in empty canvas space elsewhere. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text -- only the gray scarf shape, on the same size canvas with the same framing, fully transparent everywhere else, with no vignette or darkened backdrop of any kind. IMPORTANT: paint exactly ONE single opaque, solid gray scarf shape -- do not paint multiple overlapping, ghosted or semi-transparent copies of the scarf at different offsets; the scarf must be one continuous, fully opaque cloth shape, not several stacked layers.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-03.png",
+        "sha256": "0ccde770b78b83e84300a9459d3aff1e327a5b6889a10907d2ccf90ef1162cf5"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-04.png",
+        "sha256": "d0c450d10a3e3e954c0d833cca05cc4a5347cb7e5f0c6e1aa865de46b17fd29c"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md, fixing round 6's gap 3 'double_jump frames 3-4's scarf a flat gray ghost' -- measured: painted-frame indices 2 and 3, ~96-98% of opaque pixels within brightness 131-150 against the 128 background, i.e. 1-indexed 'frames 3 and 4' in the critic's own count): repainted this scarf layer from scratch (--input this frame's own unchanged body plus a neighboring frame's already-good scarf for color/continuity, following the 'exactly ONE opaque scarf shape' guard and a numeric canvas-placement description in the prompt, per round 6's idle-scarf-repaint recipe since the body reference is already tightly alpha-cropped). Cropped the raw generation to the scarf's own alpha>8 bbox, rescaled by the shared rig_per_raw factor (1.128227381210675, reused unchanged), and recorded scarf_offset_final (rig units, from the body's existing crop origin) so shoot_b.py's render_cell_b can register it without moving or re-cropping the body -- same recipe as finalize_run_scarf_fix.py. Then graded via trial-b/grade_b.py's grade_scarf function directly (morphological alpha close + narrow edge blur), applied directly rather than through grade_b.py's own round-5 batch pipeline, since that pipeline reads a now-stale round-04 frozen copy that predates this repaint. Post-fix measurement: pixels within brightness 131-150 against the 128 background dropped from 96%/98% (frames 2/3) to a normal highlight-only 6%/24%.",
+      "at": "2026-09-30T05:17:02+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

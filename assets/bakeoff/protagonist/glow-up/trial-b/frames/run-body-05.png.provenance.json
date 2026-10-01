@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "asset": "run-body-05.png",
+  "sha256": "25e2122719b6b160da8f2d2717de8e5df6c17c02e64dcb9a150744b2aea60f4a",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:23+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-05.round-04.png",
+        "sha256": "43691c10bf1c89fe7d861362f13e77c5b81c3d5595b39231aae25cf15e7d0ad9"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

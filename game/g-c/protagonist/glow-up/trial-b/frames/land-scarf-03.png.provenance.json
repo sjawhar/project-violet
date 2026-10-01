@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "asset": "land-scarf-03.png",
+  "sha256": "8bcd05cc0f5a79f71ec9b2793f3a0aa206c35953a86e432f4a28ad1ac80cab58",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-30T07:37:44+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "The first reference image is a TIGHTLY cropped character with almost no empty margin around her (this is a post-processed crop, not the original generation framing). Mentally place that same reference image inside a much larger, mostly empty 1024x1024 transparent canvas: she would occupy only the region from about x=377,y=232 to about x=647,y=792 (about 560 px tall, with generous empty margin above, below, to the left and to the right of her). Her neck/collar, where the hood meets her shoulders, sits at approximately x=499-551, y=335-364 in that same 1024x1024 canvas. The second reference image shows the scarf from a neighboring frame of this same landing sequence (Violet mid-action) -- match its exact plain, flat, neutral medium-gray color (no other hue, no pattern, no shading gradient into a color, just neutral gray) and its rich, sculpted painterly fold rendering, but NOT its shape or drape: this frame is rising further out of the landing crouch than the reference's own pose, torso and legs straightening further toward standing, so draw an entirely new scarf shape to match. Using that exact character scale and canvas framing, paint ONLY a long, wide, flowing fabric scarf tied around her neck at that exact location, streaming and trailing behind her low and to the rear, still carried by the motion of the landing but beginning to settle -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Most of its length falls in the region around and below that neck point, streaming out and down toward the LEFT side of the canvas, low and behind her -- the same side and general direction the reference image's scarf trails on. It must NOT swing to her right side, over her shoulder, or across the front of her torso; keep it trailing behind her on that same left side through this whole landing. CRITICAL: the reference image's scarf trails out behind her toward the LEFT side of the canvas, low and to the rear -- this new frame's scarf must attach at the same neck point and trail out on that SAME left/rear side, continuing the same piece of cloth in the same general direction. Every part of the scarf, including the knot itself, must stay AT OR BELOW the neck point's own height and to its LEFT -- nothing may rise above the top of her head or hood, and nothing may extend to the right of the neck point, over her shoulder, or down her front at all. Picture the whole scarf hanging down and back off her left shoulder like a heavy wet cloth pulled by gravity and trailing motion, not fanning outward or upward in multiple directions from the knot. Do not draw the scarf away from that neck point out in empty canvas space elsewhere. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text, no vignette, no glow, no halo, no dark or light background tint of any kind -- only the gray scarf shape, on the same size canvas with the same framing, fully transparent everywhere else. IMPORTANT: paint exactly ONE single opaque, solid gray scarf shape -- do not paint multiple overlapping, ghosted or semi-transparent copies of the scarf at different offsets; the scarf must be one continuous, fully opaque cloth shape, not several stacked layers. Paint rich, visible folds and creases in the fabric with soft tonal shading (darker in the recesses, lighter on the raised folds) -- not a flat, single-tone silhouette; match the sculpted, folded painterly rendering of the second reference image exactly, just in this new drape.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-03.png",
+        "sha256": "e88966db86795d80bf07184c0793eaada247a0eb78d97c247ead78edfd59e0db"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.png",
+        "sha256": "b6f1da4cf5bd6dfa3dd38968f169d600059fa36653d20157d6d919d8b177fc8f"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound9 (Claude)",
+      "description": "Round 9 (rounds.md, fixing round 8's kept gap 1 'in land frames 4 to 6 it swaps from in front of the body to behind it' -- critic's 1-indexed frames 4-6 = 0-indexed 3-5). This frame's scarf previously swung to her right/front side and up behind her hood; repainted from scratch (--input this frame's own unchanged body plus land-scarf-02.png, the last correctly-'behind' neighbor, for color/shape/side continuity) so the scarf attaches at the same neck point and trails behind her on the LEFT side, matching frames 0-2, instead of swinging to the right/front. First attempt still left a chunk of scarf visible above/right of the head; rejected and retried with an explicit 'nothing above the head or to the right of the neck point' constraint, which fixed it. Cropped the raw generation to the scarf's own alpha>8 bbox, rescaled by the shared rig_per_raw factor (1.128227381210675, reused unchanged), and recorded scarf_offset_final (rig units, from the body's existing crop origin) so shoot_b.py's render_cell_b can register it without moving or re-cropping the body. Then graded via trial-b/grade_b.py's grade_scarf function directly (morphological alpha close + narrow edge blur).",
+      "at": "2026-09-30T07:38:23+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

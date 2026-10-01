@@ -1,0 +1,739 @@
+{
+  "format": "violet-sprites",
+  "version": 1,
+  "facing": "right",
+  "height_px": 1072.0,
+  "units": "px",
+  "animations": {
+    "idle": {
+      "duration": 1.0,
+      "loop": true,
+      "frames": [
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/idle-body-00.png",
+            "anchor": [
+              204.67838940644987,
+              1094.0
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/idle-scarf-00.png",
+            "anchor": [
+              97.13538940644986,
+              902.438
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/idle-body-01.png",
+            "anchor": [
+              204.67838940644987,
+              1094.0
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/idle-scarf-01.png",
+            "anchor": [
+              98.02238940644986,
+              906.737
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/idle-body-02.png",
+            "anchor": [
+              204.67838940644987,
+              1094.0
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/idle-scarf-02.png",
+            "anchor": [
+              95.12538940644987,
+              912.947
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/idle-body-03.png",
+            "anchor": [
+              204.67838940644987,
+              1094.0
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/idle-scarf-03.png",
+            "anchor": [
+              90.01138940644987,
+              917.431
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/idle-body-04.png",
+            "anchor": [
+              204.67838940644987,
+              1094.0
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/idle-scarf-04.png",
+            "anchor": [
+              85.84838940644985,
+              917.562
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/idle-body-05.png",
+            "anchor": [
+              204.67838940644987,
+              1094.0
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/idle-scarf-05.png",
+            "anchor": [
+              85.19838940644988,
+              913.263
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/idle-body-06.png",
+            "anchor": [
+              204.67838940644987,
+              1094.0
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/idle-scarf-06.png",
+            "anchor": [
+              88.25938940644986,
+              907.053
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/idle-body-07.png",
+            "anchor": [
+              204.67838940644987,
+              1094.0
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/idle-scarf-07.png",
+            "anchor": [
+              93.13538940644986,
+              902.569
+            ]
+          }
+        }
+      ]
+    },
+    "run": {
+      "duration": 0.6,
+      "loop": true,
+      "frames": [
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/run-body-00.png",
+            "anchor": [
+              634.8432326162987,
+              1032.4418257756565
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/run-scarf-00.png",
+            "anchor": [
+              758.8432326162987,
+              1153.4418257756565
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/run-body-01.png",
+            "anchor": [
+              622.312270453706,
+              1034.8054621392928
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/run-scarf-01.png",
+            "anchor": [
+              762.312270453706,
+              1118.8054621392928
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/run-body-02.png",
+            "anchor": [
+              522.1147584014328,
+              1041.169098502929
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/run-scarf-02.png",
+            "anchor": [
+              557.1147584014328,
+              1152.169098502929
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/run-body-03.png",
+            "anchor": [
+              516.7944897096219,
+              1050.1690985029293
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/run-scarf-03.png",
+            "anchor": [
+              683.7944897096219,
+              1134.1690985029293
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/run-body-04.png",
+            "anchor": [
+              618.2276911680476,
+              1021.4418257756564
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/run-scarf-04.png",
+            "anchor": [
+              670.2276911680476,
+              1122.4418257756565
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/run-body-05.png",
+            "anchor": [
+              595.9772014812063,
+              1024.8054621392928
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/run-scarf-05.png",
+            "anchor": [
+              567.9772014812063,
+              1098.8054621392928
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/run-body-06.png",
+            "anchor": [
+              529.5511540992143,
+              1005.1690985029292
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/run-scarf-06.png",
+            "anchor": [
+              709.5511540992143,
+              1133.169098502929
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/run-body-07.png",
+            "anchor": [
+              550.1210349874269,
+              1008.1690985029292
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/run-scarf-07.png",
+            "anchor": [
+              649.1210349874269,
+              1205.169098502929
+            ]
+          }
+        }
+      ]
+    },
+    "jump": {
+      "duration": 0.5,
+      "loop": false,
+      "frames": [
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/jump-body-00.png",
+            "anchor": [
+              651.0657947893305,
+              921.4117955911506
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/jump-scarf-00.png",
+            "anchor": [
+              688.0657947893305,
+              986.4117955911506
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/jump-body-01.png",
+            "anchor": [
+              326.79440514478915,
+              988.6393523387621
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/jump-scarf-01.png",
+            "anchor": [
+              484.79440514478915,
+              1116.6393523387621
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/jump-body-02.png",
+            "anchor": [
+              490.4348160889101,
+              990.535676292372
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/jump-scarf-02.png",
+            "anchor": [
+              604.4348160889101,
+              1175.535676292372
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/jump-body-03.png",
+            "anchor": [
+              543.2272748400521,
+              975.4076465329636
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/jump-scarf-03.png",
+            "anchor": [
+              613.2272748400521,
+              1130.4076465329636
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/jump-body-04.png",
+            "anchor": [
+              577.0766095167653,
+              1007.1175958488463
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/jump-scarf-04.png",
+            "anchor": [
+              710.0766095167653,
+              1114.1175958488463
+            ]
+          }
+        }
+      ]
+    },
+    "fall": {
+      "duration": 0.6,
+      "loop": false,
+      "frames": [
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/fall-body-00.png",
+            "anchor": [
+              342.09245095839015,
+              975.0671124106157
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/fall-scarf-00.png",
+            "anchor": [
+              411.09245095839015,
+              1109.0671124106157
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/fall-body-01.png",
+            "anchor": [
+              478.5874969028496,
+              1049.846563864398
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/fall-scarf-01.png",
+            "anchor": [
+              626.5874969028496,
+              1274.846563864398
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/fall-body-02.png",
+            "anchor": [
+              375.6242877363849,
+              1040.6377959120014
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/fall-scarf-02.png",
+            "anchor": [
+              412.6242877363849,
+              1210.6377959120014
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/fall-body-03.png",
+            "anchor": [
+              297.67387215117026,
+              1032.9481281110584
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/fall-scarf-03.png",
+            "anchor": [
+              407.67387215117026,
+              1316.9481281110584
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/fall-body-04.png",
+            "anchor": [
+              355.1545293560679,
+              1012.9092398416914
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/fall-scarf-04.png",
+            "anchor": [
+              375.1545293560679,
+              1312.9092398416915
+            ]
+          }
+        }
+      ]
+    },
+    "double_jump": {
+      "duration": 0.5,
+      "loop": false,
+      "frames": [
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/double_jump-body-00.png",
+            "anchor": [
+              376.6476030698843,
+              976.6813030411286
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/double_jump-scarf-00.png",
+            "anchor": [
+              436.6476030698843,
+              1027.6813030411286
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/double_jump-body-01.png",
+            "anchor": [
+              433.07436449614374,
+              992.5038107061333
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/double_jump-scarf-01.png",
+            "anchor": [
+              584.0743644961437,
+              1056.5038107061332
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/double_jump-body-02.png",
+            "anchor": [
+              448.789209536248,
+              986.1726303333392
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/double_jump-scarf-02.png",
+            "anchor": [
+              472.789209536248,
+              1115.1726303333392
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/double_jump-body-03.png",
+            "anchor": [
+              353.1625203103192,
+              997.2681203596261
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/double_jump-scarf-03.png",
+            "anchor": [
+              392.1625203103192,
+              818.2681203596261
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/double_jump-body-04.png",
+            "anchor": [
+              354.821140461155,
+              983.6441271115154
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/double_jump-scarf-04.png",
+            "anchor": [
+              441.821140461155,
+              946.6441271115154
+            ]
+          }
+        }
+      ]
+    },
+    "dash": {
+      "duration": 0.2,
+      "loop": false,
+      "frames": [
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/dash-body-00.png",
+            "anchor": [
+              587.2083080021832,
+              961.4191210259233
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/dash-scarf-00.png",
+            "anchor": [
+              562.2083080021832,
+              911.4191210259233
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/dash-body-01.png",
+            "anchor": [
+              685.6044683892907,
+              947.5093441607445
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/dash-scarf-01.png",
+            "anchor": [
+              775.6044683892907,
+              1068.5093441607446
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/dash-body-02.png",
+            "anchor": [
+              584.4342947056375,
+              929.292876197339
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/dash-scarf-02.png",
+            "anchor": [
+              657.4342947056375,
+              997.292876197339
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/dash-body-03.png",
+            "anchor": [
+              720.219225671939,
+              937.0749007998288
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/dash-scarf-03.png",
+            "anchor": [
+              770.219225671939,
+              1137.0749007998288
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/dash-body-04.png",
+            "anchor": [
+              696.6010785637283,
+              928.8299467868927
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/dash-scarf-04.png",
+            "anchor": [
+              763.6010785637283,
+              1035.8299467868928
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/dash-body-05.png",
+            "anchor": [
+              580.9473737207971,
+              926.3483432153845
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/dash-scarf-05.png",
+            "anchor": [
+              556.9473737207971,
+              826.3483432153845
+            ]
+          }
+        }
+      ]
+    },
+    "land": {
+      "duration": 0.25,
+      "loop": false,
+      "frames": [
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/land-body-00.png",
+            "anchor": [
+              649.652170173334,
+              799.9132132783685
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/land-scarf-00.png",
+            "anchor": [
+              658.652170173334,
+              833.9132132783685
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/land-body-01.png",
+            "anchor": [
+              615.3821765407233,
+              1015.4046430896074
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/land-scarf-01.png",
+            "anchor": [
+              683.3821765407233,
+              1081.4046430896074
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/land-body-02.png",
+            "anchor": [
+              547.1969251340317,
+              1094.3805597743547
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/land-scarf-02.png",
+            "anchor": [
+              657.1969251340317,
+              1170.3805597743547
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/land-body-03.png",
+            "anchor": [
+              248.23970981518931,
+              1059.4055109568237
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/land-scarf-03.png",
+            "anchor": [
+              660.2397098151894,
+              882.4055109568237
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/land-body-04.png",
+            "anchor": [
+              282.3521807093591,
+              1111.3039704925147
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/land-scarf-04.png",
+            "anchor": [
+              500.3521807093591,
+              928.3039704925147
+            ]
+          }
+        },
+        {
+          "body": {
+            "image": "../glow-up/trial-b/frames/land-body-05.png",
+            "anchor": [
+              448.7749896612976,
+              1086.48296810588
+            ]
+          },
+          "scarf": {
+            "image": "../glow-up/trial-b/frames/land-scarf-05.png",
+            "anchor": [
+              648.7749896612976,
+              906.48296810588
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

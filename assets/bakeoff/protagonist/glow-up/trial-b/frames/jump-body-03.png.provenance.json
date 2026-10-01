@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "asset": "jump-body-03.png",
+  "sha256": "ee18a5a922a70d6fff2af71ba415a5c1618cf4e7fb444ecc9c01b97479c6561c",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:24+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-03.round-04.png",
+        "sha256": "7a9a5c18028a59dcffbe61e0d29ec371d9fcdb1936db19a1b66c90da1cf27cb2"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "asset": "double_jump-scarf-01.png",
+  "sha256": "f15d97e2b8bea8b538dd31ce692f2b6ab1c386e1f9265467e8c6edab6615bc3a",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:26+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-01.round-04.png",
+        "sha256": "fda66f04c1af7ae308b581b6f0b419eb329d84fd624f036a089e565ffcf3febc"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

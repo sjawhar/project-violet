@@ -5,8 +5,8 @@ extends PaintedArt
 ## wall and ground tiles drawn from several variants, pits with a painted inside, and sky and rock filling the strips
 ## the camera shows above and below the level; tag colours locked and lit by the low sun in art/reveal.gdshader, with a
 ## chevron carved on red and a double wave on green; and the character drawn through art/character_outline.gdshader
-## (dark outline, thin light halo, warm sun-side rim, hardened alpha fringe). The character is GreyboxArt's: the rig in
-## protagonist/ once it is there, else the STAND-IN. Set dressing and atmosphere: aerial haze that grows with each
+## (dark outline, thin light halo, warm sun-side rim, hardened alpha fringe). The character is GreyboxArt's: the sprites
+## in protagonist/ once they are there, else the STAND-IN. Set dressing and atmosphere: aerial haze that grows with each
 ## backdrop layer's distance, uneven soft light shafts from the sun on the far layer, dust motes drifting in the air,
 ## dry-grass tufts on some open block tops, and a dark foreground silhouette strip along the bottom of the frame on a
 ## faster parallax layer. Terrain construction: each connected rock mass takes its own tone and its wall variant per
@@ -289,7 +289,7 @@ func attach_character(player: Node) -> void:
 	var mat := ShaderMaterial.new(); mat.shader = OUTLINE; group.material = mat
 	player.add_child(group)
 	for child in player.get_children():
-		if child is RigCharacter2D or child.name in ["StandIn"]: child.reparent(group, false)
+		if child is SpriteCharacter2D or child.name in ["StandIn"]: child.reparent(group, false)
 
 func _wall_tiles() -> Array:
 	return [wall_tile] + wall_tile_variants

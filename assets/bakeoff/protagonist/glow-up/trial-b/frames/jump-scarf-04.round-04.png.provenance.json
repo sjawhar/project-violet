@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "asset": "jump-scarf-04.round-04.png",
+  "sha256": "c0c1bbdafaa550daf27de8c8e08611bb516577e74a2861d98872772b583c201c",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-30T02:43:36+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Using the exact pose, camera angle, character scale and canvas framing of the first reference image (Violet mid-action), paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf drapes from around her neck/collar and streams and trails behind her -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size, painted as ONE single continuous opaque flowing shape (never several overlapping or stacked semi-transparent copies at different offsets). Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text, no vignette, no glow, no halo, no radial light or gradient of any kind -- fully transparent everywhere except the scarf itself, exactly like the second reference swatch image's own plain transparent background. Only the gray scarf shape, positioned and posed exactly where it would drape and trail relative to her neck and shoulders in the pose shown in the first reference image, on the same size canvas with the same framing.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-04.round-04.png",
+        "sha256": "b67df307764055bf3766132dc50804124f5d5e17dcc576650fa331f57cc49743"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/scarf1.png",
+        "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletRound5)",
+      "description": "Frozen as jump-scarf-04.round-04.png for round 4's own shot provenance (identical bytes to the live jump-scarf-04.png through round 4, sha256 c0c1bbdafaa550daf27de8c8e08611bb516577e74a2861d98872772b583c201c) before glow-up round 5's grade_b.py overwrote the live jump-scarf-04.png with a value/opacity grading pass; see assets/bakeoff/protagonist/glow-up/rounds.md.",
+      "at": "2026-09-30T02:43:36+00:00"
+    }
+  ],
+  "license": "proprietary"
+}
