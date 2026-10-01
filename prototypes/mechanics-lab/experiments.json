@@ -7,7 +7,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump"],
 		"acquired": ["red", "green"],
-		"rooms": ["feel-ground", "feel-air"]
+		"rooms": ["feel-ground", "feel-air", "feel-flow"]
 	},
 	{
 		"id": "res-window",
@@ -47,7 +47,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "stomp"],
 		"acquired": ["red", "green", "yellow"],
-		"rooms": ["stomp-drop", "stomp-vault"]
+		"rooms": ["stomp-drop", "stomp-vault", "stomp-chain"]
 	},
 	{
 		"id": "blink",
@@ -57,7 +57,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "blink"],
 		"acquired": ["red", "green", "blue"],
-		"rooms": ["blink-wall", "blink-shaft"]
+		"rooms": ["blink-wall", "blink-shaft", "blink-gauntlet"]
 	},
 	{
 		"id": "swing",
@@ -67,7 +67,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "swing"],
 		"acquired": ["red", "green", "blue"],
-		"rooms": ["swing-intro", "swing-momentum"]
+		"rooms": ["swing-intro", "swing-momentum", "swing-chain"]
 	},
 	{
 		"id": "archive-puzzle-window",

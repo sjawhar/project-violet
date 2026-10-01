@@ -8,7 +8,6 @@
   "S": "start",
   "G": "goal",
   "^": "hazard",
-  "C": "cracked",
   "Q": "platform_yellow"
  },
  "rows": [
@@ -22,12 +21,11 @@
   "####QQQQQQQQ########",
   "#..................#",
   "#..................#",
-  "####CCCCCCCC########",
   "#..................#",
   "#........G.........#",
   "#..................#",
   "####################"
  ],
  "title": "Yellow stomp: vault",
- "hint": "Stomp early so yellow resonance drops the platform before you reach it, then break the floor beneath."
+ "hint": "This platform looks solid -- stomp before you land so yellow resonance drops you through it."
 }

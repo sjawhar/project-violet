@@ -45,6 +45,12 @@ something is resonating.
 | `red-wall` | res-window/pick/hold | A red `wall_red` blocks the floor; resonate red to pass through. |
 | `red-bridge` | res-window/pick/hold | Red `platform_red` bridges a hazard pit, then a `wall_red`: resonating red *on the bridge* drops you (the 2019 "no!"); resonate only at the wall. |
 | `high-wall` | res-window/pick/hold | Double-jump a plain wall, then resonate red through a `wall_red` beyond it. |
+| `feel-flow` | feel | A 70-tile flowing run: varied gaps, a short-hop under a low roof, a double-jump vault, a long fall into a run, then a dash-jump-dash chain. |
+| `stomp-drop` | stomp | Fall, then hold down to stomp through a cracked floor. |
+| `stomp-vault` | stomp | A `platform_yellow` looks solid; stomp before you land so yellow resonance drops you through it. |
+| `stomp-chain` | stomp | Double-jump a wall, dash under a low roof, then stomp a yellow platform mid-air to fall to the goal. |
+| `blink-gauntlet` | blink | Double-jump a wall, dash under a low roof, blink through a thick wall, then ride the same blue resonance down through a `platform_blue`. |
+| `swing-chain` | swing | Double-jump to grab the first anchor, release into the second, then dash the last stretch without ever touching ground. |
 
 ## Tests
 
