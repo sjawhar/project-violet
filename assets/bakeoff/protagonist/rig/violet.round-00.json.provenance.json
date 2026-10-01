@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "asset": "violet.round-00.json",
+  "sha256": "f6319ff24ba4a39e4f09138a5551c06d95a807b53d8b097df0feaec695b8d3aa",
+  "kind": "animation",
+  "origin": "derived",
+  "created_at": "2026-09-29T01:01:18+00:00",
+  "generator": {
+    "tool": "spinerig",
+    "tool_version": "0.1.0",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/rig-src/rig.json",
+        "sha256": "895776da5e9c37a731f119f8ca629bd9376b3cb1a19dbacccc0ebc7404a97f61"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "anthropic/claude-opus-5-5 (omp)",
+      "description": "frozen as violet.round-00.json for glow-up round 0's historical shot provenance (identical bytes to the pre-round-1 rig/violet.json, sha256 f6319ff24ba4a39e4f09138a5551c06d95a807b53d8b097df0feaec695b8d3aa) before round 1's head.png change made spinerig generate produce a different violet.json",
+      "at": "2026-09-29T01:01:18+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

@@ -1,22 +1,26 @@
 {
   "schema_version": 1,
   "asset": "hips.png",
-  "sha256": "eccf9520a44b511ce50dc495a18ad737e187bcc8b34f1a7a3c494f6bddefe532",
+  "sha256": "e8be13728e17edc8a3c51ba7de6f7c09aa109755a2cda2157ef3a69d76c1f997",
   "kind": "image",
   "origin": "generated",
-  "created_at": "2026-09-27T18:29:35+00:00",
+  "created_at": "2026-09-29T02:19:18+00:00",
   "generator": {
     "tool": "gen",
     "tool_version": "0.1.0",
     "provider": "openai",
     "model": "gpt-image-2",
-    "prompt": "Only the robe skirt from the waist down to just above the ankles, the long ankle-length lower half of the robe with its darker ragged hem and the dark underskirt edge showing at the bottom, a narrow side-view silhouette that flares only gently toward the hem (about twice as tall as its widest point), no torso above the waist, no legs or feet below the hem, just the gray robe fabric of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
+    "prompt": "Only the robe skirt from the waist down to just above the ankles, the long ankle-length lower half of the robe with its darker ragged hem and the dark underskirt edge showing at the bottom, a narrow side-view silhouette that flares only gently toward the hem, of the character in the reference, side view facing right, the exact same silhouette, crop and proportions as the reference image -- do not change the shape, flare, or hem shape. Repaint the fabric with a noticeably deeper, richer warm gray-brown base tone (not pale beige) and much stronger painterly value structure than a flat wash: distinct dark cast shadows inside every major vertical fold, a few brighter highlight ridges along the fold peaks catching the light, and visible cloth-grain texture, closer to the fold definition on the standing figures in the reference turnaround. No isolated patches of a different, lighter tone anywhere -- every fold's shadow must follow the drape continuously from waist to hem, with no hard straight-edged seams. Keep the same warm neutral gray-brown hue family, no new colors, no red, no pattern, same painted soft-edged digital-gouache style. No ink outlines, no anime cel-shading, no hard graphic-novel shadow shapes -- painterly gradients only. Centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
     "params": {
       "size": "1024x1024",
       "quality": "high",
       "background": "transparent"
     },
     "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/parts/hips.round-02.png",
+        "sha256": "eccf9520a44b511ce50dc495a18ad737e187bcc8b34f1a7a3c494f6bddefe532"
+      },
       {
         "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
         "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
@@ -25,14 +29,14 @@
   },
   "human_edits": [
     {
-      "by": "anthropic/claude-opus-5-5 (omp)",
-      "description": "trimmed transparent margin to the alpha > 8 bounding box: 1024x1024 -> 401x910",
-      "at": "2026-09-27T18:42:17+00:00"
+      "by": "anthropic/claude-sonnet-5 (omp)",
+      "description": "Glow-up round 3 (color_readability/visual_quality gap: round 2's own critique measured the robe body at luminance ~124 against this sheet's own neutral-gray backdrop at ~127, a ~1% difference, so on anything but a pure neutral floor most of the body reads as one dark blob; the critique also flagged a lighter tan patch on the mid-right skirt that cuts across the fabric folds at a hard, straight edge, reading as a leftover texture seam rather than a fold). Repainted via a gen image edit (--input the reverted hips.round-02.png plus violet-turnaround.png): keeps the exact silhouette, flare and hem shape, but pushes the skirt fabric to the same deeper, richer warm gray-brown base tone and stronger value structure as the torso, with every fold's shadow following the drape continuously from waist to hem (no isolated lighter patch or hard-edged seam).",
+      "at": "2026-09-29T02:40:23+00:00"
     },
     {
-      "by": "anthropic/claude-opus-5-5 (omp)",
-      "description": "rescaled by factor 0.639 (Lanczos), 401x910 -> 256x581, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960, so 1.136 rig px per turnaround px); see assets/bakeoff/protagonist/README.md. Sash top to main hemline (883 painted px) set to 564 px: turnaround sash top y=395 to hem y=892.",
-      "at": "2026-09-27T18:42:17+00:00"
+      "by": "anthropic/claude-sonnet-5 (omp)",
+      "description": "trimmed transparent margin to the alpha > 8 bounding box, then rescaled by Lanczos to the rig's existing hips height (matching the previous live part's own height in px, so pivots/proportions stay aligned); see assets/bakeoff/protagonist/README.md.",
+      "at": "2026-09-29T02:40:23+00:00"
     }
   ],
   "license": "proprietary"

@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "asset": "idle.gif",
+  "sha256": "ab544e75561fc6cadfbe1106d50dbac87132de1f278fb62b5a495513cc761ee2",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T04:35:01+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+    "tool_version": "shoot_b.py round-05: technique B (graded painted frames) in shoot.py's exact fixed layout",
+    "model": null,
+    "params": {
+      "command": "uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/shoot_b.py --rig assets/bakeoff/protagonist/rig/violet.json --out assets/bakeoff/protagonist/glow-up/round-05"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
+        "sha256": "6a949541543d38f1957c20d4138361d20ace0dc746d60639689860d0405f4100"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.round-07.png",
+        "sha256": "135c86bc1999684e242b4737628526f493868c80dae2d8332a7b7fd81742c7c8"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-01.round-07.png",
+        "sha256": "154ae4595c0b1b8074bb5b386a9d849ed3ab357ea8fd1fb35681c7a50f272f4e"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-02.round-07.png",
+        "sha256": "161b346f8323a54704f2dc3136b2b6452e144d52c64a8d3490da286ec1e279f0"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-03.round-07.png",
+        "sha256": "01553ff6599232e57644c0a44dc5833ac15be40173fc508d32a5c8c6a29a1802"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-04.round-07.png",
+        "sha256": "dc50db1525d1197ec7b281a183c56f275cb6a8b45a44039e8b0a840514151d6b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-05.round-07.png",
+        "sha256": "59ec6845fe6385b2d2e7e7b36113e638494fe9efbf14cf688bc56592fea2eeba"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-06.round-07.png",
+        "sha256": "36ff7a94eef6f81387d9ba5e42c56b3fe5511baa1b70d63ade61d365b57eaf7e"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-07.round-07.png",
+        "sha256": "585683d512b348020f5ecf70598577612d3132c370a2686049a91da59d53a8ff"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.round-05.png",
+        "sha256": "d7112dc8d9211975175adae81252df6624c43b12224bf5b3616012026db9117c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-01.round-05.png",
+        "sha256": "f43235f6bd9d54e7a045ec44d96a94eac3a570e5fafb3dd3ae9f1b7314d225cb"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-02.round-05.png",
+        "sha256": "eb61b2fdc39381088e3a21e21e34cd384f053461c62e61bed0280c2584e02d7a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-03.round-05.png",
+        "sha256": "6db371208d8e67c0986142653a1a93e084c0079cbd1db2f0dc6dcc03b7b17d42"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-04.round-05.png",
+        "sha256": "711a4b9e41624f3d5c40d9240d9cbcb8b64e143ba80ea89fba89816a1954f10a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-05.round-05.png",
+        "sha256": "1e4a9e6be1e52e7a01dd9ccb74f633d4c467873487de25f4e6b3742813cb2a7e"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-06.round-05.png",
+        "sha256": "e792a9eead91983292ee4acb1245981ed69798e4f536c290d0cce1a61f3d2156"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-07.round-05.png",
+        "sha256": "d261fadf04eadfc5a88ab817aac6bdaa09aadc6a863c4e5f5527201ca0548e12"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound6 (Claude)",
+      "description": "Round 6 (rounds.md's 'Frozen inputs' convention): re-pointed the inputs that changed this round (idle's 8 scarf layers and fall frame 4's body+scarf) at their frozen assets/bakeoff/protagonist/glow-up/trial-b/frames/*.round-05.png copies, since round 6 overwrote the live files with a repaint; every other input is unchanged.",
+      "at": "2026-09-30T04:35:09+00:00"
+    },
+    {
+      "by": "VioletRound8 (Claude)",
+      "description": "Re-pointed 8 stale generator.inputs path(s) (idle body/scarf frames that glow-up round 8's idle_hybrid.py overwrote at their live paths) to the matching round-07 frozen copies, which carry the exact bytes this record originally cited by hash; no bytes of this asset itself changed. rounds.md's 'Frozen inputs' convention.",
+      "at": "2026-09-30T06:41:01+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

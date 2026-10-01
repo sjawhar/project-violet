@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "asset": "idle-scarf-03.round-05.png",
+  "sha256": "6db371208d8e67c0986142653a1a93e084c0079cbd1db2f0dc6dcc03b7b17d42",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T04:34:24+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-03.round-04.png",
+        "sha256": "f3294d87b1e0e3b62e5b8ff81349a0ddd2a25dc1f3900508bc02c96be2fdb548"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound6 (Claude)",
+      "description": "Frozen as idle-scarf-03.round-05.png for round 5's own shot provenance (identical bytes to the live idle-scarf-03.png through round 5, same generator metadata as the live file's own round-5 record since it's the same pixels/bytes, just parked at a path nothing will touch again) before glow-up round 6 overwrote the live idle-scarf-03.png with a repaint; see assets/bakeoff/protagonist/glow-up/rounds.md's 'Frozen inputs' convention.",
+      "at": "2026-09-30T04:34:32+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

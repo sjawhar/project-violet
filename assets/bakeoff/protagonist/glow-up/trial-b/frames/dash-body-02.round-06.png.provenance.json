@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "asset": "dash-body-02.round-06.png",
+  "sha256": "0fc46ce8baac21607714f340c5c96b4f86d43a7d4376ad12928cc43953e98b8f",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:26+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.round-04.png",
+        "sha256": "326b7914f86fd5ce137f08fcbfd7458fbdddeab8a5a2997883a977d26a1e2034"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "round-06 (kept round)'s dash-body-02.png ('held release', the pose the dash animation holds), before round 7 moves this same pose's pixels to dash-body-05.png as part of adding 3 in-between frames",
+      "at": "2026-09-30T05:09:10.389386+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

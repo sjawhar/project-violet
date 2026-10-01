@@ -1,45 +1,49 @@
 {
   "schema_version": 1,
   "asset": "land.gif",
-  "sha256": "7064f52fcdc32356c65b06bb7f5aaea1b0d7c201dc9a87ea45e5c8185e166165",
+  "sha256": "4e6f38bd196a82e32b0a5da32adc6e73c9021cb82c23c8a8603981c7488b287f",
   "kind": "animation",
   "origin": "derived",
-  "created_at": "2026-09-28T17:16:39+00:00",
+  "created_at": "2026-09-29T02:54:46+00:00",
   "generator": {
     "tool": "spinerig",
-    "tool_version": "0.1.0 (master 028cb554, with #30's canvas fix)",
+    "tool_version": "0.1.0",
     "model": null,
     "params": {
-      "command": "spinerig render rig/violet.json --parts parts --anim land --scale 0.5 --fps 30"
+      "command": "uv run --project tools/spinerig spinerig render assets/bakeoff/protagonist/rig/violet.json --parts assets/bakeoff/protagonist/parts --anim land --out /tmp/land --scale 0.5"
     },
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/rig/violet.json",
-        "sha256": "f6319ff24ba4a39e4f09138a5551c06d95a807b53d8b097df0feaec695b8d3aa"
+        "sha256": "648eeca697454a59e529ce8ad68b198f125e777d11838cd3b3764d5090c41096"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/rig/violet.meta.json",
+        "sha256": "fb6192cfb3f0b6f14256c7ff8101a5d3afdfa674d520f5bc17d300d3636c3342"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/arm_back_lower.png",
-        "sha256": "4345ce799fa7b60cd01892f5c58a6003f514ba36cf5c5c320ba53e79899f5a4e"
+        "sha256": "52ab46c3d665fe9e8d66bd6b040d2eec6d27a9c0c24d6ec721c053a5176437c1"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/arm_back_upper.png",
-        "sha256": "3a83c513f692e927b150ded7b0fa252ba33ff5bbaf50cd93b898708eef20dd9c"
+        "sha256": "d4a2eae97a6dbf1e194ce974fec367eff07ad55c7190b64bc00471f38a3bbc9d"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/arm_front_lower.png",
-        "sha256": "8f1df9ed8700868b3d71da7d036f36e2ee1af19f14779f11f9a736fa7b0c3c13"
+        "sha256": "3bdf492e10e7852f232cee5742c11733ceb69ea881d2e4fdb8caa95c8713d2e0"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/arm_front_upper.png",
-        "sha256": "1bcaab8efcf8c888aae0a0c24809f0ddb8da5d8d7b660bdd9a703d4826565b30"
+        "sha256": "9c55078ea48176a65f95ad8875db6b109160efca768163b3360849332412e413"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/head.png",
-        "sha256": "81960bde8738760d562474083f5398ba8c186b48d35cd6654660a748cb0318fd"
+        "sha256": "868769863498572830942edc04f3bbafb8a677f12a00012fa55ebc8c1fb4dbf4"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/hips.png",
-        "sha256": "eccf9520a44b511ce50dc495a18ad737e187bcc8b34f1a7a3c494f6bddefe532"
+        "sha256": "e8be13728e17edc8a3c51ba7de6f7c09aa109755a2cda2157ef3a69d76c1f997"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/leg_back_lower.png",
@@ -47,7 +51,7 @@
       },
       {
         "path": "assets/bakeoff/protagonist/parts/leg_back_upper.png",
-        "sha256": "1c268ce147d6664039b9f3422eb1e8e2118b6567e0052efaddcc7ea48cfd858b"
+        "sha256": "39c08656603b437279a634f49995e46efd3f1b9b520e8bce4d3392e8389257e1"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/leg_front_lower.png",
@@ -55,7 +59,7 @@
       },
       {
         "path": "assets/bakeoff/protagonist/parts/leg_front_upper.png",
-        "sha256": "04461b18d4008c0c114fefc755ad26fae89603a3d87b684f3d32de7ee8c0cfba"
+        "sha256": "2310239e32a26c966792b1a42ffaf0c60ada15cfed90d36c50477c6cb89cf6a1"
       },
       {
         "path": "assets/bakeoff/protagonist/parts/scarf1.png",
@@ -71,10 +75,16 @@
       },
       {
         "path": "assets/bakeoff/protagonist/parts/torso.png",
-        "sha256": "01b8a54e041def8225332b51c447574567b20c455e1200f4986627d1b8485aaa"
+        "sha256": "3d193a689a9e69da28519e3d73d13448389027ab116e274b41242179ad402e06"
       }
     ]
   },
-  "human_edits": [],
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (omp)",
+      "description": "Glow-up round 3: re-rendered after repainting torso/hips/sleeves for value structure and recoloring the thigh-wrap legs to remove the skirt seam.",
+      "at": "2026-09-29T02:54:46+00:00"
+    }
+  ],
   "license": "proprietary"
 }

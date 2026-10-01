@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "asset": "land-scarf-02.round-06.png",
+  "sha256": "2374267d9ffbb0cb483faaad0c5a5256f9819fb6ae2f2e47fd0b0b5a2919810e",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:27+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.round-04.png",
+        "sha256": "1c56bd33c50271d42825590af5df9cd772296bd5df41ff20b48119135ab6c19b"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "round-06 (kept round)'s land-scarf-02.png, before round 7 moves this same pixels to land-scarf-05.png as part of adding 3 in-between frames",
+      "at": "2026-09-30T05:09:10.391763+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

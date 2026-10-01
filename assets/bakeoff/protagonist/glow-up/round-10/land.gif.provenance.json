@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "asset": "land.gif",
+  "sha256": "0e831ace6c4cbbe7b2cce443b5b5d840e8fe08b7d8c184126d9fd13115341114",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T14:09:22+00:00",
+  "generator": {
+    "tool": "shoot_b.py",
+    "tool_version": "round-10; unchanged fixed layout",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
+        "sha256": "6a949541543d38f1957c20d4138361d20ace0dc746d60639689860d0405f4100"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/rig/violet.json",
+        "sha256": "648eeca697454a59e529ce8ad68b198f125e777d11838cd3b3764d5090c41096"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-00.png",
+        "sha256": "4fc774ca366836b52af4a9813da8cdb2295c2cad6b1af89e1652210fe553b479"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-01.png",
+        "sha256": "a3ff23d233c92c171343dbb9ad230fff0bd09ad6cb112d45e804f4e80f764934"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.png",
+        "sha256": "57ae0bee6812c2d8bae4b0e16c319b959988ccb043af516e14ee0444391006fc"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-03.png",
+        "sha256": "e88966db86795d80bf07184c0793eaada247a0eb78d97c247ead78edfd59e0db"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-04.png",
+        "sha256": "abe6332394362b3706edf40ae44f2881685c97d48420a1eecf9c55e2cf68a256"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-05.png",
+        "sha256": "30a4471f51a50d4184936dcc2fd543a64325a3df6732e9c8f52f5398005c7616"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-00.png",
+        "sha256": "7e4ece0287bfbb9f47f8d31c568ac54a9c2e40fede983369275d4492fcdd3e6b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-01.png",
+        "sha256": "afbafd3473b2fbba4dd7c250e1fc07f5c72cb09db847b7740394608246bd0225"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.png",
+        "sha256": "b6f1da4cf5bd6dfa3dd38968f169d600059fa36653d20157d6d919d8b177fc8f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-03.png",
+        "sha256": "8bcd05cc0f5a79f71ec9b2793f3a0aa206c35953a86e432f4a28ad1ac80cab58"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-04.png",
+        "sha256": "611cfe8cfca565e7e66a19efc2820ecd92143077ce2a90bc04a04b1597edc5ac"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-05.png",
+        "sha256": "1faa377e13446095d254048377f6d664a4a06c695824730da38b0adeb96aeb51"
+      }
+    ]
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

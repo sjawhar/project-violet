@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "asset": "double_jump.gif",
+  "sha256": "1ba5d7bf51825f4785d822f102f7cc6b2cc9d83c284c31ec656ddc565e9bad3c",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T04:39:50+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+    "tool_version": "shoot_b.py round-06: technique B (run/idle torso-lock + head-rhythm placement offsets, idle scarf repaint, fall frame 4 repaint) in shoot.py's exact fixed layout",
+    "model": null,
+    "params": {
+      "command": "uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/shoot_b.py --rig assets/bakeoff/protagonist/rig/violet.json --out assets/bakeoff/protagonist/glow-up/round-06"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
+        "sha256": "6a949541543d38f1957c20d4138361d20ace0dc746d60639689860d0405f4100"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-00.png",
+        "sha256": "0cd48705d89d149fb768a1c790469485d249e62284c5b3b6bdf06e2b12d48d4c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-00.png",
+        "sha256": "35fa2c3c13872d6fea32d08fa1417beee1b577df8160ed8315bd10c5ee2d66eb"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-01.png",
+        "sha256": "f754dfbaf32414b82eeb845a5656b97b2fba6e423b32ff0a9690d14b3ca313c2"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-01.png",
+        "sha256": "f15d97e2b8bea8b538dd31ce692f2b6ab1c386e1f9265467e8c6edab6615bc3a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-02.png",
+        "sha256": "7c379878472cf0e1bf0814d8d63d7f710aec98ce26a7fe356142c17a66ab1017"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-02.round-06.png",
+        "sha256": "50dcc3e61603bd379f8b349a8f536a9fa0c460374d56c15d517eeb98e6dbc5f3"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-03.png",
+        "sha256": "0ccde770b78b83e84300a9459d3aff1e327a5b6889a10907d2ccf90ef1162cf5"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-03.round-06.png",
+        "sha256": "e17c30adfcd23400baeb7ff58e3c7fae011b138d11086fd0d5cefc197b82d9a6"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-04.png",
+        "sha256": "52fedcb5c5775746248ca3e8eab55e96ec5d5ebd0a090ff760ea665efcde76d4"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-04.png",
+        "sha256": "d0c450d10a3e3e954c0d833cca05cc4a5347cb7e5f0c6e1aa865de46b17fd29c"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md's 'Frozen inputs' convention): re-pointed the inputs that changed this round (double_jump's scarf-02/03 repaint, and dash's/land's frame additions moving dash-body/scarf-01/02 and land-body/scarf-02's pixels to new indices) at their frozen assets/bakeoff/protagonist/glow-up/trial-b/frames/*.round-06.png copies, since round 7 overwrote or moved the live files; every other input is unchanged.",
+      "at": "2026-09-30T05:09:42.660570+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

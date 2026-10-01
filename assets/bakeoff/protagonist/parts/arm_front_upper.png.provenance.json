@@ -1,22 +1,26 @@
 {
   "schema_version": 1,
   "asset": "arm_front_upper.png",
-  "sha256": "1bcaab8efcf8c888aae0a0c24809f0ddb8da5d8d7b660bdd9a703d4826565b30",
+  "sha256": "9c55078ea48176a65f95ad8875db6b109160efca768163b3360849332412e413",
   "kind": "image",
   "origin": "generated",
-  "created_at": "2026-09-28T17:10:26+00:00",
+  "created_at": "2026-09-29T02:32:49+00:00",
   "generator": {
     "tool": "gen",
     "tool_version": "0.1.0",
     "provider": "openai",
     "model": "gpt-image-2",
-    "prompt": "Only the upper arm from the shoulder to the elbow, covered by the top half of the robe's loose sleeve, a closed soft fabric tube hanging straight down vertically that ends at the elbow in a smooth rounded end, the sleeve does not flare and shows no opening and no cuff, no forearm, no hand, no torso of the character in the reference, side view facing right, same painted soft-edged style and palette as the reference, centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
+    "prompt": "Only the upper arm sleeve, a loose robe sleeve covering the shoulder to the elbow, of the character in the reference turnaround, side view facing right, the same overall silhouette family, crop and proportions as the reference sleeve image (a closed fabric tube, no opening, no cuff, no forearm, no hand, no torso in frame), but this is an independent companion painting for the character's other arm, not a copy -- ending in a wide, blunt, rounded elbow end (like the rounded tip of a soft cone, never a sharp narrow point). Match the reference sleeve image's richer, deeper warm gray-brown tone and its shading style: one broad, soft directional light gradient across the whole sleeve, darker along the back/underside edge and softly lighter toward the front-facing edge, plus two or three small, loose diagonal wrinkle creases bunched only near the shoulder and only near the elbow. The long middle two-thirds of the sleeve stays a smooth gradient with no crease lines and no single highlight streak running down its centre. Keep the same warm neutral gray-brown hue family, no new colors, no red, no pattern, same painted soft-edged digital-gouache style. No ink outlines, no anime cel-shading, no hard graphic-novel shadow shapes -- painterly gradients only. Centred on the canvas, nothing else in frame, no ground, no shadow, no text, transparent background",
     "params": {
       "size": "1024x1024",
       "quality": "high",
       "background": "transparent"
     },
     "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/parts/arm_back_upper.round-02.png",
+        "sha256": "3a83c513f692e927b150ded7b0fa252ba33ff5bbaf50cd93b898708eef20dd9c"
+      },
       {
         "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
         "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
@@ -25,14 +29,14 @@
   },
   "human_edits": [
     {
-      "by": "anthropic/claude-opus-5-5 (omp)",
-      "description": "trimmed transparent margin to the alpha > 8 bounding box: 1024x1024 -> 259x646",
-      "at": "2026-09-28T17:12:16+00:00"
+      "by": "anthropic/claude-sonnet-5 (omp)",
+      "description": "Glow-up round 3 (color_readability/visual_quality gap: round 2's own critique measured the robe body at luminance ~124 against this sheet's own neutral-gray backdrop at ~127, a ~1% difference, so on anything but a pure neutral floor most of the body reads as one dark blob; the critique also flagged a lighter tan patch on the mid-right skirt that cuts across the fabric folds at a hard, straight edge, reading as a leftover texture seam rather than a fold). Repainted via a gen image edit, matching arm_back_upper's kept style; four earlier attempts rejected first: try1 and try3 (OpenAI safety rejections, sexual/self-harm respectively, using the old arm_front_upper.png as input) and try4 (OpenAI safety rejection, sexual, using the same revised prompt as arm_back_upper's kept try3). Since arm_front_upper.png itself seemed to be the trigger, try5 (kept) instead used the still-live arm_back_upper.png plus violet-turnaround.png as input, asked for an independent companion painting (not a copy) with a wide, blunt, rounded elbow end, and passed.",
+      "at": "2026-09-29T02:40:23+00:00"
     },
     {
-      "by": "anthropic/claude-opus-5-5 (omp)",
-      "description": "rescaled by factor 0.315 (Lanczos), 259x646 -> 82x203, to the shared rig scale: 1000 px crown to sole, from the turnaround's side view (crown y=80, sole y=960); see assets/bakeoff/protagonist/README.md. Shoulder cap to the centre of the rounded elbow end (487 painted px) set to the 153 px upper-arm bone (55% of the 278 px shoulder-to-wrist, inferred).",
-      "at": "2026-09-28T17:12:17+00:00"
+      "by": "anthropic/claude-sonnet-5 (omp)",
+      "description": "trimmed transparent margin to the alpha > 8 bounding box, then rescaled by Lanczos to the rig's existing arm_front_upper height (matching the previous live part's own height in px, so pivots/proportions stay aligned); see assets/bakeoff/protagonist/README.md.",
+      "at": "2026-09-29T02:40:23+00:00"
     }
   ],
   "license": "proprietary"

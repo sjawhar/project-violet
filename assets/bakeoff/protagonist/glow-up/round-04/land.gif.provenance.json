@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "asset": "land.gif",
+  "sha256": "41deac1c74f971816a4b71fe3184c03a9271f6937ee4f07e2dd980ac9af16794",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T04:36:32+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/shoot_b.py",
+    "tool_version": "shoot_b.py round-04: technique B (painted frames) in shoot.py's exact fixed layout",
+    "model": null,
+    "params": {
+      "command": "uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/shoot_b.py --rig assets/bakeoff/protagonist/rig/violet.json --out assets/bakeoff/protagonist/glow-up/round-04"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/shoot_b.before-attachment.py",
+        "sha256": "6a949541543d38f1957c20d4138361d20ace0dc746d60639689860d0405f4100"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-00.round-04.png",
+        "sha256": "47109c7fef8fb56e7fa202a895e2e3635bd663ca6d1390cc2de7c5795ba79143"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-01.round-04.png",
+        "sha256": "db80e6eea7cd6f8f0322e4a4db81d2fbc77a0442f6e5a3612672f6365ca7e155"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-02.round-04.png",
+        "sha256": "06069002f94579a3a4029ff31d60f7c6664764d6a1930ee25482dfd76cadc157"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-00.round-04.png",
+        "sha256": "d4c1549a65070535814f6ca24ec3d34c806922c940474813e4085e11db09e3f1"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-01.round-04.png",
+        "sha256": "0369b5060e519696138b739eb07a29e282fb4d5615445fe95de071dd4de7462e"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-02.round-04.png",
+        "sha256": "1c56bd33c50271d42825590af5df9cd772296bd5df41ff20b48119135ab6c19b"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound6 (Claude)",
+      "description": "corrected generator.inputs[].sha256 for assets/bakeoff/protagonist/glow-up/shoot_b.py to its current recorded hash (round 6's torso_x/place_dy_offset grounded-placement support changed shoot_b.py's own content a second time since this round-4 record was last corrected for round 5's frame_count() bugfix; this reference predates round 6's change).",
+      "at": "2026-09-30T04:36:39+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

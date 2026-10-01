@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "asset": "dash-body-01.png",
+  "sha256": "590dacbd2ca4ed08f95556515769540af43dc6c190aaea0f34284f5739124ee9",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-30T05:23:57+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Frame-by-frame hand-painted 2D game sprite of Violet, a slender young girl adventurer, side-view profile facing right. She wears a hooded gray robe with a darker waist sash, an ankle-length robe skirt with a slightly darker hem, and goes barefoot with simple ankle wraps. Pale skin, dark hair just visible under the hood, a clearly readable young face in profile with a visible eye, brow, nose and mouth. Realistic child body proportions, about 5.5 head-heights tall, matching the reference turnaround exactly in design, coloring and proportions. Rendered as a single cohesive hand-painted illustration with soft painterly brushwork and visible brush texture, in a muted earthy palette (grays, browns, warm skin tones), NOT a flat vector cutout, in the painted-storybook register of games like Hollow Knight or GRIS. A moment into the sudden dash burst, past the initial coiled anticipation but not yet at its full peak: her torso is leaning further forward and down than the very first instant, the front leg driving harder off the ground, the back leg lifting clear and trailing, both arms swinging back past her hips and beginning to bend at the elbows, head tucking lower and further forward. This is NOT a jump or a leap into the air and NOT a running stride -- read it as the middle of the same explosive forward launch, gathering speed toward its peak. Full body visible from the top of the hood to the soles of both bare feet, and both hands, entirely inside the canvas with generous empty margin on every side so nothing is cropped. She stands at a consistent scale and vertical position: the same distance from the top of her hood to the ground line as in the reference image(s). Fully transparent background with ZERO pixels painted outside her own silhouette: no ground plane, no cast shadow, no vignette, no glow, no halo, no radial light, no gradient, no dark or light background tint of any kind, no border, no text, no watermark, no second copy of the character, no scarf or neck wrap of any kind -- bare gray robe collar at the neck; a separate layer will add the scarf later.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
+        "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.png",
+        "sha256": "04f0bd3f49e1a853a2e3df7be36a6e11feb403cdb1309787ea96560756d5ee6d"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.png",
+        "sha256": "6b177ff1ec904b4d8a03aea6f0e234dbb05e2fe09cd945718f632a11cb911108"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md, adding 3 in-between frames to dash per round 6's gap 3 'too few drawings... large pose jumps and no in-betweens'): cropped the raw body+scarf pair to their shared alpha>8 bbox union, rescaled both by the shared rig_per_raw factor (1.128227381210675, reused unchanged), and recorded head_x/head_y/target_head_x_fraction/target_head_y_fraction in dash-finalize-record.json (t = i * 0.2/6 on the new 6-frame even grid), matching dash's existing 'airborne, cell-fraction' anchor scheme. Then graded via trial-b/grade_b.py's grade_body/grade_scarf functions directly, matching every other technique-B frame's round-5 value pass.",
+      "at": "2026-09-30T05:42:40+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

@@ -1,0 +1,224 @@
+{
+  "0": {
+    "t": 0.0,
+    "union_bbox_orig_1024canvas": [
+      116,
+      151,
+      932,
+      882
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      816,
+      731
+    ],
+    "final_size": [
+      921,
+      825
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 824.7342156650034,
+    "head_x": 776.7842286762593,
+    "head_y": 86.40374372005364,
+    "target_head_x_fraction": 0.6093334570630922,
+    "target_head_y_fraction": 0.359166509470597,
+    "ground_anchored": false,
+    "scarf_bbox_orig_1024canvas": [
+      201,
+      262,
+      857,
+      838
+    ],
+    "scarf_final_size": [
+      740,
+      650
+    ],
+    "scarf_offset_final": [
+      25,
+      50
+    ]
+  },
+  "1": {
+    "t": 0.03333333333333333,
+    "union_bbox_orig_1024canvas": [
+      33,
+      151,
+      1007,
+      901
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      974,
+      750
+    ],
+    "final_size": [
+      1099,
+      846
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 846.1705359080062,
+    "head_x": 907.0103717750812,
+    "head_y": 94.69615778691171,
+    "target_head_x_fraction": 0.6334803404995653,
+    "target_head_y_fraction": 0.37462373100555946,
+    "ground_anchored": false,
+    "scarf_offset_final": [
+      -90,
+      -121
+    ]
+  },
+  "2": {
+    "t": 0.06666666666666667,
+    "union_bbox_orig_1024canvas": [
+      113,
+      120,
+      995,
+      908
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      882,
+      788
+    ],
+    "final_size": [
+      995,
+      889
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 889.0431763940118,
+    "head_x": 839.9317579152711,
+    "head_y": 93.46651678785128,
+    "target_head_x_fraction": 0.6593429031245497,
+    "target_head_y_fraction": 0.38645000294276177,
+    "ground_anchored": false,
+    "scarf_bbox_orig_1024canvas": [
+      57,
+      215,
+      925,
+      849
+    ],
+    "scarf_final_size": [
+      979,
+      715
+    ],
+    "scarf_offset_final": [
+      -73,
+      -68
+    ]
+  },
+  "3": {
+    "t": 0.1,
+    "union_bbox_orig_1024canvas": [
+      2,
+      133,
+      1023,
+      854
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      1021,
+      721
+    ],
+    "final_size": [
+      1152,
+      813
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 813.4519418528967,
+    "head_x": 986.1860193371776,
+    "head_y": 109.01466975879701,
+    "target_head_x_fraction": 0.6672851538150086,
+    "target_head_y_fraction": 0.39185680117396526,
+    "ground_anchored": false,
+    "scarf_offset_final": [
+      -50,
+      -200
+    ]
+  },
+  "4": {
+    "t": 0.13333333333333333,
+    "union_bbox_orig_1024canvas": [
+      13,
+      68,
+      1021,
+      905
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      1008,
+      837
+    ],
+    "final_size": [
+      1137,
+      944
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 944.3263180733348,
+    "head_x": 962.567872228967,
+    "head_y": 100.76971574586096,
+    "target_head_x_fraction": 0.6672851538150086,
+    "target_head_y_fraction": 0.39185680117396526,
+    "ground_anchored": false,
+    "scarf_offset_final": [
+      -67,
+      -107
+    ]
+  },
+  "5": {
+    "t": 0.16666666666666666,
+    "union_bbox_orig_1024canvas": [
+      95,
+      80,
+      992,
+      911
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      897,
+      831
+    ],
+    "final_size": [
+      1012,
+      938
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "sole_y": 937.5569537860708,
+    "head_x": 846.9141673860358,
+    "head_y": 98.28811217435272,
+    "target_head_x_fraction": 0.6672851538150086,
+    "target_head_y_fraction": 0.39185680117396526,
+    "ground_anchored": false,
+    "scarf_bbox_orig_1024canvas": [
+      98,
+      248,
+      840,
+      854
+    ],
+    "scarf_final_size": [
+      837,
+      684
+    ],
+    "scarf_offset_final": [
+      24,
+      100
+    ]
+  }
+}

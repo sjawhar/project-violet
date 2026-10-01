@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "asset": "shoot_b.py",
+  "sha256": "466d3469510472ba329084449b1f2b4cb003a9600566baee78cd5f7470c3f420",
+  "kind": "text",
+  "origin": "generated",
+  "created_at": "2026-09-29T04:42:04+00:00",
+  "generator": {
+    "tool": "hand-written-python",
+    "tool_version": "1",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "prompt": "THROWAWAY (Phase 1 bake-off, Violet glow-up, round 4): shoots technique B's (frame-by-frame painted sprites) contact sheet, in-game-scale contact sheet, and per-animation GIFs in shoot.py's exact fixed round-0 layout, compositing each animation's painted body/scarf frame files per that frame's own finalize-record anchor scheme instead of rendering a spinerig skeleton",
+    "params": {},
+    "inputs": []
+  },
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletRound5)",
+      "description": "Fixed frame_count() to match only <anim>-body-NN.png exactly via regex, not the frozen <anim>-body-NN.round-04.png copies that also matched its previous plain glob(f\"{anim}-body-*.png\") and doubled the frame count once round 5 froze inputs beside the live frames (rounds.md's 'Frozen inputs' convention); added the `re` import it needs.",
+      "at": "2026-09-30T02:56:06+00:00"
+    },
+    {
+      "by": "VioletRound6 (Claude)",
+      "description": "Added two optional per-frame overrides to render_cell_b()'s grounded (idle/run/land) placement branch, read only when present so land (untouched this round) keeps its round-4 behavior byte-for-byte: torso_x (the body's own whole-mask alpha centroid, used in place of head_x for the horizontal anchor so the torso stays put across a loop instead of sliding with the head) and place_dy_offset (a rig-unit lift added to sole_y before it meets the ground line, so a frame can rise off or settle below the shared floor by design without moving GROUND_Y_FRACTION/HEAD_X_FRACTION themselves). Fixes round 5's gap 1, 'the loops aren't built as loops' (run's head-height jumping with no rhythm and its centre of mass sliding 24px sideways; idle's head moving 16px vertically and its scarf billowing ~60px). Docstring updated to document the two new fields; the fixed layout constants (REFERENCE_BOX, SCALE, GROUND_Y_FRACTION, HEAD_X_FRACTION, sampling) are unchanged.",
+      "at": "2026-09-30T04:35:53+00:00"
+    },
+    {
+      "by": "lead (openai-codex/gpt-6-astra)",
+      "description": "Validate all 43 anatomical neck-to-knot bindings before rendering, and composite the scarf above clothing so its neck wrap remains visible.",
+      "at": "2026-09-30T17:38:48+00:00"
+    },
+    {
+      "by": "lead (openai-codex/gpt-6-astra)",
+      "description": "Document neck-to-knot registration and unchanged sampling; rendering refuses invalid bindings and preserves the visible neck wrap.",
+      "at": "2026-09-30T17:42:24+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

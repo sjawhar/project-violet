@@ -1,0 +1,153 @@
+{
+  "0": {
+    "t": 0.0,
+    "union_bbox_orig_1024canvas": [
+      203,
+      40,
+      870,
+      921
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      667,
+      881
+    ],
+    "final_size": [
+      753,
+      994
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 465.99012086450097,
+    "head_y": 98.67583896594874,
+    "target_head_x": 737.5340335424744,
+    "target_head_y": 514.5178174644241,
+    "scarf_offset_final": [
+      -69,
+      -134
+    ]
+  },
+  "1": {
+    "t": 0.12,
+    "union_bbox_orig_1024canvas": [
+      73,
+      10,
+      864,
+      939
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      791,
+      929
+    ],
+    "final_size": [
+      892,
+      1048
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 598.2248027796405,
+    "head_y": 173.6799239279437,
+    "target_head_x": 733.2736695131546,
+    "target_head_y": 514.7424509726368,
+    "scarf_offset_final": [
+      -148,
+      -225
+    ]
+  },
+  "2": {
+    "t": 0.24,
+    "union_bbox_orig_1024canvas": [
+      176,
+      10,
+      902,
+      1010
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      726,
+      1000
+    ],
+    "final_size": [
+      819,
+      1128
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 491.00420247850445,
+    "head_y": 164.77700698591843,
+    "target_head_x": 729.0162783784832,
+    "target_head_y": 515.0483019830082,
+    "scarf_offset_final": [
+      -37,
+      -170
+    ]
+  },
+  "3": {
+    "t": 0.36,
+    "union_bbox_orig_1024canvas": [
+      231,
+      9,
+      895,
+      956
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      664,
+      947
+    ],
+    "final_size": [
+      749,
+      1068
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 411.618978954241,
+    "head_y": 157.3068404879726,
+    "target_head_x": 727.5814704394344,
+    "target_head_y": 515.2678032860051,
+    "scarf_offset_final": [
+      -110,
+      -284
+    ]
+  },
+  "4": {
+    "union_bbox_orig_1024canvas": [
+      164,
+      20,
+      895,
+      968
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      731,
+      948
+    ],
+    "final_size": [
+      825,
+      1070
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 464.7266391204522,
+    "head_y": 137.46645069565454,
+    "t": 0.48,
+    "target_head_x": 723.208473400748,
+    "target_head_y": 515.4663017630543,
+    "anchor_mode": "airborne_head",
+    "scarf_offset_final": [
+      -20,
+      -300
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "asset": "dash-body-01.round-06.png",
+  "sha256": "6b177ff1ec904b4d8a03aea6f0e234dbb05e2fe09cd945718f632a11cb911108",
+  "kind": "image",
+  "origin": "derived",
+  "created_at": "2026-09-30T02:56:26+00:00",
+  "generator": {
+    "tool": "assets/bakeoff/protagonist/glow-up/trial-b/grade_b.py",
+    "tool_version": "grade_b.py round 5: darkens body value (scale(V)=1-BODY_K*(1-V/255), BODY_K=0.56, protecting near-white highlights/skin/face) with a soft warm rim a few px inside the alpha edge, and solidifies scarf alpha (morphological close + narrow Gaussian edge, SCARF_EDGE_PX=7) so only ~1-2 final px stay soft -- reads the frozen round-04.png copy",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.round-04.png",
+        "sha256": "90dc9368f651ea62b5aca7a786cbb18e3302b8526cbca9725db3adb504e79063"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "round-06 (kept round)'s dash-body-01.png ('peak burst'), before round 7 moves this same pose's pixels to dash-body-02.png as part of adding 3 in-between frames",
+      "at": "2026-09-30T05:09:10.387242+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

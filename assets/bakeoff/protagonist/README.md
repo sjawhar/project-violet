@@ -23,6 +23,28 @@ in #19 (`concept/violet-turnaround.png`):
 The rig references every part by file name, so renaming a part means updating `rig-src/mkrig.py`
 too.
 
+## Painted sequence preview
+
+The glow-up's painted sequence is a review candidate, separate from the cutout
+reader used by the game lanes. Its scarf and body are separate tintable layers.
+`glow-up/scarf_attachments.json` records the visually checked neck and knot
+landmarks for all 43 painted frames, bound to the source PNG hashes. A shared
+canvas or crop origin is not an attachment point.
+
+After finalizing frames, bind and validate them before rendering:
+
+```sh
+uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py apply
+uv run --project tools/spinerig python assets/bakeoff/protagonist/glow-up/shoot_b.py \
+  --rig assets/bakeoff/protagonist/rig/violet.json \
+  --out out/violet-attached-preview
+```
+
+The renderer refuses stale or missing bindings. Changed artwork requires new
+visually verified landmarks, not updated hashes alone. The scarf is drawn above
+the clothing to preserve its neck wrap. Historical round captures are kept
+unchanged; `glow-up/attachment-fix/` shows the attachment correction separately.
+
 ## Changing an animation or the rig
 
 Run everything from the repository root:

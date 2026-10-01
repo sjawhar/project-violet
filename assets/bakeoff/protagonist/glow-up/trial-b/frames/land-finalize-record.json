@@ -1,0 +1,206 @@
+{
+  "0": {
+    "union_bbox_orig_1024canvas": [
+      113,
+      192,
+      888,
+      901
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      775,
+      709
+    ],
+    "final_size": [
+      874,
+      800
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 649.652170173334,
+    "head_y": 84.97452030991043,
+    "sole_y": 799.9132132783685,
+    "anchor_mode": "grounded",
+    "scarf_offset_final": [
+      -9,
+      -34
+    ]
+  },
+  "1": {
+    "union_bbox_orig_1024canvas": [
+      109,
+      60,
+      820,
+      960
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      711,
+      900
+    ],
+    "final_size": [
+      802,
+      1015
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 615.3821765407233,
+    "head_y": 102.68217692698768,
+    "sole_y": 1015.4046430896074,
+    "anchor_mode": "grounded",
+    "scarf_offset_final": [
+      -68,
+      -66
+    ]
+  },
+  "2": {
+    "union_bbox_orig_1024canvas": [
+      164,
+      20,
+      829,
+      990
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      665,
+      970
+    ],
+    "final_size": [
+      750,
+      1094
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 547.1969251340317,
+    "head_y": 108.80236632076384,
+    "sole_y": 1094.3805597743547,
+    "anchor_mode": "grounded",
+    "scarf_offset_final": [
+      -110,
+      -76
+    ]
+  },
+  "3": {
+    "union_bbox_orig_1024canvas": [
+      313,
+      40,
+      766,
+      979
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      453,
+      939
+    ],
+    "final_size": [
+      511,
+      1059
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 248.23970981518931,
+    "head_y": 102.95658598808396,
+    "sole_y": 1059.4055109568237,
+    "anchor_mode": "grounded",
+    "scarf_bbox_orig_1024canvas": [
+      97,
+      263,
+      737,
+      935
+    ],
+    "scarf_final_size": [
+      722,
+      758
+    ],
+    "scarf_offset_final": [
+      -412,
+      177
+    ]
+  },
+  "4": {
+    "union_bbox_orig_1024canvas": [
+      274,
+      11,
+      689,
+      996
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      415,
+      985
+    ],
+    "final_size": [
+      468,
+      1111
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 282.3521807093591,
+    "head_y": 106.53626162238669,
+    "sole_y": 1111.3039704925147,
+    "anchor_mode": "grounded",
+    "scarf_bbox_orig_1024canvas": [
+      158,
+      276,
+      652,
+      907
+    ],
+    "scarf_final_size": [
+      557,
+      712
+    ],
+    "scarf_offset_final": [
+      -218,
+      183
+    ]
+  },
+  "5": {
+    "union_bbox_orig_1024canvas": [
+      140,
+      28,
+      668,
+      991
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      528,
+      963
+    ],
+    "final_size": [
+      596,
+      1086
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 448.7749896612976,
+    "head_y": 105.71370336036627,
+    "sole_y": 1086.48296810588,
+    "anchor_mode": "grounded",
+    "scarf_bbox_orig_1024canvas": [
+      95,
+      165,
+      726,
+      971
+    ],
+    "scarf_final_size": [
+      712,
+      909
+    ],
+    "scarf_offset_final": [
+      -200,
+      180
+    ]
+  }
+}

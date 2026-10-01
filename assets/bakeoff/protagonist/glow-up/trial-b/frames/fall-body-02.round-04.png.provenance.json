@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "asset": "fall-body-02.round-04.png",
+  "sha256": "d1006d0cd9e84c9499a01f8f9c21b37f1204aa2c175667535f393608e3056af9",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-30T02:43:37+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Frame-by-frame hand-painted 2D game sprite of Violet, a slender young girl adventurer, side-view profile facing right. She wears a hooded gray robe with a darker waist sash, an ankle-length robe skirt with a slightly darker hem, and goes barefoot with simple ankle wraps. Pale skin, dark hair just visible under the hood, a clearly readable young face in profile with a visible eye, brow, nose and mouth. Realistic child body proportions, about 5.5 head-heights tall, matching the reference turnaround exactly in design, coloring and proportions. Rendered as a single cohesive hand-painted illustration with soft painterly brushwork and visible brush texture, in a muted earthy palette (grays, browns, warm skin tones), NOT a flat vector cutout, in the painted-storybook register of games like Hollow Knight or GRIS. She is falling, body fully open: both arms raised to about shoulder height and spread wide to the sides, elbows softly bent, hands never rising above the crown of her hood; torso arched back and open; legs hanging loose and apart below her, knees slightly bent; the robe skirt billowing and flaring upward around her waist and thighs from the rushing air; head tilted down, looking toward the ground far below; a calm, open expression. A mid-air fall in progress, not a jump, not a static floating pose, with no ground, floor, or ledge anywhere in the image. Full body visible from the top of the hood to the soles of both bare feet, and both hands, entirely inside the canvas with generous empty margin on every side so nothing is cropped. She stands at a consistent scale and vertical framing similar to the reference image(s): about the same distance from the top of her hood to the bottom of the canvas. Transparent background, no ground plane, no floor, no cast shadow, no vignette, no border, no text, no watermark, no second copy of the character, no scarf or neck wrap of any kind -- bare gray robe collar at the neck; a separate layer will add the scarf later.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
+        "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-02.round-04.png",
+        "sha256": "d03e23e75ae635b6e2214a1f8dce445e1d4345ac27619d4d36e3024b6636b78f"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "anthropic/claude-sonnet-5 (VioletRound5)",
+      "description": "Frozen as fall-body-02.round-04.png for round 4's own shot provenance (identical bytes to the live fall-body-02.png through round 4, sha256 d1006d0cd9e84c9499a01f8f9c21b37f1204aa2c175667535f393608e3056af9) before glow-up round 5's grade_b.py overwrote the live fall-body-02.png with a value/opacity grading pass; see assets/bakeoff/protagonist/glow-up/rounds.md.",
+      "at": "2026-09-30T02:43:37+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

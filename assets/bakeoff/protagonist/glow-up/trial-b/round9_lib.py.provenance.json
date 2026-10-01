@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "asset": "round9_lib.py",
+  "sha256": "0b36837c090d1349debcc2580f5940a07ec1b16b643228f5938af7fbfa1380b7",
+  "kind": "text",
+  "origin": "generated",
+  "created_at": "2026-09-30T07:54:47+00:00",
+  "generator": {
+    "tool": "hand-written-python",
+    "tool_version": "1",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "prompt": "THROWAWAY (Phase 1 bake-off, Violet glow-up, round 9): driver helpers for round 9's scarf-only repaint pass, fixing round 8's kept gap 1 (the scarf redrawn every frame, some frames a flat untextured light-gray fill, and land frames 4-6 swapping from in front of the body to behind it). freeze() copies a live frame + its sidecar to <name>.round-NN.<ext> before it gets overwritten (rounds.md's Frozen inputs convention); repoint_shot_inputs() re-points an existing shot record's stale generator.inputs paths at the frozen copies, same bytes/hash; finalize_scarf_only() generalizes finalize_run_scarf_fix.py's recipe (crop the raw regen to its own alpha bbox, rescale by the shared rig_per_raw, compute scarf_offset_final against the frame's own recorded union_bbox_orig_1024canvas) to any anim/index; grade_scarf_inplace() applies grade_b.py's grade_scarf directly; measure_std() is the pixel std of luminance inside the scarf's opaque interior used to identify flat/untextured frames.",
+    "params": {},
+    "inputs": []
+  },
+  "human_edits": [],
+  "license": "proprietary"
+}

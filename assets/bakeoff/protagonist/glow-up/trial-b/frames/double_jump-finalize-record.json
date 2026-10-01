@@ -1,0 +1,172 @@
+{
+  "0": {
+    "t": 0.0,
+    "union_bbox_orig_1024canvas": [
+      135,
+      31,
+      792,
+      946
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      657,
+      915
+    ],
+    "final_size": [
+      741,
+      1032
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 500.54527297599503,
+    "head_y": 100.29002959646168,
+    "target_head_x": 737.5340335424744,
+    "target_head_y": 514.5178174644241,
+    "scarf_offset_final": [
+      -60,
+      -51
+    ]
+  },
+  "1": {
+    "t": 0.1,
+    "union_bbox_orig_1024canvas": [
+      128,
+      55,
+      848,
+      834
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      720,
+      779
+    ],
+    "final_size": [
+      812,
+      879
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 596.1289672319222,
+    "head_y": 84.55205585946327,
+    "target_head_x": 776.6909663721419,
+    "target_head_y": 482.95733606242095,
+    "scarf_offset_final": [
+      -151,
+      -64
+    ]
+  },
+  "2": {
+    "t": 0.2,
+    "union_bbox_orig_1024canvas": [
+      68,
+      84,
+      962,
+      879
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      894,
+      795
+    ],
+    "final_size": [
+      1009,
+      897
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 613.7346431578097,
+    "head_y": 78.55427998778957,
+    "target_head_x": 778.5817972579254,
+    "target_head_y": 483.2907405635415,
+    "scarf_bbox_orig_1024canvas": [
+      167,
+      61,
+      825,
+      961
+    ],
+    "scarf_final_size": [
+      742,
+      1015
+    ],
+    "scarf_offset_final": [
+      -24,
+      -129
+    ]
+  },
+  "3": {
+    "t": 0.30000000000000004,
+    "union_bbox_orig_1024canvas": [
+      180,
+      44,
+      826,
+      942
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      646,
+      898
+    ],
+    "final_size": [
+      729,
+      1013
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 506.90742097149877,
+    "head_y": 97.96159023491747,
+    "target_head_x": 767.3812642975431,
+    "target_head_y": 491.60256078438226,
+    "scarf_bbox_orig_1024canvas": [
+      195,
+      198,
+      806,
+      965
+    ],
+    "scarf_final_size": [
+      689,
+      865
+    ],
+    "scarf_offset_final": [
+      -39,
+      179
+    ]
+  },
+  "4": {
+    "t": 0.4,
+    "union_bbox_orig_1024canvas": [
+      111,
+      39,
+      789,
+      964
+    ],
+    "orig_size": [
+      1024,
+      1024
+    ],
+    "trimmed_size": [
+      678,
+      925
+    ],
+    "final_size": [
+      765,
+      1044
+    ],
+    "rig_per_raw": 1.128227381210675,
+    "head_x": 494.5765665975282,
+    "head_y": 95.41457935650996,
+    "target_head_x": 753.3917897727367,
+    "target_head_y": 502.6795431540854,
+    "scarf_offset_final": [
+      -87,
+      37
+    ]
+  }
+}
