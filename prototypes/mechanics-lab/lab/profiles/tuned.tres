@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="PhysicsProfile" format=3]
+
+[ext_resource type="Script" path="res://lab/physics_profile.gd" id="1_s6ln2"]
+
+[resource]
+script = ExtResource("1_s6ln2")
+run_speed = 9.0
+ground_accel_time = 0.09
+ground_decel_time = 0.06
+air_accel_mult = 0.7
+turn_accel_mult = 1.6
+jump_height = 3.25
+jump_time_to_apex = 0.38
+min_jump_height = 1.1
+fall_gravity_mult = 1.7
+apex_hang_speed = 2.5
+apex_hang_mult = 0.5
+max_fall_speed = 18.0
+fast_fall_speed = 26.0
+coyote_ticks = 6
+buffer_ticks = 7
+corner_correct_px = 14
+box_w = 0.7
+box_h = 1.45
+dash_speed = 24.0
+dash_ticks = 10
+dash_freeze_ticks = 3
+dash_end_speed = 9.0
+dash_eight_way = 0
+double_jump_height = 2.4
+wall_jump = 0
+wall_slide_speed = 5.0
+wall_jump_push = 9.0
+resonance_ticks = 90
+breath_ticks = 120
