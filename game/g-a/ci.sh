@@ -10,7 +10,7 @@ if run res://tests/replay_runner.tscn -- --replay=res://replays/level01.replay.j
 if run res://tests/replay_runner.tscn -- --replay=res://replays/level01.replay.json --disable=double_jump > "$rep/replay-no-double-jump.json"; then echo "ci.sh: replay without double jump reached the goal" >&2; exit 1; fi
 run res://tests/validate_tags.tscn > "$rep/tags.txt" 2>&1
 if run res://tests/validate_tags.tscn -- --mutate > "$rep/tags-mutated.txt" 2>&1; then echo "ci.sh: tag validator passed a mutated level" >&2; exit 1; fi
-run res://tests/rig_test.tscn  # the rig reader (tests/rig_test.gd); its log stays in the CI output, not in reports/
+run res://tests/sprite_test.tscn  # the violet-sprites reader (tests/sprite_test.gd); its log stays in the CI output, not in reports/
 godot --headless --path . --export-release Linux "../../out/$lane/violet-$lane.x86_64" > "$rep/export.log" 2>&1
 test -x "../../out/$lane/violet-$lane.x86_64"
 # The exported game exits 0 even when its scripts fail to compile, so its log decides: Godot 4.7.2 prints compile and

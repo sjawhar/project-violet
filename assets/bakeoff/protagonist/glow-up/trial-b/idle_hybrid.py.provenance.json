@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "asset": "idle_hybrid.py",
+  "sha256": "a48705f08a582367f2f30ee0d19679af03efbe81f59793eef7a41aa28055310f",
+  "kind": "animation",
+  "origin": "generated",
+  "created_at": "2026-09-30T14:09:22+00:00",
+  "generator": {
+    "tool": "agent-authored Python",
+    "tool_version": "round-10",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "prompt": "Extend the idle hybrid with breathing, weight shift, arm sway and head tilt while keeping the feet planted and the one-second loop seamless.",
+    "params": {},
+    "inputs": []
+  },
+  "human_edits": [
+    {
+      "by": "lead (openai-codex/gpt-6-astra)",
+      "description": "Recovered the interrupted worker prototype, documented its behavior and wired repository-relative source/output paths. The motion implementation is the recovered worker code.",
+      "at": "2026-09-30T14:09:22+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

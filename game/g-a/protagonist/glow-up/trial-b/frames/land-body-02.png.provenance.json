@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "asset": "land-body-02.png",
+  "sha256": "57ae0bee6812c2d8bae4b0e16c319b959988ccb043af516e14ee0444391006fc",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-30T05:47:03+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Frame-by-frame hand-painted 2D game sprite of Violet, a slender young girl adventurer, side-view profile facing right. She wears a hooded gray robe with a darker waist sash, an ankle-length robe skirt with a slightly darker hem, and goes barefoot with simple ankle wraps. Pale skin, dark hair just visible under the hood, a clearly readable young face in profile with a visible eye, brow, nose and mouth. Realistic child body proportions, about 5.5 head-heights tall, matching the reference turnaround exactly in design, coloring and proportions. Rendered as a single cohesive hand-painted illustration with soft painterly brushwork and visible brush texture, in a muted earthy palette (grays, browns, warm skin tones), NOT a flat vector cutout, in the painted-storybook register of games like Hollow Knight or GRIS. Continuing to rise from the recovering crouch after a landing, further along toward standing than a moment before: knees straightening more, hips risen higher, torso lifting closer to upright but still with a slight forward lean, arms continuing to ease down from their forward-swung balance position, both feet flat and planted on the ground. A clear, further-along recovery pose, past the mid-recovery point but not yet fully upright. Full body visible from the top of the hood to the soles of both bare feet, and both hands, entirely inside the canvas with generous empty margin on every side so nothing is cropped. She stands at a consistent scale and vertical position: the same distance from the top of her hood to the ground line as in the reference image(s). Fully transparent background with ZERO pixels painted outside her own silhouette: no ground plane, no cast shadow, no vignette, no glow, no halo, no radial light, no gradient, no dark or light background tint of any kind, no border, no text, no watermark, no second copy of the character, no scarf or neck wrap of any kind -- bare gray robe collar at the neck; a separate layer will add the scarf later.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/concept/violet-turnaround.png",
+        "sha256": "f2f023962adfdaf5707dabdf84846ff4ed803aa0e5a61e13972453ddf163c36a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-01.png",
+        "sha256": "a3ff23d233c92c171343dbb9ad230fff0bd09ad6cb112d45e804f4e80f764934"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-05.png",
+        "sha256": "30a4471f51a50d4184936dcc2fd543a64325a3df6732e9c8f52f5398005c7616"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md, adding 3 in-between frames to land per round 6's gap 3 'too few drawings... large pose jumps and no in-betweens'): cropped the raw body+scarf pair to their shared alpha>8 bbox union, rescaled both by the shared rig_per_raw factor (1.128227381210675, reused unchanged), and recorded sole_y/head_x/head_y in land-finalize-record.json via trial-b/finalize_anim.py's existing incremental grounded mode. Then graded via trial-b/grade_b.py's grade_body/grade_scarf functions directly, matching every other technique-B frame's round-5 value pass.",
+      "at": "2026-09-30T06:01:17+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

@@ -1,7 +1,7 @@
 class_name GreyboxArt
 extends Resource
-## Greybox visuals: flat squares per kind, a sand backdrop, and the protagonist rig once it is in the project (else a
-## STAND-IN capsule for the character).
+## Greybox visuals: flat squares per kind, a sand backdrop, and the painted protagonist once her sprites are in the
+## project (else a STAND-IN capsule for the character).
 ## Lanes subclass it (PaintedArt in G-A, the flat-vector kit in G-C). THROWAWAY.
 ## Colors match tools/greybox (Task 1).
 const COLORS := {
@@ -36,20 +36,13 @@ func make_backdrop(level: Greybox) -> Node2D:
 	holder.add_child(rect)
 	return holder
 
-## The file whose presence swaps the STAND-IN for the rig: assets/bakeoff/protagonist/ copied to res://protagonist/, so
-## rig/violet.json finds violet.meta.json beside it and its parts through skeleton.images.
-const RIG_PATH := "res://protagonist/rig/violet.json"
+## The file whose presence swaps the STAND-IN for the painted Violet: assets/bakeoff/protagonist/sprites/ and the frames
+## it names copied to res://protagonist/, keeping the JSON's relative image paths.
+const SPRITES_PATH := "res://protagonist/sprites/violet.sprites.json"
 
-## A rig file that is there but does not load stops the game (exit 1) rather than falling back to the STAND-IN.
 func attach_character(player: Node) -> void:
-	if FileAccess.file_exists(RIG_PATH):
-		var rig := Rig.load_file(RIG_PATH)
-		var character := RigCharacter2D.create(rig) if rig != null else null
-		if character == null:
-			push_error("%s: the character rig did not load (see the error above); quitting" % RIG_PATH)
-			player.get_tree().quit(1)
-			return
-		player.add_child(character)
+	if FileAccess.file_exists(SPRITES_PATH):
+		attach_sprites(player, SPRITES_PATH)
 		return
 	var tile := 64.0
 	var w := 0.8 * tile; var h := 1.6 * tile; var r := w / 2.0
@@ -65,3 +58,14 @@ func attach_character(player: Node) -> void:
 	var label := Label.new(); label.name = "StandInLabel"; label.text = "STAND-IN"
 	label.position = Vector2(-48, -h - 30); label.add_theme_color_override("font_color", Color.BLACK)
 	player.add_child(label)
+
+## Adds the painted Violet from the violet-sprites file at PATH to PLAYER. A file that is there but does not load stops
+## the game (exit 1) after the reader's push_error, rather than falling back to the STAND-IN.
+static func attach_sprites(player: Node, path: String) -> void:
+	var sprites := VioletSprites.load_file(path)
+	var character := SpriteCharacter2D.create(sprites) if sprites != null else null
+	if character == null:
+		push_error("%s: the character sprites did not load (see the error above); quitting" % path)
+		player.get_tree().quit(1)
+		return
+	player.add_child(character)

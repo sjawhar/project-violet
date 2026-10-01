@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "asset": "dash-scarf-01.png",
+  "sha256": "4be05ae0846fe637f58b71ab46da52576d8fd6d9584368fa174b16462d79c9f5",
+  "kind": "image",
+  "origin": "generated",
+  "created_at": "2026-09-30T05:29:56+00:00",
+  "generator": {
+    "tool": "gen",
+    "tool_version": "0.1.0",
+    "provider": "openai",
+    "model": "gpt-image-2",
+    "prompt": "Using the exact pose, camera angle, character scale and canvas framing of the first reference image (a dashing girl), paint ONLY a long, wide, flowing fabric scarf in a plain, flat, neutral medium-gray color, matching the gray of the second reference swatch image exactly (no other hue, no pattern, no shading gradient into a color, just neutral gray). The scarf drapes from around her neck/collar and streams straight back behind her, gathering speed as the burst builds toward its peak -- wide and voluminous, clearly broader than a thin ribbon, so it reads as a substantial scarf silhouette even at small size. Paint exactly ONE continuous, solid, opaque scarf shape -- never multiple overlapping copies or echoes of the ribbon at different offsets; the scarf must be one continuous, fully opaque cloth shape, not several stacked layers. The third reference image shows the scarf from a neighboring frame of this same dash, already correctly scaled and attached at the same neck point -- keep the same attachment point, width and construction, changing only its drape to match this frame's own pose. Paint NOTHING else in the image: no character, no body, no face, no hands, no hood, no clothing, no background, no ground, no shadow, no text, no vignette, no glow, no halo, no dark or light background tint of any kind -- only the gray scarf shape, positioned and posed exactly where it would drape and trail relative to her neck and shoulders in the pose shown in the first reference image, on the same size canvas with the same framing, fully transparent everywhere else. Paint rich, visible folds and creases in the fabric with soft tonal shading (darker in the recesses, lighter on the raised folds) -- not a flat, single-tone silhouette; match the sculpted, folded painterly rendering of the second and third reference images exactly, just in this new drape.",
+    "params": {
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent"
+    },
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png",
+        "sha256": "590dacbd2ca4ed08f95556515769540af43dc6c190aaea0f34284f5739124ee9"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/parts/scarf1.png",
+        "sha256": "e04f62829ca32800925de0329b4602f6d0778242fc9b6c57102c7e5527e7f09c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.round-08.png",
+        "sha256": "026452145e3eac341c393433d32971590a5453d50940876ee7f1ca5b6937d9e8"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7 (rounds.md, adding 3 in-between frames to dash per round 6's gap 3 'too few drawings... large pose jumps and no in-betweens'): cropped the raw body+scarf pair to their shared alpha>8 bbox union, rescaled both by the shared rig_per_raw factor (1.128227381210675, reused unchanged), and recorded head_x/head_y/target_head_x_fraction/target_head_y_fraction in dash-finalize-record.json (t = i * 0.2/6 on the new 6-frame even grid), matching dash's existing 'airborne, cell-fraction' anchor scheme. Then graded via trial-b/grade_b.py's grade_body/grade_scarf functions directly, matching every other technique-B frame's round-5 value pass.",
+      "at": "2026-09-30T05:42:40+00:00"
+    },
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Round 7: corrected the stale inputs[] hash for assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png -- it was recorded at generation time (before that frame's own body was cropped+rescaled to match its scarf's shared union bbox), so the hash on file went stale the moment the crop/rescale ran; updated to the current (post-crop) hash, matching the same correction round 4/6 made for fall/double_jump/idle's scarves.",
+      "at": "2026-09-30T05:43:03.079064+00:00"
+    },
+    {
+      "by": "VioletRound9 (Claude)",
+      "description": "Round 9: re-pointed this round-08 shot record's own stale generator.inputs entries (dash-scarf-00.png) at their round-08-frozen copies (same bytes/sha256, since round 9 overwrote the live scarf-only repaint targets) -- same correction round 6/7 made for their own predecessor rounds' shot records.",
+      "at": "2026-09-30T07:53:23+00:00"
+    }
+  ],
+  "license": "proprietary"
+}
