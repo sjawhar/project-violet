@@ -9,6 +9,7 @@ extends Node
 
 const PlayerScene := preload("res://lab/player.tscn")
 const RoomViewScript := preload("res://lab/room_view.gd")
+const PlayerJuiceScript := preload("res://lab/juice/player_juice.gd")
 
 const RESPAWN_TICKS := 21  # 0.35s @ 60 ticks/s
 
@@ -16,6 +17,7 @@ const RESPAWN_TICKS := 21  # 0.35s @ 60 ticks/s
 @onready var camera: Camera2D = $Camera
 @onready var menu: Control = $MenuLayer/MenuRoot
 @onready var hud: CanvasLayer = $HudLayer
+@onready var tuning_panel: CanvasLayer = $TuningLayer
 
 var _experiments: Array = []
 var _done: Dictionary = {}
@@ -24,6 +26,7 @@ var _bakeoff_profile: PhysicsProfile = load("res://lab/profiles/bakeoff.tres")
 var _using_bakeoff := false
 
 var _player: LabPlayer
+var _player_juice: Node2D
 var _room: RoomData
 var _room_view: Node2D
 var _current_experiment: Dictionary
@@ -36,6 +39,7 @@ var _in_room := false
 func _ready() -> void:
 	_experiments = ExperimentsData.load_all()
 	menu.chosen.connect(_on_experiment_chosen)
+	tuning_panel.changed.connect(func(): _player.set_profile(_player.profile) if _player != null else null)
 	_goto_menu()
 
 func _goto_menu() -> void:
@@ -89,14 +93,18 @@ func _enter_room() -> void:
 			_player.acquire_color(str(c))
 		_player.died.connect(_on_player_died)
 		_player.reached_goal.connect(_on_player_reached_goal)
+		_player.stomp_impact.connect(func(): camera.shake(6.0, 0.15))
+		_player.landed.connect(func(impact: float): camera.shake(4.0, 0.1) if absf(impact) > 10.0 * LabConstants.TILE_SIZE_PX else null)
+		_player_juice = PlayerJuiceScript.new()
+		world.add_child(_player_juice)
+		_player_juice.bind(_player)
 
 	var ability_names: Array = _current_experiment.get("abilities", [])
 	var resonance := ResonanceFactory.create(str(_current_experiment.get("model", "none")))
 	var profile := _bakeoff_profile if _using_bakeoff else _tuned_profile
 	_player.configure(profile, resonance, _room, ability_names)
 	_spawn_player()
-
-	_room_view.setup(_room, func() -> Array: return _player.resonance_model.resonating_colors() if _player.resonance_model else [])
+	tuning_panel.bind(profile)
 
 	camera.follow(_player)
 	camera.set_room_rect(_room.world_rect_px())
@@ -137,7 +145,9 @@ func _physics_process(_delta: float) -> void:
 		_respawn_ticks_left = 0
 	if Input.is_action_just_pressed("compare"):
 		_using_bakeoff = not _using_bakeoff
-		_player.set_profile(_bakeoff_profile if _using_bakeoff else _tuned_profile)
+		var profile := _bakeoff_profile if _using_bakeoff else _tuned_profile
+		_player.set_profile(profile)
+		tuning_panel.bind(profile)
 
 	if _respawn_ticks_left > 0:
 		_respawn_ticks_left -= 1
@@ -145,7 +155,6 @@ func _physics_process(_delta: float) -> void:
 			_spawn_player()
 			_player.respawned.emit()
 
-	hud.tick_title()
 	var model_state: Dictionary = _player.resonance_model.hud_state() if _player.resonance_model else {}
 	model_state["profile_name"] = "bakeoff" if _using_bakeoff else "tuned"
 	model_state["experiment_title"] = str(_current_experiment.get("title", ""))
