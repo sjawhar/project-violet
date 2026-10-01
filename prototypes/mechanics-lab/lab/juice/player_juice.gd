@@ -31,10 +31,12 @@ var _prev_global_pos := Vector2.ZERO
 
 
 func _ready() -> void:
-	# Scarf (and particles) draw behind the body, which lives in a separate
-	# tree branch (player.visual_root) at the default z-index: a short neck
-	# wrap aside, the scarf should read as trailing behind, not bolted over
-	# the face.
+	# The trailing tail draws behind the body (z_index -1, inherited by the
+	# Scarf child below), which lives in a separate tree branch
+	# (player.visual_root) at the default z-index. The Scarf's own neck-wrap
+	# child overrides to z_index 1 (absolute) so that short band draws in
+	# front of the body instead, which is what makes the scarf read as
+	# attached at the neck rather than only a tail trailing somewhere behind.
 	z_index = -1
 	z_as_relative = false
 	_rng.seed = RNG_SEED

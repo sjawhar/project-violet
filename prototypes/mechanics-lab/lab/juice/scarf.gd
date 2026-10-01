@@ -21,6 +21,24 @@ const RELAX_ITERATIONS := 4
 const COLOR_LERP_SPEED := 6.0
 const RNG_SEED := 20261002
 
+## Neck wrap: a short band drawn in front of the body (z_index above the
+## capsule's default 0) so the scarf reads as attached at the neck even
+## when the trailing tail (drawn behind the body) is nearly still. It takes
+## a damped lean cue from the first tail segment plus a slow independent
+## sway, so it looks alive at rest without ever swinging toward the face.
+## `neck_offset` (player.gd) sits near the top of the capsule's rounded
+## "head" cap, since the placeholder body has no literal neck geometry —
+## NECK_WRAP_Y_BIAS nudges only this band's draw position (not the tail's
+## physics anchor) down to where the head meets the shoulders, so it reads
+## as a neck wrap instead of a headband.
+const NECK_WRAP_LENGTH := 30.0
+const NECK_WRAP_HEIGHT := 13.0
+const NECK_WRAP_Y_BIAS := 24.0
+const NECK_WRAP_LEAN_MAX := 0.22
+const NECK_WRAP_LEAN_DAMPING := 0.5
+const NECK_WRAP_SWAY_AMPLITUDE := 0.07
+const NECK_WRAP_SWAY_FREQ := 1.4
+
 const NEUTRAL := Color8(0x9A, 0xA0, 0xA6)
 const PALETTE := {
 	&"red": Color8(0xE5, 0x55, 0x3F),
@@ -36,6 +54,7 @@ var _rng := RandomNumberGenerator.new()
 var _phase_offsets: PackedFloat32Array
 var _current_color: Color = NEUTRAL
 var _target_color: Color = NEUTRAL
+var _neck_wrap: _NeckWrap
 
 
 func _ready() -> void:
@@ -43,6 +62,12 @@ func _ready() -> void:
 	_phase_offsets = PackedFloat32Array()
 	for i in range(SEGMENT_COUNT + 1):
 		_phase_offsets.append(_rng.randf_range(0.0, TAU))
+	_neck_wrap = _NeckWrap.new()
+	_neck_wrap.z_as_relative = false
+	_neck_wrap.z_index = 1
+	_neck_wrap.length = NECK_WRAP_LENGTH
+	_neck_wrap.height = NECK_WRAP_HEIGHT
+	add_child(_neck_wrap)
 	reset(Vector2.ZERO)
 
 
@@ -53,6 +78,10 @@ func reset(anchor: Vector2) -> void:
 	for i in range(SEGMENT_COUNT + 1):
 		_points.append(anchor)
 		_prev_points.append(anchor)
+	_neck_wrap.global_position = anchor + Vector2(0.0, NECK_WRAP_Y_BIAS)
+	_neck_wrap.rotation = 0.0
+	_neck_wrap.color = _current_color
+	_neck_wrap.queue_redraw()
 	queue_redraw()
 
 
@@ -97,6 +126,15 @@ func step(anchor: Vector2, velocity: Vector2, delta: float) -> void:
 				_points[i] = anchor + from_anchor * (min_radius / radius)
 
 	_current_color = _current_color.lerp(_target_color, clampf(delta * COLOR_LERP_SPEED, 0.0, 1.0))
+	var neck_tangent: Vector2 = _points[1] - anchor
+	if neck_tangent.length() < 0.001:
+		neck_tangent = Vector2.DOWN
+	var lean: float = clampf(atan2(neck_tangent.x, maxf(neck_tangent.y, 0.001)) * NECK_WRAP_LEAN_DAMPING, -NECK_WRAP_LEAN_MAX, NECK_WRAP_LEAN_MAX)
+	var sway: float = sin(_time * NECK_WRAP_SWAY_FREQ) * NECK_WRAP_SWAY_AMPLITUDE
+	_neck_wrap.global_position = anchor + Vector2(0.0, NECK_WRAP_Y_BIAS)
+	_neck_wrap.rotation = lean + sway
+	_neck_wrap.color = _current_color
+	_neck_wrap.queue_redraw()
 	queue_redraw()
 
 
@@ -132,3 +170,22 @@ func _draw() -> void:
 	right.reverse()
 	polygon.append_array(right)
 	draw_colored_polygon(polygon, _current_color)
+
+
+## A short capsule-shaped band at the neck, drawn in front of the body
+## (z_as_relative = false, z_index = 1, set by Scarf). Reuses the body's own
+## capsule silhouette (rect + two end caps) so it reads as part of the same
+## character, not a decal.
+class _NeckWrap:
+	extends Node2D
+
+	var length: float = 0.0
+	var height: float = 0.0
+	var color: Color = NEUTRAL
+
+	func _draw() -> void:
+		var half_h: float = height * 0.5
+		var half_len: float = maxf(length * 0.5 - half_h, 0.0)
+		draw_rect(Rect2(Vector2(-half_len, -half_h), Vector2(half_len * 2.0, height)), color)
+		draw_circle(Vector2(-half_len, 0.0), half_h, color)
+		draw_circle(Vector2(half_len, 0.0), half_h, color)

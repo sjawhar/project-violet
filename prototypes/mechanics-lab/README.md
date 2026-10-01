@@ -9,10 +9,32 @@ Brainstorm prototype on `proto/mechanics-lab`; never merges. Full contract: `DES
 /home/sami/.local/share/mise/installs/godot/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64 --path prototypes/mechanics-lab
 ```
 
-Menu: Up/Down to choose an experiment, Jump (Space/K/gamepad A) to play. In a room: Esc back to
-menu, R restart, **Tab compares the bake-off's movement live** (no accel/decel curves, no
-coyote/buffer/corner-correction), H/F1/M are presentation-owned no-ops for now (hints overlay,
-tuning panel, mute — drop in later from `lab/juice`/`lab/ui`).
+Menu: numbered 1-9 in list order, Up/Down (or stick/mouse) to choose, Enter/Space/gamepad A
+to play. In a room: Esc back to menu, R restart, **Tab compares the bake-off's movement live**
+(no accel/decel curves, no coyote/buffer/corner-correction) with a brief toast naming the
+profile, H toggles the control-hints overlay, F1 opens the live tuning panel, M mutes.
+
+## How to play
+
+| action | keyboard | gamepad |
+|---|---|---|
+| left/right/up/down | A/D/W/S and arrows | left stick + d-pad |
+| jump | Space, K | A (bottom) |
+| dash | Shift, J | X (left) |
+| ability | L, C | B (right) |
+| switch | Q, I | Y (top) |
+| resonate (hold) | E, O | RB |
+| restart | R | Back/Select |
+| menu | Esc | Start |
+| compare (profile toggle) | Tab | LB |
+| tune (panel) | F1 | — |
+| hints | H | — |
+| mute | M | — |
+
+The HUD's top-left shows the active resonance model (large) plus profile/state/deaths/time; the
+ring/swatch/bar below it mirrors whichever model is active. A color resonating also tints the
+whole screen faintly at the edges — a glance anywhere on screen, not just at the HUD, tells you
+something is resonating.
 
 ## Rooms
 
@@ -36,8 +58,9 @@ to stderr).
 ## Core/presentation split
 
 `lab/` is core (room loader, `LabPlayer`, abilities, resonance models, scene flow). `lab/juice/`
-and `lab/ui/` don't exist yet — they're presentation's drop-in slots. Until then, core's own plain
-placeholders stand in: `lab/room_view.gd` (colored-rectangle rooms), `lab/camera_plain.gd`,
-`lab/hud_plain.gd`, `lab/menu_plain.gd`, `lab/player_placeholder_body.gd`. Each one's header names
-the exact file/class that replaces it. `lab/abilities/ability_registry.gd`'s `REGISTRY` dict is the
-extension point for new abilities (stomp/blink/swing): one line + one file, no dispatch changes.
+(`player_juice.gd`, `scarf.gd`, `camera_rig.gd`, `sfx.gd`) and `lab/ui/` (`menu.gd`, `hud.gd`,
+`tuning_panel.gd`) are presentation's drop-in replacements for core's plain placeholders, already
+wired in `lab/main.gd`/`main.tscn`. `lab/room_view.gd` (colored-rectangle rooms) is the one
+placeholder still standing in for real per-tile art. `lab/abilities/ability_registry.gd`'s
+`REGISTRY` dict is the extension point for new abilities (stomp/blink/swing): one line + one
+file, no dispatch changes.

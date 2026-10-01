@@ -41,6 +41,13 @@ func _ready() -> void:
 	_list_box.add_theme_constant_override("separation", 16)
 	scroll.add_child(_list_box)
 
+	var controls := Label.new()
+	controls.text = "Up/Down or stick: choose   Enter/Space/A: play   Esc/Start: menu   Tab/LB: compare movement   F1: tuning   H: hints   M: mute"
+	controls.add_theme_font_size_override("font_size", 16)
+	controls.modulate.a = 0.7
+	controls.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(controls)
+
 
 ## Rebuilds the list from `experiments.json`'s shape
 ## (`[{id, title, question, ...}]`) plus `done` (`{experiment_id: bool}`).
@@ -48,8 +55,8 @@ func show_experiments(list: Array, done: Dictionary) -> void:
 	for child in _list_box.get_children():
 		child.queue_free()
 	var first_button: Button = null
-	for experiment in list:
-		var row := _build_row(experiment, done)
+	for i in range(list.size()):
+		var row := _build_row(list[i], i + 1, done)
 		_list_box.add_child(row)
 		if first_button == null:
 			first_button = row
@@ -57,14 +64,14 @@ func show_experiments(list: Array, done: Dictionary) -> void:
 		first_button.grab_focus()
 
 
-func _build_row(experiment: Dictionary, done: Dictionary) -> Button:
+func _build_row(experiment: Dictionary, number: int, done: Dictionary) -> Button:
 	var btn := Button.new()
 	btn.focus_mode = Control.FOCUS_ALL
 	btn.custom_minimum_size = Vector2(0, 72)
 	btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	var mark: String = "✓  " if done.get(experiment.get("id"), false) else "    "
-	btn.text = "%s%s\n     %s" % [mark, String(experiment.get("title", "")), String(experiment.get("question", ""))]
+	btn.text = "%s%d. %s\n     %s" % [mark, number, String(experiment.get("title", "")), String(experiment.get("question", ""))]
 	var experiment_id = experiment.get("id")
 	btn.pressed.connect(func(): chosen.emit(experiment_id))
 	return btn

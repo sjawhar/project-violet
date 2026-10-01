@@ -85,6 +85,15 @@ func _enter_room() -> void:
 		_room_view.queue_free()
 	_room_view = RoomViewScript.new()
 	world.add_child(_room_view)
+	# add_child() always appends to the end of World's children, but World
+	# never reorders player/player_juice across room transitions (the "else"
+	# branch below reuses them instead of re-adding them) — the second room
+	# in an experiment would otherwise put this fresh room_view LAST in
+	# sibling order, drawing its background/tiles (default z_index 0, tied
+	# with the player's) on top of and hiding the player. Pinning it first
+	# keeps the room under the player on every room entry, not just the
+	# first.
+	world.move_child(_room_view, 0)
 
 	var ability_names: Array = _current_experiment.get("abilities", [])
 	var resonance := ResonanceFactory.create(str(_current_experiment.get("model", "none")))
@@ -149,17 +158,20 @@ func _physics_process(_delta: float) -> void:
 		return
 	if Input.is_action_just_pressed("restart"):
 		_spawn_player()
+		camera.snap()
 		_respawn_ticks_left = 0
 	if Input.is_action_just_pressed("compare"):
 		_using_bakeoff = not _using_bakeoff
 		var profile := _bakeoff_profile if _using_bakeoff else _tuned_profile
 		_player.set_profile(profile)
 		tuning_panel.bind(profile)
+		hud.show_profile_toast("bakeoff" if _using_bakeoff else "tuned")
 
 	if _respawn_ticks_left > 0:
 		_respawn_ticks_left -= 1
 		if _respawn_ticks_left == 0:
 			_spawn_player()
+			camera.snap()
 			_player.respawned.emit()
 
 	var model_state: Dictionary = _player.resonance_model.hud_state() if _player.resonance_model else {}
