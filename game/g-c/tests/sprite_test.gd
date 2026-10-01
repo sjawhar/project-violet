@@ -6,7 +6,7 @@ extends Node
 ## player's ground point, facing right and facing left, and facing left mirrors the layers about that point (catches a
 ## flipped y, a wrong offset sign, a missing mirror, and a flip_h mirror, which moves the anchor off the root).
 ## order: the scarf layer draws above the body layer.
-## malformed: a wrong format, a wrong version and a missing image each make Sprites.from_data return null with a
+## malformed: a wrong format, version or units and a missing image each make Sprites.from_data return null with a
 ## message naming the problem (and push_error it), never a partial set.
 ## Prints one line per failure and `sprite-test: N failure(s)`; exits 0 iff N == 0.
 const SPRITES := "res://protagonist/sprites/violet.sprites.json"
@@ -32,6 +32,8 @@ func test_frames(sprites: Sprites) -> void:
 	var jstep := jump / n_jump
 	for case: Array in [[0.0, 0], [jstep - 1e-4, 0], [jstep, 1], [jump - 1e-4, n_jump - 1], [jump, n_jump - 1], [10.0 * jump, n_jump - 1]]:
 		_expect_frame(sprites, "jump", case[0], case[1])
+	# character-rig.md's own boundary example: exactly on a boundary the frame that starts there shows
+	_expect_frame(sprites, "jump", 0.3, 3)
 
 func _expect_frame(sprites: Sprites, anim_name: String, t: float, want: int) -> void:
 	var got := sprites.frame_index(anim_name, t)
@@ -80,6 +82,8 @@ func test_malformed() -> void:
 	_refused("wrong format", wrong_format, "format is violet-rig")
 	var wrong_version := data.duplicate(true); wrong_version["version"] = 2
 	_refused("wrong version", wrong_version, "version is 2")
+	var wrong_units := data.duplicate(true); wrong_units["units"] = "m"
+	_refused("wrong units", wrong_units, "units are m")
 	var missing := data.duplicate(true); missing["animations"]["run"]["frames"][3]["scarf"]["image"] = "../glow-up/trial-b/frames/no-such-frame.png"
 	_refused("missing image", missing, "no-such-frame.png does not exist")
 	if Sprites.from_data(data.duplicate(true), base, "control") == null: failures.append("malformed: the unmodified file was refused: %s" % Sprites.last_error)

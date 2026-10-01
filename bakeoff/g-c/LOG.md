@@ -5,7 +5,7 @@ lane: g-c
 direction: C
 engine: godot
 machine: oryx
-status: in-progress
+status: delivered
 sessions:
   - {start: "2026-09-27T17:05:00Z", end: "2026-09-27T17:12:00Z", purpose: "workspace from bakeoff/g-a, read the brief, mechanic, plan Tasks 7 and 10 and G-A's art code; paused before any edit while the lead asked Sami whether G-C's art is hand-written SVG instead of Recraft"}
   - {start: "2026-09-27T17:38:11Z", end: "2026-09-27T18:13:38Z", purpose: "lane setup (game/g-a moved to game/g-c), eleven hand-written SVG pieces, VectorArt, provenance, G-A's rig reader ported, ci.sh, software capture and look at the stills"}
@@ -25,6 +25,7 @@ sessions:
   - {start: "2026-09-29T02:40:22Z", end: "2026-09-29T03:03:23Z", purpose: "glow-up round 8"}
   - {start: "2026-09-29T03:07:12Z", end: "2026-09-29T03:32:14Z", purpose: "glow-up round 9"}
   - {start: "2026-09-29T03:36:11Z", end: "2026-09-29T03:51:41Z", purpose: "glow-up round 10"}
+  - {start: "2026-10-01T03:47:29Z", end: "2026-10-01T04:24:37Z", purpose: "Violet sprites port and judging capture"}
 costs: []
 interventions:
   - {at: "2026-09-27T17:37:00Z", who: sjawhar, what: "ruled that agents make the bake-off art themselves (no Recraft), which unpaused the lane; asked by the lead, not by this lane, so the minutes Sami spent are not known here and 0 is recorded", minutes: 0}
@@ -47,6 +48,9 @@ friction:
   - {at: "2026-09-29T02:49:00Z", what: "a new canvas shader multiplied texture(TEXTURE, UV) by COLOR, but in Godot 4 COLOR in fragment() already carries the texture, so every lit rock tile came out darker (colour squared); found by a side-by-side test scene under software GL", workaround: "the shaders use COLOR directly; haze.gdshader and reveal.gdshader had the same mistake in their alpha and are fixed too"}
   - {at: "2026-09-29T02:52:00Z", what: "a first ci.sh run failed on an RID leak at exit: a Polygon2D built only to copy its shape into the foot shadow was never freed", workaround: "free it after copying"}
   - {at: "2026-09-29T03:25:00Z", what: "the repeating big ovals along the ground were not the pebbles I first removed from wall-tile; they were wall-tile-b's embedded boulders, which its four-row band reuses every four cells", workaround: "removed both; took two extra shoots to find"}
+  - {at: "2026-10-01T03:55:00Z", what: "provenance check follows each record's inputs to the repository root, and the sprite set's records name 165 inputs under assets/bakeoff/protagonist/ (earlier frame rounds, the rig, the scripts that built them) that the lane branch did not carry", workaround: "copied the whole input closure from phase1/violet-sprites (9d17a872) into assets/bakeoff/protagonist/ and assets/concept/, PNGs through git lfs smudge, every sha256 checked against its sidecar; provenance check: 253 asset(s) OK"}
+  - {at: "2026-10-01T04:02:00Z", what: "a script error in the new reader (an inner class named Animation hides a native class) left the test scene running instead of exiting, so the first local run hung until a 600 s timeout", workaround: "renamed the class Clip; ci.sh runs the sprite test under timeout 300 so a script error fails the job instead of hanging it"}
+  - {at: "2026-10-01T04:06:00Z", what: "the first ground-point check in tests/sprite_test.gd derived the anchor from the sprite's own offset, so it could not fail; breaking the anchor math (a flipped y) went unreported by it", workaround: "it now places the file's anchor through the sprite's transform; with the flipped y it reports the anchor landing 209 px below the ground point, and a missing mirror is caught by a facing check"}
 blockers: []
 deliverables: {build: bakeoff/g-c/reports/build.txt, capture: bakeoff/g-c/capture/capture.mp4, stills: [bakeoff/g-c/capture/still-05.png, bakeoff/g-c/capture/still-20.png, bakeoff/g-c/capture/still-40.png, bakeoff/g-c/capture/still-60.png], tests: bakeoff/g-c/reports/replay.json}
 ---
@@ -71,3 +75,5 @@ No crystals (2026-09-28): tag-wall and tag-platform replaced the crystal pieces 
 Dry brush (2026-09-28): the four brush silhouettes in backdrop-near were sharp triangular clumps that read as small violet crystal clusters; they are now rounded clumps of thin curved blades on a soft mound (recorded with provenance edit). Looked at the fresh 38 s frame and the rolled backdrop composite (seam unchanged). The only straight-edged shards left in the frame are the hazard spikes in the pits, which the desert brief asks for.
 
 Rig 9b22572d (2026-09-28): `protagonist/rig/violet.json`, `violet.meta.json` and the 14 parts with their sidecars are copied from PR #28 at 9b22572d (the PNGs through `git lfs smudge`, each sha256 matching its sidecar), replacing the eafccae8 copy; only the four arm parts, violet.json and three sidecars changed. Looked at the re-rendered capture at 26.9 s and 45.5 s (running: forearms bent forward at the elbow, soles on the floor line) and 46.8 s and 47.0 s (mid double jump: arms raised and bent, no flip, no part detached).
+
+Violet sprites (2026-10-01): the painted, frame-by-frame Violet that Sami merged (#36) replaces the cutout rig. `protagonist/sprites/violet.sprites.json` (violet-sprites v1, from phase1/violet-sprites 9d17a872) and its 86 frames sit in `game/g-c/protagonist/` with their sidecars; `bakeoff/sprites.gd` reads it, `bakeoff/sprite_animator.gd` keeps the rig's state machine, `art/sprite_character_2d.gd` draws body then scarf with the anchor on the ground point, mirrored by its own negative x scale, scarf tinted with the active colour. The rig reader, its animator, test and files are gone. The glow-up's outline, halo, sun-side rim and contact shadow apply to the new layers unchanged. Judging capture: `bakeoff/g-c/capture/capture.mp4` and `still-05/20/40/60.png`, shot with the glow-up's command.

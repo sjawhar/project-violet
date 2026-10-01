@@ -4,7 +4,8 @@ extends RefCounted
 ## per animation a duration, a loop flag and frames, each frame a body layer and a scarf layer, each layer an image
 ## (relative to the JSON) and an anchor, the image pixel (from its top-left, y down) that sits on the character root,
 ## the player's ground point. THROWAWAY bake-off code; dimension-agnostic.
-## A file that is malformed (wrong format or version, a missing key, an image that does not load) is refused: load_file
+## A file that is malformed (wrong format, version, facing or units, a missing key, an image that does not load) is
+## refused: load_file
 ## and from_data push_error the reason, keep it in last_error and return null. There is no fallback.
 const FORMAT := "violet-sprites"
 const VERSION := 1
@@ -38,6 +39,7 @@ static func from_data(data: Dictionary, base_dir: String, source_: String) -> Sp
 	if data.get("version") != float(VERSION) and data.get("version") != VERSION:
 		return _refuse("%s: version is %s, not %d" % [source_, data.get("version"), VERSION])
 	if data.get("facing") != "right": return _refuse("%s: facing is %s; a sprite set always faces right" % [source_, data.get("facing")])
+	if data.get("units") != "px": return _refuse("%s: units are %s, not px" % [source_, data.get("units")])
 	for key: String in ["height_px", "animations"]:
 		if not data.has(key): return _refuse("%s: missing key %s" % [source_, key])
 	var sprites := Sprites.new()
