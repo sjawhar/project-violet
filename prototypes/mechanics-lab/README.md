@@ -70,3 +70,15 @@ wired in `lab/main.gd`/`main.tscn`. `lab/room_view.gd` (colored-rectangle rooms)
 placeholder still standing in for real per-tile art. `lab/abilities/ability_registry.gd`'s
 `REGISTRY` dict is the extension point for new abilities (stomp/blink/swing): one line + one
 file, no dispatch changes.
+
+## Publish the review page
+
+From the repository root, with the GitHub App routing set (see AGENTS.md):
+
+```
+bash prototypes/mechanics-lab/export.sh prototypes/mechanics-lab out/mechanics-lab
+python3 prototypes/mechanics-lab/build_site.py prototypes/mechanics-lab out/mechanics-lab out/mechanics-lab-site --issue 41 --commit "$(jj log --no-graph -r @- -T commit_id)"
+bash prototypes/mechanics-lab/publish.sh out/mechanics-lab-site --dry-run   # then without --dry-run
+```
+
+It goes live at https://sjawhar.github.io/project-violet/review/pr-0-prelim/mechanics-lab/ (the play link, a Linux zip, the experiment list). `publish.sh` replaces only `review/pr-0-prelim/mechanics-lab/` on `gh-pages`.
