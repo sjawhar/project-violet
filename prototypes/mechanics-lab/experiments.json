@@ -17,7 +17,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump"],
 		"acquired": ["red", "green"],
-		"rooms": ["red-wall", "red-bridge", "high-wall"]
+		"rooms": ["red-wall", "red-bridge", "two-colors", "high-wall", "timing-gauntlet", "flow-run"]
 	},
 	{
 		"id": "res-pick",
@@ -27,7 +27,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump"],
 		"acquired": ["red", "green"],
-		"rooms": ["red-wall", "red-bridge", "high-wall"]
+		"rooms": ["red-wall", "red-bridge", "two-colors", "high-wall", "timing-gauntlet", "flow-run"]
 	},
 	{
 		"id": "res-hold",
@@ -37,7 +37,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump"],
 		"acquired": ["red", "green"],
-		"rooms": ["red-wall", "red-bridge", "high-wall"]
+		"rooms": ["red-wall", "red-bridge", "two-colors", "high-wall", "timing-gauntlet", "flow-run"]
 	},
 	{
 		"id": "stomp",
@@ -71,22 +71,22 @@
 	},
 	{
 		"id": "archive-puzzle-window",
-		"title": "Your 2019 example puzzle",
+		"title": "Your 2019 example puzzle (ability triggers resonance)",
 		"question": "\"shift to green to double jump over a high wall, then shift to red to dash mid-air through a red wall/opening, and finally shift to yellow before landing to stomp through a weak wooden floor.\" Does it work as a moment?",
 		"model": "ability_window",
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "stomp"],
 		"acquired": ["red", "green", "yellow"],
-		"rooms": ["archive-puzzle"]
+		"rooms": ["archive-puzzle", "archive-puzzle-2"]
 	},
 	{
 		"id": "archive-puzzle-pick",
-		"title": "Your 2019 example puzzle",
+		"title": "Your 2019 example puzzle (choose your color)",
 		"question": "\"shift to green to double jump over a high wall, then shift to red to dash mid-air through a red wall/opening, and finally shift to yellow before landing to stomp through a weak wooden floor.\" Does it work as a moment?",
 		"model": "pick_color",
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "stomp"],
 		"acquired": ["red", "green", "yellow"],
-		"rooms": ["archive-puzzle"]
+		"rooms": ["archive-puzzle", "archive-puzzle-2"]
 	}
 ]

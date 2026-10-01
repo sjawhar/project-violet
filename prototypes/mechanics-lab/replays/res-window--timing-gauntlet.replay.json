@@ -1,0 +1,68 @@
+{
+ "format": "violet-lab-replay",
+ "version": 1,
+ "tick_hz": 60,
+ "experiment": "res-window",
+ "room": "timing-gauntlet",
+ "profile": "tuned",
+ "inputs": [
+  {
+   "from": 0,
+   "to": 20,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "at": 5,
+   "press": [
+    "dash"
+   ]
+  },
+  {
+   "from": 96,
+   "to": 150,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "at": 140,
+   "press": [
+    "dash"
+   ]
+  },
+  {
+   "from": 231,
+   "to": 300,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "at": 290,
+   "press": [
+    "dash"
+   ]
+  },
+  {
+   "from": 381,
+   "to": 900,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "at": 440,
+   "press": [
+    "dash"
+   ]
+  }
+ ],
+ "expect": {
+  "goal_by_tick": 480
+ },
+ "must_fail_without": [
+  "dash"
+ ]
+}
