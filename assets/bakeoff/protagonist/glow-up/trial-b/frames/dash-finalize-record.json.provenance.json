@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "asset": "dash-finalize-record.json",
+  "sha256": "9b5f991b5fe7a9e7e7a711c3edaa19ca3024595da3e5a9433703aaa73bcbacfc",
+  "kind": "animation",
+  "origin": "derived",
+  "created_at": "2026-10-01T03:53:50+00:00",
+  "generator": {
+    "tool": "trial-b/finalize_dash.py",
+    "tool_version": "3 frames (commit 45110fe)",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-00.png",
+        "sha256": "04f0bd3f49e1a853a2e3df7be36a6e11feb403cdb1309787ea96560756d5ee6d"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-01.png",
+        "sha256": "590dacbd2ca4ed08f95556515769540af43dc6c190aaea0f34284f5739124ee9"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-02.png",
+        "sha256": "6b177ff1ec904b4d8a03aea6f0e234dbb05e2fe09cd945718f632a11cb911108"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-03.png",
+        "sha256": "a2f706838b808243725468bda206c99e5c10aa7884ce6525e34494339256359e"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-04.png",
+        "sha256": "ef245a996c60b34de43a86def22ecfc8e5d11512699f8c9ae293899f1931ec6d"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-05.png",
+        "sha256": "0fc46ce8baac21607714f340c5c96b4f86d43a7d4376ad12928cc43953e98b8f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.png",
+        "sha256": "7c93c14cc43437da9ca266bd31522c1b4974718965b11c5244fb1e048bb4ee2a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-01.png",
+        "sha256": "4be05ae0846fe637f58b71ab46da52576d8fd6d9584368fa174b16462d79c9f5"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-02.png",
+        "sha256": "b7ae5bda5d7d6c3cce3eb1b6a807f9e0af2d67e4358bfca7af7c67549a6a39f8"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-03.png",
+        "sha256": "3a6c5949d7a3ce900d51189943601c82ef4ddfd79d9deff70ab944250e3d285a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-04.png",
+        "sha256": "bdfeeb3cff6b178038ce5d6f476f7d0fb2659336df7fed3e17fbc1070b00112a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-05.png",
+        "sha256": "3b23412eff92f611337b444ba480da2c7e168763cdb506c452e92f2bf3fb3e6c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+        "sha256": "595ebb24146248c0ed5ed710829638a36691abf813db7a43a1c39d0dd9eba28b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+        "sha256": "b465a5aec57d4adfcfb949b15a0fb72dd35eb8e22763edd487af69e621fed456"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/round9_lib.py",
+        "sha256": "0b36837c090d1349debcc2580f5940a07ec1b16b643228f5938af7fbfa1380b7"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Commit 856fd2e (rounds.md round 7, dash 3 to 6 frames): old frames 1 and 2 reindexed to 2 and 5 with target_head_x/y_fraction recomputed at their new t, and new in-betweens 1, 3 and 4 finalized the same way.",
+      "at": "2026-10-01T03:53:50+00:00"
+    },
+    {
+      "by": "VioletRound9 (Claude)",
+      "description": "Commit 679be37 (rounds.md round 9): round9_lib.py's scarf-only regen rewrote frames 0, 2 and 5's scarf_bbox_orig_1024canvas, scarf_final_size and scarf_offset_final.",
+      "at": "2026-10-01T03:53:50+00:00"
+    },
+    {
+      "by": "scarf-attachment correction (openai-codex/gpt-6-astra)",
+      "description": "Commit dd40c07 ('Fix painted Violet scarf attachment', rounds.md 'Scarf attachment correction'): apply_scarf_attachments.py apply rewrote every frame's scarf_offset_final as body_neck - scarf_knot from scarf_attachments.json, replacing the crop-offset values; no placement field changed.",
+      "at": "2026-10-01T03:53:50+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

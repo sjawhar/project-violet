@@ -4,20 +4,12 @@
   "sha256": "b0d8e137daa568e0c31fadadbbacd3d6497aa47962f71735d309cfa155652463",
   "kind": "animation",
   "origin": "derived",
-  "created_at": "2026-10-01T03:49:07+00:00",
+  "created_at": "2026-10-01T03:54:02+00:00",
   "generator": {
     "tool": "spinerig",
     "tool_version": "0.1.0",
     "model": null,
-    "params": {
-      "record:dash-finalize-record.json": "sha256:9b5f991b5fe7a9e7e7a711c3edaa19ca3024595da3e5a9433703aaa73bcbacfc",
-      "record:double_jump-finalize-record.json": "sha256:4de87e5f40a178ace0d0bdc68dbb0e240af896c623353d0b570a85d79492d699",
-      "record:fall-finalize-record.json": "sha256:d0273f288442346bb623a620a80fd409fe4e34d83b8c3b7246b15cf411288f84",
-      "record:finalize-record.json": "sha256:d7e826974050513c95a4afa666f68c250e76b4b4d7e044d13877f319f1b5b880",
-      "record:idle-finalize-record.json": "sha256:13ca8d9f38c3afe8cf9745cb9e3dc9d0861d656b62abc22fa2a6b618d15a4c2f",
-      "record:jump-finalize-record.json": "sha256:bde3ccdb8fbea49d4886da84882ebfc2c6ef992d8e0ab8247b72d0192b705d01",
-      "record:land-finalize-record.json": "sha256:015c54aa1a94c1473060f38b0f445b0471bb94b15feb9b8fb088ecfd5f0c362b"
-    },
+    "params": {},
     "inputs": [
       {
         "path": "assets/bakeoff/protagonist/sprites-src/sprites.json",
@@ -58,6 +50,10 @@
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-body-05.png",
         "sha256": "0fc46ce8baac21607714f340c5c96b4f86d43a7d4376ad12928cc43953e98b8f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-finalize-record.json",
+        "sha256": "9b5f991b5fe7a9e7e7a711c3edaa19ca3024595da3e5a9433703aaa73bcbacfc"
       },
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/dash-scarf-00.png",
@@ -104,6 +100,10 @@
         "sha256": "52fedcb5c5775746248ca3e8eab55e96ec5d5ebd0a090ff760ea665efcde76d4"
       },
       {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-finalize-record.json",
+        "sha256": "4de87e5f40a178ace0d0bdc68dbb0e240af896c623353d0b570a85d79492d699"
+      },
+      {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-00.png",
         "sha256": "35fa2c3c13872d6fea32d08fa1417beee1b577df8160ed8315bd10c5ee2d66eb"
       },
@@ -144,6 +144,10 @@
         "sha256": "c123a07b822b8fba0f0d7bf91ecbacaaefb08a816f58a70815441a05684b5e98"
       },
       {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-finalize-record.json",
+        "sha256": "d0273f288442346bb623a620a80fd409fe4e34d83b8c3b7246b15cf411288f84"
+      },
+      {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-00.png",
         "sha256": "8a62a26001af47a4abb6ff9b78d940c4a5914f120313b868e9a872af22038761"
       },
@@ -162,6 +166,10 @@
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-04.png",
         "sha256": "7668c07b5f2fda34d745fd26ef45b905ce3efdce2bd53fb4124738d144cebf40"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/finalize-record.json",
+        "sha256": "d7e826974050513c95a4afa666f68c250e76b4b4d7e044d13877f319f1b5b880"
       },
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-00.png",
@@ -194,6 +202,10 @@
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-body-07.png",
         "sha256": "4213418c1a3a4350aa941ea96e2009f25811648807eb99ee869258220a09c936"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-finalize-record.json",
+        "sha256": "13ca8d9f38c3afe8cf9745cb9e3dc9d0861d656b62abc22fa2a6b618d15a4c2f"
       },
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/idle-scarf-00.png",
@@ -248,6 +260,10 @@
         "sha256": "ef79cfb75c750969ac5331c67026d40fc37e64f6cb85549e19221b1f6451ed63"
       },
       {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-finalize-record.json",
+        "sha256": "bde3ccdb8fbea49d4886da84882ebfc2c6ef992d8e0ab8247b72d0192b705d01"
+      },
+      {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-00.png",
         "sha256": "9e2580fd5a9fee0d55e7ea827dca6832cdff76eda60128f1179e21ad3c80f0f8"
       },
@@ -290,6 +306,10 @@
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-body-05.png",
         "sha256": "30a4471f51a50d4184936dcc2fd543a64325a3df6732e9c8f52f5398005c7616"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-finalize-record.json",
+        "sha256": "015c54aa1a94c1473060f38b0f445b0471bb94b15feb9b8fb088ecfd5f0c362b"
       },
       {
         "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/land-scarf-00.png",

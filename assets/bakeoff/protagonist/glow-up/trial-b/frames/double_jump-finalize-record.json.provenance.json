@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "asset": "double_jump-finalize-record.json",
+  "sha256": "4de87e5f40a178ace0d0bdc68dbb0e240af896c623353d0b570a85d79492d699",
+  "kind": "animation",
+  "origin": "derived",
+  "created_at": "2026-10-01T03:53:49+00:00",
+  "generator": {
+    "tool": "trial-b/finalize_anim.py",
+    "tool_version": "double_jump --mode airborne (commits 45ee54e, 53e1e1b, 346329a, afbf8b7)",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-00.png",
+        "sha256": "0cd48705d89d149fb768a1c790469485d249e62284c5b3b6bdf06e2b12d48d4c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-01.png",
+        "sha256": "f754dfbaf32414b82eeb845a5656b97b2fba6e423b32ff0a9690d14b3ca313c2"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-02.png",
+        "sha256": "7c379878472cf0e1bf0814d8d63d7f710aec98ce26a7fe356142c17a66ab1017"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-03.png",
+        "sha256": "0ccde770b78b83e84300a9459d3aff1e327a5b6889a10907d2ccf90ef1162cf5"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-body-04.png",
+        "sha256": "52fedcb5c5775746248ca3e8eab55e96ec5d5ebd0a090ff760ea665efcde76d4"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-00.png",
+        "sha256": "35fa2c3c13872d6fea32d08fa1417beee1b577df8160ed8315bd10c5ee2d66eb"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-01.png",
+        "sha256": "f15d97e2b8bea8b538dd31ce692f2b6ab1c386e1f9265467e8c6edab6615bc3a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-02.png",
+        "sha256": "bc8f2e930e0efdc23fb12a8f4f23373f263c4a45887e3667bf7c88bed359b9cc"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-03.png",
+        "sha256": "0e31a966f18a007fd1fdb996039f459e12bd2063a80623367686132962994cf7"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/double_jump-scarf-04.png",
+        "sha256": "d0c450d10a3e3e954c0d833cca05cc4a5347cb7e5f0c6e1aa865de46b17fd29c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+        "sha256": "595ebb24146248c0ed5ed710829638a36691abf813db7a43a1c39d0dd9eba28b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+        "sha256": "b465a5aec57d4adfcfb949b15a0fb72dd35eb8e22763edd487af69e621fed456"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound7 (Claude)",
+      "description": "Commit 5cd81a3 (rounds.md round 7, double_jump's ghost scarf): frames 2 and 3's scarf repainted; their scarf_bbox_orig_1024canvas, scarf_final_size and scarf_offset_final rewritten.",
+      "at": "2026-10-01T03:53:50+00:00"
+    },
+    {
+      "by": "scarf-attachment correction (openai-codex/gpt-6-astra)",
+      "description": "Commit dd40c07 ('Fix painted Violet scarf attachment', rounds.md 'Scarf attachment correction'): apply_scarf_attachments.py apply rewrote every frame's scarf_offset_final as body_neck - scarf_knot from scarf_attachments.json, replacing the crop-offset values; no placement field changed.",
+      "at": "2026-10-01T03:53:50+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

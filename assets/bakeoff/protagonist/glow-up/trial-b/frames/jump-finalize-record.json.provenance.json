@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "asset": "jump-finalize-record.json",
+  "sha256": "bde3ccdb8fbea49d4886da84882ebfc2c6ef992d8e0ab8247b72d0192b705d01",
+  "kind": "animation",
+  "origin": "derived",
+  "created_at": "2026-10-01T03:53:48+00:00",
+  "generator": {
+    "tool": "trial-b/finalize_anim.py",
+    "tool_version": "jump --mode airborne (commit 9344647)",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-00.png",
+        "sha256": "abf6ecd9bf1b7e3efb1b83393333f6e9d678bc5fe9878fd77fe5eeba0fac17eb"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-01.png",
+        "sha256": "a9b73075da824bcb34119e36deed6206bea51d3e53fb10414e036cc0532a57f0"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-02.png",
+        "sha256": "e4304243d0d95b6bc6c8ace6434c4f305b027418515f634f56bd54a17b3c73e7"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-03.png",
+        "sha256": "ee18a5a922a70d6fff2af71ba415a5c1618cf4e7fb444ecc9c01b97479c6561c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-body-04.png",
+        "sha256": "ef79cfb75c750969ac5331c67026d40fc37e64f6cb85549e19221b1f6451ed63"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-00.png",
+        "sha256": "9e2580fd5a9fee0d55e7ea827dca6832cdff76eda60128f1179e21ad3c80f0f8"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-01.png",
+        "sha256": "2415af0dfa351f3388587577bf8720d44bfc83fdbacda26d8692f815fbb4a1f3"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-02.png",
+        "sha256": "01e7c4c7904ef79fa41cf85dd7de17a1872eaec26ff4e899e7479e34b67e12fe"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-03.png",
+        "sha256": "dfc9e692c6ba58cac28265f12e3f9a088c097f0cafded1152fd49becf0e89974"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/jump-scarf-04.png",
+        "sha256": "41ddf233e3b051290bc4da8c6538aa25c86743f5099046d9ef10a48ecd94afd2"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+        "sha256": "595ebb24146248c0ed5ed710829638a36691abf813db7a43a1c39d0dd9eba28b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+        "sha256": "b465a5aec57d4adfcfb949b15a0fb72dd35eb8e22763edd487af69e621fed456"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/round9_lib.py",
+        "sha256": "0b36837c090d1349debcc2580f5940a07ec1b16b643228f5938af7fbfa1380b7"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound9 (Claude)",
+      "description": "Commit 679be37 (rounds.md round 9): round9_lib.py's scarf-only regen rewrote frame 1's scarf_bbox_orig_1024canvas, scarf_final_size and scarf_offset_final.",
+      "at": "2026-10-01T03:53:49+00:00"
+    },
+    {
+      "by": "scarf-attachment correction (openai-codex/gpt-6-astra)",
+      "description": "Commit dd40c07 ('Fix painted Violet scarf attachment', rounds.md 'Scarf attachment correction'): apply_scarf_attachments.py apply rewrote every frame's scarf_offset_final as body_neck - scarf_knot from scarf_attachments.json, replacing the crop-offset values; no placement field changed.",
+      "at": "2026-10-01T03:53:49+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

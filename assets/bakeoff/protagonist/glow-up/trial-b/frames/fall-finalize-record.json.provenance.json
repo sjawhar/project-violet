@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "asset": "fall-finalize-record.json",
+  "sha256": "d0273f288442346bb623a620a80fd409fe4e34d83b8c3b7246b15cf411288f84",
+  "kind": "animation",
+  "origin": "derived",
+  "created_at": "2026-10-01T03:53:49+00:00",
+  "generator": {
+    "tool": "trial-b/finalize_anim.py",
+    "tool_version": "fall --mode airborne (commits 45ee54e, 0e6a40f, 2dbe849)",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-00.png",
+        "sha256": "8f6c4ad4004dcdadfcfb0601545c5d56923c9a198df605b0140ff0537ff413b8"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-01.png",
+        "sha256": "b6b1cd6023f23ed9258b312c35c423e562f4fdef3ec870c583451ced4cfbc775"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-02.png",
+        "sha256": "ec55ad630e81d9152f65150eac81e459e676dfacae3d3024592c2405dcfaecd7"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-03.png",
+        "sha256": "b538d40eee95de708943f3e43eed7da8b38f40f17b43aaad49264bea088af137"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-body-04.png",
+        "sha256": "c123a07b822b8fba0f0d7bf91ecbacaaefb08a816f58a70815441a05684b5e98"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-00.png",
+        "sha256": "8a62a26001af47a4abb6ff9b78d940c4a5914f120313b868e9a872af22038761"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-01.png",
+        "sha256": "db33d5b8b85624cf4bdbf3ff74be31473e34b49498533436f221cbb5a90db004"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-02.png",
+        "sha256": "6d8be4fd8b1eccf2ef2570441efeff8516a64064184b1107d7aa121906b81ff6"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-03.png",
+        "sha256": "9beabccb2b593c32b50805b561b31184431a05ada78debdfc4cfc701109ca3f3"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/fall-scarf-04.png",
+        "sha256": "7668c07b5f2fda34d745fd26ef45b905ce3efdce2bd53fb4124738d144cebf40"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+        "sha256": "595ebb24146248c0ed5ed710829638a36691abf813db7a43a1c39d0dd9eba28b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+        "sha256": "b465a5aec57d4adfcfb949b15a0fb72dd35eb8e22763edd487af69e621fed456"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "Claude",
+      "description": "Commit 0e08f79: finalize_anim.py's HEAD_OVERRIDES replaced frame 4's mis-measured head_x/head_y with a hand-measured value and recorded head_correction.",
+      "at": "2026-10-01T03:53:49+00:00"
+    },
+    {
+      "by": "VioletRound6 (Claude)",
+      "description": "Commit 314b0aa (rounds.md round 6): frame 4 repainted and re-finalized with finalize_anim.py, rewriting its sizes, head_x/head_y, target_head_x/y and anchor_mode, and dropping head_correction.",
+      "at": "2026-10-01T03:53:49+00:00"
+    },
+    {
+      "by": "scarf-attachment correction (openai-codex/gpt-6-astra)",
+      "description": "Commit dd40c07 ('Fix painted Violet scarf attachment', rounds.md 'Scarf attachment correction'): apply_scarf_attachments.py apply rewrote every frame's scarf_offset_final as body_neck - scarf_knot from scarf_attachments.json, replacing the crop-offset values; no placement field changed.",
+      "at": "2026-10-01T03:53:49+00:00"
+    }
+  ],
+  "license": "proprietary"
+}

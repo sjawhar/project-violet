@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "asset": "finalize-record.json",
+  "sha256": "d7e826974050513c95a4afa666f68c250e76b4b4d7e044d13877f319f1b5b880",
+  "kind": "animation",
+  "origin": "derived",
+  "created_at": "2026-10-01T03:53:48+00:00",
+  "generator": {
+    "tool": "trial-b/finalize_frames.py",
+    "tool_version": "technique trial B (commit b5aad54)",
+    "model": null,
+    "params": {},
+    "inputs": [
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-00.png",
+        "sha256": "3efba95248266100749d252dc32beac482c938d3553b48403f6dd9a3bd71aa11"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-01.png",
+        "sha256": "d3c537726f97405fbd5dc7221c8fafcad253acec36504555c1f057b2ff267857"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-02.png",
+        "sha256": "da7b38a0c4fa333495c57d5f0befd75f3f3b901525947f6286372f0fd813a5bc"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-03.png",
+        "sha256": "7f09ad2943f11477f2d3ebd5ff8e8aa91d581428e012928f3a8e1b78072dfba8"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-04.png",
+        "sha256": "e5377d56b9f1f4da99ef19f0441c1d75655f0660b5cf4b7a3ad3a54c3ecb63eb"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-05.png",
+        "sha256": "25e2122719b6b160da8f2d2717de8e5df6c17c02e64dcb9a150744b2aea60f4a"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-06.png",
+        "sha256": "20d7b7f16ab152342cfc61443d4148e0b69fddcc0e2913c28c719d54b9b4af7f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-body-07.png",
+        "sha256": "3a8eea1959146c48ed331466ba96dbd4c3a0b9d3f93c4a597b74fe5c21af792c"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-00.png",
+        "sha256": "65694dc1d2b20e98cb791492341f714e563f120564b043ea2bde5eac42d9c4ae"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-01.png",
+        "sha256": "07d0eda50ef3ed33c505ad1cc303fdd3b515ed9e8c965fed628e13ff1764b350"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-02.png",
+        "sha256": "2334555e7b652af67b3a9ee2bb58c9cbbad7e431f7c526acb7aea6baa470c805"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-03.png",
+        "sha256": "065e6f7fa9716fc175a9341dfac5b50bf889f27d719a33d6a48936ddea9e6cac"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-04.png",
+        "sha256": "e20a1b33657e36ba52effabdc9b7b8825de90af5d90bf62ef2d4cc28ffd3f456"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-05.png",
+        "sha256": "f5194c0a7c7fc781cc10dcd15aac6e5d260c65062a331ecd692f823de06640d2"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-06.png",
+        "sha256": "159e2ce3de7598885923b769fe30df3481c0a2b92f1b3c69cc9efef4702a0878"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/frames/run-scarf-07.png",
+        "sha256": "e7ea8eac9d2b0af8ae970fccb4fdf16f9421027a0e58c7047f0aa9235480ac5f"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/scarf_attachments.json",
+        "sha256": "595ebb24146248c0ed5ed710829638a36691abf813db7a43a1c39d0dd9eba28b"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/apply_scarf_attachments.py",
+        "sha256": "b465a5aec57d4adfcfb949b15a0fb72dd35eb8e22763edd487af69e621fed456"
+      },
+      {
+        "path": "assets/bakeoff/protagonist/glow-up/trial-b/round9_lib.py",
+        "sha256": "0b36837c090d1349debcc2580f5940a07ec1b16b643228f5938af7fbfa1380b7"
+      }
+    ]
+  },
+  "human_edits": [
+    {
+      "by": "VioletRound6 (Claude)",
+      "description": "Commit 314b0aa (rounds.md round 6, placement only): added per-frame torso_x (the body's whole-mask alpha centroid) and place_dy_offset (the designed two-beat head bob) for all 8 frames; no script for these values is committed.",
+      "at": "2026-10-01T03:53:48+00:00"
+    },
+    {
+      "by": "VioletRound9 (Claude)",
+      "description": "Commit 679be37 (rounds.md round 9): round9_lib.py's scarf-only regen rewrote frames 1 and 5's scarf_bbox_orig_1024canvas, scarf_final_size and scarf_offset_final.",
+      "at": "2026-10-01T03:53:48+00:00"
+    },
+    {
+      "by": "scarf-attachment correction (openai-codex/gpt-6-astra)",
+      "description": "Commit dd40c07 ('Fix painted Violet scarf attachment', rounds.md 'Scarf attachment correction'): apply_scarf_attachments.py apply rewrote every frame's scarf_offset_final as body_neck - scarf_knot from scarf_attachments.json, replacing the crop-offset values; no placement field changed.",
+      "at": "2026-10-01T03:53:48+00:00"
+    }
+  ],
+  "license": "proprietary"
+}
