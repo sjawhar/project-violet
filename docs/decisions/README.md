@@ -16,3 +16,5 @@ One record per settled decision. Each record quotes its source. Later decisions 
 | [0010](0010-2018-illustration-included.md) | Include the 2018 Violet illustration in the public archive |
 | [0011](0011-merge-queue-waiver.md) | Tooling and docs PRs merge through the pr-queue organizer without the six gates |
 | [0012](0012-no-purchases-until-agents-prove-it.md) | No tool purchases in the bake-off until agents prove they need one |
+| [0014](0014-mechanics-round-1.md) | Mechanics round 1: color trigger, movement, blue, yellow, wall jump, difficulty, structure |
+| [0015](0015-story-direction.md) | Story direction: name, look, companion, backstory, combat, and world |
