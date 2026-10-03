@@ -110,7 +110,8 @@ func _draw_cell(kind: String, pos: Vector2, rect: Rect2, ts: float, cell: Vector
 		_:
 			if kind.begins_with("orb_"):
 				var oc: String = kind.substr(4)
-				draw_circle(pos + Vector2(ts, ts) * 0.5, ts * 0.22, PALETTE.get(oc, PALETTE["neutral"]))
+				var orb_color: Color = PALETTE.get(oc, PALETTE["neutral"]) if _has_color(oc) else PALETTE["neutral"]
+				draw_circle(pos + Vector2(ts, ts) * 0.5, ts * 0.22, orb_color)
 			elif kind.begins_with("wall_") or kind.begins_with("platform_"):
 				var is_wall := kind.begins_with("wall_")
 				var color_name: String = kind.substr(kind.find("_") + 1)
