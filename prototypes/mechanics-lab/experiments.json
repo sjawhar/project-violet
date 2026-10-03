@@ -23,7 +23,7 @@
 	{
 		"id": "wall-jump",
 		"title": "Wall jump trial",
-		"question": "The tuned controller with wall slide + wall jump turned on. Does Violet wall-jump in round 3, or does round 2 settle it: no?",
+		"question": "The tuned controller with wall slide and wall jump turned on. Should she wall-jump in the game?",
 		"model": "ability_window",
 		"profile": "tuned_walljump",
 		"abilities": ["dash"],
