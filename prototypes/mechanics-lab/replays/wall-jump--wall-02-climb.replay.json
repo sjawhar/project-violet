@@ -1,0 +1,263 @@
+{
+ "format": "violet-lab-replay",
+ "version": 1,
+ "tick_hz": 60,
+ "experiment": "wall-jump",
+ "room": "wall-02-climb",
+ "profile": "tuned_walljump",
+ "inputs": [
+  {
+   "at": 0,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 0,
+   "to": 18,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "at": 14,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 10,
+   "to": 32,
+   "hold": [
+    "left"
+   ]
+  },
+  {
+   "at": 28,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 24,
+   "to": 46,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "at": 42,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 38,
+   "to": 60,
+   "hold": [
+    "left"
+   ]
+  },
+  {
+   "at": 56,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 52,
+   "to": 74,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "at": 70,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 66,
+   "to": 88,
+   "hold": [
+    "left"
+   ]
+  },
+  {
+   "at": 84,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 80,
+   "to": 102,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "at": 98,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 94,
+   "to": 116,
+   "hold": [
+    "left"
+   ]
+  },
+  {
+   "at": 112,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 108,
+   "to": 130,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "at": 126,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 122,
+   "to": 144,
+   "hold": [
+    "left"
+   ]
+  },
+  {
+   "at": 140,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 136,
+   "to": 158,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "at": 154,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 150,
+   "to": 172,
+   "hold": [
+    "left"
+   ]
+  },
+  {
+   "at": 168,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 164,
+   "to": 186,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "at": 182,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 178,
+   "to": 200,
+   "hold": [
+    "left"
+   ]
+  },
+  {
+   "at": 196,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 192,
+   "to": 214,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "at": 210,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 206,
+   "to": 228,
+   "hold": [
+    "left"
+   ]
+  },
+  {
+   "at": 224,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 220,
+   "to": 242,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "at": 238,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 234,
+   "to": 256,
+   "hold": [
+    "left"
+   ]
+  },
+  {
+   "at": 252,
+   "press": [
+    "jump"
+   ]
+  },
+  {
+   "from": 248,
+   "to": 266,
+   "hold": [
+    "right"
+   ]
+  }
+ ],
+ "expect": {
+  "goal_by_tick": 270
+ },
+ "must_fail_without": [
+  "wall_jump"
+ ]
+}

@@ -38,6 +38,16 @@ var room: RoomData
 var abilities: Dictionary = {}
 var acquired_colors: Dictionary = {}
 var deaths := 0
+## Round 2 wall-jump: the wall side (-1/+1) launched off by the most recent
+## wall jump, 0 if none since the last ground contact or opposite-wall
+## jump. Blocks re-triggering a wall jump off the SAME wall before either
+## landing or touching the other wall: without this, holding toward a lone
+## wall and pressing jump on roughly a 10-20 tick cadence nets upward
+## progress forever (confirmed via a probe room/replay), since each wall
+## jump's push-away velocity decelerates (profile.turn_accel_mult) and
+## carries the player straight back into the SAME wall well before the
+## jump's apex -- see DESIGN.md "Wall jump: no single-wall pogo".
+var _last_wall_jump_side := 0
 
 var _active_ability: Ability
 var _prev_on_floor := false
@@ -105,6 +115,7 @@ func respawn_at(pos: Vector2) -> void:
 	_prev_on_floor = false
 	_coyote_ticks_left = 0
 	_jump_buffer_left = 0
+	_last_wall_jump_side = 0
 	_active_ability = null
 	for a: Ability in abilities.values():
 		a.on_landed()
@@ -159,7 +170,7 @@ func _physics_process(_delta: float) -> void:
 	_handle_hazard_goal_orb()
 	if state == &"dead":
 		return
-	_update_state(ability_active)
+	_update_state(ability_active, input)
 
 func _read_input() -> Dictionary:
 	var move_x := 0
@@ -213,7 +224,7 @@ func _handle_jump(input: Dictionary) -> void:
 			_do_ground_jump(&"coyote")
 		else:
 			var wall := _wall_side()
-			if wall != 0:
+			if wall != 0 and wall != _last_wall_jump_side:
 				_do_wall_jump(wall)
 			else:
 				var dj: Ability = abilities.get("double_jump")
@@ -242,6 +253,7 @@ func _do_wall_jump(wall: int) -> void:
 	facing = -wall
 	on_floor = false
 	_coyote_ticks_left = 0
+	_last_wall_jump_side = wall
 	_cuttable_jump_active = true
 	state = &"jump"
 	jumped.emit(&"wall")
@@ -394,6 +406,7 @@ func _move_and_collide() -> void:
 func _handle_landing_transition() -> void:
 	if on_floor:
 		_coyote_ticks_left = 0
+		_last_wall_jump_side = 0
 		if not _prev_on_floor:
 			landed.emit(absf(_landing_impact_px_s))
 			_play_sfx(&"land_hard" if absf(_landing_impact_px_s) > 10.0 * LabConstants.TILE_SIZE_PX else &"land_soft")
@@ -470,11 +483,20 @@ func _die() -> void:
 	died.emit()
 	_play_sfx(&"death")
 
-func _update_state(ability_active: bool) -> void:
+## Round 2: the "wall_slide" label (shown in the HUD's state readout) must
+## match _handle_gravity's actual slide-cap condition -- touching a wall
+## while falling is not enough on its own (confirmed via a probe replay:
+## letting go of the held direction mid-fall left the state reading
+## "wall_slide" while velocity.y kept accelerating straight past
+## wall_slide_speed to max_fall_speed, a free fall in every way except the
+## label). Only the color (not the rate) is cosmetic here, but a
+## mislabeled state is still a real bug for anyone reading it off the HUD.
+func _update_state(ability_active: bool, input: Dictionary) -> void:
 	if ability_active:
 		return
 	if not on_floor:
-		if velocity.y > 0.0 and profile.wall_jump >= 1 and _wall_side() != 0:
+		var wall := _wall_side() if (velocity.y > 0.0 and profile.wall_jump >= 1) else 0
+		if wall != 0 and sign(input.move_x) == wall:
 			state = &"wall_slide"
 		else:
 			state = &"jump" if velocity.y < 0.0 else &"fall"

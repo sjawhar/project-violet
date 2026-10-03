@@ -1,0 +1,43 @@
+{
+ "format": "violet-lab-room",
+ "version": 1,
+ "tile_size_px": 64,
+ "legend": {
+  ".": "empty",
+  "#": "solid",
+  "S": "start",
+  "G": "goal"
+ },
+ "rows": [
+  "####",
+  "#GG#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#S.#",
+  "####"
+ ],
+ "title": "The long climb",
+ "hint": "Same trick, twice as far. Keep a steady rhythm: cling, kick, cling, kick."
+}
