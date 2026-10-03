@@ -130,3 +130,28 @@ Gravity and jump velocity derive from jump_height and jump_time_to_apex (g = 2h/
 - Web: single-threaded (`variant/thread_support=false`) so it runs on GitHub Pages without special headers; `out/mechanics-lab/web/index.html`.
 - Linux x86_64: `out/mechanics-lab/linux/violet-mechanics-lab.x86_64`.
 - Published to `https://sjawhar.github.io/project-violet/review/pr-0-prelim/mechanics-lab/` (the same pr-0-prelim area as the glow-up gallery): a page with what to try, the play link, a Linux download, and per-experiment questions.
+
+## Round 2: chapter prototype
+Round 1 settled the controller feel, the `ability_window` resonance model, and the four abilities (red dash, green double jump, yellow stomp, blue swing); this round builds a short linear *chapter* out of them, plus a wall-jump trial, to see whether a full level — not just one question at a time — feels good.
+
+### Chapter structure
+- One `experiments.json` entry (`id: "chapter"`), `model: ability_window`, `profile: tuned`, `abilities: [dash, double_jump, stomp, swing]`, `acquired: []` — every color starts gray and is earned from an `orb_<color>` in its teach room, same as round 1's orb mechanic, just four times in a row instead of once.
+- `rooms` is one linear list (`ch-01-warmup` … `ch-10-finale`): a warm-up with no abilities, then each color's teach room (orb, then one obstacle only that color solves), then a combo room recombining it with what came before, ending in `ch-10-finale` which strings all four abilities into one longer sequence (double-jump to an anchor, swing to a second anchor, dash the landing, stomp through a weak floor to the goal) as the chapter's high point.
+- The route is gentle: every main room's required abilities are exactly the ones already taught, verified by a `must_fail_without` replay negative per ability, and no room demands pixel-perfect execution (every timing-sensitive gap — a dash gap under a low ceiling, a swing's attach range, a stomp's fall-through — carries several ticks of slack, found by tracing the real engine, not assumed).
+
+### Side rooms: `links` and `side_exit`
+- A main room can branch to one optional, harder side room and rejoin the main sequence later. Two pieces make this work, both in `RoomData`/`RoomLoader` (`lab/room_loader.gd`):
+  - A grid kind `side_exit` (drawn as an amber diamond, `lab/room_view.gd`): an open (non-solid) cell that, when touched, raises `reached_goal` the same way the `goal` kind does, just carrying a different destination.
+  - A room's optional top-level `"links"` object: `{"goal": room_id, "side_exit": room_id}`. `lab/main.gd._on_player_reached_goal(to)` resolves the destination this way — `to == ""` (no link) advances to the next room in the experiment's own `rooms` list (round 1's default, unchanged); `to` matching a room already in that list means a side room returning to the main sequence (`_room_index` jumps to it, `_side_room_id` clears); any other `to` is a side room id outside the main list (`_side_room_id` is set, `_room_index` holds its place so the return resumes exactly where it branched).
+  - A side room is a normal room file, just not listed in the experiment's `rooms` array — it's reached only via another room's `links.side_exit`. It carries its own `links.goal` pointing back to a specific main-sequence room (typically the next one), so the harder detour rejoins the gentle route rather than extending it.
+- This chapter's four side rooms: `ch-side-red` (off `ch-02`, dash only, harder — two low-ceiling gaps back to back — rejoins at `ch-03`), `ch-side-rg` (off `ch-04`, dash+double_jump, rejoins `ch-05`), `ch-side-ryg` (off `ch-06`, dash+double_jump+stomp, rejoins `ch-07`), `ch-side-quad` (off `ch-09`, all four abilities back to back — a second double-jump wall, a dash gap, a swing pit, a long weak floor — rejoins `ch-10-finale`).
+
+### Grayscale reveal
+- `lab/room_view.gd` draws any wall/platform/orb geometry tagged with a color the player hasn't acquired yet (`LabPlayer.has_color(c)`) in grayscale instead of that color's palette entry, so an orb not yet collected doesn't spoil which color is coming, and a wall/platform of an unacquired color reads as "not yet relevant" rather than invisible or broken-looking. Geometry regains its color the tick the orb is touched.
+
+### Controls-bar extras
+- `experiments.json` entries may carry an `"extra_controls": [string, ...]` array for a control that isn't tied to one of the experiment's `abilities` entries (so the generic per-ability control-hints list has nothing to say about it). `lab/ui/hud.gd` appends these verbatim to the controls bar. The wall-jump trial uses this for its two wall moves ("Hold toward a wall while falling: wall slide", "Jump while touching a wall: wall jump").
+
+### Wall-jump trial
+- A second `experiments.json` entry (`id: "wall-jump"`), same `ability_window` model, a dedicated `lab/profiles/tuned_walljump.tres` profile (identical to `tuned` except `wall_jump: 1`, which turns on `LabPlayer`'s wall-slide-cap-on-descent and wall-jump-launches-away-from-the-wall physics in `_handle_gravity`/`_wall_side`/`_do_wall_jump`; every other profile keeps `wall_jump: 0`, so this is fully opt-in and round 1's rooms are unaffected). Rooms: `wall-01-basics`, `wall-02-climb`, `wall-03-gap`, `wall-04-dash-combo` — see those rooms' own `hint` strings and replays for what each teaches; this is explicitly a *trial*, answering whether Violet wall-jumps at all in round 3, not a settled mechanic.
+

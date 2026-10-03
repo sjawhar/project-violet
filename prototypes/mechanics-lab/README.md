@@ -9,7 +9,8 @@ Brainstorm prototype on `proto/mechanics-lab`; never merges. Full contract: `DES
 /home/sami/.local/share/mise/installs/godot/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64 --path prototypes/mechanics-lab
 ```
 
-Menu: numbered 1-9 in list order, Up/Down (or stick/mouse) to choose, Enter/Space/gamepad A
+Menu: the chapter and wall-jump trial listed first, then the nine round-1 experiments under a
+"Round 1 experiments" heading, Up/Down (or stick/mouse) to choose, Enter/Space/gamepad A
 to play. In a room: Esc back to menu, R restart, **Tab compares the bake-off's movement live**
 (no accel/decel curves, no coyote/buffer/corner-correction) with a brief toast naming the
 profile, H toggles the control-hints overlay, F1 opens the live tuning panel, M mutes.
@@ -51,6 +52,8 @@ something is resonating.
 | `stomp-chain` | stomp | Double-jump a wall, dash under a low roof, then stomp a yellow platform mid-air to fall to the goal. |
 | `blink-gauntlet` | blink | Double-jump a wall, dash under a low roof, blink through a thick wall, then ride the same blue resonance down through a `platform_blue`. |
 | `swing-chain` | swing | Double-jump to grab the first anchor, release into the second, then dash the last stretch without ever touching ground. |
+| `ch-01-warmup` … `ch-10-finale` | chapter | The linear chapter route: warm-up, then each color's teach room (orb + one obstacle), a recombine room, through to `ch-10-finale` (double jump, swing chain, dash, stomp in one longer sequence). Orbs and unacquired-color geometry start grayscale per `DESIGN.md`'s round-2 reveal. |
+| `ch-side-red` / `ch-side-rg` / `ch-side-ryg` / `ch-side-quad` | chapter | Optional harder side rooms (amber diamond exit) off `ch-02`/`ch-04`/`ch-06`/`ch-09`: the same abilities already taught, chained tighter, rejoining the main route one room later. |
 
 ## Tests
 
