@@ -170,7 +170,7 @@ func _physics_process(_delta: float) -> void:
 	_handle_hazard_goal_orb()
 	if state == &"dead":
 		return
-	_update_state(ability_active)
+	_update_state(ability_active, input)
 
 func _read_input() -> Dictionary:
 	var move_x := 0
@@ -483,11 +483,20 @@ func _die() -> void:
 	died.emit()
 	_play_sfx(&"death")
 
-func _update_state(ability_active: bool) -> void:
+## Round 2: the "wall_slide" label (shown in the HUD's state readout) must
+## match _handle_gravity's actual slide-cap condition -- touching a wall
+## while falling is not enough on its own (confirmed via a probe replay:
+## letting go of the held direction mid-fall left the state reading
+## "wall_slide" while velocity.y kept accelerating straight past
+## wall_slide_speed to max_fall_speed, a free fall in every way except the
+## label). Only the color (not the rate) is cosmetic here, but a
+## mislabeled state is still a real bug for anyone reading it off the HUD.
+func _update_state(ability_active: bool, input: Dictionary) -> void:
 	if ability_active:
 		return
 	if not on_floor:
-		if velocity.y > 0.0 and profile.wall_jump >= 1 and _wall_side() != 0:
+		var wall := _wall_side() if (velocity.y > 0.0 and profile.wall_jump >= 1) else 0
+		if wall != 0 and sign(input.move_x) == wall:
 			state = &"wall_slide"
 		else:
 			state = &"jump" if velocity.y < 0.0 else &"fall"
