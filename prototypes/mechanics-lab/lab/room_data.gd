@@ -21,6 +21,14 @@ var goal_cell := Vector2i.ZERO
 var orbs: Array[Dictionary] = []
 var cracked_cells: Array[Vector2i] = []
 var anchor_cells: Array[Vector2i] = []
+var side_exit_cells: Array[Vector2i] = []
+## Round 2 extension: optional per-kind destination override, parsed from
+## the room JSON's top-level "links" object ({"goal": room_id, "side_exit":
+## room_id}). Empty/missing "goal" means the default: the next room in the
+## current experiment's `rooms` list (lab/main.gd._on_player_reached_goal).
+## "side_exit" has no default; a side_exit cell with no link is a room-data
+## error (see lab/room_loader.gd).
+var links: Dictionary = {}
 ## Cracked cells broken by stomp this life; cleared on respawn (RoomData is
 ## re-loaded/reset per respawn by the room controller, see lab/main.gd).
 var broken: Dictionary = {}
@@ -57,6 +65,9 @@ func is_hazard(col: int, row: int) -> bool:
 
 func is_goal(col: int, row: int) -> bool:
 	return kind_at(col, row) == "goal"
+
+func is_side_exit(col: int, row: int) -> bool:
+	return kind_at(col, row) == "side_exit"
 
 func orb_color_at(col: int, row: int) -> String:
 	var kind := kind_at(col, row)

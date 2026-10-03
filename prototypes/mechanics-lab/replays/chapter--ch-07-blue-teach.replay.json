@@ -1,0 +1,30 @@
+{
+ "format": "violet-lab-replay",
+ "version": 1,
+ "tick_hz": 60,
+ "experiment": "chapter",
+ "room": "ch-07-blue-teach",
+ "profile": "tuned",
+ "acquired": ["red", "green", "yellow"],
+ "inputs": [
+  {
+   "from": 0,
+   "to": 150,
+   "hold": ["right"]
+  },
+  {
+   "from": 3,
+   "to": 5,
+   "hold": ["jump"]
+  },
+  {
+   "from": 3,
+   "to": 45,
+   "hold": ["ability"]
+  }
+ ],
+ "expect": {
+  "goal_by_tick": 150
+ },
+ "must_fail_without": ["swing"]
+}

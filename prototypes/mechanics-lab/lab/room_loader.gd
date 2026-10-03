@@ -2,12 +2,15 @@
 #
 # Parses `violet-lab-room` v1 (shape of docs/bakeoff/greybox-format.md plus
 # "title"/"hint"). Kinds: empty solid start goal hazard wall_<c> platform_<c>
-# orb_<c> (c in red/green/yellow/blue) cracked anchor.
+# orb_<c> (c in red/green/yellow/blue) cracked anchor side_exit. Round 2
+# extension: an optional top-level "links" object ({"goal": room_id,
+# "side_exit": room_id}) overrides a "goal"/"side_exit" cell's default
+# destination; see RoomData.links and lab/main.gd._on_player_reached_goal.
 class_name RoomLoader
 extends RefCounted
 
 const VALID_PREFIXED_COLORS: Array[String] = ["red", "green", "yellow", "blue"]
-const VALID_PLAIN_KINDS: Array[String] = ["empty", "solid", "start", "goal", "hazard", "cracked", "anchor"]
+const VALID_PLAIN_KINDS: Array[String] = ["empty", "solid", "start", "goal", "hazard", "cracked", "anchor", "side_exit"]
 
 static func _is_valid_kind(kind: String) -> bool:
 	if VALID_PLAIN_KINDS.has(kind):
@@ -41,6 +44,9 @@ static func load_room(room_id: String) -> RoomData:
 	room.title = str(data.get("title", room_id))
 	room.hint = str(data.get("hint", ""))
 	room.tile_size_px = float(data.get("tile_size_px", 64))
+	var links: Dictionary = data.get("links", {})
+	for key in links:
+		room.links[str(key)] = str(links[key])
 
 	var legend: Dictionary = data.get("legend", {})
 	var rows_strs: Array = data.get("rows", [])
@@ -77,6 +83,8 @@ static func load_room(room_id: String) -> RoomData:
 					room.cracked_cells.append(cell)
 				"anchor":
 					room.anchor_cells.append(cell)
+				"side_exit":
+					room.side_exit_cells.append(cell)
 				_:
 					if kind.begins_with("orb_"):
 						room.orbs.append({"cell": cell, "color": kind.substr(4)})
@@ -86,4 +94,6 @@ static func load_room(room_id: String) -> RoomData:
 		push_error("RoomLoader: %s has no start cell" % path)
 	if not found_goal:
 		push_error("RoomLoader: %s has no goal cell" % path)
+	if not room.side_exit_cells.is_empty() and not room.links.has("side_exit"):
+		push_error("RoomLoader: %s has a side_exit cell but no links.side_exit destination" % path)
 	return room

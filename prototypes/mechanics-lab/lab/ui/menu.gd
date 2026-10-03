@@ -8,6 +8,13 @@ extends Control
 
 signal chosen(experiment_id)
 
+## Round 2 extension: experiments.json entries may carry an optional
+## "group" key; the first entry of a new group gets a heading label above
+## it (the first group in the list gets none -- it's already first).
+const GROUP_LABELS := {
+	"round1": "Round 1 experiments",
+}
+
 var _list_box: VBoxContainer
 
 
@@ -55,13 +62,28 @@ func show_experiments(list: Array, done: Dictionary) -> void:
 	for child in _list_box.get_children():
 		child.queue_free()
 	var first_button: Button = null
-	for i in range(list.size()):
-		var row := _build_row(list[i], i + 1, done)
+	var last_group := ""
+	var number := 0
+	for experiment: Dictionary in list:
+		var group := String(experiment.get("group", ""))
+		if group != "" and group != last_group:
+			_list_box.add_child(_build_heading(GROUP_LABELS.get(group, group)))
+		last_group = group
+		number += 1
+		var row := _build_row(experiment, number, done)
 		_list_box.add_child(row)
 		if first_button == null:
 			first_button = row
 	if first_button:
 		first_button.grab_focus()
+
+
+func _build_heading(text: String) -> Label:
+	var label := Label.new()
+	label.text = text
+	label.add_theme_font_size_override("font_size", 24)
+	label.modulate.a = 0.85
+	return label
 
 
 func _build_row(experiment: Dictionary, number: int, done: Dictionary) -> Button:

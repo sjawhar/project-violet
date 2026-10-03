@@ -1,0 +1,41 @@
+{
+ "format": "violet-lab-replay",
+ "version": 1,
+ "tick_hz": 60,
+ "experiment": "chapter",
+ "room": "ch-06-triple-combo",
+ "profile": "tuned",
+ "acquired": ["red", "green", "yellow"],
+ "inputs": [
+  {
+   "from": 0,
+   "to": 320,
+   "hold": ["right"]
+  },
+  {
+   "from": 6,
+   "to": 26,
+   "hold": ["jump"]
+  },
+  {
+   "at": 29,
+   "press": ["jump"]
+  },
+  {
+   "at": 101,
+   "press": ["dash"]
+  },
+  {
+   "at": 210,
+   "press": ["jump"]
+  },
+  {
+   "at": 215,
+   "press": ["down"]
+  }
+ ],
+ "expect": {
+  "goal_by_tick": 320
+ },
+ "must_fail_without": ["dash", "double_jump", "stomp"]
+}

@@ -1,5 +1,37 @@
 [
 	{
+		"id": "chapter",
+		"title": "Chapter prototype",
+		"question": "A short linear chapter: ability triggers resonance, tuned movement. Orbs grant red (dash), green (double jump), yellow (stomp), blue (swing) one at a time; unacquired colors stay gray. Gentle main route, with a few harder side rooms (marked with an orange diamond exit) that loop back in. Does a full chapter, not just a single room, feel good?",
+		"model": "ability_window",
+		"profile": "tuned",
+		"abilities": ["dash", "double_jump", "stomp", "swing"],
+		"acquired": [],
+		"rooms": [
+			"ch-01-warmup",
+			"ch-02-red-teach",
+			"ch-03-green-teach",
+			"ch-04-red-green-combo",
+			"ch-05-yellow-teach",
+			"ch-06-triple-combo",
+			"ch-07-blue-teach",
+			"ch-08-blue-combo",
+			"ch-09-quad-combo",
+			"ch-10-finale"
+		]
+	},
+	{
+		"id": "wall-jump",
+		"title": "Wall jump trial",
+		"question": "The tuned controller with wall slide + wall jump turned on. Does Violet wall-jump in round 3, or does round 2 settle it: no?",
+		"model": "ability_window",
+		"profile": "tuned_walljump",
+		"abilities": ["dash"],
+		"acquired": ["red"],
+		"extra_controls": ["Hold toward a wall while falling: wall slide", "Jump while touching a wall: wall jump"],
+		"rooms": ["wall-01-basics", "wall-02-climb", "wall-03-gap", "wall-04-dash-combo"]
+	},
+	{
 		"id": "feel",
 		"title": "Movement feel",
 		"question": "Does this feel right as the baseline? Tab compares with the bake-off's movement; F1 tunes it live.",
@@ -7,6 +39,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump"],
 		"acquired": ["red", "green"],
+		"group": "round1",
 		"rooms": ["feel-ground", "feel-air", "feel-flow"]
 	},
 	{
@@ -17,6 +50,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump"],
 		"acquired": ["red", "green"],
+		"group": "round1",
 		"rooms": ["red-wall", "red-bridge", "two-colors", "high-wall", "timing-gauntlet", "flow-run"]
 	},
 	{
@@ -27,6 +61,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump"],
 		"acquired": ["red", "green"],
+		"group": "round1",
 		"rooms": ["red-wall", "red-bridge", "two-colors", "high-wall", "timing-gauntlet", "flow-run"]
 	},
 	{
@@ -37,6 +72,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump"],
 		"acquired": ["red", "green"],
+		"group": "round1",
 		"rooms": ["red-wall", "red-bridge", "two-colors", "high-wall", "timing-gauntlet", "flow-run"]
 	},
 	{
@@ -47,6 +83,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "stomp"],
 		"acquired": ["red", "green", "yellow"],
+		"group": "round1",
 		"rooms": ["stomp-drop", "stomp-vault", "stomp-chain"]
 	},
 	{
@@ -57,6 +94,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "blink"],
 		"acquired": ["red", "green", "blue"],
+		"group": "round1",
 		"rooms": ["blink-wall", "blink-shaft", "blink-gauntlet"]
 	},
 	{
@@ -67,6 +105,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "swing"],
 		"acquired": ["red", "green", "blue"],
+		"group": "round1",
 		"rooms": ["swing-intro", "swing-momentum", "swing-chain"]
 	},
 	{
@@ -77,6 +116,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "stomp"],
 		"acquired": ["red", "green", "yellow"],
+		"group": "round1",
 		"rooms": ["archive-puzzle", "archive-puzzle-2"]
 	},
 	{
@@ -87,6 +127,7 @@
 		"profile": "tuned",
 		"abilities": ["dash", "double_jump", "stomp"],
 		"acquired": ["red", "green", "yellow"],
+		"group": "round1",
 		"rooms": ["archive-puzzle", "archive-puzzle-2"]
 	}
 ]

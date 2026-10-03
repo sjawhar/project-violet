@@ -27,8 +27,12 @@ const BACKDROP_COLOR := Color8(0x15, 0x18, 0x1F)
 
 var _experiments: Array = []
 var _done: Dictionary = {}
-var _tuned_profile: PhysicsProfile = load("res://lab/profiles/tuned.tres")
-var _bakeoff_profile: PhysicsProfile = load("res://lab/profiles/bakeoff.tres")
+## Round 2: any profile name used by experiments.json, loaded lazily by
+## filename (res://lab/profiles/<name>.tres), replacing the old hardcoded
+## tuned/bakeoff pair so a third profile (tuned_walljump) needs no new code
+## path here. "compare" (Tab) always toggles against "bakeoff" specifically.
+var _profiles: Dictionary = {}
+var _base_profile_name := "tuned"
 var _using_bakeoff := false
 
 var _player: LabPlayer
@@ -37,6 +41,12 @@ var _room: RoomData
 var _room_view: Node2D
 var _current_experiment: Dictionary
 var _room_index := 0
+## "" while on the experiment's main `rooms` sequence; the room id of a
+## side room reached via a side_exit link otherwise (see
+## RoomData.links/is_side_exit and room_loader.gd's "links" parsing).
+## _room_index is left untouched while in a side room, so returning (the
+## side room's own "goal" link) resumes the main sequence where it left off.
+var _side_room_id := ""
 var _deaths := 0
 var _room_ticks := 0
 var _respawn_ticks_left := 0
@@ -48,6 +58,13 @@ func _ready() -> void:
 	menu.chosen.connect(_on_experiment_chosen)
 	tuning_panel.changed.connect(func(): _player.set_profile(_player.profile) if _player != null else null)
 	_goto_menu()
+
+## Loads res://lab/profiles/<name>.tres once per name, like
+## tests/replay_runner.gd's own `load("res://lab/profiles/%s.tres" % name)`.
+func _get_profile(profile_name: String) -> PhysicsProfile:
+	if not _profiles.has(profile_name):
+		_profiles[profile_name] = load("res://lab/profiles/%s.tres" % profile_name)
+	return _profiles[profile_name]
 
 ## A CanvasLayer behind every other layer (World's Node2D content is
 ## implicitly CanvasLayer 0; negative layers draw before/under it), filling
@@ -83,22 +100,28 @@ func _on_experiment_chosen(experiment_id: String) -> void:
 		return
 	_current_experiment = exp
 	_room_index = 0
-	_using_bakeoff = str(exp["profile"]) == "bakeoff"
+	_side_room_id = ""
+	_base_profile_name = str(exp["profile"])
+	_using_bakeoff = _base_profile_name == "bakeoff"
 	_enter_room()
 
 func _enter_room() -> void:
 	var rooms: Array = _current_experiment.get("rooms", [])
-	if _room_index >= rooms.size():
+	var room_id: String
+	if _side_room_id != "":
+		room_id = _side_room_id
+	elif _room_index >= rooms.size():
 		_done[str(_current_experiment.get("id", ""))] = true
 		_goto_menu()
 		return
+	else:
+		room_id = str(rooms[_room_index])
 
 	# Deaths are a *per-room* counter (DESIGN.md): reset on every room
 	# entry, not just the experiment's first room, so a death in an
 	# earlier room of the same experiment doesn't keep counting against
 	# the next one.
 	_deaths = 0
-	var room_id := str(rooms[_room_index])
 	_room = RoomLoader.load_room(room_id)
 	if _room == null:
 		push_error("main: could not load room '%s', returning to menu" % room_id)
@@ -125,7 +148,7 @@ func _enter_room() -> void:
 
 	var ability_names: Array = _current_experiment.get("abilities", [])
 	var resonance := ResonanceFactory.create(str(_current_experiment.get("model", "none")))
-	var profile := _bakeoff_profile if _using_bakeoff else _tuned_profile
+	var profile := _get_profile("bakeoff") if _using_bakeoff else _get_profile(_base_profile_name)
 
 	if _player == null:
 		_player = PlayerScene.instantiate()
@@ -148,7 +171,7 @@ func _enter_room() -> void:
 
 	_spawn_player()
 	tuning_panel.bind(profile)
-	_room_view.setup(_room, func() -> Array: return _player.resonance_model.resonating_colors() if _player.resonance_model else [])
+	_room_view.setup(_room, func() -> Array: return _player.resonance_model.resonating_colors() if _player.resonance_model else [], func(c: String) -> bool: return _player.has_color(c))
 
 	camera.follow(_player)
 	camera.set_room_rect(_room.world_rect_px())
@@ -172,8 +195,25 @@ func _on_player_died() -> void:
 	_deaths += 1
 	_respawn_ticks_left = RESPAWN_TICKS
 
-func _on_player_reached_goal() -> void:
-	_room_index += 1
+## `to` is "" (plain main-route advance), a room id inside the current
+## experiment's `rooms` list (a side room returning to the main route), or a
+## room id outside it (a side_exit into a side room). See RoomData.links.
+func _on_player_reached_goal(to: String) -> void:
+	if to == "":
+		if _side_room_id != "":
+			push_error("main: side room '%s' reached its goal with no links.goal return target" % _side_room_id)
+			_side_room_id = ""
+			_goto_menu()
+			return
+		_room_index += 1
+	else:
+		var rooms: Array = _current_experiment.get("rooms", [])
+		var idx := rooms.find(to)
+		if idx >= 0:
+			_room_index = idx
+			_side_room_id = ""
+		else:
+			_side_room_id = to
 	_enter_room()
 
 func _physics_process(_delta: float) -> void:
@@ -191,10 +231,10 @@ func _physics_process(_delta: float) -> void:
 		_respawn_ticks_left = 0
 	if Input.is_action_just_pressed("compare"):
 		_using_bakeoff = not _using_bakeoff
-		var profile := _bakeoff_profile if _using_bakeoff else _tuned_profile
+		var profile := _get_profile("bakeoff") if _using_bakeoff else _get_profile(_base_profile_name)
 		_player.set_profile(profile)
 		tuning_panel.bind(profile)
-		hud.show_profile_toast("bakeoff" if _using_bakeoff else "tuned")
+		hud.show_profile_toast("bakeoff" if _using_bakeoff else _base_profile_name)
 
 	if _respawn_ticks_left > 0:
 		_respawn_ticks_left -= 1
@@ -204,5 +244,5 @@ func _physics_process(_delta: float) -> void:
 			_player.respawned.emit()
 
 	var model_state: Dictionary = _player.resonance_model.hud_state() if _player.resonance_model else {}
-	model_state["profile_name"] = "bakeoff" if _using_bakeoff else "tuned"
+	model_state["profile_name"] = "bakeoff" if _using_bakeoff else _base_profile_name
 	hud.update_state(_player, model_state, _deaths, _room_ticks / 60.0)

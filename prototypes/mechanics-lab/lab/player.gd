@@ -18,7 +18,7 @@ signal ability_used(ability: StringName, color: StringName)
 signal resonance_changed(colors: Array)
 signal died()
 signal respawned()
-signal reached_goal()
+signal reached_goal(to: String)
 signal blinked(from: Vector2, to: Vector2)
 signal stomp_impact()
 signal swing_attached(anchor: Vector2)
@@ -212,9 +212,13 @@ func _handle_jump(input: Dictionary) -> void:
 		elif _coyote_ticks_left > 0:
 			_do_ground_jump(&"coyote")
 		else:
-			var dj: Ability = abilities.get("double_jump")
-			if dj == null or not dj.try_start(self, input):
-				_jump_buffer_left = profile.buffer_ticks
+			var wall := _wall_side()
+			if wall != 0:
+				_do_wall_jump(wall)
+			else:
+				var dj: Ability = abilities.get("double_jump")
+				if dj == null or not dj.try_start(self, input):
+					_jump_buffer_left = profile.buffer_ticks
 	if velocity.y < 0.0 and input.jump_released and _cuttable_jump_active:
 		var cutoff := -profile.min_jump_cutoff_speed() * LabConstants.TILE_SIZE_PX
 		if velocity.y < cutoff:
@@ -229,10 +233,37 @@ func _do_ground_jump(kind: StringName) -> void:
 	jumped.emit(kind)
 	_play_sfx(&"jump")
 
+## Launches away from a wall of contact (wall == -1 left, +1 right): push
+## horizontal speed away from the wall, vertical speed the same as a ground
+## jump. Gated by profile.wall_jump (round 2's wall-jump trial; off, and
+## therefore unreachable via _wall_side(), on every other profile).
+func _do_wall_jump(wall: int) -> void:
+	velocity = Vector2(-wall * profile.wall_jump_push * LabConstants.TILE_SIZE_PX, -profile.jump_speed() * LabConstants.TILE_SIZE_PX)
+	facing = -wall
+	on_floor = false
+	_coyote_ticks_left = 0
+	_cuttable_jump_active = true
+	state = &"jump"
+	jumped.emit(&"wall")
+	_play_sfx(&"jump")
+
 ## Called by abilities (double_jump, wall-jump if enabled) whose own ascent
 ## must not be clipped by the ground jump's early-release variable-height cut.
 func disable_jump_cutoff() -> void:
 	_cuttable_jump_active = false
+
+## -1 if solid/resonance-blocking geometry is immediately to the left of the
+## player's current footprint, +1 if to the right, 0 if neither or
+## profile.wall_jump is off (round 2 extension; see DESIGN.md "Wall jump").
+func _wall_side() -> int:
+	if profile.wall_jump < 1:
+		return 0
+	const PROBE_PX := 2.0
+	if not _fits(_aabb_at(position + Vector2(-PROBE_PX, 0.0))):
+		return -1
+	if not _fits(_aabb_at(position + Vector2(PROBE_PX, 0.0))):
+		return 1
+	return 0
 
 func _handle_gravity(input: Dictionary) -> void:
 	if on_floor and velocity.y >= 0.0:
@@ -253,6 +284,14 @@ func _handle_gravity(input: Dictionary) -> void:
 	var cap_px := (profile.fast_fall_speed if fast_fall else profile.max_fall_speed) * LabConstants.TILE_SIZE_PX
 	if velocity.y > cap_px:
 		velocity.y = cap_px
+	# Wall slide (round 2): airborne, falling, holding toward a contacted
+	# wall -- caps descent speed instead of a plain grav fall, per DESIGN.md.
+	if profile.wall_jump >= 1 and velocity.y > 0.0:
+		var wall := _wall_side()
+		if wall != 0 and sign(input.move_x) == wall:
+			var slide_cap_px := profile.wall_slide_speed * LabConstants.TILE_SIZE_PX
+			if velocity.y > slide_cap_px:
+				velocity.y = slide_cap_px
 
 func _aabb_at(pos: Vector2) -> Rect2:
 	return Rect2(pos - Vector2(box_size_px.x * 0.5, box_size_px.y), box_size_px)
@@ -414,8 +453,13 @@ func _handle_hazard_goal_orb() -> void:
 		if oc != "":
 			acquire_color(oc)
 	for cell in cells:
+		var exit_kind := ""
 		if room.is_goal(cell.x, cell.y):
-			reached_goal.emit()
+			exit_kind = "goal"
+		elif room.is_side_exit(cell.x, cell.y):
+			exit_kind = "side_exit"
+		if exit_kind != "":
+			reached_goal.emit(str(room.links.get(exit_kind, "")))
 			_play_sfx(&"goal")
 			return
 
@@ -430,7 +474,10 @@ func _update_state(ability_active: bool) -> void:
 	if ability_active:
 		return
 	if not on_floor:
-		state = &"jump" if velocity.y < 0.0 else &"fall"
+		if velocity.y > 0.0 and profile.wall_jump >= 1 and _wall_side() != 0:
+			state = &"wall_slide"
+		else:
+			state = &"jump" if velocity.y < 0.0 else &"fall"
 	elif absf(velocity.x) > 1.0:
 		state = &"run"
 	else:

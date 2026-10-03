@@ -1,0 +1,33 @@
+{
+ "format": "violet-lab-room",
+ "version": 1,
+ "tile_size_px": 64,
+ "legend": {
+  ".": "empty",
+  "#": "solid",
+  "S": "start",
+  "G": "goal",
+  "y": "orb_yellow",
+  "C": "cracked"
+ },
+ "rows": [
+  "####################",
+  "#..................#",
+  "#.S.y..............#",
+  "#########..........#",
+  "#..................#",
+  "#..................#",
+  "#..................#",
+  "#CCCCCCCCCCCCCCCCCC#",
+  "#..................#",
+  "#..................#",
+  "#...............G..#",
+  "####################",
+  "####################"
+ ],
+ "links": {
+  "goal": "ch-06-triple-combo"
+ },
+ "title": "Yellow: stomp",
+ "hint": "Grab the orb, walk off the ledge, then hold down while falling to stomp through the weak floor."
+}

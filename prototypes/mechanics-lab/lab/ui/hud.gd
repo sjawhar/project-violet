@@ -48,6 +48,7 @@ const RESONANCE_VIGNETTE_LERP_SPEED := 6.0
 const PROFILE_TOAST_LABELS := {
 	"tuned": "Tuned movement",
 	"bakeoff": "Bake-off movement",
+	"tuned_walljump": "Tuned + wall jump",
 }
 
 ## Always-visible bottom bar naming the keys THIS experiment needs, so a
@@ -229,8 +230,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		_hints_panel.visible = not _hints_panel.visible
 
 
-## "Move ... · Jump ... · <model keys> · <one entry per ability> · R/Esc/H".
-## An ability or model missing from the tables is a lab bug: fail loudly.
+## "Move ... · Jump ... · <model keys> · <one entry per ability> · <extra> ·
+## R/Esc/H". An ability or model missing from the tables is a lab bug: fail
+## loudly. `extra_controls` (round 2 extension; optional, e.g. the wall-jump
+## trial's wall slide/jump hint, which isn't gated behind an `abilities`
+## entry the way dash/double_jump/stomp/swing are) is appended verbatim.
 func _controls_text(experiment: Dictionary) -> String:
 	var parts: PackedStringArray = ["Move: arrows or A/D", "Jump: Space"]
 	var model_keys: String = CONTROLS_MODEL_KEYS[String(experiment["model"])]
@@ -238,6 +242,8 @@ func _controls_text(experiment: Dictionary) -> String:
 		parts.append(model_keys)
 	for ability in experiment["abilities"]:
 		parts.append(CONTROLS_ABILITY_KEYS[String(ability)])
+	for extra in experiment.get("extra_controls", []):
+		parts.append(String(extra))
 	parts.append("R: restart   Esc: menu   H: all controls")
 	return "   ·   ".join(parts)
 

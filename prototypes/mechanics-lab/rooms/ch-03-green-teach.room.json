@@ -1,0 +1,29 @@
+{
+ "format": "violet-lab-room",
+ "version": 1,
+ "tile_size_px": 64,
+ "legend": {
+  ".": "empty",
+  "#": "solid",
+  "S": "start",
+  "G": "goal",
+  "g": "orb_green"
+ },
+ "rows": [
+  "##########################",
+  "#........................#",
+  "#........................#",
+  "#........##..............#",
+  "#........##..............#",
+  "#........##..............#",
+  "#........##..............#",
+  "#.S.g....##............G.#",
+  "##########################",
+  "##########################"
+ ],
+ "links": {
+  "goal": "ch-04-red-green-combo"
+ },
+ "title": "Green: double jump",
+ "hint": "Grab the orb, then jump and jump again at the top of the arc to clear the wall."
+}

@@ -80,7 +80,12 @@ func _ready() -> void:
 
 	_player = PlayerScene.instantiate()
 	add_child(_player)
-	for c in exp.get("acquired", []):
+	# Round 2 extension: a replay may override the experiment's default
+	# `acquired` list (e.g. a chapter room reached mid-chapter, where the
+	# interactive player already picked up an earlier room's orb that this
+	# room's own grid doesn't contain). Missing "acquired" in the replay
+	# falls back to the experiment's, exactly round 1's behavior.
+	for c in _replay.get("acquired", exp.get("acquired", [])):
 		_player.acquire_color(c)
 	var ability_names: Array = []
 	for a in exp.get("abilities", []):
@@ -92,7 +97,7 @@ func _ready() -> void:
 		float(_room.start_cell.y + 1) * _room.tile_size_px
 	)
 	_player.reset_physics_interpolation()
-	_player.reached_goal.connect(func() -> void: _goal_reached = true)
+	_player.reached_goal.connect(func(_to: String) -> void: _goal_reached = true)
 	_player.died.connect(func() -> void: _died = true)
 
 	_build_input_schedule()

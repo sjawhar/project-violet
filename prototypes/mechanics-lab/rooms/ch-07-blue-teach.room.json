@@ -1,0 +1,30 @@
+{
+ "format": "violet-lab-room",
+ "version": 1,
+ "tile_size_px": 64,
+ "legend": {
+  ".": "empty",
+  "#": "solid",
+  "S": "start",
+  "G": "goal",
+  "u": "orb_blue",
+  "A": "anchor",
+  "^": "hazard"
+ },
+ "rows": [
+  "####################",
+  "#.......A..........#",
+  "#..................#",
+  "#..................#",
+  "#..................#",
+  "#..................#",
+  "#..S.u...........G.#",
+  "#######^^^^^^#######",
+  "####################"
+ ],
+ "links": {
+  "goal": "ch-08-blue-combo"
+ },
+ "title": "Blue: swing",
+ "hint": "Grab the orb, jump, hold the ability key near the anchor to swing, let go to land past the pit."
+}
