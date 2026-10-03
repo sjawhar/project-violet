@@ -25,6 +25,33 @@ CONTROLS = [
     ("Mute", "M", ""),
 ]
 
+# Mirrors lab/ui/menu.gd's GROUP_LABELS: experiments.json entries may carry an
+# optional "group" key; the first entry of a new group gets a heading above
+# it (the first group in the list -- the round-2 chapter/wall-jump trial --
+# gets none, since it's already first), so the review page's experiment list
+# matches the in-game menu's grouping instead of running all eleven
+# experiments together as one undifferentiated list.
+GROUP_LABELS = {
+    "round1": "Round 1 experiments",
+}
+
+
+def _render_experiments(experiments: list[dict]) -> str:
+    parts = ["<ol>"]
+    last_group = ""
+    number = 0
+    for e in experiments:
+        group = e.get("group", "")
+        if group != "" and group != last_group:
+            number += 1
+            parts.append(f'</ol>\n<h3>{html.escape(GROUP_LABELS.get(group, group))}</h3>\n<ol start="{number}">')
+            number -= 1
+        last_group = group
+        number += 1
+        parts.append(f"<li><b>{html.escape(e['title'])}</b><br><span>{html.escape(e['question'])}</span></li>")
+    parts.append("</ol>")
+    return "\n".join(parts)
+
 
 def main() -> None:
     ap = argparse.ArgumentParser()
@@ -43,9 +70,7 @@ def main() -> None:
     with zipfile.ZipFile(out / "violet-mechanics-lab-linux.zip", "w", zipfile.ZIP_DEFLATED) as z:
         for f in linux:
             z.write(f, f"violet-mechanics-lab/{f.name}")
-    rows = "\n".join(
-        f"<li><b>{html.escape(e['title'])}</b><br><span>{html.escape(e['question'])}</span></li>" for e in experiments
-    )
+    experiment_list_html = _render_experiments(experiments)
     controls = "\n".join(
         f"<tr><td>{html.escape(a_)}</td><td>{html.escape(k)}</td><td>{html.escape(g)}</td></tr>" for a_, k, g in CONTROLS
     )
@@ -69,9 +94,7 @@ table{{border-collapse:collapse;width:100%}} td{{border-top:1px solid #3a4150;pa
 <a class="play dl" href="violet-mechanics-lab-linux.zip">Linux build (zip)</a>
 <p>Answer the questions in <a href="{issue}">issue #{a.issue}</a>. A gamepad works in both builds; the browser needs a click on the game before sound starts.</p>
 <h2>Experiments</h2>
-<ol>
-{rows}
-</ol>
+{experiment_list_html}
 <h2>Controls</h2>
 <table><tr><td><b>Action</b></td><td><b>Keyboard</b></td><td><b>Gamepad</b></td></tr>
 {controls}
