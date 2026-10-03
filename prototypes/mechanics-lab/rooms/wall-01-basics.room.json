@@ -1,0 +1,30 @@
+{
+ "format": "violet-lab-room",
+ "version": 1,
+ "tile_size_px": 64,
+ "legend": {
+  ".": "empty",
+  "#": "solid",
+  "S": "start",
+  "G": "goal"
+ },
+ "rows": [
+  "####",
+  "#GG#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#..#",
+  "#S.#",
+  "####"
+ ],
+ "title": "Between two walls",
+ "hint": "Hold toward a wall while falling to slide; jump to kick off it toward the other wall."
+}

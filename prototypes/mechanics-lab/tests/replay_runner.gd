@@ -72,6 +72,16 @@ func _ready() -> void:
 	if profile == null:
 		_die_setup("could not load profile '%s'" % profile_name)
 		return
+	# Round 2 extension: "wall_jump" isn't an Ability (it's a profile flag, not
+	# a lab/abilities/*.gd entry), so it can't be filtered via the
+	# `ability_names` list below like dash/double_jump/stomp/blink/swing are.
+	# --disable=wall_jump instead clones the loaded profile (never mutate the
+	# shared cached .tres resource) with wall_jump forced to 0, matching
+	# must_fail_without's "run with that ability disabled" contract for the
+	# wall-jump trial's rooms.
+	if _disabled.has("wall_jump"):
+		profile = profile.duplicate()
+		profile.wall_jump = 0
 
 	var resonance := ResonanceFactory.create(exp.get("model", "none"))
 	if resonance == null:

@@ -1,0 +1,37 @@
+{
+ "format": "violet-lab-replay",
+ "version": 1,
+ "tick_hz": 60,
+ "experiment": "wall-jump",
+ "room": "wall-03-gap",
+ "profile": "tuned_walljump",
+ "inputs": [
+  {
+   "from": 0,
+   "to": 130,
+   "hold": [
+    "right"
+   ]
+  },
+  {
+   "from": 40,
+   "to": 60,
+   "hold": [
+    "jump"
+   ]
+  },
+  {
+   "from": 78,
+   "to": 98,
+   "hold": [
+    "jump"
+   ]
+  }
+ ],
+ "expect": {
+  "goal_by_tick": 130
+ },
+ "must_fail_without": [
+  "wall_jump"
+ ]
+}

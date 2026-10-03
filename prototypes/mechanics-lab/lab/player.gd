@@ -38,6 +38,16 @@ var room: RoomData
 var abilities: Dictionary = {}
 var acquired_colors: Dictionary = {}
 var deaths := 0
+## Round 2 wall-jump: the wall side (-1/+1) launched off by the most recent
+## wall jump, 0 if none since the last ground contact or opposite-wall
+## jump. Blocks re-triggering a wall jump off the SAME wall before either
+## landing or touching the other wall: without this, holding toward a lone
+## wall and pressing jump on roughly a 10-20 tick cadence nets upward
+## progress forever (confirmed via a probe room/replay), since each wall
+## jump's push-away velocity decelerates (profile.turn_accel_mult) and
+## carries the player straight back into the SAME wall well before the
+## jump's apex -- see DESIGN.md "Wall jump: no single-wall pogo".
+var _last_wall_jump_side := 0
 
 var _active_ability: Ability
 var _prev_on_floor := false
@@ -105,6 +115,7 @@ func respawn_at(pos: Vector2) -> void:
 	_prev_on_floor = false
 	_coyote_ticks_left = 0
 	_jump_buffer_left = 0
+	_last_wall_jump_side = 0
 	_active_ability = null
 	for a: Ability in abilities.values():
 		a.on_landed()
@@ -213,7 +224,7 @@ func _handle_jump(input: Dictionary) -> void:
 			_do_ground_jump(&"coyote")
 		else:
 			var wall := _wall_side()
-			if wall != 0:
+			if wall != 0 and wall != _last_wall_jump_side:
 				_do_wall_jump(wall)
 			else:
 				var dj: Ability = abilities.get("double_jump")
@@ -242,6 +253,7 @@ func _do_wall_jump(wall: int) -> void:
 	facing = -wall
 	on_floor = false
 	_coyote_ticks_left = 0
+	_last_wall_jump_side = wall
 	_cuttable_jump_active = true
 	state = &"jump"
 	jumped.emit(&"wall")
@@ -394,6 +406,7 @@ func _move_and_collide() -> void:
 func _handle_landing_transition() -> void:
 	if on_floor:
 		_coyote_ticks_left = 0
+		_last_wall_jump_side = 0
 		if not _prev_on_floor:
 			landed.emit(absf(_landing_impact_px_s))
 			_play_sfx(&"land_hard" if absf(_landing_impact_px_s) > 10.0 * LabConstants.TILE_SIZE_PX else &"land_soft")
