@@ -226,6 +226,7 @@ func _physics_process(_delta: float) -> void:
 		return
 	if Input.is_action_just_pressed("restart"):
 		_deaths = 0
+		_room_ticks = 0
 		_spawn_player()
 		camera.snap()
 		_respawn_ticks_left = 0
