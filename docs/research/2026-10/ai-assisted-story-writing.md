@@ -1,6 +1,6 @@
 # AI-assisted story writing without slop (research, October 2026)
 
-Sami asked for this on 2026-10-04 before reworking Violet's story, which he called "trite and rushed and probably not very good": find the current best practice for using AI in brainstorming and writing fiction without producing AI slop, starting from Joel Borgen's *The Receipt Horizon*, then follow that process in a fresh session. Nothing here needs a decision from Sami; the process at the end is what the fresh session runs.
+Sami asked for this on 2026-10-04, before reworking Violet's story, which he judged trite and rushed: find the current best practice for using AI in brainstorming and writing fiction without producing AI slop, starting from Joel Borgen's *The Receipt Horizon*. The process it found is now the `story-development` skill; the last section lists what Violet's sessions start from.
 
 Three research agents read the sources below on 2026-10-04. Quotes from Borgen were checked against the episode transcript; podcast speech is lightly cleaned of repeated words. Repository star counts and licenses were checked against the GitHub API the same day.
 
@@ -48,7 +48,7 @@ Reception is mixed, and that is useful calibration. Labenz, the producer: "The t
 
 ## Tools
 
-The process below borrows patterns rather than installing anything. If a session wants the tools themselves:
+The `story-development` skill borrows patterns from these rather than installing anything. If a session wants the tools themselves:
 
 | Tool | Use | License (checked) |
 |---|---|---|
@@ -60,29 +60,18 @@ The process below borrows patterns rather than installing anything. If a session
 | [adaumann/speckit-preset-game-narrative-writing](https://github.com/adaumann/speckit-preset-game-narrative-writing) | game-narrative question banks, challenge mode | none detected by GitHub; read only |
 | [NousResearch/autonovel](https://github.com/NousResearch/autonovel) | structural anti-pattern list | none detected; read only |
 
-## The process for Violet's story
+## Running Violet's story sessions
 
-Settled inputs: decision record 0015 (Scarlet, her hair, Slate as pursuer turned ally, "Memories of Others" a few fragments per chapter, no combat, the desert world) and 0014 (mechanics). Open: everything else, including the ending.
+The process is the `story-development` skill in Sami's dotfiles ([plugins/sjawhar/skills/story-development](https://github.com/sjawhar/dotfiles/tree/main/plugins/sjawhar/skills/story-development)). It keeps the story's state in `docs/story/`: a bible of settled facts, a decisions log, open questions, and one note per session. Violet's sessions start from:
 
-1. **Set up the story files in the repo** under `docs/story/`: `bible.md` (only facts Sami has settled, each with its source), `decisions.md` (kept, rejected, and why, in his words), `open-questions.md`, and `sessions/YYYY-MM-DD.md` notes. Every session starts by reading them and ends by updating them.
-2. **Free talk first.** Sami talks or types unorganized for a few minutes about what the story is for and what feels trite about 2019. The model only listens and asks follow-ups.
-3. **Triage the 2019 draft with him.** Go element by element through the archive (Academy, the Artifact, the accident, Kuluun, Slate, the Library, the ending). Sami tags each immutable, adaptable, open, or conflicted and says why; trite elements get his reason recorded. The model asks; it never argues for keeping or cutting.
-4. **Feeling, theme and pillars.** The target feeling, a one-sentence theme, and two or three narrative pillars, each tied to color resonance, all in Sami's words. Test each against the resonance mechanic: does the mechanic express it, and can anything be removed?
-5. **Ideas only on request, and never one.** When Sami asks for options, generate many from deliberately different angles or personas, label them as model-made, don't rank them, and record which he takes, changes or rejects. When he commits to something, challenge it once: "what's the strongest argument this is wrong?"
-6. **Structure, staged.** Logline, then a beat outline per chapter tied to the settled mechanics (decision 0014) and the side paths, leaving how she comes to each color to Sami's triage in step 3, then each character's want versus need, then where each "Memories of Others" fragment falls. Sami reviews each stage before the next starts.
-7. **Critique as a list.** A separate critic (another model family when one is available) reads the whole outline and returns numbered things to consider; Sami rules on each. Simulated player reads are labeled simulated.
-8. **Words last.** Any in-game text is drafted only from a beat brief and a voice sheet built from Sami's own sample lines, then cut hard (over-explanation first), then the anti-slop pass, then Sami's line-by-line pass. Each session note records which material came from Sami and which from the model.
+- **Settled:** [decision 0015](../../decisions/0015-story-direction.md) (Scarlet, her hair, Slate as pursuer turned ally, "Memories of Others" as a few fragments per chapter, no combat, the desert world) and [decision 0014](../../decisions/0014-mechanics-round-1.md) (mechanics). Everything else is open, including the ending.
+- **The 2019 draft to triage:** [archive-digest.md](../2026-09/archive-digest.md), element by element: the Academy, the Artifact, the accident, Kuluun, Slate, the Library, the ending.
+- **The mechanic to test the theme against:** color resonance, as settled in decision 0014.
 
-Guardrails for every session: no plot options unless Sami asks for them, and never a ranking or recommendation; nothing goes into `bible.md` that Sami didn't say; rejected ideas stay in `decisions.md` so no one re-proposes them.
-
-## Starting the fresh session
-
-Paste into a new session in the project-violet checkout:
-
-> Read `docs/research/2026-10/ai-assisted-story-writing.md`, decision records 0009, 0014 and 0015, and `docs/research/2026-09/archive-digest.md`. Then run "The process for Violet's story" with me, starting at step 1 and then step 2. Ask, don't propose.
+To start, open a new session in the project-violet checkout and type `/skill:story-development` followed by what you want to work on.
 
 ## Gaps
 
 - Borgen's X account and a Reddit thread on the episode couldn't be read. He hasn't said what changed in his process for book two.
 - GDC Vault talks (Lauren Bond's 2025 "Creating Playable Stories", Celeste, Ori) are paywalled beyond abstracts; Celeste and GRIS findings rest on public videos and interviews.
-- Hollow Knight and Playdead process claims are secondhand and are not used in the process above.
+- Hollow Knight and Playdead process claims are secondhand and are not used in the skill.
