@@ -26,4 +26,4 @@ jj config set --repo snapshot.max-new-file-size 524288000 # let jj snapshot bina
 
 ## How work lands
 
-Every change goes through a pull request. Tooling and docs PRs merge through the pr-queue organizer; PRs that ship player-facing content need Sami's approval. Every asset carries a provenance record. See `AGENTS.md` for both.
+Every change goes through a pull request. The session that opens a tooling or docs PR merges it once CI is green; PRs that ship player-facing content need Sami's approval. Every asset carries a provenance record. See `AGENTS.md` for both.

@@ -8,7 +8,7 @@ Violet is a story-driven puzzle-platformer being built for a commercial Steam re
 |---|---|
 | `docs/superpowers/specs/` | Approved designs. A new subsystem gets its own spec before code. |
 | `docs/superpowers/plans/` | Implementation plans, one per phase |
-| `docs/decisions/` | Settled decisions, each quoting its source. Add a record when Sami settles something; never edit an old record to change a decision. |
+| `docs/decisions/` | Settled decisions, each citing its source. Add a record when Sami settles something; never edit an old record to change a decision. |
 | `docs/research/` | Research reports; its README lists known corrections |
 | `docs/archive/` | The 2017–2019 design documents (two conceptions: the space version "Resonate" and the wasteland version "Scarlet") |
 | `tools/` | Studio tools, each a standalone uv project |
@@ -17,7 +17,8 @@ Violet is a story-driven puzzle-platformer being built for a commercial Steam re
 ## Rules
 
 1. **Every change lands through a PR, and the PR body states what was run and what was observed.**
-   - **Tooling, docs, and infrastructure PRs** merge through the pr-queue organizer: the session on machine sami-agents holding the `pr-queue` Envoy role. Send it a READY packet with the head sha, base, file count, CI state at that head, and where the evidence is. The bar is CI green at the head plus that evidence; the six-gate process does not apply here ([decision 0011](docs/decisions/0011-merge-queue-waiver.md)).
+   - **Tooling, docs, and infrastructure PRs** are merged by the session that opened them, once CI is green at the head and the PR body has the evidence. Squash-merge as the repository's GitHub App with the head sha pinned. The six-gate process does not apply here ([decisions 0011](docs/decisions/0011-merge-queue-waiver.md) and [0016](docs/decisions/0016-authors-merge-own-docs-prs.md)).
+   - **Never message sessions on machine sami-agents.** They are Sami's work agents, including whichever one holds the `pr-queue` Envoy role ([decision 0016](docs/decisions/0016-authors-merge-own-docs-prs.md)).
    - **PRs that ship generated art, audio, or other player-facing content** need Sami's own approval ([decision 0002](docs/decisions/0002-ai-produces-sami-approves.md)).
 2. **Every asset carries a provenance record.** An asset under a root in `provenance.toml` has a sidecar `<asset>.provenance.json`:
    - Generated assets: `tools/gen` writes the record itself.
