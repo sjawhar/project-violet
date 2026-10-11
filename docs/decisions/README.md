@@ -1,6 +1,6 @@
 # Decisions
 
-One record per settled decision. Each record quotes its source. Later decisions add new records rather than editing old ones.
+One record per settled decision. Each record names its source and states Sami's ruling in plain words, with attribution and date. Later decisions add new records rather than editing old ones.
 
 | # | Decision |
 |---|---|

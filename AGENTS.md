@@ -8,7 +8,7 @@ Violet is a story-driven puzzle-platformer being built for a commercial Steam re
 |---|---|
 | `docs/superpowers/specs/` | Approved designs. A new subsystem gets its own spec before code. |
 | `docs/superpowers/plans/` | Implementation plans, one per phase |
-| `docs/decisions/` | Settled decisions, each quoting its source. Add a record when Sami settles something; never edit an old record to change a decision. |
+| `docs/decisions/` | Settled decisions, each citing its source. Add a record when Sami settles something; never edit an old record to change a decision. |
 | `docs/research/` | Research reports; its README lists known corrections |
 | `docs/archive/` | The 2017–2019 design documents (two conceptions: the space version "Resonate" and the wasteland version "Scarlet") |
 | `tools/` | Studio tools, each a standalone uv project |

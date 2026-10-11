@@ -11,7 +11,7 @@ Tooling, docs and infrastructure PRs are now merged by the session that opened t
 
 ## Source
 
-Sami, typed into the lead session (omp session `01a0df9a-4873-7525-9b00-bfa1425e13e5`, machine sami, transcript line 5812, record `01890585`, 2026-10-11T02:01:40.489Z). He asked why the lead had sent PR #44's merge request to the "legion po" session, the `pr-queue` holder at the time, and ruled that sessions on sami-agents are his work agents and Violet sessions must not bother them. Who merges in the queue's place is the lead's own call, made under his standing instruction that agents merge their own approved work.
+Sami, typed into the lead session (omp session `01a0df9a-4873-7525-9b00-bfa1425e13e5`, machine sami, transcript line 5812, record `01890585`, 2026-10-11T02:01:40.489Z). He asked why the lead had sent PR #44's merge request to the "legion po" session, the `pr-queue` holder at the time, and ruled that sessions on sami-agents are his work agents and Violet sessions must not bother them. He didn't say who should merge instead; having the PR's author merge it is the lead's own call.
 
 ## Consequences
 
