@@ -18,3 +18,4 @@ One record per settled decision. Each record quotes its source. Later decisions 
 | [0012](0012-no-purchases-until-agents-prove-it.md) | No tool purchases in the bake-off until agents prove they need one |
 | [0014](0014-mechanics-round-1.md) | Mechanics round 1: color trigger, movement, blue, yellow, wall jump, difficulty, structure |
 | [0015](0015-story-direction.md) | Story direction: name, look, companion, backstory, combat, and world |
+| [0016](0016-authors-merge-own-docs-prs.md) | Violet sessions leave sami-agents alone; authors merge their own tooling and docs PRs |
