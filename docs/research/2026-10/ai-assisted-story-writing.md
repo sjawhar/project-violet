@@ -1,6 +1,6 @@
 # AI-assisted story writing without slop (research, October 2026)
 
-Sami asked for this on 2026-10-04, before reworking Violet's story, which he judged trite and rushed: find the current best practice for using AI in brainstorming and writing fiction without producing AI slop, starting from Joel Borgen's *The Receipt Horizon*. The process it found is now the `story-development` skill; the last section lists what Violet's sessions start from.
+Sami asked for this on 2026-10-04, before reworking Violet's story, which he judged trite and rushed: find the current best practice for using AI in brainstorming and writing fiction without producing AI slop, starting from Joel Borgen's *The Receipt Horizon*. The process it found is now the `story-development` skill; [Running Violet's story sessions](#running-violets-story-sessions) lists what Violet's sessions start from.
 
 Three research agents read the sources below on 2026-10-04. Quotes from Borgen were checked against the episode transcript; podcast speech is lightly cleaned of repeated words. Repository star counts and licenses were checked against the GitHub API the same day.
 
